@@ -9,8 +9,59 @@ const dmSans = DM_Sans({ subsets: ['latin'], variable: '--font-dm-sans' })
 const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair' })
 
 export const metadata: Metadata = {
-  title: 'IAPredictHub · Matched Betting',
-  description: 'Tu guía completa de matched betting en España',
+  title: 'IAPredictHub · Matched Betting España 2026',
+  description: 'La herramienta más completa de matched betting en España. Calculadora de cobertura, guías paso a paso para 30+ casas, seguimiento de bonos y historial de ganancias. Gratis.',
+  keywords: [
+    'matched betting',
+    'matched betting españa',
+    'calculadora matched betting',
+    'bonos apuestas',
+    'freebets',
+    'betfair exchange',
+    'apuestas sin riesgo',
+    'ganar dinero apuestas',
+    'matched betting 2026',
+    'guia matched betting',
+  ],
+  authors: [{ name: 'IAPredictHub' }],
+  creator: 'IAPredictHub',
+  publisher: 'IAPredictHub',
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'es_ES',
+    url: 'https://matched-betting-app.vercel.app',
+    siteName: 'IAPredictHub · Matched Betting',
+    title: 'IAPredictHub · Matched Betting España 2026',
+    description: 'Calculadora de cobertura, guías para 30+ casas y seguimiento de bonos. La herramienta más completa de matched betting en España.',
+    images: [
+      {
+        url: 'https://matched-betting-app.vercel.app/logo.png',
+        width: 512,
+        height: 512,
+        alt: 'IAPredictHub Matched Betting',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary',
+    title: 'IAPredictHub · Matched Betting España',
+    description: 'Calculadora, guías y seguimiento de bonos para matched betting en España.',
+    images: ['https://matched-betting-app.vercel.app/logo.png'],
+  },
+  verification: {
+    google: '6Cr92jGfY8D6cZX4sdEC1v1vECb_mgjBy8Jd9qoUfI4',
+  },
+  alternates: {
+    canonical: 'https://matched-betting-app.vercel.app',
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -40,6 +91,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </div>
         </nav>
 
+        {/* Banner Betfair — solo desktop */}
         <div className="hidden md:block bg-gradient-to-r from-[#1a3a2a] to-[#1e4d35] border-b border-green-900/40">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex items-center justify-between gap-4">
             <div className="flex items-center gap-2 text-sm text-green-200">
@@ -58,9 +110,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {children}
         </main>
 
-        <footer className="mt-12 border-t border-gray-200 py-6 text-center text-xs text-gray-400">
+        <footer className="hidden md:block mt-12 border-t border-gray-200 py-6 text-center text-xs text-gray-400">
           <p>IAPredictHub · Matched Betting — Solo para uso educativo. Apuesta con responsabilidad.</p>
         </footer>
+
+        {/* Bottom Navigation — solo móvil */}
         <BottomNav />
       </body>
     </html>
