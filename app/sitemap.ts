@@ -8,10 +8,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Rutas estáticas
     const staticRoutes: MetadataRoute.Sitemap = [
         {
+            // Landing pública — máxima prioridad de indexación
             url: baseUrl,
             lastModified: new Date(),
             changeFrequency: 'weekly',
             priority: 1.0,
+        },
+        {
+            // Dashboard de la app — no es una página pública de contenido
+            url: `${baseUrl}/dashboard`,
+            lastModified: new Date(),
+            changeFrequency: 'monthly',
+            priority: 0.4,
         },
         {
             url: `${baseUrl}/guias`,
