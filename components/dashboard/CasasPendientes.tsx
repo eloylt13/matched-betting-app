@@ -95,7 +95,7 @@ export default function CasasPendientes({ progresos }: CasasPendientesProps) {
                           {ESTADO_LABEL[estado] ?? estado}
                         </span>
                       </div>
-                      <p className="text-xs text-stone-500 mt-0.5 truncate">{casa.descripcionBreve}</p>
+                      <p className="hidden sm:block text-xs text-stone-500 mt-0.5 truncate">{casa.descripcionBreve}</p>
                       {totalFases > 1 && (
                         <p className="text-xs text-stone-400 mt-0.5">
                           Fase {Math.min(faseActual, totalFases)} de {totalFases}

@@ -70,6 +70,31 @@ export default function DashboardPage() {
       {/* KPIs compactos */}
       <ProgressSummary state={state} />
 
+      {/* Siguiente mejor acción (Solo Móvil) */}
+      {recomendadas.length > 0 && (
+        <div className="block sm:hidden bg-gradient-to-r from-emerald-900/40 to-emerald-800/20 rounded-2xl p-4">
+          <p className="font-semibold text-emerald-800 text-sm mb-1">👉 Empieza por aquí</p>
+          <div className="flex items-center justify-between mt-2">
+            <div>
+              <p className="font-bold text-stone-800">{recomendadas[0].nombre}</p>
+              <div className="flex items-center gap-1.5 text-xs mt-0.5">
+                <span className="text-emerald-600 font-semibold">+{recomendadas[0].beneficioPotencial} €</span>
+                <span className="text-stone-400">·</span>
+                <span className={getDificultadColor(recomendadas[0].dificultad ?? 3)}>
+                  {getDificultadLabel(recomendadas[0].dificultad ?? 3)}
+                </span>
+              </div>
+            </div>
+            <Link
+              href={`/casas/${recomendadas[0].id}`}
+              className="shrink-0 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition-colors"
+            >
+              Empezar →
+            </Link>
+          </div>
+        </div>
+      )}
+
       {/* Recomendadas para ti */}
       <section>
         <div className="flex items-center justify-between mb-3">

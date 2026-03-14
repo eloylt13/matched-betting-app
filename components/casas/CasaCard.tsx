@@ -59,8 +59,9 @@ export function CasaCard({ casa, estado }: Props) {
   const enProgreso = estado === 'en_progreso' || estado === 'en_curso'
 
   return (
-    <div
-      className={`bg-white rounded-2xl shadow-sm border border-gray-100 ${style.border} overflow-hidden hover:shadow-md transition-all group ${completada ? 'opacity-60' : ''}`}
+    <Link
+      href={`/casas/${casa.id}`}
+      className={`block bg-white rounded-2xl shadow-sm border border-gray-100 ${style.border} overflow-hidden hover:shadow-md transition-all group ${completada ? 'opacity-60' : ''}`}
     >
       <div className="p-5">
         {/* Header */}
@@ -90,22 +91,33 @@ export function CasaCard({ casa, estado }: Props) {
                   {style.icon} {style.label}
                 </span>
               </div>
+              <div className="flex sm:hidden items-center gap-2 mt-1.5 text-xs text-stone-400">
+                <span className={`font-medium ${getDificultadColor(casa.dificultad ?? 3)}`}>
+                  {'⭐'.repeat(casa.dificultad ?? 3)} {getDificultadLabel(casa.dificultad ?? 3)}
+                </span>
+                {casa.promos[0]?.fases[0]?.stakeRecomendado ? (
+                  <>
+                    <span>·</span>
+                    <span>Stake {casa.promos[0].fases[0].stakeRecomendado} €</span>
+                  </>
+                ) : null}
+              </div>
             </div>
           </div>
 
           {/* Beneficio */}
           <div className="text-right shrink-0">
-            <p className="text-lg font-bold text-gray-900">+{casa.beneficioPotencial} €</p>
+            <p className="text-xl sm:text-lg font-bold text-gray-900">+{casa.beneficioPotencial} €</p>
             <p className="text-xs text-gray-400">potencial</p>
           </div>
         </div>
 
         {/* Descripción */}
-        <p className="text-sm text-gray-500 mt-3 line-clamp-2">{casa.descripcionBreve}</p>
+        <p className="hidden sm:block text-sm text-gray-500 mt-3 line-clamp-2">{casa.descripcionBreve}</p>
 
         {/* Footer */}
         <div className="flex items-center justify-between mt-4">
-          <div className="flex items-center gap-3 text-xs text-gray-400">
+          <div className="hidden sm:flex items-center gap-3 text-xs text-gray-400">
             <span>{casa.promos.length} oferta{casa.promos.length !== 1 ? 's' : ''}</span>
             <span>·</span>
             <span>
@@ -118,15 +130,14 @@ export function CasaCard({ casa, estado }: Props) {
             </span>
           </div>
 
-          <Link
-            href={`/casas/${casa.id}`}
-            className="text-xs font-semibold text-gray-600 hover:text-gray-900 group-hover:translate-x-0.5 transition-all"
+          <span
+            className="text-sm sm:text-xs font-semibold text-emerald-600 hover:text-emerald-500 transition-all group-hover:translate-x-0.5 ml-auto"
           >
             Ver detalle →
-          </Link>
+          </span>
         </div>
       </div>
-    </div>
+    </Link>
   )
 }
 

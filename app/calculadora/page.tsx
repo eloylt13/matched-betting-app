@@ -38,12 +38,12 @@ function InputField({
     <div>
       <label className="block text-xs font-semibold text-gray-600 mb-1">{label}</label>
       {microcopy && <p className="text-xs text-gray-400 mb-1.5">{microcopy}</p>}
-      <div className="flex">
+      <div className="flex w-full">
         {prefix && <span className="bg-gray-100 border border-r-0 border-gray-200 px-2.5 py-2 text-xs text-gray-500 rounded-l-lg">{prefix}</span>}
         <input
           type={type} value={value} onChange={e => onChange(e.target.value)}
           step="0.01" min="0"
-          className={`flex-1 border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-300 transition-all bg-white
+          className={`w-full flex-1 border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-300 transition-all bg-white
             ${prefix ? 'rounded-r-lg' : suffix ? 'rounded-l-lg' : 'rounded-lg'}`}
         />
         {suffix && <span className="bg-gray-100 border border-l-0 border-gray-200 px-2.5 py-2 text-xs text-gray-500 rounded-r-lg">{suffix}</span>}
@@ -227,7 +227,8 @@ function OddsMatcherCalc() {
   return (
     <div className="space-y-4">
       {/* Modos */}
-      <div className="bg-gray-100 rounded-2xl p-1 flex gap-1 overflow-x-auto">
+      {/* Modos Desktop */}
+      <div className="hidden sm:flex bg-gray-100 rounded-2xl p-1 gap-1 overflow-x-auto">
         {MODOS.map(m => (
           <button key={m.id} onClick={() => setModo(m.id)}
             className={`flex-1 min-w-[90px] py-2 px-2 rounded-xl text-xs font-bold transition-all whitespace-nowrap
@@ -236,12 +237,24 @@ function OddsMatcherCalc() {
           </button>
         ))}
       </div>
+      {/* Modos Móvil */}
+      <div className="sm:hidden">
+        <select
+          value={modo}
+          onChange={(e) => setModo(e.target.value as ModoClasica)}
+          className="w-full rounded-xl border border-gray-200 px-3 py-2.5 text-sm bg-white focus:ring-2 focus:ring-purple-300 outline-none"
+        >
+          {MODOS.map(m => (
+            <option key={m.id} value={m.id}>{m.label}</option>
+          ))}
+        </select>
+      </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
         {/* Inputs + checklist */}
         <div className="flex flex-col gap-4">
           <div className="bg-white rounded-2xl border border-gray-100 p-5 space-y-4">
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <InputField
                 label="Importe apuesta"
                 value={stake} onChange={setStake} prefix="€"
@@ -253,7 +266,7 @@ function OddsMatcherCalc() {
                 microcopy="Cuota A FAVOR en la casa de apuestas"
               />
             </div>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <InputField
                 label="Cuota lay (Exchange)"
                 value={cuotaExch} onChange={setCuotaExch}

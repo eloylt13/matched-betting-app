@@ -2,6 +2,7 @@
 import type { Metadata } from 'next'
 import { DM_Sans, Playfair_Display } from 'next/font/google'
 import Link from 'next/link'
+import BottomNav from '@/components/BottomNav'
 import './globals.css'
 
 const dmSans = DM_Sans({ subsets: ['latin'], variable: '--font-dm-sans' })
@@ -27,7 +28,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   <span className="text-purple-300 font-normal hidden sm:inline"> · Matched Betting</span>
                 </span>
               </Link>
-              <div className="flex items-center gap-1 sm:gap-2">
+              <div className="hidden md:flex items-center gap-1 sm:gap-2">
                 <NavLink href="/" emoji="📊" label="Dashboard" />
                 <NavLink href="/guias" emoji="📚" label="Guías" />
                 <NavLink href="/calculadora" emoji="🧮" label="Calculadora" />
@@ -39,7 +40,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </div>
         </nav>
 
-        <div className="bg-gradient-to-r from-[#1a3a2a] to-[#1e4d35] border-b border-green-900/40">
+        <div className="hidden md:block bg-gradient-to-r from-[#1a3a2a] to-[#1e4d35] border-b border-green-900/40">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex items-center justify-between gap-4">
             <div className="flex items-center gap-2 text-sm text-green-200">
               <span className="text-base">♻️</span>
@@ -53,13 +54,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </div>
         </div>
 
-        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 pb-20 md:pb-6">
           {children}
         </main>
 
         <footer className="mt-12 border-t border-gray-200 py-6 text-center text-xs text-gray-400">
           <p>IAPredictHub · Matched Betting — Solo para uso educativo. Apuesta con responsabilidad.</p>
         </footer>
+        <BottomNav />
       </body>
     </html>
   )
