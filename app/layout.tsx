@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import { DM_Sans, Playfair_Display } from 'next/font/google'
 import Link from 'next/link'
 import BottomNav from '@/components/BottomNav'
+import { Analytics } from '@vercel/analytics/react'
 import './globals.css'
 
 const dmSans = DM_Sans({ subsets: ['latin'], variable: '--font-dm-sans' })
@@ -116,6 +117,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
         {/* Bottom Navigation — solo móvil */}
         <BottomNav />
+        <Analytics />
       </body>
     </html>
   )
