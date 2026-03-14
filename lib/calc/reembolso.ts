@@ -1,0 +1,49 @@
+// lib/calc/reembolso.ts
+
+import type { InputsReembolso, ResultadoReembolso } from '@/types/calc'
+
+export function calcReembolso(inputs: InputsReembolso): ResultadoReembolso {
+    const { stake, cuotaBack, cuotaLay, comision, reembolso } = inputs
+    const comisionDecimal = comision / 100
+
+    // Mismo lay stake que cualificante — apostamos dinero real
+    const layStake = (stake * cuotaBack) / (cuotaLay - comisionDecimal)
+
+    // Dinero bloqueado en el exchange
+    const responsabilidad = layStake * (cuotaLay - 1)
+
+    // Escenario 1: gana la apuesta back (casa)
+    // No hay reembolso — la casa no devuelve nada
+    const resultadoCasaGana = stake * (cuotaBack - 1)
+    const resultadoExchangePierde = -responsabilidad
+    const beneficioSiGana = resultadoCasaGana + resultadoExchangePierde
+
+    // Escenario 2: pierde la apuesta back
+    // Recibimos el reembolso (ya estimado al 80% del valor bruto)
+    const resultadoCasaPierde = -stake
+    const resultadoExchangeGana = layStake * (1 - comisionDecimal)
+    const beneficioSiPierde = resultadoCasaPierde + resultadoExchangeGana + reembolso
+
+    // Beneficio esperado ponderando ambos escenarios al 50%
+    const beneficioEsperado = (beneficioSiGana + beneficioSiPierde) / 2
+
+    return {
+        layStake: Math.round(layStake * 100) / 100,
+        responsabilidad: Math.round(responsabilidad * 100) / 100,
+        beneficioEsperado: Math.round(beneficioEsperado * 100) / 100,
+        escenarios: [
+            {
+                label: 'Si gana A Favor (casa)',
+                beneficio: Math.round(beneficioSiGana * 100) / 100,
+                resultadoCasa: Math.round(resultadoCasaGana * 100) / 100,
+                resultadoExchange: Math.round(resultadoExchangePierde * 100) / 100,
+            },
+            {
+                label: 'Si gana En Contra (exchange) + reembolso',
+                beneficio: Math.round(beneficioSiPierde * 100) / 100,
+                resultadoCasa: Math.round(resultadoCasaPierde * 100) / 100,
+                resultadoExchange: Math.round(resultadoExchangeGana * 100) / 100,
+            },
+        ],
+    }
+}
