@@ -183,7 +183,7 @@ export default function LandingPage() {
                 Guías gratis
               </Link>
               <Link
-                href="/guias"
+                href="/bienvenida"
                 className="bg-emerald-500 hover:bg-emerald-400 text-white text-xs sm:text-sm font-bold px-3 sm:px-5 py-1.5 sm:py-2 rounded-full transition-colors"
               >
                 Abrir la app →
@@ -232,7 +232,7 @@ export default function LandingPage() {
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-10">
             <Link
-              href="/guias"
+              href="/bienvenida"
               className="w-full sm:w-auto bg-emerald-500 hover:bg-emerald-400 text-white font-bold text-base px-8 py-3.5 rounded-xl transition-colors shadow-lg shadow-emerald-900/30"
             >
               Entrar a la beta gratis →
@@ -326,7 +326,7 @@ export default function LandingPage() {
                 pero el acceso libre seguirá disponible.
               </p>
               <Link
-                href="/guias"
+                href="/bienvenida"
                 className="inline-flex items-center gap-2 bg-gradient-to-r from-[#12112A] to-[#2A1F3D] hover:from-[#1c1a3a] hover:to-[#36285a] text-white font-semibold px-6 py-3 rounded-xl transition-all shadow-md"
               >
                 Entrar a la app gratis →
@@ -589,7 +589,7 @@ export default function LandingPage() {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
-              href="/guias"
+              href="/bienvenida"
               className="w-full sm:w-auto bg-emerald-500 hover:bg-emerald-400 text-white font-bold text-lg px-10 py-4 rounded-xl transition-colors shadow-lg shadow-emerald-900/40"
             >
               Abrir la app gratis →
