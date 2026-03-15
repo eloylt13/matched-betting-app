@@ -9,19 +9,20 @@ const dmSans = DM_Sans({ subsets: ['latin'], variable: '--font-dm-sans' })
 const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair' })
 
 export const metadata: Metadata = {
-  title: 'IAPredictHub · Matched Betting España 2026',
-  description: 'La herramienta más completa de matched betting en España. Calculadora de cobertura, guías paso a paso para 30+ casas, seguimiento de bonos y historial de ganancias. Gratis.',
+  title: 'Calculadora Matched Betting España | Bonos, Freebets y Exchange | IAPredictHub',
+  description:
+    'App de matched betting en España para calcular coberturas, organizar bonos y freebets, seguir promociones por casa y llevar historial con exchange.',
   keywords: [
-    'matched betting',
-    'matched betting españa',
     'calculadora matched betting',
+    'matched betting españa',
+    'freebets españa',
     'bonos apuestas',
-    'freebets',
-    'betfair exchange',
-    'apuestas sin riesgo',
-    'ganar dinero apuestas',
-    'matched betting 2026',
-    'guia matched betting',
+    'calculadora betfair',
+    'calculadora exchange',
+    'seguimiento bonos apuestas',
+    'promociones casas de apuestas',
+    'matched betting app españa',
+    'historial matched betting',
   ],
   authors: [{ name: 'IAPredictHub' }],
   creator: 'IAPredictHub',
@@ -38,9 +39,10 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'es_ES',
     url: 'https://matched-betting-app.vercel.app',
-    siteName: 'IAPredictHub · Matched Betting',
-    title: 'IAPredictHub · Matched Betting España 2026',
-    description: 'Calculadora de cobertura, guías para 30+ casas y seguimiento de bonos. La herramienta más completa de matched betting en España.',
+    siteName: 'IAPredictHub',
+    title: 'Calculadora Matched Betting España | Bonos, Freebets y Exchange',
+    description:
+      'Calcula coberturas, organiza bonos y freebets, sigue promociones por casa y lleva historial en una sola app.',
     images: [
       {
         url: 'https://matched-betting-app.vercel.app/logo.png',
@@ -52,8 +54,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary',
-    title: 'IAPredictHub · Matched Betting España',
-    description: 'Calculadora, guías y seguimiento de bonos para matched betting en España.',
+    title: 'Calculadora Matched Betting España | IAPredictHub',
+    description:
+      'App para calcular coberturas, seguir bonos y organizar promociones de matched betting en España.',
     images: ['https://matched-betting-app.vercel.app/logo.png'],
   },
   verification: {

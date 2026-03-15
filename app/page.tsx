@@ -6,23 +6,23 @@ import EmailCapture from '@/components/landing/EmailCapture'
 import TelegramButton from '@/components/landing/TelegramButton'
 
 export const metadata: Metadata = {
-  title: 'IAPredictHub · Matched Betting España — Calculadoras, Guías y Seguimiento de Bonos',
+  title: 'Calculadora Matched Betting España | Bonos, Freebets y Exchange | IAPredictHub',
   description:
-    'Calculadoras de cobertura, guías para 30+ casas y seguimiento de bonos y freebets. Ejecuta matched betting con más claridad, orden y menos errores. Beta gratuita para España.',
+    'App de matched betting en España para calcular coberturas, organizar bonos y freebets, seguir promociones por casa y llevar historial con exchange en una sola herramienta.',
   alternates: {
     canonical: 'https://matched-betting-app.vercel.app',
   },
   openGraph: {
-    title: 'IAPredictHub · Matched Betting España — Calculadoras, Guías y Seguimiento',
+    title: 'Calculadora Matched Betting España | Bonos, Freebets y Exchange',
     description:
-      'Calculadoras, guías paso a paso y seguimiento de operaciones para ejecutar matched betting con más claridad, orden y menos errores. Beta gratuita.',
+      'Calcula coberturas, organiza bonos y freebets, sigue promociones por casa y lleva historial en una sola app de matched betting para España.',
     url: 'https://matched-betting-app.vercel.app',
     images: [
       {
         url: 'https://matched-betting-app.vercel.app/logo.png',
         width: 512,
         height: 512,
-        alt: 'IAPredictHub Matched Betting',
+        alt: 'IAPredictHub Matched Betting España',
       },
     ],
   },
@@ -34,12 +34,12 @@ const BENEFICIOS = [
   {
     icon: '🧮',
     titulo: 'Calculadora de cobertura precisa',
-    desc: 'Calcula stakes, lay bets y escenarios al céntimo. Sin fórmulas manuales ni riesgo de errores matemáticos.',
+    desc: 'Calcula stakes, lay bets y escenarios al céntimo. Sin fórmulas manuales ni errores de cálculo.',
   },
   {
     icon: '📚',
     titulo: 'Guías para cada tipo de bono',
-    desc: 'Módulos en PDF para apuesta & recibe, reembolso, rollover y dutcher. Para empezar desde cero o afinar tu técnica.',
+    desc: 'Guías para apuesta & recibe, reembolso, rollover y dutcher. Todo integrado en el flujo de la app.',
   },
   {
     icon: '🎁',
@@ -59,7 +59,7 @@ const BENEFICIOS = [
   {
     icon: '📁',
     titulo: 'Sin caos de hojas y archivos',
-    desc: 'Olvida el Excel, los PDFs sueltos y las notas dispersas. Todo en una sola herramienta online.',
+    desc: 'Olvida Excel, PDFs sueltos y notas dispersas. Todo en una sola herramienta online.',
   },
 ]
 
@@ -77,7 +77,7 @@ const BETA_FEATURES = [
   {
     icon: '🏠',
     titulo: '30+ casas de apuestas',
-    desc: 'Instrucciones detalladas, fases, checklist y guías PDF para cada casa española.',
+    desc: 'Instrucciones detalladas, fases, checklist y guías para cada casa española.',
   },
   {
     icon: '🎁',
@@ -91,8 +91,8 @@ const BETA_FEATURES = [
   },
   {
     icon: '📚',
-    titulo: 'Guías y formación en PDF',
-    desc: '7 módulos de formación y guía específica para cada casa. Todo descargable.',
+    titulo: 'Guías y formación integradas',
+    desc: 'Módulos de formación y guías por casa accesibles desde la propia app.',
   },
 ]
 
@@ -142,7 +142,7 @@ const FAQS = [
   {
     pregunta: '¿Qué incluye la beta ahora mismo?',
     respuesta:
-      'Dashboard de progreso, calculadora de cobertura con 5 modos, listado de 30+ casas españolas con guías detalladas, seguimiento de bonos y freebets, historial de operaciones y 7 módulos de formación en PDF.',
+      'Dashboard de progreso, calculadora de cobertura con 5 modos, listado de 30+ casas españolas con guías detalladas, seguimiento de bonos y freebets, historial de operaciones y módulos de formación.',
   },
   {
     pregunta: '¿Habrá un plan de pago o plan Pro en el futuro?',
@@ -161,7 +161,6 @@ const FAQS = [
 export default function LandingPage() {
   return (
     <div className="min-h-screen">
-
       {/* ── 1. NAV ── */}
       <header
         style={{ background: 'linear-gradient(135deg, #12112A 0%, #2A1F3D 100%)' }}
@@ -170,7 +169,7 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-14">
             <Link href="/" className="flex items-center gap-2">
-              <img src="/logo.png" alt="IAPredictHub" className="w-8 h-8 rounded-full object-cover" />
+              <img src="/logo.png" alt="IAPredictHub Matched Betting España" className="w-8 h-8 rounded-full object-cover" />
               <span className="font-bold text-white text-sm sm:text-base tracking-tight">
                 IAPredictHub
                 <span className="text-purple-300 font-normal hidden sm:inline"> · Matched Betting</span>
@@ -201,7 +200,6 @@ export default function LandingPage() {
         }}
         className="relative overflow-hidden"
       >
-        {/* Patrón de puntos decorativo */}
         <div
           className="absolute inset-0 opacity-[0.04]"
           style={{
@@ -209,34 +207,27 @@ export default function LandingPage() {
             backgroundSize: '28px 28px',
           }}
         />
-        {/* Glow sutil */}
         <div
           className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full opacity-10 blur-3xl"
           style={{ background: 'radial-gradient(ellipse, #4ade80 0%, transparent 70%)' }}
         />
 
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 lg:py-36 text-center">
-
-          {/* Badge */}
           <div className="inline-flex items-center gap-2 bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-xs font-semibold px-4 py-1.5 rounded-full mb-8">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
             Beta gratuita · Acceso libre · Sin registro
           </div>
 
-          {/* H1 */}
           <h1 className="font-playfair text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-tight mb-6">
-            Matched betting con más{' '}
-            <span className="text-emerald-400">claridad, orden</span>
-            {' '}y menos errores.
+            Calculadora matched betting en España para{' '}
+            <span className="text-emerald-400">bonos, freebets y exchange</span>.
           </h1>
 
-          {/* Subtítulo */}
-          <p className="text-gray-300 text-base sm:text-lg lg:text-xl max-w-2xl mx-auto leading-relaxed mb-10">
-            Calculadoras de cobertura, guías paso a paso y seguimiento de operaciones
-            para <strong className="text-white font-semibold">30+ casas de apuestas españolas</strong>. Todo en un solo lugar.
+          <p className="text-gray-300 text-base sm:text-lg lg:text-xl max-w-3xl mx-auto leading-relaxed mb-10">
+            Organiza promociones por casa, calcula coberturas, sigue bonos pendientes y lleva historial
+            en una sola app de <strong className="text-white font-semibold">matched betting para España</strong>.
           </p>
 
-          {/* CTAs */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-10">
             <Link
               href="/dashboard"
@@ -252,7 +243,6 @@ export default function LandingPage() {
             </Link>
           </div>
 
-          {/* Trust row */}
           <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-gray-400">
             <span className="flex items-center gap-1.5">
               <span className="text-emerald-400">✓</span> Sin tarjeta ni registro
@@ -295,10 +285,10 @@ export default function LandingPage() {
               Por qué usar esta herramienta
             </p>
             <h2 className="font-playfair text-2xl sm:text-3xl lg:text-4xl font-bold text-stone-900">
-              Todo lo que necesitas para ejecutar bien
+              Todo lo que necesitas para organizar tu matched betting
             </h2>
             <p className="text-stone-500 mt-4 max-w-xl mx-auto text-sm sm:text-base">
-              Sin dispersión entre herramientas sueltas, sin Excel caótico, sin perder tiempo buscando información.
+              Sin dispersión entre herramientas sueltas, sin hojas caóticas y sin perder tiempo buscando información.
             </p>
           </div>
 
@@ -326,12 +316,12 @@ export default function LandingPage() {
                 Acceso completo · Sin límites
               </p>
               <h2 className="font-playfair text-2xl sm:text-3xl font-bold text-stone-900 mb-4">
-                Qué incluye la beta gratuita
+                Qué incluye la app gratuita
               </h2>
               <p className="text-stone-500 text-sm sm:text-base mb-8 leading-relaxed">
-                La beta incluye todas las herramientas sin ninguna limitación.
+                La beta incluye todas las herramientas sin limitaciones.
                 El producto está en evolución — algunas funciones podrían ampliarse o reorganizarse en el futuro,
-                pero el acceso libre siempre estará disponible.
+                pero el acceso libre seguirá disponible.
               </p>
               <Link
                 href="/dashboard"
@@ -371,15 +361,14 @@ export default function LandingPage() {
               La app, en detalle
             </p>
             <h2 className="font-playfair text-2xl sm:text-3xl font-bold text-stone-900">
-              Una herramienta real, no una promesa
+              Una herramienta real para bonos, freebets y seguimiento
             </h2>
             <p className="text-stone-500 mt-3 max-w-xl mx-auto text-sm">
-              Ya existe, ya funciona. Estas son algunas de las pantallas que encontrarás al entrar.
+              Ya existe y ya funciona. Estas son algunas de las pantallas principales de la app.
             </p>
           </div>
 
           <div className="grid sm:grid-cols-3 gap-4">
-
             {/* Mockup 1 — Dashboard */}
             <div className="bg-white rounded-2xl border border-stone-200 overflow-hidden shadow-sm">
               <div className="h-1.5" style={{ background: 'linear-gradient(90deg, #12112A, #2A1F3D)' }} />
@@ -474,7 +463,6 @@ export default function LandingPage() {
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </section>
@@ -624,11 +612,9 @@ export default function LandingPage() {
         className="border-t border-white/5"
       >
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-
-          {/* Fila 1: logo + nav de la app */}
           <div className="flex flex-col sm:flex-row items-center justify-between gap-6 mb-8">
             <div className="flex items-center gap-2">
-              <img src="/logo.png" alt="IAPredictHub" className="w-7 h-7 rounded-full object-cover" />
+              <img src="/logo.png" alt="IAPredictHub Matched Betting España" className="w-7 h-7 rounded-full object-cover" />
               <span className="text-white font-bold text-sm">IAPredictHub</span>
               <span className="text-purple-400 font-normal text-sm hidden sm:inline">· Matched Betting</span>
             </div>
@@ -640,10 +626,7 @@ export default function LandingPage() {
             </nav>
           </div>
 
-          {/* Separador */}
           <div className="border-t border-white/5 pt-6">
-
-            {/* Fila legal: enlaces */}
             <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs text-gray-500 mb-4">
               <Link href="/legal/aviso" className="hover:text-gray-300 transition-colors">
                 Aviso legal
@@ -664,20 +647,16 @@ export default function LandingPage() {
               </a>
             </div>
 
-            {/* Fila legal: copyright + disclaimer */}
             <p className="text-center text-[11px] text-gray-600 leading-relaxed">
               © 2026 IAPredictHub · Matched Betting España
               <span className="mx-2 text-gray-700">·</span>
               Solo para uso educativo. Apuesta con responsabilidad.
             </p>
-
           </div>
         </div>
       </footer>
 
-      {/* Botón flotante Telegram */}
       <TelegramButton />
-
     </div>
   )
 }
