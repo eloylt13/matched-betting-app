@@ -26,7 +26,7 @@ const SECCIONES: Seccion[] = [
   {
     id: 'inicio',
     titulo: 'Primeros pasos',
-    descripcion: 'Todo lo que necesitas para entender el matched betting y empezar con buen pie.',
+    descripcion: 'Todo lo que necesitas para entender los bonos de bienvenida y empezar paso a paso.',
     icono: '🚀',
     color: 'from-emerald-500/10 to-emerald-500/5',
     badgeColor: 'bg-emerald-100 text-emerald-700',
@@ -141,11 +141,11 @@ export default function GuiasPage() {
       {/* Encabezado */}
       <header>
         <h1 className="text-2xl font-bold text-stone-800 tracking-tight">
-          📚 Guías y Formación
+          🚀 Empieza aquí
         </h1>
         <p className="text-sm text-stone-500 mt-1">
-          Material completo para dominar el matched betting paso a paso.
-          Haz clic en cualquier guía para abrirla en PDF.
+          Guía en español para entender los bonos de bienvenida, calcular cada paso
+          y llevar todo organizado de forma sencilla.
         </p>
       </header>
 

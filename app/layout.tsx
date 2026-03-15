@@ -9,10 +9,12 @@ const dmSans = DM_Sans({ subsets: ['latin'], variable: '--font-dm-sans' })
 const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair' })
 
 export const metadata: Metadata = {
-  title: 'Calculadora Matched Betting España | Bonos, Freebets y Exchange | IAPredictHub',
+  title: 'Bonos de bienvenida en España | Guía y calculadora | IAPredictHub',
   description:
-    'App de matched betting en España para calcular coberturas, organizar bonos y freebets, seguir promociones por casa y llevar historial con exchange.',
+    'App en español para entender los bonos de bienvenida, calcular cada paso y llevar todo organizado de forma sencilla.',
   keywords: [
+    'bonos de bienvenida apuestas',
+    'bonos casas de apuestas españa',
     'calculadora matched betting',
     'matched betting españa',
     'freebets españa',
@@ -40,23 +42,23 @@ export const metadata: Metadata = {
     locale: 'es_ES',
     url: 'https://matched-betting-app.vercel.app',
     siteName: 'IAPredictHub',
-    title: 'Calculadora Matched Betting España | Bonos, Freebets y Exchange',
+    title: 'Aprovecha hasta 2.000€ en bonos de bienvenida | IAPredictHub',
     description:
-      'Calcula coberturas, organiza bonos y freebets, sigue promociones por casa y lleva historial en una sola app.',
+      'App en español para entender los bonos de bienvenida, calcular cada paso y llevar todo organizado de forma sencilla.',
     images: [
       {
         url: 'https://matched-betting-app.vercel.app/logo.png',
         width: 512,
         height: 512,
-        alt: 'IAPredictHub Matched Betting',
+        alt: 'IAPredictHub — Bonos de bienvenida en España',
       },
     ],
   },
   twitter: {
     card: 'summary',
-    title: 'Calculadora Matched Betting España | IAPredictHub',
+    title: 'Bonos de bienvenida en España | Guía y calculadora | IAPredictHub',
     description:
-      'App para calcular coberturas, seguir bonos y organizar promociones de matched betting en España.',
+      'App en español para entender los bonos de bienvenida, calcular cada paso y llevar todo organizado de forma sencilla.',
     images: ['https://matched-betting-app.vercel.app/logo.png'],
   },
   verification: {

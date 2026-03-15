@@ -12,13 +12,10 @@ export default function EmailCapture() {
     setStatus('loading')
 
     try {
-      // CONFIGURACIÓN: Crea una cuenta gratuita en https://formspree.io
-      // Crea un nuevo form y reemplaza YOUR_FORM_ID por el ID que te asignen
-      // Ejemplo: https://formspree.io/f/xpwzjklq
-      const res = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+      const res = await fetch('https://formspree.io/f/xvzwbdrr', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({ email, _subject: 'Nueva suscripción — IAPredictHub Matched Betting' }),
+        body: JSON.stringify({ email, _subject: 'Nueva suscripción — IAPredictHub' }),
       })
       if (res.ok) {
         setStatus('success')

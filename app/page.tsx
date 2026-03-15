@@ -6,23 +6,23 @@ import EmailCapture from '@/components/landing/EmailCapture'
 import TelegramButton from '@/components/landing/TelegramButton'
 
 export const metadata: Metadata = {
-  title: 'Calculadora Matched Betting España | Bonos, Freebets y Exchange | IAPredictHub',
+  title: 'Bonos de bienvenida en España | Guía y calculadora | IAPredictHub',
   description:
-    'App de matched betting en España para calcular coberturas, organizar bonos y freebets, seguir promociones por casa y llevar historial con exchange en una sola herramienta.',
+    'App en español para entender los bonos de bienvenida, calcular cada paso y llevar todo organizado de forma sencilla.',
   alternates: {
     canonical: 'https://matched-betting-app.vercel.app',
   },
   openGraph: {
-    title: 'Calculadora Matched Betting España | Bonos, Freebets y Exchange',
+    title: 'Aprovecha hasta 2.000€ en bonos de bienvenida | IAPredictHub',
     description:
-      'Calcula coberturas, organiza bonos y freebets, sigue promociones por casa y lleva historial en una sola app de matched betting para España.',
+      'App en español para entender los bonos de bienvenida, calcular cada paso y llevar todo organizado de forma sencilla.',
     url: 'https://matched-betting-app.vercel.app',
     images: [
       {
         url: 'https://matched-betting-app.vercel.app/logo.png',
         width: 512,
         height: 512,
-        alt: 'IAPredictHub Matched Betting España',
+        alt: 'IAPredictHub — Bonos de bienvenida en España',
       },
     ],
   },
@@ -127,7 +127,7 @@ const FAQS = [
   {
     pregunta: '¿Qué es la beta?',
     respuesta:
-      'Es la versión inicial gratuita de IAPredictHub Matched Betting. Puedes usar todas las herramientas y guías sin coste ni registro. La app está en evolución activa y seguiremos añadiendo mejoras.',
+      'Es la versión inicial gratuita de IAPredictHub. Puedes usar todas las herramientas y guías sin coste ni registro. La app está en evolución activa y seguiremos añadiendo mejoras.',
   },
   {
     pregunta: '¿Es completamente gratis?',
@@ -137,7 +137,7 @@ const FAQS = [
   {
     pregunta: '¿Necesito experiencia previa en apuestas?',
     respuesta:
-      'No. Hay guías desde cero para entender el matched betting, registrarte en cada casa y ejecutar cada tipo de oferta paso a paso. Puedes empezar sin conocimientos previos.',
+      'No. Hay guías desde cero para entender los bonos de bienvenida, registrarte en cada casa y ejecutar cada tipo de oferta paso a paso. Puedes empezar sin conocimientos previos.',
   },
   {
     pregunta: '¿Qué incluye la beta ahora mismo?',
@@ -150,9 +150,9 @@ const FAQS = [
       'Es posible que en el futuro haya funcionalidades avanzadas de pago. Pero siempre habrá una versión gratuita disponible. Durante la beta, todo es libre.',
   },
   {
-    pregunta: '¿Qué es el matched betting exactamente?',
+    pregunta: '¿Qué son los bonos de bienvenida?',
     respuesta:
-      'Es una técnica matemática que aprovecha los bonos de bienvenida de las casas de apuestas. Cubriendo cada apuesta en Betfair Exchange se elimina el factor suerte, ya que el beneficio queda calculado por adelantado independientemente del resultado del evento. No es una estrategia de apuestas tradicional.',
+      'Son promociones que ofrecen las casas de apuestas a nuevos usuarios al registrarse. Con la técnica adecuada y cubriendo cada apuesta, se puede convertir ese bono en beneficio real de forma calculada y sin depender de la suerte.',
   },
 ]
 
@@ -169,10 +169,10 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-14">
             <Link href="/" className="flex items-center gap-2">
-              <img src="/logo.png" alt="IAPredictHub Matched Betting España" className="w-8 h-8 rounded-full object-cover" />
+              <img src="/logo.png" alt="IAPredictHub" className="w-8 h-8 rounded-full object-cover" />
               <span className="font-bold text-white text-sm sm:text-base tracking-tight">
                 IAPredictHub
-                <span className="text-purple-300 font-normal hidden sm:inline"> · Matched Betting</span>
+                <span className="text-purple-300 font-normal hidden sm:inline"> · Bonos de bienvenida</span>
               </span>
             </Link>
             <nav className="flex items-center gap-2 sm:gap-4">
@@ -183,7 +183,7 @@ export default function LandingPage() {
                 Guías gratis
               </Link>
               <Link
-                href="/dashboard"
+                href="/guias"
                 className="bg-emerald-500 hover:bg-emerald-400 text-white text-xs sm:text-sm font-bold px-3 sm:px-5 py-1.5 sm:py-2 rounded-full transition-colors"
               >
                 Abrir la app →
@@ -219,18 +219,20 @@ export default function LandingPage() {
           </div>
 
           <h1 className="font-playfair text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-tight mb-6">
-            Calculadora matched betting en España para{' '}
-            <span className="text-emerald-400">bonos, freebets y exchange</span>.
+            Aprovecha hasta 2.000€ en{' '}
+            <span className="text-emerald-400">bonos de bienvenida</span>{' '}
+            en España.
           </h1>
 
           <p className="text-gray-300 text-base sm:text-lg lg:text-xl max-w-3xl mx-auto leading-relaxed mb-10">
-            Organiza promociones por casa, calcula coberturas, sigue bonos pendientes y lleva historial
-            en una sola app de <strong className="text-white font-semibold">matched betting para España</strong>.
+            Las casas de apuestas ofrecen bonos de bienvenida para nuevos usuarios.
+            Esta app te guía paso a paso para entenderlos, calcular cada apuesta y
+            aprovecharlos con más orden y menos errores.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-10">
             <Link
-              href="/dashboard"
+              href="/guias"
               className="w-full sm:w-auto bg-emerald-500 hover:bg-emerald-400 text-white font-bold text-base px-8 py-3.5 rounded-xl transition-colors shadow-lg shadow-emerald-900/30"
             >
               Entrar a la beta gratis →
@@ -285,7 +287,7 @@ export default function LandingPage() {
               Por qué usar esta herramienta
             </p>
             <h2 className="font-playfair text-2xl sm:text-3xl lg:text-4xl font-bold text-stone-900">
-              Todo lo que necesitas para organizar tu matched betting
+              Todo lo que necesitas para organizar tus bonos
             </h2>
             <p className="text-stone-500 mt-4 max-w-xl mx-auto text-sm sm:text-base">
               Sin dispersión entre herramientas sueltas, sin hojas caóticas y sin perder tiempo buscando información.
@@ -324,7 +326,7 @@ export default function LandingPage() {
                 pero el acceso libre seguirá disponible.
               </p>
               <Link
-                href="/dashboard"
+                href="/guias"
                 className="inline-flex items-center gap-2 bg-gradient-to-r from-[#12112A] to-[#2A1F3D] hover:from-[#1c1a3a] hover:to-[#36285a] text-white font-semibold px-6 py-3 rounded-xl transition-all shadow-md"
               >
                 Entrar a la app gratis →
@@ -582,12 +584,12 @@ export default function LandingPage() {
             Todo listo para empezar.<br />Sin registro. Sin coste.
           </h2>
           <p className="text-gray-400 text-base sm:text-lg mb-10 max-w-lg mx-auto leading-relaxed">
-            Abre la beta, explora las casas y empieza con las guías.
+            Abre la beta, explora las guías y empieza con los bonos de bienvenida.
             A tu ritmo, con toda la información delante.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
-              href="/dashboard"
+              href="/guias"
               className="w-full sm:w-auto bg-emerald-500 hover:bg-emerald-400 text-white font-bold text-lg px-10 py-4 rounded-xl transition-colors shadow-lg shadow-emerald-900/40"
             >
               Abrir la app gratis →
@@ -600,8 +602,7 @@ export default function LandingPage() {
             </Link>
           </div>
           <p className="text-gray-500 text-xs mt-10 max-w-lg mx-auto leading-relaxed">
-            Solo para uso educativo. El matched betting conlleva riesgo si no se ejecuta correctamente.
-            Apuesta con responsabilidad.
+            Solo para uso educativo. Apuesta con responsabilidad.
           </p>
         </div>
       </section>
@@ -612,43 +613,75 @@ export default function LandingPage() {
         className="border-t border-white/5"
       >
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-6 mb-8">
-            <div className="flex items-center gap-2">
-              <img src="/logo.png" alt="IAPredictHub Matched Betting España" className="w-7 h-7 rounded-full object-cover" />
-              <span className="text-white font-bold text-sm">IAPredictHub</span>
-              <span className="text-purple-400 font-normal text-sm hidden sm:inline">· Matched Betting</span>
+          {/* Logo + descripción */}
+          <div className="flex flex-col sm:flex-row items-center sm:items-start justify-between gap-8 mb-10">
+            <div className="text-center sm:text-left">
+              <div className="flex items-center gap-2 justify-center sm:justify-start mb-2">
+                <img src="/logo.png" alt="IAPredictHub" className="w-7 h-7 rounded-full object-cover" />
+                <span className="text-white font-bold text-sm">IAPredictHub</span>
+              </div>
+              <p className="text-gray-500 text-xs max-w-xs leading-relaxed">
+                Herramienta en español para organizar bonos, guías y cálculo paso a paso.
+              </p>
             </div>
-            <nav className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs text-gray-400">
-              <Link href="/dashboard" className="hover:text-white transition-colors">App</Link>
-              <Link href="/guias" className="hover:text-white transition-colors">Guías</Link>
-              <Link href="/calculadora" className="hover:text-white transition-colors">Calculadora</Link>
-              <Link href="/casas" className="hover:text-white transition-colors">Casas</Link>
-            </nav>
+
+            {/* Columnas del footer */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 sm:gap-6 text-xs">
+              {/* Herramienta */}
+              <div>
+                <p className="font-semibold text-gray-400 uppercase tracking-wider mb-3 text-[11px]">Herramienta</p>
+                <div className="flex flex-col gap-2">
+                  <Link href="/guias" className="text-gray-500 hover:text-white transition-colors">Guías</Link>
+                  <Link href="/calculadora" className="text-gray-500 hover:text-white transition-colors">Calculadora</Link>
+                  <Link href="/casas" className="text-gray-500 hover:text-white transition-colors">Casas</Link>
+                  <Link href="/dashboard" className="text-gray-500 hover:text-white transition-colors">Dashboard</Link>
+                </div>
+              </div>
+
+              {/* Legal */}
+              <div>
+                <p className="font-semibold text-gray-400 uppercase tracking-wider mb-3 text-[11px]">Legal</p>
+                <div className="flex flex-col gap-2">
+                  <Link href="/legal/aviso" className="text-gray-500 hover:text-white transition-colors">Aviso legal</Link>
+                  <Link href="/legal/privacidad" className="text-gray-500 hover:text-white transition-colors">Privacidad</Link>
+                  <Link href="/legal/cookies" className="text-gray-500 hover:text-white transition-colors">Cookies</Link>
+                </div>
+              </div>
+
+              {/* Contacto */}
+              <div>
+                <p className="font-semibold text-gray-400 uppercase tracking-wider mb-3 text-[11px]">Contacto</p>
+                <div className="flex flex-col gap-2">
+                  <a href="https://t.me/Elte13" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-white transition-colors">
+                    Telegram
+                  </a>
+                  <a href="https://www.instagram.com/iapredicthub/" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-white transition-colors">
+                    Instagram
+                  </a>
+                </div>
+              </div>
+
+              {/* Confianza */}
+              <div>
+                <p className="font-semibold text-gray-400 uppercase tracking-wider mb-3 text-[11px]">Confianza</p>
+                <div className="flex flex-col gap-2 text-gray-500">
+                  <span className="flex items-center gap-1.5">
+                    <span className="text-sm">🔞</span> Mayores de 18
+                  </span>
+                  <span>Juego responsable</span>
+                  <span>Uso educativo</span>
+                </div>
+              </div>
+            </div>
           </div>
 
+          {/* Separador + bottom */}
           <div className="border-t border-white/5 pt-6">
-            <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs text-gray-500 mb-4">
-              <Link href="/legal/aviso" className="hover:text-gray-300 transition-colors">
-                Aviso legal
-              </Link>
-              <Link href="/legal/privacidad" className="hover:text-gray-300 transition-colors">
-                Política de privacidad
-              </Link>
-              <Link href="/legal/cookies" className="hover:text-gray-300 transition-colors">
-                Política de cookies
-              </Link>
-              <a
-                href="https://t.me/Elte13"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-gray-300 transition-colors"
-              >
-                Contacto
-              </a>
-            </div>
-
+            <p className="text-center text-[11px] text-gray-600 leading-relaxed mb-2">
+              Algunos enlaces pueden ser de afiliado. Esto no cambia el precio para el usuario.
+            </p>
             <p className="text-center text-[11px] text-gray-600 leading-relaxed">
-              © 2026 IAPredictHub · Matched Betting España
+              © 2026 IAPredictHub. Todos los derechos reservados.
               <span className="mx-2 text-gray-700">·</span>
               Solo para uso educativo. Apuesta con responsabilidad.
             </p>
