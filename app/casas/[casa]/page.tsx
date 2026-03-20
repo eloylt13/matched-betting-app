@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 
 import { useEffect, useState, useCallback } from "react"
 import { useParams } from "next/navigation"
@@ -8,17 +8,17 @@ import { loadState, actualizarProgresoCasa } from "@/lib/storage/userState"
 import type { Casa, EstadoCasa, Fase } from "@/types/presets"
 import type { ProgresoCasa } from "@/types/user"
 
-// ── Helpers ───────────────────────────────────────────────────────────────────
+// â”€â”€ Helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 const TIPOLOGIA_STYLE: Record<string, { border: string; badge: string; label: string; icon: string }> = {
-    "apuesta-recibe": { border: "border-emerald-500", badge: "bg-emerald-100 text-emerald-700", label: "Apuesta & Recibe", icon: "🟢" },
-    reembolso: { border: "border-blue-400", badge: "bg-blue-100 text-blue-700", label: "Reembolso", icon: "🔵" },
-    rollover: { border: "border-amber-400", badge: "bg-amber-100 text-amber-700", label: "Rollover", icon: "🔄" },
-    exchange: { border: "border-purple-500", badge: "bg-purple-100 text-purple-700", label: "Exchange", icon: "♻️" },
+    "apuesta-recibe": { border: "border-emerald-500", badge: "bg-emerald-100 text-emerald-700", label: "Apuesta & Recibe", icon: "ðŸŸ¢" },
+    reembolso: { border: "border-blue-400", badge: "bg-blue-100 text-blue-700", label: "Reembolso", icon: "ðŸ”µ" },
+    rollover: { border: "border-amber-400", badge: "bg-amber-100 text-amber-700", label: "Rollover", icon: "ðŸ”„" },
+    exchange: { border: "border-purple-500", badge: "bg-purple-100 text-purple-700", label: "Exchange", icon: "â™»ï¸" },
 }
 
 function getDificultadLabel(d: number) {
-    return ["", "Muy fácil", "Fácil", "Media", "Avanzada", "Experto"][d] ?? "Media"
+    return ["", "Muy fÃ¡cil", "FÃ¡cil", "Media", "Avanzada", "Experto"][d] ?? "Media"
 }
 
 function getDificultadColor(d: number) {
@@ -30,67 +30,67 @@ function getDificultadColor(d: number) {
 }
 
 function getTiempoEstimado(tipologia?: string): string {
-    if (tipologia === "apuesta-recibe") return "10–15 min + espera de freebets"
-    if (tipologia === "reembolso") return "15–20 min por fase"
-    if (tipologia === "rollover") return "30–60 min distribuidos"
-    if (tipologia === "exchange") return "Variable según volumen"
-    return "15–20 min"
+    if (tipologia === "apuesta-recibe") return "10â€“15 min + espera de freebets"
+    if (tipologia === "reembolso") return "15â€“20 min por fase"
+    if (tipologia === "rollover") return "30â€“60 min distribuidos"
+    if (tipologia === "exchange") return "Variable segÃºn volumen"
+    return "15â€“20 min"
 }
 
 function getSiguienteAccion(estado: EstadoCasa, faseActual: number, totalFases: number, casa: Casa): string {
-    if (estado === "completada") return "Oferta completada. ¡Bien hecho!"
+    if (estado === "completada") return "Oferta completada. Â¡Bien hecho!"
     if (estado === "descartada") return "Oferta descartada."
     if (estado === "no_empezada") {
         const stakeF1 = casa.promos[0]?.fases[0]?.stakeRecomendado
         return stakeF1
-            ? `Regístrate y completa la Fase 1 con stake ${stakeF1} €`
-            : "Regístrate y completa la Fase 1"
+            ? `RegÃ­strate y completa la Fase 1 con stake ${stakeF1} â‚¬`
+            : "RegÃ­strate y completa la Fase 1"
     }
     const fase = casa.promos.flatMap(p => p.fases).find(f => f.numero === faseActual)
     if (fase) {
         return faseActual >= totalFases
             ? `Completa la Fase ${faseActual} para terminar la oferta`
-            : `Continúa en Fase ${faseActual}: ${fase.titulo}`
+            : `ContinÃºa en Fase ${faseActual}: ${fase.titulo}`
     }
-    return "Continúa con la siguiente fase"
+    return "ContinÃºa con la siguiente fase"
 }
 
-// Detecta si una alerta es crítica por palabras clave
+// Detecta si una alerta es crÃ­tica por palabras clave
 function getAlertaNivel(texto: string): "critico" | "importante" | "consejo" {
     const upper = texto.toUpperCase()
-    if (upper.includes("CRÍTICO") || upper.includes("MUY IMPORTANTE") || upper.includes("OBLIGATORI")) return "critico"
-    if (upper.includes("⚠️") || upper.includes("ALERTA") || upper.includes("RIESGO")) return "importante"
+    if (upper.includes("CRÃTICO") || upper.includes("MUY IMPORTANTE") || upper.includes("OBLIGATORI")) return "critico"
+    if (upper.includes("âš ï¸") || upper.includes("ALERTA") || upper.includes("RIESGO")) return "importante"
     return "consejo"
 }
 
-// ── Componente de alerta por nivel ────────────────────────────────────────────
+// â”€â”€ Componente de alerta por nivel â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function AlertaItem({ texto }: { texto: string }) {
     const nivel = getAlertaNivel(texto)
     if (nivel === "critico") {
         return (
             <li className="flex gap-2 text-xs bg-red-50 border border-red-200 rounded-lg px-3 py-2 text-red-700">
-                <span className="shrink-0 font-bold">🚨</span>
-                <span>{texto.replace(/^⚠️\s*/, '').replace(/^CRÍTICO:\s*/i, '')}</span>
+                <span className="shrink-0 font-bold">ðŸš¨</span>
+                <span>{texto.replace(/^âš ï¸\s*/, '').replace(/^CRÃTICO:\s*/i, '')}</span>
             </li>
         )
     }
     if (nivel === "importante") {
         return (
             <li className="flex gap-2 text-xs text-amber-700">
-                <span className="shrink-0">⚠️</span>
-                <span>{texto.replace(/^⚠️\s*/, '')}</span>
+                <span className="shrink-0">âš ï¸</span>
+                <span>{texto.replace(/^âš ï¸\s*/, '')}</span>
             </li>
         )
     }
     return (
         <li className="flex gap-2 text-xs text-stone-500">
-            <span className="shrink-0">💡</span>
+            <span className="shrink-0">ðŸ’¡</span>
             <span>{texto}</span>
         </li>
     )
 }
 
-// ── Checklist interactivo por fase ────────────────────────────────────────────
+// â”€â”€ Checklist interactivo por fase â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function ChecklistFase({ pasos, faseId }: { pasos: string[]; faseId: string }) {
     const [checked, setChecked] = useState<boolean[]>(pasos.map(() => false))
     const toggle = (i: number) => setChecked(prev => prev.map((v, idx) => idx === i ? !v : v))
@@ -99,7 +99,7 @@ function ChecklistFase({ pasos, faseId }: { pasos: string[]; faseId: string }) {
     return (
         <div>
             <p className="text-xs font-semibold text-stone-500 uppercase tracking-wide mb-2">
-                Pasos {allChecked && <span className="text-emerald-500 ml-1">✓ Todo listo</span>}
+                Pasos {allChecked && <span className="text-emerald-500 ml-1">âœ“ Todo listo</span>}
             </p>
             <ol className="flex flex-col gap-2">
                 {pasos.map((paso, i) => (
@@ -110,7 +110,7 @@ function ChecklistFase({ pasos, faseId }: { pasos: string[]; faseId: string }) {
                     >
                         <span className={`w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 mt-0.5 transition-all
               ${checked[i] ? "bg-emerald-500 border-emerald-500 text-white" : "border-stone-300 group-hover:border-emerald-400"}`}>
-                            {checked[i] ? "✓" : ""}
+                            {checked[i] ? "âœ“" : ""}
                         </span>
                         <span className={`leading-relaxed ${checked[i] ? "line-through text-stone-400" : "text-stone-600"}`}>
                             {paso}
@@ -122,7 +122,7 @@ function ChecklistFase({ pasos, faseId }: { pasos: string[]; faseId: string }) {
     )
 }
 
-// ── Bloque de fase ────────────────────────────────────────────────────────────
+// â”€â”€ Bloque de fase â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function FaseCard({
     fase, idx, esFaseActual, esFaseCompletada, totalFasesPromo,
     onAvanzar, onCompletar, estadoOferta
@@ -154,7 +154,7 @@ function FaseCard({
                 <div className="flex items-center gap-3">
                     <span className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold shrink-0
             ${esFaseCompletada ? "bg-emerald-500 text-white" : esFaseActual ? "bg-emerald-100 text-emerald-700" : "bg-stone-200 text-stone-500"}`}>
-                        {esFaseCompletada ? "✓" : fase.numero}
+                        {esFaseCompletada ? "âœ“" : fase.numero}
                     </span>
                     <div>
                         <p className="text-sm font-semibold text-stone-800">{fase.titulo}</p>
@@ -164,12 +164,12 @@ function FaseCard({
                 <div className="flex items-center gap-2 shrink-0 ml-2">
                     {fase.freebetEstimada && (
                         <span className="text-xs bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full font-medium">
-                            ~{fase.freebetEstimada} €
+                            ~{fase.freebetEstimada} â‚¬
                         </span>
                     )}
                     {fase.stakeRecomendado && (
                         <span className="text-xs bg-stone-100 text-stone-500 px-2 py-0.5 rounded-full">
-                            Stake: {fase.stakeRecomendado} €
+                            Stake: {fase.stakeRecomendado} â‚¬
                         </span>
                     )}
                 </div>
@@ -177,22 +177,22 @@ function FaseCard({
 
             <div className="px-5 py-4 flex flex-col gap-4">
 
-                {/* 1. Qué harás + cuánto necesitas */}
+                {/* 1. QuÃ© harÃ¡s + cuÃ¡nto necesitas */}
                 {fase.stakeRecomendado && (
                     <div className="grid grid-cols-2 gap-3">
                         <div className="bg-stone-50 rounded-xl p-3 border border-stone-100">
-                            <p className="text-[10px] font-bold text-stone-400 uppercase tracking-wide mb-1">Qué harás</p>
+                            <p className="text-[10px] font-bold text-stone-400 uppercase tracking-wide mb-1">QuÃ© harÃ¡s</p>
                             <p className="text-xs text-stone-700 font-medium">{fase.titulo}</p>
                         </div>
                         <div className="bg-stone-50 rounded-xl p-3 border border-stone-100">
                             <p className="text-[10px] font-bold text-stone-400 uppercase tracking-wide mb-1">Necesitas tener</p>
-                            <p className="text-sm font-bold text-stone-800">{fase.stakeRecomendado} €</p>
+                            <p className="text-sm font-bold text-stone-800">{fase.stakeRecomendado} â‚¬</p>
                             <p className="text-[10px] text-stone-400">disponibles para apostar</p>
                         </div>
                     </div>
                 )}
 
-                {/* 2. Alertas críticas primero */}
+                {/* 2. Alertas crÃ­ticas primero */}
                 {alertasCriticas.length > 0 && (
                     <ul className="flex flex-col gap-1.5">
                         {alertasCriticas.map((a, i) => <AlertaItem key={i} texto={a} />)}
@@ -220,33 +220,33 @@ function FaseCard({
                     <ChecklistFase pasos={fase.checklist} faseId={fase.id} />
                 )}
 
-                {/* 6. Si gana / Si pierde — más concreto */}
+                {/* 6. Si gana / Si pierde â€” mÃ¡s concreto */}
                 <div className="grid grid-cols-2 gap-3">
                     <div className="bg-emerald-50 rounded-xl p-3 border border-emerald-100">
                         <p className="text-[10px] font-bold text-emerald-600 uppercase tracking-wide mb-1">
-                            ✅ Si gana la apuesta
+                            âœ… Si gana la apuesta
                         </p>
                         <p className="text-xs text-emerald-700 leading-relaxed">{fase.siGana.accion}</p>
                         {fase.siGana.modo && (
                             <span className="inline-block mt-1.5 text-[10px] bg-emerald-100 text-emerald-600 px-1.5 py-0.5 rounded font-medium">
-                                → Siguiente: {fase.siGana.modo}
+                                â†’ Siguiente: {fase.siGana.modo}
                             </span>
                         )}
                     </div>
                     <div className="bg-blue-50 rounded-xl p-3 border border-blue-100">
                         <p className="text-[10px] font-bold text-blue-500 uppercase tracking-wide mb-1">
-                            🔄 Si pierde la apuesta
+                            ðŸ”„ Si pierde la apuesta
                         </p>
                         <p className="text-xs text-blue-700 leading-relaxed">{fase.siPierde.accion}</p>
                         {fase.siPierde.urgente && (
                             <span className="inline-block mt-1.5 text-[10px] bg-amber-100 text-amber-600 px-1.5 py-0.5 rounded font-medium">
-                                ⚡ Actuar con urgencia
+                                âš¡ Actuar con urgencia
                             </span>
                         )}
                     </div>
                 </div>
 
-                {/* 7. CTA con confirmación — avanzar fase */}
+                {/* 7. CTA con confirmaciÃ³n â€” avanzar fase */}
                 {esFaseActual && idx < totalFasesPromo - 1 && (
                     <div>
                         {!confirmando ? (
@@ -254,16 +254,16 @@ function FaseCard({
                                 onClick={() => setConfirmando(true)}
                                 className="w-full text-sm font-semibold py-2.5 rounded-xl bg-stone-100 text-stone-700 hover:bg-stone-200 transition-colors border border-stone-200"
                             >
-                                Marcar Fase {fase.numero} como completada →
+                                Marcar Fase {fase.numero} como completada â†’
                             </button>
                         ) : (
                             <div className="bg-stone-50 rounded-xl p-4 border border-stone-200 flex flex-col gap-3">
                                 <p className="text-xs font-semibold text-stone-600">Confirma antes de continuar:</p>
                                 <div className="flex flex-col gap-2">
                                     {[
-                                        { key: "deposito", label: "Depósito o saldo disponible ✓" },
-                                        { key: "apuesta", label: "Apuesta A FAVOR colocada ✓" },
-                                        { key: "cobertura", label: "Cobertura EN CONTRA en Betfair ✓" },
+                                        { key: "deposito", label: "DepÃ³sito o saldo disponible âœ“" },
+                                        { key: "apuesta", label: "Apuesta A FAVOR colocada âœ“" },
+                                        { key: "cobertura", label: "Cobertura EN CONTRA en Betfair âœ“" },
                                     ].map(({ key, label }) => (
                                         <label key={key} className="flex items-center gap-2 cursor-pointer">
                                             <input
@@ -283,7 +283,7 @@ function FaseCard({
                                         className={`flex-1 text-sm font-semibold py-2.5 rounded-xl transition-colors
                       ${puedeAvanzar ? "bg-[#2A1F3D] text-white hover:bg-[#3d2e57]" : "bg-stone-100 text-stone-300 cursor-not-allowed"}`}
                                     >
-                                        Continuar a Fase {fase.numero + 1} →
+                                        Continuar a Fase {fase.numero + 1} â†’
                                     </button>
                                     <button
                                         onClick={() => setConfirmando(false)}
@@ -297,7 +297,7 @@ function FaseCard({
                     </div>
                 )}
 
-                {/* 7b. CTA completar oferta (última fase) */}
+                {/* 7b. CTA completar oferta (Ãºltima fase) */}
                 {esFaseActual && idx === totalFasesPromo - 1 && estadoOferta !== "completada" && (
                     <div>
                         {!confirmando ? (
@@ -305,16 +305,16 @@ function FaseCard({
                                 onClick={() => setConfirmando(true)}
                                 className="w-full text-sm font-semibold py-2.5 rounded-xl bg-stone-100 text-stone-700 hover:bg-stone-200 transition-colors border border-stone-200"
                             >
-                                Marcar oferta como completada →
+                                Marcar oferta como completada â†’
                             </button>
                         ) : (
                             <div className="bg-stone-50 rounded-xl p-4 border border-stone-200 flex flex-col gap-3">
                                 <p className="text-xs font-semibold text-stone-600">Confirma antes de finalizar:</p>
                                 <div className="flex flex-col gap-2">
                                     {[
-                                        { key: "deposito", label: "Todas las apuestas realizadas ✓" },
-                                        { key: "apuesta", label: "Freebets o bonos utilizados ✓" },
-                                        { key: "cobertura", label: "Ganancias recibidas o en proceso ✓" },
+                                        { key: "deposito", label: "Todas las apuestas realizadas âœ“" },
+                                        { key: "apuesta", label: "Freebets o bonos utilizados âœ“" },
+                                        { key: "cobertura", label: "Ganancias recibidas o en proceso âœ“" },
                                     ].map(({ key, label }) => (
                                         <label key={key} className="flex items-center gap-2 cursor-pointer">
                                             <input
@@ -334,7 +334,7 @@ function FaseCard({
                                         className={`flex-1 text-sm font-semibold py-2.5 rounded-xl transition-colors
                       ${puedeAvanzar ? "bg-emerald-500 text-white hover:bg-emerald-400" : "bg-stone-100 text-stone-300 cursor-not-allowed"}`}
                                     >
-                                        ✅ Completar oferta
+                                        âœ… Completar oferta
                                     </button>
                                     <button
                                         onClick={() => setConfirmando(false)}
@@ -352,7 +352,7 @@ function FaseCard({
     )
 }
 
-// ── Componente principal ──────────────────────────────────────────────────────
+// â”€â”€ Componente principal â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 export default function CasaDetallePage() {
     const params = useParams()
@@ -390,7 +390,7 @@ export default function CasaDetallePage() {
         return (
             <div className="flex flex-col items-center justify-center min-h-[40vh] gap-4">
                 <p className="text-stone-400 text-lg">Casa no encontrada.</p>
-                <Link href="/casas" className="text-sm text-emerald-500 hover:underline">← Volver al listado</Link>
+                <Link href="/casas" className="text-sm text-emerald-500 hover:underline">â† Volver al listado</Link>
             </div>
         )
     }
@@ -418,11 +418,11 @@ export default function CasaDetallePage() {
             {/* Breadcrumb */}
             <div className="flex items-center gap-2 text-sm text-stone-400">
                 <Link href="/casas" className="hover:text-stone-200 transition-colors">Casas</Link>
-                <span>›</span>
+                <span>â€º</span>
                 <span className="text-stone-200">{casa.nombre}</span>
             </div>
 
-            {/* Header — descriptivo + directivo */}
+            {/* Header â€” descriptivo + directivo */}
             <div className={`bg-white rounded-3xl border-l-4 ${style.border} shadow-sm p-6`}>
                 <div className="flex items-start justify-between gap-4 flex-wrap">
                     <div className="flex items-center gap-4">
@@ -439,28 +439,40 @@ export default function CasaDetallePage() {
                             <p className="text-sm text-gray-500">{casa.descripcionBreve}</p>
                             <div className="flex items-center gap-3 mt-1.5 flex-wrap">
                                 <span className={`text-xs font-medium ${getDificultadColor(casa.dificultad ?? 3)}`}>
-                                    {"⭐".repeat(casa.dificultad ?? 3)} {getDificultadLabel(casa.dificultad ?? 3)}
+                                    {"â­".repeat(casa.dificultad ?? 3)} {getDificultadLabel(casa.dificultad ?? 3)}
                                 </span>
-                                <span className="text-xs text-stone-400">⏱ {tiempoEstimado}</span>
+                                <span className="text-xs text-stone-400">â± {tiempoEstimado}</span>
                                 <span className="text-xs text-stone-400">{totalFases} fase{totalFases !== 1 ? "s" : ""}</span>
                             </div>
                         </div>
                     </div>
                     <div className="text-right shrink-0">
-                        <p className="text-3xl font-bold text-gray-900">+{casa.beneficioPotencial} €</p>
+                        <p className="text-3xl font-bold text-gray-900">+{casa.beneficioPotencial} â‚¬</p>
                         <p className="text-xs text-gray-400">potencial estimado</p>
                     </div>
                 </div>
 
-                {/* Siguiente acción — línea directiva */}
+                {/* Siguiente acciÃ³n â€” lÃ­nea directiva */}
                 <div className={`mt-4 rounded-xl px-4 py-3 border flex items-start gap-2
           ${completada ? "bg-emerald-50 border-emerald-200" : "bg-blue-50 border-blue-200"}`}>
-                    <span className="text-base shrink-0">{completada ? "✅" : "👉"}</span>
+                    <span className="text-base shrink-0">{completada ? "âœ…" : "ðŸ‘‰"}</span>
                     <div>
-                        <p className="text-xs font-bold text-stone-600 uppercase tracking-wide mb-0.5">Siguiente acción</p>
+                        <p className="text-xs font-bold text-stone-600 uppercase tracking-wide mb-0.5">Siguiente acciÃ³n</p>
                         <p className="text-sm font-semibold text-stone-800">{siguienteAccion}</p>
                     </div>
                 </div>
+
+                {casa.id === "sportium" && (
+                    <div className="mt-3 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 flex items-start gap-2">
+                        <span className="text-base shrink-0">ðŸ§­</span>
+                        <div>
+                            <p className="text-xs font-bold text-emerald-700 uppercase tracking-wide mb-0.5">Primer paso recomendado</p>
+                            <p className="text-sm text-emerald-800">
+                                RegÃ­strate, completa la fase y usa la calculadora cuando hagas la apuesta.
+                            </p>
+                        </div>
+                    </div>
+                )}
 
                 {/* CTAs */}
                 <div className="flex flex-wrap gap-3 mt-4">
@@ -469,7 +481,7 @@ export default function CasaDetallePage() {
                             href={casa.url} target="_blank" rel="noopener noreferrer"
                             className="bg-emerald-500 hover:bg-emerald-400 text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition-colors"
                         >
-                            Registrarse en {casa.nombre} →
+                            Registrarse en {casa.nombre} â†’
                         </a>
                     )}
                     <Link
@@ -545,7 +557,7 @@ export default function CasaDetallePage() {
                         <h2 className="text-lg font-bold text-stone-100">{promo.titulo}</h2>
                         <p className="text-sm text-stone-400">{promo.descripcion}</p>
                         {promo.vencimiento && (
-                            <p className="text-xs text-stone-500 mt-1">⏱ {promo.vencimiento}</p>
+                            <p className="text-xs text-stone-500 mt-1">â± {promo.vencimiento}</p>
                         )}
                     </div>
 
@@ -576,7 +588,7 @@ export default function CasaDetallePage() {
                         href="/casas"
                         className="text-xs font-semibold px-4 py-2 rounded-lg bg-stone-100 hover:bg-stone-200 text-stone-600 transition-colors"
                     >
-                        ← Ver todas las casas
+                        â† Ver todas las casas
                     </Link>
                     <Link
                         href="/calculadora"
@@ -589,7 +601,7 @@ export default function CasaDetallePage() {
                             onClick={() => handleEstado("completada")}
                             className="text-xs font-semibold px-4 py-2 rounded-lg bg-emerald-100 hover:bg-emerald-200 text-emerald-700 transition-colors ml-auto"
                         >
-                            ✅ Marcar como completada
+                            âœ… Marcar como completada
                         </button>
                     )}
                 </div>
@@ -598,3 +610,4 @@ export default function CasaDetallePage() {
         </div>
     )
 }
+

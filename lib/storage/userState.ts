@@ -1,9 +1,11 @@
 // lib/storage/userState.ts
 
 import type { UserState, ProgresoCasa, Bono, EntradaHistorial } from './schema'
+import type { OnboardingPreferences } from '@/types/user'
 import { initialUserState } from './schema'
 
 const STORAGE_KEY = 'mb_user_state'
+const ONBOARDING_KEY = 'mb_onboarding_preferences'
 
 export function loadState(): UserState {
     if (typeof window === 'undefined') return initialUserState
@@ -63,4 +65,26 @@ export function agregarHistorial(entrada: Omit<EntradaHistorial, 'id' | 'fecha'>
 export function resetState(): void {
     if (typeof window === 'undefined') return
     localStorage.removeItem(STORAGE_KEY)
+}
+
+export function loadOnboardingPreferences(): OnboardingPreferences {
+    if (typeof window === 'undefined') return { onboardingSeen: false }
+
+    try {
+        const raw = localStorage.getItem(ONBOARDING_KEY)
+        if (!raw) return { onboardingSeen: false }
+
+        const parsed = JSON.parse(raw) as OnboardingPreferences
+        return {
+            onboardingSeen: Boolean(parsed.onboardingSeen),
+            onboardingMode: parsed.onboardingMode,
+        }
+    } catch {
+        return { onboardingSeen: false }
+    }
+}
+
+export function saveOnboardingPreferences(preferences: OnboardingPreferences): void {
+    if (typeof window === 'undefined') return
+    localStorage.setItem(ONBOARDING_KEY, JSON.stringify(preferences))
 }

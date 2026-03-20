@@ -42,6 +42,11 @@ export interface UserState {
     updatedAt: string
 }
 
+export interface OnboardingPreferences {
+    onboardingSeen: boolean
+    onboardingMode?: 'guiado' | 'directo'
+}
+
 export const initialUserState: UserState = {
     version: 1,
     progresos: {},
