@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import {
@@ -68,6 +68,7 @@ export default function BienvenidaPage() {
     const [checking, setChecking] = useState(true)
     const [selectedMode, setSelectedMode] = useState<OnboardingMode>(null)
     const [step, setStep] = useState(0)
+    const wizardRef = useRef<HTMLDivElement | null>(null)
 
     useEffect(() => {
         const preferences = loadOnboardingPreferences()
@@ -79,6 +80,12 @@ export default function BienvenidaPage() {
         }
         setChecking(false)
     }, [])
+
+    useEffect(() => {
+        if (selectedMode === 'guiado') {
+            wizardRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        }
+    }, [selectedMode])
 
     const currentStep = WIZARD_STEPS[step]
     const progress = useMemo(
@@ -189,7 +196,10 @@ export default function BienvenidaPage() {
                     </div>
 
                     {selectedMode === 'guiado' && currentStep && (
-                        <section className="rounded-3xl border border-stone-200 bg-white p-5 sm:p-6 shadow-sm">
+                        <section
+                            ref={wizardRef}
+                            className="rounded-3xl border border-stone-200 bg-white p-5 sm:p-6 shadow-sm"
+                        >
                             <div className="flex items-center justify-between gap-3 mb-4">
                                 <div>
                                     <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-600 mb-1">
