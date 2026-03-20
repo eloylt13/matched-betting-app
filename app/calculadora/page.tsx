@@ -12,15 +12,15 @@ function n(v: string) { return parseFloat(v) || 0 }
 function getResultadoLabel(valor: number, modo: ModoClasica): { titulo: string; subtitulo: string } {
   if (modo === 'dinero-real' || modo === 'rollover') {
     if (valor >= 0) return { titulo: 'Beneficio estimado', subtitulo: 'Resultado neto garantizado' }
-    return { titulo: 'PÃ©rdida calificante', subtitulo: 'Coste de desbloquear la oferta' }
+    return { titulo: 'Pérdida calificante', subtitulo: 'Coste de desbloquear la oferta' }
   }
   if (modo === 'apuesta-gratis' || modo === 'bonos') {
-    if (valor >= 0) return { titulo: 'Beneficio estimado', subtitulo: 'ConversiÃ³n de la freebet' }
+    if (valor >= 0) return { titulo: 'Beneficio estimado', subtitulo: 'Conversión de la freebet' }
     return { titulo: 'Resultado estimado', subtitulo: 'Revisa las cuotas' }
   }
   if (modo === 'reembolso') {
     if (valor >= 0) return { titulo: 'Beneficio estimado', subtitulo: 'Incluye valor del reembolso' }
-    return { titulo: 'PÃ©rdida calificante', subtitulo: 'Coste de activar el reembolso' }
+    return { titulo: 'Pérdida calificante', subtitulo: 'Coste de activar el reembolso' }
   }
   return { titulo: 'Resultado estimado', subtitulo: '' }
 }
@@ -77,7 +77,7 @@ function TablaResultado({
       <div className="px-4 py-2.5 bg-gray-50 border-b border-gray-100 flex items-center justify-between">
         <span className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Resultado por escenario</span>
         {mismoResultado && (
-          <span className="text-xs text-emerald-600 font-medium">âœ“ Ambos escenarios dan el mismo resultado neto</span>
+          <span className="text-xs text-emerald-600 font-medium">Ambos escenarios dan el mismo resultado neto</span>
         )}
       </div>
       <table className="w-full">
@@ -91,7 +91,7 @@ function TablaResultado({
         </thead>
         <tbody>
           <tr className="border-t border-gray-100">
-            <td className="px-4 py-2.5 text-xs font-medium text-green-700 bg-green-50">âœ… {label1}</td>
+            <td className="px-4 py-2.5 text-xs font-medium text-green-700 bg-green-50">{label1}</td>
             <td className="px-4 py-2.5 text-xs text-right font-mono text-green-600">+{bm1.toFixed(2)}</td>
             <td className="px-4 py-2.5 text-xs text-right font-mono text-red-500">-{bm2.toFixed(2)}</td>
             <td className={`px-4 py-2.5 text-xs text-right font-bold ${benefSiGana >= 0 ? 'text-green-600' : 'text-red-500'}`}>
@@ -99,7 +99,7 @@ function TablaResultado({
             </td>
           </tr>
           <tr className="border-t border-gray-100">
-            <td className="px-4 py-2.5 text-xs font-medium text-blue-700 bg-blue-50">ðŸ”„ {label2}</td>
+            <td className="px-4 py-2.5 text-xs font-medium text-blue-700 bg-blue-50">{label2}</td>
             <td className="px-4 py-2.5 text-xs text-right font-mono text-red-500">-{total1.toFixed(2)}</td>
             <td className="px-4 py-2.5 text-xs text-right font-mono text-green-600">+{total2.toFixed(2)}</td>
             <td className={`px-4 py-2.5 text-xs text-right font-bold ${benefSiPierde >= 0 ? 'text-green-600' : 'text-red-500'}`}>
@@ -139,25 +139,25 @@ function ChecklistEjecucion({ modo }: { modo: ModoClasica }) {
       'Confirma ambas apuestas',
     ],
     'rollover': [
-      'Verifica el volumen pendiente en la secciÃ³n de bonos',
+      'Verifica el volumen pendiente en la sección de bonos',
       'Busca cuotas altas con rating >90% en Oddspedia',
       'Apuesta el stake calculado A FAVOR en la casa',
       'Cubre EN CONTRA en Betfair Exchange',
       'Anota el volumen apostado y repite hasta completar',
     ],
     'reembolso': [
-      'Verifica que el reembolso estÃ¡ activo (activar si es manual)',
+      'Verifica que el reembolso está activo (activar si es manual)',
       'Selecciona un evento con buena liquidez',
       'Apuesta A FAVOR en la casa con el stake indicado',
       'Cubre EN CONTRA en Betfair con el stake lay calculado',
-      'Si pierdes, reclama el reembolso segÃºn T&C de la casa',
+      'Si pierdes, reclama el reembolso según T&C de la casa',
       'Si recibes freebet, usa calculadora APUESTA GRATIS para limpiarla',
     ],
   }
 
   return (
     <div className="bg-gray-50 rounded-xl p-4 border border-gray-100">
-      <p className="text-xs font-bold text-gray-500 uppercase tracking-wide mb-3">ðŸ“‹ Pasos de ejecuciÃ³n</p>
+      <p className="text-xs font-bold text-gray-500 uppercase tracking-wide mb-3">Pasos de ejecución</p>
       <ol className="flex flex-col gap-2">
         {pasos[modo].map((paso, i) => (
           <li key={i} className="flex gap-2.5 text-xs text-gray-600">
@@ -239,10 +239,10 @@ function OddsMatcherCalc({
     { id: 'rollover', label: 'ROLLOVER', color: 'bg-amber-500', colorBg: 'bg-amber-500' },
     { id: 'reembolso', label: 'REEMBOLSO', color: 'bg-rose-500', colorBg: 'bg-rose-500' },
   ]
-  const modoActual = MODOS.find((m) => m.id === modo) ?? MODOS[0]
+  const modoActual = MODOS.find((m) => m.id === modo ) ?? MODOS[0]
 
   const handleCopiar = () => {
-    const texto = `Apuesta a favor: ${s.toFixed(2)}â‚¬ @ ${cbm} | Apuesta lay Betfair: ${sc.toFixed(2)}â‚¬ @ ${ce} | Resultado estimado: ${beneficio >= 0 ? '+' : ''}${beneficio.toFixed(2)}â‚¬`
+    const texto = `Apuesta a favor: ${s.toFixed(2)}€ @ ${cbm} | Apuesta lay Betfair: ${sc.toFixed(2)}€ @ ${ce} | Resultado estimado: ${beneficio >= 0 ? '+' : ''}${beneficio.toFixed(2)}€`
     navigator.clipboard.writeText(texto).then(() => {
       setCopiado(true)
       setTimeout(() => setCopiado(false), 2000)
@@ -279,26 +279,26 @@ function OddsMatcherCalc({
         <div className="flex flex-col gap-4">
           <div className="bg-white rounded-2xl border border-gray-100 p-5 space-y-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <InputField label="Importe apuesta" value={stake} onChange={setStake} prefix="â‚¬" microcopy="Stake que vas a apostar en la casa" />
+              <InputField label="Importe apuesta" value={stake} onChange={setStake} prefix="€" microcopy="Stake que vas a apostar en la casa" />
               <InputField label="Cuota bookmaker" value={cuotaBM} onChange={setCuotaBM} microcopy="Cuota A FAVOR en la casa de apuestas" />
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <InputField label="Cuota lay (Exchange)" value={cuotaExch} onChange={setCuotaExch} microcopy="Cuota EN CONTRA en Betfair" />
-              <InputField label="ComisiÃ³n Betfair" value={comision} onChange={setComision} suffix="%" microcopy="Normalmente 5% en ES" />
+              <InputField label="Comisión Betfair" value={comision} onChange={setComision} suffix="%" microcopy="Normalmente 5% en ES" />
             </div>
             {modo === 'reembolso' && (
-              <InputField label="Importe reembolso" value={reembolso} onChange={setReembolso} prefix="â‚¬" hint="Freebet que recibirÃ­as si pierdes" />
+              <InputField label="Importe reembolso" value={reembolso} onChange={setReembolso} prefix="€" hint="Freebet que recibirías si pierdes" />
             )}
             {modo === 'rollover' && (
               <InputField label="Rollover requerido" value={rolloverX} onChange={setRolloverX} suffix="x" microcopy="Multiplicador de volumen exigido por la casa" />
             )}
 
             <div className="bg-gray-50 rounded-xl p-3 text-xs text-gray-500 border border-gray-100">
-              {modo === 'dinero-real' && 'ðŸ’¡ Apuesta calificante. El objetivo es minimizar la pÃ©rdida mientras desbloqueas el bono.'}
-              {modo === 'apuesta-gratis' && 'ðŸ’¡ Freebet SNR (stake no devuelto). Busca cuotas altas (3.00+) para maximizar retenciÃ³n.'}
-              {modo === 'bonos' && 'ðŸ’¡ Freebet SR (stake devuelto si ganas). Cuotas mÃ¡s bajas tambiÃ©n pueden encajar.'}
-              {modo === 'reembolso' && 'ðŸ’¡ Si pierdes recibes la freebet. El cÃ¡lculo ya incluye su valor estimado al 70%.'}
-              {modo === 'rollover' && 'ðŸ’¡ Calcula la pÃ©rdida esperada al completar el volumen de rollover requerido.'}
+              {modo === 'dinero-real' && 'Apuesta calificante. El objetivo es minimizar la pérdida mientras desbloqueas el bono.'}
+              {modo === 'apuesta-gratis' && 'Freebet SNR (stake no devuelto). Busca cuotas altas (3.00+) para maximizar retención.'}
+              {modo === 'bonos' && 'Freebet SR (stake devuelto si ganas). Cuotas más bajas también pueden encajar.'}
+              {modo === 'reembolso' && 'Si pierdes recibes la freebet. El cálculo ya incluye su valor estimado al 70%.'}
+              {modo === 'rollover' && 'Calcula la pérdida esperada al completar el volumen de rollover requerido.'}
             </div>
 
             <a
@@ -307,8 +307,7 @@ function OddsMatcherCalc({
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-xs text-blue-600 hover:text-blue-700 transition-colors"
             >
-              <span>ðŸ“Š</span>
-              <span className="underline underline-offset-2">Comparar cuotas en Oddspedia â†’</span>
+              <span className="underline underline-offset-2">Comparar cuotas en Oddspedia</span>
             </a>
           </div>
 
@@ -321,13 +320,13 @@ function OddsMatcherCalc({
               <div>
                 <p className="text-xs font-semibold uppercase tracking-wide opacity-75 mb-1">{titulo}</p>
                 <p className="text-4xl font-bold font-mono">
-                  {beneficio >= 0 ? '+' : ''}{beneficio.toFixed(2)} â‚¬
+                  {beneficio >= 0 ? '+' : ''}{beneficio.toFixed(2)} €
                 </p>
                 <p className="text-xs opacity-60 mt-1">{subtitulo}</p>
               </div>
               <div className="text-right shrink-0">
                 <p className="text-xs opacity-70 uppercase tracking-wide">
-                  {retencion !== null ? 'RetenciÃ³n' : 'Eficiencia'}
+                  {retencion !== null ? 'Retención' : 'Eficiencia'}
                 </p>
                 <p className="text-2xl font-bold">
                   {retencion !== null ? `${retencion.toFixed(1)}%` : `${rating.toFixed(1)}%`}
@@ -340,18 +339,18 @@ function OddsMatcherCalc({
           </div>
 
           <div className="bg-teal-50 border border-teal-100 rounded-2xl p-4">
-            <p className="text-xs font-bold text-teal-600 mb-1">â‘  APUESTA A FAVOR Â· BOOKMAKER</p>
-            <p className="text-2xl font-bold text-teal-700">{s.toFixed(2)} â‚¬</p>
+            <p className="text-xs font-bold text-teal-600 mb-1">Paso 1 · APUESTA A FAVOR · BOOKMAKER</p>
+            <p className="text-2xl font-bold text-teal-700">{s.toFixed(2)} €</p>
             <p className="text-xs text-teal-500 mt-0.5">A cuota {cbm}</p>
           </div>
 
           <div className="bg-rose-50 border border-rose-100 rounded-2xl p-4">
-            <p className="text-xs font-bold text-rose-600 mb-1">â‘¡ APUESTA EN CONTRA Â· BETFAIR EXCHANGE</p>
+            <p className="text-xs font-bold text-rose-600 mb-1">Paso 2 · APUESTA EN CONTRA · BETFAIR EXCHANGE</p>
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-2xl font-bold text-rose-700">{sc.toFixed(2)} â‚¬</p>
+                <p className="text-2xl font-bold text-rose-700">{sc.toFixed(2)} €</p>
                 <p className="text-xs text-rose-500 mt-0.5">
-                  A cuota {ce} Â· Riesgo (liability): <strong>{(sc * (ce - 1)).toFixed(2)} â‚¬</strong>
+                  A cuota {ce} · Riesgo (liability): <strong>{(sc * (ce - 1)).toFixed(2)} €</strong>
                 </p>
               </div>
               <a
@@ -360,7 +359,7 @@ function OddsMatcherCalc({
                 rel="noopener noreferrer"
                 className="bg-rose-500 text-white text-xs px-3 py-1.5 rounded-full hover:bg-rose-600 transition-colors font-semibold shrink-0"
               >
-                Abrir Betfair â†’
+                Abrir Betfair
               </a>
             </div>
           </div>
@@ -381,7 +380,7 @@ function OddsMatcherCalc({
               onClick={handleCopiar}
               className="flex items-center gap-1.5 text-xs font-semibold px-3 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-700 transition-colors"
             >
-              {copiado ? 'âœ… Copiado' : 'ðŸ“‹ Copiar cÃ¡lculo'}
+              {copiado ? 'Copiado' : 'Copiar cálculo'}
             </button>
             <a
               href="https://www.betfair.es/exchange/plus/"
@@ -389,7 +388,7 @@ function OddsMatcherCalc({
               rel="noopener noreferrer"
               className="flex items-center gap-1.5 text-xs font-semibold px-3 py-2 rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-600 transition-colors border border-rose-100"
             >
-              â™»ï¸ Abrir Exchange
+              Abrir Exchange
             </a>
             <a
               href="https://oddspedia.com/es"
@@ -397,7 +396,7 @@ function OddsMatcherCalc({
               rel="noopener noreferrer"
               className="flex items-center gap-1.5 text-xs font-semibold px-3 py-2 rounded-lg bg-blue-50 hover:bg-blue-100 text-blue-600 transition-colors border border-blue-100"
             >
-              ðŸ“Š Comparar cuotas
+              Comparar cuotas
             </a>
           </div>
         </div>
@@ -446,10 +445,10 @@ function DutcherCalc({
 
   const beneficio = Math.min(bGana, bPierde)
   const rating = s > 0 ? ((beneficio + s) / s) * 100 : 0
-  const resultadoLabel = beneficio >= 0 ? 'Beneficio estimado' : 'PÃ©rdida calificante'
+  const resultadoLabel = beneficio >= 0 ? 'Beneficio estimado' : 'Pérdida calificante'
 
   const handleCopiar = () => {
-    const texto = `${bm1}: ${s.toFixed(2)}â‚¬ @ ${cc1} | ${bm2}: ${sc2.toFixed(2)}â‚¬ @ ${cc2} | Resultado: ${beneficio >= 0 ? '+' : ''}${beneficio.toFixed(2)}â‚¬`
+    const texto = `${bm1}: ${s.toFixed(2)}€ @ ${cc1} | ${bm2}: ${sc2.toFixed(2)}€ @ ${cc2} | Resultado: ${beneficio >= 0 ? '+' : ''}${beneficio.toFixed(2)}€`
     navigator.clipboard.writeText(texto).then(() => {
       setCopiado(true)
       setTimeout(() => setCopiado(false), 2000)
@@ -459,7 +458,7 @@ function DutcherCalc({
   return (
     <div className="space-y-4">
       <div className="bg-amber-50 border border-amber-200 rounded-xl p-3 text-xs text-amber-800">
-        <strong>Â¿CuÃ¡ndo usarlo?</strong> Cuando tienes freebets o apuestas en dos casas distintas y quieres cubrirte en resultados opuestos sin necesitar el Exchange.
+        <strong>¿Cuándo usarlo?</strong> Cuando tienes freebets o apuestas en dos casas distintas y quieres cubrirte en resultados opuestos sin necesitar el Exchange.
       </div>
 
       <div className="bg-gray-100 rounded-xl p-1 flex gap-1 w-fit">
@@ -476,22 +475,22 @@ function DutcherCalc({
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
         <div className="flex flex-col gap-3">
-          <InputField label="Importe apuesta BM1" value={stake} onChange={setStake} prefix="â‚¬" microcopy="Stake que apuestas en el primer bookmaker" />
+          <InputField label="Importe apuesta BM1" value={stake} onChange={setStake} prefix="€" microcopy="Stake que apuestas en el primer bookmaker" />
 
           <div className="bg-teal-50 rounded-xl p-4 space-y-3 border border-teal-100">
-            <p className="text-xs font-bold text-teal-700">â‘  BOOKMAKER 1 Â· APUESTA A FAVOR</p>
+            <p className="text-xs font-bold text-teal-700">Paso 1 · BOOKMAKER 1 · APUESTA A FAVOR</p>
             <InputField label="Nombre del bookmaker" value={bm1} onChange={setBm1} type="text" />
             <InputField label="Cuota (resultado 1)" value={c1} onChange={setC1} microcopy="Ej: Over 2.5, resultado 1X, etc." />
           </div>
 
           <div className="bg-purple-50 rounded-xl p-4 space-y-3 border border-purple-100">
-            <p className="text-xs font-bold text-purple-700">â‘¡ BOOKMAKER 2 Â· RESULTADO CONTRARIO</p>
+            <p className="text-xs font-bold text-purple-700">Paso 2 ? BOOKMAKER 2 ? RESULTADO CONTRARIO</p>
             <InputField label="Nombre del bookmaker" value={bm2} onChange={setBm2} type="text" />
             <InputField label="Cuota (resultado contrario)" value={c2} onChange={setC2} microcopy="Ej: Under 2.5, resultado 2, etc." />
           </div>
 
           <div className="bg-gray-50 rounded-xl p-3 text-xs text-gray-500 border border-gray-100">
-            AsegÃºrate de que los resultados sean mutuamente excluyentes antes de ejecutar.
+            Asegúrate de que los resultados sean mutuamente excluyentes antes de ejecutar.
           </div>
         </div>
 
@@ -501,7 +500,7 @@ function DutcherCalc({
               <div>
                 <p className="text-xs font-semibold uppercase tracking-wide opacity-75 mb-1">{resultadoLabel}</p>
                 <p className="text-4xl font-bold font-mono">
-                  {beneficio >= 0 ? '+' : ''}{beneficio.toFixed(2)} â‚¬
+                  {beneficio >= 0 ? '+' : ''}{beneficio.toFixed(2)} €
                 </p>
                 <p className="text-xs opacity-60 mt-1">Resultado neto estimado</p>
               </div>
@@ -514,14 +513,14 @@ function DutcherCalc({
           </div>
 
           <div className="bg-teal-50 border border-teal-100 rounded-2xl p-4">
-            <p className="text-xs font-bold text-teal-600 mb-1">â‘  {bm1.toUpperCase()} Â· APUESTA A FAVOR</p>
-            <p className="text-2xl font-bold text-teal-700">{s.toFixed(2)} â‚¬</p>
+            <p className="text-xs font-bold text-teal-600 mb-1">Paso 1 · {bm1.toUpperCase()} · APUESTA A FAVOR</p>
+            <p className="text-2xl font-bold text-teal-700">{s.toFixed(2)} €</p>
             <p className="text-xs text-teal-500">A cuota {cc1.toFixed(2)}</p>
           </div>
 
           <div className="bg-purple-50 border border-purple-100 rounded-2xl p-4">
-            <p className="text-xs font-bold text-purple-600 mb-1">â‘¡ {bm2.toUpperCase()} Â· RESULTADO CONTRARIO</p>
-            <p className="text-2xl font-bold text-purple-700">{sc2.toFixed(2)} â‚¬</p>
+            <p className="text-xs font-bold text-purple-600 mb-1">Paso 2 · {bm2.toUpperCase()} · RESULTADO CONTRARIO</p>
+            <p className="text-2xl font-bold text-purple-700">{sc2.toFixed(2)} €</p>
             <p className="text-xs text-purple-500">A cuota {cc2.toFixed(2)}</p>
           </div>
 
@@ -541,7 +540,7 @@ function DutcherCalc({
               onClick={handleCopiar}
               className="flex items-center gap-1.5 text-xs font-semibold px-3 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-700 transition-colors"
             >
-              {copiado ? 'âœ… Copiado' : 'ðŸ“‹ Copiar cÃ¡lculo'}
+              {copiado ? 'Copiado' : 'Copiar cálculo'}
             </button>
             <a
               href="https://oddspedia.com/es"
@@ -549,7 +548,7 @@ function DutcherCalc({
               rel="noopener noreferrer"
               className="flex items-center gap-1.5 text-xs font-semibold px-3 py-2 rounded-lg bg-blue-50 hover:bg-blue-100 text-blue-600 transition-colors border border-blue-100"
             >
-              ðŸ“Š Comparar cuotas
+              Comparar cuotas
             </a>
           </div>
         </div>
@@ -566,8 +565,8 @@ export default function CalculadoraPage() {
   const [quickSelectionVersion, setQuickSelectionVersion] = useState(0)
 
   const TABS: { id: Tab; label: string; sub: string; icon: string }[] = [
-    { id: 'oddsmatcher', label: 'Oddsmatcher', sub: 'Bookmaker + Exchange', icon: 'âš¡' },
-    { id: 'dutcher', label: 'Dutcher', sub: 'Dos bookmakers', icon: 'ðŸ”€' },
+    { id: 'oddsmatcher', label: 'Oddsmatcher', sub: 'Bookmaker + Exchange', icon: 'O' },
+    { id: 'dutcher', label: 'Dutcher', sub: 'Dos bookmakers', icon: 'D' },
   ]
 
   const quickOptions: {
@@ -579,7 +578,7 @@ export default function CalculadoraPage() {
     {
       id: 'betfair',
       label: 'Una apuesta con Betfair',
-      description: 'La app te lleva a Oddsmatcher en el modo mÃ¡s habitual para empezar con exchange.',
+      description: 'La app te lleva a Oddsmatcher en el modo más habitual para empezar con exchange.',
       apply: () => {
         setQuickChoice('betfair')
         setTab('oddsmatcher')
@@ -625,16 +624,16 @@ export default function CalculadoraPage() {
   return (
     <div className="space-y-5">
       <div>
-        <h1 className="text-xl font-bold text-stone-100">ðŸ§® Calculadora</h1>
-        <p className="text-stone-400 text-sm mt-0.5">Elige primero quÃ© quieres calcular y luego afina el modo si lo necesitas.</p>
+        <h1 className="text-xl font-bold text-stone-100">Calculadora</h1>
+        <p className="text-stone-400 text-sm mt-0.5">Elige primero qué quieres calcular y luego afina el modo si lo necesitas.</p>
       </div>
 
       <section className="rounded-3xl border border-stone-200 bg-white p-5 shadow-sm">
         <div className="mb-4">
           <p className="text-xs font-semibold text-emerald-600 uppercase tracking-[0.2em] mb-2">
-            GuÃ­a rÃ¡pida
+            Guía rápida
           </p>
-          <h2 className="text-lg font-bold text-stone-800">Â¿QuÃ© quieres calcular?</h2>
+          <h2 className="text-lg font-bold text-stone-800">¿Qué quieres calcular?</h2>
         </div>
 
         <div className="grid gap-3 md:grid-cols-3">
@@ -674,4 +673,3 @@ export default function CalculadoraPage() {
     </div>
   )
 }
-
