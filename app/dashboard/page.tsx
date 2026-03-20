@@ -12,14 +12,14 @@ import BonosPendientes from '@/components/dashboard/BonosPendientes'
 import ProximasAcciones from '@/components/dashboard/ProximasAcciones'
 
 const TIPOLOGIA_BADGE: Record<string, { badge: string; icon: string; label: string }> = {
-  'apuesta-recibe': { badge: 'bg-emerald-100 text-emerald-700', icon: 'ðŸŸ¢', label: 'Apuesta & Recibe' },
-  reembolso: { badge: 'bg-blue-100 text-blue-700', icon: 'ðŸ”µ', label: 'Reembolso' },
-  rollover: { badge: 'bg-amber-100 text-amber-700', icon: 'ðŸ”„', label: 'Rollover' },
-  exchange: { badge: 'bg-purple-100 text-purple-700', icon: 'â™»ï¸', label: 'Exchange' },
+  'apuesta-recibe': { badge: 'bg-emerald-100 text-emerald-700', icon: '🟢', label: 'Apuesta & Recibe' },
+  reembolso: { badge: 'bg-blue-100 text-blue-700', icon: '🔵', label: 'Reembolso' },
+  rollover: { badge: 'bg-amber-100 text-amber-700', icon: '🔄', label: 'Rollover' },
+  exchange: { badge: 'bg-purple-100 text-purple-700', icon: '♻️', label: 'Exchange' },
 }
 
 function getDificultadLabel(d: number) {
-  return ['', 'Muy fÃ¡cil', 'FÃ¡cil', 'Media', 'Avanzada', 'Experto'][d] ?? 'Media'
+  return ['', 'Muy fácil', 'Fácil', 'Media', 'Avanzada', 'Experto'][d] ?? 'Media'
 }
 
 function getDificultadColor(d: number) {
@@ -64,10 +64,10 @@ export default function DashboardPage() {
   const startActions = [
     {
       id: 'guia-inicial',
-      title: 'Leer la guÃ­a inicial',
-      description: 'Empieza por la guÃ­a para entender la secuencia recomendada.',
+      title: 'Leer la guía inicial',
+      description: 'Empieza por la guía para entender la secuencia recomendada.',
       href: '/guias',
-      label: 'Abrir guÃ­as',
+      label: 'Abrir guías',
       external: false,
     },
     {
@@ -81,7 +81,7 @@ export default function DashboardPage() {
     {
       id: 'sportium',
       title: 'Empezar por Sportium',
-      description: 'Una casa sencilla y clara para arrancar con menos fricciÃ³n.',
+      description: 'Una casa sencilla y clara para arrancar con menos fricción.',
       href: '/casas/sportium',
       label: 'Empezar con Sportium',
       external: false,
@@ -93,13 +93,13 @@ export default function DashboardPage() {
       <section className="rounded-3xl border border-emerald-200 bg-white p-5 sm:p-6 shadow-sm">
         <div className="flex flex-col gap-2 mb-5">
           <p className="text-xs font-semibold text-emerald-600 uppercase tracking-[0.2em]">
-            Empieza aquÃ­
+            EMPIEZA AQUÍ
           </p>
           <h1 className="text-xl sm:text-2xl font-bold text-stone-800">
-            Si estÃ¡s empezando, sigue este orden para no liarte
+            Si estás empezando, sigue este orden para no liarte
           </h1>
           <p className="text-sm text-stone-500">
-            Primero ve a la guÃ­a, prepara Betfair Exchange y empieza por Sportium. DespuÃ©s usa la calculadora cuando hagas la apuesta.
+            Primero ve a la guía, prepara Betfair Exchange y empieza por Sportium. Después usa la calculadora cuando hagas la apuesta.
           </p>
         </div>
 
@@ -146,10 +146,10 @@ export default function DashboardPage() {
       <section>
         <div className="flex items-center justify-between mb-3">
           <h2 className="text-xs font-semibold text-stone-400 uppercase tracking-wider">
-            â­ Recomendadas para ti
+            ⭐ Recomendadas para ti
           </h2>
           <Link href="/casas" className="text-xs text-emerald-500 hover:text-emerald-400 transition-colors">
-            Ver todas â†’
+            Ver todas →
           </Link>
         </div>
 
@@ -177,7 +177,7 @@ export default function DashboardPage() {
                     <span className="font-semibold text-stone-800 text-sm truncate">{casa.nombre}</span>
                   </div>
                   <span className="text-base font-bold text-emerald-600 shrink-0">
-                    +{casa.beneficioPotencial} â‚¬
+                    +{casa.beneficioPotencial} €
                   </span>
                 </div>
 
@@ -186,10 +186,10 @@ export default function DashboardPage() {
                     {tip.icon} {tip.label}
                   </span>
                   <span className={`text-xs font-medium ${getDificultadColor(casa.dificultad ?? 3)}`}>
-                    {'â­'.repeat(casa.dificultad ?? 3)} {getDificultadLabel(casa.dificultad ?? 3)}
+                    {'⭐'.repeat(casa.dificultad ?? 3)} {getDificultadLabel(casa.dificultad ?? 3)}
                   </span>
                   {stakeMax > 0 && (
-                    <span className="text-xs text-stone-400">Stake {stakeMax} â‚¬</span>
+                    <span className="text-xs text-stone-400">Stake {stakeMax} €</span>
                   )}
                   {totalFases > 1 && (
                     <span className="text-xs text-stone-400">{totalFases} fases</span>
@@ -199,7 +199,7 @@ export default function DashboardPage() {
                 <div className="flex items-center justify-between mt-auto pt-1 border-t border-stone-50">
                   {enCurso ? (
                     <span className="text-xs bg-blue-100 text-blue-600 px-2 py-0.5 rounded-full font-medium">
-                      ðŸ”„ Fase {faseActual}/{totalFases}
+                      🔄 Fase {faseActual}/{totalFases}
                     </span>
                   ) : (
                     <span className="text-xs bg-stone-100 text-stone-500 px-2 py-0.5 rounded-full">
@@ -207,7 +207,7 @@ export default function DashboardPage() {
                     </span>
                   )}
                   <span className="text-xs font-semibold text-emerald-600 group-hover:text-emerald-500 transition-colors">
-                    {enCurso ? 'Continuar â†’' : 'Empezar â†’'}
+                    {enCurso ? 'Continuar →' : 'Empezar →'}
                   </span>
                 </div>
               </Link>
@@ -219,7 +219,7 @@ export default function DashboardPage() {
       <section>
         <div className="flex items-center justify-between mb-3">
           <h2 className="text-xs font-semibold text-stone-400 uppercase tracking-wider">
-            PrÃ³ximas acciones
+            Próximas acciones
           </h2>
         </div>
         <ProximasAcciones state={state} />
@@ -238,10 +238,10 @@ export default function DashboardPage() {
           className="w-full flex items-center justify-between px-5 py-4 hover:bg-stone-50 transition-colors"
         >
           <span className="text-sm font-semibold text-stone-700">
-            ðŸ’¡ Â¿CÃ³mo funciona el matched betting?
+            💡 ¿Cómo funciona el matched betting?
           </span>
           <span className={`text-stone-400 text-lg transition-transform duration-200 ${heroAbierto ? 'rotate-90' : ''}`}>
-            â€º
+            ›
           </span>
         </button>
 
@@ -249,23 +249,23 @@ export default function DashboardPage() {
           <div className="border-t border-stone-100 px-5 py-5">
             <p className="text-sm text-stone-600 leading-relaxed mb-4 max-w-2xl">
               El <span className="font-semibold text-stone-800">matched betting</span> aprovecha bonos de bienvenida
-              cubriendo cada apuesta en Betfair Exchange para reducir el impacto del azar y ejecutar con mÃ¡s control.
+              cubriendo cada apuesta en Betfair Exchange para reducir el impacto del azar y ejecutar con más control.
             </p>
             <div className="grid sm:grid-cols-3 gap-3 mb-4">
               <div className="bg-stone-50 rounded-xl p-3 border border-stone-100">
-                <p className="text-emerald-600 font-bold text-sm mb-1">â‘  Elige una casa</p>
+                <p className="text-emerald-600 font-bold text-sm mb-1">① Elige una casa</p>
                 <p className="text-xs text-stone-500 leading-relaxed">
-                  Empieza por una oferta fÃ¡cil como Sportium para coger ritmo.
+                  Empieza por una oferta fácil como Sportium para coger ritmo.
                 </p>
               </div>
               <div className="bg-stone-50 rounded-xl p-3 border border-stone-100">
-                <p className="text-blue-600 font-bold text-sm mb-1">â‘¡ Usa la calculadora</p>
+                <p className="text-blue-600 font-bold text-sm mb-1">② Usa la calculadora</p>
                 <p className="text-xs text-stone-500 leading-relaxed">
-                  Introduce cuotas y stake para saber cuÃ¡nto cubrir en el exchange.
+                  Introduce cuotas y stake para saber cuánto cubrir en el exchange.
                 </p>
               </div>
               <div className="bg-stone-50 rounded-xl p-3 border border-stone-100">
-                <p className="text-purple-600 font-bold text-sm mb-1">â‘¢ Registra y repite</p>
+                <p className="text-purple-600 font-bold text-sm mb-1">③ Registra y repite</p>
                 <p className="text-xs text-stone-500 leading-relaxed">
                   Marca fases completadas y pasa a la siguiente casa con el proceso ya claro.
                 </p>
@@ -276,7 +276,7 @@ export default function DashboardPage() {
                 href="/casas"
                 className="bg-emerald-500 hover:bg-emerald-400 text-white text-xs font-semibold px-4 py-2 rounded-lg transition-colors"
               >
-                Ver casas disponibles â†’
+                Ver casas disponibles →
               </Link>
               <Link
                 href="/calculadora"

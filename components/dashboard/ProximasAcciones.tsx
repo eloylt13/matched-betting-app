@@ -33,7 +33,7 @@ export default function ProximasAcciones({ state }: ProximasAccionesProps) {
     })
   }
 
-  // Casas en curso — continuar siguiente fase
+  // Casas en curso, continuar siguiente fase
   for (const casa of todasLasCasas) {
     const progreso = state.progresos[casa.id]
     if (progreso?.estado === 'en_curso' || progreso?.estado === 'en_progreso') {
@@ -47,7 +47,7 @@ export default function ProximasAcciones({ state }: ProximasAccionesProps) {
     }
   }
 
-  // Casas sin empezar — recomendar empezar
+  // Casas sin empezar, recomendar empezar
   for (const casa of todasLasCasas) {
     const progreso = state.progresos[casa.id]
     if (!progreso || progreso.estado === 'no_empezada') {
