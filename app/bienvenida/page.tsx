@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import { useEffect, useMemo, useState } from 'react'
 import { useRouter } from 'next/navigation'
@@ -25,14 +25,14 @@ const WIZARD_STEPS: WizardStep[] = [
         title: 'Antes de empezar',
         description: [
             'Para hacer matched betting solo necesitas una base clara: una casa de apuestas, Betfair Exchange y la calculadora.',
-            'No hace falta entenderlo todo de golpe. Si sigues este orden, empezar te resultar? mucho m?s f?cil.',
+            'No hace falta entenderlo todo de golpe. Si sigues este orden, empezar te resultÃ¡ mucho mÃ¡s fÃ¡cil.',
         ],
         primaryLabel: 'Entendido',
     },
     {
         title: 'Necesitas Betfair Exchange',
         description: [
-            'Betfair Exchange te sirve para cubrir apuestas y ejecutar con m?s control desde el principio.',
+            'Betfair Exchange te sirve para cubrir apuestas y ejecutar con mÃ¡s control desde el principio.',
             'Tenlo listo antes de empezar con tu primera casa para ir con mÃ¡s seguridad.',
         ],
         primaryLabel: 'Ya lo tengo / seguir',

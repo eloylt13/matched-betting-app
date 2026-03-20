@@ -1,4 +1,4 @@
-﻿"use client"
+"use client"
 
 import { useEffect, useState, useCallback } from "react"
 import { useParams } from "next/navigation"
@@ -439,9 +439,9 @@ export default function CasaDetallePage() {
                             <p className="text-sm text-gray-500">{casa.descripcionBreve}</p>
                             <div className="flex items-center gap-3 mt-1.5 flex-wrap">
                                 <span className={`text-xs font-medium ${getDificultadColor(casa.dificultad ?? 3)}`}>
-                                    {"â­".repeat(casa.dificultad ?? 3)} {getDificultadLabel(casa.dificultad ?? 3)}
+                                    {"?".repeat(casa.dificultad ?? 3)} {getDificultadLabel(casa.dificultad ?? 3)}
                                 </span>
-                                <span className="text-xs text-stone-400">â± {tiempoEstimado}</span>
+                                <span className="text-xs text-stone-400">? {tiempoEstimado}</span>
                                 <span className="text-xs text-stone-400">{totalFases} fase{totalFases !== 1 ? "s" : ""}</span>
                             </div>
                         </div>
@@ -557,7 +557,7 @@ export default function CasaDetallePage() {
                         <h2 className="text-lg font-bold text-stone-100">{promo.titulo}</h2>
                         <p className="text-sm text-stone-400">{promo.descripcion}</p>
                         {promo.vencimiento && (
-                            <p className="text-xs text-stone-500 mt-1">â± {promo.vencimiento}</p>
+                            <p className="text-xs text-stone-500 mt-1">? {promo.vencimiento}</p>
                         )}
                     </div>
 
@@ -610,4 +610,3 @@ export default function CasaDetallePage() {
         </div>
     )
 }
-

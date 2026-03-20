@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import { useEffect, useState } from 'react'
 
@@ -579,7 +579,7 @@ export default function CalculadoraPage() {
     {
       id: 'betfair',
       label: 'Una apuesta con Betfair',
-      description: 'La app te lleva a Oddsmatcher en el modo m?s habitual para empezar con exchange.',
+      description: 'La app te lleva a Oddsmatcher en el modo mÃ¡s habitual para empezar con exchange.',
       apply: () => {
         setQuickChoice('betfair')
         setTab('oddsmatcher')
