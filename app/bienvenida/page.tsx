@@ -123,7 +123,7 @@ export default function BienvenidaPage() {
 
     return (
         <div className="min-h-[70vh] px-4 py-10 sm:py-14">
-                <div className="mx-auto flex w-full max-w-3xl flex-col gap-8">
+            <div className="mx-auto flex w-full max-w-3xl flex-col gap-8">
                 <div className="text-center">
                     <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 text-xs font-semibold px-4 py-1.5 rounded-full mb-6">
                         Beta gratuita
@@ -187,6 +187,71 @@ export default function BienvenidaPage() {
                             Recordaremos tu última elección para no resetearte la experiencia en cada entrada.
                         </p>
                     </div>
+
+                    {selectedMode === 'guiado' && currentStep && (
+                        <section className="rounded-3xl border border-stone-200 bg-white p-5 sm:p-6 shadow-sm">
+                            <div className="flex items-center justify-between gap-3 mb-4">
+                                <div>
+                                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-600 mb-1">
+                                        Paso {step + 1} de {WIZARD_STEPS.length}
+                                    </p>
+                                    <h2 className="text-xl sm:text-2xl font-bold text-stone-800">
+                                        {currentStep.title}
+                                    </h2>
+                                </div>
+                                <span className="text-xs font-medium text-stone-500">
+                                    {Math.round(progress)}%
+                                </span>
+                            </div>
+
+                            <div className="mb-5 h-2 rounded-full bg-stone-100 overflow-hidden">
+                                <div
+                                    className="h-full rounded-full bg-emerald-500 transition-all duration-300"
+                                    style={{ width: `${progress}%` }}
+                                />
+                            </div>
+
+                            <div className="space-y-3 text-sm leading-relaxed text-stone-600">
+                                {currentStep.description.map((paragraph) => (
+                                    <p key={paragraph}>{paragraph}</p>
+                                ))}
+                            </div>
+
+                            {currentStep.title === 'Ruta recomendada' && (
+                                <div className="mt-5 rounded-2xl border border-stone-100 bg-stone-50 p-4">
+                                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500 mb-3">
+                                        Orden recomendado
+                                    </p>
+                                    <ol className="space-y-2 text-sm text-stone-700">
+                                        <li>1. Guía 1</li>
+                                        <li>2. Betfair Exchange</li>
+                                        <li>3. Sportium</li>
+                                        <li>4. Calculadora</li>
+                                    </ol>
+                                </div>
+                            )}
+
+                            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
+                                {currentStep.externalHref && (
+                                    <a
+                                        href={currentStep.externalHref}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center justify-center rounded-2xl border border-stone-200 px-4 py-3 text-sm font-semibold text-stone-700 hover:bg-stone-50 transition-colors"
+                                    >
+                                        {currentStep.externalLabel}
+                                    </a>
+                                )}
+
+                                <button
+                                    onClick={handlePrimaryAction}
+                                    className="inline-flex items-center justify-center rounded-2xl bg-emerald-500 px-5 py-3 text-sm font-semibold text-white hover:bg-emerald-400 transition-colors"
+                                >
+                                    {currentStep.primaryLabel}
+                                </button>
+                            </div>
+                        </section>
+                    )}
 
                 </div>
             </div>
