@@ -1,9 +1,12 @@
 // app/sitemap.ts
 import { MetadataRoute } from 'next'
+import fs from 'fs'
+import path from 'path'
 import { casasEspana } from '@/lib/presets/data/espana'
 
 export default function sitemap(): MetadataRoute.Sitemap {
     const baseUrl = 'https://matched-betting-app.vercel.app'
+    const guiasDir = path.join(process.cwd(), 'content/guias')
 
     // Rutas estáticas
     const staticRoutes: MetadataRoute.Sitemap = [
@@ -61,5 +64,37 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.7,
     }))
 
-    return [...staticRoutes, ...casaRoutes]
+    const guiaPriorityByCategory: Record<string, number> = {
+        'primeros-pasos': 0.8,
+        modulos: 0.8,
+        estrategia: 0.7,
+        casas: 0.7,
+    }
+
+    const guiaRoutes: MetadataRoute.Sitemap = []
+    const categorias = fs.readdirSync(guiasDir)
+
+    categorias.forEach((categoria) => {
+        const categoriaPath = path.join(guiasDir, categoria)
+        const stat = fs.statSync(categoriaPath)
+
+        if (!stat.isDirectory()) return
+
+        const files = fs.readdirSync(categoriaPath)
+
+        files.forEach((file) => {
+            if (!file.endsWith('.mdx') && !file.endsWith('.md')) return
+
+            const slug = file.replace(/\.(mdx|md)$/, '')
+
+            guiaRoutes.push({
+                url: `${baseUrl}/guias/${categoria}/${slug}`,
+                lastModified: new Date(),
+                changeFrequency: 'monthly',
+                priority: guiaPriorityByCategory[categoria] ?? 0.7,
+            })
+        })
+    })
+
+    return [...staticRoutes, ...casaRoutes, ...guiaRoutes]
 }
