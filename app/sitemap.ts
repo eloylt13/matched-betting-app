@@ -1,12 +1,72 @@
 // app/sitemap.ts
 import { MetadataRoute } from 'next'
-import fs from 'fs'
-import path from 'path'
 import { casasEspana } from '@/lib/presets/data/espana'
+
+const GUIA_PRIORITY_BY_CATEGORY: Record<string, number> = {
+    'primeros-pasos': 0.8,
+    modulos: 0.8,
+    estrategia: 0.7,
+    casas: 0.7,
+}
+
+const GUIA_ROUTES: Array<{ categoria: string; slug: string }> = [
+    { categoria: 'primeros-pasos', slug: 'leeme-primero' },
+    { categoria: 'primeros-pasos', slug: 'introduccion-matched-betting' },
+    { categoria: 'primeros-pasos', slug: 'cuanto-se-puede-ganar' },
+    { categoria: 'primeros-pasos', slug: 'orden-recomendado' },
+    { categoria: 'primeros-pasos', slug: 'betfair-exchange' },
+    { categoria: 'primeros-pasos', slug: 'calculadora-oddsmatcher' },
+    { categoria: 'primeros-pasos', slug: 'calculadora-dutcher' },
+    { categoria: 'primeros-pasos', slug: 'glosario-terminos' },
+    { categoria: 'modulos', slug: 'modulo-1-betfair' },
+    { categoria: 'modulos', slug: 'modulo-2-apuesta-y-recibe' },
+    { categoria: 'modulos', slug: 'modulo-3-reembolso' },
+    { categoria: 'modulos', slug: 'modulo-4-rollover' },
+    { categoria: 'modulos', slug: 'modulo-5-herramientas' },
+    { categoria: 'modulos', slug: 'modulo-6-dutcher' },
+    { categoria: 'modulos', slug: 'modulo-7-calculadora-web' },
+    { categoria: 'estrategia', slug: 'maximizar-apuesta-recibe' },
+    { categoria: 'estrategia', slug: 'maximizar-reembolso' },
+    { categoria: 'estrategia', slug: 'gestionar-rollover' },
+    { categoria: 'estrategia', slug: 'gestion-bankroll' },
+    { categoria: 'estrategia', slug: 'errores-comunes' },
+    { categoria: 'estrategia', slug: 'como-no-perder-la-cuenta' },
+    { categoria: 'casas', slug: '888sport' },
+    { categoria: 'casas', slug: 'aupabet' },
+    { categoria: 'casas', slug: 'bet365' },
+    { categoria: 'casas', slug: 'betfair' },
+    { categoria: 'casas', slug: 'betsson' },
+    { categoria: 'casas', slug: 'betway' },
+    { categoria: 'casas', slug: 'botemania' },
+    { categoria: 'casas', slug: 'bwin' },
+    { categoria: 'casas', slug: 'casino-gran-madrid' },
+    { categoria: 'casas', slug: 'casumo' },
+    { categoria: 'casas', slug: 'codere' },
+    { categoria: 'casas', slug: 'daznbet' },
+    { categoria: 'casas', slug: 'ebingo' },
+    { categoria: 'casas', slug: 'efbet' },
+    { categoria: 'casas', slug: 'goldenpark' },
+    { categoria: 'casas', slug: 'interwetten' },
+    { categoria: 'casas', slug: 'juegging' },
+    { categoria: 'casas', slug: 'jokerbet' },
+    { categoria: 'casas', slug: 'kirolbet' },
+    { categoria: 'casas', slug: 'leovegas' },
+    { categoria: 'casas', slug: 'marca-apuestas' },
+    { categoria: 'casas', slug: 'olybet' },
+    { categoria: 'casas', slug: 'paf' },
+    { categoria: 'casas', slug: 'paston' },
+    { categoria: 'casas', slug: 'pokerstars' },
+    { categoria: 'casas', slug: 'retabet' },
+    { categoria: 'casas', slug: 'solcasino' },
+    { categoria: 'casas', slug: 'sportium' },
+    { categoria: 'casas', slug: 'versus' },
+    { categoria: 'casas', slug: 'william-hill' },
+    { categoria: 'casas', slug: 'winamax' },
+    { categoria: 'casas', slug: 'yaass' },
+]
 
 export default function sitemap(): MetadataRoute.Sitemap {
     const baseUrl = 'https://matched-betting-app.vercel.app'
-    const guiasDir = path.join(process.cwd(), 'content/guias')
 
     // Rutas estáticas
     const staticRoutes: MetadataRoute.Sitemap = [
@@ -64,37 +124,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.7,
     }))
 
-    const guiaPriorityByCategory: Record<string, number> = {
-        'primeros-pasos': 0.8,
-        modulos: 0.8,
-        estrategia: 0.7,
-        casas: 0.7,
-    }
-
-    const guiaRoutes: MetadataRoute.Sitemap = []
-    const categorias = fs.readdirSync(guiasDir)
-
-    categorias.forEach((categoria) => {
-        const categoriaPath = path.join(guiasDir, categoria)
-        const stat = fs.statSync(categoriaPath)
-
-        if (!stat.isDirectory()) return
-
-        const files = fs.readdirSync(categoriaPath)
-
-        files.forEach((file) => {
-            if (!file.endsWith('.mdx') && !file.endsWith('.md')) return
-
-            const slug = file.replace(/\.(mdx|md)$/, '')
-
-            guiaRoutes.push({
-                url: `${baseUrl}/guias/${categoria}/${slug}`,
-                lastModified: new Date(),
-                changeFrequency: 'monthly',
-                priority: guiaPriorityByCategory[categoria] ?? 0.7,
-            })
-        })
-    })
+    const guiaRoutes: MetadataRoute.Sitemap = GUIA_ROUTES.map(({ categoria, slug }) => ({
+        url: `${baseUrl}/guias/${categoria}/${slug}`,
+        lastModified: new Date(),
+        changeFrequency: 'monthly',
+        priority: GUIA_PRIORITY_BY_CATEGORY[categoria] ?? 0.7,
+    }))
 
     return [...staticRoutes, ...casaRoutes, ...guiaRoutes]
 }
