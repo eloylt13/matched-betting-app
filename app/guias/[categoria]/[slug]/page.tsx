@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import fs from 'fs'
 import path from 'path'
@@ -45,6 +46,18 @@ function getGuiaContent(categoria: string, slug: string): { content: string; fro
   if (!fs.existsSync(filePath)) return null
   const { data, content } = matter(fs.readFileSync(filePath, 'utf-8'))
   return { content, frontmatter: data as FrontmatterData }
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { categoria, slug } = await params
+  const guia = getGuiaContent(categoria, slug)
+
+  if (!guia) return {}
+
+  return {
+    title: `${guia.frontmatter.title} | IAPredictHub`,
+    description: guia.frontmatter.descripcion ?? '',
+  }
 }
 
 const CATEGORIA_LABEL: Record<string, string> = {
