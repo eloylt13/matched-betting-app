@@ -78,6 +78,37 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
         <p>IAPredictHub · Matched Betting — Solo para uso educativo. Apuesta con responsabilidad.</p>
       </footer>
 
+      <div
+        className="hidden md:flex flex-wrap gap-4"
+        style={{
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          borderTop: '1px solid #e5e7eb',
+          padding: '1.5rem',
+        }}
+      >
+        {/* Izquierda: logo + copyright */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/logo-iamagica.png" alt="IAMagica" height={28} style={{ height: '28px', width: 'auto' }} />
+          <span style={{ fontSize: '12px', color: '#9ca3af' }}>© 2026 IAMagica</span>
+        </div>
+
+        {/* Derecha: contacto */}
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '4px' }}>
+          <span style={{ fontSize: '12px', fontWeight: 600, color: '#1B4332', letterSpacing: '0.5px' }}>
+            DIGITALIZA TU NEGOCIO
+          </span>
+          <a
+            href="mailto:info@iamagica.es"
+            style={{ textDecoration: 'none', color: '#6b7280', display: 'flex', alignItems: 'center', gap: '6px' }}
+          >
+            <span style={{ fontSize: '20px' }}>✉</span>
+            <span style={{ fontSize: '12px' }}>info@iamagica.es</span>
+          </a>
+        </div>
+      </div>
+
       <BottomNav />
     </>
   )
