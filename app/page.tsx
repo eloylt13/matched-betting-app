@@ -97,25 +97,25 @@ const GUIAS_DESTACADAS = [
     icono: '📖',
     titulo: 'Introducción al Matched Betting',
     desc: 'Qué es, cómo funciona y por qué conviene entender el método antes de ejecutar.',
-    archivo: 'inicio/1. INTRODUCCIÓN AL MATCHED BETTING.pdf',
+    archivo: 'inicio/introduccion-matched-betting.pdf',
   },
   {
     icono: '💰',
     titulo: 'Cuánto se puede ganar (España)',
     desc: 'Contexto realista del mercado español, con foco en método, orden y ejecución.',
-    archivo: 'inicio/2. CUÁNTO SE PUEDE GANAR (ESPAÑA).pdf',
+    archivo: 'inicio/cuanto-se-puede-ganar-espana.pdf',
   },
   {
     icono: '♻️',
     titulo: 'Módulo 1 — Betfair Exchange',
     desc: 'Base práctica para cubrir apuestas correctamente y entender el exchange.',
-    archivo: 'modulos/Modulo_1_Betfair_Actualizado_con_registro.pdf',
+    archivo: 'modulos/modulo-1-betfair.pdf',
   },
   {
     icono: '🟢',
     titulo: 'Módulo 2 — Apuesta y Recibe',
     desc: 'Cómo empezar por ofertas sencillas con una ejecución paso a paso.',
-    archivo: 'modulos/Modulo_2_Apuesta_y_Recibe_Actualizado_OK.pdf',
+    archivo: 'modulos/modulo-2-apuesta-y-recibe.pdf',
   },
 ]
 
