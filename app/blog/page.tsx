@@ -21,6 +21,13 @@ const articulos: Array<{
     descripcion:
       'Guía completa para principiantes: qué es el matched betting, cómo funciona paso a paso, si es legal en España y cuánto puedes ganar con ejemplos reales.',
   },
+  {
+    slug: 'mejores-bonos-bienvenida-apuestas-espana',
+    titulo: 'Mejores bonos de bienvenida en casas de apuestas en España (2026)',
+    fecha: '29 de marzo de 2026',
+    descripcion:
+      'Comparativa actualizada de más de 20 casas españolas con tipo de bono, requisitos, dificultad y ganancia potencial. Descubre por dónde empezar.',
+  },
 ]
 
 export default function BlogPage() {

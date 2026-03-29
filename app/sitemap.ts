@@ -158,6 +158,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
             changeFrequency: 'monthly',
             priority: 0.8,
         },
+        {
+            url: `${baseUrl}/blog/mejores-bonos-bienvenida-apuestas-espana`,
+            lastModified: new Date('2026-03-29'),
+            changeFrequency: 'monthly',
+            priority: 0.8,
+        },
     ]
 
     return [...staticRoutes, ...casaRoutes, ...guiaRoutes, ...guiasPdfRoutes, ...blogRoutes]
