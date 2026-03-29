@@ -143,8 +143,64 @@ const FAQS = [
 ]
 
 export default function LandingPage() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: '¿Qué es la beta?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Es la versión inicial gratuita de IAPredictHub. Puedes usar las herramientas y guías sin coste ni registro mientras seguimos mejorando el producto.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: '¿Necesito experiencia previa?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'No. La app está pensada para quien empieza y necesita una ruta más clara para entender el proceso sin ir a ciegas.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: '¿La app promete beneficios garantizados?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'No. La propuesta de valor está en ayudarte a ejecutar con más método, más orden y menos errores dentro del mercado español.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: '¿Qué incluye ahora mismo?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Incluye onboarding, dashboard, calculadora, casas con fases, seguimiento de bonos, historial y guías integradas.',
+        },
+      },
+    ],
+  }
+
+  const softwareSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'IAPredictHub',
+    applicationCategory: 'FinanceApplication',
+    operatingSystem: 'Web',
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'EUR',
+    },
+    description:
+      'Herramienta gratuita de matched betting para España con calculadora, guías y seguimiento de bonos.',
+  }
+
   return (
     <div className="min-h-screen">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }} />
       <header
         style={{ background: 'linear-gradient(135deg, #12112A 0%, #2A1F3D 100%)' }}
         className="sticky top-0 z-50 shadow-lg"
