@@ -418,6 +418,34 @@ export default function LandingPage() {
         </div>
       </section>
 
+      <section className="bg-stone-50 border-t border-stone-100">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+          <div className="text-center mb-10">
+            <h2 className="font-playfair text-2xl sm:text-3xl font-bold text-stone-900">Sobre este proyecto</h2>
+            <p className="text-stone-500 mt-4 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
+              IAPredictHub es un proyecto independiente desarrollado en España, pensado para ofrecer una forma más clara y ordenada de empezar con bonos de bienvenida. La herramienta nace de la necesidad de tener todo en un mismo sitio: calculadora, guías, seguimiento y una ruta lógica para no perderse al empezar.
+            </p>
+          </div>
+          <div className="grid sm:grid-cols-3 gap-4 mt-8">
+            <div className="bg-white rounded-2xl border border-stone-100 p-6 hover:shadow-md hover:border-emerald-200 transition-all">
+              <span className="text-2xl mb-3 block">🛠</span>
+              <h3 className="font-semibold text-stone-800 text-sm mb-2">Desarrollo activo</h3>
+              <p className="text-xs text-stone-500 leading-relaxed">La app se actualiza regularmente con nuevas casas, mejoras en la calculadora y contenido de formación.</p>
+            </div>
+            <div className="bg-white rounded-2xl border border-stone-100 p-6 hover:shadow-md hover:border-emerald-200 transition-all">
+              <span className="text-2xl mb-3 block">🎯</span>
+              <h3 className="font-semibold text-stone-800 text-sm mb-2">Enfoque principiante</h3>
+              <p className="text-xs text-stone-500 leading-relaxed">Todo está pensado para quien empieza desde cero, sin jerga innecesaria ni pasos confusos.</p>
+            </div>
+            <div className="bg-white rounded-2xl border border-stone-100 p-6 hover:shadow-md hover:border-emerald-200 transition-all">
+              <span className="text-2xl mb-3 block">🔒</span>
+              <h3 className="font-semibold text-stone-800 text-sm mb-2">Sin datos personales</h3>
+              <p className="text-xs text-stone-500 leading-relaxed">No pedimos registro ni almacenamos información. Todo se guarda en tu navegador.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="bg-[#F5F3EE]">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
           <div className="text-center mb-10">
