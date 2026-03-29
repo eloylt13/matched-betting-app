@@ -1,5 +1,3 @@
-"use client"
-
 import { casasEspana } from "@/lib/presets/data/espana"
 import CasaCard from "@/components/casas/CasaCard"
 

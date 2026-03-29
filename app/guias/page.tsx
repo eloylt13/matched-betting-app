@@ -1,25 +1,12 @@
-'use client'
+import type { Metadata } from 'next'
+import fs from 'fs'
+import path from 'path'
+import matter from 'gray-matter'
+import GuiasTabsClient from './GuiasTabsClient'
 
-import { useState, useEffect } from 'react'
-
-/* ───────── Tipos ───────── */
-interface Guia {
-  titulo: string
-  slug: string
-  categoria: string
-  descripcion: string
-  emoji: string
-  orden?: number
-}
-
-interface Seccion {
-  id: string
-  titulo: string
-  descripcion: string
-  icono: string
-  color: string
-  badgeColor: string
-  guias: Guia[]
+export const metadata: Metadata = {
+  title: 'Guías de Matched Betting en España | IAPredictHub',
+  description: 'Guías completas para entender los bonos de bienvenida, calcular cada paso y llevar todo organizado: primeros pasos, módulos, estrategia y casas.',
 }
 
 const CATEGORIAS_METADATA: Record<string, { titulo: string; descripcion: string; icono: string; color: string; badgeColor: string }> = {
@@ -53,64 +40,63 @@ const CATEGORIAS_METADATA: Record<string, { titulo: string; descripcion: string;
   },
 }
 
-/* ───────── Componente ───────── */
+function loadGuias() {
+  const guiasDir = path.join(process.cwd(), 'content/guias')
+  const guias: { titulo: string; slug: string; categoria: string; descripcion: string; emoji: string; orden?: number }[] = []
+
+  const categorias = fs.readdirSync(guiasDir)
+  categorias.forEach((categoria) => {
+    const categoriaPath = path.join(guiasDir, categoria)
+    if (!fs.statSync(categoriaPath).isDirectory()) return
+
+    fs.readdirSync(categoriaPath).forEach((file) => {
+      if (!file.endsWith('.mdx') && !file.endsWith('.md')) return
+      const { data } = matter(fs.readFileSync(path.join(categoriaPath, file), 'utf-8'))
+      const slug = file.replace(/\.(mdx|md)$/, '')
+      guias.push({
+        titulo: data.title || slug,
+        slug,
+        categoria,
+        descripcion: data.descripcion || '',
+        emoji: data.emoji || '📄',
+        orden: data.orden,
+      })
+    })
+  })
+
+  return guias
+}
+
 export default function GuiasPage() {
-  const [seccionAbierta, setSeccionAbierta] = useState<string>('primeros-pasos')
-  const [secciones, setSecciones] = useState<Seccion[]>([])
-  const [loading, setLoading] = useState(true)
+  const guias = loadGuias()
 
-  useEffect(() => {
-    async function loadGuias() {
-      try {
-        const response = await fetch('/api/guias')
-        const guias: Guia[] = await response.json()
+  // Agrupar por categoría
+  const gruposPorCategoria: Record<string, typeof guias> = {}
+  guias.forEach((guia) => {
+    if (!gruposPorCategoria[guia.categoria]) gruposPorCategoria[guia.categoria] = []
+    gruposPorCategoria[guia.categoria].push(guia)
+  })
 
-        // Agrupar por categoría
-        const gruposPorCategoria: Record<string, Guia[]> = {}
-        guias.forEach((guia) => {
-          if (!gruposPorCategoria[guia.categoria]) {
-            gruposPorCategoria[guia.categoria] = []
-          }
-          gruposPorCategoria[guia.categoria].push(guia)
-        })
+  // Ordenar dentro de cada categoría
+  Object.keys(gruposPorCategoria).forEach((cat) => {
+    gruposPorCategoria[cat].sort((a, b) => (a.orden ?? 999) - (b.orden ?? 999))
+  })
 
-        // Ordenar dentro de cada categoría
-        Object.keys(gruposPorCategoria).forEach((categoria) => {
-          gruposPorCategoria[categoria].sort((a, b) => (a.orden ?? 999) - (b.orden ?? 999))
-        })
-
-        // Crear secciones
-        const seccionesData: Seccion[] = Object.entries(gruposPorCategoria).map(([categoria, guiasLista]) => {
-          const metadata = CATEGORIAS_METADATA[categoria] || {
-            titulo: categoria,
-            descripcion: '',
-            icono: '📄',
-            color: 'from-stone-500/10 to-stone-500/5',
-            badgeColor: 'bg-stone-100 text-stone-700',
-          }
-          return {
-            id: categoria,
-            ...metadata,
-            guias: guiasLista,
-          }
-        })
-
-        // Ordenar secciones en el orden correcto
-        const categoriasOrdenadas = ['primeros-pasos', 'modulos', 'estrategia', 'casas']
-        const seccionesOrdenadas = categoriasOrdenadas
-          .map(catId => seccionesData.find(s => s.id === catId))
-          .filter((sec): sec is Seccion => sec !== undefined)
-
-        setSecciones(seccionesOrdenadas)
-      } catch (error) {
-        console.error('Error loading guias:', error)
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    loadGuias()
-  }, [])
+  // Construir secciones en el orden correcto
+  const categoriasOrdenadas = ['primeros-pasos', 'modulos', 'estrategia', 'casas']
+  const secciones = categoriasOrdenadas
+    .filter((cat) => gruposPorCategoria[cat])
+    .map((cat) => ({
+      id: cat,
+      ...(CATEGORIAS_METADATA[cat] ?? {
+        titulo: cat,
+        descripcion: '',
+        icono: '📄',
+        color: 'from-stone-500/10 to-stone-500/5',
+        badgeColor: 'bg-stone-100 text-stone-700',
+      }),
+      guias: gruposPorCategoria[cat],
+    }))
 
   return (
     <div className="flex flex-col gap-8">
@@ -125,74 +111,7 @@ export default function GuiasPage() {
         </p>
       </header>
 
-      {/* Tabs de secciones */}
-      <div className="flex gap-2 flex-wrap">
-        {secciones.map((sec) => (
-          <button
-            key={sec.id}
-            onClick={() => setSeccionAbierta(sec.id)}
-            className={`px-4 py-2 rounded-xl text-sm font-semibold transition-all
-              ${seccionAbierta === sec.id
-                ? 'bg-gradient-to-r from-[#12112A] to-[#2A1F3D] text-white shadow-md'
-                : 'bg-white text-stone-600 border border-stone-200 hover:border-stone-300 hover:shadow-sm'
-              }`}
-          >
-            {sec.icono} {sec.titulo}
-          </button>
-        ))}
-      </div>
-
-      {/* Sección activa */}
-      {!loading && secciones.filter((s) => s.id === seccionAbierta).map((sec) => (
-        <section key={sec.id}>
-          {/* Banner */}
-          <div className={`rounded-2xl bg-gradient-to-br ${sec.color} border border-stone-100 p-5 mb-5`}>
-            <div className="flex items-center gap-3 mb-1">
-              <span className="text-2xl">{sec.icono}</span>
-              <h2 className="text-lg font-bold text-stone-800">{sec.titulo}</h2>
-              <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${sec.badgeColor}`}>
-                {sec.guias.length} guías
-              </span>
-            </div>
-            <p className="text-sm text-stone-500 ml-10">{sec.descripcion}</p>
-          </div>
-
-          {/* Grid de cards */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
-            {sec.guias.map((guia) => (
-              <a
-                key={`${guia.categoria}-${guia.slug}`}
-                href={`/guias/${guia.categoria}/${guia.slug}`}
-                className="group bg-white rounded-2xl border border-stone-100 hover:border-purple-200
-                           hover:shadow-lg transition-all p-4 flex flex-col gap-2"
-              >
-                <div className="flex items-start gap-3">
-                  <span className="text-xl shrink-0 mt-0.5">{guia.emoji}</span>
-                  <div className="min-w-0">
-                    <h3 className="font-semibold text-stone-800 text-sm group-hover:text-purple-700 transition-colors truncate">
-                      {guia.titulo}
-                    </h3>
-                    <p className="text-xs text-stone-400 mt-0.5 line-clamp-2">
-                      {guia.descripcion}
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-center justify-end mt-auto pt-2 border-t border-stone-50">
-                  <span className="text-xs font-semibold text-purple-500 group-hover:text-purple-600 transition-colors">
-                    Leer →
-                  </span>
-                </div>
-              </a>
-            ))}
-          </div>
-        </section>
-      ))}
-
-      {loading && (
-        <div className="flex justify-center items-center py-12">
-          <p className="text-stone-500">Cargando guías...</p>
-        </div>
-      )}
+      <GuiasTabsClient secciones={secciones} />
     </div>
   )
 }
