@@ -281,20 +281,24 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section className="bg-white border-b border-stone-100">
+      <section className="bg-stone-50 border-y border-stone-200">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
-          <div className="grid grid-cols-3 gap-4 sm:gap-8 text-center">
-            <div>
-              <p className="text-2xl sm:text-3xl lg:text-4xl font-bold text-stone-900">30+</p>
-              <p className="text-xs sm:text-sm text-stone-400 mt-1">casas de apuestas</p>
+          <div className="grid grid-cols-2 sm:grid-cols-4 text-center divide-y sm:divide-y-0 divide-x-0 sm:divide-x divide-stone-200">
+            <div className="py-4 sm:py-0 sm:px-6">
+              <p className="text-3xl sm:text-4xl font-bold text-emerald-600">30+</p>
+              <p className="text-[13px] text-stone-400 mt-1 leading-tight">casas organizadas</p>
             </div>
-            <div className="border-x border-stone-100">
-              <p className="text-2xl sm:text-3xl lg:text-4xl font-bold text-emerald-600">+2.000€</p>
-              <p className="text-xs sm:text-sm text-stone-400 mt-1">potencial organizado por fases</p>
+            <div className="py-4 sm:py-0 sm:px-6 border-l border-stone-200">
+              <p className="text-3xl sm:text-4xl font-bold text-emerald-600">+2.000€</p>
+              <p className="text-[13px] text-stone-400 mt-1 leading-tight">en bonos documentados</p>
             </div>
-            <div>
-              <p className="text-2xl sm:text-3xl lg:text-4xl font-bold text-stone-900">7</p>
-              <p className="text-xs sm:text-sm text-stone-400 mt-1">módulos de formación</p>
+            <div className="py-4 sm:py-0 sm:px-6 border-t sm:border-t-0 border-stone-200 sm:border-l">
+              <p className="text-3xl sm:text-4xl font-bold text-emerald-600">7</p>
+              <p className="text-[13px] text-stone-400 mt-1 leading-tight">módulos de formación</p>
+            </div>
+            <div className="py-4 sm:py-0 sm:px-6 border-t sm:border-t-0 border-l border-stone-200">
+              <p className="text-3xl sm:text-4xl font-bold text-emerald-600">4</p>
+              <p className="text-[13px] text-stone-400 mt-1 leading-tight">modos de calculadora</p>
             </div>
           </div>
         </div>
