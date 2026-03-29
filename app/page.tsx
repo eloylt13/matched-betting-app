@@ -218,6 +218,9 @@ export default function LandingPage() {
               <Link href="/guias" className="hidden sm:inline text-gray-300 hover:text-white text-sm transition-colors">
                 Guías gratis
               </Link>
+              <Link href="/blog" className="hidden sm:inline text-gray-300 hover:text-white text-sm transition-colors">
+                Blog
+              </Link>
               <Link
                 href="/bienvenida"
                 className="bg-emerald-500 hover:bg-emerald-400 text-white text-xs sm:text-sm font-bold px-3 sm:px-5 py-1.5 sm:py-2 rounded-full transition-colors"

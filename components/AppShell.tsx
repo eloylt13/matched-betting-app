@@ -42,6 +42,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
             <div className="hidden md:flex items-center gap-1 sm:gap-2">
               <NavLink href="/dashboard" emoji="📊" label="Dashboard" />
               <NavLink href="/guias" emoji="📚" label="Guías" />
+              <NavLink href="/blog" emoji="✍️" label="Blog" />
               <NavLink href="/calculadora" emoji="🧮" label="Calculadora" />
               <NavLink href="/casas" emoji="🏠" label="Casas" />
               <NavLink href="/bonos" emoji="🎁" label="Bonos" />
