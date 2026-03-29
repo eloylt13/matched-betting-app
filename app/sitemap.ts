@@ -151,5 +151,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority,
     }))
 
-    return [...staticRoutes, ...casaRoutes, ...guiaRoutes, ...guiasPdfRoutes]
+    const blogRoutes: MetadataRoute.Sitemap = [
+        {
+            url: `${baseUrl}/blog/que-es-matched-betting-espana`,
+            lastModified: new Date('2026-03-29'),
+            changeFrequency: 'monthly',
+            priority: 0.8,
+        },
+    ]
+
+    return [...staticRoutes, ...casaRoutes, ...guiaRoutes, ...guiasPdfRoutes, ...blogRoutes]
 }

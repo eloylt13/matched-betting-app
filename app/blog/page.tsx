@@ -13,7 +13,15 @@ const articulos: Array<{
   titulo: string
   fecha: string
   descripcion: string
-}> = []
+}> = [
+  {
+    slug: 'que-es-matched-betting-espana',
+    titulo: '¿Qué es el Matched Betting y cómo funciona en España?',
+    fecha: '29 de marzo de 2026',
+    descripcion:
+      'Guía completa para principiantes: qué es el matched betting, cómo funciona paso a paso, si es legal en España y cuánto puedes ganar con ejemplos reales.',
+  },
+]
 
 export default function BlogPage() {
   return (
