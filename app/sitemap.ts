@@ -65,6 +65,13 @@ const GUIA_ROUTES: Array<{ categoria: string; slug: string }> = [
     { categoria: 'casas', slug: 'yaass' },
 ]
 
+const GUIAS_PDF_ROUTES = [
+    { slug: 'introduccion-matched-betting', priority: 0.9 },
+    { slug: 'cuanto-se-puede-ganar-espana', priority: 0.9 },
+    { slug: 'modulo-betfair-exchange', priority: 0.85 },
+    { slug: 'modulo-apuesta-y-recibe', priority: 0.85 },
+]
+
 export default function sitemap(): MetadataRoute.Sitemap {
     const baseUrl = 'https://matched-betting-app.vercel.app'
 
@@ -131,5 +138,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: GUIA_PRIORITY_BY_CATEGORY[categoria] ?? 0.7,
     }))
 
-    return [...staticRoutes, ...casaRoutes, ...guiaRoutes]
+    const guiasPdfRoutes: MetadataRoute.Sitemap = GUIAS_PDF_ROUTES.map(({ slug, priority }) => ({
+        url: `${baseUrl}/guias/${slug}`,
+        lastModified: new Date(),
+        changeFrequency: 'monthly' as const,
+        priority,
+    }))
+
+    return [...staticRoutes, ...casaRoutes, ...guiaRoutes, ...guiasPdfRoutes]
 }
