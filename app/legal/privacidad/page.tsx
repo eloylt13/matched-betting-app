@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Política de Privacidad · IAPredictHub Matched Betting',
-  description: 'Política de privacidad de IAPredictHub Matched Betting. Información sobre el tratamiento de datos personales.',
+  title: 'Política de Privacidad | IAPredictHub',
+  description: 'Política de privacidad de IAPredictHub. No almacenamos datos personales. Toda la información se guarda localmente en tu navegador.',
   robots: { index: false, follow: false },
 }
 

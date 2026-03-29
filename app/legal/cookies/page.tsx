@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Política de Cookies · IAPredictHub Matched Betting',
-  description: 'Política de cookies de IAPredictHub Matched Betting. Información sobre las cookies técnicas y de analítica utilizadas.',
+  title: 'Política de Cookies | IAPredictHub',
+  description: 'Política de cookies de IAPredictHub. Solo usamos Vercel Analytics. Sin cookies publicitarias ni de terceros.',
   robots: { index: false, follow: false },
 }
 

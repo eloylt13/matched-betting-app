@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Aviso Legal · IAPredictHub Matched Betting',
-  description: 'Aviso legal de IAPredictHub Matched Betting. Información sobre el titular, finalidad del sitio y condiciones de uso.',
+  title: 'Aviso Legal | IAPredictHub',
+  description: 'Aviso legal y condiciones de uso de IAPredictHub.',
   robots: { index: false, follow: false },
 }
 

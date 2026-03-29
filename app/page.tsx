@@ -4,23 +4,23 @@ import EmailCapture from '@/components/landing/EmailCapture'
 import TelegramButton from '@/components/landing/TelegramButton'
 
 export const metadata: Metadata = {
-  title: 'Bonos de bienvenida en España | Guía y calculadora | IAPredictHub',
+  title: 'Matched Betting España 2026 | Guía, Calculadora y Bonos Gratis | IAPredictHub',
   description:
-    'App en español para entender los bonos de bienvenida, calcular cada paso y llevar todo organizado de forma sencilla.',
+    'Herramienta gratuita de matched betting para España. Calculadora de cobertura, guías paso a paso y seguimiento de bonos de bienvenida. Sin registro. +2.000€ en bonos organizados por fases.',
   alternates: {
     canonical: 'https://matched-betting-app.vercel.app',
   },
   openGraph: {
-    title: 'Aprovecha hasta 2.000€ en bonos de bienvenida | IAPredictHub',
+    title: 'Matched Betting España 2026 | Guía, Calculadora y Bonos Gratis | IAPredictHub',
     description:
-      'App en español para entender los bonos de bienvenida, calcular cada paso y llevar todo organizado de forma sencilla.',
+      'Herramienta gratuita de matched betting para España. Calculadora de cobertura, guías paso a paso y seguimiento de bonos de bienvenida. Sin registro. +2.000€ en bonos organizados por fases.',
     url: 'https://matched-betting-app.vercel.app',
     images: [
       {
         url: 'https://matched-betting-app.vercel.app/logo.png',
         width: 512,
         height: 512,
-        alt: 'IAPredictHub — Bonos de bienvenida en España',
+        alt: 'IAPredictHub — Matched Betting España',
       },
     ],
   },
