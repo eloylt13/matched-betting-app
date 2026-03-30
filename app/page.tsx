@@ -8,16 +8,16 @@ export const metadata: Metadata = {
   description:
     'Herramienta gratuita de matched betting para España. Calculadora de cobertura, guías paso a paso y seguimiento de bonos de bienvenida. Sin registro. +2.000€ en bonos organizados por fases.',
   alternates: {
-    canonical: 'https://matched-betting-app.vercel.app',
+    canonical: 'https://iapredicthub.es',
   },
   openGraph: {
     title: 'Matched Betting España 2026 | Guía, Calculadora y Bonos Gratis | IAPredictHub',
     description:
       'Herramienta gratuita de matched betting para España. Calculadora de cobertura, guías paso a paso y seguimiento de bonos de bienvenida. Sin registro. +2.000€ en bonos organizados por fases.',
-    url: 'https://matched-betting-app.vercel.app',
+    url: 'https://iapredicthub.es',
     images: [
       {
-        url: 'https://matched-betting-app.vercel.app/logo.png',
+        url: 'https://iapredicthub.es/logo.png',
         width: 512,
         height: 512,
         alt: 'IAPredictHub — Matched Betting España',

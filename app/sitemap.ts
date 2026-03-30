@@ -73,7 +73,7 @@ const GUIAS_PDF_ROUTES = [
 ]
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    const baseUrl = 'https://matched-betting-app.vercel.app'
+    const baseUrl = 'https://iapredicthub.es'
 
     // Rutas estáticas
     const staticRoutes: MetadataRoute.Sitemap = [

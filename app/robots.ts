@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: '/api/',
     },
-    sitemap: 'https://matched-betting-app.vercel.app/sitemap.xml',
+    sitemap: 'https://iapredicthub.es/sitemap.xml',
   }
 }
