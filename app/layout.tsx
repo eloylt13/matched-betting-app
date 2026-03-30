@@ -62,7 +62,7 @@ export const metadata: Metadata = {
     images: ['https://iapredicthub.es/logo.png'],
   },
   verification: {
-    google: '6Cr92jGfY8D6cZX4sdEC1v1vECb_mgjBy8Jd9qoUfI4',
+    google: 'rp27ekZ5t3IZYOL6V_qoYFttQt1p8-frEek3WgQmKv8',
   },
   alternates: {
     canonical: 'https://iapredicthub.es',
