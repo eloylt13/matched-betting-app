@@ -244,9 +244,15 @@ export default function LandingPage() {
           <div className="flex flex-col items-center mb-8">
             <Link
               href="/pronosticos"
-              className="inline-flex items-center gap-2.5 bg-gradient-to-r from-emerald-500/20 to-emerald-400/10 border border-emerald-400/30 text-emerald-200 hover:text-white hover:border-emerald-300/60 hover:from-emerald-500/30 hover:to-emerald-300/20 text-sm font-bold px-5 py-2 rounded-full mb-4 shadow-lg shadow-emerald-950/25 transition-all"
+              className="group inline-flex items-center gap-3 bg-gradient-to-r from-emerald-500/20 to-emerald-400/10 border border-emerald-400/30 text-emerald-100 hover:text-white hover:border-emerald-300/60 hover:from-emerald-500/30 hover:to-emerald-300/20 text-sm font-bold px-4 py-2 rounded-full mb-4 shadow-lg shadow-emerald-950/25 transition-all hover:shadow-emerald-900/40"
             >
-              <span>Freebet Gratis</span>
+              <span>Nuevo: Freebet diaria GRATIS</span>
+              <span
+                className="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-300 text-[#12112A] shadow-sm transition-transform duration-200 group-hover:translate-x-0.5"
+                aria-hidden="true"
+              >
+                →
+              </span>
             </Link>
             <div className="inline-flex items-center gap-2 bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-xs font-semibold px-4 py-1.5 rounded-full">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
