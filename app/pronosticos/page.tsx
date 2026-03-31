@@ -46,6 +46,7 @@ type PickCandidate = {
   text: string
   odd: number
   confidenceScore: number
+  motivoBreve?: string
 }
 
 const CACHE_SECONDS = 60 * 60 * 8
@@ -53,7 +54,13 @@ const MAX_SPORTS = 4
 const REQUIRED_PICKS = 5
 
 function getFallbackData(): CombinadaData {
-  return combinadaDelDia
+  const now = new Date()
+
+  return {
+    ...combinadaDelDia,
+    etiquetaDia: capitalizeFirstLetter(formatSpanishDay(now)),
+    horaActualizacion: formatSpanishTime(now),
+  }
 }
 
 function formatSpanishDay(date: Date) {
@@ -120,6 +127,7 @@ function buildH2hCandidate(event: OddsEvent, market: OddsMarket): PickCandidate 
     text: `${favorite.name} gana`,
     odd: favorite.price,
     confidenceScore: Math.max(6, 10 - (favorite.price - 1) * 5),
+    motivoBreve: 'Favorito con cuota contenida en el mercado principal.',
   }
 }
 
@@ -147,6 +155,7 @@ function buildTotalsCandidate(event: OddsEvent, market: OddsMarket): PickCandida
     text: `Más de ${preferredOutcome.point} goles en ${event.home_team} - ${event.away_team}`,
     odd: preferredOutcome.price,
     confidenceScore: Math.max(6, 9.5 - (preferredOutcome.price - 1) * 4),
+    motivoBreve: 'Línea de goles conservadora dentro de una cuota equilibrada.',
   }
 }
 
@@ -246,7 +255,10 @@ async function getAutomaticCombinada(): Promise<CombinadaData> {
       notaConfianza: 'Selección automática diaria basada en cuotas de fútbol',
       motivoGeneral:
         'Combinada automática generada con mercados de resultado final y totales, priorizando favoritos sólidos y líneas de goles conservadoras.',
-      picks: uniqueCandidates.map((pick) => pick.text),
+      picks: uniqueCandidates.map((pick) => ({
+        text: pick.text,
+        motivoBreve: pick.motivoBreve,
+      })),
     }
   } catch {
     return getFallbackData()
@@ -307,15 +319,15 @@ export default async function PronosticosPage() {
             <div className="grid gap-3">
               {dailyCombinada.picks.map((pick, index) => (
                 <div
-                  key={pick}
+                  key={pick.text}
                   className="flex items-start gap-3 rounded-2xl border border-stone-100 bg-stone-50 px-4 py-3"
                 >
                   <div className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-xs font-bold text-emerald-700">
                     {index + 1}
                   </div>
                   <div>
-                    <p className="text-sm font-semibold text-stone-800">{pick}</p>
-                    <p className="mt-0.5 text-xs text-stone-500">Pick de ejemplo</p>
+                    <p className="text-sm font-semibold text-stone-800">{pick.text}</p>
+                    {pick.motivoBreve ? <p className="mt-0.5 text-xs text-stone-500">{pick.motivoBreve}</p> : null}
                   </div>
                 </div>
               ))}

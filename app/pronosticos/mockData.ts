@@ -5,7 +5,10 @@ export type CombinadaData = {
   horaActualizacion: string
   notaConfianza: string
   motivoGeneral: string
-  picks: string[]
+  picks: Array<{
+    text: string
+    motivoBreve?: string
+  }>
 }
 
 export const combinadaDelDia: CombinadaData = {
@@ -17,10 +20,10 @@ export const combinadaDelDia: CombinadaData = {
   motivoGeneral:
     'Combinada orientada a mercados conservadores y favoritos sólidos, buscando equilibrio entre cuota total y margen de acierto.',
   picks: [
-    'Real Madrid gana',
-    'Más de 1.5 goles en el partido',
-    'Manchester City marca en ambas partes',
-    'Inter o empate',
-    'Más de 8.5 córners totales',
+    { text: 'Real Madrid gana' },
+    { text: 'Más de 1.5 goles en el partido' },
+    { text: 'Manchester City marca en ambas partes' },
+    { text: 'Inter o empate' },
+    { text: 'Más de 8.5 córners totales' },
   ],
 }
