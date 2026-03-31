@@ -1,4 +1,14 @@
-export const combinadaDelDia = {
+export type CombinadaData = {
+  etiquetaDia: string
+  cuotaTotal: string
+  confianza: string
+  horaActualizacion: string
+  notaConfianza: string
+  motivoGeneral: string
+  picks: string[]
+}
+
+export const combinadaDelDia: CombinadaData = {
   etiquetaDia: 'Martes 31 de marzo',
   cuotaTotal: '8.75',
   confianza: 'Alta · 8/10',
@@ -13,4 +23,4 @@ export const combinadaDelDia = {
     'Inter o empate',
     'Más de 8.5 córners totales',
   ],
-} as const
+}
