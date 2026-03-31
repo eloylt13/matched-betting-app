@@ -34,13 +34,13 @@ export default function PronosticosPage() {
             <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-300">
-                  Combinada del día
+                  {combinadaDelDia.etiquetaDia}
                 </p>
                 <h2 className="mt-2 text-2xl sm:text-3xl font-bold text-white">
                   Cuota total {combinadaDelDia.cuotaTotal}
                 </h2>
                 <p className="mt-2 text-sm text-gray-300">
-                  Actualizada hoy a las {combinadaDelDia.actualizadaHoyA}
+                  Actualizada hoy a las {combinadaDelDia.horaActualizacion}
                 </p>
               </div>
 
@@ -53,6 +53,10 @@ export default function PronosticosPage() {
           </div>
 
           <div className="px-6 py-6 sm:px-8 sm:py-8">
+            <div className="mb-6 rounded-2xl border border-stone-100 bg-stone-50 px-4 py-3">
+              <p className="text-sm text-stone-600">{combinadaDelDia.motivoGeneral}</p>
+            </div>
+
             <div className="grid gap-3">
               {combinadaDelDia.picks.map((pick, index) => (
                 <div
@@ -71,7 +75,7 @@ export default function PronosticosPage() {
             </div>
 
             <div className="mt-6 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
-              Pronto se actualizará automáticamente
+              Edítala fácilmente desde un único archivo de datos
             </div>
           </div>
         </section>

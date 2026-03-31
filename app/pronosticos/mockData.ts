@@ -1,8 +1,11 @@
 export const combinadaDelDia = {
+  etiquetaDia: 'Martes 31 de marzo',
   cuotaTotal: '8.75',
   confianza: 'Alta · 8/10',
-  actualizadaHoyA: '09:30',
-  notaConfianza: 'Selección de ejemplo para la beta',
+  horaActualizacion: '09:30',
+  notaConfianza: 'Selección manual del día para la beta',
+  motivoGeneral:
+    'Combinada orientada a mercados conservadores y favoritos sólidos, buscando equilibrio entre cuota total y margen de acierto.',
   picks: [
     'Real Madrid gana',
     'Más de 1.5 goles en el partido',
