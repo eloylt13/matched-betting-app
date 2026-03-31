@@ -241,6 +241,12 @@ export default function LandingPage() {
           style={{ backgroundImage: 'radial-gradient(circle, #ffffff 1px, transparent 1px)', backgroundSize: '28px 28px' }}
         />
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 lg:py-36 text-center">
+          <Link
+            href="/pronosticos"
+            className="inline-flex items-center gap-2 bg-white/5 border border-white/10 text-emerald-300 hover:text-emerald-200 hover:border-emerald-500/30 hover:bg-white/10 text-xs font-semibold px-4 py-1.5 rounded-full mb-4 transition-colors"
+          >
+            Freebet Gratis →
+          </Link>
           <div className="inline-flex items-center gap-2 bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-xs font-semibold px-4 py-1.5 rounded-full mb-8">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
             Beta gratuita · Acceso libre · Sin registro
