@@ -1,19 +1,12 @@
 import type { Metadata } from 'next'
 
 import { PronosticosCtas } from '@/components/pronosticos/PronosticosCtas'
+import { combinadaDelDia } from './mockData'
 
 export const metadata: Metadata = {
   title: 'Combinada diaria gratis | IAPredictHub',
   description: 'Consulta una combinada diaria de ejemplo con picks, cuota total y nivel de confianza dentro de la beta de IAPredictHub.',
 }
-
-const picks = [
-  'Real Madrid gana',
-  'Más de 1.5 goles en el partido',
-  'Manchester City marca en ambas partes',
-  'Inter o empate',
-  'Más de 8.5 córners totales',
-]
 
 export default function PronosticosPage() {
   return (
@@ -44,24 +37,24 @@ export default function PronosticosPage() {
                   Combinada del día
                 </p>
                 <h2 className="mt-2 text-2xl sm:text-3xl font-bold text-white">
-                  Cuota total 8.75
+                  Cuota total {combinadaDelDia.cuotaTotal}
                 </h2>
                 <p className="mt-2 text-sm text-gray-300">
-                  Actualizada hoy a las 09:30
+                  Actualizada hoy a las {combinadaDelDia.actualizadaHoyA}
                 </p>
               </div>
 
               <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 sm:min-w-48">
                 <p className="text-xs uppercase tracking-wider text-gray-400">Confianza</p>
-                <p className="mt-1 text-lg font-bold text-emerald-400">Alta · 8/10</p>
-                <p className="mt-1 text-xs text-gray-400">Selección de ejemplo para la beta</p>
+                <p className="mt-1 text-lg font-bold text-emerald-400">{combinadaDelDia.confianza}</p>
+                <p className="mt-1 text-xs text-gray-400">{combinadaDelDia.notaConfianza}</p>
               </div>
             </div>
           </div>
 
           <div className="px-6 py-6 sm:px-8 sm:py-8">
             <div className="grid gap-3">
-              {picks.map((pick, index) => (
+              {combinadaDelDia.picks.map((pick, index) => (
                 <div
                   key={pick}
                   className="flex items-start gap-3 rounded-2xl border border-stone-100 bg-stone-50 px-4 py-3"
