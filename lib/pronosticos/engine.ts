@@ -1,10 +1,12 @@
 import { combinadaDelDia, type CombinadaData } from '@/app/pronosticos/mockData'
+import { unstable_cache } from 'next/cache'
 
 import { fetchEligibleOddsEvents } from './fetchOdds'
 import { fetchEventStats } from './fetchStats'
 import { buildCandidatesForEvent, selectBestPicks } from './select'
 
 const REQUIRED_MIN_PICKS = 3
+const DAILY_REVALIDATE_SECONDS = 86400
 
 function formatSpanishDay(date: Date) {
   return new Intl.DateTimeFormat('es-ES', {
@@ -60,7 +62,7 @@ export function getPronosticosFallbackData(): CombinadaData {
   }
 }
 
-export async function getQuantLiteCombinada(): Promise<CombinadaData> {
+async function generateQuantLiteCombinada(): Promise<CombinadaData> {
   const oddsApiKey = process.env.THE_ODDS_API_KEY
   const footballDataApiKey = process.env.FOOTBALL_DATA_API_KEY
 
@@ -102,7 +104,7 @@ export async function getQuantLiteCombinada(): Promise<CombinadaData> {
       horaActualizacion: formatSpanishTime(now),
       notaConfianza: 'Motor Quant Lite con Poisson, EV y filtro de riesgo',
       motivoGeneral:
-        'Selección automática diaria basada en mercados de goles y ganador, comparando valor esperado frente al riesgo y descartando partidos con datos insuficientes.',
+        'Selección diaria basada en mercados de goles y ganador, comparando valor esperado frente al riesgo y descartando partidos con datos insuficientes.',
       picks: selectedPicks.map((pick) => ({
         text: `${pick.eventName} · ${pick.marketLabel} @ ${pick.odd.toFixed(2)}`,
         motivoBreve: `${pick.league} · ${new Intl.DateTimeFormat('es-ES', { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Europe/Madrid' }).format(new Date(pick.commenceTime))} · p=${pick.probModel.toFixed(3)} · justa ${pick.fairOdds.toFixed(2)} · EV ${pick.ev.toFixed(3)} · ${pick.reason}`,
@@ -111,4 +113,12 @@ export async function getQuantLiteCombinada(): Promise<CombinadaData> {
   } catch {
     return getPronosticosFallbackData()
   }
+}
+
+const getCachedQuantLiteCombinada = unstable_cache(generateQuantLiteCombinada, ['pronosticos-freebet-diaria'], {
+  revalidate: DAILY_REVALIDATE_SECONDS,
+})
+
+export async function getQuantLiteCombinada(): Promise<CombinadaData> {
+  return getCachedQuantLiteCombinada()
 }

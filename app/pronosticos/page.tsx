@@ -4,11 +4,11 @@ import { PronosticosCtas } from '@/components/pronosticos/PronosticosCtas'
 import { getQuantLiteCombinada } from '@/lib/pronosticos/engine'
 
 export const metadata: Metadata = {
-  title: 'Combinada diaria gratis | IAPredictHub',
-  description: 'Consulta una combinada diaria de ejemplo con picks, cuota total y nivel de confianza dentro de la beta de IAPredictHub.',
+  title: 'Freebet diaria | IAPredictHub',
+  description: 'Consulta la selección diaria de freebet con picks, cuota total y nivel de confianza dentro de la beta de IAPredictHub.',
 }
 
-export const revalidate = 28800
+export const revalidate = 86400
 
 export default async function PronosticosPage() {
   const dailyCombinada = await getQuantLiteCombinada()
@@ -22,11 +22,11 @@ export default async function PronosticosPage() {
           </div>
 
           <h1 className="text-3xl sm:text-4xl font-bold text-stone-800 tracking-tight">
-            Combinada diaria gratis
+            Freebet diaria
           </h1>
 
           <p className="mt-3 max-w-2xl text-sm sm:text-base text-stone-500 leading-relaxed">
-            Una vista previa simple de la combinada del día para seguirla de un vistazo.
+            Una vista previa simple de la selección diaria para seguirla de un vistazo.
           </p>
         </div>
 
@@ -79,7 +79,7 @@ export default async function PronosticosPage() {
             </div>
 
             <div className="mt-6 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
-              Se actualiza automáticamente cada 8 horas y usa datos de respaldo si la API no está disponible
+              Selección diaria global con datos de respaldo si la API no está disponible
             </div>
           </div>
         </section>
