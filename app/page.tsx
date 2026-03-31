@@ -241,16 +241,17 @@ export default function LandingPage() {
           style={{ backgroundImage: 'radial-gradient(circle, #ffffff 1px, transparent 1px)', backgroundSize: '28px 28px' }}
         />
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 lg:py-36 text-center">
-          <Link
-            href="/pronosticos"
-            className="inline-flex items-center gap-2.5 bg-gradient-to-r from-emerald-500/20 to-emerald-400/10 border border-emerald-400/30 text-emerald-200 hover:text-white hover:border-emerald-300/60 hover:from-emerald-500/30 hover:to-emerald-300/20 text-sm font-bold px-5 py-2 rounded-full mb-6 shadow-lg shadow-emerald-950/25 transition-all"
-          >
-            <span>Freebet Gratis</span>
-            <span className="text-base leading-none" aria-hidden="true">→</span>
-          </Link>
-          <div className="inline-flex items-center gap-2 bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-xs font-semibold px-4 py-1.5 rounded-full mb-8">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            Acceso libre · Sin registro
+          <div className="flex flex-col items-center mb-8">
+            <Link
+              href="/pronosticos"
+              className="inline-flex items-center gap-2.5 bg-gradient-to-r from-emerald-500/20 to-emerald-400/10 border border-emerald-400/30 text-emerald-200 hover:text-white hover:border-emerald-300/60 hover:from-emerald-500/30 hover:to-emerald-300/20 text-sm font-bold px-5 py-2 rounded-full mb-4 shadow-lg shadow-emerald-950/25 transition-all"
+            >
+              <span>Freebet Gratis</span>
+            </Link>
+            <div className="inline-flex items-center gap-2 bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-xs font-semibold px-4 py-1.5 rounded-full">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              Acceso libre · Sin registro
+            </div>
           </div>
 
           <h1 className="font-playfair text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-tight mb-6">
@@ -267,9 +268,12 @@ export default function LandingPage() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-6">
             <Link
               href="/bienvenida"
-              className="w-full sm:w-auto bg-emerald-500 hover:bg-emerald-400 text-white font-bold text-base px-8 py-3.5 rounded-xl transition-colors shadow-lg shadow-emerald-900/30"
+              className="group w-full sm:w-auto bg-emerald-500 hover:bg-emerald-400 text-white font-bold text-base px-8 py-3.5 rounded-xl transition-colors shadow-lg shadow-emerald-900/30"
             >
-              Entrar y seguir la ruta recomendada →
+              <span className="inline-flex items-center gap-2">
+                <span>Entrar y seguir la ruta recomendada</span>
+                <span className="text-lg leading-none transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">➜</span>
+              </span>
             </Link>
             <Link
               href="/guias"
