@@ -1,0 +1,182 @@
+'use client'
+
+import { useEffect, useMemo, useState } from 'react'
+
+import type { CombinadaData } from '@/app/pronosticos/mockData'
+
+type FreebetDailyRevealProps = {
+  dailyCombinada: CombinadaData
+}
+
+type CombinadaPick = CombinadaData['picks'][number]
+
+const PROCESSING_STEPS = [
+  'Analizando partidos del día...',
+  'Filtrando mercados de goles y ganador...',
+  'Calculando valor esperado...',
+  'Generando Freebet diaria...',
+]
+
+function buildFallbackPickDetails(pick: CombinadaPick) {
+  const [partido = pick.text, marketAndOdd = ''] = pick.text.split(' · ')
+  const oddMatch = marketAndOdd.match(/@\s*(\d+(?:\.\d+)?)/)
+  const market = marketAndOdd.replace(/\s*@\s*\d+(?:\.\d+)?/, '').trim()
+
+  return {
+    partido,
+    liga: pick.liga ?? 'Dato no disponible',
+    hora: pick.hora ?? 'Dato no disponible',
+    mercado: pick.mercado ?? market ?? 'Dato no disponible',
+    cuota: pick.cuota ?? oddMatch?.[1] ?? 'Dato no disponible',
+    probabilidadModelo: pick.probabilidadModelo ?? 'Dato no disponible',
+    fairOdds: pick.fairOdds ?? 'Dato no disponible',
+    ev: pick.ev ?? 'Dato no disponible',
+    motivoCorto: pick.motivoCorto ?? pick.motivoBreve ?? 'Sin motivo adicional disponible.',
+  }
+}
+
+export function FreebetDailyReveal({ dailyCombinada }: FreebetDailyRevealProps) {
+  const [status, setStatus] = useState<'idle' | 'processing' | 'revealed'>('idle')
+  const [stepIndex, setStepIndex] = useState(0)
+
+  function handleStartProcessing() {
+    setStepIndex(0)
+    setStatus('processing')
+  }
+
+  useEffect(() => {
+    if (status !== 'processing') {
+      return
+    }
+
+    const totalDuration = 2200
+    const stepDuration = Math.floor(totalDuration / PROCESSING_STEPS.length)
+    const intervalId = window.setInterval(() => {
+      setStepIndex((current) => {
+        if (current >= PROCESSING_STEPS.length - 1) {
+          window.clearInterval(intervalId)
+          return current
+        }
+
+        return current + 1
+      })
+    }, stepDuration)
+
+    const timeoutId = window.setTimeout(() => {
+      window.clearInterval(intervalId)
+      setStatus('revealed')
+    }, totalDuration)
+
+    return () => {
+      window.clearInterval(intervalId)
+      window.clearTimeout(timeoutId)
+    }
+  }, [status])
+
+  const picks = useMemo(() => dailyCombinada.picks.map(buildFallbackPickDetails), [dailyCombinada.picks])
+
+  return (
+    <div>
+      {status === 'idle' ? (
+        <div className="rounded-2xl border border-stone-100 bg-stone-50 p-5 sm:p-6">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div className="max-w-2xl">
+              <h3 className="text-lg font-bold text-stone-800">Tu Freebet diaria está lista</h3>
+              <p className="mt-1 text-sm text-stone-600">
+                Procesa la selección diaria para revelar los picks ya generados y ver el detalle completo de cada uno.
+              </p>
+            </div>
+
+            <button
+              type="button"
+              onClick={handleStartProcessing}
+              className="inline-flex min-h-12 items-center justify-center rounded-2xl bg-emerald-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-emerald-700"
+            >
+              Procesar Freebet diaria
+            </button>
+          </div>
+        </div>
+      ) : null}
+
+      {status === 'processing' ? (
+        <div className="rounded-2xl border border-emerald-100 bg-emerald-50/70 p-5 sm:p-6">
+          <div className="flex items-center gap-3">
+            <div className="relative h-10 w-10 shrink-0">
+              <div className="absolute inset-0 rounded-full border-4 border-emerald-200" />
+              <div className="absolute inset-0 animate-spin rounded-full border-4 border-transparent border-t-emerald-600" />
+            </div>
+
+            <div>
+              <p className="text-sm font-semibold text-emerald-700">Procesando Freebet diaria</p>
+              <p className="mt-1 text-sm text-stone-600">{PROCESSING_STEPS[stepIndex]}</p>
+            </div>
+          </div>
+
+          <div className="mt-4 h-2 overflow-hidden rounded-full bg-emerald-100">
+            <div
+              className="h-full rounded-full bg-emerald-500 transition-all duration-500"
+              style={{ width: `${((stepIndex + 1) / PROCESSING_STEPS.length) * 100}%` }}
+            />
+          </div>
+        </div>
+      ) : null}
+
+      {status === 'revealed' ? (
+        <div className="grid gap-3">
+          {picks.map((pick, index) => (
+            <div
+              key={`${pick.partido}-${pick.mercado}-${index}`}
+              className="rounded-2xl border border-stone-100 bg-stone-50 px-4 py-4 shadow-sm transition-opacity duration-300"
+            >
+              <div className="flex items-start gap-3">
+                <div className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-xs font-bold text-emerald-700">
+                  {index + 1}
+                </div>
+
+                <div className="min-w-0 flex-1">
+                  <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+                    <div>
+                      <p className="text-sm font-semibold text-stone-800">{pick.partido}</p>
+                      <p className="mt-1 text-xs text-stone-500">
+                        {pick.liga} · {pick.hora}
+                      </p>
+                    </div>
+
+                    <div className="rounded-xl border border-emerald-200 bg-white px-3 py-2 text-right">
+                      <p className="text-[11px] uppercase tracking-wide text-stone-500">Cuota</p>
+                      <p className="text-sm font-bold text-emerald-700">{pick.cuota}</p>
+                    </div>
+                  </div>
+
+                  <div className="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
+                    <div className="rounded-xl bg-white px-3 py-2">
+                      <p className="text-[11px] uppercase tracking-wide text-stone-500">Mercado</p>
+                      <p className="mt-1 text-sm font-medium text-stone-800">{pick.mercado}</p>
+                    </div>
+                    <div className="rounded-xl bg-white px-3 py-2">
+                      <p className="text-[11px] uppercase tracking-wide text-stone-500">Probabilidad modelo</p>
+                      <p className="mt-1 text-sm font-medium text-stone-800">{pick.probabilidadModelo}</p>
+                    </div>
+                    <div className="rounded-xl bg-white px-3 py-2">
+                      <p className="text-[11px] uppercase tracking-wide text-stone-500">Fair odds</p>
+                      <p className="mt-1 text-sm font-medium text-stone-800">{pick.fairOdds}</p>
+                    </div>
+                    <div className="rounded-xl bg-white px-3 py-2">
+                      <p className="text-[11px] uppercase tracking-wide text-stone-500">EV</p>
+                      <p className="mt-1 text-sm font-medium text-stone-800">{pick.ev}</p>
+                    </div>
+                  </div>
+
+                  <div className="mt-3 rounded-xl border border-stone-200 bg-white px-3 py-3">
+                    <p className="text-[11px] uppercase tracking-wide text-stone-500">Motivo corto</p>
+                    <p className="mt-1 text-sm text-stone-700">{pick.motivoCorto}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : null}
+    </div>
+  )
+}

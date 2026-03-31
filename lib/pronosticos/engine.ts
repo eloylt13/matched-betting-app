@@ -34,6 +34,15 @@ function calculateTotalOdd(odds: number[]) {
   return odds.reduce((acc, odd) => acc * odd, 1)
 }
 
+function formatSpanishKickoff(date: Date) {
+  return new Intl.DateTimeFormat('es-ES', {
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+    timeZone: 'Europe/Madrid',
+  }).format(date)
+}
+
 function buildConfidenceLabel(probabilities: number[]) {
   const averageProbability = probabilities.reduce((acc, value) => acc + value, 0) / probabilities.length
 
@@ -105,10 +114,23 @@ async function generateQuantLiteCombinada(): Promise<CombinadaData> {
       notaConfianza: 'Motor Quant Lite con Poisson, EV y filtro de riesgo',
       motivoGeneral:
         'Selección diaria basada en mercados de goles y ganador, comparando valor esperado frente al riesgo y descartando partidos con datos insuficientes.',
-      picks: selectedPicks.map((pick) => ({
-        text: `${pick.eventName} · ${pick.marketLabel} @ ${pick.odd.toFixed(2)}`,
-        motivoBreve: `${pick.league} · ${new Intl.DateTimeFormat('es-ES', { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Europe/Madrid' }).format(new Date(pick.commenceTime))} · p=${pick.probModel.toFixed(3)} · justa ${pick.fairOdds.toFixed(2)} · EV ${pick.ev.toFixed(3)} · ${pick.reason}`,
-      })),
+      picks: selectedPicks.map((pick) => {
+        const kickoffTime = formatSpanishKickoff(new Date(pick.commenceTime))
+
+        return {
+          text: `${pick.eventName} · ${pick.marketLabel} @ ${pick.odd.toFixed(2)}`,
+          motivoBreve: `${pick.league} · ${kickoffTime} · p=${pick.probModel.toFixed(3)} · justa ${pick.fairOdds.toFixed(2)} · EV ${pick.ev.toFixed(3)} · ${pick.reason}`,
+          partido: pick.eventName,
+          liga: pick.league,
+          hora: kickoffTime,
+          mercado: pick.marketLabel,
+          cuota: pick.odd.toFixed(2),
+          probabilidadModelo: pick.probModel.toFixed(3),
+          fairOdds: pick.fairOdds.toFixed(2),
+          ev: pick.ev.toFixed(3),
+          motivoCorto: pick.reason,
+        }
+      }),
     }
   } catch {
     return getPronosticosFallbackData()

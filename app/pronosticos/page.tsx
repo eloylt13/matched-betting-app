@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 
+import { FreebetDailyReveal } from '@/components/pronosticos/FreebetDailyReveal'
 import { PronosticosCtas } from '@/components/pronosticos/PronosticosCtas'
 import { getQuantLiteCombinada } from '@/lib/pronosticos/engine'
 
@@ -61,22 +62,7 @@ export default async function PronosticosPage() {
               <p className="text-sm text-stone-600">{dailyCombinada.motivoGeneral}</p>
             </div>
 
-            <div className="grid gap-3">
-              {dailyCombinada.picks.map((pick, index) => (
-                <div
-                  key={pick.text}
-                  className="flex items-start gap-3 rounded-2xl border border-stone-100 bg-stone-50 px-4 py-3"
-                >
-                  <div className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-xs font-bold text-emerald-700">
-                    {index + 1}
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold text-stone-800">{pick.text}</p>
-                    {pick.motivoBreve ? <p className="mt-0.5 text-xs text-stone-500">{pick.motivoBreve}</p> : null}
-                  </div>
-                </div>
-              ))}
-            </div>
+            <FreebetDailyReveal dailyCombinada={dailyCombinada} />
 
             <div className="mt-6 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
               Selección diaria global con datos de respaldo si la API no está disponible
