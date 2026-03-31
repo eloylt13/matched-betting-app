@@ -43,6 +43,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
               <NavLink href="/dashboard" emoji="📊" label="Dashboard" />
               <NavLink href="/guias" emoji="📚" label="Guías" />
               <NavLink href="/blog" emoji="✍️" label="Blog" />
+              <NavLink href="/pronosticos" emoji="🎯" label="Pronósticos" />
               <NavLink href="/calculadora" emoji="🧮" label="Calculadora" />
               <NavLink href="/casas" emoji="🏠" label="Casas" />
               <NavLink href="/bonos" emoji="🎁" label="Bonos" />
