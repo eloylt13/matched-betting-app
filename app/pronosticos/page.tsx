@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 
+import Link from 'next/link'
+
 export const metadata: Metadata = {
   title: 'Combinada diaria gratis | IAPredictHub',
   description: 'Consulta una combinada diaria de ejemplo con picks, cuota total y nivel de confianza dentro de la beta de IAPredictHub.',
@@ -77,6 +79,34 @@ export default function PronosticosPage() {
 
             <div className="mt-6 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
               Pronto se actualizará automáticamente
+            </div>
+          </div>
+        </section>
+
+        <section className="rounded-3xl border border-emerald-200 bg-gradient-to-br from-emerald-50 via-white to-stone-50 px-6 py-6 shadow-sm sm:px-8 sm:py-8">
+          <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
+            <div className="max-w-2xl">
+              <h2 className="text-2xl font-bold tracking-tight text-stone-800">
+                Aprovecha mejor cada pronóstico
+              </h2>
+              <p className="mt-2 text-sm leading-relaxed text-stone-600 sm:text-base">
+                Si además revisas las guías y comparas casas con bono de bienvenida, puedes seguir estos picks con más contexto y detectar opciones que encajen mejor con tu estrategia.
+              </p>
+            </div>
+
+            <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
+              <Link
+                href="/guias"
+                className="inline-flex min-h-12 items-center justify-center rounded-2xl bg-emerald-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-emerald-700"
+              >
+                Ver guías
+              </Link>
+              <Link
+                href="/casas"
+                className="inline-flex min-h-12 items-center justify-center rounded-2xl border border-stone-200 bg-white px-5 py-3 text-sm font-semibold text-stone-800 transition hover:border-emerald-300 hover:text-emerald-700"
+              >
+                Explorar casas
+              </Link>
             </div>
           </div>
         </section>
