@@ -243,13 +243,14 @@ export default function LandingPage() {
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 lg:py-36 text-center">
           <Link
             href="/pronosticos"
-            className="inline-flex items-center gap-2 bg-white/5 border border-white/10 text-emerald-300 hover:text-emerald-200 hover:border-emerald-500/30 hover:bg-white/10 text-xs font-semibold px-4 py-1.5 rounded-full mb-4 transition-colors"
+            className="inline-flex items-center gap-2.5 bg-gradient-to-r from-emerald-500/20 to-emerald-400/10 border border-emerald-400/30 text-emerald-200 hover:text-white hover:border-emerald-300/60 hover:from-emerald-500/30 hover:to-emerald-300/20 text-sm font-bold px-5 py-2 rounded-full mb-6 shadow-lg shadow-emerald-950/25 transition-all"
           >
-            Freebet Gratis →
+            <span>Freebet Gratis</span>
+            <span className="text-base leading-none" aria-hidden="true">→</span>
           </Link>
           <div className="inline-flex items-center gap-2 bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-xs font-semibold px-4 py-1.5 rounded-full mb-8">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            Beta gratuita · Acceso libre · Sin registro
+            Acceso libre · Sin registro
           </div>
 
           <h1 className="font-playfair text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-tight mb-6">
