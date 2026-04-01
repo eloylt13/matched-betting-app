@@ -1,4 +1,4 @@
-import { combinadaDelDia, type CombinadaData } from '@/app/pronosticos/mockData'
+import type { CombinadaData } from '@/app/pronosticos/mockData'
 import { unstable_cache } from 'next/cache'
 
 import { fetchEligibleOddsEvents } from './fetchOdds'
@@ -7,6 +7,23 @@ import { buildCandidatesForEvent, selectBestPicks } from './select'
 
 const REQUIRED_MIN_PICKS = 3
 const DAILY_REVALIDATE_SECONDS = 86400
+
+function isValidDailyKickoff(commenceTime: string, referenceDate = new Date()) {
+  const kickoff = new Date(commenceTime)
+
+  if (Number.isNaN(kickoff.getTime())) {
+    return false
+  }
+
+  const madridDay = new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'Europe/Madrid',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  })
+
+  return madridDay.format(kickoff) === madridDay.format(referenceDate)
+}
 
 function formatSpanishDay(date: Date) {
   return new Intl.DateTimeFormat('es-ES', {
@@ -61,29 +78,19 @@ function buildConfidenceLabel(probabilities: number[]) {
   return 'Media · 6/10'
 }
 
-export function getPronosticosFallbackData(): CombinadaData {
-  const now = new Date()
-
-  return {
-    ...combinadaDelDia,
-    etiquetaDia: capitalizeFirstLetter(formatSpanishDay(now)),
-    horaActualizacion: formatSpanishTime(now),
-  }
-}
-
-async function generateQuantLiteCombinada(): Promise<CombinadaData> {
+async function generateQuantLiteCombinada(): Promise<CombinadaData | null> {
   const oddsApiKey = process.env.THE_ODDS_API_KEY
   const footballDataApiKey = process.env.FOOTBALL_DATA_API_KEY
 
   if (!oddsApiKey) {
-    return getPronosticosFallbackData()
+    return null
   }
 
   try {
     const events = await fetchEligibleOddsEvents(oddsApiKey)
 
     if (events.length === 0) {
-      return getPronosticosFallbackData()
+      return null
     }
 
     const candidateGroups = await Promise.all(
@@ -98,13 +105,12 @@ async function generateQuantLiteCombinada(): Promise<CombinadaData> {
       }),
     )
 
-    const selectedPicks = selectBestPicks(candidateGroups.flat())
+    const now = new Date()
+    const selectedPicks = selectBestPicks(candidateGroups.flat()).filter((pick) => isValidDailyKickoff(pick.commenceTime, now))
 
     if (selectedPicks.length < REQUIRED_MIN_PICKS) {
-      return getPronosticosFallbackData()
+      return null
     }
-
-    const now = new Date()
 
     return {
       etiquetaDia: capitalizeFirstLetter(formatSpanishDay(now)),
@@ -133,7 +139,7 @@ async function generateQuantLiteCombinada(): Promise<CombinadaData> {
       }),
     }
   } catch {
-    return getPronosticosFallbackData()
+    return null
   }
 }
 
@@ -141,6 +147,6 @@ const getCachedQuantLiteCombinada = unstable_cache(generateQuantLiteCombinada, [
   revalidate: DAILY_REVALIDATE_SECONDS,
 })
 
-export async function getQuantLiteCombinada(): Promise<CombinadaData> {
+export async function getQuantLiteCombinada(): Promise<CombinadaData | null> {
   return getCachedQuantLiteCombinada()
 }

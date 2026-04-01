@@ -13,6 +13,7 @@ export const revalidate = 86400
 
 export default async function PronosticosPage() {
   const dailyCombinada = await getQuantLiteCombinada()
+  const hasDailyCombinada = dailyCombinada !== null
 
   return (
     <div className="min-h-[70vh] px-4 py-10 sm:py-14">
@@ -39,34 +40,62 @@ export default async function PronosticosPage() {
             <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-300">
-                  {dailyCombinada.etiquetaDia}
+                  {hasDailyCombinada ? dailyCombinada.etiquetaDia : 'Estado de la selección diaria'}
                 </p>
                 <h2 className="mt-2 text-2xl sm:text-3xl font-bold text-white">
-                  Cuota total {dailyCombinada.cuotaTotal}
+                  {hasDailyCombinada ? `Cuota total ${dailyCombinada.cuotaTotal}` : 'Hoy no se ha podido generar la Freebet diaria'}
                 </h2>
                 <p className="mt-2 text-sm text-gray-300">
-                  Actualizada hoy a las {dailyCombinada.horaActualizacion}
+                  {hasDailyCombinada
+                    ? `Actualizada hoy a las ${dailyCombinada.horaActualizacion}`
+                    : 'Estamos validando los mercados disponibles. Vuelve más tarde.'}
                 </p>
               </div>
 
               <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 sm:min-w-48">
-                <p className="text-xs uppercase tracking-wider text-gray-400">Confianza</p>
-                <p className="mt-1 text-lg font-bold text-emerald-400">{dailyCombinada.confianza}</p>
-                <p className="mt-1 text-xs text-gray-400">{dailyCombinada.notaConfianza}</p>
+                <p className="text-xs uppercase tracking-wider text-gray-400">
+                  {hasDailyCombinada ? 'Confianza' : 'Disponibilidad'}
+                </p>
+                <p className="mt-1 text-lg font-bold text-emerald-400">
+                  {hasDailyCombinada ? dailyCombinada.confianza : 'En validación'}
+                </p>
+                <p className="mt-1 text-xs text-gray-400">
+                  {hasDailyCombinada
+                    ? dailyCombinada.notaConfianza
+                    : 'Solo mostramos picks cuando pertenecen a la ventana diaria válida.'}
+                </p>
               </div>
             </div>
           </div>
 
           <div className="px-6 py-6 sm:px-8 sm:py-8">
             <div className="mb-6 rounded-2xl border border-stone-100 bg-stone-50 px-4 py-3">
-              <p className="text-sm text-stone-600">{dailyCombinada.motivoGeneral}</p>
+              <p className="text-sm text-stone-600">
+                {hasDailyCombinada
+                  ? dailyCombinada.motivoGeneral
+                  : 'La selección diaria se publica solo cuando el motor puede validar partidos y mercados reales del día actual.'}
+              </p>
             </div>
 
-            <FreebetDailyReveal dailyCombinada={dailyCombinada} />
+            {hasDailyCombinada ? (
+              <>
+                <FreebetDailyReveal dailyCombinada={dailyCombinada} />
 
-            <div className="mt-6 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
-              Selección diaria global con datos de respaldo si la API no está disponible
-            </div>
+                <div className="mt-6 rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800">
+                  Selección diaria validada con partidos reales dentro de la ventana del día
+                </div>
+              </>
+            ) : (
+              <div className="rounded-2xl border border-stone-200 bg-stone-50 p-5 sm:p-6">
+                <h3 className="text-lg font-bold text-stone-800">Freebet diaria no disponible por ahora</h3>
+                <p className="mt-2 text-sm leading-relaxed text-stone-600">
+                  Estamos validando los mercados disponibles para no mostrar picks antiguos, incompletos o fuera de fecha.
+                </p>
+                <div className="mt-5">
+                  <PronosticosCtas />
+                </div>
+              </div>
+            )}
           </div>
         </section>
 
