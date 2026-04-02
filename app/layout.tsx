@@ -2,6 +2,7 @@
 import type { Metadata } from 'next'
 import { DM_Sans, Playfair_Display } from 'next/font/google'
 import AppShell from '@/components/AppShell'
+import PostHogProvider from '@/components/PostHogProvider'
 import { Analytics } from '@vercel/analytics/react'
 import './globals.css'
 
@@ -73,7 +74,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="es" className={`${dmSans.variable} ${playfair.variable}`}>
       <body className="bg-[#F5F3EE] min-h-screen font-sans">
-        <AppShell>{children}</AppShell>
+        <PostHogProvider>
+          <AppShell>{children}</AppShell>
+        </PostHogProvider>
         <Analytics />
       </body>
     </html>
