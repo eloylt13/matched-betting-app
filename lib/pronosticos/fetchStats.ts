@@ -4,6 +4,10 @@ const FOOTBALL_DATA_BASE_URL = 'https://api.football-data.org/v4'
 const CACHE_SECONDS = 60 * 60 * 8
 const TEAM_MATCH_LIMIT = 8
 
+type FootballDataRateLimitError = Error & {
+  status?: number
+}
+
 type SupportedCompetition = {
   code: string
   label: string
@@ -65,6 +69,12 @@ type FootballDataTeamMatchesResponse = {
   matches?: FootballDataMatch[]
 }
 
+const competitionMatchesCache = new Map<string, Promise<FootballDataMatch[]>>()
+const teamMatchesCache = new Map<string, Promise<FootballDataMatch[]>>()
+const eventStatsCache = new Map<string, Promise<EventStats | null>>()
+
+let footballDataRateLimited = false
+
 async function fetchJson<T>(url: string, apiKey: string) {
   const response = await fetch(url, {
     headers: {
@@ -74,7 +84,9 @@ async function fetchJson<T>(url: string, apiKey: string) {
   })
 
   if (!response.ok) {
-    throw new Error(`football-data.org respondió con ${response.status}`)
+    const error = new Error(`football-data.org respondió con ${response.status}`) as FootballDataRateLimitError
+    error.status = response.status
+    throw error
   }
 
   return (await response.json()) as T
@@ -190,26 +202,61 @@ function buildTeamGoalStats(teamName: string, teamId: number, matches: FootballD
 }
 
 async function fetchCompetitionFinishedMatches(competitionCode: string, apiKey: string) {
+  const cacheKey = `${competitionCode}:${apiKey}`
+  const cached = competitionMatchesCache.get(cacheKey)
+
+  if (cached) {
+    logStatsDiagnostic('Reutilizando caché de partidos por competición', {
+      competitionCode,
+    })
+    return cached
+  }
+
   const dateTo = new Date()
   const dateFrom = new Date(dateTo.getTime() - 45 * 24 * 60 * 60 * 1000)
   const from = dateFrom.toISOString().slice(0, 10)
   const to = dateTo.toISOString().slice(0, 10)
 
-  const response = await fetchJson<FootballDataTeamMatchesResponse>(
+  const request = fetchJson<FootballDataTeamMatchesResponse>(
     `${FOOTBALL_DATA_BASE_URL}/competitions/${competitionCode}/matches?status=FINISHED&dateFrom=${from}&dateTo=${to}&limit=200`,
     apiKey,
   )
+    .then((response) => (response.matches ?? []).filter(isFinishedRegularMatch))
+    .catch((error) => {
+      competitionMatchesCache.delete(cacheKey)
+      throw error
+    })
 
-  return (response.matches ?? []).filter(isFinishedRegularMatch)
+  competitionMatchesCache.set(cacheKey, request)
+
+  return request
 }
 
 async function fetchTeamMatches(teamId: number, competitionCode: string, apiKey: string) {
-  const response = await fetchJson<FootballDataTeamMatchesResponse>(
+  const cacheKey = `${teamId}:${competitionCode}:${apiKey}`
+  const cached = teamMatchesCache.get(cacheKey)
+
+  if (cached) {
+    logStatsDiagnostic('Reutilizando caché de partidos por equipo', {
+      teamId,
+      competitionCode,
+    })
+    return cached
+  }
+
+  const request = fetchJson<FootballDataTeamMatchesResponse>(
     `${FOOTBALL_DATA_BASE_URL}/teams/${teamId}/matches?status=FINISHED&competitions=${competitionCode}&limit=${TEAM_MATCH_LIMIT}`,
     apiKey,
   )
+    .then((response) => (response.matches ?? []).filter(isFinishedRegularMatch))
+    .catch((error) => {
+      teamMatchesCache.delete(cacheKey)
+      throw error
+    })
 
-  return (response.matches ?? []).filter(isFinishedRegularMatch)
+  teamMatchesCache.set(cacheKey, request)
+
+  return request
 }
 
 export async function fetchEventStats(event: OddsEvent, apiKey?: string): Promise<EventStats | null> {
@@ -221,94 +268,154 @@ export async function fetchEventStats(event: OddsEvent, apiKey?: string): Promis
     return null
   }
 
-  try {
-    const competition = getSupportedCompetition(event)
+  if (footballDataRateLimited) {
+    logStatsDiagnostic('Se omite llamada a stats porque football-data ya está rate-limited en esta ejecución', {
+      eventId: event.id,
+      eventName: `${event.home_team} vs ${event.away_team}`,
+    })
+    return null
+  }
 
-    if (!competition) {
-      logStatsDiagnostic('Evento descartado por competición no soportada por football-data', {
+  const cacheKey = `${event.sport_key}:${event.home_team}:${event.away_team}`
+  const cached = eventStatsCache.get(cacheKey)
+
+  if (cached) {
+    logStatsDiagnostic('Reutilizando stats cacheadas del evento', {
+      eventId: event.id,
+      eventName: `${event.home_team} vs ${event.away_team}`,
+      cacheKey,
+    })
+    return cached
+  }
+
+  const request = (async () => {
+    try {
+      const competition = getSupportedCompetition(event)
+
+      if (!competition) {
+        logStatsDiagnostic('Evento descartado por competición no soportada por football-data', {
+          eventId: event.id,
+          eventName: `${event.home_team} vs ${event.away_team}`,
+          league: event.sport_title,
+          sportKey: event.sport_key,
+        })
+        return null
+      }
+
+      logStatsDiagnostic('Llamada real a football-data para resolver competición/evento', {
+        eventId: event.id,
+        eventName: `${event.home_team} vs ${event.away_team}`,
+        competitionCode: competition.code,
+      })
+
+      const recentMatches = await fetchCompetitionFinishedMatches(competition.code, apiKey)
+
+      if (recentMatches.length === 0) {
+        logStatsDiagnostic('Evento descartado por competición sin partidos recientes en football-data', {
+          eventId: event.id,
+          eventName: `${event.home_team} vs ${event.away_team}`,
+          league: event.sport_title,
+          competitionCode: competition.code,
+          competitionLabel: competition.label,
+        })
+        return null
+      }
+
+      const homeId = findTeamId(recentMatches, event.home_team)
+      const awayId = findTeamId(recentMatches, event.away_team)
+
+      if (!homeId || !awayId) {
+        logStatsDiagnostic('Evento descartado por matching de equipos sin resolver', {
+          eventId: event.id,
+          eventName: `${event.home_team} vs ${event.away_team}`,
+          league: event.sport_title,
+          competitionCode: competition.code,
+          homeTeam: event.home_team,
+          awayTeam: event.away_team,
+          homeId,
+          awayId,
+          recentMatches: recentMatches.length,
+        })
+        return null
+      }
+
+      logStatsDiagnostic('Llamadas reales a football-data para partidos de equipo', {
+        eventId: event.id,
+        eventName: `${event.home_team} vs ${event.away_team}`,
+        competitionCode: competition.code,
+        homeId,
+        awayId,
+      })
+
+      const [homeMatches, awayMatches] = await Promise.all([
+        fetchTeamMatches(homeId, competition.code, apiKey),
+        fetchTeamMatches(awayId, competition.code, apiKey),
+      ])
+
+      const home = buildTeamGoalStats(event.home_team, homeId, homeMatches)
+      const away = buildTeamGoalStats(event.away_team, awayId, awayMatches)
+
+      if (!home || !away) {
+        logStatsDiagnostic('Evento descartado por stats insuficientes', {
+          eventId: event.id,
+          eventName: `${event.home_team} vs ${event.away_team}`,
+          league: event.sport_title,
+          competitionCode: competition.code,
+          homeId,
+          awayId,
+          homeMatches: homeMatches.length,
+          awayMatches: awayMatches.length,
+          homeStatsReady: Boolean(home),
+          awayStatsReady: Boolean(away),
+        })
+        return null
+      }
+
+      logStatsDiagnostic('Stats válidas para evento', {
+        eventId: event.id,
+        eventName: `${event.home_team} vs ${event.away_team}`,
+        league: event.sport_title,
+        competitionCode: competition.code,
+        homeId,
+        awayId,
+        homeSample: home.matches,
+        awaySample: away.matches,
+      })
+
+      return { home, away }
+    } catch (error) {
+      const status = error instanceof Error && 'status' in error ? (error as FootballDataRateLimitError).status : undefined
+
+      if (status === 429) {
+        footballDataRateLimited = true
+        logStatsDiagnostic('Detectado 429 en football-data; se cortan más llamadas en esta ejecución', {
+          eventId: event.id,
+          eventName: `${event.home_team} vs ${event.away_team}`,
+          league: event.sport_title,
+          sportKey: event.sport_key,
+        })
+      }
+
+      logStatsDiagnostic('Error obteniendo stats del evento', {
         eventId: event.id,
         eventName: `${event.home_team} vs ${event.away_team}`,
         league: event.sport_title,
         sportKey: event.sport_key,
+        error: error instanceof Error ? error.message : 'unknown_error',
+        status,
       })
       return null
     }
+  })()
 
-    const recentMatches = await fetchCompetitionFinishedMatches(competition.code, apiKey)
+  eventStatsCache.set(cacheKey, request)
 
-    if (recentMatches.length === 0) {
-      logStatsDiagnostic('Evento descartado por competición sin partidos recientes en football-data', {
-        eventId: event.id,
-        eventName: `${event.home_team} vs ${event.away_team}`,
-        league: event.sport_title,
-        competitionCode: competition.code,
-        competitionLabel: competition.label,
-      })
-      return null
-    }
+  return request.catch((error) => {
+    eventStatsCache.delete(cacheKey)
+    throw error
+  })
+}
 
-    const homeId = findTeamId(recentMatches, event.home_team)
-    const awayId = findTeamId(recentMatches, event.away_team)
-
-    if (!homeId || !awayId) {
-      logStatsDiagnostic('Evento descartado por matching de equipos sin resolver', {
-        eventId: event.id,
-        eventName: `${event.home_team} vs ${event.away_team}`,
-        league: event.sport_title,
-        competitionCode: competition.code,
-        homeTeam: event.home_team,
-        awayTeam: event.away_team,
-        homeId,
-        awayId,
-        recentMatches: recentMatches.length,
-      })
-      return null
-    }
-
-    const [homeMatches, awayMatches] = await Promise.all([
-      fetchTeamMatches(homeId, competition.code, apiKey),
-      fetchTeamMatches(awayId, competition.code, apiKey),
-    ])
-
-    const home = buildTeamGoalStats(event.home_team, homeId, homeMatches)
-    const away = buildTeamGoalStats(event.away_team, awayId, awayMatches)
-
-    if (!home || !away) {
-      logStatsDiagnostic('Evento descartado por stats insuficientes', {
-        eventId: event.id,
-        eventName: `${event.home_team} vs ${event.away_team}`,
-        league: event.sport_title,
-        competitionCode: competition.code,
-        homeId,
-        awayId,
-        homeMatches: homeMatches.length,
-        awayMatches: awayMatches.length,
-        homeStatsReady: Boolean(home),
-        awayStatsReady: Boolean(away),
-      })
-      return null
-    }
-
-    logStatsDiagnostic('Stats válidas para evento', {
-      eventId: event.id,
-      eventName: `${event.home_team} vs ${event.away_team}`,
-      league: event.sport_title,
-      competitionCode: competition.code,
-      homeId,
-      awayId,
-      homeSample: home.matches,
-      awaySample: away.matches,
-    })
-
-    return { home, away }
-  } catch (error) {
-    logStatsDiagnostic('Error obteniendo stats del evento', {
-      eventId: event.id,
-      eventName: `${event.home_team} vs ${event.away_team}`,
-      league: event.sport_title,
-      sportKey: event.sport_key,
-      error: error instanceof Error ? error.message : 'unknown_error',
-    })
-    return null
-  }
+export function hasFootballDataRateLimit() {
+  return footballDataRateLimited
 }

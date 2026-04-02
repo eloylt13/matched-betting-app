@@ -3,6 +3,8 @@ import { OddsEvent, OddsSport } from './types'
 const ODDS_BASE_URL = 'https://api.the-odds-api.com/v4'
 const CACHE_SECONDS = 60 * 60 * 8
 const MAX_SPORTS = 8
+const MIN_SHORTLIST_ODD = 1.22
+const MAX_SHORTLIST_ODD = 1.55
 
 function logOddsDiagnostic(message: string, details?: Record<string, unknown>) {
   if (details) {
@@ -104,6 +106,55 @@ function isEligibleEvent(event: OddsEvent) {
   return true
 }
 
+function countEligibleMarkets(event: OddsEvent) {
+  let eligibleMarkets = 0
+  let bestOdd = 0
+
+  for (const bookmaker of event.bookmakers ?? []) {
+    for (const market of bookmaker.markets) {
+      if (market.key === 'totals') {
+        for (const outcome of market.outcomes) {
+          const isEligibleTotal = outcome.name === 'Over' && outcome.price >= MIN_SHORTLIST_ODD && outcome.price <= MAX_SHORTLIST_ODD
+
+          if (isEligibleTotal) {
+            eligibleMarkets += 1
+            bestOdd = Math.max(bestOdd, outcome.price)
+          }
+        }
+      }
+
+      if (market.key === 'h2h') {
+        for (const outcome of market.outcomes) {
+          const isDraw = outcome.name.toLowerCase() === 'draw'
+          const isEligibleH2H = !isDraw && outcome.price >= MIN_SHORTLIST_ODD && outcome.price <= MAX_SHORTLIST_ODD
+
+          if (isEligibleH2H) {
+            eligibleMarkets += 1
+            bestOdd = Math.max(bestOdd, outcome.price)
+          }
+        }
+      }
+    }
+  }
+
+  return { eligibleMarkets, bestOdd }
+}
+
+function compareEligibleEvents(left: OddsEvent, right: OddsEvent) {
+  const leftMetrics = countEligibleMarkets(left)
+  const rightMetrics = countEligibleMarkets(right)
+
+  if (rightMetrics.eligibleMarkets !== leftMetrics.eligibleMarkets) {
+    return rightMetrics.eligibleMarkets - leftMetrics.eligibleMarkets
+  }
+
+  if (rightMetrics.bestOdd !== leftMetrics.bestOdd) {
+    return rightMetrics.bestOdd - leftMetrics.bestOdd
+  }
+
+  return new Date(left.commence_time).getTime() - new Date(right.commence_time).getTime()
+}
+
 export async function fetchEligibleOddsEvents(apiKey: string) {
   const sports = await fetchJson<OddsSport[]>(`${ODDS_BASE_URL}/sports/?apiKey=${apiKey}`)
   const soccerSports = sports.filter(isRegularSoccerSport).slice(0, MAX_SPORTS)
@@ -128,11 +179,24 @@ export async function fetchEligibleOddsEvents(apiKey: string) {
   )
 
   const rawEvents = eventsPerSport.flat()
-  const eligibleEvents = rawEvents.filter(isEligibleEvent)
+  const eligibleEvents = rawEvents.filter(isEligibleEvent).sort(compareEligibleEvents)
+  const topPreview = eligibleEvents.slice(0, 8).map((event) => {
+    const metrics = countEligibleMarkets(event)
+
+    return {
+      eventId: event.id,
+      eventName: `${event.home_team} vs ${event.away_team}`,
+      league: event.sport_title,
+      commenceTime: event.commence_time,
+      eligibleMarkets: metrics.eligibleMarkets,
+      bestOdd: metrics.bestOdd,
+    }
+  })
 
   logOddsDiagnostic('Conteo de eventos de The Odds API', {
     rawEvents: rawEvents.length,
     eligibleEvents: eligibleEvents.length,
+    topPreview,
   })
 
   return eligibleEvents

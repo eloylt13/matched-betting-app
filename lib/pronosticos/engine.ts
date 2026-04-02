@@ -2,11 +2,12 @@ import type { CombinadaData } from '@/app/pronosticos/mockData'
 import { unstable_cache } from 'next/cache'
 
 import { fetchEligibleOddsEvents } from './fetchOdds'
-import { fetchEventStats } from './fetchStats'
+import { fetchEventStats, hasFootballDataRateLimit } from './fetchStats'
 import { buildCandidatesForEvent, selectBestPicks } from './select'
 
 const REQUIRED_MIN_PICKS = 3
 const DAILY_REVALIDATE_SECONDS = 300
+const MAX_STATS_EVENTS = 8
 
 function logEngineDiagnostic(message: string, details?: Record<string, unknown>) {
   if (details) {
@@ -66,6 +67,27 @@ function calculateTotalOdd(odds: number[]) {
   return odds.reduce((acc, odd) => acc * odd, 1)
 }
 
+function isSupportedCompetitionEvent(sportKey: string) {
+  return new Set([
+    'soccer_england_premier_league',
+    'soccer_spain_la_liga',
+    'soccer_germany_bundesliga',
+    'soccer_italy_serie_a',
+    'soccer_france_ligue_one',
+    'soccer_netherlands_eredivisie',
+    'soccer_portugal_primeira_liga',
+  ]).has(sportKey)
+}
+
+function summarizeEvents(events: Array<{ id: string; home_team: string; away_team: string; sport_title: string; commence_time: string }>) {
+  return events.map((event) => ({
+    eventId: event.id,
+    eventName: `${event.home_team} vs ${event.away_team}`,
+    league: event.sport_title,
+    commenceTime: event.commence_time,
+  }))
+}
+
 function formatSpanishKickoff(date: Date) {
   return new Intl.DateTimeFormat('es-ES', {
     hour: '2-digit',
@@ -116,42 +138,68 @@ async function generateQuantLiteCombinada(): Promise<CombinadaData | null> {
   }
 
   try {
-    const events = await fetchEligibleOddsEvents(oddsApiKey)
+    const initialEvents = await fetchEligibleOddsEvents(oddsApiKey)
 
-    logEngineDiagnostic('Eventos elegibles recibidos desde fetchOdds', {
-      events: events.length,
+    logEngineDiagnostic('Eventos iniciales recibidos desde fetchOdds', {
+      events: initialEvents.length,
+      preview: summarizeEvents(initialEvents.slice(0, 12)),
     })
 
-    if (events.length === 0) {
+    if (initialEvents.length === 0) {
       logEngineDiagnostic('No hay eventos elegibles; se devuelve null')
       return null
     }
 
+    const shortlistEvents = initialEvents
+      .filter((event) => isSupportedCompetitionEvent(event.sport_key))
+      .slice(0, MAX_STATS_EVENTS)
+
+    logEngineDiagnostic('Shortlist final antes de pedir stats a football-data', {
+      initialEvents: initialEvents.length,
+      shortlistEvents: shortlistEvents.length,
+      maxStatsEvents: MAX_STATS_EVENTS,
+      preview: summarizeEvents(shortlistEvents),
+    })
+
+    if (shortlistEvents.length === 0) {
+      logEngineDiagnostic('No hay shortlist utilizable para stats; se devuelve null')
+      return null
+    }
+
     let validStatsEvents = 0
-    const candidateGroups = await Promise.all(
-      events.map(async (event) => {
-        const stats = await fetchEventStats(event, footballDataApiKey)
+    const candidateGroups: Awaited<ReturnType<typeof buildCandidatesForEvent>>[] = []
 
-        if (!stats) {
-          discardReasons.no_stats += 1
-          logEngineDiagnostic('Evento sin stats válidas; no genera candidatos', {
-            eventId: event.id,
-            eventName: `${event.home_team} vs ${event.away_team}`,
-          })
-          return []
-        }
+    for (const event of shortlistEvents) {
+      const stats = await fetchEventStats(event, footballDataApiKey)
 
-        validStatsEvents += 1
+      if (!stats && hasFootballDataRateLimit()) {
+        discardReasons.no_stats += 1
+        logEngineDiagnostic('Se corta la iteración de stats tras detectar 429 en football-data', {
+          eventId: event.id,
+          eventName: `${event.home_team} vs ${event.away_team}`,
+        })
+        break
+      }
 
-        const candidates = buildCandidatesForEvent(event, stats)
+      if (!stats) {
+        discardReasons.no_stats += 1
+        logEngineDiagnostic('Evento sin stats válidas; no genera candidatos', {
+          eventId: event.id,
+          eventName: `${event.home_team} vs ${event.away_team}`,
+        })
+        continue
+      }
 
-        if (candidates.length === 0) {
-          discardReasons.no_candidates += 1
-        }
+      validStatsEvents += 1
 
-        return candidates
-      }),
-    )
+      const candidates = buildCandidatesForEvent(event, stats)
+
+      if (candidates.length === 0) {
+        discardReasons.no_candidates += 1
+      }
+
+      candidateGroups.push(candidates)
+    }
 
     const now = new Date()
     const allCandidates = candidateGroups.flat()
@@ -186,7 +234,8 @@ async function generateQuantLiteCombinada(): Promise<CombinadaData | null> {
     const primaryDiscardReason = getPrimaryDiscardReason(discardReasons)
 
     logEngineDiagnostic('Conteos agregados del motor', {
-      eligibleEvents: events.length,
+      eligibleEvents: initialEvents.length,
+      shortlistedForStats: shortlistEvents.length,
       validStatsEvents,
       generatedCandidates: allCandidates.length,
       selectedBeforeDailyFilter: selectedBeforeDailyFilter.length,
