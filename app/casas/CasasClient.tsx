@@ -10,6 +10,9 @@ export default function CasasPage() {
             <p className="text-stone-400 mb-8">
                 Selecciona una casa para ver su bono de bienvenida y cómo completarlo.
             </p>
+            <p className="text-xs text-stone-500 mb-4">
+                Aviso: algunos enlaces de esta sección pueden ser de afiliación.
+            </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {casasEspana.map((casa) => (
                     <CasaCard key={casa.id} casa={casa} />
