@@ -13,6 +13,16 @@ function logOddsDiagnostic(message: string, details?: Record<string, unknown>) {
   console.log(`[pronosticos][fetchOdds] ${message}`)
 }
 
+const SUPPORTED_SPORT_KEYS = new Set([
+  'soccer_england_premier_league',
+  'soccer_spain_la_liga',
+  'soccer_germany_bundesliga',
+  'soccer_italy_serie_a',
+  'soccer_france_ligue_one',
+  'soccer_netherlands_eredivisie',
+  'soccer_portugal_primeira_liga',
+])
+
 const EXCLUDED_SPORT_PATTERNS = [
   'cup',
   'cups',
@@ -45,6 +55,14 @@ function isRegularSoccerSport(sport: OddsSport) {
   const haystack = `${sport.key} ${sport.title} ${sport.description ?? ''}`.toLowerCase()
 
   if (!sport.active || !sport.key.startsWith('soccer_')) {
+    return false
+  }
+
+  if (!SUPPORTED_SPORT_KEYS.has(sport.key)) {
+    logOddsDiagnostic('Deporte descartado por no estar soportado por football-data', {
+      sportKey: sport.key,
+      sportTitle: sport.title,
+    })
     return false
   }
 
@@ -94,6 +112,7 @@ export async function fetchEligibleOddsEvents(apiKey: string) {
     totalSports: sports.length,
     eligibleSoccerSports: soccerSports.length,
     selectedSportKeys: soccerSports.map((sport) => sport.key),
+    supportedSportKeys: Array.from(SUPPORTED_SPORT_KEYS),
   })
 
   if (soccerSports.length === 0) {
