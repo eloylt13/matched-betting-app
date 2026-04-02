@@ -6,7 +6,7 @@ import { getQuantLiteCombinada } from '@/lib/pronosticos/engine'
 
 export const metadata: Metadata = {
   title: 'Freebet diaria | IAPredictHub',
-  description: 'Consulta la selección diaria de freebet con picks, cuota total y nivel de confianza dentro de la beta de IAPredictHub.',
+  description: 'Descubre la selección diaria de freebet con picks, cuota total y nivel de confianza dentro de la beta de IAPredictHub.',
 }
 
 export const revalidate = 300
@@ -73,7 +73,7 @@ export default async function PronosticosPage() {
               <p className="text-sm text-stone-600">
                 {hasDailyCombinada
                   ? dailyCombinada.motivoGeneral
-                  : 'Solo publicamos la Freebet diaria cuando hay partidos y mercados suficientes para validarla.'}
+                  : 'Solo publicamos la combinada gratis diaria cuando hay partidos y mercados suficientes para validarla.'}
               </p>
             </div>
 
