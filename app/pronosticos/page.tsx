@@ -43,12 +43,12 @@ export default async function PronosticosPage() {
                   {hasDailyCombinada ? dailyCombinada.etiquetaDia : 'Estado de la selección diaria'}
                 </p>
                 <h2 className="mt-2 text-2xl sm:text-3xl font-bold text-white">
-                  {hasDailyCombinada ? `Cuota total ${dailyCombinada.cuotaTotal}` : 'Hoy no hay partidos suficientes para generar una Freebet diaria fiable.'}
+                  {hasDailyCombinada ? `Cuota total ${dailyCombinada.cuotaTotal}` : 'Hoy no hay Freebet diaria disponible.'}
                 </h2>
                 <p className="mt-2 text-sm text-gray-300">
                   {hasDailyCombinada
                     ? `Actualizada hoy a las ${dailyCombinada.horaActualizacion}`
-                    : 'Vuelve más tarde o mañana.'}
+                    : 'Vuelve más tarde o mañana para revisar nuevas selecciones.'}
                 </p>
               </div>
 
@@ -57,12 +57,12 @@ export default async function PronosticosPage() {
                   {hasDailyCombinada ? 'Confianza' : 'Disponibilidad'}
                 </p>
                 <p className="mt-1 text-lg font-bold text-emerald-400">
-                  {hasDailyCombinada ? dailyCombinada.confianza : 'En validación'}
+                  {hasDailyCombinada ? dailyCombinada.confianza : 'No disponible hoy'}
                 </p>
                 <p className="mt-1 text-xs text-gray-400">
                   {hasDailyCombinada
                     ? dailyCombinada.notaConfianza
-                    : 'Solo mostramos picks cuando pertenecen a la ventana diaria válida.'}
+                    : 'Solo mostramos picks cuando hay partidos y mercados suficientes para validarlos.'}
                 </p>
               </div>
             </div>
@@ -73,7 +73,7 @@ export default async function PronosticosPage() {
               <p className="text-sm text-stone-600">
                 {hasDailyCombinada
                   ? dailyCombinada.motivoGeneral
-                  : 'La selección diaria se publica solo cuando el motor puede validar partidos y mercados reales del día actual.'}
+                  : 'Solo publicamos la Freebet diaria cuando hay partidos y mercados suficientes para validarla.'}
               </p>
             </div>
 
@@ -89,10 +89,7 @@ export default async function PronosticosPage() {
               <div className="rounded-2xl border border-stone-200 bg-stone-50 p-5 sm:p-6">
                 <h3 className="text-lg font-bold text-stone-800">Freebet diaria no disponible por ahora</h3>
                 <p className="mt-2 text-sm leading-relaxed text-stone-600">
-                  Hoy no hay partidos suficientes para generar una Freebet diaria fiable.
-                </p>
-                <p className="mt-2 text-sm leading-relaxed text-stone-600">
-                  Vuelve más tarde o mañana.
+                  Solo la mostramos cuando hay partidos y mercados suficientes para validarla.
                 </p>
                 <div className="mt-5">
                   <PronosticosCtas />
@@ -102,20 +99,6 @@ export default async function PronosticosPage() {
           </div>
         </section>
 
-        <section className="rounded-3xl border border-emerald-200 bg-gradient-to-br from-emerald-50 via-white to-stone-50 px-6 py-6 shadow-sm sm:px-8 sm:py-8">
-          <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
-            <div className="max-w-2xl">
-              <h2 className="text-2xl font-bold tracking-tight text-stone-800">
-                Aprovecha mejor cada pronóstico
-              </h2>
-              <p className="mt-2 text-sm leading-relaxed text-stone-600 sm:text-base">
-                Si además revisas las guías y comparas casas con bono de bienvenida, puedes seguir estos picks con más contexto y detectar opciones que encajen mejor con tu estrategia.
-              </p>
-            </div>
-
-            <PronosticosCtas />
-          </div>
-        </section>
       </div>
     </div>
   )
