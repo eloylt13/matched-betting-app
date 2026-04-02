@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description: 'Consulta la selección diaria de freebet con picks, cuota total y nivel de confianza dentro de la beta de IAPredictHub.',
 }
 
-export const revalidate = 86400
+export const revalidate = 300
 
 export default async function PronosticosPage() {
   const dailyCombinada = await getQuantLiteCombinada()
@@ -43,12 +43,12 @@ export default async function PronosticosPage() {
                   {hasDailyCombinada ? dailyCombinada.etiquetaDia : 'Estado de la selección diaria'}
                 </p>
                 <h2 className="mt-2 text-2xl sm:text-3xl font-bold text-white">
-                  {hasDailyCombinada ? `Cuota total ${dailyCombinada.cuotaTotal}` : 'Hoy no se ha podido generar la Freebet diaria'}
+                  {hasDailyCombinada ? `Cuota total ${dailyCombinada.cuotaTotal}` : 'Hoy no hay partidos suficientes para generar una Freebet diaria fiable.'}
                 </h2>
                 <p className="mt-2 text-sm text-gray-300">
                   {hasDailyCombinada
                     ? `Actualizada hoy a las ${dailyCombinada.horaActualizacion}`
-                    : 'Estamos validando los mercados disponibles. Vuelve más tarde.'}
+                    : 'Vuelve más tarde o mañana.'}
                 </p>
               </div>
 
@@ -89,7 +89,10 @@ export default async function PronosticosPage() {
               <div className="rounded-2xl border border-stone-200 bg-stone-50 p-5 sm:p-6">
                 <h3 className="text-lg font-bold text-stone-800">Freebet diaria no disponible por ahora</h3>
                 <p className="mt-2 text-sm leading-relaxed text-stone-600">
-                  Estamos validando los mercados disponibles para no mostrar picks antiguos, incompletos o fuera de fecha.
+                  Hoy no hay partidos suficientes para generar una Freebet diaria fiable.
+                </p>
+                <p className="mt-2 text-sm leading-relaxed text-stone-600">
+                  Vuelve más tarde o mañana.
                 </p>
                 <div className="mt-5">
                   <PronosticosCtas />

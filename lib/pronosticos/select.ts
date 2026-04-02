@@ -8,6 +8,15 @@ const TARGET_PICKS = 5
 const MIN_TOTAL_ODDS = 4.5
 const MAX_TOTAL_ODDS = 8.5
 
+function logSelectDiagnostic(message: string, details?: Record<string, unknown>) {
+  if (details) {
+    console.log(`[pronosticos][select] ${message}`, details)
+    return
+  }
+
+  console.log(`[pronosticos][select] ${message}`)
+}
+
 const MARKET_LABELS: Record<QuantMarketKey, string> = {
   over_1_5: 'Más de 1.5 goles',
   over_2_0: 'Más de 2.0 goles asiático',
@@ -47,6 +56,10 @@ export function buildCandidatesForEvent(event: OddsEvent, stats: EventStats): Qu
   const bookmaker = event.bookmakers?.find((entry) => entry.markets.length > 0)
 
   if (!bookmaker) {
+    logSelectDiagnostic('Evento descartado por no tener bookmaker utilizable', {
+      eventId: event.id,
+      eventName: `${event.home_team} vs ${event.away_team}`,
+    })
     return []
   }
 
@@ -54,6 +67,11 @@ export function buildCandidatesForEvent(event: OddsEvent, stats: EventStats): Qu
   const h2hMarket = bookmaker.markets.find((market) => market.key === 'h2h')
 
   if (!totalsMarket && !h2hMarket) {
+    logSelectDiagnostic('Evento descartado por no tener mercados h2h/totals', {
+      eventId: event.id,
+      eventName: `${event.home_team} vs ${event.away_team}`,
+      bookmaker: bookmaker.key,
+    })
     return []
   }
 
@@ -72,6 +90,13 @@ export function buildCandidatesForEvent(event: OddsEvent, stats: EventStats): Qu
       const odd = getTotalsPrice(totalsMarket, line)
 
       if (!odd || odd < MIN_PICK_ODD || odd > MAX_PICK_ODD) {
+        logSelectDiagnostic('Mercado totals descartado por cuota fuera de rango o ausente', {
+          eventId: event.id,
+          eventName: `${event.home_team} vs ${event.away_team}`,
+          marketKey,
+          line,
+          odd,
+        })
         continue
       }
 
@@ -106,6 +131,12 @@ export function buildCandidatesForEvent(event: OddsEvent, stats: EventStats): Qu
       const odd = getH2HPrice(event, h2hMarket, marketKey)
 
       if (!odd || odd < MIN_PICK_ODD || odd > MAX_PICK_ODD) {
+        logSelectDiagnostic('Mercado h2h descartado por cuota fuera de rango o ausente', {
+          eventId: event.id,
+          eventName: `${event.home_team} vs ${event.away_team}`,
+          marketKey,
+          odd,
+        })
         continue
       }
 
@@ -135,7 +166,24 @@ export function buildCandidatesForEvent(event: OddsEvent, stats: EventStats): Qu
     }
   }
 
-  return candidates.filter((candidate) => candidate.ev > 0)
+  const evCandidates = candidates.filter((candidate) => candidate.ev > 0)
+
+  if (evCandidates.length === 0) {
+    logSelectDiagnostic('Evento sin candidatos tras filtro EV>0', {
+      eventId: event.id,
+      eventName: `${event.home_team} vs ${event.away_team}`,
+      preEvCandidates: candidates.length,
+    })
+  } else {
+    logSelectDiagnostic('Candidatos generados para evento', {
+      eventId: event.id,
+      eventName: `${event.home_team} vs ${event.away_team}`,
+      preEvCandidates: candidates.length,
+      evCandidates: evCandidates.length,
+    })
+  }
+
+  return evCandidates
 }
 
 function calculateTotalOdds(picks: QuantPickCandidate[]) {
@@ -157,7 +205,16 @@ export function selectBestPicks(candidates: QuantPickCandidate[]) {
     })
     .filter((candidate, index, all) => all.findIndex((entry) => entry.eventId === candidate.eventId) === index)
 
+  logSelectDiagnostic('Conteo de candidatos y eventos únicos antes de selección final', {
+    candidates: candidates.length,
+    uniqueEvents: uniqueByEvent.length,
+  })
+
   if (uniqueByEvent.length < MIN_GOOD_PICKS) {
+    logSelectDiagnostic('Menos de 3 picks únicos; se devuelve selección corta', {
+      uniqueEvents: uniqueByEvent.length,
+      requiredMin: MIN_GOOD_PICKS,
+    })
     return uniqueByEvent
   }
 
@@ -167,10 +224,26 @@ export function selectBestPicks(candidates: QuantPickCandidate[]) {
     const selection = uniqueByEvent.slice(0, size)
     const totalOdds = calculateTotalOdds(selection)
 
+    logSelectDiagnostic('Probando selección final por tamaño y cuota total', {
+      size,
+      totalOdds: Math.round(totalOdds * 1000) / 1000,
+      minTotalOdds: MIN_TOTAL_ODDS,
+      maxTotalOdds: MAX_TOTAL_ODDS,
+    })
+
     if (totalOdds >= MIN_TOTAL_ODDS && totalOdds <= MAX_TOTAL_ODDS) {
+      logSelectDiagnostic('Selección final aceptada por rango de cuota total', {
+        size,
+        totalOdds: Math.round(totalOdds * 1000) / 1000,
+      })
       return selection
     }
   }
+
+  logSelectDiagnostic('Ninguna selección cae en el rango de cuota total; se usa bestSelection', {
+    bestSelectionSize: bestSelection.length,
+    bestSelectionTotalOdds: Math.round(calculateTotalOdds(bestSelection) * 1000) / 1000,
+  })
 
   return bestSelection
 }

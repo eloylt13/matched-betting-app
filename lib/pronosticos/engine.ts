@@ -6,7 +6,22 @@ import { fetchEventStats } from './fetchStats'
 import { buildCandidatesForEvent, selectBestPicks } from './select'
 
 const REQUIRED_MIN_PICKS = 3
-const DAILY_REVALIDATE_SECONDS = 86400
+const DAILY_REVALIDATE_SECONDS = 300
+
+function logEngineDiagnostic(message: string, details?: Record<string, unknown>) {
+  if (details) {
+    console.log(`[pronosticos][engine] ${message}`, details)
+    return
+  }
+
+  console.log(`[pronosticos][engine] ${message}`)
+}
+
+function getPrimaryDiscardReason(discardReasons: Record<string, number>) {
+  const [reason = 'none', count = 0] = Object.entries(discardReasons).sort((left, right) => right[1] - left[1])[0] ?? []
+
+  return { reason, count }
+}
 
 function isValidDailyKickoff(commenceTime: string, referenceDate = new Date()) {
   const kickoff = new Date(commenceTime)
@@ -81,34 +96,113 @@ function buildConfidenceLabel(probabilities: number[]) {
 async function generateQuantLiteCombinada(): Promise<CombinadaData | null> {
   const oddsApiKey = process.env.THE_ODDS_API_KEY
   const footballDataApiKey = process.env.FOOTBALL_DATA_API_KEY
+  const discardReasons: Record<string, number> = {
+    no_stats: 0,
+    no_candidates: 0,
+    outside_daily_window: 0,
+  }
+
+  logEngineDiagnostic('Diagnóstico de keys de producción', {
+    hasOddsApiKey: Boolean(oddsApiKey),
+    hasFootballDataApiKey: Boolean(footballDataApiKey),
+    nowIso: new Date().toISOString(),
+  })
+
+  logEngineDiagnostic('Inicio de generación de combinada diaria')
 
   if (!oddsApiKey) {
+    logEngineDiagnostic('No hay THE_ODDS_API_KEY; se devuelve null')
     return null
   }
 
   try {
     const events = await fetchEligibleOddsEvents(oddsApiKey)
 
+    logEngineDiagnostic('Eventos elegibles recibidos desde fetchOdds', {
+      events: events.length,
+    })
+
     if (events.length === 0) {
+      logEngineDiagnostic('No hay eventos elegibles; se devuelve null')
       return null
     }
 
+    let validStatsEvents = 0
     const candidateGroups = await Promise.all(
       events.map(async (event) => {
         const stats = await fetchEventStats(event, footballDataApiKey)
 
         if (!stats) {
+          discardReasons.no_stats += 1
+          logEngineDiagnostic('Evento sin stats válidas; no genera candidatos', {
+            eventId: event.id,
+            eventName: `${event.home_team} vs ${event.away_team}`,
+          })
           return []
         }
 
-        return buildCandidatesForEvent(event, stats)
+        validStatsEvents += 1
+
+        const candidates = buildCandidatesForEvent(event, stats)
+
+        if (candidates.length === 0) {
+          discardReasons.no_candidates += 1
+        }
+
+        return candidates
       }),
     )
 
     const now = new Date()
-    const selectedPicks = selectBestPicks(candidateGroups.flat()).filter((pick) => isValidDailyKickoff(pick.commenceTime, now))
+    const allCandidates = candidateGroups.flat()
+    const selectedBeforeDailyFilter = selectBestPicks(allCandidates)
+    const selectedPicks = selectedBeforeDailyFilter.filter((pick) => {
+      const valid = isValidDailyKickoff(pick.commenceTime, now)
+
+      if (!valid) {
+        discardReasons.outside_daily_window += 1
+        logEngineDiagnostic('Pick descartado por ventana diaria Europe/Madrid', {
+          eventId: pick.eventId,
+          eventName: pick.eventName,
+          commenceTime: pick.commenceTime,
+          madridReferenceDay: new Intl.DateTimeFormat('en-CA', {
+            timeZone: 'Europe/Madrid',
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+          }).format(now),
+          madridKickoffDay: new Intl.DateTimeFormat('en-CA', {
+            timeZone: 'Europe/Madrid',
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+          }).format(new Date(pick.commenceTime)),
+        })
+      }
+
+      return valid
+    })
+
+    const primaryDiscardReason = getPrimaryDiscardReason(discardReasons)
+
+    logEngineDiagnostic('Conteos agregados del motor', {
+      eligibleEvents: events.length,
+      validStatsEvents,
+      generatedCandidates: allCandidates.length,
+      selectedBeforeDailyFilter: selectedBeforeDailyFilter.length,
+      finalPicks: selectedPicks.length,
+      requiredMinPicks: REQUIRED_MIN_PICKS,
+      discardReasons,
+      primaryDiscardReason,
+    })
 
     if (selectedPicks.length < REQUIRED_MIN_PICKS) {
+      logEngineDiagnostic('Menos de 3 picks finales; se devuelve null', {
+        finalPicks: selectedPicks.length,
+        requiredMinPicks: REQUIRED_MIN_PICKS,
+        discardReasons,
+        primaryDiscardReason,
+      })
       return null
     }
 
@@ -138,7 +232,10 @@ async function generateQuantLiteCombinada(): Promise<CombinadaData | null> {
         }
       }),
     }
-  } catch {
+  } catch (error) {
+    logEngineDiagnostic('Error en generateQuantLiteCombinada; se devuelve null', {
+      error: error instanceof Error ? error.message : 'unknown_error',
+    })
     return null
   }
 }
@@ -148,5 +245,10 @@ const getCachedQuantLiteCombinada = unstable_cache(generateQuantLiteCombinada, [
 })
 
 export async function getQuantLiteCombinada(): Promise<CombinadaData | null> {
+  logEngineDiagnostic('Acceso a getQuantLiteCombinada (capa cacheada)', {
+    cacheKey: 'pronosticos-freebet-diaria',
+    revalidateSeconds: DAILY_REVALIDATE_SECONDS,
+  })
+
   return getCachedQuantLiteCombinada()
 }

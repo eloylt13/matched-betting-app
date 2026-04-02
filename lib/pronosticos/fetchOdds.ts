@@ -3,6 +3,16 @@ import { OddsEvent, OddsSport } from './types'
 const ODDS_BASE_URL = 'https://api.the-odds-api.com/v4'
 const CACHE_SECONDS = 60 * 60 * 8
 const MAX_SPORTS = 8
+
+function logOddsDiagnostic(message: string, details?: Record<string, unknown>) {
+  if (details) {
+    console.log(`[pronosticos][fetchOdds] ${message}`, details)
+    return
+  }
+
+  console.log(`[pronosticos][fetchOdds] ${message}`)
+}
+
 const EXCLUDED_SPORT_PATTERNS = [
   'cup',
   'cups',
@@ -47,19 +57,44 @@ function isEligibleEvent(event: OddsEvent) {
   const haystack = `${event.sport_key} ${event.sport_title} ${event.home_team} ${event.away_team}`.toLowerCase()
 
   if (!Number.isFinite(commence) || commence <= now) {
+    logOddsDiagnostic('Evento descartado por fecha inválida o pasada', {
+      eventId: event.id,
+      eventName: `${event.home_team} vs ${event.away_team}`,
+      commenceTime: event.commence_time,
+    })
     return false
   }
 
   if (EXCLUDED_SPORT_PATTERNS.some((pattern) => haystack.includes(pattern))) {
+    logOddsDiagnostic('Evento descartado por competición/patrón excluido', {
+      eventId: event.id,
+      sportKey: event.sport_key,
+      sportTitle: event.sport_title,
+      eventName: `${event.home_team} vs ${event.away_team}`,
+    })
     return false
   }
 
-  return Array.isArray(event.bookmakers) && event.bookmakers.length > 0
+  if (!Array.isArray(event.bookmakers) || event.bookmakers.length === 0) {
+    logOddsDiagnostic('Evento descartado por falta de bookmakers', {
+      eventId: event.id,
+      eventName: `${event.home_team} vs ${event.away_team}`,
+    })
+    return false
+  }
+
+  return true
 }
 
 export async function fetchEligibleOddsEvents(apiKey: string) {
   const sports = await fetchJson<OddsSport[]>(`${ODDS_BASE_URL}/sports/?apiKey=${apiKey}`)
   const soccerSports = sports.filter(isRegularSoccerSport).slice(0, MAX_SPORTS)
+
+  logOddsDiagnostic('Deportes recuperados y filtrados', {
+    totalSports: sports.length,
+    eligibleSoccerSports: soccerSports.length,
+    selectedSportKeys: soccerSports.map((sport) => sport.key),
+  })
 
   if (soccerSports.length === 0) {
     return []
@@ -73,5 +108,13 @@ export async function fetchEligibleOddsEvents(apiKey: string) {
     ),
   )
 
-  return eventsPerSport.flat().filter(isEligibleEvent)
+  const rawEvents = eventsPerSport.flat()
+  const eligibleEvents = rawEvents.filter(isEligibleEvent)
+
+  logOddsDiagnostic('Conteo de eventos de The Odds API', {
+    rawEvents: rawEvents.length,
+    eligibleEvents: eligibleEvents.length,
+  })
+
+  return eligibleEvents
 }

@@ -4,6 +4,15 @@ const FOOTBALL_DATA_BASE_URL = 'https://api.football-data.org/v4'
 const CACHE_SECONDS = 60 * 60 * 8
 const TEAM_MATCH_LIMIT = 8
 
+function logStatsDiagnostic(message: string, details?: Record<string, unknown>) {
+  if (details) {
+    console.log(`[pronosticos][fetchStats] ${message}`, details)
+    return
+  }
+
+  console.log(`[pronosticos][fetchStats] ${message}`)
+}
+
 type FootballDataArea = {
   code?: string
   name?: string
@@ -164,6 +173,10 @@ async function fetchTeamMatches(teamId: number, apiKey: string) {
 
 export async function fetchEventStats(event: OddsEvent, apiKey?: string): Promise<EventStats | null> {
   if (!apiKey) {
+    logStatsDiagnostic('Sin FOOTBALL_DATA_API_KEY; no se pueden obtener stats', {
+      eventId: event.id,
+      eventName: `${event.home_team} vs ${event.away_team}`,
+    })
     return null
   }
 
@@ -173,6 +186,15 @@ export async function fetchEventStats(event: OddsEvent, apiKey?: string): Promis
     const awayId = findTeamId(recentMatches, event.away_team)
 
     if (!homeId || !awayId) {
+      logStatsDiagnostic('Evento descartado por matching de equipos sin resolver', {
+        eventId: event.id,
+        eventName: `${event.home_team} vs ${event.away_team}`,
+        homeTeam: event.home_team,
+        awayTeam: event.away_team,
+        homeId,
+        awayId,
+        recentMatches: recentMatches.length,
+      })
       return null
     }
 
@@ -185,11 +207,35 @@ export async function fetchEventStats(event: OddsEvent, apiKey?: string): Promis
     const away = buildTeamGoalStats(event.away_team, awayId, awayMatches)
 
     if (!home || !away) {
+      logStatsDiagnostic('Evento descartado por stats insuficientes', {
+        eventId: event.id,
+        eventName: `${event.home_team} vs ${event.away_team}`,
+        homeId,
+        awayId,
+        homeMatches: homeMatches.length,
+        awayMatches: awayMatches.length,
+        homeStatsReady: Boolean(home),
+        awayStatsReady: Boolean(away),
+      })
       return null
     }
 
+    logStatsDiagnostic('Stats válidas para evento', {
+      eventId: event.id,
+      eventName: `${event.home_team} vs ${event.away_team}`,
+      homeId,
+      awayId,
+      homeSample: home.matches,
+      awaySample: away.matches,
+    })
+
     return { home, away }
-  } catch {
+  } catch (error) {
+    logStatsDiagnostic('Error obteniendo stats del evento', {
+      eventId: event.id,
+      eventName: `${event.home_team} vs ${event.away_team}`,
+      error: error instanceof Error ? error.message : 'unknown_error',
+    })
     return null
   }
 }
