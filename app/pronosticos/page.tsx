@@ -141,6 +141,16 @@ export default async function PronosticosPage() {
               </div>
             )}
           </div>
+          <div className="border-t border-stone-100 px-6 pb-6 pt-4 sm:px-8 sm:pb-8">
+            <div className="rounded-2xl border border-stone-200 bg-stone-50 px-4 py-3 text-xs text-stone-500">
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                <span className="font-semibold text-stone-700">+18</span>
+                <span className="font-semibold text-stone-700">Juego responsable</span>
+                <span>No garantiza resultados</span>
+                <span>No es recomendación de inversión</span>
+              </div>
+            </div>
+          </div>
         </section>
 
       </div>
