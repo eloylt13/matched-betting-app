@@ -84,6 +84,50 @@ export default async function PronosticosPage() {
                 <div className="mt-6 rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800">
                   Selección diaria validada con partidos reales dentro de la ventana del día
                 </div>
+
+                <div className="mt-6 rounded-2xl border border-stone-200 bg-stone-50 px-4 py-4 sm:px-5">
+                  <p className="text-sm leading-relaxed text-stone-600">
+                    La Freebet diaria no se publica por relleno. Solo mostramos una combinada gratis diaria cuando el motor encuentra partidos y mercados suficientes para validarla con criterios mínimos de calidad.
+                  </p>
+
+                  <details className="mt-4 group rounded-2xl border border-stone-200 bg-white">
+                    <summary className="cursor-pointer list-none px-4 py-3 text-sm font-semibold text-stone-800 sm:px-5 [&::-webkit-details-marker]:hidden">
+                      <span className="flex items-center justify-between gap-4">
+                        <span>Cómo funciona la Freebet diaria</span>
+                        <span className="text-stone-400 transition group-open:rotate-180">⌄</span>
+                      </span>
+                    </summary>
+
+                    <div className="border-t border-stone-100 px-4 py-4 sm:px-5">
+                      <div className="space-y-4 text-sm leading-relaxed text-stone-600">
+                        <div>
+                          <h3 className="font-semibold text-stone-800">1. Filtrado de partidos</h3>
+                          <p className="mt-1">Analizamos solo partidos prepartido y competiciones compatibles con el motor. Si un evento no tiene datos suficientes o no encaja en la ventana diaria, se descarta.</p>
+                        </div>
+
+                        <div>
+                          <h3 className="font-semibold text-stone-800">2. Mercados priorizados</h3>
+                          <p className="mt-1">Priorizamos mercados de goles y, cuando encaja mejor, ganador. En esta versión evitamos mercados más ruidosos para mantener una selección más estable y entendible.</p>
+                        </div>
+
+                        <div>
+                          <h3 className="font-semibold text-stone-800">3. Selección de picks</h3>
+                          <p className="mt-1">El motor estima probabilidades, compara cuotas y calcula una referencia interna de valor para elegir una sola selección por partido. Después ordena los picks por consistencia, riesgo y calidad del mercado.</p>
+                        </div>
+
+                        <div>
+                          <h3 className="font-semibold text-stone-800">4. Publicación o descarte</h3>
+                          <p className="mt-1">Si no hay suficientes picks válidos, no publicamos la Freebet diaria. Preferimos no mostrar una selección antes que enseñar una combinada floja o poco fiable.</p>
+                        </div>
+
+                        <div>
+                          <h3 className="font-semibold text-stone-800">Nota final</h3>
+                          <p className="mt-1">La Freebet diaria se genera una vez al día y puede no estar disponible todos los días.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </details>
+                </div>
               </>
             ) : (
               <div className="rounded-2xl border border-stone-200 bg-stone-50 p-5 sm:p-6">
