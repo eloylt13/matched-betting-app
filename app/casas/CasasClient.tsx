@@ -30,15 +30,15 @@ export default function CasasPage() {
     )
 
     return (
-        <main className="max-w-5xl mx-auto px-4 py-6 sm:py-8">
+        <main className="max-w-5xl mx-auto px-4 py-5 sm:py-8">
             <h1 className="text-2xl font-bold text-stone-100 mb-2">
                 Casas de apuestas
             </h1>
-            <p className="text-stone-400 mb-5 sm:mb-6">
+            <p className="text-stone-400 mb-3 sm:mb-6">
                 Selecciona una casa para ver su bono de bienvenida y cómo completarlo.
             </p>
 
-            <div className="mb-4 sm:mb-5">
+            <div className="mb-3 sm:mb-5">
                 <div className="flex gap-2 overflow-x-auto pb-1 -mx-1 px-1 [scrollbar-width:none]">
                     {FILTERS.map((filter) => {
                         const isActive = filter.key === activeFilter
@@ -48,7 +48,7 @@ export default function CasasPage() {
                                 key={filter.key}
                                 type="button"
                                 onClick={() => setActiveFilter(filter.key)}
-                                className={`shrink-0 rounded-full border px-3 py-1.5 text-xs sm:text-sm font-medium transition-colors ${isActive
+                                className={`shrink-0 rounded-full border px-3 py-1 text-xs sm:text-sm font-medium transition-colors ${isActive
                                     ? "border-emerald-500 bg-emerald-500 text-white"
                                     : "border-stone-700 bg-stone-900 text-stone-300 hover:border-stone-500 hover:text-stone-100"
                                     }`}
@@ -60,7 +60,7 @@ export default function CasasPage() {
                 </div>
             </div>
 
-            <div className="flex items-center justify-between gap-3 mb-4 sm:mb-5">
+            <div className="flex items-center justify-between gap-2 mb-3 sm:mb-5">
                 <p className="text-xs sm:text-sm text-stone-400">
                     {filteredCasas.length} casa{filteredCasas.length !== 1 ? "s" : ""} visible{filteredCasas.length !== 1 ? "s" : ""}
                 </p>
@@ -69,7 +69,7 @@ export default function CasasPage() {
                 </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 sm:gap-4">
                 {filteredCasas.map((casa) => (
                     <CasaCard key={casa.id} casa={casa} />
                 ))}

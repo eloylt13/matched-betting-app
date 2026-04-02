@@ -64,13 +64,13 @@ export function CasaCard({ casa, estado }: Props) {
       href={`/casas/${casa.id}`}
       className={`block bg-white rounded-2xl shadow-sm border border-gray-100 ${style.border} overflow-hidden hover:shadow-md transition-all group ${completada ? 'opacity-60' : ''}`}
     >
-      <div className="p-4 sm:p-5">
+      <div className="p-3 sm:p-5">
         {/* Header */}
-        <div className="flex items-start justify-between gap-3">
-          <div className="flex items-start gap-3 min-w-0">
+        <div className="flex items-start justify-between gap-2.5 sm:gap-3">
+          <div className="flex items-start gap-2.5 sm:gap-3 min-w-0 flex-1">
             {/* Avatar */}
             <div
-              className={`w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center font-bold text-white text-sm shrink-0
+              className={`w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl flex items-center justify-center font-bold text-white text-sm shrink-0
                 ${style.dot === 'bg-emerald-500' ? 'bg-emerald-500'
                   : style.dot === 'bg-blue-400' ? 'bg-blue-500'
                     : style.dot === 'bg-amber-400' ? 'bg-amber-500'
@@ -78,8 +78,8 @@ export function CasaCard({ casa, estado }: Props) {
             >
               {casa.nombre[0]}
             </div>
-            <div className="min-w-0">
-              <div className="flex items-start gap-2 flex-wrap">
+            <div className="min-w-0 flex-1">
+              <div className="flex items-start gap-1.5 sm:gap-2 flex-wrap pr-1 sm:pr-0">
                 <h3 className="font-bold text-gray-900 text-[15px] sm:text-base leading-tight">{casa.nombre}</h3>
                 <span className={`text-[11px] px-2 py-0.5 rounded-full font-semibold ${style.badge}`}>
                   {style.label}
@@ -94,10 +94,10 @@ export function CasaCard({ casa, estado }: Props) {
                   <span className="text-[11px] bg-gray-100 text-gray-500 px-2 py-0.5 rounded-full">Sin empezar</span>
                 )}
               </div>
-              <p className="text-xs text-gray-500 mt-2 line-clamp-2 sm:line-clamp-2 leading-relaxed">
+              <p className="text-xs text-gray-500 mt-1.5 sm:mt-2 line-clamp-2 sm:line-clamp-2 leading-relaxed">
                 {casa.descripcionBreve}
               </p>
-              <div className="flex sm:hidden items-center gap-x-2 gap-y-1 mt-2 text-[11px] text-stone-400 flex-wrap">
+              <div className="flex sm:hidden items-center gap-x-1.5 gap-y-1 mt-1.5 text-[11px] text-stone-400 flex-wrap">
                 <span className="rounded-full bg-stone-100 px-2 py-0.5 text-stone-600">
                   {casa.promos.length} oferta{casa.promos.length !== 1 ? 's' : ''}
                 </span>
@@ -112,14 +112,22 @@ export function CasaCard({ casa, estado }: Props) {
           </div>
 
           {/* Beneficio */}
-          <div className="text-right shrink-0 rounded-xl bg-emerald-50 px-2.5 py-2 sm:bg-transparent sm:px-0 sm:py-0">
-            <p className="text-lg sm:text-lg font-bold text-gray-900 leading-none">+{casa.beneficioPotencial} €</p>
-            <p className="text-[11px] text-emerald-700 sm:text-xs sm:text-gray-400 mt-1">potencial</p>
+          <div className="flex shrink-0 flex-col items-end gap-2 sm:gap-0">
+            <div className="text-right rounded-lg sm:rounded-xl bg-emerald-50 px-2 py-1.5 sm:bg-transparent sm:px-0 sm:py-0">
+              <p className="text-base sm:text-lg font-bold text-gray-900 leading-none">+{casa.beneficioPotencial} €</p>
+              <p className="text-[11px] text-emerald-700 sm:text-xs sm:text-gray-400 mt-0.5 sm:mt-1">potencial</p>
+            </div>
+
+            <span
+              className="inline-flex sm:hidden items-center rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-1 text-[11px] font-semibold text-emerald-700 transition-all group-hover:border-emerald-300 group-hover:bg-emerald-100 group-hover:translate-x-0.5"
+            >
+              Ver detalle →
+            </span>
           </div>
         </div>
 
         {/* Footer */}
-        <div className="flex items-center justify-between gap-3 mt-3 sm:mt-4">
+        <div className="hidden sm:flex items-center justify-between gap-3 mt-4">
           <div className="hidden sm:flex items-center gap-2.5 text-xs text-gray-400 flex-wrap">
             <span>{casa.promos.length} oferta{casa.promos.length !== 1 ? 's' : ''}</span>
             <span>·</span>
