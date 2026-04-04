@@ -6,6 +6,8 @@ const MAX_SPORTS = 8
 const MIN_SHORTLIST_ODD = 1.22
 const MAX_SHORTLIST_ODD = 1.55
 
+type OddsMarketKey = 'h2h' | 'totals'
+
 function logOddsDiagnostic(message: string, details?: Record<string, unknown>) {
   if (details) {
     console.log(`[pronosticos][fetchOdds] ${message}`, details)
@@ -51,6 +53,162 @@ async function fetchJson<T>(url: string) {
   }
 
   return (await response.json()) as T
+}
+
+function buildOddsEndpoint(apiKey: string, sportKey: string, markets: OddsMarketKey[]) {
+  const params = new URLSearchParams({
+    apiKey,
+    regions: 'eu',
+    markets: markets.join(','),
+    oddsFormat: 'decimal',
+    dateFormat: 'iso',
+  })
+
+  return `${ODDS_BASE_URL}/sports/${sportKey}/odds/?${params.toString()}`
+}
+
+function buildEventPreview(event: OddsEvent) {
+  return {
+    eventId: event.id,
+    eventName: `${event.home_team} vs ${event.away_team}`,
+    commenceTime: event.commence_time,
+    bookmakers: (event.bookmakers ?? []).map((bookmaker) => ({
+      key: bookmaker.key,
+      markets: bookmaker.markets.map((market) => market.key),
+    })),
+  }
+}
+
+async function fetchOddsEventsRequest(url: string, sportKey: string) {
+  const response = await fetch(url, {
+    next: { revalidate: CACHE_SECONDS },
+  })
+
+  const rawBody = await response.text()
+  let data: OddsEvent[] = []
+
+  if (response.ok) {
+    try {
+      const parsed = JSON.parse(rawBody) as unknown
+      data = Array.isArray(parsed) ? (parsed as OddsEvent[]) : []
+    } catch (error) {
+      logOddsDiagnostic('Respuesta no parseable al consultar odds por sport key', {
+        sportKey,
+        endpoint: url,
+        status: response.status,
+        error: error instanceof Error ? error.message : String(error),
+      })
+      throw error
+    }
+  }
+
+  logOddsDiagnostic('Respuesta recibida al consultar odds por sport key', {
+    sportKey,
+    endpoint: url,
+    status: response.status,
+    returnedEvents: data.length,
+    examples: data.slice(0, 2).map(buildEventPreview),
+    errorBody: response.ok ? undefined : rawBody.slice(0, 500),
+  })
+
+  if (!response.ok) {
+    throw new Error(`The Odds API respondió con ${response.status} para ${sportKey}`)
+  }
+
+  return data
+}
+
+function mergeEventMarkets(baseEvent: OddsEvent | undefined, incomingEvent: OddsEvent) {
+  if (!baseEvent) {
+    return {
+      ...incomingEvent,
+      bookmakers: (incomingEvent.bookmakers ?? []).map((bookmaker) => ({
+        ...bookmaker,
+        markets: bookmaker.markets.map((market) => ({
+          ...market,
+          outcomes: [...market.outcomes],
+        })),
+      })),
+    }
+  }
+
+  const bookmakersByKey = new Map((baseEvent.bookmakers ?? []).map((bookmaker) => [bookmaker.key, bookmaker]))
+
+  for (const incomingBookmaker of incomingEvent.bookmakers ?? []) {
+    const existingBookmaker = bookmakersByKey.get(incomingBookmaker.key)
+
+    if (!existingBookmaker) {
+      const clonedBookmaker = {
+        ...incomingBookmaker,
+        markets: incomingBookmaker.markets.map((market) => ({
+          ...market,
+          outcomes: [...market.outcomes],
+        })),
+      }
+      ;(baseEvent.bookmakers ??= []).push(clonedBookmaker)
+      bookmakersByKey.set(clonedBookmaker.key, clonedBookmaker)
+      continue
+    }
+
+    const marketsByKey = new Map(existingBookmaker.markets.map((market) => [market.key, market]))
+
+    for (const incomingMarket of incomingBookmaker.markets) {
+      if (!marketsByKey.has(incomingMarket.key)) {
+        existingBookmaker.markets.push({
+          ...incomingMarket,
+          outcomes: [...incomingMarket.outcomes],
+        })
+      }
+    }
+  }
+
+  return baseEvent
+}
+
+async function fetchOddsEventsForSport(apiKey: string, sportKey: string) {
+  const combinedEndpoint = buildOddsEndpoint(apiKey, sportKey, ['h2h', 'totals'])
+
+  try {
+    return await fetchOddsEventsRequest(combinedEndpoint, sportKey)
+  } catch (error) {
+    logOddsDiagnostic('Fallback a consultas separadas por mercado tras fallo del endpoint combinado', {
+      sportKey,
+      endpoint: combinedEndpoint,
+      error: error instanceof Error ? error.message : String(error),
+    })
+  }
+
+  const fallbackMarkets: OddsMarketKey[] = ['h2h', 'totals']
+  const mergedEvents = new Map<string, OddsEvent>()
+
+  for (const market of fallbackMarkets) {
+    try {
+      const endpoint = buildOddsEndpoint(apiKey, sportKey, [market])
+      const marketEvents = await fetchOddsEventsRequest(endpoint, sportKey)
+
+      for (const event of marketEvents) {
+        const currentEvent = mergedEvents.get(event.id)
+        mergedEvents.set(event.id, mergeEventMarkets(currentEvent, event))
+      }
+    } catch (error) {
+      logOddsDiagnostic('Consulta separada por mercado fallida', {
+        sportKey,
+        market,
+        endpoint: buildOddsEndpoint(apiKey, sportKey, [market]),
+        error: error instanceof Error ? error.message : String(error),
+      })
+    }
+  }
+
+  const events = Array.from(mergedEvents.values())
+
+  logOddsDiagnostic('Resultado agregado final por sport key tras fallback', {
+    sportKey,
+    returnedEvents: events.length,
+    examples: events.slice(0, 2).map(buildEventPreview),
+  })
+
+  return events
 }
 
 function isRegularSoccerSport(sport: OddsSport) {
@@ -171,11 +329,7 @@ export async function fetchEligibleOddsEvents(apiKey: string) {
   }
 
   const eventsPerSport = await Promise.all(
-    soccerSports.map((sport) =>
-      fetchJson<OddsEvent[]>(
-        `${ODDS_BASE_URL}/sports/${sport.key}/odds/?apiKey=${apiKey}&regions=eu&markets=h2h,totals&oddsFormat=decimal&dateFormat=iso`,
-      ).catch(() => []),
-    ),
+    soccerSports.map((sport) => fetchOddsEventsForSport(apiKey, sport.key)),
   )
 
   const rawEvents = eventsPerSport.flat()
