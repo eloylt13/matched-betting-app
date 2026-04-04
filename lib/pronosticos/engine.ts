@@ -75,8 +75,18 @@ function getTodaySpanishLabel(referenceDate = new Date()) {
   )
 }
 
+function labelNormalized(s: string) {
+  return s
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/\p{Diacritic}/gu, '')
+    .replace(/[,\.]+/g, '')
+    .replace(/\s+/g, ' ')
+    .trim()
+}
+
 function getManualCombinadaFallback(referenceDate = new Date()): CombinadaData | null {
-  if (combinadaDelDia.etiquetaDia === getTodaySpanishLabel(referenceDate)) {
+  if (labelNormalized(combinadaDelDia.etiquetaDia) === labelNormalized(getTodaySpanishLabel(referenceDate))) {
     return combinadaDelDia
   }
 
