@@ -1,4 +1,4 @@
-import type { CombinadaData } from '@/app/pronosticos/mockData'
+import { combinadaDelDia, type CombinadaData } from '@/app/pronosticos/mockData'
 import { unstable_cache } from 'next/cache'
 
 import { fetchEligibleOddsEvents } from './fetchOdds'
@@ -61,6 +61,26 @@ function formatSpanishTime(date: Date) {
 
 function capitalizeFirstLetter(value: string) {
   return value.charAt(0).toUpperCase() + value.slice(1)
+}
+
+function getTodaySpanishLabel(referenceDate = new Date()) {
+  return capitalizeFirstLetter(
+    new Intl.DateTimeFormat('es-ES', {
+      weekday: 'long',
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+      timeZone: 'Europe/Madrid',
+    }).format(referenceDate),
+  )
+}
+
+function getManualCombinadaFallback(referenceDate = new Date()): CombinadaData | null {
+  if (combinadaDelDia.etiquetaDia === getTodaySpanishLabel(referenceDate)) {
+    return combinadaDelDia
+  }
+
+  return null
 }
 
 function calculateTotalOdd(odds: number[]) {
@@ -285,6 +305,12 @@ async function generateQuantLiteCombinada(): Promise<CombinadaData | null> {
     logEngineDiagnostic('Error en generateQuantLiteCombinada; se devuelve null', {
       error: error instanceof Error ? error.message : 'unknown_error',
     })
+    const manualFallback = getManualCombinadaFallback()
+
+    if (manualFallback) {
+      return manualFallback
+    }
+
     return null
   }
 }
