@@ -73,7 +73,21 @@ const competitionMatchesCache = new Map<string, Promise<FootballDataMatch[]>>()
 const teamMatchesCache = new Map<string, Promise<FootballDataMatch[]>>()
 const eventStatsCache = new Map<string, Promise<EventStats | null>>()
 
-let footballDataRateLimited = false
+const RATE_LIMIT_COOLDOWN_MS = 90_000
+let footballDataRateLimitedUntil: number | null = null
+
+function isRateLimited(): boolean {
+  if (footballDataRateLimitedUntil === null) return false
+  if (Date.now() >= footballDataRateLimitedUntil) {
+    footballDataRateLimitedUntil = null
+    return false
+  }
+  return true
+}
+
+function setRateLimited() {
+  footballDataRateLimitedUntil = Date.now() + RATE_LIMIT_COOLDOWN_MS
+}
 
 async function fetchJson<T>(url: string, apiKey: string) {
   const response = await fetch(url, {
@@ -268,8 +282,8 @@ export async function fetchEventStats(event: OddsEvent, apiKey?: string): Promis
     return null
   }
 
-  if (footballDataRateLimited) {
-    logStatsDiagnostic('Se omite llamada a stats porque football-data ya está rate-limited en esta ejecución', {
+  if (isRateLimited()) {
+    logStatsDiagnostic('Se omite llamada a stats porque football-data está en cooldown de rate limit', {
       eventId: event.id,
       eventName: `${event.home_team} vs ${event.away_team}`,
     })
@@ -387,8 +401,8 @@ export async function fetchEventStats(event: OddsEvent, apiKey?: string): Promis
       const status = error instanceof Error && 'status' in error ? (error as FootballDataRateLimitError).status : undefined
 
       if (status === 429) {
-        footballDataRateLimited = true
-        logStatsDiagnostic('Detectado 429 en football-data; se cortan más llamadas en esta ejecución', {
+        setRateLimited()
+        logStatsDiagnostic('Detectado 429 en football-data; se bloquean llamadas por 90s', {
           eventId: event.id,
           eventName: `${event.home_team} vs ${event.away_team}`,
           league: event.sport_title,
@@ -417,5 +431,5 @@ export async function fetchEventStats(event: OddsEvent, apiKey?: string): Promis
 }
 
 export function hasFootballDataRateLimit() {
-  return footballDataRateLimited
+  return isRateLimited()
 }

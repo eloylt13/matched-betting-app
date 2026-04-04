@@ -5,9 +5,9 @@ import { fetchEligibleOddsEvents } from './fetchOdds'
 import { fetchEventStats, hasFootballDataRateLimit } from './fetchStats'
 import { buildCandidatesForEvent, selectBestPicks } from './select'
 
-const REQUIRED_MIN_PICKS = 3
+const REQUIRED_MIN_PICKS = 2
 const DAILY_REVALIDATE_SECONDS = 300
-const MAX_STATS_EVENTS = 8
+const MAX_STATS_EVENTS = 12
 
 function logEngineDiagnostic(message: string, details?: Record<string, unknown>) {
   if (details) {
