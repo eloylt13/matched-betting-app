@@ -3,6 +3,7 @@ import { EventStats, OddsEvent, OddsMarket, QuantMarketKey, QuantPickCandidate }
 
 const MIN_PICK_ODD = 1.22
 const MAX_PICK_ODD = 1.55
+const MIN_ACCEPTED_EV = -0.02
 const MIN_GOOD_PICKS = 3
 const TARGET_PICKS = 5
 const MIN_TOTAL_ODDS = 4.5
@@ -54,6 +55,11 @@ function buildReason(candidate: QuantPickCandidate, stats: EventStats, lambdaHom
 
 export function buildCandidatesForEvent(event: OddsEvent, stats: EventStats): QuantPickCandidate[] {
   const bookmaker = event.bookmakers?.find((entry) => entry.markets.length > 0)
+  const discardSummary = {
+    totalsMissingOrOutOfRange: 0,
+    h2hMissingOrOutOfRange: 0,
+    evBelowThreshold: 0,
+  }
 
   if (!bookmaker) {
     logSelectDiagnostic('Evento descartado por no tener bookmaker utilizable', {
@@ -90,6 +96,7 @@ export function buildCandidatesForEvent(event: OddsEvent, stats: EventStats): Qu
       const odd = getTotalsPrice(totalsMarket, line)
 
       if (!odd || odd < MIN_PICK_ODD || odd > MAX_PICK_ODD) {
+        discardSummary.totalsMissingOrOutOfRange += 1
         logSelectDiagnostic('Mercado totals descartado por cuota fuera de rango o ausente', {
           eventId: event.id,
           eventName: `${event.home_team} vs ${event.away_team}`,
@@ -131,6 +138,7 @@ export function buildCandidatesForEvent(event: OddsEvent, stats: EventStats): Qu
       const odd = getH2HPrice(event, h2hMarket, marketKey)
 
       if (!odd || odd < MIN_PICK_ODD || odd > MAX_PICK_ODD) {
+        discardSummary.h2hMissingOrOutOfRange += 1
         logSelectDiagnostic('Mercado h2h descartado por cuota fuera de rango o ausente', {
           eventId: event.id,
           eventName: `${event.home_team} vs ${event.away_team}`,
@@ -166,13 +174,37 @@ export function buildCandidatesForEvent(event: OddsEvent, stats: EventStats): Qu
     }
   }
 
-  const evCandidates = candidates.filter((candidate) => candidate.ev > 0)
+  const evCandidates = candidates.filter((candidate) => {
+    const accepted = candidate.ev >= MIN_ACCEPTED_EV
+
+    if (!accepted) {
+      discardSummary.evBelowThreshold += 1
+      logSelectDiagnostic('Candidato descartado por EV insuficiente', {
+        eventId: event.id,
+        eventName: `${event.home_team} vs ${event.away_team}`,
+        marketKey: candidate.marketKey,
+        odd: candidate.odd,
+        probModel: candidate.probModel,
+        fairOdds: candidate.fairOdds,
+        ev: candidate.ev,
+        minAcceptedEv: MIN_ACCEPTED_EV,
+      })
+    }
+
+    return accepted
+  })
 
   if (evCandidates.length === 0) {
-    logSelectDiagnostic('Evento sin candidatos tras filtro EV>0', {
+    logSelectDiagnostic('Evento sin candidatos tras filtros finales', {
       eventId: event.id,
       eventName: `${event.home_team} vs ${event.away_team}`,
       preEvCandidates: candidates.length,
+      discardSummary,
+      thresholds: {
+        minPickOdd: MIN_PICK_ODD,
+        maxPickOdd: MAX_PICK_ODD,
+        minAcceptedEv: MIN_ACCEPTED_EV,
+      },
     })
   } else {
     logSelectDiagnostic('Candidatos generados para evento', {
@@ -180,6 +212,7 @@ export function buildCandidatesForEvent(event: OddsEvent, stats: EventStats): Qu
       eventName: `${event.home_team} vs ${event.away_team}`,
       preEvCandidates: candidates.length,
       evCandidates: evCandidates.length,
+      discardSummary,
     })
   }
 
