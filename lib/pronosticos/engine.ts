@@ -272,6 +272,16 @@ async function generateQuantLiteCombinada(): Promise<CombinadaData | null> {
         discardReasons,
         primaryDiscardReason,
       })
+      const todayMadrid = new Intl.DateTimeFormat('es-ES', {
+        weekday: 'long', day: 'numeric', month: 'long', timeZone: 'Europe/Madrid',
+      }).format(new Date())
+      const labelNormalized = (s: string) => s.toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu, '')
+      if (labelNormalized(combinadaDelDia.etiquetaDia) === labelNormalized(todayMadrid)) {
+        logEngineDiagnostic('Usando fallback manual de mockData para hoy', {
+          etiquetaDia: combinadaDelDia.etiquetaDia,
+        })
+        return combinadaDelDia
+      }
       return null
     }
 
