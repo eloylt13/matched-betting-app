@@ -1,5 +1,12 @@
 import type { Metadata } from 'next'
 
+const todayUpdateLabel = new Date().toLocaleDateString('es-ES', {
+  day: '2-digit',
+  month: '2-digit',
+  year: 'numeric',
+  timeZone: 'Europe/Madrid',
+})
+
 import { FreebetDailyReveal } from '@/components/pronosticos/FreebetDailyReveal'
 import { PronosticosCtas } from '@/components/pronosticos/PronosticosCtas'
 import { getQuantLiteCombinada } from '@/lib/pronosticos/engine'
@@ -43,28 +50,15 @@ export default async function PronosticosPage() {
                   {hasDailyCombinada ? dailyCombinada.etiquetaDia : 'Estado de la selección diaria'}
                 </p>
                 <h2 className="mt-2 text-2xl sm:text-3xl font-bold text-white">
-                  {hasDailyCombinada ? `Cuota total ${dailyCombinada.cuotaTotal}` : 'Hoy no hay Freebet diaria disponible.'}
+                  {hasDailyCombinada ? 'Selección lista para hoy' : 'Hoy no hay Freebet diaria disponible.'}
                 </h2>
                 <p className="mt-2 text-sm text-gray-300">
                   {hasDailyCombinada
-                    ? `Actualizada hoy a las ${dailyCombinada.horaActualizacion}`
+                    ? `Actualizada hoy ${todayUpdateLabel}`
                     : 'Vuelve más tarde o mañana para revisar nuevas selecciones.'}
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 sm:min-w-48">
-                <p className="text-xs uppercase tracking-wider text-gray-400">
-                  {hasDailyCombinada ? 'Confianza' : 'Disponibilidad'}
-                </p>
-                <p className="mt-1 text-lg font-bold text-emerald-400">
-                  {hasDailyCombinada ? dailyCombinada.confianza : 'No disponible hoy'}
-                </p>
-                <p className="mt-1 text-xs text-gray-400">
-                  {hasDailyCombinada
-                    ? dailyCombinada.notaConfianza
-                    : 'Solo mostramos picks cuando hay partidos y mercados suficientes para validarlos.'}
-                </p>
-              </div>
             </div>
           </div>
 
