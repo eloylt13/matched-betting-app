@@ -21,7 +21,7 @@ export type CombinadaData = {
 }
 
 export const combinadaDelDia: CombinadaData = {
-  etiquetaDia: 'domingo 5 de abril',
+  etiquetaDia: 'Domingo 5 de abril',
   cuotaTotal: '4.61',
   confianza: 'Alta · 8/10',
   horaActualizacion: '12:15',
