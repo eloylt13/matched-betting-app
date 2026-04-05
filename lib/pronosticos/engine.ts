@@ -85,11 +85,27 @@ function labelNormalized(s: string) {
     .trim()
 }
 
-function getManualCombinadaFallback(referenceDate = new Date()): CombinadaData | null {
-  if (labelNormalized(combinadaDelDia.etiquetaDia) === labelNormalized(getTodaySpanishLabel(referenceDate))) {
+function getManualFallbackIfToday(): CombinadaData | null {
+  const labelNormalized = (s: string) =>
+    s
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/\p{Diacritic}/gu, '')
+      .replace(/[,\.]+/g, '')
+      .replace(/\s+/g, ' ')
+      .trim()
+
+  const todayMadrid = new Intl.DateTimeFormat('es-ES', {
+    weekday: 'long', day: 'numeric', month: 'long',
+    timeZone: 'Europe/Madrid',
+  }).format(new Date())
+
+  if (labelNormalized(combinadaDelDia.etiquetaDia) === labelNormalized(todayMadrid)) {
+    logEngineDiagnostic('Usando fallback manual de mockData para hoy', {
+      etiquetaDia: combinadaDelDia.etiquetaDia,
+    })
     return combinadaDelDia
   }
-
   return null
 }
 
@@ -163,8 +179,8 @@ async function generateQuantLiteCombinada(): Promise<CombinadaData | null> {
   logEngineDiagnostic('Inicio de generación de combinada diaria')
 
   if (!oddsApiKey) {
-    logEngineDiagnostic('No hay THE_ODDS_API_KEY; se devuelve null')
-    return getManualCombinadaFallback()
+    logEngineDiagnostic('No hay THE_ODDS_API_KEY; intentando fallback manual')
+    return getManualFallbackIfToday()
   }
 
   try {
@@ -177,7 +193,7 @@ async function generateQuantLiteCombinada(): Promise<CombinadaData | null> {
 
     if (initialEvents.length === 0) {
       logEngineDiagnostic('No hay eventos elegibles; se devuelve null')
-      return getManualCombinadaFallback()
+      return getManualFallbackIfToday()
     }
 
     const shortlistEvents = initialEvents
@@ -193,7 +209,7 @@ async function generateQuantLiteCombinada(): Promise<CombinadaData | null> {
 
     if (shortlistEvents.length === 0) {
       logEngineDiagnostic('No hay shortlist utilizable para stats; se devuelve null')
-      return getManualCombinadaFallback()
+      return getManualFallbackIfToday()
     }
 
     let validStatsEvents = 0
@@ -282,16 +298,7 @@ async function generateQuantLiteCombinada(): Promise<CombinadaData | null> {
         discardReasons,
         primaryDiscardReason,
       })
-      const manualFallback = getManualCombinadaFallback(now)
-
-      if (manualFallback) {
-        logEngineDiagnostic('Usando fallback manual de mockData para hoy', {
-          etiquetaDia: manualFallback.etiquetaDia,
-        })
-        return manualFallback
-      }
-
-      return null
+      return getManualFallbackIfToday()
     }
 
     return {
@@ -324,7 +331,7 @@ async function generateQuantLiteCombinada(): Promise<CombinadaData | null> {
     logEngineDiagnostic('Error en generateQuantLiteCombinada; se devuelve null', {
       error: error instanceof Error ? error.message : 'unknown_error',
     })
-    const manualFallback = getManualCombinadaFallback()
+    const manualFallback = getManualFallbackIfToday()
 
     if (manualFallback) {
       return manualFallback
