@@ -68,6 +68,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://iapredicthub.es',
   },
+  other: {
+    'ga-site-verification': 'VvajnJh0EuvxHrCmjGrkR_l2',
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
