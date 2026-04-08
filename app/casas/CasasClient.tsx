@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react"
 import CasaCard from "@/components/casas/CasaCard"
-import { casasEspana } from "@/lib/presets/data/espana"
+import { todasLasCasas } from "@/lib/presets"
 import type { Casa } from "@/types/presets"
 
 type FilterKey = "todas" | "apuesta-recibe" | "reembolso" | "rollover" | "faciles"
@@ -25,7 +25,7 @@ export default function CasasPage() {
     const [activeFilter, setActiveFilter] = useState<FilterKey>("todas")
 
     const filteredCasas = useMemo(
-        () => casasEspana.filter((casa) => matchesFilter(casa, activeFilter)),
+        () => todasLasCasas.filter((casa) => matchesFilter(casa, activeFilter)),
         [activeFilter]
     )
 
