@@ -9,17 +9,17 @@ type MarketKey = "espana" | "latam"
 type PaisKey = "todas" | "regionales" | "co" | "mx" | "cl" | "pe" | "ec" | "ar" | "pa" | "uy"
 type FilterKey = "todas" | "apuesta-recibe" | "reembolso" | "rollover" | "faciles"
 
-const PAISES: Array<{ key: PaisKey; label: string }> = [
-  { key: "todas", label: "Todas" },
-  { key: "regionales", label: "Regionales" },
-  { key: "co", label: "🇨🇴 Colombia" },
-  { key: "mx", label: "🇲🇽 México" },
-  { key: "cl", label: "🇨🇱 Chile" },
-  { key: "pe", label: "🇵🇪 Perú" },
-  { key: "ec", label: "🇪🇨 Ecuador" },
-  { key: "ar", label: "🇦🇷 Argentina" },
-  { key: "pa", label: "🇵🇦 Panamá" },
-  { key: "uy", label: "🇺🇾 Uruguay" },
+const PAISES: Array<{ key: PaisKey; label: string; emoji: string }> = [
+  { key: "todas", label: "Todas", emoji: "🌎" },
+  { key: "regionales", label: "Regionales", emoji: "🌐" },
+  { key: "co", label: "Colombia", emoji: "🇨🇴" },
+  { key: "mx", label: "México", emoji: "🇲🇽" },
+  { key: "cl", label: "Chile", emoji: "🇨🇱" },
+  { key: "pe", label: "Perú", emoji: "🇵🇪" },
+  { key: "ec", label: "Ecuador", emoji: "🇪🇨" },
+  { key: "ar", label: "Argentina", emoji: "🇦🇷" },
+  { key: "pa", label: "Panamá", emoji: "🇵🇦" },
+  { key: "uy", label: "Uruguay", emoji: "🇺🇾" },
 ]
 
 const FILTERS: Array<{ key: FilterKey; label: string }> = [
@@ -86,13 +86,14 @@ export default function CasasPage() {
                 key={pais.key}
                 type="button"
                 onClick={() => setActivePais(pais.key)}
-                className={`shrink-0 rounded-full border px-3 py-1 text-xs sm:text-sm font-medium transition-colors ${
+                title={pais.label}
+                className={`shrink-0 rounded-full border px-2.5 py-1 text-base transition-colors ${
                   activePais === pais.key
-                    ? "border-blue-500 bg-blue-500 text-white"
-                    : "border-stone-700 bg-stone-900 text-stone-300 hover:border-stone-500 hover:text-stone-100"
+                    ? "border-blue-500 bg-blue-500"
+                    : "border-stone-700 bg-stone-900 hover:border-stone-500"
                 }`}
               >
-                {pais.label}
+                {pais.emoji}
               </button>
             ))}
           </div>
