@@ -5,6 +5,7 @@ import CasaCard from "@/components/casas/CasaCard"
 import { todasLasCasas } from "@/lib/presets"
 import type { Casa } from "@/types/presets"
 
+type MarketKey = "espana" | "latam"
 type FilterKey = "todas" | "apuesta-recibe" | "reembolso" | "rollover" | "faciles"
 
 const FILTERS: Array<{ key: FilterKey; label: string }> = [
@@ -22,11 +23,14 @@ function matchesFilter(casa: Casa, filter: FilterKey) {
 }
 
 export default function CasasPage() {
+    const [activeMarket, setActiveMarket] = useState<MarketKey>("espana")
     const [activeFilter, setActiveFilter] = useState<FilterKey>("todas")
 
     const filteredCasas = useMemo(
-        () => todasLasCasas.filter((casa) => matchesFilter(casa, activeFilter)),
-        [activeFilter]
+        () => todasLasCasas
+            .filter((casa) => casa.market === activeMarket)
+            .filter((casa) => matchesFilter(casa, activeFilter)),
+        [activeMarket, activeFilter]
     )
 
     return (
@@ -34,9 +38,34 @@ export default function CasasPage() {
             <h1 className="text-2xl font-bold text-stone-100 mb-2">
                 Casas de apuestas
             </h1>
-            <p className="text-stone-400 mb-3 sm:mb-6">
+            <p className="text-stone-400 mb-4 sm:mb-6">
                 Selecciona una casa para ver su bono de bienvenida y cómo completarlo.
             </p>
+
+            <div className="flex gap-2 mb-4">
+                <button
+                    type="button"
+                    onClick={() => { setActiveMarket("espana"); setActiveFilter("todas") }}
+                    className={`flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-bold transition-colors border ${
+                        activeMarket === "espana"
+                            ? "bg-emerald-500 border-emerald-500 text-white"
+                            : "bg-stone-900 border-stone-700 text-stone-300 hover:border-stone-500"
+                    }`}
+                >
+                    🇪🇸 España
+                </button>
+                <button
+                    type="button"
+                    onClick={() => { setActiveMarket("latam"); setActiveFilter("todas") }}
+                    className={`flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-bold transition-colors border ${
+                        activeMarket === "latam"
+                            ? "bg-emerald-500 border-emerald-500 text-white"
+                            : "bg-stone-900 border-stone-700 text-stone-300 hover:border-stone-500"
+                    }`}
+                >
+                    🌎 LATAM
+                </button>
+            </div>
 
             <div className="mb-3 sm:mb-5">
                 <div className="flex gap-2 overflow-x-auto pb-1 -mx-1 px-1 [scrollbar-width:none]">
