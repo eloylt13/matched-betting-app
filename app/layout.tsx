@@ -10,7 +10,7 @@ const dmSans = DM_Sans({ subsets: ['latin'], variable: '--font-dm-sans' })
 const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair' })
 
 export const metadata: Metadata = {
-  title: 'Bonos de bienvenida en España | Guía y calculadora | IAPredictHub',
+  title: 'Bonos de bienvenida España y LATAM | Guía y calculadora | IAPredictHub',
   description:
     'App en español para entender los bonos de bienvenida, calcular cada paso y llevar todo organizado de forma sencilla.',
   keywords: [
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary',
-    title: 'Bonos de bienvenida en España | Guía y calculadora | IAPredictHub',
+    title: 'Bonos de bienvenida España y LATAM | Guía y calculadora | IAPredictHub',
     description:
       'App en español para entender los bonos de bienvenida, calcular cada paso y llevar todo organizado de forma sencilla.',
     images: ['https://iapredicthub.es/logo.png'],

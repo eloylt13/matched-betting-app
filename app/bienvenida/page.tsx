@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import BienvenidaClient from './BienvenidaClient'
 
 export const metadata: Metadata = {
-  title: 'Bienvenido a IAPredictHub | Matched Betting en España',
-  description: 'Empieza con una ruta clara: guía, Betfair Exchange, primera casa de apuestas y calculadora. Matched betting paso a paso para el mercado español.',
+  title: 'Bienvenido a IAPredictHub | Matched Betting España y LATAM',
+  description: 'Empieza con una ruta clara: guía, Betfair Exchange, primera casa y calculadora. Matched betting paso a paso para España y LATAM.',
 }
 
 export default function BienvenidaPage() {
