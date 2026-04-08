@@ -2,9 +2,9 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Blog de Matched Betting España 2026 | IAPredictHub',
+  title: 'Blog de Matched Betting España y LATAM 2026 | IAPredictHub',
   description:
-    'Artículos, guías y consejos sobre matched betting en España. Aprende estrategias, legalidad, casas de apuestas y cómo maximizar bonos de bienvenida.',
+    'Artículos, guías y consejos sobre matched betting en España y LATAM. Estrategias, casas de apuestas y cómo maximizar bonos de bienvenida.',
 }
 
 // Lista de artículos — añadir aquí cuando se publiquen
@@ -28,6 +28,20 @@ const articulos: Array<{
     descripcion:
       'Comparativa actualizada de más de 20 casas españolas con tipo de bono, requisitos, dificultad y ganancia potencial. Descubre por dónde empezar.',
   },
+  {
+    slug: 'que-es-matched-betting-latam',
+    titulo: '¿Qué es el Matched Betting y cómo funciona en LATAM?',
+    fecha: '8 de abril de 2026',
+    descripcion:
+      'Guía completa para principiantes en América Latina: qué es el matched betting, cómo funciona, en qué países es viable y cuánto puedes ganar con los bonos de bienvenida disponibles.',
+  },
+  {
+    slug: 'mejores-bonos-bienvenida-latam',
+    titulo: 'Mejores bonos de bienvenida en casas de apuestas LATAM (2026)',
+    fecha: '8 de abril de 2026',
+    descripcion:
+      'Comparativa de casas disponibles en México, Colombia, Chile, Perú, Ecuador y más países con tipo de bono, requisitos y ganancia potencial en USD.',
+  },
 ]
 
 export default function BlogPage() {
@@ -38,7 +52,7 @@ export default function BlogPage() {
           ✍️ Blog de Matched Betting
         </h1>
         <p className="text-sm text-stone-500 mt-1">
-          Artículos y guías para entender, empezar y mejorar tu matched betting en España
+          Artículos y guías para entender, empezar y mejorar tu matched betting en España y LATAM
         </p>
       </header>
 
