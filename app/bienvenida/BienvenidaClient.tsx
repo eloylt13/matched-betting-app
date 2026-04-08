@@ -9,6 +9,7 @@ import {
 import type { OnboardingPreferences } from '@/types/user'
 
 type OnboardingMode = 'guiado' | 'directo' | null
+type Market = 'espana' | 'latam'
 
 interface WizardStep {
     title: string
@@ -19,7 +20,7 @@ interface WizardStep {
     externalLabel?: string
 }
 
-const WIZARD_STEPS: WizardStep[] = [
+const WIZARD_STEPS_ESPANA: WizardStep[] = [
     {
         title: 'Antes de empezar',
         description: [
@@ -62,11 +63,56 @@ const WIZARD_STEPS: WizardStep[] = [
     },
 ]
 
+const WIZARD_STEPS_LATAM: WizardStep[] = [
+    {
+        title: 'Antes de empezar',
+        description: [
+            'Para hacer matched betting solo necesitas una base clara: una casa de apuestas, Betfair Exchange y la calculadora.',
+            'No hace falta entenderlo todo de golpe. Si sigues este orden, empezar te resultará mucho más fácil.',
+        ],
+        primaryLabel: 'Entendido',
+    },
+    {
+        title: 'Necesitas Betfair Exchange',
+        description: [
+            'Betfair Exchange está disponible en la mayoría de países LATAM y te sirve para cubrir apuestas.',
+            'Tenlo listo antes de empezar con tu primera casa.',
+        ],
+        primaryLabel: 'Ya lo tengo / seguir',
+        externalHref: 'https://apuestas.betfair.es/latinoamerica/',
+        externalLabel: 'Abrir Betfair Exchange LATAM',
+    },
+    {
+        title: 'Empieza por Betfair Sportsbook',
+        description: [
+            'Betfair Sportsbook es la mejor primera opción en LATAM: disponible en 15 países, apuesta 10 USD y recibe 10 USD. Código ZRW10M.',
+        ],
+        primaryLabel: 'Ver bono',
+        primaryHref: '/casas/betfair-sportsbook-latam',
+    },
+    {
+        title: 'Usa la calculadora cuando hagas una apuesta',
+        description: [
+            'La calculadora te ayuda a cubrir cada apuesta en el momento adecuado y a reducir errores antes de confirmar.',
+        ],
+        primaryLabel: 'Ver calculadora',
+        primaryHref: '/calculadora',
+    },
+    {
+        title: 'Ruta recomendada',
+        description: [],
+        primaryLabel: 'Empezar ahora',
+        primaryHref: '/casas/betfair-sportsbook-latam',
+    },
+]
+
 export default function BienvenidaClient() {
     const router = useRouter()
     const [checking, setChecking] = useState(true)
     const [selectedMode, setSelectedMode] = useState<OnboardingMode>(null)
     const [step, setStep] = useState(0)
+    const [market, setMarket] = useState<Market>('espana')
+    const WIZARD_STEPS = market === 'espana' ? WIZARD_STEPS_ESPANA : WIZARD_STEPS_LATAM
     const wizardRef = useRef<HTMLDivElement | null>(null)
 
     useEffect(() => {
@@ -89,7 +135,7 @@ export default function BienvenidaClient() {
     const currentStep = WIZARD_STEPS[step]
     const progress = useMemo(
         () => ((step + 1) / WIZARD_STEPS.length) * 100,
-        [step]
+        [step, WIZARD_STEPS]
     )
 
     function persistPreferences(mode: NonNullable<OnboardingPreferences['onboardingMode']>) {
@@ -128,12 +174,43 @@ export default function BienvenidaClient() {
 
     return (
         <div className="flex flex-col gap-4">
+            <div className="flex gap-2 mb-2">
+                <button
+                    type="button"
+                    onClick={() => {
+                        setMarket('espana')
+                        setStep(0)
+                    }}
+                    className={`px-4 py-2 rounded-full text-sm font-bold transition-colors border ${
+                        market === 'espana'
+                            ? 'bg-emerald-500 border-emerald-500 text-white'
+                            : 'bg-white border-stone-200 text-stone-500 hover:border-stone-400'
+                    }`}
+                >
+                    🇪🇸 España
+                </button>
+                <button
+                    type="button"
+                    onClick={() => {
+                        setMarket('latam')
+                        setStep(0)
+                    }}
+                    className={`px-4 py-2 rounded-full text-sm font-bold transition-colors border ${
+                        market === 'latam'
+                            ? 'bg-emerald-500 border-emerald-500 text-white'
+                            : 'bg-white border-stone-200 text-stone-500 hover:border-stone-400'
+                    }`}
+                >
+                    🌎 LATAM
+                </button>
+            </div>
+
             <button
                 onClick={handleGuidedChoice}
                 className={`group w-full rounded-2xl border-2 p-6 text-left transition-all hover:shadow-lg ${
                     selectedMode === 'guiado'
                         ? 'border-emerald-400 bg-emerald-50/70'
-                        : 'border-emerald-200 bg-white hover:border-emerald-400'
+                        : 'border-stone-200 bg-white hover:border-stone-300'
                 }`}
             >
                 <div className="flex items-start gap-4">
@@ -212,9 +289,9 @@ export default function BienvenidaClient() {
                                 Orden recomendado
                             </p>
                             <ol className="space-y-2 text-sm text-stone-700">
-                                <li>1. Guía 1</li>
+                                <li>1. Guía inicial</li>
                                 <li>2. Betfair Exchange</li>
-                                <li>3. Sportium</li>
+                                <li>3. {market === 'espana' ? 'Sportium' : 'Betfair Sportsbook LATAM'}</li>
                                 <li>4. Calculadora</li>
                             </ol>
                         </div>
