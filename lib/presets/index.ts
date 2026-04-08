@@ -1,15 +1,14 @@
 // lib/presets/index.ts
 
-import type { Casa } from '@/types/presets'
 import { casasEspana } from './data/espana'
+import { casasLatam } from './data/latam'
 
-// Latam placeholder — empty for now, extendable
-const casasLatam: Casa[] = []
+export const allCasas = [...casasEspana, ...casasLatam]
 
-export const todasLasCasas: Casa[] = [...casasEspana, ...casasLatam]
-
-export function getCasaById(id: string): Casa | undefined {
-  return todasLasCasas.find((c) => c.id === id)
+export function getCasaById(id: string) {
+  return allCasas.find((c) => c.id === id) ?? null
 }
 
-export { casasEspana, casasLatam }
+export function getCasasByMarket(market: import('../../types/presets').Market) {
+  return allCasas.filter((c) => c.market === market)
+}

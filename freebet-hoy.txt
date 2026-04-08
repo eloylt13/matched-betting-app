@@ -1,0 +1,69 @@
+=== FREEBET DIARIA ===
+
+ETIQUETA_DIA: "Domingo 5 de abril"
+HORA_ACTUALIZACION: "12:15"
+CUOTA_TOTAL: "4.61"
+CONFIANZA: "Alta · 8/10"
+NOTA_CONFIANZA: "Superioridad manifiesta en Eredivisie y crisis de bajas en la Roma."
+MOTIVO_GENERAL: "La combinada se basa en la victoria de tres favoritos claros (Feyenoord, Inter, Heerenveen) con cuotas sólidas y dos picks de goles apoyados en las altas medias de anotación de la Ligue 1 y Bundesliga. Se ha priorizado la fiabilidad de las plantillas titulares frente a rivales mermados."
+
+PICKS:
+
+PICK_1:
+partido: "Heerenveen vs Heracles"
+liga: "Eredivisie"
+hora: "13:30"
+mercado: "Gana local"
+cuota: "1.40"
+probabilidadModelo: "0.765"
+fairOdds: "1.31"
+ev: "0.068"
+motivoCorto: "Heerenveen (7º) promedia 1.8 goles ante un Heracles que ha perdido 7 de sus últimos 10 partidos."
+
+PICK_2:
+partido: "FC Volendam vs Feyenoord"
+liga: "Eredivisie"
+hora: "13:30"
+mercado: "Gana visitante"
+cuota: "1.33"
+probabilidadModelo: "0.810"
+fairOdds: "1.23"
+ev: "0.081"
+motivoCorto: "Feyenoord cuenta con el máximo goleador Ueda (22 goles) frente a la peor defensa de la liga."
+
+PICK_3:
+partido: "AS Monaco vs Olympique de Marsella"
+liga: "Ligue 1"
+hora: "19:45"
+mercado: "Más de 1.5 goles"
+cuota: "1.25"
+probabilidadModelo: "0.872"
+fairOdds: "1.15"
+ev: "0.087"
+motivoCorto: "Monaco ha marcado 2+ goles en sus últimos 8 partidos y Marsella ha encajado 2+ en 5 de sus últimas 6 salidas."
+
+PICK_4:
+partido: "Inter de Milán vs AS Roma"
+liga: "Serie A"
+hora: "19:45"
+mercado: "Gana local"
+cuota: "1.55"
+probabilidadModelo: "0.700"
+fairOdds: "1.43"
+ev: "0.084"
+motivoCorto: "Roma viaja sin sus tres máximos goleadores por lesión; Inter recupera a la dupla Lautaro-Thuram."
+
+PICK_5:
+partido: "Eintracht Frankfurt vs 1. FC Köln"
+liga: "Bundesliga"
+hora: "16:30"
+mercado: "Más de 1.5 goles"
+cuota: "1.28"
+probabilidadModelo: "0.840"
+fairOdds: "1.19"
+ev: "0.075"
+motivoCorto: "Alta tendencia goleadora en Bundesliga; Frankfurt supera este umbral en el 85% de sus partidos en casa."
+
+RESUMEN_FINAL: "Esta combinada de 5 picks ha sido diseñada tras descartar encuentros de alta volatilidad en La Liga (Getafe-Athletic) y Serie A (Cremonese-Bologna). La solidez de los favoritos en Holanda e Italia, junto a la inercia goleadora en Francia y Alemania, ofrece un equilibrio óptimo entre cuota y probabilidad matemática."
+
+=== FIN FREEBET DIARIA ===

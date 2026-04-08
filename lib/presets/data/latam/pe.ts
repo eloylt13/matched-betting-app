@@ -1,0 +1,133 @@
+import type { Casa } from '@/types/presets'
+
+export const casasPe: Casa[] = [
+  {
+    id: 'betsson-pe',
+    nombre: 'Betsson',
+    market: 'latam',
+    pais: 'pe',
+    url: 'https://bdeal.io/Betsson/144464/1',
+    descripcionBreve: 'Freebet S/40 tras primer depósito. Conflicto entre landing deportiva y homepage general.',
+    resumen: 'Ruta sports-only: depósito S/40 → apuesta gratuita S/40. Homepage general anuncia S/100. Usar con cautela.',
+    tipologia: 'apuesta-recibe',
+    beneficioPotencial: 8,
+    dificultad: 3,
+    requisitos: [
+      'Nuevo usuario.',
+      'Depósito mínimo S/40 dentro de 30 días del registro.',
+      'Seleccionar la ruta de apuesta gratuita en la promo deportiva.',
+      'Usar la freebet en 7 días a cuota ≥ 1.50.',
+      'Ganancias netas de la freebet pasan a bono con rollover ×3.',
+    ],
+    notas: [
+      'CONFLICTO OFICIAL: homepage general anuncia Apuesta Gratis S/100 + 30 giros.',
+      'Landing sports-only rastreable muestra S/40 freebet o S/40 cero riesgo.',
+      'Confirmar qué landing verá el usuario antes de publicar.',
+      'Marcar el icono/casilla del bono en el cupón al usar la freebet.',
+    ],
+    promos: [
+      {
+        id: 'bienvenida-deportes',
+        titulo: 'Bienvenida Deportes Perú — Freebet S/40',
+        descripcion: 'Depósito mínimo S/40 → apuesta gratuita S/40. Ganancias netas con rollover ×3.',
+        vencimiento: '',
+        fases: [
+          {
+            id: 'activar-premio',
+            numero: 1,
+            titulo: 'Deposita y activa el premio',
+            descripcion: 'Depositar S/40 y seleccionar la ruta de apuesta gratuita en la promo deportiva.',
+            modo: 'bonos',
+            stakeRecomendado: 40,
+            alertas: [
+              'Confirmar qué landing exacta ve el usuario: homepage vs sports-only.',
+              'Plazo para reclamar: 30 días desde el registro.',
+            ],
+            checklist: [
+              'Registrar cuenta nueva.',
+              'Depositar ≥ S/40.',
+              'Entrar en la promo deportiva.',
+              'Seleccionar apuesta gratuita.',
+            ],
+            siGana: { accion: 'No aplica; esta fase solo activa el premio.' },
+            siPierde: { accion: 'No aplica; esta fase solo activa el premio.' },
+          },
+          {
+            id: 'usar-freebet',
+            numero: 2,
+            titulo: 'Usa la freebet S/40',
+            descripcion: 'Usar la apuesta gratuita a cuota ≥ 1.50 dentro de 7 días. Si gana, las ganancias netas pasan a bono con rollover ×3.',
+            modo: 'apuesta-gratis',
+            stakeRecomendado: 40,
+            alertas: [
+              'Marcar icono/casilla del bono en el cupón.',
+              'Validez: 7 días.',
+              'Ganancias no son dinero real directo: requieren rollover ×3.',
+            ],
+            checklist: [
+              'Elegir evento compatible.',
+              'Confirmar cuota ≥ 1.50.',
+              'Marcar el icono de apuesta gratuita.',
+              'Usar antes de 7 días.',
+            ],
+            siGana: { accion: 'Liberar ganancias bonificadas con rollover ×3.' },
+            siPierde: { accion: 'Fin del bono.' },
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'betano-pe',
+    nombre: 'Betano',
+    market: 'latam',
+    pais: 'pe',
+    url: 'https://bdeal.io/Betano/144462/1',
+    descripcionBreve: 'Bono de primer depósito 100% hasta S/500 con rollover.',
+    resumen: 'Rollover sobre depósito+bono. Plazo 30 días. Mínimo y multiplicador exactos pendientes.',
+    tipologia: 'rollover',
+    beneficioPotencial: 0,
+    dificultad: 3,
+    requisitos: [
+      'Nuevo usuario.',
+      'Depósito mínimo: PENDIENTE (depósito mínimo general S/15).',
+      'Apostar depósito+bono a cuota ≥ 1.50.',
+      'Completar wagering dentro de 30 días.',
+    ],
+    notas: [
+      'Bono máximo: S/500 (~$146 USD).',
+      'Depósito mínimo de activación: PENDIENTE.',
+      'Multiplicador de wagering exacto: PENDIENTE.',
+    ],
+    promos: [
+      {
+        id: 'bienvenida-deportes',
+        titulo: '100% Primer Depósito hasta S/500',
+        descripcion: 'Match bonus deportivo. Rollover sobre depósito+bono a cuota ≥ 1.50.',
+        vencimiento: '',
+        fases: [
+          {
+            id: 'deposito-y-rollover',
+            numero: 1,
+            titulo: 'Deposita y completa el rollover',
+            descripcion: 'Primer depósito, activar bono y completar wagering a cuota ≥ 1.50 en 30 días.',
+            modo: 'rollover',
+            stakeRecomendado: 0,
+            alertas: [
+              'Depósito mínimo de activación: PENDIENTE.',
+              'Multiplicador exacto: PENDIENTE. Confirmar en Mi Cuenta.',
+            ],
+            checklist: [
+              'Registrar cuenta nueva.',
+              'Primer depósito.',
+              'Activar bono desde Mi Cuenta.',
+              'Completar rollover a cuota ≥ 1.50.',
+            ],
+            siGana: { accion: 'Continuar descontando rollover hasta completarlo.' },
+            siPierde: { accion: 'Continuar descontando rollover hasta completarlo.' },
+          },
+        ],
+      },
+    ],
+  },
+]

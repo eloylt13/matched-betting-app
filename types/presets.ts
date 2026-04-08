@@ -13,7 +13,20 @@ export type ModoCalculo =
 // Valores originales del proyecto — NO cambiar
 export type EstadoCasa = 'no_empezada' | 'en_progreso' | 'en_curso' | 'completada' | 'descartada'
 
-export type Pais = 'espana'
+export type Market = 'espana' | 'latam'
+
+export type PaisLatam =
+    | 'mx'
+    | 'ar'
+    | 'cl'
+    | 'co'
+    | 'pe'
+    | 'ec'
+    | 'pa'
+    | 'uy'
+    | 'regionales'
+
+export type Pais = 'espana' | PaisLatam
 
 export type Tipologia = 'apuesta-recibe' | 'reembolso' | 'rollover' | 'exchange'
 
@@ -49,6 +62,7 @@ export interface Promo {
 export interface Casa {
     id: string
     nombre: string
+    market: Market
     pais: Pais
     url?: string
     descripcionBreve: string

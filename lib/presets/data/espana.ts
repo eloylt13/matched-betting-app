@@ -11,6 +11,7 @@ export const casasEspana: Casa[] = [
   {
     id: 'sportium',
     nombre: 'Sportium',
+    market: 'espana',
     pais: 'espana',
     tipologia: 'apuesta-recibe',
     url: 'https://bdeal.io/Sportium/136726/1',
@@ -79,6 +80,7 @@ export const casasEspana: Casa[] = [
   {
     id: 'daznbet',
     nombre: 'DaznBet',
+    market: 'espana',
     pais: 'espana',
     tipologia: 'apuesta-recibe',
     url: 'https://lp.daznbet.es/promomixta-3/?gad_campaignid=21585366146&gad_source=1&gbraid=0AAAAAo7lT3wjNM9l7FNEmpzJNCH45zEA6&gclid=CjwKCAiAqKbMBhBmEiwAZ3UboJQoeuzr7_GzDr1KlXxNZg2gDdBSGa-yukzAV4YwpiaBD64tJ0mBaRoCmx0QAvD_BwE&utm_campaign=ppcbrand_sports_es_google_daznbet_bb200_SIDN_search_registro_sports-casino_marca_21585366146_171722008288_dazn%20bet_c_p&utm_medium=google&utm_source=ppcbrand',
@@ -154,6 +156,7 @@ export const casasEspana: Casa[] = [
   {
     id: 'retabet',
     nombre: 'RetaBet',
+    market: 'espana',
     pais: 'espana',
     tipologia: 'apuesta-recibe',
     url: 'https://online.retabet.es/bono?pr=RETA069&utm_campaign=brand&utm_source=ppc&utm_medium=search&utm_term=retabet%20casino&campaignid=23303561015&adgroupid=192782291881&adid=785737353981&gad_source=1&gad_campaignid=23303561015&gbraid=0AAAABBtQEstUHH1LSegq4vx26N5WmJKf3&gclid=CjwKCAiAqKbMBhBmEiwAZ3UboGYFzbTCC3W8XxoVNOcz003-34NRhcswb3tqYytD5syRmmZ9KuvEBRoCxKsQAvD_BwE',
@@ -222,6 +225,7 @@ export const casasEspana: Casa[] = [
   {
     id: 'bet365',
     nombre: 'Bet365',
+    market: 'espana',
     pais: 'espana',
     tipologia: 'apuesta-recibe',
     url: 'https://www.bet365.es/hub/es-es/open-account-offer?utm_source=google&utm_medium=cpc&utm_campaign=19809205141&utm_keyword=registrarse%20bet365&affiliate=365_01435717&gad_source=1&gad_campaignid=19809205141&gbraid=0AAAAADOVbuNaI8yk8sXYHYh5soGYmg7rB&gclid=CjwKCAiAqKbMBhBmEiwAZ3UboCHjR9ENmOEBfWjfVZhHaT2qkwrqBAJIy1umLn9yU_3bTbnpIshO-xoCvE8QAvD_BwE',
@@ -292,6 +296,7 @@ export const casasEspana: Casa[] = [
   {
     id: 'versus',
     nombre: 'Versus',
+    market: 'espana',
     pais: 'espana',
     tipologia: 'apuesta-recibe',
     url: 'https://bdeal.io/Versus/139372/1',
@@ -357,6 +362,7 @@ export const casasEspana: Casa[] = [
   {
     id: 'codere',
     nombre: 'Codere',
+    market: 'espana',
     pais: 'espana',
     tipologia: 'apuesta-recibe',
     url: 'https://bdeal.io/Codere/136722/1',
@@ -429,6 +435,7 @@ export const casasEspana: Casa[] = [
   {
     id: 'botemania',
     nombre: 'Botemania',
+    market: 'espana',
     pais: 'espana',
     tipologia: 'apuesta-recibe',
     url: 'https://www.botemania.es/lp/p/apuestas-bono-bienvenida?acquisition-channel=ppc&keyword_id=322831080951&targetid=kwd-322831080951&campaign_id=21183740085&cq_src=google_ads&cq_cmp=21183740085&cq_term=casino%20online%20bono%20bienvenida&cq_plac=&cq_net=g&cq_plt=gp&gclsrc=aw.ds&gad_source=1&gad_campaignid=21183740085&gbraid=0AAAAADyTsIZsEH387oanaF4G02nARpUeb&gclid=CjwKCAiAqKbMBhBmEiwAZ3UboP5dvJi27bOO94mtyFrp-cK5_xkYiDXKG1Q8x4ocmXZxsEKcLR8kMhoCCokQAvD_BwE',
@@ -500,6 +507,7 @@ export const casasEspana: Casa[] = [
   {
     id: 'paf',
     nombre: 'PAF',
+    market: 'espana',
     pais: 'espana',
     tipologia: 'apuesta-recibe',
     url: 'https://bdeal.io/PAF/100477/1',
@@ -544,6 +552,7 @@ export const casasEspana: Casa[] = [
   {
     id: 'casino-gran-madrid',
     nombre: 'Casino Gran Madrid',
+    market: 'espana',
     pais: 'espana',
     tipologia: 'apuesta-recibe',
     url: 'https://bdeal.io/CGranMadrid/139749/1',
@@ -617,6 +626,7 @@ export const casasEspana: Casa[] = [
   {
     id: 'juegging',
     nombre: 'Juegging',
+    market: 'espana',
     pais: 'espana',
     tipologia: 'apuesta-recibe',
     url: 'https://www.juegging.es/promo/bono-de-bienvenida-10e-primer-deposito-hasta-150e-para-apuestas-deportivas-online/?gad_source=1&gad_campaignid=21384301916&gbraid=0AAAAADf_xqsJfkKNVJvYbKlhjbhoam9Gd&gclid=Cj0KCQiA7rDMBhCjARIsAGDBuEB1YELWvbUe10N_UX9ji9LU4O5iOIkUiIklFuOyxBRP06EelVRwxrQaAnJoEALw_wcB',
@@ -687,6 +697,7 @@ export const casasEspana: Casa[] = [
   {
     id: 'marca-apuestas',
     nombre: 'Marca Apuestas',
+    market: 'espana',
     pais: 'espana',
     tipologia: 'reembolso',
     url: 'https://bdeal.io/marcaapuestas/136724/1',
@@ -757,6 +768,7 @@ export const casasEspana: Casa[] = [
   {
     id: 'bwin',
     nombre: 'Bwin',
+    market: 'espana',
     pais: 'espana',
     tipologia: 'reembolso',
     url: 'https://www.bwin.es/es/engage/lan/pm/sports/generic?wm=5238465&wm=5238465&tdpeh=29235_23463837299_189439309177_792853968132_kwd-37715403167_e_c&utm_source=search_google&utm_campaign=23463837299&utm_content=792853968132&utm_medium=e&utm_term=bwin%20bono%20bienvenida&sb=1&gad_source=1&gad_campaignid=23463837299&gbraid=0AAAAADxF3Xt0_9DF5rDeEetPiGU61dmcj&gclid=CjwKCAiAqKbMBhBmEiwAZ3UboP3lPzZ6n7Uv7g3bLjonVIXvqDCZ5xeYl-G1qmV3s0JwuyuZeve-lRoCMUAQAvD_BwE',
@@ -847,6 +859,7 @@ export const casasEspana: Casa[] = [
   {
     id: 'winamax',
     nombre: 'Winamax',
+    market: 'espana',
     pais: 'espana',
     tipologia: 'reembolso',
     url: 'https://bdeal.io/Winamax/99945/1',
@@ -915,6 +928,7 @@ export const casasEspana: Casa[] = [
   {
     id: '888sport',
     nombre: '888Sport',
+    market: 'espana',
     pais: 'espana',
     tipologia: 'reembolso',
     url: 'https://bdeal.io/888Sport/136728/1',
@@ -986,6 +1000,7 @@ export const casasEspana: Casa[] = [
   {
     id: 'kirolbet',
     nombre: 'Kirolbet',
+    market: 'espana',
     pais: 'espana',
     tipologia: 'reembolso',
     url: 'https://bienvenida.kirolbet.es/wb/apuestas-deportivas-7547/?gad_source=1&gad_campaignid=12417805598&gbraid=0AAAAADr42bSE0NA8fQh90ta8dPev7K7C-&gclid=CjwKCAjw687NBhB4EiwAQ645dsJbKoiKj40wHLiVbUuTM6thQ40TgVDTTySmeC8bD4KglZVoTULmShoCRKMQAvD_BwE',
@@ -1053,6 +1068,7 @@ export const casasEspana: Casa[] = [
   {
     id: 'pokerstars',
     nombre: 'PokerStars Sports',
+    market: 'espana',
     pais: 'espana',
     tipologia: 'reembolso',
     url: 'https://bdeal.io/PokerStars/101907/1',
@@ -1119,6 +1135,7 @@ export const casasEspana: Casa[] = [
   {
     id: 'olybet',
     nombre: 'OlyBet',
+    market: 'espana',
     pais: 'espana',
     tipologia: 'reembolso',
     url: 'https://welcome.olybet.es/bono-de-bienvenida-deportes/',
@@ -1182,6 +1199,7 @@ export const casasEspana: Casa[] = [
   {
     id: 'interwetten',
     nombre: 'Interwetten',
+    market: 'espana',
     pais: 'espana',
     tipologia: 'reembolso',
     url: 'https://bdeal.io/Interwetten/136723/1',
@@ -1251,6 +1269,7 @@ export const casasEspana: Casa[] = [
   {
     id: 'yaass',
     nombre: 'Yaass Casino',
+    market: 'espana',
     pais: 'espana',
     tipologia: 'reembolso',
     url: 'https://www.yaasscasino.es/?btag=99999&gad_source=1&gad_campaignid=21043179587&gbraid=0AAAAADFbGl-nytt_FL1KYBsNz24VzMbJE&gclid=Cj0KCQiA7rDMBhCjARIsAGDBuEAGMGEKuR49k2fp_CarpnNdptEvkxbLnWAAddVCU66TBzbfhbhSa60aAsaLEALw_wcB',
@@ -1318,6 +1337,7 @@ export const casasEspana: Casa[] = [
   {
     id: 'william-hill',
     nombre: 'William Hill',
+    market: 'espana',
     pais: 'espana',
     tipologia: 'reembolso',
     url: 'https://bdeal.io/WilliamHill/136725/1',
@@ -1388,6 +1408,7 @@ export const casasEspana: Casa[] = [
   {
     id: 'betway',
     nombre: 'Betway',
+    market: 'espana',
     pais: 'espana',
     tipologia: 'reembolso',
     url: 'https://app.afiliago.com/go/popup18/21553?url=https%3A%2F%2Fapp.afiliago.com%2Fgo%2F21553%2FfIkqcOFwoh%2F2',
@@ -1463,6 +1484,7 @@ export const casasEspana: Casa[] = [
   {
     id: 'casumo',
     nombre: 'Casumo',
+    market: 'espana',
     pais: 'espana',
     tipologia: 'reembolso',
     url: 'https://www.casumo.es/sports/#home',
@@ -1536,6 +1558,7 @@ export const casasEspana: Casa[] = [
   {
     id: 'ebingo',
     nombre: 'Ebingo',
+    market: 'espana',
     pais: 'espana',
     tipologia: 'reembolso',
     url: 'https://www.ebingo.es/promos',
@@ -1610,6 +1633,7 @@ export const casasEspana: Casa[] = [
   {
     id: 'goldenpark',
     nombre: 'Goldenpark',
+    market: 'espana',
     pais: 'espana',
     tipologia: 'rollover',
     url: 'https://app.afiliago.com/go/popup18/19149?url=https%3A%2F%2Fapp.afiliago.com%2Fgo%2F19149%2FWs1nYCo4gw',
@@ -1660,6 +1684,7 @@ export const casasEspana: Casa[] = [
   {
     id: 'betsson',
     nombre: 'Betsson',
+    market: 'espana',
     pais: 'espana',
     tipologia: 'rollover',
     url: 'https://bdeal.io/Betsson/136727/1',
@@ -1709,6 +1734,7 @@ export const casasEspana: Casa[] = [
   {
     id: 'paston',
     nombre: 'Pastón',
+    market: 'espana',
     pais: 'espana',
     tipologia: 'rollover',
     url: 'https://www.paston.es/promociones/bono-bienvenida-casa-de-apuestas',
@@ -1781,6 +1807,7 @@ export const casasEspana: Casa[] = [
   {
     id: 'efbet',
     nombre: 'EFBet',
+    market: 'espana',
     pais: 'espana',
     tipologia: 'rollover',
     url: 'https://efbet.com.es/bonos/',
@@ -1853,6 +1880,7 @@ export const casasEspana: Casa[] = [
   {
     id: 'solcasino',
     nombre: 'SolCasino',
+    market: 'espana',
     pais: 'espana',
     tipologia: 'rollover',
     url: 'https://www.solcasino.es/promociones/bets/bono-bienvenida-aadd',
@@ -1901,6 +1929,7 @@ export const casasEspana: Casa[] = [
   {
     id: 'leovegas',
     nombre: 'LeoVegas',
+    market: 'espana',
     pais: 'espana',
     tipologia: 'rollover',
     url: 'https://leovegas.es/auth?intent=SIGNUP&provider=USERNAME_PASSWORD',
@@ -1948,6 +1977,7 @@ export const casasEspana: Casa[] = [
   {
     id: 'jokerbet',
     nombre: 'JokerBet',
+    market: 'espana',
     pais: 'espana',
     tipologia: 'rollover',
     url: 'https://www.jokerbet.es/?campaigncode=marca-bono&utm_source=google&utm_medium=cpc&gad_source=1&gad_campaignid=22354333110&gbraid=0AAAAADFc_eHSs-pDDL4g09t4kKI19kjfm&gclid=CjwKCAjw687NBhB4EiwAQ645dnsma717_2D4J2kPu87Qn6VsZ4Sggp3cjMJM1Qmy8-JQ6njmviyi0hoCUdcQAvD_BwE',
@@ -2000,6 +2030,7 @@ export const casasEspana: Casa[] = [
   {
     id: 'betfair',
     nombre: 'Betfair',
+    market: 'espana',
     pais: 'espana',
     tipologia: 'rollover',
     url: 'https://bdeal.io/Betfair/139419/2',
