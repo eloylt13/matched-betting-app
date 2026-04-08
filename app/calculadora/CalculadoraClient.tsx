@@ -6,6 +6,9 @@ type Tab = 'oddsmatcher' | 'dutcher'
 type ModoClasica = 'dinero-real' | 'apuesta-gratis' | 'bonos' | 'rollover' | 'reembolso'
 type ModoDutcher = 'dinero-real' | 'apuesta-gratis'
 type QuickChoice = 'betfair' | 'freebet' | 'dutcher'
+type Moneda = '€' | 'USD' | 'MXN' | 'COP' | 'CLP' | 'PEN'
+
+const MONEDAS: Moneda[] = ['€', 'USD', 'MXN', 'COP', 'CLP', 'PEN']
 
 function n(v: string) { return parseFloat(v) || 0 }
 
@@ -175,9 +178,11 @@ function ChecklistEjecucion({ modo }: { modo: ModoClasica }) {
 function OddsMatcherCalc({
   forcedMode,
   forceSyncKey,
+  moneda,
 }: {
   forcedMode?: ModoClasica
   forceSyncKey: number
+  moneda: Moneda
 }) {
   const [modo, setModo] = useState<ModoClasica>(forcedMode ?? 'dinero-real')
   const [stake, setStake] = useState('100')
@@ -242,7 +247,7 @@ function OddsMatcherCalc({
   const modoActual = MODOS.find((m) => m.id === modo ) ?? MODOS[0]
 
   const handleCopiar = () => {
-    const texto = `Apuesta a favor: ${s.toFixed(2)}€ @ ${cbm} | Apuesta lay Betfair: ${sc.toFixed(2)}€ @ ${ce} | Resultado estimado: ${beneficio >= 0 ? '+' : ''}${beneficio.toFixed(2)}€`
+    const texto = `Apuesta a favor: ${s.toFixed(2)} ${moneda} @ ${cbm} | Apuesta lay Betfair: ${sc.toFixed(2)} ${moneda} @ ${ce} | Resultado estimado: ${beneficio >= 0 ? '+' : ''}${beneficio.toFixed(2)} ${moneda}`
     navigator.clipboard.writeText(texto).then(() => {
       setCopiado(true)
       setTimeout(() => setCopiado(false), 2000)
@@ -279,15 +284,15 @@ function OddsMatcherCalc({
         <div className="flex flex-col gap-4">
           <div className="bg-white rounded-2xl border border-gray-100 p-5 space-y-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <InputField label="Importe apuesta" value={stake} onChange={setStake} prefix="€" microcopy="Stake que vas a apostar en la casa" />
+              <InputField label="Importe apuesta" value={stake} onChange={setStake} prefix={moneda} microcopy="Stake que vas a apostar en la casa" />
               <InputField label="Cuota bookmaker" value={cuotaBM} onChange={setCuotaBM} microcopy="Cuota A FAVOR en la casa de apuestas" />
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <InputField label="Cuota lay (Exchange)" value={cuotaExch} onChange={setCuotaExch} microcopy="Cuota EN CONTRA en Betfair" />
-              <InputField label="Comisión Betfair" value={comision} onChange={setComision} suffix="%" microcopy="Normalmente 5% en ES" />
+              <InputField label="Comisión Betfair" value={comision} onChange={setComision} suffix="%" microcopy="5% en España · varía según país en LATAM" />
             </div>
             {modo === 'reembolso' && (
-              <InputField label="Importe reembolso" value={reembolso} onChange={setReembolso} prefix="€" hint="Freebet que recibirías si pierdes" />
+              <InputField label="Importe reembolso" value={reembolso} onChange={setReembolso} prefix={moneda} hint="Freebet que recibirías si pierdes" />
             )}
             {modo === 'rollover' && (
               <InputField label="Rollover requerido" value={rolloverX} onChange={setRolloverX} suffix="x" microcopy="Multiplicador de volumen exigido por la casa" />
@@ -320,7 +325,7 @@ function OddsMatcherCalc({
               <div>
                 <p className="text-xs font-semibold uppercase tracking-wide opacity-75 mb-1">{titulo}</p>
                 <p className="text-4xl font-bold font-mono">
-                  {beneficio >= 0 ? '+' : ''}{beneficio.toFixed(2)} €
+                  {beneficio >= 0 ? '+' : ''}{beneficio.toFixed(2)} {moneda}
                 </p>
                 <p className="text-xs opacity-60 mt-1">{subtitulo}</p>
               </div>
@@ -340,7 +345,7 @@ function OddsMatcherCalc({
 
           <div className="bg-teal-50 border border-teal-100 rounded-2xl p-4">
             <p className="text-xs font-bold text-teal-600 mb-1">Paso 1 · APUESTA A FAVOR · BOOKMAKER</p>
-            <p className="text-2xl font-bold text-teal-700">{s.toFixed(2)} €</p>
+            <p className="text-2xl font-bold text-teal-700">{s.toFixed(2)} {moneda}</p>
             <p className="text-xs text-teal-500 mt-0.5">A cuota {cbm}</p>
           </div>
 
@@ -348,9 +353,9 @@ function OddsMatcherCalc({
             <p className="text-xs font-bold text-rose-600 mb-1">Paso 2 · APUESTA EN CONTRA · BETFAIR EXCHANGE</p>
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-2xl font-bold text-rose-700">{sc.toFixed(2)} €</p>
+                <p className="text-2xl font-bold text-rose-700">{sc.toFixed(2)} {moneda}</p>
                 <p className="text-xs text-rose-500 mt-0.5">
-                  A cuota {ce} · Riesgo (liability): <strong>{(sc * (ce - 1)).toFixed(2)} €</strong>
+                  A cuota {ce} · Riesgo (liability): <strong>{(sc * (ce - 1)).toFixed(2)} {moneda}</strong>
                 </p>
               </div>
               <a
@@ -408,9 +413,11 @@ function OddsMatcherCalc({
 function DutcherCalc({
   forcedMode,
   forceSyncKey,
+  moneda,
 }: {
   forcedMode?: ModoDutcher
   forceSyncKey: number
+  moneda: Moneda
 }) {
   const [modo, setModo] = useState<ModoDutcher>(forcedMode ?? 'dinero-real')
   const [stake, setStake] = useState('100')
@@ -448,7 +455,7 @@ function DutcherCalc({
   const resultadoLabel = beneficio >= 0 ? 'Beneficio estimado' : 'Pérdida calificante'
 
   const handleCopiar = () => {
-    const texto = `${bm1}: ${s.toFixed(2)}€ @ ${cc1} | ${bm2}: ${sc2.toFixed(2)}€ @ ${cc2} | Resultado: ${beneficio >= 0 ? '+' : ''}${beneficio.toFixed(2)}€`
+    const texto = `${bm1}: ${s.toFixed(2)} ${moneda} @ ${cc1} | ${bm2}: ${sc2.toFixed(2)} ${moneda} @ ${cc2} | Resultado: ${beneficio >= 0 ? '+' : ''}${beneficio.toFixed(2)} ${moneda}`
     navigator.clipboard.writeText(texto).then(() => {
       setCopiado(true)
       setTimeout(() => setCopiado(false), 2000)
@@ -475,7 +482,7 @@ function DutcherCalc({
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
         <div className="flex flex-col gap-3">
-          <InputField label="Importe apuesta BM1" value={stake} onChange={setStake} prefix="€" microcopy="Stake que apuestas en el primer bookmaker" />
+          <InputField label="Importe apuesta BM1" value={stake} onChange={setStake} prefix={moneda} microcopy="Stake que apuestas en el primer bookmaker" />
 
           <div className="bg-teal-50 rounded-xl p-4 space-y-3 border border-teal-100">
             <p className="text-xs font-bold text-teal-700">Paso 1 · BOOKMAKER 1 · APUESTA A FAVOR</p>
@@ -500,7 +507,7 @@ function DutcherCalc({
               <div>
                 <p className="text-xs font-semibold uppercase tracking-wide opacity-75 mb-1">{resultadoLabel}</p>
                 <p className="text-4xl font-bold font-mono">
-                  {beneficio >= 0 ? '+' : ''}{beneficio.toFixed(2)} €
+                  {beneficio >= 0 ? '+' : ''}{beneficio.toFixed(2)} {moneda}
                 </p>
                 <p className="text-xs opacity-60 mt-1">Resultado neto estimado</p>
               </div>
@@ -514,13 +521,13 @@ function DutcherCalc({
 
           <div className="bg-teal-50 border border-teal-100 rounded-2xl p-4">
             <p className="text-xs font-bold text-teal-600 mb-1">Paso 1 · {bm1.toUpperCase()} · APUESTA A FAVOR</p>
-            <p className="text-2xl font-bold text-teal-700">{s.toFixed(2)} €</p>
+            <p className="text-2xl font-bold text-teal-700">{s.toFixed(2)} {moneda}</p>
             <p className="text-xs text-teal-500">A cuota {cc1.toFixed(2)}</p>
           </div>
 
           <div className="bg-purple-50 border border-purple-100 rounded-2xl p-4">
             <p className="text-xs font-bold text-purple-600 mb-1">Paso 2 · {bm2.toUpperCase()} · RESULTADO CONTRARIO</p>
-            <p className="text-2xl font-bold text-purple-700">{sc2.toFixed(2)} €</p>
+            <p className="text-2xl font-bold text-purple-700">{sc2.toFixed(2)} {moneda}</p>
             <p className="text-xs text-purple-500">A cuota {cc2.toFixed(2)}</p>
           </div>
 
@@ -563,6 +570,7 @@ export default function CalculadoraPage() {
   const [dutcherMode, setDutcherMode] = useState<ModoDutcher>('dinero-real')
   const [quickChoice, setQuickChoice] = useState<QuickChoice>('betfair')
   const [quickSelectionVersion, setQuickSelectionVersion] = useState(0)
+  const [moneda, setMoneda] = useState<Moneda>('€')
 
   const TABS: { id: Tab; label: string; sub: string; icon: string }[] = [
     { id: 'oddsmatcher', label: 'Oddsmatcher', sub: 'Bookmaker + Exchange', icon: 'O' },
@@ -650,6 +658,24 @@ export default function CalculadoraPage() {
         </div>
       </section>
 
+      <div className="flex items-center gap-2 mb-4 flex-wrap">
+        <span className="text-xs text-gray-500 font-medium">Moneda:</span>
+        {MONEDAS.map((m) => (
+          <button
+            key={m}
+            type="button"
+            onClick={() => setMoneda(m)}
+            className={`px-2.5 py-1 rounded-full text-xs font-bold border transition-colors ${
+              moneda === m
+                ? 'bg-purple-600 border-purple-600 text-white'
+                : 'bg-white border-gray-200 text-gray-500 hover:border-purple-300'
+            }`}
+          >
+            {m}
+          </button>
+        ))}
+      </div>
+
       <div className="flex gap-3 flex-wrap items-center">
         {TABS.map((t) => (
           <button
@@ -667,8 +693,8 @@ export default function CalculadoraPage() {
       </div>
 
       <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-        {tab === 'oddsmatcher' && <OddsMatcherCalc forcedMode={oddsmatcherMode} forceSyncKey={quickSelectionVersion} />}
-        {tab === 'dutcher' && <DutcherCalc forcedMode={dutcherMode} forceSyncKey={quickSelectionVersion} />}
+        {tab === 'oddsmatcher' && <OddsMatcherCalc forcedMode={oddsmatcherMode} forceSyncKey={quickSelectionVersion} moneda={moneda} />}
+        {tab === 'dutcher' && <DutcherCalc forcedMode={dutcherMode} forceSyncKey={quickSelectionVersion} moneda={moneda} />}
       </div>
     </div>
   )
