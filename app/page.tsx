@@ -4,23 +4,23 @@ import EmailCapture from '@/components/landing/EmailCapture'
 import TelegramButton from '@/components/landing/TelegramButton'
 
 export const metadata: Metadata = {
-  title: 'Matched Betting España 2026 | Guía, Calculadora y Bonos Gratis | IAPredictHub',
+  title: 'Matched Betting España y LATAM 2026 | Guía, Calculadora y Bonos | IAPredictHub',
   description:
-    'Herramienta gratuita de matched betting para España. Calculadora de cobertura, guías paso a paso y seguimiento de bonos de bienvenida. Sin registro. +2.000€ en bonos organizados por fases.',
+    'Herramienta gratuita de matched betting para España y LATAM. Calculadora de cobertura, guías paso a paso y seguimiento de bonos de bienvenida. Sin registro. +50 casas organizadas por fases.',
   alternates: {
     canonical: 'https://iapredicthub.es',
   },
   openGraph: {
-    title: 'Matched Betting España 2026 | Guía, Calculadora y Bonos Gratis | IAPredictHub',
+    title: 'Matched Betting España y LATAM 2026 | Guía, Calculadora y Bonos | IAPredictHub',
     description:
-      'Herramienta gratuita de matched betting para España. Calculadora de cobertura, guías paso a paso y seguimiento de bonos de bienvenida. Sin registro. +2.000€ en bonos organizados por fases.',
+      'Herramienta gratuita de matched betting para España y LATAM. Calculadora de cobertura, guías paso a paso y seguimiento de bonos de bienvenida. Sin registro. +50 casas organizadas por fases.',
     url: 'https://iapredicthub.es',
     images: [
       {
         url: 'https://iapredicthub.es/logo.png',
         width: 512,
         height: 512,
-        alt: 'IAPredictHub — Matched Betting España',
+        alt: 'IAPredictHub — Matched Betting España y LATAM',
       },
     ],
   },
@@ -101,8 +101,8 @@ const GUIAS_DESTACADAS = [
   },
   {
     icono: '💰',
-    titulo: 'Cuánto se puede ganar (España)',
-    desc: 'Contexto realista del mercado español, con foco en método, orden y ejecución.',
+    titulo: 'Cuánto se puede ganar',
+    desc: 'Contexto realista del mercado español y LATAM, con foco en método, orden y ejecución.',
     archivo: 'inicio/cuanto-se-puede-ganar-espana.pdf',
   },
   {
@@ -133,7 +133,7 @@ const FAQS = [
   {
     pregunta: '¿La app promete beneficios garantizados?',
     respuesta:
-      'No. La propuesta de valor está en ayudarte a ejecutar con más método, más orden y menos errores dentro del mercado español.',
+      'No. La propuesta de valor está en ayudarte a ejecutar con más método, más orden y menos errores en España y LATAM.',
   },
   {
     pregunta: '¿Qué incluye ahora mismo?',
@@ -168,7 +168,7 @@ export default function LandingPage() {
         name: '¿La app promete beneficios garantizados?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'No. La propuesta de valor está en ayudarte a ejecutar con más método, más orden y menos errores dentro del mercado español.',
+          text: 'No. La propuesta de valor está en ayudarte a ejecutar con más método, más orden y menos errores en España y LATAM.',
         },
       },
       {
@@ -194,7 +194,7 @@ export default function LandingPage() {
       priceCurrency: 'EUR',
     },
     description:
-      'Herramienta gratuita de matched betting para España con calculadora, guías y seguimiento de bonos.',
+      'Herramienta gratuita de matched betting para España y LATAM con calculadora, guías y seguimiento de bonos.',
   }
 
   return (
@@ -261,12 +261,12 @@ export default function LandingPage() {
           </div>
 
           <h1 className="font-playfair text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-tight mb-6">
-            Empieza con bonos de bienvenida en España
+            Empieza con bonos de bienvenida en España y LATAM
             <span className="text-emerald-400"> de forma más guiada y clara</span>.
           </h1>
 
           <p className="text-gray-300 text-base sm:text-lg lg:text-xl max-w-3xl mx-auto leading-relaxed mb-10">
-            Herramienta práctica para el mercado español pensada para ayudarte a empezar paso a paso.
+            Herramienta práctica para España y LATAM pensada para ayudarte a empezar paso a paso.
             Te guía por una ruta recomendada para entender el proceso, usar la calculadora adecuada
             y no perderte al entrar por primera vez.
           </p>
@@ -296,7 +296,7 @@ export default function LandingPage() {
           <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-gray-400">
             <span className="flex items-center gap-1.5"><span className="text-emerald-400">✓</span> Sin tarjeta ni registro</span>
             <span className="flex items-center gap-1.5"><span className="text-emerald-400">✓</span> 100% gratuito en beta</span>
-            <span className="flex items-center gap-1.5"><span className="text-emerald-400">✓</span> Mercado español</span>
+            <span className="flex items-center gap-1.5"><span className="text-emerald-400">✓</span> España y LATAM</span>
           </div>
         </div>
       </section>
@@ -305,11 +305,11 @@ export default function LandingPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
           <div className="grid grid-cols-2 sm:grid-cols-4 text-center divide-y sm:divide-y-0 divide-x-0 sm:divide-x divide-stone-200">
             <div className="py-4 sm:py-0 sm:px-6">
-              <p className="text-3xl sm:text-4xl font-bold text-emerald-600">30+</p>
+              <p className="text-3xl sm:text-4xl font-bold text-emerald-600">50+</p>
               <p className="text-[13px] text-stone-400 mt-1 leading-tight">casas organizadas</p>
             </div>
             <div className="py-4 sm:py-0 sm:px-6 border-l border-stone-200">
-              <p className="text-3xl sm:text-4xl font-bold text-emerald-600">+2.000€</p>
+              <p className="text-3xl sm:text-4xl font-bold text-emerald-600">+2.500€</p>
               <p className="text-[13px] text-stone-400 mt-1 leading-tight">en bonos documentados</p>
             </div>
             <div className="py-4 sm:py-0 sm:px-6 border-t sm:border-t-0 border-stone-200 sm:border-l">
@@ -447,7 +447,7 @@ export default function LandingPage() {
           <div className="text-center mb-10">
             <h2 className="font-playfair text-2xl sm:text-3xl font-bold text-stone-900">Sobre este proyecto</h2>
             <p className="text-stone-500 mt-4 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
-              IAPredictHub es un proyecto independiente desarrollado en España, pensado para ofrecer una forma más clara y ordenada de empezar con bonos de bienvenida. La herramienta nace de la necesidad de tener todo en un mismo sitio: calculadora, guías, seguimiento y una ruta lógica para no perderse al empezar.
+              IAPredictHub es un proyecto independiente desarrollado en España, pensado para ofrecer una forma más clara y ordenada de empezar con bonos de bienvenida en España y LATAM. La herramienta nace de la necesidad de tener todo en un mismo sitio: calculadora, guías, seguimiento y una ruta lógica para no perderse al empezar.
             </p>
           </div>
           <div className="grid sm:grid-cols-3 gap-4 mt-8">
