@@ -51,7 +51,7 @@ export const metadata: Metadata = {
         url: 'https://iapredicthub.es/logo.png',
         width: 512,
         height: 512,
-        alt: 'IAPredictHub — Bonos de bienvenida en España',
+        alt: 'IAPredictHub — Bonos de bienvenida España y LATAM',
       },
     ],
   },
