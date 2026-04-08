@@ -4,6 +4,7 @@ import { casasEspana } from './data/espana'
 import { casasLatam } from './data/latam'
 
 export const allCasas = [...casasEspana, ...casasLatam]
+export const todasLasCasas = allCasas
 
 export function getCasaById(id: string) {
   return allCasas.find((c) => c.id === id) ?? null
