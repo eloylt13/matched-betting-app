@@ -9,17 +9,17 @@ type MarketKey = "espana" | "latam"
 type PaisKey = "todas" | "regionales" | "co" | "mx" | "cl" | "pe" | "ec" | "ar" | "pa" | "uy"
 type FilterKey = "todas" | "apuesta-recibe" | "reembolso" | "rollover" | "faciles"
 
-const PAISES: Array<{ key: PaisKey; label: string; emoji: string }> = [
-  { key: "todas", label: "Todas", emoji: "🌎" },
-  { key: "regionales", label: "Regionales", emoji: "🌐" },
-  { key: "co", label: "Colombia", emoji: "🇨🇴" },
-  { key: "mx", label: "México", emoji: "🇲🇽" },
-  { key: "cl", label: "Chile", emoji: "🇨🇱" },
-  { key: "pe", label: "Perú", emoji: "🇵🇪" },
-  { key: "ec", label: "Ecuador", emoji: "🇪🇨" },
-  { key: "ar", label: "Argentina", emoji: "🇦🇷" },
-  { key: "pa", label: "Panamá", emoji: "🇵🇦" },
-  { key: "uy", label: "Uruguay", emoji: "🇺🇾" },
+const PAISES: Array<{ key: PaisKey; label: string }> = [
+  { key: "todas", label: "Todas" },
+  { key: "regionales", label: "REG" },
+  { key: "co", label: "CO" },
+  { key: "mx", label: "MX" },
+  { key: "cl", label: "CL" },
+  { key: "pe", label: "PE" },
+  { key: "ec", label: "EC" },
+  { key: "ar", label: "AR" },
+  { key: "pa", label: "PA" },
+  { key: "uy", label: "UY" },
 ]
 
 const FILTERS: Array<{ key: FilterKey; label: string }> = [
@@ -87,13 +87,13 @@ export default function CasasPage() {
                 type="button"
                 onClick={() => setActivePais(pais.key)}
                 title={pais.label}
-                className={`shrink-0 rounded-full border px-2.5 py-1 text-base transition-colors ${
+                className={`shrink-0 rounded-full border px-3 py-1 text-xs font-bold transition-colors ${
                   activePais === pais.key
-                    ? "border-blue-500 bg-blue-500"
-                    : "border-stone-700 bg-stone-900 hover:border-stone-500"
+                    ? "border-blue-500 bg-blue-500 text-white"
+                    : "border-stone-700 bg-stone-900 text-stone-400 hover:border-stone-500 hover:text-stone-100"
                 }`}
               >
-                {pais.emoji}
+                {pais.label}
               </button>
             ))}
           </div>
