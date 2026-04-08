@@ -31,18 +31,25 @@ const CATEGORIAS_METADATA: Record<string, { titulo: string; descripcion: string;
     color: 'from-amber-500/10 to-amber-500/5',
     badgeColor: 'bg-amber-100 text-amber-700',
   },
-  'casas': {
-    titulo: 'Guías por casa',
-    descripcion: 'Instrucciones específicas de registro y extracción de bono para cada casa.',
+  'casas-espana': {
+    titulo: 'Guías por casa — España',
+    descripcion: 'Instrucciones de registro y bono para cada casa española.',
     icono: '🏠',
     color: 'from-purple-500/10 to-purple-500/5',
     badgeColor: 'bg-purple-100 text-purple-700',
+  },
+  'casas-latam': {
+    titulo: 'Guías por casa — LATAM',
+    descripcion: 'Instrucciones de registro y bono para casas en LATAM.',
+    icono: '🌎',
+    color: 'from-blue-500/10 to-blue-500/5',
+    badgeColor: 'bg-blue-100 text-blue-700',
   },
 }
 
 function loadGuias() {
   const guiasDir = path.join(process.cwd(), 'content/guias')
-  const guias: { titulo: string; slug: string; categoria: string; descripcion: string; emoji: string; orden?: number }[] = []
+  const guias: { titulo: string; slug: string; categoria: string; descripcion: string; emoji: string; orden?: number; market: string }[] = []
 
   const categorias = fs.readdirSync(guiasDir)
   categorias.forEach((categoria) => {
@@ -60,6 +67,7 @@ function loadGuias() {
         descripcion: data.descripcion || '',
         emoji: data.emoji || '📄',
         orden: data.orden,
+        market: data.market || 'espana',
       })
     })
   })
@@ -73,8 +81,11 @@ export default function GuiasPage() {
   // Agrupar por categoría
   const gruposPorCategoria: Record<string, typeof guias> = {}
   guias.forEach((guia) => {
-    if (!gruposPorCategoria[guia.categoria]) gruposPorCategoria[guia.categoria] = []
-    gruposPorCategoria[guia.categoria].push(guia)
+    const clave = guia.categoria === 'casas'
+      ? (guia.market === 'latam' ? 'casas-latam' : 'casas-espana')
+      : guia.categoria
+    if (!gruposPorCategoria[clave]) gruposPorCategoria[clave] = []
+    gruposPorCategoria[clave].push(guia)
   })
 
   // Ordenar dentro de cada categoría
@@ -83,7 +94,7 @@ export default function GuiasPage() {
   })
 
   // Construir secciones en el orden correcto
-  const categoriasOrdenadas = ['primeros-pasos', 'modulos', 'estrategia', 'casas']
+  const categoriasOrdenadas = ['primeros-pasos', 'modulos', 'estrategia', 'casas-espana', 'casas-latam']
   const secciones = categoriasOrdenadas
     .filter((cat) => gruposPorCategoria[cat])
     .map((cat) => ({
