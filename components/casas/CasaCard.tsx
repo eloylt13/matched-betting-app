@@ -114,7 +114,7 @@ export function CasaCard({ casa, estado }: Props) {
           {/* Beneficio */}
           <div className="flex shrink-0 flex-col items-end gap-2 sm:gap-0">
             <div className="text-right rounded-lg sm:rounded-xl bg-emerald-50 px-2 py-1.5 sm:bg-transparent sm:px-0 sm:py-0">
-              <p className="text-base sm:text-lg font-bold text-gray-900 leading-none">+{casa.beneficioPotencial} €</p>
+              <p className="text-base sm:text-lg font-bold text-gray-900 leading-none">+{casa.beneficioPotencial} {casa.market === 'latam' ? 'USD' : '€'}</p>
               <p className="text-[11px] text-emerald-700 sm:text-xs sm:text-gray-400 mt-0.5 sm:mt-1">potencial</p>
             </div>
 
