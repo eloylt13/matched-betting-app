@@ -11,6 +11,8 @@ import CasasPendientes from '@/components/dashboard/CasasPendientes'
 import BonosPendientes from '@/components/dashboard/BonosPendientes'
 import ProximasAcciones from '@/components/dashboard/ProximasAcciones'
 
+ type Market = 'espana' | 'latam'
+
 const TIPOLOGIA_BADGE: Record<string, { badge: string; icon: string; label: string }> = {
   'apuesta-recibe': { badge: 'bg-emerald-100 text-emerald-700', icon: '🟢', label: 'Apuesta & Recibe' },
   reembolso: { badge: 'bg-blue-100 text-blue-700', icon: '🔵', label: 'Reembolso' },
@@ -30,9 +32,65 @@ function getDificultadColor(d: number) {
   return 'text-red-600'
 }
 
+ const START_ACTIONS = {
+   espana: [
+     {
+       id: 'guia-inicial',
+       title: 'Leer la guía inicial',
+       description: 'Empieza por la guía para entender la secuencia recomendada.',
+       href: '/guias',
+       label: 'Abrir guías',
+       external: false,
+     },
+     {
+       id: 'betfair',
+       title: 'Preparar Betfair Exchange',
+       description: 'Ten listo el exchange antes de empezar para cubrir mejor tu primera apuesta y ganar seguridad.',
+       href: 'https://www.betfair.es/exchange/plus/',
+       label: 'Preparar Betfair',
+       external: true,
+     },
+     {
+       id: 'sportium',
+       title: 'Empezar por Sportium',
+       description: 'Una casa sencilla y clara para arrancar con menos fricción.',
+       href: '/casas/sportium',
+       label: 'Empezar con Sportium',
+       external: false,
+     },
+   ],
+   latam: [
+     {
+       id: 'guia-inicial-latam',
+       title: 'Leer la guía inicial',
+       description: 'Empieza por la guía para entender la secuencia recomendada en LATAM.',
+       href: '/guias',
+       label: 'Abrir guías',
+       external: false,
+     },
+     {
+       id: 'betfair-latam',
+       title: 'Preparar Betfair Exchange',
+       description: 'Ten listo el exchange antes de empezar. Betfair está disponible en la mayoría de países LATAM.',
+       href: 'https://apuestas.betfair.es/latinoamerica/',
+       label: 'Preparar Betfair',
+       external: true,
+     },
+     {
+       id: 'betfair-sportsbook',
+       title: 'Empezar por Betfair Sportsbook',
+       description: 'Disponible en 15 países LATAM. Apuesta 10 USD y recibe 10 USD. Código ZRW10M.',
+       href: '/casas/betfair-sportsbook-latam',
+       label: 'Ver bono',
+       external: false,
+     },
+   ],
+ } as const
+
 export default function DashboardPage() {
   const [state, setState] = useState<UserState>(initialUserState)
   const [heroAbierto, setHero] = useState(false)
+  const [market, setMarket] = useState<Market>('espana')
 
   const refresh = useCallback(() => {
     setState(loadState())
@@ -43,6 +101,7 @@ export default function DashboardPage() {
   }, [refresh])
 
   const recomendadas = todasLasCasas
+    .filter((c) => c.market === market)
     .filter((c) => {
       const p = state.progresos[c.id]
       return !p || (p.estado !== 'completada' && p.estado !== 'descartada')
@@ -61,35 +120,36 @@ export default function DashboardPage() {
     .slice(0, 3)
 
   const bonosPendientes = state.bonos.filter((b) => !b.limpiado)
-  const startActions = [
-    {
-      id: 'guia-inicial',
-      title: 'Leer la guía inicial',
-      description: 'Empieza por la guía para entender la secuencia recomendada.',
-      href: '/guias',
-      label: 'Abrir guías',
-      external: false,
-    },
-    {
-      id: 'betfair',
-      title: 'Preparar Betfair Exchange',
-      description: 'Ten listo el exchange antes de empezar para cubrir mejor tu primera apuesta y ganar seguridad.',
-      href: 'https://www.betfair.es/exchange/plus/',
-      label: 'Preparar Betfair',
-      external: true,
-    },
-    {
-      id: 'sportium',
-      title: 'Empezar por Sportium',
-      description: 'Una casa sencilla y clara para arrancar con menos fricción.',
-      href: '/casas/sportium',
-      label: 'Empezar con Sportium',
-      external: false,
-    },
-  ] as const
+  const moneda = market === 'espana' ? '€' : 'USD'
+  const startActions = START_ACTIONS[market]
 
   return (
     <div className="flex flex-col gap-6">
+      <div className="flex gap-2">
+        <button
+          type="button"
+          onClick={() => setMarket('espana')}
+          className={`px-4 py-2 rounded-full text-sm font-bold transition-colors border ${
+            market === 'espana'
+              ? 'bg-emerald-500 border-emerald-500 text-white'
+              : 'bg-white border-stone-200 text-stone-500 hover:border-stone-400'
+          }`}
+        >
+          🇪🇸 España
+        </button>
+        <button
+          type="button"
+          onClick={() => setMarket('latam')}
+          className={`px-4 py-2 rounded-full text-sm font-bold transition-colors border ${
+            market === 'latam'
+              ? 'bg-emerald-500 border-emerald-500 text-white'
+              : 'bg-white border-stone-200 text-stone-500 hover:border-stone-400'
+          }`}
+        >
+          🌎 LATAM
+        </button>
+      </div>
+
       <section className="rounded-3xl border border-emerald-200 bg-white p-5 sm:p-6 shadow-sm">
         <div className="flex flex-col gap-2 mb-5">
           <p className="text-xs font-semibold text-emerald-600 uppercase tracking-[0.2em]">
@@ -99,7 +159,9 @@ export default function DashboardPage() {
             Si estás empezando, sigue este orden para no liarte
           </h1>
           <p className="text-sm text-stone-500">
-            Primero ve a la guía, prepara Betfair Exchange y empieza por Sportium. Después usa la calculadora cuando hagas la apuesta.
+            {market === 'espana'
+              ? 'Primero ve a la guía, prepara Betfair Exchange y empieza por Sportium. Después usa la calculadora cuando hagas la apuesta.'
+              : 'Primero ve a la guía, prepara Betfair Exchange LATAM y empieza por Betfair Sportsbook. Disponible en 15 países.'}
           </p>
         </div>
 
@@ -124,12 +186,7 @@ export default function DashboardPage() {
             )
 
             return action.external ? (
-              <a
-                key={action.id}
-                href={action.href}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <a key={action.id} href={action.href} target="_blank" rel="noopener noreferrer">
                 {card}
               </a>
             ) : (
@@ -177,7 +234,7 @@ export default function DashboardPage() {
                     <span className="font-semibold text-stone-800 text-sm truncate">{casa.nombre}</span>
                   </div>
                   <span className="text-base font-bold text-emerald-600 shrink-0">
-                    +{casa.beneficioPotencial} €
+                    +{casa.beneficioPotencial} {moneda}
                   </span>
                 </div>
 
@@ -189,7 +246,7 @@ export default function DashboardPage() {
                     {'⭐'.repeat(casa.dificultad ?? 3)} {getDificultadLabel(casa.dificultad ?? 3)}
                   </span>
                   {stakeMax > 0 && (
-                    <span className="text-xs text-stone-400">Stake {stakeMax} €</span>
+                    <span className="text-xs text-stone-400">Stake {stakeMax} {moneda}</span>
                   )}
                   {totalFases > 1 && (
                     <span className="text-xs text-stone-400">{totalFases} fases</span>
@@ -255,7 +312,9 @@ export default function DashboardPage() {
               <div className="bg-stone-50 rounded-xl p-3 border border-stone-100">
                 <p className="text-emerald-600 font-bold text-sm mb-1">① Elige una casa</p>
                 <p className="text-xs text-stone-500 leading-relaxed">
-                  Empieza por una oferta fácil como Sportium para coger ritmo.
+                  {market === 'espana'
+                    ? 'Empieza por una oferta fácil como Sportium para coger ritmo.'
+                    : 'Empieza por Betfair Sportsbook, disponible en 15 países LATAM.'}
                 </p>
               </div>
               <div className="bg-stone-50 rounded-xl p-3 border border-stone-100">
