@@ -10,7 +10,7 @@ export const casasPe: Casa[] = [
     descripcionBreve: 'Freebet S/40 tras primer depósito. Conflicto entre landing deportiva y homepage general.',
     resumen: 'Ruta sports-only: depósito S/40 → apuesta gratuita S/40. Homepage general anuncia S/100. Usar con cautela.',
     tipologia: 'apuesta-recibe',
-    beneficioPotencial: 8,
+    beneficioPotencial: 12,
     dificultad: 3,
     requisitos: [
       'Nuevo usuario.',
@@ -86,7 +86,7 @@ export const casasPe: Casa[] = [
     descripcionBreve: 'Bono de primer depósito 100% hasta S/500 con rollover.',
     resumen: 'Rollover sobre depósito+bono. Plazo 30 días. Mínimo y multiplicador exactos pendientes.',
     tipologia: 'rollover',
-    beneficioPotencial: 0,
+    beneficioPotencial: 146,
     dificultad: 3,
     requisitos: [
       'Nuevo usuario.',

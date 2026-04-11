@@ -10,7 +10,7 @@ export const casasMx: Casa[] = [
     descripcionBreve: 'Bono de primer depósito hasta MXN 3.000 con rollover. Condiciones exactas pendientes.',
     resumen: 'Rollover sobre depósito+bono. Bono máximo MXN 3.000. Mínimo, multiplicador y cuota mínima pendientes de confirmar oficialmente.',
     tipologia: 'rollover',
-    beneficioPotencial: 0,
+    beneficioPotencial: 172,
     dificultad: 3,
     requisitos: [
       'Nuevo usuario.',
@@ -87,7 +87,7 @@ export const casasMx: Casa[] = [
     descripcionBreve: 'Tres bonos deportivos distintos en el registro. Elegir uno durante el alta.',
     resumen: 'Reembolso 1ª apuesta, duplicado depósito o duplicado 1ª apuesta ganada. Hasta MXN 3.500. Freebets de 7 días.',
     tipologia: 'apuesta-recibe',
-    beneficioPotencial: 2200,
+    beneficioPotencial: 196,
     dificultad: 3,
     requisitos: [
       'Nuevo cliente residente en México.',
@@ -199,7 +199,7 @@ export const casasMx: Casa[] = [
     descripcionBreve: '100% hasta MXN 5.000 con rollover ×5. Conflicto oficial en depósito mínimo.',
     resumen: 'Rollover ×5 sobre depósito+bono. Momio mínimo 1.50. Plazo 60 días. Mínimo seguro: MXN 100.',
     tipologia: 'rollover',
-    beneficioPotencial: 1800,
+    beneficioPotencial: 287,
     dificultad: 4,
     requisitos: [
       'Nuevo usuario.',

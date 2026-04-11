@@ -10,7 +10,7 @@ export const casasEc: Casa[] = [
     descripcionBreve: 'Bono de primer depósito 100% hasta $300 USD con rollover.',
     resumen: 'Rollover sobre depósito+bono. Mínimo $10 USD. Multiplicador exacto pendiente.',
     tipologia: 'rollover',
-    beneficioPotencial: 0,
+    beneficioPotencial: 300,
     dificultad: 3,
     requisitos: [
       'Nuevo usuario.',
@@ -63,7 +63,7 @@ export const casasEc: Casa[] = [
     descripcionBreve: '100% hasta $100 USD. Rollover, cuota mínima y plazo pendientes de confirmar.',
     resumen: 'Placeholder. Bono confirmado en importe. No operar hasta validar wagering, cuota mínima y plazo dentro de la cuenta.',
     tipologia: 'rollover',
-    beneficioPotencial: 0,
+    beneficioPotencial: 100,
     dificultad: 5,
     requisitos: [
       'Nuevo usuario residente en Ecuador.',

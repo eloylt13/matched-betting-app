@@ -317,7 +317,7 @@ export const casasCo: Casa[] = [
     descripcionBreve: 'Freebet hasta COP 50.000 tras cumplir requisito previo de apuesta con código DEPORTES.',
     resumen: 'Dobla tu 1er Depósito en formato freebet. Código DEPORTES. Cuota ≥ 1.50. 7 días para usar.',
     tipologia: 'apuesta-recibe',
-    beneficioPotencial: 30000,
+    beneficioPotencial: 13,
     dificultad: 2,
     requisitos: [
       'Nuevo cliente.',
