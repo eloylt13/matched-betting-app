@@ -138,7 +138,12 @@ const FAQS = [
   {
     pregunta: '¿Qué incluye ahora mismo?',
     respuesta:
-      'Incluye onboarding, dashboard, calculadora, casas con fases, seguimiento de bonos, historial y guías integradas.',
+      'Incluye onboarding, dashboard, calculadora, casas con fases, seguimiento de bonos, historial, guías integradas y pronósticos con combinada diaria gratuita.',
+  },
+  {
+    pregunta: '¿Qué es la combinada diaria gratuita?',
+    respuesta:
+      'Cada día publicamos una selección de picks generada automáticamente para usarla como apuesta cualificante o simplemente seguirla. Incluye una explicación de cómo se construye la selección. Accede desde la sección Pronósticos en el menú superior.',
   },
 ]
 
