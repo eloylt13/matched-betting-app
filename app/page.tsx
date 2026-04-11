@@ -309,7 +309,7 @@ export default function LandingPage() {
               <p className="text-[13px] text-stone-400 mt-1 leading-tight">casas organizadas</p>
             </div>
             <div className="py-4 sm:py-0 sm:px-6 border-l border-stone-200">
-              <p className="text-3xl sm:text-4xl font-bold text-emerald-600">+2.500€</p>
+              <p className="text-2xl sm:text-3xl font-bold text-emerald-600">+2.500€ / +3.000$</p>
               <p className="text-[13px] text-stone-400 mt-1 leading-tight">en bonos documentados</p>
             </div>
             <div className="py-4 sm:py-0 sm:px-6 border-t sm:border-t-0 border-stone-200 sm:border-l">
