@@ -10,7 +10,7 @@ export const casasReg: Casa[] = [
     descripcionBreve: 'Bono de depósito con rollover doble. Países LATAM e importes USD pendientes de confirmar.',
     resumen: 'Promo rollover en dos capas: 1x depósito para desbloquear y 6x depósito+bono para retirar. Usable con cautela.',
     tipologia: 'rollover',
-    beneficioPotencial: 0,
+    beneficioPotencial: 141,
     dificultad: 5,
     requisitos: [
       'Nuevo usuario.',

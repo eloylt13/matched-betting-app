@@ -40,13 +40,13 @@ function getTiempoEstimado(tipologia?: string): string {
     return "15–20 min"
 }
 
-function getSiguienteAccion(estado: EstadoCasa, faseActual: number, totalFases: number, casa: Casa): string {
+function getSiguienteAccion(estado: EstadoCasa, faseActual: number, totalFases: number, casa: Casa, simbolo: string): string {
     if (estado === "completada") return "Oferta completada. ¡Bien hecho!"
     if (estado === "descartada") return "Oferta descartada."
     if (estado === "no_empezada") {
         const stakeF1 = casa.promos[0]?.fases[0]?.stakeRecomendado
         return stakeF1
-            ? `Regístrate y completa la Fase 1 con stake ${stakeF1} €`
+            ? `Regístrate y completa la Fase 1 con stake ${stakeF1} ${simbolo}`
             : "Regístrate y completa la Fase 1"
     }
     const fase = casa.promos.flatMap(p => p.fases).find(f => f.numero === faseActual)
@@ -128,7 +128,7 @@ function ChecklistFase({ pasos, faseId }: { pasos: string[]; faseId: string }) {
 // ── Bloque de fase ────────────────────────────────────────────────────────────
 function FaseCard({
     fase, idx, esFaseActual, esFaseCompletada, totalFasesPromo,
-    onAvanzar, onCompletar, estadoOferta
+    onAvanzar, onCompletar, estadoOferta, simbolo
 }: {
     fase: Fase
     idx: number
@@ -138,6 +138,7 @@ function FaseCard({
     onAvanzar: (n: number) => void
     onCompletar: () => void
     estadoOferta: EstadoCasa
+    simbolo: string
 }) {
     const [confirmando, setConfirmando] = useState(false)
     const [checks, setChecks] = useState({ deposito: false, apuesta: false, cobertura: false })
@@ -166,12 +167,12 @@ function FaseCard({
                 <div className="flex items-center gap-2 shrink-0 ml-2">
                     {fase.freebetEstimada && (
                         <span className="text-xs bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full font-medium">
-                            ~{fase.freebetEstimada} €
+                            ~{fase.freebetEstimada} {simbolo}
                         </span>
                     )}
                     {fase.stakeRecomendado && (
                         <span className="text-xs bg-stone-100 text-stone-500 px-2 py-0.5 rounded-full">
-                            Stake: {fase.stakeRecomendado} €
+                            Stake: {fase.stakeRecomendado} {simbolo}
                         </span>
                     )}
                 </div>
@@ -188,7 +189,7 @@ function FaseCard({
                         </div>
                         <div className="bg-stone-50 rounded-xl p-3 border border-stone-100">
                             <p className="text-[10px] font-bold text-stone-400 uppercase tracking-wide mb-1">Necesitas tener</p>
-                            <p className="text-sm font-bold text-stone-800">{fase.stakeRecomendado} €</p>
+                            <p className="text-sm font-bold text-stone-800">{fase.stakeRecomendado} {simbolo}</p>
                             <p className="text-[10px] text-stone-400">disponibles para apostar</p>
                         </div>
                     </div>
@@ -402,12 +403,13 @@ export default function CasaDetalleClient({ casaId }: CasaDetalleClientProps) {
     }
 
     const style = TIPOLOGIA_STYLE[casa.tipologia ?? "apuesta-recibe"] ?? TIPOLOGIA_STYLE["apuesta-recibe"]
+    const simbolo = casa.market === "latam" ? "$" : "€"
     const estado = progreso?.estado ?? "no_empezada"
     const faseActual = progreso?.faseActual ?? 1
     const todasFases = casa.promos.flatMap(p => p.fases)
     const totalFases = todasFases.length
     const completada = estado === "completada"
-    const siguienteAccion = getSiguienteAccion(estado, faseActual, totalFases, casa)
+    const siguienteAccion = getSiguienteAccion(estado, faseActual, totalFases, casa, simbolo)
     const tiempoEstimado = getTiempoEstimado(casa.tipologia)
 
     return (
@@ -445,7 +447,7 @@ export default function CasaDetalleClient({ casaId }: CasaDetalleClientProps) {
                         </div>
                     </div>
                     <div className="text-right shrink-0">
-                        <p className="text-3xl font-bold text-gray-900">+{casa.beneficioPotencial} €</p>
+                        <p className="text-3xl font-bold text-gray-900">+{casa.beneficioPotencial} {simbolo}</p>
                         <p className="text-xs text-gray-400">potencial estimado</p>
                     </div>
                 </div>
@@ -570,6 +572,7 @@ export default function CasaDetalleClient({ casaId }: CasaDetalleClientProps) {
                             onAvanzar={handleFase}
                             onCompletar={() => handleEstado("completada")}
                             estadoOferta={estado}
+                            simbolo={simbolo}
                         />
                     ))}
                 </div>

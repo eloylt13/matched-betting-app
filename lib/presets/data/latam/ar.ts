@@ -10,7 +10,7 @@ export const casasAr: Casa[] = [
     descripcionBreve: 'Bono de primer depósito hasta ARS 500.000 con rollover. Disponible por jurisdicción.',
     resumen: 'Opera en CABA, Prov. Buenos Aires y Mendoza. Rollover sobre depósito+bono. Mínimo y multiplicador exactos pendientes.',
     tipologia: 'rollover',
-    beneficioPotencial: 0,
+    beneficioPotencial: 219,
     dificultad: 3,
     requisitos: [
       'Nuevo usuario.',

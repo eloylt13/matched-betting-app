@@ -10,7 +10,7 @@ export const casasCl: Casa[] = [
     descripcionBreve: 'Freebet por tramos hasta CLP 100.000. Activación manual. Ganancias con wagering ×8.',
     resumen: 'Tier mínima: apuesta CLP 20.000 pre-match a cuota ≥ 2.00 → freebet CLP 20.000 válida 7 días. Ganancias netas con ×8.',
     tipologia: 'apuesta-recibe',
-    beneficioPotencial: 109,
+    beneficioPotencial: 111,
     dificultad: 4,
     requisitos: [
       'Nuevo usuario.',
@@ -87,7 +87,7 @@ export const casasCl: Casa[] = [
     descripcionBreve: 'Bono de primer depósito 100% hasta CLP 200.000 con rollover.',
     resumen: 'Rollover sobre depósito+bono. Plazo 30 días. Multiplicador exacto pendiente de confirmar.',
     tipologia: 'rollover',
-    beneficioPotencial: 218,
+    beneficioPotencial: 223,
     dificultad: 3,
     requisitos: [
       'Nuevo usuario.',
@@ -140,7 +140,7 @@ export const casasCl: Casa[] = [
     descripcionBreve: 'Reembolso hasta CLP 100.000 en freebets si pierde la primera apuesta triple.',
     resumen: 'Primera apuesta triple o superior a cuota ≥ 1.25 por selección. Si pierde → freebets hasta CLP 100.000. Disponible solo vía app.',
     tipologia: 'reembolso',
-    beneficioPotencial: 109,
+    beneficioPotencial: 56,
     dificultad: 2,
     requisitos: [
       'Nuevo cliente.',
@@ -215,7 +215,7 @@ export const casasCl: Casa[] = [
     descripcionBreve: '100% hasta CLP 200.000. Rollover, cuota mínima y plazo pendientes de confirmar.',
     resumen: 'Placeholder. Bono confirmado en importe. No operar hasta validar wagering, cuota mínima y plazo dentro de la cuenta.',
     tipologia: 'rollover',
-    beneficioPotencial: 224,
+    beneficioPotencial: 223,
     dificultad: 5,
     requisitos: [
       'Nuevo usuario residente en Chile.',

@@ -86,7 +86,7 @@ export const casasPe: Casa[] = [
     descripcionBreve: 'Bono de primer depósito 100% hasta S/500 con rollover.',
     resumen: 'Rollover sobre depósito+bono. Plazo 30 días. Mínimo y multiplicador exactos pendientes.',
     tipologia: 'rollover',
-    beneficioPotencial: 146,
+    beneficioPotencial: 147,
     dificultad: 3,
     requisitos: [
       'Nuevo usuario.',

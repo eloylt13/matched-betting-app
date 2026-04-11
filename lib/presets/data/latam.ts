@@ -18,7 +18,7 @@ export const casasCo: Casa[] = [
     descripcionBreve: 'Casa colombiana con dos bonos de bienvenida en deportivas, ambos con rollover.',
     resumen: 'Wplay CO no entra como apuesta-recibe limpia: conviven un bono registro de $108.000 sin depósito y un Bono Debut del 100% hasta $200.000, ambos con rollover.',
     tipologia: 'rollover',
-    beneficioPotencial: 40,
+    beneficioPotencial: 8,
     dificultad: 5,
     requisitos: [
       'Cuenta nueva en Wplay.co Colombia',
@@ -317,7 +317,7 @@ export const casasCo: Casa[] = [
     descripcionBreve: 'Freebet hasta COP 50.000 tras cumplir requisito previo de apuesta con código DEPORTES.',
     resumen: 'Dobla tu 1er Depósito en formato freebet. Código DEPORTES. Cuota ≥ 1.50. 7 días para usar.',
     tipologia: 'apuesta-recibe',
-    beneficioPotencial: 13,
+    beneficioPotencial: 8,
     dificultad: 2,
     requisitos: [
       'Nuevo cliente.',
