@@ -206,28 +206,34 @@ function OddsMatcherCalc({
   let sc = 0
   let bGana = 0
   let bPierde = 0
+  let liability = 0
 
   if (s > 0 && cbm > 0 && ce > 0) {
     if (modo === 'dinero-real') {
-      sc = (s * cbm) / (ce - com * ce)
-      bGana = s * (cbm - 1) - sc * (ce - 1) * (1 - com)
+      sc = (s * cbm) / (ce - com)
+      liability = sc * (ce - 1)
+      bGana = s * (cbm - 1) - liability
       bPierde = sc * (1 - com) - s
     } else if (modo === 'apuesta-gratis') {
-      sc = (s * (cbm - 1)) / (ce * (1 - com))
-      bGana = s * (cbm - 1) - sc * (ce - 1) * (1 - com)
+      sc = (s * (cbm - 1)) / (ce - com)
+      liability = sc * (ce - 1)
+      bGana = s * (cbm - 1) - liability
       bPierde = sc * (1 - com)
     } else if (modo === 'bonos') {
-      sc = (s * cbm) / (ce * (1 - com))
-      bGana = s * (cbm - 1) - sc * (ce - 1) * (1 - com)
-      bPierde = sc * (1 - com) - s
+      sc = (s * cbm) / (ce - com)
+      liability = sc * (ce - 1)
+      bGana = s * cbm - s - liability
+      bPierde = sc * (1 - com)
     } else if (modo === 'reembolso') {
       const vReb = reb * 0.70
-      sc = Math.max(0, (s * cbm - vReb) / (ce * (1 - com)))
-      bGana = s * (cbm - 1) - sc * (ce - 1) * (1 - com)
+      sc = Math.max(0, (s * cbm - vReb) / (ce - com))
+      liability = sc * (ce - 1)
+      bGana = s * (cbm - 1) - liability
       bPierde = sc * (1 - com) - s + vReb
     } else if (modo === 'rollover') {
-      sc = (s * cbm) / (ce - com * ce)
-      bGana = s * (cbm - 1) - sc * (ce - 1) * (1 - com)
+      sc = (s * cbm) / (ce - com)
+      liability = sc * (ce - 1)
+      bGana = s * (cbm - 1) - liability
       bPierde = sc * (1 - com) - s
     }
   }
@@ -355,7 +361,7 @@ function OddsMatcherCalc({
               <div>
                 <p className="text-2xl font-bold text-rose-700">{sc.toFixed(2)} {moneda}</p>
                 <p className="text-xs text-rose-500 mt-0.5">
-                  A cuota {ce} · Riesgo (liability): <strong>{(sc * (ce - 1)).toFixed(2)} {moneda}</strong>
+                  A cuota {ce} · Riesgo (liability): <strong>{liability.toFixed(2)} {moneda}</strong>
                 </p>
               </div>
               <a
@@ -373,7 +379,7 @@ function OddsMatcherCalc({
             label1="Apuesta a favor gana"
             label2="Apuesta en contra gana"
             bm1={s * (cbm - 1)}
-            bm2={sc * (ce - 1)}
+            bm2={liability}
             total1={s}
             total2={sc * (1 - com)}
             benefSiGana={bGana}

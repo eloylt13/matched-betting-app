@@ -3,18 +3,21 @@
 import type { InputsFreeBet, ResultadoFreeBet } from '@/types/calc'
 
 export function calcFreeBet(inputs: InputsFreeBet): ResultadoFreeBet {
-    const { stake, cuotaBack, cuotaLay, comision } = inputs
+    const { stake, cuotaBack, cuotaLay, comision, tipo = 'snr' } = inputs
     const comisionDecimal = comision / 100
 
-    // En freebet SNR no se recupera el stake si gana
-    const layStake = (stake * (cuotaBack - 1)) / (cuotaLay - comisionDecimal)
+    // En freebet SNR no se recupera el stake si gana; en SR sí se recupera
+    const layStake = tipo === 'sr'
+        ? (stake * cuotaBack) / (cuotaLay - comisionDecimal)
+        : (stake * (cuotaBack - 1)) / (cuotaLay - comisionDecimal)
 
     // Dinero bloqueado en el exchange
     const responsabilidad = layStake * (cuotaLay - 1)
 
     // Escenario 1: gana la apuesta back (casa)
-    // En SNR solo se cobran las ganancias, no el stake
-    const resultadoCasaGana = stake * (cuotaBack - 1)
+    const resultadoCasaGana = tipo === 'sr'
+        ? stake * cuotaBack - stake
+        : stake * (cuotaBack - 1)
     const resultadoExchangePierde = -responsabilidad
     const beneficioSiGana = resultadoCasaGana + resultadoExchangePierde
 

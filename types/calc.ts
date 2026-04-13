@@ -14,6 +14,7 @@ export interface InputsFreeBet {
     cuotaBack: number
     cuotaLay: number
     comision: number
+    tipo?: 'snr' | 'sr'
 }
 
 export interface InputsReembolso {

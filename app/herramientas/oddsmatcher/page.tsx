@@ -29,36 +29,41 @@ export default function OddsMatcherPage() {
     const com = (parseFloat(comision) || 0) / 100
     const reb = parseFloat(reembolso) || 0
 
-    let stakeContra = 0, benefSiGana = 0, benefSiPierde = 0
+    let stakeContra = 0, benefSiGana = 0, benefSiPierde = 0, liability = 0
 
     if (s > 0 && cbm > 0 && ce > 0) {
         if (modo === 'dinero-real') {
-            stakeContra = (s * cbm) / (ce - com * ce)
-            benefSiGana = s * (cbm - 1) - stakeContra * (ce - 1) * (1 - com)
+            stakeContra = (s * cbm) / (ce - com)
+            liability = stakeContra * (ce - 1)
+            benefSiGana = s * (cbm - 1) - liability
             benefSiPierde = stakeContra * (1 - com) - s
         } else if (modo === 'apuesta-gratis') {
-            stakeContra = (s * (cbm - 1)) / (ce * (1 - com))
-            benefSiGana = s * (cbm - 1) - stakeContra * (ce - 1) * (1 - com)
+            stakeContra = (s * (cbm - 1)) / (ce - com)
+            liability = stakeContra * (ce - 1)
+            benefSiGana = s * (cbm - 1) - liability
             benefSiPierde = stakeContra * (1 - com)
         } else if (modo === 'bonos') {
-            stakeContra = (s * cbm) / (ce * (1 - com))
-            benefSiGana = s * (cbm - 1) - stakeContra * (ce - 1) * (1 - com)
-            benefSiPierde = stakeContra * (1 - com) - s
+            stakeContra = (s * cbm) / (ce - com)
+            liability = stakeContra * (ce - 1)
+            benefSiGana = s * cbm - s - liability
+            benefSiPierde = stakeContra * (1 - com)
         } else if (modo === 'reembolso') {
             const valorReb = reb * 0.70
-            stakeContra = Math.max(0, (s * cbm - valorReb) / (ce * (1 - com)))
-            benefSiGana = s * (cbm - 1) - stakeContra * (ce - 1) * (1 - com)
+            stakeContra = Math.max(0, (s * cbm - valorReb) / (ce - com))
+            liability = stakeContra * (ce - 1)
+            benefSiGana = s * (cbm - 1) - liability
             benefSiPierde = stakeContra * (1 - com) - s + valorReb
         } else if (modo === 'rollover') {
-            stakeContra = (s * cbm) / (ce - com * ce)
-            benefSiGana = s * (cbm - 1) - stakeContra * (ce - 1) * (1 - com)
+            stakeContra = (s * cbm) / (ce - com)
+            liability = stakeContra * (ce - 1)
+            benefSiGana = s * (cbm - 1) - liability
             benefSiPierde = stakeContra * (1 - com) - s
         }
     }
 
     const beneficio = Math.min(benefSiGana, benefSiPierde)
     const rating = s > 0 ? ((beneficio + s) / s) * 100 : 0
-    const riesgo = stakeContra * (ce - 1)
+    const riesgo = liability
     const retencion = modo === 'apuesta-gratis' && s > 0 ? (benefSiPierde / s) * 100 : null
 
     const modoActual = MODOS.find(m => m.id === modo)!
@@ -197,7 +202,7 @@ export default function OddsMatcherPage() {
                                 <tr className="border-t border-gray-100">
                                     <td className="px-4 py-2.5 text-xs font-medium text-green-700 bg-green-50">✅ A FAVOR GANA</td>
                                     <td className="px-4 py-2.5 text-xs text-right font-mono text-green-600">+{(s * (cbm - 1)).toFixed(2)}</td>
-                                    <td className="px-4 py-2.5 text-xs text-right font-mono text-red-500">-{(stakeContra * (ce - 1)).toFixed(2)}</td>
+                                    <td className="px-4 py-2.5 text-xs text-right font-mono text-red-500">-{liability.toFixed(2)}</td>
                                     <td className={`px-4 py-2.5 text-xs text-right font-bold ${benefSiGana >= 0 ? 'text-green-600' : 'text-red-500'}`}>
                                         {benefSiGana >= 0 ? '+' : ''}{benefSiGana.toFixed(2)}
                                     </td>

@@ -12,6 +12,7 @@ const defaultInputs: InputsFreeBet = {
   cuotaBack: 3.0,
   cuotaLay: 3.1,
   comision: 2,
+  tipo: 'snr',
 }
 
 function StatCard({ label, value, sub }: { label: string; value: string; sub?: string }) {
@@ -54,10 +55,28 @@ function Field({
   )
 }
 
+function ToggleTipo({ value, onChange }: { value: 'snr' | 'sr'; onChange: (tipo: 'snr' | 'sr') => void }) {
+  return (
+    <div className="flex flex-col gap-1.5">
+      <label className="text-xs font-medium text-zinc-400 uppercase tracking-wider">Tipo</label>
+      <select
+        value={value}
+        onChange={(e) => onChange(e.target.value as 'snr' | 'sr')}
+        className="w-full rounded-lg bg-zinc-800 border border-zinc-600 px-3 py-2 text-sm text-zinc-100
+          focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent
+          transition-colors hover:border-zinc-500"
+      >
+        <option value="snr">SNR</option>
+        <option value="sr">SR</option>
+      </select>
+    </div>
+  )
+}
+
 export default function BlockFreeBet() {
   const [inputs, setInputs] = useState<InputsFreeBet>(defaultInputs)
 
-  const set = (key: keyof InputsFreeBet) => (v: number) =>
+  const set = (key: 'stake' | 'cuotaBack' | 'cuotaLay' | 'comision') => (v: number) =>
     setInputs((prev) => ({ ...prev, [key]: v }))
 
   const result: ResultadoFreeBet = calcFreeBet(inputs)
@@ -73,6 +92,10 @@ export default function BlockFreeBet() {
     <div className="flex flex-col gap-6">
       {/* Inputs */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+        <ToggleTipo
+          value={inputs.tipo ?? 'snr'}
+          onChange={(tipo: 'snr' | 'sr') => setInputs((prev) => ({ ...prev, tipo }))}
+        />
         <Field label="Free Bet (€)" value={inputs.stake} onChange={set('stake')} step={1} min={1} />
         <Field label="Cuota Back" value={inputs.cuotaBack} onChange={set('cuotaBack')} />
         <Field label="Cuota Lay" value={inputs.cuotaLay} onChange={set('cuotaLay')} />
@@ -94,8 +117,7 @@ export default function BlockFreeBet() {
       <ResultsTable escenarios={result.escenarios} />
 
       <p className="text-xs text-zinc-500">
-        💡 La free bet SNR no devuelve el stake si gana. Cuotas altas mejoran la retención. El
-        objetivo es extraer el máximo valor en dinero real.
+        💡 En SNR no se devuelve el stake; en SR sí. Ajusta el tipo correcto antes de copiar el lay stake.
       </p>
     </div>
   )
