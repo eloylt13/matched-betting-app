@@ -497,21 +497,19 @@ function OddsMatcherCalc({
   )
 }
 
-function DutcherCalc({
+ function DutcherCalc({
   forcedMode,
   forceSyncKey,
   moneda,
-}: {
+ }: {
   forcedMode?: ModoDutcher
   forceSyncKey: number
   moneda: Moneda
-}) {
+ }) {
   const [modo, setModo] = useState<ModoDutcher>(forcedMode ?? 'dinero-real')
   const [stake, setStake] = useState('100')
-  const [bm1, setBm1] = useState('Bookmaker 1')
-  const [bm2, setBm2] = useState('Bookmaker 2')
-  const [c1, setC1] = useState('2.50')
-  const [c2, setC2] = useState('2.50')
+  const [c1, setC1] = useState('1.90')
+  const [c2, setC2] = useState('1.83')
   const [copiado, setCopiado] = useState(false)
 
   useEffect(() => {
@@ -542,7 +540,7 @@ function DutcherCalc({
   const resultadoLabel = beneficio >= 0 ? 'Beneficio estimado' : 'Pérdida calificante'
 
   const handleCopiar = () => {
-    const texto = `${bm1}: ${s.toFixed(2)} ${moneda} @ ${cc1} | ${bm2}: ${sc2.toFixed(2)} ${moneda} @ ${cc2} | Resultado: ${beneficio >= 0 ? '+' : ''}${beneficio.toFixed(2)} ${moneda}`
+    const texto = `Bookmaker 1: ${s.toFixed(2)} ${moneda} @ ${cc1} | Bookmaker 2: ${sc2.toFixed(2)} ${moneda} @ ${cc2} | Resultado: ${beneficio >= 0 ? '+' : ''}${beneficio.toFixed(2)} ${moneda}`
     navigator.clipboard.writeText(texto).then(() => {
       setCopiado(true)
       setTimeout(() => setCopiado(false), 2000)
@@ -573,18 +571,12 @@ function DutcherCalc({
 
           <div className="bg-teal-50 rounded-xl p-4 space-y-3 border border-teal-100">
             <p className="text-xs font-bold text-teal-700">Paso 1 · BOOKMAKER 1 · APUESTA A FAVOR</p>
-            <InputField label="Nombre del bookmaker" value={bm1} onChange={setBm1} type="text" />
             <InputField label="Cuota (resultado 1)" value={c1} onChange={setC1} microcopy="Ej: Over 2.5, resultado 1X, etc." />
           </div>
 
           <div className="bg-purple-50 rounded-xl p-4 space-y-3 border border-purple-100">
             <p className="text-xs font-bold text-purple-700">Paso 2 ? BOOKMAKER 2 ? RESULTADO CONTRARIO</p>
-            <InputField label="Nombre del bookmaker" value={bm2} onChange={setBm2} type="text" />
             <InputField label="Cuota (resultado contrario)" value={c2} onChange={setC2} microcopy="Ej: Under 2.5, resultado 2, etc." />
-          </div>
-
-          <div className="bg-gray-50 rounded-xl p-3 text-xs text-gray-500 border border-gray-100">
-            Asegúrate de que los resultados sean mutuamente excluyentes antes de ejecutar.
           </div>
         </div>
 
@@ -607,20 +599,20 @@ function DutcherCalc({
           </div>
 
           <div className="bg-teal-50 border border-teal-100 rounded-2xl p-4">
-            <p className="text-xs font-bold text-teal-600 mb-1">Paso 1 · {bm1.toUpperCase()} · APUESTA A FAVOR</p>
+            <p className="text-xs font-bold text-teal-600 mb-1">Paso 1 · BOOKMAKER 1 · APUESTA A FAVOR</p>
             <p className="text-2xl font-bold text-teal-700">{s.toFixed(2)} {moneda}</p>
             <p className="text-xs text-teal-500">A cuota {cc1.toFixed(2)}</p>
           </div>
 
           <div className="bg-purple-50 border border-purple-100 rounded-2xl p-4">
-            <p className="text-xs font-bold text-purple-600 mb-1">Paso 2 · {bm2.toUpperCase()} · RESULTADO CONTRARIO</p>
+            <p className="text-xs font-bold text-purple-600 mb-1">Paso 2 · BOOKMAKER 2 · RESULTADO CONTRARIO</p>
             <p className="text-2xl font-bold text-purple-700">{sc2.toFixed(2)} {moneda}</p>
             <p className="text-xs text-purple-500">A cuota {cc2.toFixed(2)}</p>
           </div>
 
           <TablaResultado
-            label1={`${bm1} gana`}
-            label2={`${bm2} gana`}
+            label1="Bookmaker 1 gana"
+            label2="Bookmaker 2 gana"
             bm1={s * (cc1 - 1)}
             bm2={sc2}
             total1={s}

@@ -9,8 +9,8 @@ import ResultsTable from './ResultsTable'
 
 const defaultInputs: InputsDutcher = {
   stakeCasa1: 20,
-  cuotaCasa1: 2.5,
-  cuotaCasa2: 2.0,
+  cuotaCasa1: 1.9,
+  cuotaCasa2: 1.83,
 }
 
 function StatCard({ label, value, sub }: { label: string; value: string; sub?: string }) {

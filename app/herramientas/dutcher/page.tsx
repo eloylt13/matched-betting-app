@@ -15,10 +15,8 @@ const MODOS: { id: Modo; label: string; color: string }[] = [
 export default function DutcherPage() {
     const [modo, setModo] = useState<Modo>('dinero-real')
     const [stake, setStake] = useState('100')
-    const [cuotaBM1, setCuotaBM1] = useState('2.50')
-    const [cuotaBM2, setCuotaBM2] = useState('2.50')
-    const [bm1, setBm1] = useState('Bookmaker 1')
-    const [bm2, setBm2] = useState('Bookmaker 2')
+    const [cuotaBM1, setCuotaBM1] = useState('1.90')
+    const [cuotaBM2, setCuotaBM2] = useState('1.83')
 
     const s = parseFloat(stake) || 0
     const c1 = parseFloat(cuotaBM1) || 0
@@ -71,7 +69,7 @@ export default function DutcherPage() {
             {/* Ejemplo visual */}
             <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 text-sm text-amber-800">
                 <p className="font-bold mb-1">💡 Ejemplo</p>
-                <p>Partido Hoffenheim vs Colonia. BM1 ofrece <strong>Over 2.5 a 2.50</strong> y BM2 ofrece <strong>Under 2.5 a 2.50</strong>.
+                <p>Partido Hoffenheim vs Colonia. BM1 ofrece <strong>Over 2.5 a 1.90</strong> y BM2 ofrece <strong>Under 2.5 a 1.83</strong>.
                     Apostamos 100€ en BM1 y la calculadora te dice cuánto apostar en BM2 para cubrirte.</p>
             </div>
 
@@ -104,11 +102,6 @@ export default function DutcherPage() {
                     <div className="bg-teal-50 rounded-xl p-4 space-y-3">
                         <p className="text-xs font-bold text-teal-700">BOOKMAKER 1 (apuesta FAVOR)</p>
                         <div>
-                            <label className="block text-xs text-teal-600 mb-1">Nombre del bookmaker</label>
-                            <input type="text" value={bm1} onChange={e => setBm1(e.target.value)}
-                                className="w-full border border-teal-200 bg-white px-3 py-2 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-300" />
-                        </div>
-                        <div>
                             <label className="block text-xs text-teal-600 mb-1">Cuota (Over / resultado 1)</label>
                             <input type="number" value={cuotaBM1} onChange={e => setCuotaBM1(e.target.value)} step="0.01" min="1"
                                 className="w-full border border-teal-200 bg-white px-3 py-2 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-300" />
@@ -118,11 +111,6 @@ export default function DutcherPage() {
                     {/* BM2 */}
                     <div className="bg-purple-50 rounded-xl p-4 space-y-3">
                         <p className="text-xs font-bold text-purple-700">BOOKMAKER 2 (apuesta FAVOR opuesto)</p>
-                        <div>
-                            <label className="block text-xs text-purple-600 mb-1">Nombre del bookmaker</label>
-                            <input type="text" value={bm2} onChange={e => setBm2(e.target.value)}
-                                className="w-full border border-purple-200 bg-white px-3 py-2 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-300" />
-                        </div>
                         <div>
                             <label className="block text-xs text-purple-600 mb-1">Cuota (Under / resultado opuesto)</label>
                             <input type="number" value={cuotaBM2} onChange={e => setCuotaBM2(e.target.value)} step="0.01" min="1"
@@ -150,14 +138,14 @@ export default function DutcherPage() {
 
                     {/* BM1 instrucción */}
                     <div className="bg-teal-50 border border-teal-100 rounded-2xl p-4">
-                        <p className="text-xs font-bold text-teal-600 mb-2">📗 {bm1.toUpperCase()} · APUESTA A FAVOR</p>
+                        <p className="text-xs font-bold text-teal-600 mb-2">📗 BOOKMAKER 1 · APUESTA A FAVOR</p>
                         <p className="text-2xl font-bold text-teal-700">{s.toFixed(2)} €</p>
                         <p className="text-xs text-teal-500 mt-1">A cuota {c1.toFixed(2)} (Over / resultado principal)</p>
                     </div>
 
                     {/* BM2 instrucción */}
                     <div className="bg-purple-50 border border-purple-100 rounded-2xl p-4">
-                        <p className="text-xs font-bold text-purple-600 mb-2">📘 {bm2.toUpperCase()} · APUESTA OPUESTA</p>
+                        <p className="text-xs font-bold text-purple-600 mb-2">📘 BOOKMAKER 2 · APUESTA OPUESTA</p>
                         <p className="text-2xl font-bold text-purple-700">{stakeBM2.toFixed(2)} €</p>
                         <p className="text-xs text-purple-500 mt-1">A cuota {c2.toFixed(2)} (Under / resultado contrario)</p>
                     </div>
@@ -168,14 +156,14 @@ export default function DutcherPage() {
                             <thead className="bg-gray-50">
                                 <tr>
                                     <th className="text-left px-4 py-2 text-xs text-gray-500 font-semibold">ESCENARIO</th>
-                                    <th className="text-right px-4 py-2 text-xs text-gray-500 font-semibold">{bm1}</th>
-                                    <th className="text-right px-4 py-2 text-xs text-gray-500 font-semibold">{bm2}</th>
+                                    <th className="text-right px-4 py-2 text-xs text-gray-500 font-semibold">Bookmaker 1</th>
+                                    <th className="text-right px-4 py-2 text-xs text-gray-500 font-semibold">Bookmaker 2</th>
                                     <th className="text-right px-4 py-2 text-xs text-gray-500 font-semibold">TOTAL</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr className="border-t border-gray-100">
-                                    <td className="px-4 py-2.5 text-xs font-medium text-teal-700 bg-teal-50">✅ {bm1} gana</td>
+                                    <td className="px-4 py-2.5 text-xs font-medium text-teal-700 bg-teal-50">✅ Bookmaker 1 gana</td>
                                     <td className="px-4 py-2.5 text-xs text-right font-mono text-green-600">+{(s * (c1 - 1)).toFixed(2)}</td>
                                     <td className="px-4 py-2.5 text-xs text-right font-mono text-red-500">-{stakeBM2.toFixed(2)}</td>
                                     <td className={`px-4 py-2.5 text-xs text-right font-bold ${benefSiBM1Gana >= 0 ? 'text-green-600' : 'text-red-500'}`}>
@@ -183,7 +171,7 @@ export default function DutcherPage() {
                                     </td>
                                 </tr>
                                 <tr className="border-t border-gray-100">
-                                    <td className="px-4 py-2.5 text-xs font-medium text-purple-700 bg-purple-50">✅ {bm2} gana</td>
+                                    <td className="px-4 py-2.5 text-xs font-medium text-purple-700 bg-purple-50">✅ Bookmaker 2 gana</td>
                                     <td className="px-4 py-2.5 text-xs text-right font-mono text-red-500">-{s.toFixed(2)}</td>
                                     <td className="px-4 py-2.5 text-xs text-right font-mono text-green-600">+{(stakeBM2 * (c2 - 1)).toFixed(2)}</td>
                                     <td className={`px-4 py-2.5 text-xs text-right font-bold ${benefSiBM2Gana >= 0 ? 'text-green-600' : 'text-red-500'}`}>
