@@ -496,15 +496,15 @@ function OddsMatcherCalc({
   )
 }
 
- function DutcherCalc({
+function DutcherCalc({
   modo,
   onModoChange,
   moneda,
- }: {
+}: {
   modo: ModoDutcher
   onModoChange: (modo: ModoDutcher) => void
   moneda: Moneda
- }) {
+}) {
   const [stake, setStake] = useState('100')
   const [c1, setC1] = useState('1.90')
   const [c2, setC2] = useState('1.83')
@@ -514,19 +514,15 @@ function OddsMatcherCalc({
   const cc1 = n(c1)
   const cc2 = n(c2)
 
-  let sc2 = 0
+  let stakeA = 0
+  let stakeB = 0
   let bGana = 0
   let bPierde = 0
   if (s > 0 && cc1 > 0 && cc2 > 0) {
-    if (modo === 'dinero-real') {
-      sc2 = (s * cc1) / cc2
-      bGana = s * (cc1 - 1) - sc2
-      bPierde = sc2 * (cc2 - 1) - s
-    } else {
-      sc2 = (s * (cc1 - 1)) / (cc2 - 1)
-      bGana = s * (cc1 - 1) - sc2
-      bPierde = sc2 * (cc2 - 1) - s
-    }
+    stakeA = (s * cc2) / (cc1 + cc2)
+    stakeB = s - stakeA
+    bGana = stakeA * cc1 - s
+    bPierde = stakeB * cc2 - s
   }
 
   const beneficio = Math.min(bGana, bPierde)
@@ -538,7 +534,7 @@ function OddsMatcherCalc({
       return
     }
 
-    const texto = `Bookmaker 1: ${s.toFixed(2)} ${moneda} @ ${cc1} | Bookmaker 2: ${sc2.toFixed(2)} ${moneda} @ ${cc2} | Resultado: ${beneficio >= 0 ? '+' : ''}${beneficio.toFixed(2)} ${moneda}`
+    const texto = `Stake total: ${s.toFixed(2)} ${moneda} | BM1: ${stakeA.toFixed(2)} ${moneda} @ ${cc1} | BM2: ${stakeB.toFixed(2)} ${moneda} @ ${cc2} | Resultado: ${beneficio >= 0 ? '+' : ''}${beneficio.toFixed(2)} ${moneda}`
     navigator.clipboard.writeText(texto).then(() => {
       setCopiado(true)
       setTimeout(() => setCopiado(false), 2000)
@@ -548,33 +544,21 @@ function OddsMatcherCalc({
   return (
     <div className="space-y-4">
       <div className="bg-amber-50 border border-amber-200 rounded-xl p-3 text-xs text-amber-800">
-        <strong>¿Cuándo usarlo?</strong> Cuando tienes freebets o apuestas en dos casas distintas y quieres cubrirte en resultados opuestos sin necesitar el Exchange.
-      </div>
-
-      <div className="bg-gray-100 rounded-xl p-1 flex gap-1 w-fit">
-        {(['dinero-real', 'apuesta-gratis'] as const).map((m) => (
-          <button
-            key={m}
-            onClick={() => onModoChange(m)}
-            className={`py-2 px-4 rounded-lg text-xs font-bold transition-all ${modo === m ? 'bg-purple-500 text-white shadow' : 'text-gray-500 hover:bg-white'}`}
-          >
-            {m === 'dinero-real' ? 'DINERO REAL' : 'APUESTA GRATIS'}
-          </button>
-        ))}
+        <strong>¿Cuándo usarlo?</strong> Cuando tienes freebets o apuestas en dos casas distintas y quieres cubrirte en resultados opuestos sin necesitar el exchange.
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
         <div className="flex flex-col gap-3">
-          <InputField label="Importe apuesta BM1" value={stake} onChange={setStake} prefix={moneda} microcopy="Stake que apuestas en el primer bookmaker" />
+          <InputField label="Stake total" value={stake} onChange={setStake} prefix={moneda} microcopy="Importe total que quieres repartir entre las dos apuestas" />
 
           <div className="bg-teal-50 rounded-xl p-4 space-y-3 border border-teal-100">
             <p className="text-xs font-bold text-teal-700">Paso 1 · BOOKMAKER 1 · APUESTA A FAVOR</p>
-            <InputField label="Cuota (resultado 1)" value={c1} onChange={setC1} microcopy="Ej: Over 2.5, resultado 1X, etc." />
+            <InputField label="Cuota BM1" value={c1} onChange={setC1} microcopy="Cuota del resultado 1 en el primer bookmaker" />
           </div>
 
           <div className="bg-purple-50 rounded-xl p-4 space-y-3 border border-purple-100">
-            <p className="text-xs font-bold text-purple-700">Paso 2 ? BOOKMAKER 2 ? RESULTADO CONTRARIO</p>
-            <InputField label="Cuota (resultado contrario)" value={c2} onChange={setC2} microcopy="Ej: Under 2.5, resultado 2, etc." />
+            <p className="text-xs font-bold text-purple-700">Paso 2 · BOOKMAKER 2 · RESULTADO CONTRARIO</p>
+            <InputField label="Cuota BM2" value={c2} onChange={setC2} microcopy="Cuota del resultado contrario en el segundo bookmaker" />
           </div>
         </div>
 
@@ -598,22 +582,23 @@ function OddsMatcherCalc({
 
           <div className="bg-teal-50 border border-teal-100 rounded-2xl p-4">
             <p className="text-xs font-bold text-teal-600 mb-1">Paso 1 · BOOKMAKER 1 · APUESTA A FAVOR</p>
-            <p className="text-2xl font-bold text-teal-700">{s.toFixed(2)} {moneda}</p>
+            <p className="text-2xl font-bold text-teal-700">{stakeA.toFixed(2)} {moneda}</p>
             <p className="text-xs text-teal-500">A cuota {cc1.toFixed(2)}</p>
           </div>
 
           <div className="bg-purple-50 border border-purple-100 rounded-2xl p-4">
             <p className="text-xs font-bold text-purple-600 mb-1">Paso 2 · BOOKMAKER 2 · RESULTADO CONTRARIO</p>
-            <p className="text-2xl font-bold text-purple-700">{sc2.toFixed(2)} {moneda}</p>
+            <p className="text-2xl font-bold text-purple-700">{stakeB.toFixed(2)} {moneda}</p>
             <p className="text-xs text-purple-500">A cuota {cc2.toFixed(2)}</p>
           </div>
+
           <TablaResultado
             label1="Bookmaker 1 gana"
             label2="Bookmaker 2 gana"
-            bm1={s * (cc1 - 1)}
-            bm2={sc2}
+            bm1={stakeA * cc1}
+            bm2={stakeB}
             total1={s}
-            total2={sc2 * (cc2 - 1)}
+            total2={stakeB * cc2}
             benefSiGana={bGana}
             benefSiPierde={bPierde}
           />

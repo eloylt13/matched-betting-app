@@ -59,12 +59,19 @@ export default function BlockDutcher() {
   const set = (key: keyof InputsDutcher) => (v: number) =>
     setInputs((prev) => ({ ...prev, [key]: v }))
 
-  const result: ResultadoDutcher = calcDutcher(inputs)
+  const stakeTotal = inputs.stakeCasa1
+  const stakeCasa1 = stakeTotal > 0 && inputs.cuotaCasa1 > 0 && inputs.cuotaCasa2 > 0
+    ? (stakeTotal * inputs.cuotaCasa2) / (inputs.cuotaCasa1 + inputs.cuotaCasa2)
+    : 0
+  const stakeCasa2 = stakeTotal - stakeCasa1
+  const beneficioSiGanaCasa1 = stakeCasa1 * inputs.cuotaCasa1 - stakeTotal
+  const beneficioSiGanaCasa2 = stakeCasa2 * inputs.cuotaCasa2 - stakeTotal
+  const beneficioNeto = Math.min(beneficioSiGanaCasa1, beneficioSiGanaCasa2)
 
   const bnColor =
-    result.beneficioNeto > 0
+    beneficioNeto > 0
       ? 'text-emerald-400'
-      : result.beneficioNeto < 0
+      : beneficioNeto < 0
       ? 'text-red-400'
       : 'text-zinc-400'
 
@@ -73,32 +80,69 @@ export default function BlockDutcher() {
       {/* Inputs */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <Field
-          label="Stake Casa 1 (€)"
+          label="Stake total (€)"
           value={inputs.stakeCasa1}
           onChange={set('stakeCasa1')}
           step={1}
           min={1}
         />
-        <Field label="Cuota Casa 1" value={inputs.cuotaCasa1} onChange={set('cuotaCasa1')} />
-        <Field label="Cuota Casa 2" value={inputs.cuotaCasa2} onChange={set('cuotaCasa2')} />
+        <Field label="Cuota BM1" value={inputs.cuotaCasa1} onChange={set('cuotaCasa1')} />
+        <Field label="Cuota BM2" value={inputs.cuotaCasa2} onChange={set('cuotaCasa2')} />
       </div>
 
       {/* Stats */}
       <div className="grid grid-cols-2 gap-3">
         <StatCard
-          label="Stake Casa 2"
-          value={`${result.stakeCasa2.toFixed(2)} €`}
-          sub="para equilibrar ambos lados"
+          label="Stake BM1"
+          value={`${stakeCasa1.toFixed(2)} €`}
+          sub="parte del stake total asignada al resultado 1"
         />
         <StatCard
-          label="Beneficio neto"
-          value={`${result.beneficioNeto >= 0 ? '+' : ''}${result.beneficioNeto.toFixed(2)} €`}
-          sub="media de ambos escenarios"
+          label="Stake BM2"
+          value={`${stakeCasa2.toFixed(2)} €`}
+          sub="parte del stake total asignada al resultado contrario"
         />
       </div>
 
-      {/* Table */}
-      <ResultsTable escenarios={result.escenarios} />
+      <div className="grid grid-cols-2 gap-3">
+        <StatCard
+          label="Resultado si gana BM1"
+          value={`${beneficioSiGanaCasa1 >= 0 ? '+' : ''}${beneficioSiGanaCasa1.toFixed(2)} €`}
+          sub={`Retorno BM1: ${(stakeCasa1 * inputs.cuotaCasa1).toFixed(2)} €`}
+        />
+        <StatCard
+          label="Resultado si gana BM2"
+          value={`${beneficioSiGanaCasa2 >= 0 ? '+' : ''}${beneficioSiGanaCasa2.toFixed(2)} €`}
+          sub={`Retorno BM2: ${(stakeCasa2 * inputs.cuotaCasa2).toFixed(2)} €`}
+        />
+      </div>
+
+      <div className="rounded-xl border border-zinc-700 overflow-x-auto">
+        <table className="w-full text-sm">
+          <thead>
+            <tr className="bg-zinc-800 text-zinc-400 text-xs uppercase tracking-wider">
+              <th className="px-4 py-3 text-left">Escenario</th>
+              <th className="px-4 py-3 text-right">BM1</th>
+              <th className="px-4 py-3 text-right">BM2</th>
+              <th className="px-4 py-3 text-right font-semibold text-zinc-200">Beneficio neto</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr className="border-t border-zinc-700 hover:bg-zinc-800/50 transition-colors">
+              <td className="px-4 py-3 text-zinc-300">Si gana BM1</td>
+              <td className="px-4 py-3 text-right font-mono text-emerald-400">+{(stakeCasa1 * inputs.cuotaCasa1).toFixed(2)} €</td>
+              <td className="px-4 py-3 text-right font-mono text-red-400">-{stakeCasa2.toFixed(2)} €</td>
+              <td className={`px-4 py-3 text-right font-mono font-semibold ${bnColor}`}>{`${beneficioSiGanaCasa1 >= 0 ? '+' : ''}${beneficioSiGanaCasa1.toFixed(2)} €`}</td>
+            </tr>
+            <tr className="border-t border-zinc-700 hover:bg-zinc-800/50 transition-colors">
+              <td className="px-4 py-3 text-zinc-300">Si gana BM2</td>
+              <td className="px-4 py-3 text-right font-mono text-red-400">-{stakeCasa1.toFixed(2)} €</td>
+              <td className="px-4 py-3 text-right font-mono text-emerald-400">+{(stakeCasa2 * inputs.cuotaCasa2).toFixed(2)} €</td>
+              <td className={`px-4 py-3 text-right font-mono font-semibold ${bnColor}`}>{`${beneficioSiGanaCasa2 >= 0 ? '+' : ''}${beneficioSiGanaCasa2.toFixed(2)} €`}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
       <p className="text-xs text-zinc-500">
         ⚖️ El dutcher reparte el stake entre dos casas cubiertas para garantizar un resultado similar
