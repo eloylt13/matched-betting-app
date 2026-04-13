@@ -1272,7 +1272,7 @@ export const casasEspana: Casa[] = [
     market: 'espana',
     pais: 'espana',
     tipologia: 'reembolso',
-    url: 'https://www.yaasscasino.es/?btag=99999&gad_source=1&gad_campaignid=21043179587&gbraid=0AAAAADFbGl-nytt_FL1KYBsNz24VzMbJE&gclid=Cj0KCQiA7rDMBhCjARIsAGDBuEAGMGEKuR49k2fp_CarpnNdptEvkxbLnWAAddVCU66TBzbfhbhSa60aAsaLEALw_wcB',
+    url: 'https://www.yaasscasino.es/promociones/promo-yaass-bienvenida-casino-sport',
     descripcionBreve: 'Apuesta 100€ sin riesgo — reembolso 100% si pierdes',
     resumen: 'Apuesta 100€ sin Riesgo, reembolso 100% si fallas. Gana 70€. Dif 3/5',
     beneficioPotencial: 70,
