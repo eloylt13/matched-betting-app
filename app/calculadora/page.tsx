@@ -4,6 +4,14 @@ import CalculadoraClient from './CalculadoraClient'
 export const metadata: Metadata = {
   title: 'Calculadora de Matched Betting Gratis | Oddsmatcher y Dutcher | IAPredictHub',
   description: 'Calcula stakes, lay bets y beneficios en modos Apuesta-Recibe, Free Bet, Reembolso y Dutcher. Calculadora gratuita para España y LATAM en € y USD.',
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
+  },
 }
 
 export default function CalculadoraPage() {

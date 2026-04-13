@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 type Tab = 'oddsmatcher' | 'dutcher'
 type ModoClasica = 'dinero-real' | 'apuesta-gratis' | 'bonos' | 'rollover' | 'reembolso'
@@ -177,15 +177,14 @@ function ChecklistEjecucion({ modo }: { modo: ModoClasica }) {
 }
 
 function OddsMatcherCalc({
-  forcedMode,
-  forceSyncKey,
+  modo,
+  onModoChange,
   moneda,
 }: {
-  forcedMode?: ModoClasica
-  forceSyncKey: number
+  modo: ModoClasica
+  onModoChange: (modo: ModoClasica) => void
   moneda: Moneda
 }) {
-  const [modo, setModo] = useState<ModoClasica>(forcedMode ?? 'dinero-real')
   const [tipoReembolso, setTipoReembolso] = useState<ReembolsoTipo>('cash')
   const [stake, setStake] = useState('100')
   const [cuotaBM, setCuotaBM] = useState('2.00')
@@ -195,10 +194,6 @@ function OddsMatcherCalc({
   const [tasaExtraccion, setTasaExtraccion] = useState('75')
   const [rolloverX, setRolloverX] = useState('10')
   const [copiado, setCopiado] = useState(false)
-
-  useEffect(() => {
-    if (forcedMode) setModo(forcedMode)
-  }, [forcedMode, forceSyncKey])
 
   const s = n(stake)
   const cbm = n(cuotaBM)
@@ -264,6 +259,10 @@ function OddsMatcherCalc({
   const modoActual = MODOS.find((m) => m.id === modo ) ?? MODOS[0]
 
   const handleCopiar = () => {
+    if (typeof navigator === 'undefined' || !navigator.clipboard) {
+      return
+    }
+
     const texto = `Apuesta a favor: ${s.toFixed(2)} ${moneda} @ ${cbm} | Apuesta lay Betfair: ${sc.toFixed(2)} ${moneda} @ ${ce} | Resultado estimado: ${beneficio >= 0 ? '+' : ''}${beneficio.toFixed(2)} ${moneda}`
     navigator.clipboard.writeText(texto).then(() => {
       setCopiado(true)
@@ -277,7 +276,7 @@ function OddsMatcherCalc({
         {MODOS.map((m) => (
           <button
             key={m.id}
-            onClick={() => setModo(m.id)}
+            onClick={() => onModoChange(m.id)}
             className={`flex-1 min-w-[90px] py-2 px-2 rounded-xl text-xs font-bold transition-all whitespace-nowrap ${modo === m.id ? `${m.color} text-white shadow-md` : 'text-gray-500 hover:bg-white'}`}
           >
             {m.label}
@@ -288,7 +287,7 @@ function OddsMatcherCalc({
       <div className="sm:hidden">
         <select
           value={modo}
-          onChange={(e) => setModo(e.target.value as ModoClasica)}
+          onChange={(e) => onModoChange(e.target.value as ModoClasica)}
           className="w-full rounded-xl border border-gray-200 px-3 py-2.5 text-sm bg-white focus:ring-2 focus:ring-purple-300 outline-none"
         >
           {MODOS.map((m) => (
@@ -498,23 +497,18 @@ function OddsMatcherCalc({
 }
 
  function DutcherCalc({
-  forcedMode,
-  forceSyncKey,
+  modo,
+  onModoChange,
   moneda,
  }: {
-  forcedMode?: ModoDutcher
-  forceSyncKey: number
+  modo: ModoDutcher
+  onModoChange: (modo: ModoDutcher) => void
   moneda: Moneda
  }) {
-  const [modo, setModo] = useState<ModoDutcher>(forcedMode ?? 'dinero-real')
   const [stake, setStake] = useState('100')
   const [c1, setC1] = useState('1.90')
   const [c2, setC2] = useState('1.83')
   const [copiado, setCopiado] = useState(false)
-
-  useEffect(() => {
-    if (forcedMode) setModo(forcedMode)
-  }, [forcedMode, forceSyncKey])
 
   const s = n(stake)
   const cc1 = n(c1)
@@ -540,6 +534,10 @@ function OddsMatcherCalc({
   const resultadoLabel = beneficio >= 0 ? 'Beneficio estimado' : 'Pérdida calificante'
 
   const handleCopiar = () => {
+    if (typeof navigator === 'undefined' || !navigator.clipboard) {
+      return
+    }
+
     const texto = `Bookmaker 1: ${s.toFixed(2)} ${moneda} @ ${cc1} | Bookmaker 2: ${sc2.toFixed(2)} ${moneda} @ ${cc2} | Resultado: ${beneficio >= 0 ? '+' : ''}${beneficio.toFixed(2)} ${moneda}`
     navigator.clipboard.writeText(texto).then(() => {
       setCopiado(true)
@@ -557,7 +555,7 @@ function OddsMatcherCalc({
         {(['dinero-real', 'apuesta-gratis'] as const).map((m) => (
           <button
             key={m}
-            onClick={() => setModo(m)}
+            onClick={() => onModoChange(m)}
             className={`py-2 px-4 rounded-lg text-xs font-bold transition-all ${modo === m ? 'bg-purple-500 text-white shadow' : 'text-gray-500 hover:bg-white'}`}
           >
             {m === 'dinero-real' ? 'DINERO REAL' : 'APUESTA GRATIS'}
@@ -609,7 +607,6 @@ function OddsMatcherCalc({
             <p className="text-2xl font-bold text-purple-700">{sc2.toFixed(2)} {moneda}</p>
             <p className="text-xs text-purple-500">A cuota {cc2.toFixed(2)}</p>
           </div>
-
           <TablaResultado
             label1="Bookmaker 1 gana"
             label2="Bookmaker 2 gana"
@@ -647,14 +644,18 @@ export default function CalculadoraPage() {
   const [tab, setTab] = useState<Tab>('oddsmatcher')
   const [oddsmatcherMode, setOddsmatcherMode] = useState<ModoClasica>('dinero-real')
   const [dutcherMode, setDutcherMode] = useState<ModoDutcher>('dinero-real')
-  const [quickChoice, setQuickChoice] = useState<QuickChoice>('betfair')
-  const [quickSelectionVersion, setQuickSelectionVersion] = useState(0)
   const [moneda, setMoneda] = useState<Moneda>('€')
 
   const TABS: { id: Tab; label: string; sub: string; icon: string }[] = [
     { id: 'oddsmatcher', label: 'Oddsmatcher', sub: 'Bookmaker + Exchange', icon: 'O' },
     { id: 'dutcher', label: 'Dutcher', sub: 'Dos bookmakers', icon: 'D' },
   ]
+
+  const quickChoice: QuickChoice = tab === 'dutcher'
+    ? 'dutcher'
+    : oddsmatcherMode === 'apuesta-gratis'
+      ? 'freebet'
+      : 'betfair'
 
   const quickOptions: {
     id: QuickChoice
@@ -667,10 +668,8 @@ export default function CalculadoraPage() {
       label: 'Una apuesta con Betfair',
       description: 'La app te lleva a Oddsmatcher en el modo más habitual para empezar con exchange.',
       apply: () => {
-        setQuickChoice('betfair')
         setTab('oddsmatcher')
         setOddsmatcherMode('dinero-real')
-        setQuickSelectionVersion((value) => value + 1)
       },
     },
     {
@@ -678,10 +677,8 @@ export default function CalculadoraPage() {
       label: 'Una apuesta gratis / freebet',
       description: 'La app te lleva directamente al modo de freebet para que no tengas que elegirlo a mano.',
       apply: () => {
-        setQuickChoice('freebet')
         setTab('oddsmatcher')
         setOddsmatcherMode('apuesta-gratis')
-        setQuickSelectionVersion((value) => value + 1)
       },
     },
     {
@@ -689,23 +686,14 @@ export default function CalculadoraPage() {
       label: 'Dos casas sin exchange',
       description: 'La app te lleva a Dutcher cuando quieres cubrir dos resultados opuestos sin exchange.',
       apply: () => {
-        setQuickChoice('dutcher')
         setTab('dutcher')
         setDutcherMode('dinero-real')
-        setQuickSelectionVersion((value) => value + 1)
       },
     },
   ]
 
   function handleTabChange(nextTab: Tab) {
     setTab(nextTab)
-
-    if (nextTab === 'dutcher') {
-      setQuickChoice('dutcher')
-      return
-    }
-
-    setQuickChoice(oddsmatcherMode === 'apuesta-gratis' ? 'freebet' : 'betfair')
   }
 
   return (
@@ -772,8 +760,8 @@ export default function CalculadoraPage() {
       </div>
 
       <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-        {tab === 'oddsmatcher' && <OddsMatcherCalc forcedMode={oddsmatcherMode} forceSyncKey={quickSelectionVersion} moneda={moneda} />}
-        {tab === 'dutcher' && <DutcherCalc forcedMode={dutcherMode} forceSyncKey={quickSelectionVersion} moneda={moneda} />}
+        {tab === 'oddsmatcher' && <OddsMatcherCalc modo={oddsmatcherMode} onModoChange={setOddsmatcherMode} moneda={moneda} />}
+        {tab === 'dutcher' && <DutcherCalc modo={dutcherMode} onModoChange={setDutcherMode} moneda={moneda} />}
       </div>
     </div>
   )
