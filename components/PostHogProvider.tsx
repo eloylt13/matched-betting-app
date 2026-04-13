@@ -3,28 +3,24 @@
 import { Suspense, useEffect } from 'react'
 import posthog from 'posthog-js'
 import { PostHogProvider as PostHogProviderClient } from 'posthog-js/react'
-import { usePathname, useSearchParams } from 'next/navigation'
 
 const posthogKey = process.env.NEXT_PUBLIC_POSTHOG_KEY
 const posthogHost = process.env.NEXT_PUBLIC_POSTHOG_HOST || 'https://eu.i.posthog.com'
 let hasInitializedPostHog = false
 
 function PostHogPageView() {
-  const pathname = usePathname()
-  const searchParams = useSearchParams()
-
   useEffect(() => {
-    if (!posthogKey || !pathname) {
+    if (!posthogKey || typeof window === 'undefined') {
       return
     }
 
-    const search = searchParams.toString()
-    const url = search ? `${pathname}?${search}` : pathname
+    const { pathname, search } = window.location
+    const url = search ? `${pathname}${search}` : pathname
 
     posthog.capture('$pageview', {
       $current_url: url,
     })
-  }, [pathname, searchParams])
+  }, [])
 
   return null
 }
