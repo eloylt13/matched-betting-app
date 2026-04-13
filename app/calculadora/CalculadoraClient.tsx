@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 
 type Tab = 'oddsmatcher' | 'dutcher'
 type ModoClasica = 'dinero-real' | 'apuesta-gratis' | 'bonos' | 'rollover' | 'reembolso'
+type ReembolsoTipo = 'cash' | 'freebet'
 type ModoDutcher = 'dinero-real' | 'apuesta-gratis'
 type QuickChoice = 'betfair' | 'freebet' | 'dutcher'
 type Moneda = '€' | 'USD' | 'MXN' | 'COP' | 'CLP' | 'PEN'
@@ -185,11 +186,13 @@ function OddsMatcherCalc({
   moneda: Moneda
 }) {
   const [modo, setModo] = useState<ModoClasica>(forcedMode ?? 'dinero-real')
+  const [tipoReembolso, setTipoReembolso] = useState<ReembolsoTipo>('cash')
   const [stake, setStake] = useState('100')
   const [cuotaBM, setCuotaBM] = useState('2.00')
   const [cuotaExch, setCuotaExch] = useState('2.10')
   const [comision, setComision] = useState('5')
   const [reembolso, setReembolso] = useState('100')
+  const [tasaExtraccion, setTasaExtraccion] = useState('75')
   const [rolloverX, setRolloverX] = useState('10')
   const [copiado, setCopiado] = useState(false)
 
@@ -202,11 +205,14 @@ function OddsMatcherCalc({
   const ce = n(cuotaExch)
   const com = n(comision) / 100
   const reb = n(reembolso)
+  const extraccion = n(tasaExtraccion) / 100
 
   let sc = 0
   let bGana = 0
   let bPierde = 0
   let liability = 0
+  let valorRealReembolso = 0
+  let beneficioOperacionPrincipal = 0
 
   if (s > 0 && cbm > 0 && ce > 0) {
     if (modo === 'dinero-real') {
@@ -225,11 +231,14 @@ function OddsMatcherCalc({
       bGana = s * cbm - s - liability
       bPierde = sc * (1 - com)
     } else if (modo === 'reembolso') {
-      const vReb = reb * 0.70
-      sc = Math.max(0, (s * cbm - vReb) / (ce - com))
+      sc = (s * cbm) / (ce - com)
       liability = sc * (ce - 1)
-      bGana = s * (cbm - 1) - liability
-      bPierde = sc * (1 - com) - s + vReb
+      const beneficioPrincipalSiGana = s * (cbm - 1) - liability
+      const beneficioPrincipalSiPierde = sc * (1 - com) - s
+      valorRealReembolso = tipoReembolso === 'cash' ? reb : reb * extraccion
+      beneficioOperacionPrincipal = Math.min(beneficioPrincipalSiGana, beneficioPrincipalSiPierde)
+      bGana = beneficioPrincipalSiGana
+      bPierde = beneficioPrincipalSiPierde + valorRealReembolso
     } else if (modo === 'rollover') {
       sc = (s * cbm) / (ce - com)
       liability = sc * (ce - 1)
@@ -238,7 +247,9 @@ function OddsMatcherCalc({
     }
   }
 
-  const beneficio = Math.min(bGana, bPierde)
+  const beneficio = modo === 'reembolso'
+    ? beneficioOperacionPrincipal + valorRealReembolso
+    : Math.min(bGana, bPierde)
   const rating = s > 0 ? ((beneficio + s) / s) * 100 : 0
   const retencion = modo === 'apuesta-gratis' && s > 0 ? (bPierde / s) * 100 : null
   const { titulo, subtitulo } = getResultadoLabel(beneficio, modo)
@@ -298,7 +309,45 @@ function OddsMatcherCalc({
               <InputField label="Comisión Betfair" value={comision} onChange={setComision} suffix="%" microcopy="5% en España · varía según país en LATAM" />
             </div>
             {modo === 'reembolso' && (
-              <InputField label="Importe reembolso" value={reembolso} onChange={setReembolso} prefix={moneda} hint="Freebet que recibirías si pierdes" />
+              <>
+                <div className="space-y-2">
+                  <p className="text-xs font-semibold text-gray-600">Tipo de reembolso</p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    <button
+                      type="button"
+                      onClick={() => setTipoReembolso('cash')}
+                      className={`rounded-xl border px-3 py-2.5 text-sm font-semibold transition-all ${tipoReembolso === 'cash' ? 'border-emerald-200 bg-emerald-50 text-emerald-700' : 'border-gray-200 bg-white text-gray-500 hover:bg-gray-50'}`}
+                    >
+                      Reembolso en cash
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setTipoReembolso('freebet')}
+                      className={`rounded-xl border px-3 py-2.5 text-sm font-semibold transition-all ${tipoReembolso === 'freebet' ? 'border-blue-200 bg-blue-50 text-blue-700' : 'border-gray-200 bg-white text-gray-500 hover:bg-gray-50'}`}
+                    >
+                      Reembolso en free bet
+                    </button>
+                  </div>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <InputField
+                    label="Importe reembolso"
+                    value={reembolso}
+                    onChange={setReembolso}
+                    prefix={moneda}
+                    hint={tipoReembolso === 'cash' ? 'Importe que recibes de vuelta directamente en saldo' : 'Importe bruto de la free bet que recibirías si pierdes'}
+                  />
+                  {tipoReembolso === 'freebet' && (
+                    <InputField
+                      label="Tasa extracción"
+                      value={tasaExtraccion}
+                      onChange={setTasaExtraccion}
+                      suffix="%"
+                      hint="Por defecto 75%. Se usa para estimar el valor real de la free bet."
+                    />
+                  )}
+                </div>
+              </>
             )}
             {modo === 'rollover' && (
               <InputField label="Rollover requerido" value={rolloverX} onChange={setRolloverX} suffix="x" microcopy="Multiplicador de volumen exigido por la casa" />
@@ -308,7 +357,10 @@ function OddsMatcherCalc({
               {modo === 'dinero-real' && 'Apuesta calificante. El objetivo es minimizar la pérdida mientras desbloqueas el bono.'}
               {modo === 'apuesta-gratis' && 'Freebet SNR (stake no devuelto). Busca cuotas altas (3.00+) para maximizar retención.'}
               {modo === 'bonos' && 'Freebet SR (stake devuelto si ganas). Cuotas más bajas también pueden encajar.'}
-              {modo === 'reembolso' && 'Si pierdes recibes la freebet. El cálculo ya incluye su valor estimado al 70%.'}
+              {modo === 'reembolso' && (tipoReembolso === 'cash'
+                ? 'Si pierdes, el reembolso entra en saldo y se valora al 100% del importe prometido.'
+                : 'Si pierdes, el reembolso llega como free bet y se convierte usando la tasa de extracción que indiques.'
+              )}
               {modo === 'rollover' && 'Calcula la pérdida esperada al completar el volumen de rollover requerido.'}
             </div>
 
@@ -334,6 +386,11 @@ function OddsMatcherCalc({
                   {beneficio >= 0 ? '+' : ''}{beneficio.toFixed(2)} {moneda}
                 </p>
                 <p className="text-xs opacity-60 mt-1">{subtitulo}</p>
+                {modo === 'reembolso' && (
+                  <p className="text-xs opacity-80 mt-2">
+                    Operación principal: {beneficioOperacionPrincipal >= 0 ? '+' : ''}{beneficioOperacionPrincipal.toFixed(2)} {moneda} · Reembolso real: {valorRealReembolso.toFixed(2)} {moneda}
+                  </p>
+                )}
               </div>
               <div className="text-right shrink-0">
                 <p className="text-xs opacity-70 uppercase tracking-wide">
@@ -348,6 +405,30 @@ function OddsMatcherCalc({
               </div>
             </div>
           </div>
+
+          {modo === 'reembolso' && (
+            <div className="bg-white border border-gray-100 rounded-2xl p-4">
+              <div className="flex items-start justify-between gap-3">
+                <div>
+                  <p className="text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Valor real del reembolso</p>
+                  <p className="text-2xl font-bold text-gray-900">
+                    {valorRealReembolso.toFixed(2)} {moneda}
+                  </p>
+                  <p className="text-xs text-gray-500 mt-1">
+                    {tipoReembolso === 'cash'
+                      ? 'Reembolso en cash: se valora al 100% del importe prometido.'
+                      : `Reembolso en free bet: ${reb.toFixed(2)} ${moneda} × ${(extraccion * 100).toFixed(0)}% = ${valorRealReembolso.toFixed(2)} ${moneda}`}
+                  </p>
+                </div>
+                <div className="text-right">
+                  <p className="text-xs text-gray-500 uppercase tracking-wide">Tipo elegido</p>
+                  <p className="text-sm font-semibold text-gray-800">
+                    {tipoReembolso === 'cash' ? 'Cash' : 'Free bet'}
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
 
           <div className="bg-teal-50 border border-teal-100 rounded-2xl p-4">
             <p className="text-xs font-bold text-teal-600 mb-1">Paso 1 · APUESTA A FAVOR · BOOKMAKER</p>
