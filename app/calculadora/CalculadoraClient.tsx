@@ -189,7 +189,7 @@ function OddsMatcherCalc({
   const [stake, setStake] = useState('100')
   const [cuotaBM, setCuotaBM] = useState('2.00')
   const [cuotaExch, setCuotaExch] = useState('2.10')
-  const [comision, setComision] = useState('5')
+  const [comision, setComision] = useState('2')
   const [reembolso, setReembolso] = useState('100')
   const [tasaExtraccion, setTasaExtraccion] = useState('75')
   const [rolloverX, setRolloverX] = useState('10')
@@ -307,7 +307,7 @@ function OddsMatcherCalc({
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <InputField label="Cuota lay (Exchange)" value={cuotaExch} onChange={setCuotaExch} microcopy="Cuota EN CONTRA en Betfair" />
-              <InputField label="Comisión Betfair" value={comision} onChange={setComision} suffix="%" microcopy="5% en España · varía según país en LATAM" />
+              <InputField label="Comisión Betfair" value={comision} onChange={setComision} suffix="%" microcopy="Ajusta la comisión según tu cuenta o exchange" />
             </div>
             {modo === 'reembolso' && (
               <>
@@ -487,6 +487,16 @@ function OddsMatcherCalc({
               </a>
             </div>
           </div>
+
+          {modo !== 'rollover' && (
+            <div className="rounded-xl border border-gray-100 bg-white px-4 py-2 text-xs font-medium text-gray-600">
+              <span className="font-semibold text-gray-700">CONTRA:</span> {sc.toFixed(2)} {moneda}
+              <span className="mx-2 text-gray-300">|</span>
+              <span className="font-semibold text-gray-700">RIESGO:</span> {liability.toFixed(2)} {moneda}
+              <span className="mx-2 text-gray-300">|</span>
+              <span className="font-semibold text-gray-700">RESULTADO:</span> {beneficio >= 0 ? '+' : ''}{beneficio.toFixed(2)} {moneda}
+            </div>
+          )}
 
           <TablaResultado
             label1="Apuesta a favor gana"
