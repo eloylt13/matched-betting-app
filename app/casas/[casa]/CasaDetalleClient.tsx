@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useCallback } from "react"
 import Link from "next/link"
+import CasaChecklist from "@/components/casas/CasaChecklist"
 import { getCasaById } from "@/lib/presets"
 import { loadState, actualizarProgresoCasa } from "@/lib/storage/userState"
 import type { Casa, EstadoCasa, Fase } from "@/types/presets"
@@ -411,6 +412,8 @@ export default function CasaDetalleClient({ casaId }: CasaDetalleClientProps) {
     const completada = estado === "completada"
     const siguienteAccion = getSiguienteAccion(estado, faseActual, totalFases, casa, simbolo)
     const tiempoEstimado = getTiempoEstimado(casa.tipologia)
+    const isSportium = casa.id === "sportium"
+    const guiaSportiumHref = "/guias/casas/sportium"
 
     return (
         <div className="max-w-3xl mx-auto px-4 py-8 flex flex-col gap-6">
@@ -549,6 +552,94 @@ export default function CasaDetalleClient({ casaId }: CasaDetalleClientProps) {
                     ))}
                 </div>
             </div>
+
+            {isSportium && (
+                <div className="flex flex-col gap-4">
+                    <div className="rounded-2xl border border-emerald-500/20 bg-emerald-500/10 p-5 md:p-6">
+                        <h2 className="text-lg font-semibold text-emerald-300">Qué vas a conseguir</h2>
+                        <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                            <div className="rounded-xl border border-emerald-500/20 bg-stone-900/40 p-4">
+                                <p className="text-xs font-semibold uppercase tracking-wide text-emerald-200/80">Tipo de bono</p>
+                                <p className="mt-2 text-sm font-medium text-stone-100">Apuesta y recibe (freebet)</p>
+                            </div>
+                            <div className="rounded-xl border border-emerald-500/20 bg-stone-900/40 p-4">
+                                <p className="text-xs font-semibold uppercase tracking-wide text-emerald-200/80">Beneficio aproximado</p>
+                                <p className="mt-2 text-sm font-medium text-stone-100">{casa.beneficioPotencial} {simbolo}</p>
+                            </div>
+                            <div className="rounded-xl border border-emerald-500/20 bg-stone-900/40 p-4">
+                                <p className="text-xs font-semibold uppercase tracking-wide text-emerald-200/80">Nivel</p>
+                                <p className="mt-2 text-sm font-medium text-stone-100">Principiante</p>
+                            </div>
+                            <div className="rounded-xl border border-emerald-500/20 bg-stone-900/40 p-4">
+                                <p className="text-xs font-semibold uppercase tracking-wide text-emerald-200/80">Estilo</p>
+                                <p className="mt-2 text-sm font-medium text-stone-100">Guía operativa paso a paso</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="rounded-2xl border border-stone-700 bg-stone-900 p-5 md:p-6">
+                        <h2 className="text-lg font-semibold text-stone-100">Qué tienes que hacer</h2>
+                        <ol className="mt-4 flex flex-col gap-3">
+                            {[
+                                "Registrarte y depositar",
+                                "Hacer la apuesta cualificante",
+                                "Usar la freebet recibida",
+                            ].map((item, index) => (
+                                <li key={item} className="flex items-start gap-3 text-stone-300">
+                                    <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-stone-600 bg-stone-800 text-sm font-semibold text-emerald-300">
+                                        {index + 1}
+                                    </span>
+                                    <span className="pt-1 text-sm leading-6">{item}</span>
+                                </li>
+                            ))}
+                        </ol>
+                    </div>
+
+                    <div className="rounded-2xl border border-stone-700 bg-stone-900 p-5 md:p-6">
+                        <h2 className="text-lg font-semibold text-stone-100">Paso 1: Apuesta cualificante (dinero real)</h2>
+                        <p className="mt-3 text-sm leading-6 text-stone-300">
+                            La cualificante es tu apuesta inicial con dinero real para activar el bono. Lo ideal es cubrirla a la vez en el exchange para reducir al mínimo la pérdida y dejar lista la recepción de la freebet.
+                        </p>
+                        <div className="mt-4 flex flex-col gap-3 sm:flex-row">
+                            <Link
+                                href="/calculadora?modo=dinero-real&stake=10&commission=2&bookmaker=sportium"
+                                className="inline-flex items-center justify-center rounded-xl bg-emerald-500 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-emerald-400"
+                            >
+                                Abrir calculadora
+                            </Link>
+                            <Link
+                                href={guiaSportiumHref}
+                                className="inline-flex items-center justify-center rounded-xl border border-white/20 px-5 py-3 text-sm font-semibold text-stone-200 transition-colors hover:border-white/30 hover:bg-white/5"
+                            >
+                                Ver guía completa
+                            </Link>
+                        </div>
+                    </div>
+
+                    <div className="rounded-2xl border border-stone-700 bg-stone-900 p-5 md:p-6">
+                        <h2 className="text-lg font-semibold text-stone-100">Paso 2: Usar la freebet</h2>
+                        <p className="mt-3 text-sm leading-6 text-stone-300">
+                            Cuando recibas la freebet, el siguiente paso es convertirla en beneficio real. Usa la calculadora de apuesta gratis para encontrar la cobertura correcta y ejecutar la conversión con buena retención.
+                        </p>
+                        <div className="mt-4 flex flex-col gap-3 sm:flex-row">
+                            <Link
+                                href="/calculadora?modo=apuesta-gratis&stake=10&commission=2&bookmaker=sportium"
+                                className="inline-flex items-center justify-center rounded-xl bg-emerald-500 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-emerald-400"
+                            >
+                                Abrir calculadora freebet
+                            </Link>
+                            <Link
+                                href={guiaSportiumHref}
+                                className="inline-flex items-center justify-center rounded-xl border border-white/20 px-5 py-3 text-sm font-semibold text-stone-200 transition-colors hover:border-white/30 hover:bg-white/5"
+                            >
+                                Ver guía completa
+                            </Link>
+                        </div>
+                    </div>
+
+                    <CasaChecklist casaId={casa.id} />
+                </div>
+            )}
 
             {/* Fases detalladas */}
             {casa.promos.map(promo => (
