@@ -5,8 +5,8 @@ import matter from 'gray-matter'
 import GuiasTabsClient from './GuiasTabsClient'
 
 export const metadata: Metadata = {
-  title: 'Guías de Matched Betting España y LATAM | IAPredictHub',
-  description: 'Guías completas para entender los bonos de bienvenida, calcular cada paso y llevar todo organizado: primeros pasos, módulos, estrategia y casas.',
+  title: 'Guías de matched betting en España | Paso a paso y soporte LATAM | IAPredictHub',
+  description: 'Guías prácticas de matched betting pensadas principalmente para España, con explicaciones paso a paso sobre bonos de bienvenida, estrategia, módulos y contenido útil también para LATAM.',
 }
 
 const CATEGORIAS_METADATA: Record<string, { titulo: string; descripcion: string; icono: string; color: string; badgeColor: string }> = {

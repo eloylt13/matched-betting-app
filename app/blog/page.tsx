@@ -2,9 +2,9 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Blog de Matched Betting España y LATAM 2026 | IAPredictHub',
+  title: 'Blog de matched betting en España | Noticias, guías y análisis | IAPredictHub',
   description:
-    'Artículos, guías y consejos sobre matched betting en España y LATAM. Estrategias, casas de apuestas y cómo maximizar bonos de bienvenida.',
+    'Artículos y guías útiles sobre matched betting en España, con análisis de bonos de bienvenida, casas de apuestas y contenido complementario con referencias también para LATAM.',
 }
 
 // Lista de artículos — añadir aquí cuando se publiquen
