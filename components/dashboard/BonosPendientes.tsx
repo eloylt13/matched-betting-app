@@ -3,6 +3,7 @@
 'use client'
 
 import { useState } from 'react'
+import { todasLasCasas } from '@/lib/presets'
 import { limpiarBono } from '@/lib/storage/userState'
 import type { Bono } from '@/types/user'
 
@@ -14,13 +15,19 @@ const TIPO_EMOJI: Record<Bono['tipo'], string> = {
 
 interface BonosPendientesProps {
   bonos: Bono[]
+  market: 'espana' | 'latam'
   onUpdate: () => void
 }
 
-export default function BonosPendientes({ bonos, onUpdate }: BonosPendientesProps) {
+export default function BonosPendientes({ bonos, market, onUpdate }: BonosPendientesProps) {
   const [abierto, setAbierto] = useState(false)
 
-  const pendientes = bonos.filter((b) => !b.limpiado)
+  const moneda = market === 'espana' ? '€' : 'USD'
+  const casaIdsDelMercado = new Set(
+    todasLasCasas.filter((c) => c.market === market).map((c) => c.id)
+  )
+
+  const pendientes = bonos.filter((b) => !b.limpiado && casaIdsDelMercado.has(b.casaId))
 
   const handleLimpiar = (id: string) => {
     limpiarBono(id)
@@ -91,7 +98,7 @@ export default function BonosPendientes({ bonos, onUpdate }: BonosPendientesProp
                     {/* Valor + acción */}
                     <div className="flex flex-col items-end gap-2 shrink-0">
                       <span className="text-sm font-bold text-amber-600">
-                        {bono.valor.toFixed(2)} €
+                        {bono.valor.toFixed(2)} {moneda}
                       </span>
                       <button
                         onClick={() => handleLimpiar(bono.id)}

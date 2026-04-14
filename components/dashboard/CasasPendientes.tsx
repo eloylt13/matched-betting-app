@@ -31,12 +31,15 @@ const ESTADO_COLOR: Record<string, string> = {
 
 interface CasasPendientesProps {
   progresos: UserState['progresos']
+  market: 'espana' | 'latam'
 }
 
-export default function CasasPendientes({ progresos }: CasasPendientesProps) {
+export default function CasasPendientes({ progresos, market }: CasasPendientesProps) {
   const [abierto, setAbierto] = useState(false)
 
-  const casas = todasLasCasas.filter((c) => {
+  const moneda = market === 'espana' ? '€' : 'USD'
+
+  const casas = todasLasCasas.filter((c) => c.market === market).filter((c) => {
     const p = progresos[c.id]
     return !p || (p.estado !== 'completada' && p.estado !== 'descartada')
   })
@@ -104,7 +107,7 @@ export default function CasasPendientes({ progresos }: CasasPendientesProps) {
                     </div>
 
                     <div className="text-right shrink-0">
-                      <p className="text-sm font-bold text-emerald-600">+{casa.beneficioPotencial.toFixed(0)} €</p>
+                      <p className="text-sm font-bold text-emerald-600">+{casa.beneficioPotencial.toFixed(0)} {moneda}</p>
                       <p className="text-xs text-stone-400">potencial</p>
                     </div>
 

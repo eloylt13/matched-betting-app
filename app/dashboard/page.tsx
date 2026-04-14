@@ -101,6 +101,10 @@ export default function DashboardPage() {
     refresh()
   }, [refresh])
 
+  const casaIdsDelMercado = new Set(
+    todasLasCasas.filter((c) => c.market === market).map((c) => c.id)
+  )
+
   const recomendadas = todasLasCasas
     .filter((c) => c.market === market)
     .filter((c) => {
@@ -120,7 +124,7 @@ export default function DashboardPage() {
     })
     .slice(0, 3)
 
-  const bonosPendientes = state.bonos.filter((b) => !b.limpiado)
+  const bonosPendientes = state.bonos.filter((b) => !b.limpiado && casaIdsDelMercado.has(b.casaId))
   const moneda = market === 'espana' ? '€' : 'USD'
   const startActions = START_ACTIONS[market]
 
@@ -286,9 +290,9 @@ export default function DashboardPage() {
       </section>
 
       <div className="grid md:grid-cols-2 gap-4">
-        <CasasPendientes progresos={state.progresos} />
+        <CasasPendientes progresos={state.progresos} market={market} />
         {bonosPendientes.length > 0 && (
-          <BonosPendientes bonos={state.bonos} onUpdate={refresh} />
+          <BonosPendientes bonos={state.bonos} market={market} onUpdate={refresh} />
         )}
       </div>
 
