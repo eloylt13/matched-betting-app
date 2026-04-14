@@ -23,6 +23,8 @@ export interface InputsReembolso {
     cuotaLay: number
     comision: number
     reembolso: number
+    tipo?: 'cash' | 'freebet'
+    tasaExtraccion?: number
 }
 
 export interface InputsDutcher {

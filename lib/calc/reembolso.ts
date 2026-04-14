@@ -3,34 +3,30 @@
 import type { InputsReembolso, ResultadoReembolso } from '@/types/calc'
 
 export function calcReembolso(inputs: InputsReembolso): ResultadoReembolso {
-    const { stake, cuotaBack, cuotaLay, comision, reembolso } = inputs
+    const { stake, cuotaBack, cuotaLay, comision, reembolso, tipo = 'cash', tasaExtraccion = 75 } = inputs
     const comisionDecimal = comision / 100
+    const valorRealReembolso = tipo === 'cash' ? reembolso : reembolso * (tasaExtraccion / 100)
 
-    // Mismo lay stake que cualificante — apostamos dinero real
-    const layStake = (stake * cuotaBack) / (cuotaLay - comisionDecimal)
+    const layStake = tipo === 'cash'
+        ? (stake * (cuotaBack - 1)) / (cuotaLay - comisionDecimal)
+        : (stake * cuotaBack - valorRealReembolso) / (cuotaLay - comisionDecimal)
 
-    // Dinero bloqueado en el exchange
     const responsabilidad = layStake * (cuotaLay - 1)
 
-    // Escenario 1: gana la apuesta back (casa)
-    // No hay reembolso — la casa no devuelve nada
     const resultadoCasaGana = stake * (cuotaBack - 1)
     const resultadoExchangePierde = -responsabilidad
     const beneficioSiGana = resultadoCasaGana + resultadoExchangePierde
 
-    // Escenario 2: pierde la apuesta back
-    // Recibimos el reembolso (ya estimado al 80% del valor bruto)
-    const resultadoCasaPierde = -stake
+    const resultadoCasaPierde = tipo === 'cash' ? 0 : valorRealReembolso - stake
     const resultadoExchangeGana = layStake * (1 - comisionDecimal)
-    const beneficioSiPierde = resultadoCasaPierde + resultadoExchangeGana + reembolso
-
-    // Beneficio esperado ponderando ambos escenarios al 50%
-    const beneficioEsperado = (beneficioSiGana + beneficioSiPierde) / 2
+    const beneficioSiPierde = resultadoCasaPierde + resultadoExchangeGana
+    const beneficioEsperado = Math.min(beneficioSiGana, beneficioSiPierde)
 
     return {
         layStake: Math.round(layStake * 100) / 100,
         responsabilidad: Math.round(responsabilidad * 100) / 100,
         beneficioEsperado: Math.round(beneficioEsperado * 100) / 100,
+
         escenarios: [
             {
                 label: 'Si gana A Favor (casa)',

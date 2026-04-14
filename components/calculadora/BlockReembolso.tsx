@@ -13,6 +13,8 @@ const defaultInputs: InputsReembolso = {
   cuotaLay: 2.05,
   comision: 2,
   reembolso: 8,
+  tipo: 'cash',
+  tasaExtraccion: 75,
 }
 
 function StatCard({ label, value, sub }: { label: string; value: string; sub?: string }) {
@@ -55,6 +57,33 @@ function Field({
   )
 }
 
+function Toggle({
+  value,
+  onChange,
+}: {
+  value: 'cash' | 'freebet'
+  onChange: (value: 'cash' | 'freebet') => void
+}) {
+  return (
+    <div className="grid grid-cols-2 gap-2">
+      <button
+        type="button"
+        onClick={() => onChange('cash')}
+        className={`rounded-lg border px-3 py-2 text-sm font-medium transition-colors ${value === 'cash' ? 'border-emerald-500 bg-emerald-500/10 text-emerald-300' : 'border-zinc-600 bg-zinc-800 text-zinc-300 hover:border-zinc-500'}`}
+      >
+        Reembolso en cash
+      </button>
+      <button
+        type="button"
+        onClick={() => onChange('freebet')}
+        className={`rounded-lg border px-3 py-2 text-sm font-medium transition-colors ${value === 'freebet' ? 'border-indigo-500 bg-indigo-500/10 text-indigo-300' : 'border-zinc-600 bg-zinc-800 text-zinc-300 hover:border-zinc-500'}`}
+      >
+        Reembolso en free bet
+      </button>
+    </div>
+  )
+}
+
 export default function BlockReembolso() {
   const [inputs, setInputs] = useState<InputsReembolso>(defaultInputs)
 
@@ -72,8 +101,13 @@ export default function BlockReembolso() {
 
   return (
     <div className="flex flex-col gap-6">
-      {/* Inputs */}
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+        <div className="col-span-2 sm:col-span-3">
+          <Toggle
+            value={inputs.tipo ?? 'cash'}
+            onChange={(tipo) => setInputs((prev) => ({ ...prev, tipo }))}
+          />
+        </div>
         <Field label="Stake (€)" value={inputs.stake} onChange={set('stake')} step={1} min={1} />
         <Field label="Cuota Back" value={inputs.cuotaBack} onChange={set('cuotaBack')} />
         <Field label="Cuota Lay" value={inputs.cuotaLay} onChange={set('cuotaLay')} />
@@ -85,25 +119,33 @@ export default function BlockReembolso() {
           step={0.5}
           min={0}
         />
+        {(inputs.tipo ?? 'cash') === 'freebet' && (
+          <Field
+            label="Tasa extracción (%)"
+            value={inputs.tasaExtraccion ?? 75}
+            onChange={set('tasaExtraccion')}
+            step={1}
+            min={0}
+          />
+        )}
       </div>
 
-      {/* Stats */}
       <div className="grid grid-cols-3 gap-3">
         <StatCard label="Lay Stake" value={`${result.layStake.toFixed(2)} €`} />
         <StatCard label="Responsabilidad" value={`${result.responsabilidad.toFixed(2)} €`} sub="bloqueado en exchange" />
         <StatCard
           label="Beneficio esperado"
           value={`${result.beneficioEsperado >= 0 ? '+' : ''}${result.beneficioEsperado.toFixed(2)} €`}
-          sub="media de ambos escenarios"
+          sub="mínimo entre ambos escenarios"
         />
       </div>
 
-      {/* Table */}
       <ResultsTable escenarios={result.escenarios} />
 
       <p className="text-xs text-zinc-500">
-        💡 El reembolso ya debe introducirse como valor estimado neto (p.ej. 80% si el reembolso es
-        en free bet). Si el beneficio esperado es positivo, la operación es rentable en valor.
+        {(inputs.tipo ?? 'cash') === 'cash'
+          ? '💡 En cash, el reembolso se valora al 100% y el lay stake se equilibra usando la fórmula específica de reembolso.'
+          : '💡 En free bet, el valor real del reembolso se estima con la tasa de extracción y se descuenta en la fórmula del lay stake.'}
       </p>
     </div>
   )

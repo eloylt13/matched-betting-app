@@ -207,7 +207,6 @@ function OddsMatcherCalc({
   let bPierde = 0
   let liability = 0
   let valorRealReembolso = 0
-  let beneficioOperacionPrincipal = 0
 
   if (s > 0 && cbm > 0 && ce > 0) {
     if (modo === 'dinero-real') {
@@ -226,14 +225,15 @@ function OddsMatcherCalc({
       bGana = s * cbm - s - liability
       bPierde = sc * (1 - com)
     } else if (modo === 'reembolso') {
-      sc = (s * cbm) / (ce - com)
-      liability = sc * (ce - 1)
-      const beneficioPrincipalSiGana = s * (cbm - 1) - liability
-      const beneficioPrincipalSiPierde = sc * (1 - com) - s
       valorRealReembolso = tipoReembolso === 'cash' ? reb : reb * extraccion
-      beneficioOperacionPrincipal = Math.min(beneficioPrincipalSiGana, beneficioPrincipalSiPierde)
-      bGana = beneficioPrincipalSiGana
-      bPierde = beneficioPrincipalSiPierde + valorRealReembolso
+      sc = tipoReembolso === 'cash'
+        ? (s * (cbm - 1)) / (ce - com)
+        : (s * cbm - valorRealReembolso) / (ce - com)
+      liability = sc * (ce - 1)
+      bGana = s * (cbm - 1) - liability
+      bPierde = tipoReembolso === 'cash'
+        ? sc * (1 - com)
+        : valorRealReembolso - s + sc * (1 - com)
     } else if (modo === 'rollover') {
       sc = (s * cbm) / (ce - com)
       liability = sc * (ce - 1)
@@ -242,9 +242,7 @@ function OddsMatcherCalc({
     }
   }
 
-  const beneficio = modo === 'reembolso'
-    ? beneficioOperacionPrincipal + valorRealReembolso
-    : Math.min(bGana, bPierde)
+  const beneficio = Math.min(bGana, bPierde)
   const rating = s > 0 ? ((beneficio + s) / s) * 100 : 0
   const retencion = modo === 'apuesta-gratis' && s > 0 ? (bPierde / s) * 100 : null
   const { titulo, subtitulo } = getResultadoLabel(beneficio, modo)
@@ -387,7 +385,7 @@ function OddsMatcherCalc({
                 <p className="text-xs opacity-60 mt-1">{subtitulo}</p>
                 {modo === 'reembolso' && (
                   <p className="text-xs opacity-80 mt-2">
-                    Operación principal: {beneficioOperacionPrincipal >= 0 ? '+' : ''}{beneficioOperacionPrincipal.toFixed(2)} {moneda} · Reembolso real: {valorRealReembolso.toFixed(2)} {moneda}
+                    Beneficio equilibrado: {beneficio >= 0 ? '+' : ''}{beneficio.toFixed(2)} {moneda} · Reembolso real: {valorRealReembolso.toFixed(2)} {moneda}
                   </p>
                 )}
               </div>
