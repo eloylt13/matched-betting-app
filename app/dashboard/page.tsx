@@ -201,7 +201,7 @@ export default function DashboardPage() {
 
       <ProgressSummary state={state} market={market} />
 
-      <CasasProgress />
+      <CasasProgress market={market} />
 
       <section>
         <div className="flex items-center justify-between mb-3">

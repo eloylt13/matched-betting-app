@@ -4,6 +4,10 @@ import { useCallback, useEffect, useState } from "react"
 import Link from "next/link"
 import { todasLasCasas } from "@/lib/presets"
 
+ interface CasasProgressProps {
+    market: 'espana' | 'latam'
+ }
+
 interface ChecklistState {
     registroDeposito?: boolean
     apuestaCualificante?: boolean
@@ -21,10 +25,6 @@ interface CasaProgressItem {
 
 const TOTAL_CHECKS = 4
 
-function getCasaNombre(casaId: string) {
-    return todasLasCasas.find((casa) => casa.id === casaId)?.nombre ?? casaId
-}
-
 function countCompletedChecks(value: ChecklistState) {
     return [
         Boolean(value.registroDeposito),
@@ -34,7 +34,7 @@ function countCompletedChecks(value: ChecklistState) {
     ].filter(Boolean).length
 }
 
-export default function CasasProgress() {
+export default function CasasProgress({ market }: CasasProgressProps) {
     const [items, setItems] = useState<CasaProgressItem[]>([])
     const [hydrated, setHydrated] = useState(false)
 
@@ -48,6 +48,9 @@ export default function CasasProgress() {
             if (!key || !key.startsWith("checklist_")) continue
 
             const casaId = key.replace(/^checklist_/, "")
+            const casa = todasLasCasas.find((item) => item.id === casaId)
+            if (!casa || casa.market !== market) continue
+
             const raw = window.localStorage.getItem(key)
             if (!raw) continue
 
@@ -57,7 +60,7 @@ export default function CasasProgress() {
 
                 nextItems.push({
                     casaId,
-                    casaNombre: getCasaNombre(casaId),
+                    casaNombre: casa.nombre,
                     completedChecks,
                     totalChecks: TOTAL_CHECKS,
                     isCompleted: completedChecks === TOTAL_CHECKS,
@@ -75,7 +78,7 @@ export default function CasasProgress() {
 
         setItems(nextItems)
         setHydrated(true)
-    }, [])
+    }, [market])
 
     useEffect(() => {
         refresh()
