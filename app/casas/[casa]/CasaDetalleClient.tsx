@@ -3,13 +3,12 @@
 import { useEffect, useState, useCallback } from "react"
 import Link from "next/link"
 import CasaChecklist from "@/components/casas/CasaChecklist"
-import { getCasaById } from "@/lib/presets"
 import { loadState, actualizarProgresoCasa } from "@/lib/storage/userState"
 import type { Casa, EstadoCasa, Fase } from "@/types/presets"
 import type { ProgresoCasa } from "@/types/user"
 
 interface CasaDetalleClientProps {
-    casaId: string
+    casa: Casa
     hasGuide: boolean
 }
 
@@ -447,17 +446,12 @@ function FaseCard({
 
 // ── Componente principal ──────────────────────────────────────────────────────
 
-export default function CasaDetalleClient({ casaId, hasGuide }: CasaDetalleClientProps) {
-    const [casa, setCasa] = useState<Casa | null>(null)
+export default function CasaDetalleClient({ casa, hasGuide }: CasaDetalleClientProps) {
+    const casaId = casa.id
     const [progreso, setProgreso] = useState<ProgresoCasa | undefined>(undefined)
-    const [notFound, setNotFound] = useState(false)
 
     const refresh = useCallback(() => {
-        if (!casaId) return
-        const found = getCasaById(casaId)
-        if (!found) { setNotFound(true); return }
         const state = loadState()
-        setCasa(found)
         setProgreso(state.progresos[casaId])
     }, [casaId])
 
@@ -473,23 +467,6 @@ export default function CasaDetalleClient({ casaId, hasGuide }: CasaDetalleClien
         if (!casaId) return
         actualizarProgresoCasa(casaId, { faseActual: fase, estado: "en_progreso" })
         refresh()
-    }
-
-    if (notFound) {
-        return (
-            <div className="flex flex-col items-center justify-center min-h-[40vh] gap-4">
-                <p className="text-stone-400 text-lg">Casa no encontrada.</p>
-                <Link href="/casas" className="text-sm text-emerald-500 hover:underline">← Volver al listado</Link>
-            </div>
-        )
-    }
-
-    if (!casa) {
-        return (
-            <div className="flex items-center justify-center min-h-[40vh]">
-                <p className="text-stone-400">Cargando...</p>
-            </div>
-        )
     }
 
     const style = TIPOLOGIA_STYLE[casa.tipologia ?? "apuesta-recibe"] ?? TIPOLOGIA_STYLE["apuesta-recibe"]
