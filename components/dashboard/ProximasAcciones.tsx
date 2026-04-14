@@ -16,17 +16,21 @@ interface Accion {
 
 interface ProximasAccionesProps {
   state: UserState
+  market: 'espana' | 'latam'
 }
 
-export default function ProximasAcciones({ state }: ProximasAccionesProps) {
+export default function ProximasAcciones({ state, market }: ProximasAccionesProps) {
   const acciones: Accion[] = []
+  const moneda = market === 'espana' ? '€' : 'USD'
+  const casasDelMercado = todasLasCasas.filter((c) => c.market === market)
+  const casaIdsDelMercado = new Set(casasDelMercado.map((c) => c.id))
 
   // Bonos sin limpiar
-  const bonosPendientes = state.bonos.filter((b) => !b.limpiado)
+  const bonosPendientes = state.bonos.filter((b) => !b.limpiado && casaIdsDelMercado.has(b.casaId))
   for (const bono of bonosPendientes.slice(0, 2)) {
     acciones.push({
       id: `bono-${bono.id}`,
-      texto: `Limpiar ${bono.tipo === 'freebet' ? 'free bet' : 'reembolso'} de ${bono.casaNombre} (${bono.valor.toFixed(2)} €)`,
+      texto: `Limpiar ${bono.tipo === 'freebet' ? 'free bet' : 'reembolso'} de ${bono.casaNombre} (${bono.valor.toFixed(2)} ${moneda})`,
       href: '/bonos',
       urgente: true,
       emoji: '🎁',
@@ -34,7 +38,7 @@ export default function ProximasAcciones({ state }: ProximasAccionesProps) {
   }
 
   // Casas en curso, continuar siguiente fase
-  for (const casa of todasLasCasas) {
+  for (const casa of casasDelMercado) {
     const progreso = state.progresos[casa.id]
     if (progreso?.estado === 'en_curso' || progreso?.estado === 'en_progreso') {
       acciones.push({
@@ -48,12 +52,12 @@ export default function ProximasAcciones({ state }: ProximasAccionesProps) {
   }
 
   // Casas sin empezar, recomendar empezar
-  for (const casa of todasLasCasas) {
+  for (const casa of casasDelMercado) {
     const progreso = state.progresos[casa.id]
     if (!progreso || progreso.estado === 'no_empezada') {
       acciones.push({
         id: `casa-nueva-${casa.id}`,
-        texto: `Empezar oferta en ${casa.nombre} (+${casa.beneficioPotencial.toFixed(0)} €)`,
+        texto: `Empezar oferta en ${casa.nombre} (+${casa.beneficioPotencial.toFixed(0)} ${moneda})`,
         href: `/casas/${casa.id}`,
         urgente: false,
         emoji: '🎯',

@@ -282,7 +282,7 @@ export default function DashboardPage() {
             Próximas acciones
           </h2>
         </div>
-        <ProximasAcciones state={state} />
+        <ProximasAcciones state={state} market={market} />
       </section>
 
       <div className="grid md:grid-cols-2 gap-4">
