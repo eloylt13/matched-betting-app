@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { Suspense } from 'react'
 import CalculadoraClient from './CalculadoraClient'
 
 export const metadata: Metadata = {
@@ -38,7 +39,9 @@ export default function CalculadoraPage() {
           para obtener el stake lay óptimo y el beneficio estimado en cada escenario.
         </p>
       </div>
-      <CalculadoraClient />
+      <Suspense fallback={null}>
+        <CalculadoraClient />
+      </Suspense>
     </>
   )
 }

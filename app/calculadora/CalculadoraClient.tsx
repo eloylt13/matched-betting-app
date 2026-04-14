@@ -1,6 +1,7 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
+import { useSearchParams } from 'next/navigation'
 
 type Tab = 'oddsmatcher' | 'dutcher'
 type ModoClasica = 'dinero-real' | 'apuesta-gratis' | 'bonos' | 'rollover' | 'reembolso'
@@ -11,7 +12,41 @@ type Moneda = '€' | 'USD' | 'MXN' | 'COP' | 'CLP' | 'PEN'
 
 const MONEDAS: Moneda[] = ['€', 'USD', 'MXN', 'COP', 'CLP', 'PEN']
 
+type CalculadoraPrefill = {
+  modo?: ModoClasica
+  stake?: string
+  backOdds?: string
+  layOdds?: string
+  commission?: string
+  bookmaker?: string
+  refundType?: ReembolsoTipo
+  refundAmount?: string
+  currency?: Moneda
+}
+
 function n(v: string) { return parseFloat(v) || 0 }
+
+function isModoClasica(value: string | null): value is ModoClasica {
+  return value === 'dinero-real' || value === 'apuesta-gratis' || value === 'bonos' || value === 'rollover' || value === 'reembolso'
+}
+
+function isReembolsoTipo(value: string | null): value is ReembolsoTipo {
+  return value === 'cash' || value === 'freebet'
+}
+
+function mapCurrency(value: string | null): Moneda | undefined {
+  if (value === 'EUR') return '€'
+  if (value === 'USD') return 'USD'
+  return undefined
+}
+
+function formatBookmaker(value: string) {
+  return value
+    .split(/[-_\s]+/)
+    .filter(Boolean)
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join(' ')
+}
 
 function getResultadoLabel(valor: number, modo: ModoClasica): { titulo: string; subtitulo: string } {
   if (modo === 'dinero-real' || modo === 'rollover') {
@@ -180,10 +215,12 @@ function OddsMatcherCalc({
   modo,
   onModoChange,
   moneda,
+  prefill,
 }: {
   modo: ModoClasica
   onModoChange: (modo: ModoClasica) => void
   moneda: Moneda
+  prefill?: CalculadoraPrefill
 }) {
   const [tipoReembolso, setTipoReembolso] = useState<ReembolsoTipo>('cash')
   const [stake, setStake] = useState('100')
@@ -194,6 +231,19 @@ function OddsMatcherCalc({
   const [tasaExtraccion, setTasaExtraccion] = useState('75')
   const [rolloverX, setRolloverX] = useState('10')
   const [copiado, setCopiado] = useState(false)
+
+  useEffect(() => {
+    if (!prefill) {
+      return
+    }
+
+    if (prefill.stake) setStake(prefill.stake)
+    if (prefill.backOdds) setCuotaBM(prefill.backOdds)
+    if (prefill.layOdds) setCuotaExch(prefill.layOdds)
+    if (prefill.commission) setComision(prefill.commission)
+    if (prefill.refundType) setTipoReembolso(prefill.refundType)
+    if (prefill.refundAmount) setReembolso(prefill.refundAmount)
+  }, [prefill])
 
   const s = n(stake)
   const cbm = n(cuotaBM)
@@ -301,6 +351,11 @@ function OddsMatcherCalc({
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
         <div className="flex flex-col gap-4">
           <div className="bg-white rounded-2xl border border-gray-100 p-5 space-y-4">
+            {prefill?.bookmaker && (
+              <div className="inline-flex items-center rounded-full border border-purple-200 bg-purple-50 px-3 py-1 text-xs font-semibold text-purple-700">
+                Calculando para: {formatBookmaker(prefill.bookmaker)}
+              </div>
+            )}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <InputField label="Importe apuesta" value={stake} onChange={setStake} prefix={moneda} microcopy="Stake que vas a apostar en la casa" />
               <InputField label="Cuota bookmaker" value={cuotaBM} onChange={setCuotaBM} microcopy="Cuota A FAVOR en la casa de apuestas" />
@@ -673,6 +728,55 @@ export default function CalculadoraPage() {
   const [oddsmatcherMode, setOddsmatcherMode] = useState<ModoClasica>('dinero-real')
   const [dutcherMode, setDutcherMode] = useState<ModoDutcher>('dinero-real')
   const [moneda, setMoneda] = useState<Moneda>('€')
+  const searchParams = useSearchParams()
+
+  const prefill = useMemo<CalculadoraPrefill | undefined>(() => {
+    const hasParams = [
+      'modo',
+      'stake',
+      'backOdds',
+      'layOdds',
+      'commission',
+      'bookmaker',
+      'refundType',
+      'refundAmount',
+      'currency',
+    ].some((key) => searchParams.get(key) !== null)
+
+    if (!hasParams) {
+      return undefined
+    }
+
+    const modo = searchParams.get('modo')
+    const refundType = searchParams.get('refundType')
+
+    return {
+      modo: isModoClasica(modo) ? modo : undefined,
+      stake: searchParams.get('stake') ?? undefined,
+      backOdds: searchParams.get('backOdds') ?? undefined,
+      layOdds: searchParams.get('layOdds') ?? undefined,
+      commission: searchParams.get('commission') ?? undefined,
+      bookmaker: searchParams.get('bookmaker') ?? undefined,
+      refundType: isReembolsoTipo(refundType) ? refundType : undefined,
+      refundAmount: searchParams.get('refundAmount') ?? undefined,
+      currency: mapCurrency(searchParams.get('currency')),
+    }
+  }, [searchParams])
+
+  useEffect(() => {
+    if (!prefill) {
+      return
+    }
+
+    if (prefill.modo) {
+      setTab('oddsmatcher')
+      setOddsmatcherMode(prefill.modo)
+    }
+
+    if (prefill.currency) {
+      setMoneda(prefill.currency)
+    }
+  }, [prefill])
 
   const TABS: { id: Tab; label: string; sub: string; icon: string }[] = [
     { id: 'oddsmatcher', label: 'Oddsmatcher', sub: 'Bookmaker + Exchange', icon: 'O' },
@@ -788,7 +892,7 @@ export default function CalculadoraPage() {
       </div>
 
       <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-        {tab === 'oddsmatcher' && <OddsMatcherCalc modo={oddsmatcherMode} onModoChange={setOddsmatcherMode} moneda={moneda} />}
+        {tab === 'oddsmatcher' && <OddsMatcherCalc modo={oddsmatcherMode} onModoChange={setOddsmatcherMode} moneda={moneda} prefill={prefill} />}
         {tab === 'dutcher' && <DutcherCalc modo={dutcherMode} onModoChange={setDutcherMode} moneda={moneda} />}
       </div>
     </div>
