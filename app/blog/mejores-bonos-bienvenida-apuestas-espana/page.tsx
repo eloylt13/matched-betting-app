@@ -404,7 +404,7 @@ export default function MejoresBonos2026Page() {
           </li>
           <li>
             <Link
-              href="/guias/introduccion-matched-betting"
+              href="/guias/primeros-pasos/introduccion-matched-betting"
               className="text-sm text-purple-600 hover:text-purple-700 font-medium transition-colors"
             >
               Introducción al matched betting — guía completa →
@@ -412,7 +412,7 @@ export default function MejoresBonos2026Page() {
           </li>
           <li>
             <Link
-              href="/guias/cuanto-se-puede-ganar-espana"
+              href="/guias/primeros-pasos/cuanto-se-puede-ganar"
               className="text-sm text-purple-600 hover:text-purple-700 font-medium transition-colors"
             >
               ¿Cuánto se puede ganar con matched betting en España? →
