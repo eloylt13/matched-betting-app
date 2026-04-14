@@ -10,6 +10,7 @@ import ProgressSummary from '@/components/dashboard/ProgressSummary'
 import CasasPendientes from '@/components/dashboard/CasasPendientes'
 import BonosPendientes from '@/components/dashboard/BonosPendientes'
 import ProximasAcciones from '@/components/dashboard/ProximasAcciones'
+import CasasProgress from '@/components/dashboard/CasasProgress'
 
  type Market = 'espana' | 'latam'
 
@@ -199,6 +200,8 @@ export default function DashboardPage() {
       </section>
 
       <ProgressSummary state={state} />
+
+      <CasasProgress />
 
       <section>
         <div className="flex items-center justify-between mb-3">

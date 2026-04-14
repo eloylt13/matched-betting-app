@@ -10,6 +10,7 @@ import type { ProgresoCasa } from "@/types/user"
 
 interface CasaDetalleClientProps {
     casaId: string
+    hasGuide: boolean
 }
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
@@ -19,6 +20,94 @@ const TIPOLOGIA_STYLE: Record<string, { border: string; badge: string; label: st
     reembolso: { border: "border-blue-400", badge: "bg-blue-100 text-blue-700", label: "Reembolso", icon: "🔵" },
     rollover: { border: "border-amber-400", badge: "bg-amber-100 text-amber-700", label: "Rollover", icon: "🔄" },
     exchange: { border: "border-purple-500", badge: "bg-purple-100 text-purple-700", label: "Exchange", icon: "♻️" },
+}
+
+const TIPOLOGIA_CONTENT: Record<string, {
+    tipoBono: string
+    nivel: string
+    estilo: string
+    tareas: [string, string, string]
+    paso1Title: string
+    paso1Text: string
+    paso1Mode: string
+    paso1Cta: string
+    paso2Title: string
+    paso2Text: string
+    paso2Mode: string
+    paso2Cta: string
+}> = {
+    "apuesta-recibe": {
+        tipoBono: "Apuesta y recibe (freebet)",
+        nivel: "Principiante",
+        estilo: "Guía operativa paso a paso",
+        tareas: [
+            "Registrarte y depositar",
+            "Hacer la apuesta cualificante",
+            "Usar la freebet recibida",
+        ],
+        paso1Title: "Paso 1: Apuesta cualificante (dinero real)",
+        paso1Text: "La cualificante es tu apuesta inicial con dinero real para activar el bono. Lo ideal es cubrirla a la vez en el exchange para reducir al mínimo la pérdida y dejar lista la recepción de la freebet.",
+        paso1Mode: "dinero-real",
+        paso1Cta: "Abrir calculadora",
+        paso2Title: "Paso 2: Usar la freebet",
+        paso2Text: "Cuando recibas la freebet, el siguiente paso es convertirla en beneficio real. Usa la calculadora de apuesta gratis para encontrar la cobertura correcta y ejecutar la conversión con buena retención.",
+        paso2Mode: "apuesta-gratis",
+        paso2Cta: "Abrir calculadora freebet",
+    },
+    reembolso: {
+        tipoBono: "Apuesta con reembolso",
+        nivel: "Intermedio",
+        estilo: "Conversión del reembolso guiada",
+        tareas: [
+            "Registrarte y depositar",
+            "Hacer la apuesta cualificante",
+            "Convertir el reembolso recibido",
+        ],
+        paso1Title: "Paso 1: Apuesta cualificante (dinero real)",
+        paso1Text: "Primero activa la oferta con una apuesta con dinero real. La idea es cubrirla bien para limitar la pérdida y dejar preparado el escenario para recibir el reembolso si aplica.",
+        paso1Mode: "dinero-real",
+        paso1Cta: "Abrir calculadora",
+        paso2Title: "Paso 2: Convertir reembolso",
+        paso2Text: "Cuando el reembolso llegue, conviértelo con la calculadora específica para este tipo de bono. Así podrás extraer el máximo valor posible con una cobertura más precisa.",
+        paso2Mode: "reembolso",
+        paso2Cta: "Abrir calculadora reembolso",
+    },
+    rollover: {
+        tipoBono: "Bono con rollover",
+        nivel: "Avanzado",
+        estilo: "Seguimiento de requisitos y extracción",
+        tareas: [
+            "Registrarte, depositar y activar el bono",
+            "Cumplir los requisitos de rollover",
+            "Extraer el beneficio final",
+        ],
+        paso1Title: "Paso 1: Depositar y activar bono",
+        paso1Text: "Empieza haciendo el depósito y activando correctamente el bono. Es clave revisar condiciones y cobertura para no comprometer el valor del saldo bonificado desde el principio.",
+        paso1Mode: "dinero-real",
+        paso1Cta: "Abrir calculadora",
+        paso2Title: "Paso 2: Cumplir rollover",
+        paso2Text: "Después toca completar el rollover con disciplina. Usa la calculadora adecuada para planificar cada apuesta y mantener el coste bajo mientras desbloqueas el beneficio.",
+        paso2Mode: "rollover",
+        paso2Cta: "Abrir calculadora rollover",
+    },
+    default: {
+        tipoBono: "Oferta de bienvenida",
+        nivel: "Variable",
+        estilo: "Resumen operativo",
+        tareas: [
+            "Registrarte y preparar saldo",
+            "Hacer la primera apuesta",
+            "Completar la oferta",
+        ],
+        paso1Title: "Paso 1: Primera apuesta",
+        paso1Text: "Empieza con tu primera apuesta siguiendo las condiciones básicas de la promoción. Si la cubres en el exchange, tendrás más control sobre el coste inicial.",
+        paso1Mode: "dinero-real",
+        paso1Cta: "Abrir calculadora",
+        paso2Title: "Paso 2: Completar oferta",
+        paso2Text: "Después termina la oferta según la mecánica concreta de la casa. Usa la calculadora para mantener una ejecución consistente mientras completas el proceso.",
+        paso2Mode: "dinero-real",
+        paso2Cta: "Abrir calculadora",
+    },
 }
 
 function getDificultadLabel(d: number) {
@@ -358,7 +447,7 @@ function FaseCard({
 
 // ── Componente principal ──────────────────────────────────────────────────────
 
-export default function CasaDetalleClient({ casaId }: CasaDetalleClientProps) {
+export default function CasaDetalleClient({ casaId, hasGuide }: CasaDetalleClientProps) {
     const [casa, setCasa] = useState<Casa | null>(null)
     const [progreso, setProgreso] = useState<ProgresoCasa | undefined>(undefined)
     const [notFound, setNotFound] = useState(false)
@@ -412,8 +501,11 @@ export default function CasaDetalleClient({ casaId }: CasaDetalleClientProps) {
     const completada = estado === "completada"
     const siguienteAccion = getSiguienteAccion(estado, faseActual, totalFases, casa, simbolo)
     const tiempoEstimado = getTiempoEstimado(casa.tipologia)
-    const isSportium = casa.id === "sportium"
-    const guiaSportiumHref = "/guias/casas/sportium"
+    const guiaHref = `/guias/casas/${casa.id}`
+    const content = TIPOLOGIA_CONTENT[casa.tipologia ?? "default"] ?? TIPOLOGIA_CONTENT.default
+    const firstStake = casa.promos[0]?.fases[0]?.stakeRecomendado ?? 10
+    const paso1Href = `/calculadora?modo=${content.paso1Mode}&stake=${firstStake}&commission=2&bookmaker=${casa.id}`
+    const paso2Href = `/calculadora?modo=${content.paso2Mode}&stake=${firstStake}&commission=2&bookmaker=${casa.id}`
 
     return (
         <div className="max-w-3xl mx-auto px-4 py-8 flex flex-col gap-6">
@@ -465,17 +557,15 @@ export default function CasaDetalleClient({ casaId }: CasaDetalleClientProps) {
                     </div>
                 </div>
 
-                {casa.id === "sportium" && (
-                    <div className="mt-3 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 flex items-start gap-2">
-                        <span className="text-base shrink-0">🧭</span>
-                        <div>
-                            <p className="text-xs font-bold text-emerald-700 uppercase tracking-wide mb-0.5">Primer paso recomendado</p>
-                            <p className="text-sm text-emerald-800">
-                                Regístrate, completa la fase y usa la calculadora cuando hagas la apuesta.
-                            </p>
-                        </div>
+                <div className="mt-3 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 flex items-start gap-2">
+                    <span className="text-base shrink-0">🧭</span>
+                    <div>
+                        <p className="text-xs font-bold text-emerald-700 uppercase tracking-wide mb-0.5">Primer paso recomendado</p>
+                        <p className="text-sm text-emerald-800">
+                            Regístrate, prepara el saldo y usa la calculadora en el momento de ejecutar cada paso de la oferta.
+                        </p>
                     </div>
-                )}
+                </div>
 
                 {/* CTAs */}
                 <div className="flex flex-wrap gap-3 mt-4">
@@ -553,93 +643,91 @@ export default function CasaDetalleClient({ casaId }: CasaDetalleClientProps) {
                 </div>
             </div>
 
-            {isSportium && (
-                <div className="flex flex-col gap-4">
-                    <div className="rounded-2xl border border-emerald-500/20 bg-emerald-500/10 p-5 md:p-6">
-                        <h2 className="text-lg font-semibold text-emerald-300">Qué vas a conseguir</h2>
-                        <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-                            <div className="rounded-xl border border-emerald-500/20 bg-stone-900/40 p-4">
-                                <p className="text-xs font-semibold uppercase tracking-wide text-emerald-200/80">Tipo de bono</p>
-                                <p className="mt-2 text-sm font-medium text-stone-100">Apuesta y recibe (freebet)</p>
-                            </div>
-                            <div className="rounded-xl border border-emerald-500/20 bg-stone-900/40 p-4">
-                                <p className="text-xs font-semibold uppercase tracking-wide text-emerald-200/80">Beneficio aproximado</p>
-                                <p className="mt-2 text-sm font-medium text-stone-100">{casa.beneficioPotencial} {simbolo}</p>
-                            </div>
-                            <div className="rounded-xl border border-emerald-500/20 bg-stone-900/40 p-4">
-                                <p className="text-xs font-semibold uppercase tracking-wide text-emerald-200/80">Nivel</p>
-                                <p className="mt-2 text-sm font-medium text-stone-100">Principiante</p>
-                            </div>
-                            <div className="rounded-xl border border-emerald-500/20 bg-stone-900/40 p-4">
-                                <p className="text-xs font-semibold uppercase tracking-wide text-emerald-200/80">Estilo</p>
-                                <p className="mt-2 text-sm font-medium text-stone-100">Guía operativa paso a paso</p>
-                            </div>
+            <div className="flex flex-col gap-4">
+                <div className="rounded-2xl border border-emerald-500/20 bg-emerald-500/10 p-5 md:p-6">
+                    <h2 className="text-lg font-semibold text-emerald-300">Qué vas a conseguir</h2>
+                    <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                        <div className="rounded-xl border border-emerald-500/20 bg-stone-900/40 p-4">
+                            <p className="text-xs font-semibold uppercase tracking-wide text-emerald-200/80">Tipo de bono</p>
+                            <p className="mt-2 text-sm font-medium text-stone-100">{content.tipoBono}</p>
+                        </div>
+                        <div className="rounded-xl border border-emerald-500/20 bg-stone-900/40 p-4">
+                            <p className="text-xs font-semibold uppercase tracking-wide text-emerald-200/80">Beneficio aproximado</p>
+                            <p className="mt-2 text-sm font-medium text-stone-100">{casa.beneficioPotencial} {simbolo}</p>
+                        </div>
+                        <div className="rounded-xl border border-emerald-500/20 bg-stone-900/40 p-4">
+                            <p className="text-xs font-semibold uppercase tracking-wide text-emerald-200/80">Nivel</p>
+                            <p className="mt-2 text-sm font-medium text-stone-100">{content.nivel}</p>
+                        </div>
+                        <div className="rounded-xl border border-emerald-500/20 bg-stone-900/40 p-4">
+                            <p className="text-xs font-semibold uppercase tracking-wide text-emerald-200/80">Estilo</p>
+                            <p className="mt-2 text-sm font-medium text-stone-100">{content.estilo}</p>
                         </div>
                     </div>
-
-                    <div className="rounded-2xl border border-stone-700 bg-stone-900 p-5 md:p-6">
-                        <h2 className="text-lg font-semibold text-stone-100">Qué tienes que hacer</h2>
-                        <ol className="mt-4 flex flex-col gap-3">
-                            {[
-                                "Registrarte y depositar",
-                                "Hacer la apuesta cualificante",
-                                "Usar la freebet recibida",
-                            ].map((item, index) => (
-                                <li key={item} className="flex items-start gap-3 text-stone-300">
-                                    <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-stone-600 bg-stone-800 text-sm font-semibold text-emerald-300">
-                                        {index + 1}
-                                    </span>
-                                    <span className="pt-1 text-sm leading-6">{item}</span>
-                                </li>
-                            ))}
-                        </ol>
-                    </div>
-
-                    <div className="rounded-2xl border border-stone-700 bg-stone-900 p-5 md:p-6">
-                        <h2 className="text-lg font-semibold text-stone-100">Paso 1: Apuesta cualificante (dinero real)</h2>
-                        <p className="mt-3 text-sm leading-6 text-stone-300">
-                            La cualificante es tu apuesta inicial con dinero real para activar el bono. Lo ideal es cubrirla a la vez en el exchange para reducir al mínimo la pérdida y dejar lista la recepción de la freebet.
-                        </p>
-                        <div className="mt-4 flex flex-col gap-3 sm:flex-row">
-                            <Link
-                                href="/calculadora?modo=dinero-real&stake=10&commission=2&bookmaker=sportium"
-                                className="inline-flex items-center justify-center rounded-xl bg-emerald-500 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-emerald-400"
-                            >
-                                Abrir calculadora
-                            </Link>
-                            <Link
-                                href={guiaSportiumHref}
-                                className="inline-flex items-center justify-center rounded-xl border border-white/20 px-5 py-3 text-sm font-semibold text-stone-200 transition-colors hover:border-white/30 hover:bg-white/5"
-                            >
-                                Ver guía completa
-                            </Link>
-                        </div>
-                    </div>
-
-                    <div className="rounded-2xl border border-stone-700 bg-stone-900 p-5 md:p-6">
-                        <h2 className="text-lg font-semibold text-stone-100">Paso 2: Usar la freebet</h2>
-                        <p className="mt-3 text-sm leading-6 text-stone-300">
-                            Cuando recibas la freebet, el siguiente paso es convertirla en beneficio real. Usa la calculadora de apuesta gratis para encontrar la cobertura correcta y ejecutar la conversión con buena retención.
-                        </p>
-                        <div className="mt-4 flex flex-col gap-3 sm:flex-row">
-                            <Link
-                                href="/calculadora?modo=apuesta-gratis&stake=10&commission=2&bookmaker=sportium"
-                                className="inline-flex items-center justify-center rounded-xl bg-emerald-500 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-emerald-400"
-                            >
-                                Abrir calculadora freebet
-                            </Link>
-                            <Link
-                                href={guiaSportiumHref}
-                                className="inline-flex items-center justify-center rounded-xl border border-white/20 px-5 py-3 text-sm font-semibold text-stone-200 transition-colors hover:border-white/30 hover:bg-white/5"
-                            >
-                                Ver guía completa
-                            </Link>
-                        </div>
-                    </div>
-
-                    <CasaChecklist casaId={casa.id} />
                 </div>
-            )}
+
+                <div className="rounded-2xl border border-stone-700 bg-stone-900 p-5 md:p-6">
+                    <h2 className="text-lg font-semibold text-stone-100">Qué tienes que hacer</h2>
+                    <ol className="mt-4 flex flex-col gap-3">
+                        {content.tareas.map((item, index) => (
+                            <li key={item} className="flex items-start gap-3 text-stone-300">
+                                <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-stone-600 bg-stone-800 text-sm font-semibold text-emerald-300">
+                                    {index + 1}
+                                </span>
+                                <span className="pt-1 text-sm leading-6">{item}</span>
+                            </li>
+                        ))}
+                    </ol>
+                </div>
+
+                <div className="rounded-2xl border border-stone-700 bg-stone-900 p-5 md:p-6">
+                    <h2 className="text-lg font-semibold text-stone-100">{content.paso1Title}</h2>
+                    <p className="mt-3 text-sm leading-6 text-stone-300">
+                        {content.paso1Text}
+                    </p>
+                    <div className="mt-4 flex flex-col gap-3 sm:flex-row">
+                        <Link
+                            href={paso1Href}
+                            className="inline-flex items-center justify-center rounded-xl bg-emerald-500 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-emerald-400"
+                        >
+                            {content.paso1Cta}
+                        </Link>
+                        {hasGuide && (
+                            <Link
+                                href={guiaHref}
+                                className="inline-flex items-center justify-center rounded-xl border border-white/20 px-5 py-3 text-sm font-semibold text-stone-200 transition-colors hover:border-white/30 hover:bg-white/5"
+                            >
+                                Ver guía completa
+                            </Link>
+                        )}
+                    </div>
+                </div>
+
+                <div className="rounded-2xl border border-stone-700 bg-stone-900 p-5 md:p-6">
+                    <h2 className="text-lg font-semibold text-stone-100">{content.paso2Title}</h2>
+                    <p className="mt-3 text-sm leading-6 text-stone-300">
+                        {content.paso2Text}
+                    </p>
+                    <div className="mt-4 flex flex-col gap-3 sm:flex-row">
+                        <Link
+                            href={paso2Href}
+                            className="inline-flex items-center justify-center rounded-xl bg-emerald-500 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-emerald-400"
+                        >
+                            {content.paso2Cta}
+                        </Link>
+                        {hasGuide && (
+                            <Link
+                                href={guiaHref}
+                                className="inline-flex items-center justify-center rounded-xl border border-white/20 px-5 py-3 text-sm font-semibold text-stone-200 transition-colors hover:border-white/30 hover:bg-white/5"
+                            >
+                                Ver guía completa
+                            </Link>
+                        )}
+                    </div>
+                </div>
+
+                <CasaChecklist casaId={casa.id} tipologia={casa.tipologia} />
+            </div>
 
             {/* Fases detalladas */}
             {casa.promos.map(promo => (

@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react"
 
 interface CasaChecklistProps {
     casaId: string
+    tipologia?: string
 }
 
 interface ChecklistState {
@@ -20,8 +21,36 @@ const initialState: ChecklistState = {
     freebetUsada: false,
 }
 
-export default function CasaChecklist({ casaId }: CasaChecklistProps) {
+const CHECKLIST_LABELS: Record<string, [string, string, string, string]> = {
+    "apuesta-recibe": [
+        "Registro y depósito completado",
+        "Apuesta cualificante realizada",
+        "Freebet recibida",
+        "Freebet usada — casa completada",
+    ],
+    reembolso: [
+        "Registro y depósito completado",
+        "Apuesta cualificante realizada",
+        "Reembolso recibido",
+        "Reembolso convertido — casa completada",
+    ],
+    rollover: [
+        "Registro y depósito completado",
+        "Bono activado",
+        "Requisitos de rollover cumplidos",
+        "Beneficio extraído — casa completada",
+    ],
+    default: [
+        "Paso 1 completado",
+        "Paso 2 completado",
+        "Paso 3 completado",
+        "Casa completada",
+    ],
+}
+
+export default function CasaChecklist({ casaId, tipologia }: CasaChecklistProps) {
     const storageKey = useMemo(() => `checklist_${casaId}`, [casaId])
+    const labels = CHECKLIST_LABELS[tipologia ?? "default"] ?? CHECKLIST_LABELS.default
     const [state, setState] = useState<ChecklistState>(initialState)
     const [hydrated, setHydrated] = useState(false)
 
@@ -68,7 +97,7 @@ export default function CasaChecklist({ casaId }: CasaChecklistProps) {
                         onChange={(e) => setState((prev) => ({ ...prev, registroDeposito: e.target.checked }))}
                         className="mt-0.5 h-4 w-4 accent-emerald-500"
                     />
-                    <span>Registro y depósito completado</span>
+                    <span>{labels[0]}</span>
                 </label>
 
                 <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-stone-800 bg-stone-800/70 px-4 py-3 text-sm text-stone-300 transition-colors hover:border-stone-600">
@@ -78,7 +107,7 @@ export default function CasaChecklist({ casaId }: CasaChecklistProps) {
                         onChange={(e) => setState((prev) => ({ ...prev, apuestaCualificante: e.target.checked }))}
                         className="mt-0.5 h-4 w-4 accent-emerald-500"
                     />
-                    <span>Apuesta cualificante realizada</span>
+                    <span>{labels[1]}</span>
                 </label>
 
                 <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-stone-800 bg-stone-800/70 px-4 py-3 text-sm text-stone-300 transition-colors hover:border-stone-600">
@@ -88,7 +117,7 @@ export default function CasaChecklist({ casaId }: CasaChecklistProps) {
                         onChange={(e) => setState((prev) => ({ ...prev, freebetRecibida: e.target.checked }))}
                         className="mt-0.5 h-4 w-4 accent-emerald-500"
                     />
-                    <span>Freebet recibida</span>
+                    <span>{labels[2]}</span>
                 </label>
 
                 <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-stone-800 bg-stone-800/70 px-4 py-3 text-sm text-stone-300 transition-colors hover:border-stone-600">
@@ -98,7 +127,7 @@ export default function CasaChecklist({ casaId }: CasaChecklistProps) {
                         onChange={(e) => setState((prev) => ({ ...prev, freebetUsada: e.target.checked }))}
                         className="mt-0.5 h-4 w-4 accent-emerald-500"
                     />
-                    <span>Freebet usada — casa completada</span>
+                    <span>{labels[3]}</span>
                 </label>
             </div>
         </div>

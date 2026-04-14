@@ -1,4 +1,6 @@
 import type { Metadata } from "next"
+import fs from "node:fs"
+import path from "node:path"
 import CasaDetalleClient from "./CasaDetalleClient"
 import { getCasaById } from "@/lib/presets"
 
@@ -22,6 +24,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function CasaDetallePage({ params }: PageProps) {
     const { casa } = await params
+    const guidePath = path.join(process.cwd(), "content", "guias", "casas", `${casa}.mdx`)
+    const hasGuide = fs.existsSync(guidePath)
 
-    return <CasaDetalleClient casaId={casa} />
+    return <CasaDetalleClient casaId={casa} hasGuide={hasGuide} />
 }
