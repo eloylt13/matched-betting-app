@@ -1,6 +1,8 @@
 // app/sitemap.ts
+import fs from 'fs'
+import path from 'path'
 import { MetadataRoute } from 'next'
-import { casasEspana } from '@/lib/presets/data/espana'
+import { todasLasCasas } from '@/lib/presets'
 
 const GUIA_PRIORITY_BY_CATEGORY: Record<string, number> = {
     'primeros-pasos': 0.8,
@@ -9,61 +11,12 @@ const GUIA_PRIORITY_BY_CATEGORY: Record<string, number> = {
     casas: 0.7,
 }
 
-const GUIA_ROUTES: Array<{ categoria: string; slug: string }> = [
-    { categoria: 'primeros-pasos', slug: 'leeme-primero' },
-    { categoria: 'primeros-pasos', slug: 'introduccion-matched-betting' },
-    { categoria: 'primeros-pasos', slug: 'cuanto-se-puede-ganar' },
-    { categoria: 'primeros-pasos', slug: 'orden-recomendado' },
-    { categoria: 'primeros-pasos', slug: 'betfair-exchange' },
-    { categoria: 'primeros-pasos', slug: 'calculadora-oddsmatcher' },
-    { categoria: 'primeros-pasos', slug: 'calculadora-dutcher' },
-    { categoria: 'primeros-pasos', slug: 'glosario-terminos' },
-    { categoria: 'modulos', slug: 'modulo-1-betfair' },
-    { categoria: 'modulos', slug: 'modulo-2-apuesta-y-recibe' },
-    { categoria: 'modulos', slug: 'modulo-3-reembolso' },
-    { categoria: 'modulos', slug: 'modulo-4-rollover' },
-    { categoria: 'modulos', slug: 'modulo-5-herramientas' },
-    { categoria: 'modulos', slug: 'modulo-6-dutcher' },
-    { categoria: 'modulos', slug: 'modulo-7-calculadora-web' },
-    { categoria: 'estrategia', slug: 'maximizar-apuesta-recibe' },
-    { categoria: 'estrategia', slug: 'maximizar-reembolso' },
-    { categoria: 'estrategia', slug: 'gestionar-rollover' },
-    { categoria: 'estrategia', slug: 'gestion-bankroll' },
-    { categoria: 'estrategia', slug: 'errores-comunes' },
-    { categoria: 'estrategia', slug: 'como-no-perder-la-cuenta' },
-    { categoria: 'casas', slug: '888sport' },
-    { categoria: 'casas', slug: 'aupabet' },
-    { categoria: 'casas', slug: 'bet365' },
-    { categoria: 'casas', slug: 'betfair' },
-    { categoria: 'casas', slug: 'betsson' },
-    { categoria: 'casas', slug: 'betway' },
-    { categoria: 'casas', slug: 'botemania' },
-    { categoria: 'casas', slug: 'bwin' },
-    { categoria: 'casas', slug: 'casino-gran-madrid' },
-    { categoria: 'casas', slug: 'casumo' },
-    { categoria: 'casas', slug: 'codere' },
-    { categoria: 'casas', slug: 'daznbet' },
-    { categoria: 'casas', slug: 'ebingo' },
-    { categoria: 'casas', slug: 'efbet' },
-    { categoria: 'casas', slug: 'goldenpark' },
-    { categoria: 'casas', slug: 'interwetten' },
-    { categoria: 'casas', slug: 'juegging' },
-    { categoria: 'casas', slug: 'jokerbet' },
-    { categoria: 'casas', slug: 'kirolbet' },
-    { categoria: 'casas', slug: 'leovegas' },
-    { categoria: 'casas', slug: 'marca-apuestas' },
-    { categoria: 'casas', slug: 'olybet' },
-    { categoria: 'casas', slug: 'paf' },
-    { categoria: 'casas', slug: 'paston' },
-    { categoria: 'casas', slug: 'pokerstars' },
-    { categoria: 'casas', slug: 'retabet' },
-    { categoria: 'casas', slug: 'solcasino' },
-    { categoria: 'casas', slug: 'sportium' },
-    { categoria: 'casas', slug: 'versus' },
-    { categoria: 'casas', slug: 'william-hill' },
-    { categoria: 'casas', slug: 'winamax' },
-    { categoria: 'casas', slug: 'yaass' },
-]
+const BLOG_ROUTES = [
+    { slug: 'que-es-matched-betting-espana', lastModified: '2026-03-29', priority: 0.8 },
+    { slug: 'mejores-bonos-bienvenida-apuestas-espana', lastModified: '2026-03-29', priority: 0.8 },
+    { slug: 'que-es-matched-betting-latam', lastModified: '2026-04-08', priority: 0.72 },
+    { slug: 'mejores-bonos-bienvenida-latam', lastModified: '2026-04-08', priority: 0.72 },
+] as const
 
 const GUIAS_PDF_ROUTES = [
     { slug: 'introduccion-matched-betting', priority: 0.9 },
@@ -72,99 +25,114 @@ const GUIAS_PDF_ROUTES = [
     { slug: 'modulo-apuesta-y-recibe', priority: 0.85 },
 ]
 
+const guiasDir = path.join(process.cwd(), 'content', 'guias')
+
+function getGuiaRoutes(): Array<{ categoria: string; slug: string }> {
+    if (!fs.existsSync(guiasDir)) return []
+
+    return fs.readdirSync(guiasDir).flatMap((categoria) => {
+        const categoriaPath = path.join(guiasDir, categoria)
+        if (!fs.statSync(categoriaPath).isDirectory()) return []
+
+        return fs
+            .readdirSync(categoriaPath)
+            .filter((file) => file.endsWith('.mdx') || file.endsWith('.md'))
+            .map((file) => ({
+                categoria,
+                slug: file.replace(/\.(mdx|md)$/, ''),
+            }))
+    })
+}
+
 export default function sitemap(): MetadataRoute.Sitemap {
     const baseUrl = 'https://iapredicthub.es'
+    const now = new Date()
 
     // Rutas estáticas
     const staticRoutes: MetadataRoute.Sitemap = [
         {
             // Landing pública — máxima prioridad de indexación
             url: baseUrl,
-            lastModified: new Date(),
+            lastModified: now,
             changeFrequency: 'weekly',
             priority: 1.0,
         },
         {
             // Dashboard de la app — no es una página pública de contenido
             url: `${baseUrl}/dashboard`,
-            lastModified: new Date(),
+            lastModified: now,
             changeFrequency: 'monthly',
             priority: 0.4,
         },
         {
             url: `${baseUrl}/guias`,
-            lastModified: new Date(),
+            lastModified: now,
             changeFrequency: 'weekly',
             priority: 0.9,
         },
         {
             url: `${baseUrl}/calculadora`,
-            lastModified: new Date(),
+            lastModified: now,
             changeFrequency: 'monthly',
             priority: 0.9,
         },
         {
             url: `${baseUrl}/casas`,
-            lastModified: new Date(),
+            lastModified: now,
             changeFrequency: 'weekly',
             priority: 0.8,
         },
         {
             url: `${baseUrl}/bonos`,
-            lastModified: new Date(),
+            lastModified: now,
             changeFrequency: 'weekly',
             priority: 0.7,
         },
         {
             url: `${baseUrl}/historial`,
-            lastModified: new Date(),
+            lastModified: now,
             changeFrequency: 'monthly',
             priority: 0.5,
         },
         {
             url: `${baseUrl}/blog`,
-            lastModified: new Date(),
+            lastModified: now,
             changeFrequency: 'weekly',
-            priority: 0.8,
+            priority: 0.85,
         },
     ]
 
     // Rutas dinámicas de casas
-    const casaRoutes: MetadataRoute.Sitemap = casasEspana.map((casa) => ({
+    const casaRoutes: MetadataRoute.Sitemap = todasLasCasas.map((casa) => ({
         url: `${baseUrl}/casas/${casa.id}`,
-        lastModified: new Date(),
+        lastModified: now,
         changeFrequency: 'monthly' as const,
-        priority: 0.7,
+        priority: casa.market === 'espana' ? 0.7 : 0.62,
     }))
 
-    const guiaRoutes: MetadataRoute.Sitemap = GUIA_ROUTES.map(({ categoria, slug }) => ({
+    const guiaRoutes: MetadataRoute.Sitemap = getGuiaRoutes().map(({ categoria, slug }) => ({
         url: `${baseUrl}/guias/${categoria}/${slug}`,
-        lastModified: new Date(),
+        lastModified: now,
         changeFrequency: 'monthly',
-        priority: GUIA_PRIORITY_BY_CATEGORY[categoria] ?? 0.7,
+        priority:
+            categoria === 'casas' && /-(ar|cl|co|ec|mx|pa|pe|uy|reg)$/.test(slug)
+                ? 0.64
+                : GUIA_PRIORITY_BY_CATEGORY[categoria] ?? 0.7,
     }))
 
     const guiasPdfRoutes: MetadataRoute.Sitemap = GUIAS_PDF_ROUTES.map(({ slug, priority }) => ({
         url: `${baseUrl}/guias/${slug}`,
-        lastModified: new Date(),
+        lastModified: now,
         changeFrequency: 'monthly' as const,
         priority,
     }))
 
-    const blogRoutes: MetadataRoute.Sitemap = [
-        {
-            url: `${baseUrl}/blog/que-es-matched-betting-espana`,
-            lastModified: new Date('2026-03-29'),
-            changeFrequency: 'monthly',
-            priority: 0.8,
-        },
-        {
-            url: `${baseUrl}/blog/mejores-bonos-bienvenida-apuestas-espana`,
-            lastModified: new Date('2026-03-29'),
-            changeFrequency: 'monthly',
-            priority: 0.8,
-        },
-    ]
+    const blogRoutes: MetadataRoute.Sitemap = BLOG_ROUTES.map(({ slug, lastModified, priority }) => ({
+        url: `${baseUrl}/blog/${slug}`,
+        lastModified: new Date(lastModified),
+        changeFrequency: 'monthly',
+        priority,
+    }))
 
     return [...staticRoutes, ...casaRoutes, ...guiaRoutes, ...guiasPdfRoutes, ...blogRoutes]
 }
