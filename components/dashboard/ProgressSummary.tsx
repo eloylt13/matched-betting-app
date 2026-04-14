@@ -7,6 +7,7 @@ import type { UserState } from '@/types/user'
 
 interface ProgressSummaryProps {
   state: UserState
+  market: 'espana' | 'latam'
 }
 
 function KPI({ value, label, accent }: { value: string; label: string; accent?: string }) {
@@ -20,14 +21,18 @@ function KPI({ value, label, accent }: { value: string; label: string; accent?: 
   )
 }
 
-export default function ProgressSummary({ state }: ProgressSummaryProps) {
-  const completadas = Object.values(state.progresos).filter(
-    (p) => p.estado === 'completada'
+export default function ProgressSummary({ state, market }: ProgressSummaryProps) {
+  const casasDelMercado = todasLasCasas.filter((c) => c.market === market)
+  const casaIdsDelMercado = new Set(casasDelMercado.map((c) => c.id))
+  const moneda = market === 'espana' ? '€' : 'USD'
+
+  const completadas = casasDelMercado.filter(
+    (c) => state.progresos[c.id]?.estado === 'completada'
   ).length
 
-  const totalCasas = todasLasCasas.length
+  const totalCasas = casasDelMercado.length
 
-  const potencialPendiente = todasLasCasas
+  const potencialPendiente = casasDelMercado
     .filter((c) => {
       const p = state.progresos[c.id]
       return !p || p.estado !== 'completada'
@@ -35,21 +40,23 @@ export default function ProgressSummary({ state }: ProgressSummaryProps) {
     .reduce((acc, c) => acc + c.beneficioPotencial, 0)
 
   const beneficioAcumulado = state.historial.reduce(
-    (acc, e) => acc + e.resultado,
+    (acc, e) => acc + (e.casaId && casaIdsDelMercado.has(e.casaId) ? e.resultado : 0),
     0
   )
 
-  const bonosPendientes = state.bonos.filter((b) => !b.limpiado).length
+  const bonosPendientes = state.bonos.filter(
+    (b) => !b.limpiado && casaIdsDelMercado.has(b.casaId)
+  ).length
 
   return (
     <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
       <KPI
-        value={`${potencialPendiente.toFixed(0)} €`}
+        value={`${potencialPendiente.toFixed(0)} ${moneda}`}
         label="Potencial pendiente"
         accent="text-emerald-600"
       />
       <KPI
-        value={`${beneficioAcumulado >= 0 ? '+' : ''}${beneficioAcumulado.toFixed(2)} €`}
+        value={`${beneficioAcumulado >= 0 ? '+' : ''}${beneficioAcumulado.toFixed(2)} ${moneda}`}
         label="Beneficio acumulado"
         accent={beneficioAcumulado >= 0 ? 'text-emerald-600' : 'text-red-500'}
       />

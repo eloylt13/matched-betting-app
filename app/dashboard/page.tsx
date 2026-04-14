@@ -199,7 +199,7 @@ export default function DashboardPage() {
         </div>
       </section>
 
-      <ProgressSummary state={state} />
+      <ProgressSummary state={state} market={market} />
 
       <CasasProgress />
 
