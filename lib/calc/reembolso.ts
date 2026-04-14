@@ -7,9 +7,7 @@ export function calcReembolso(inputs: InputsReembolso): ResultadoReembolso {
     const comisionDecimal = comision / 100
     const valorRealReembolso = tipo === 'cash' ? reembolso : reembolso * (tasaExtraccion / 100)
 
-    const layStake = tipo === 'cash'
-        ? (stake * (cuotaBack - 1)) / (cuotaLay - comisionDecimal)
-        : (stake * cuotaBack - valorRealReembolso) / (cuotaLay - comisionDecimal)
+    const layStake = (stake * cuotaBack - valorRealReembolso) / (cuotaLay - comisionDecimal)
 
     const responsabilidad = layStake * (cuotaLay - 1)
 
@@ -17,7 +15,7 @@ export function calcReembolso(inputs: InputsReembolso): ResultadoReembolso {
     const resultadoExchangePierde = -responsabilidad
     const beneficioSiGana = resultadoCasaGana + resultadoExchangePierde
 
-    const resultadoCasaPierde = tipo === 'cash' ? 0 : valorRealReembolso - stake
+    const resultadoCasaPierde = valorRealReembolso - stake
     const resultadoExchangeGana = layStake * (1 - comisionDecimal)
     const beneficioSiPierde = resultadoCasaPierde + resultadoExchangeGana
     const beneficioEsperado = Math.min(beneficioSiGana, beneficioSiPierde)

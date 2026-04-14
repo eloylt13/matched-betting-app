@@ -201,12 +201,15 @@ function OddsMatcherCalc({
   const com = n(comision) / 100
   const reb = n(reembolso)
   const extraccion = n(tasaExtraccion) / 100
+  const rollover = n(rolloverX)
 
   let sc = 0
   let bGana = 0
   let bPierde = 0
   let liability = 0
   let valorRealReembolso = 0
+  let costePorVuelta = 0
+  let costeTotalRollover = 0
 
   if (s > 0 && cbm > 0 && ce > 0) {
     if (modo === 'dinero-real') {
@@ -222,30 +225,31 @@ function OddsMatcherCalc({
     } else if (modo === 'bonos') {
       sc = (s * cbm) / (ce - com)
       liability = sc * (ce - 1)
-      bGana = s * cbm - s - liability
+      bGana = s * cbm - liability
       bPierde = sc * (1 - com)
     } else if (modo === 'reembolso') {
       valorRealReembolso = tipoReembolso === 'cash' ? reb : reb * extraccion
-      sc = tipoReembolso === 'cash'
-        ? (s * (cbm - 1)) / (ce - com)
-        : (s * cbm - valorRealReembolso) / (ce - com)
+      sc = (s * cbm - valorRealReembolso) / (ce - com)
       liability = sc * (ce - 1)
       bGana = s * (cbm - 1) - liability
-      bPierde = tipoReembolso === 'cash'
-        ? sc * (1 - com)
-        : valorRealReembolso - s + sc * (1 - com)
+      bPierde = sc * (1 - com) - s + valorRealReembolso
     } else if (modo === 'rollover') {
       sc = (s * cbm) / (ce - com)
       liability = sc * (ce - 1)
       bGana = s * (cbm - 1) - liability
       bPierde = sc * (1 - com) - s
+      costePorVuelta = Math.min(bGana, bPierde)
+      costeTotalRollover = costePorVuelta * rollover
     }
   }
 
-  const beneficio = Math.min(bGana, bPierde)
+  const beneficio = modo === 'rollover' ? costeTotalRollover : Math.min(bGana, bPierde)
   const rating = s > 0 ? ((beneficio + s) / s) * 100 : 0
   const retencion = modo === 'apuesta-gratis' && s > 0 ? (bPierde / s) * 100 : null
   const { titulo, subtitulo } = getResultadoLabel(beneficio, modo)
+  const resultadoCasaSiGana = modo === 'bonos' ? s * cbm : s * (cbm - 1)
+  const resultadoCasaSiPierde = modo === 'reembolso' ? s - valorRealReembolso : s
+  const resultadoExchangeSiPierde = sc * (1 - com)
 
   const MODOS: { id: ModoClasica; label: string; color: string; colorBg: string }[] = [
     { id: 'dinero-real', label: 'DINERO REAL', color: 'bg-teal-500', colorBg: 'bg-teal-500' },
@@ -254,7 +258,7 @@ function OddsMatcherCalc({
     { id: 'rollover', label: 'ROLLOVER', color: 'bg-amber-500', colorBg: 'bg-amber-500' },
     { id: 'reembolso', label: 'REEMBOLSO', color: 'bg-rose-500', colorBg: 'bg-rose-500' },
   ]
-  const modoActual = MODOS.find((m) => m.id === modo ) ?? MODOS[0]
+  const modoActual = MODOS.find((m) => m.id === modo) ?? MODOS[0]
 
   const handleCopiar = () => {
     if (typeof navigator === 'undefined' || !navigator.clipboard) {
@@ -388,6 +392,16 @@ function OddsMatcherCalc({
                     Beneficio equilibrado: {beneficio >= 0 ? '+' : ''}{beneficio.toFixed(2)} {moneda} · Reembolso real: {valorRealReembolso.toFixed(2)} {moneda}
                   </p>
                 )}
+                {modo === 'rollover' && (
+                  <div className="text-xs opacity-85 mt-2 space-y-1">
+                    <p>
+                      Coste por vuelta: {costePorVuelta >= 0 ? '+' : ''}{costePorVuelta.toFixed(2)} {moneda}
+                    </p>
+                    <p>
+                      Coste estimado total ({rollover.toFixed(2)}x): {costeTotalRollover >= 0 ? '+' : ''}{costeTotalRollover.toFixed(2)} {moneda}
+                    </p>
+                  </div>
+                )}
               </div>
               <div className="text-right shrink-0">
                 <p className="text-xs opacity-70 uppercase tracking-wide">
@@ -422,6 +436,27 @@ function OddsMatcherCalc({
                   <p className="text-sm font-semibold text-gray-800">
                     {tipoReembolso === 'cash' ? 'Cash' : 'Free bet'}
                   </p>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {modo === 'rollover' && (
+            <div className="bg-white border border-gray-100 rounded-2xl p-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <p className="text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Coste por vuelta</p>
+                  <p className={`text-2xl font-bold ${costePorVuelta >= 0 ? 'text-green-600' : 'text-red-500'}`}>
+                    {costePorVuelta >= 0 ? '+' : ''}{costePorVuelta.toFixed(2)} {moneda}
+                  </p>
+                  <p className="text-xs text-gray-500 mt-1">Usa la misma lógica de DINERO REAL para una sola vuelta</p>
+                </div>
+                <div>
+                  <p className="text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Coste estimado total</p>
+                  <p className={`text-2xl font-bold ${costeTotalRollover >= 0 ? 'text-green-600' : 'text-red-500'}`}>
+                    {costeTotalRollover >= 0 ? '+' : ''}{costeTotalRollover.toFixed(2)} {moneda}
+                  </p>
+                  <p className="text-xs text-gray-500 mt-1">{rollover.toFixed(2)} vueltas estimadas</p>
                 </div>
               </div>
             </div>

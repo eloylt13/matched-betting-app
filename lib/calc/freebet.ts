@@ -16,7 +16,7 @@ export function calcFreeBet(inputs: InputsFreeBet): ResultadoFreeBet {
 
     // Escenario 1: gana la apuesta back (casa)
     const resultadoCasaGana = tipo === 'sr'
-        ? stake * cuotaBack - stake
+        ? stake * cuotaBack
         : stake * (cuotaBack - 1)
     const resultadoExchangePierde = -responsabilidad
     const beneficioSiGana = resultadoCasaGana + resultadoExchangePierde
