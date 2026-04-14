@@ -59,14 +59,14 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
           <div className="flex items-center gap-2 text-sm text-green-200">
             <span className="text-base">♻️</span>
             <span className="font-semibold text-white">Betfair Exchange</span>
-            <span className="hidden sm:inline text-green-300">— Imprescindible para cubrir todas tus apuestas</span>
+            <span className="hidden sm:inline text-green-300">— Imprescindible para cubrir apuestas en España y también útil si operas desde LATAM</span>
           </div>
           <div className="flex items-center gap-2 shrink-0">
             <a href="https://www.betfair.es/exchange/plus/" target="_blank" rel="noopener noreferrer" className="bg-green-500 hover:bg-green-400 text-white text-xs font-bold px-3 py-1.5 rounded-full transition-colors">
-              🇪🇸 España →
+              🇪🇸 España principal →
             </a>
             <a href="https://apuestas.betfair.es/latinoamerica/" target="_blank" rel="noopener noreferrer" className="bg-green-700 hover:bg-green-600 text-white text-xs font-bold px-3 py-1.5 rounded-full transition-colors">
-              🌎 LATAM →
+              🌎 LATAM soporte →
             </a>
           </div>
         </div>

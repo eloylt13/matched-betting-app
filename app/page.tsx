@@ -488,7 +488,7 @@ export default function LandingPage() {
           <div className="text-center mb-10">
             <h2 className="font-playfair text-2xl sm:text-3xl font-bold text-stone-900">Sobre este proyecto</h2>
             <p className="text-stone-500 mt-4 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
-              IAPredictHub es un proyecto independiente desarrollado en España, pensado para ofrecer una forma más clara y ordenada de empezar con bonos de bienvenida en España y LATAM. La herramienta nace de la necesidad de tener todo en un mismo sitio: calculadora, guías, seguimiento y una ruta lógica para no perderse al empezar.
+              IAPredictHub es un proyecto independiente desarrollado en España, pensado para ofrecer una forma más clara y ordenada de empezar con bonos de bienvenida, con foco principal en España y soporte adicional para LATAM. La herramienta nace de la necesidad de tener todo en un mismo sitio: calculadora, guías, seguimiento y una ruta lógica para no perderse al empezar.
             </p>
           </div>
           <div className="grid sm:grid-cols-3 gap-4 mt-8">

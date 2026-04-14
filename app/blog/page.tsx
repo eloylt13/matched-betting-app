@@ -52,7 +52,7 @@ export default function BlogPage() {
           ✍️ Blog de Matched Betting
         </h1>
         <p className="text-sm text-stone-500 mt-1">
-          Artículos y guías para entender, empezar y mejorar tu matched betting en España y LATAM
+          Artículos y guías para entender y mejorar tu matched betting, con foco principal en España y contenido de apoyo para LATAM
         </p>
       </header>
 
@@ -61,7 +61,7 @@ export default function BlogPage() {
           <span className="text-4xl">📝</span>
           <p className="mt-4 text-stone-700 font-semibold">Próximamente más artículos</p>
           <p className="text-sm text-stone-400 mt-2 max-w-sm mx-auto">
-            Estamos preparando contenido sobre estrategias, legalidad y casas de apuestas en España.
+            Estamos preparando contenido sobre estrategias, legalidad y casas de apuestas, empezando por España y ampliando donde aporte valor para LATAM.
           </p>
           <Link
             href="/guias"

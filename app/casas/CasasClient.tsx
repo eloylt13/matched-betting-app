@@ -58,7 +58,7 @@ export default function CasasPage() {
     <main className="max-w-5xl mx-auto px-4 py-5 sm:py-8">
       <h1 className="text-2xl font-bold text-emerald-400 mb-2">Casas de apuestas</h1>
       <p className="text-stone-400 mb-4 sm:mb-6">
-        Selecciona una casa para ver su bono de bienvenida y cómo completarlo.
+        Explora primero las casas de España y, si lo necesitas, consulta también opciones disponibles en LATAM.
       </p>
 
       <div className="flex gap-2 mb-4">

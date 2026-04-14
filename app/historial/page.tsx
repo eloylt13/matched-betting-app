@@ -122,7 +122,7 @@ export default function HistorialPage() {
         <div>
           <h1 className="text-2xl font-bold text-stone-100">📋 Historial de operaciones</h1>
           <p className="text-stone-400 text-sm mt-1">
-            Una operación = resultado final de una apuesta cubierta o conversión de bono
+            Registra el resultado final de cada apuesta cubierta o conversión de bono, también si vienes de casas LATAM
           </p>
         </div>
         <button

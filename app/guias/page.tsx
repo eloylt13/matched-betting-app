@@ -117,8 +117,8 @@ export default function GuiasPage() {
           🚀 Empieza aquí
         </h1>
         <p className="text-sm text-stone-500 mt-1">
-          Guía en español para entender los bonos de bienvenida, calcular cada paso
-          y llevar todo organizado de forma sencilla.
+          Guía en español pensada sobre todo para España, con contenido útil también
+          para seguir el proceso con más orden desde LATAM.
         </p>
       </header>
 

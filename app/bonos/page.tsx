@@ -26,7 +26,7 @@ function EmptyStatePendientes({ onAdd }: { onAdd: () => void }) {
       <div className="max-w-sm">
         <p className="text-stone-700 font-semibold text-base mb-1">No hay bonos pendientes de limpiar</p>
         <p className="text-stone-400 text-sm leading-relaxed">
-          Cuando recibas una freebet o reembolso de una casa de apuestas, regístralo aquí para no perder el rastro y limpiar el bono con la calculadora.
+          Cuando recibas una freebet o reembolso de una casa de apuestas, regístralo aquí para no perder el rastro y luego limpiarlo con la calculadora.
         </p>
       </div>
 
@@ -94,7 +94,7 @@ export default function BonosPage() {
           <p className="text-stone-400 text-sm mt-1">
             {pendientes.length > 0
               ? `${pendientes.length} pendiente${pendientes.length !== 1 ? 's' : ''} · ${valorTotal.toFixed(2)} € por limpiar`
-              : 'Registra tus freebets y reembolsos para no perderlos'}
+              : 'Registra tus freebets y reembolsos para tenerlos controlados, también si operas con casas LATAM'}
           </p>
         </div>
         <button
