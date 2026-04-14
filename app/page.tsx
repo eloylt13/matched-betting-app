@@ -92,6 +92,21 @@ const BETA_FEATURES = [
   },
 ]
 
+const BENEFICIOS_RAPIDOS = [
+  {
+    titulo: 'Paso a paso claro',
+    desc: 'Sigue un orden recomendado para no empezar perdido.',
+  },
+  {
+    titulo: 'Calculadora preparada para ejecutar',
+    desc: 'Menos campos manuales, menos errores evitables.',
+  },
+  {
+    titulo: 'Todo organizado en un solo sitio',
+    desc: 'Casas, bonos, progreso y siguientes acciones.',
+  },
+]
+
 const GUIAS_DESTACADAS = [
   {
     icono: '📖',
@@ -266,14 +281,14 @@ export default function LandingPage() {
           </div>
 
           <h1 className="font-playfair text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-tight mb-6">
-            Empieza con bonos de bienvenida en España y LATAM
-            <span className="text-emerald-400"> de forma más guiada y clara</span>.
+            Organiza mejor tus bonos de bienvenida y empieza con matched betting paso a paso
+            <span className="block text-emerald-400 mt-2">más claro en España, y también usable en LATAM</span>
           </h1>
 
           <p className="text-gray-300 text-base sm:text-lg lg:text-xl max-w-3xl mx-auto leading-relaxed mb-10">
-            Herramienta práctica para España y LATAM pensada para ayudarte a empezar paso a paso.
-            Te guía por una ruta recomendada para entender el proceso, usar la calculadora adecuada
-            y no perderte al entrar por primera vez.
+            La app te ayuda a seguir un orden claro desde el principio, usar la calculadora adecuada
+            y no perderte entre casas, bonos y siguientes pasos. Está pensada principalmente para España,
+            con soporte también para LATAM.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-6">
@@ -282,7 +297,7 @@ export default function LandingPage() {
               className="group w-full sm:w-auto bg-emerald-500 hover:bg-emerald-400 text-white font-bold text-base px-8 py-3.5 rounded-xl transition-colors shadow-lg shadow-emerald-900/30"
             >
               <span className="inline-flex items-center gap-2">
-                <span>Entrar y seguir la ruta recomendada</span>
+                <span>Entrar gratis y seguir el paso a paso</span>
                 <span className="text-lg leading-none transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">➜</span>
               </span>
             </Link>
@@ -295,13 +310,29 @@ export default function LandingPage() {
           </div>
 
           <p className="text-sm text-gray-400 max-w-2xl mx-auto mb-8 leading-relaxed">
-            No necesitas entenderlo todo antes de empezar: la app te orienta por el orden más claro desde dentro.
+            No necesitas entenderlo todo antes de empezar: entras, ves el siguiente paso y avanzas con más orden.
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-gray-400">
             <span className="flex items-center gap-1.5"><span className="text-emerald-400">✓</span> Sin tarjeta ni registro</span>
             <span className="flex items-center gap-1.5"><span className="text-emerald-400">✓</span> 100% gratuito en beta</span>
-            <span className="flex items-center gap-1.5"><span className="text-emerald-400">✓</span> España y LATAM</span>
+            <span className="flex items-center gap-1.5"><span className="text-emerald-400">✓</span> España principal · LATAM como soporte</span>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-white border-b border-stone-100">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+          <div className="grid gap-4 md:grid-cols-3">
+            {BENEFICIOS_RAPIDOS.map((beneficio) => (
+              <div
+                key={beneficio.titulo}
+                className="rounded-2xl border border-stone-200 bg-stone-50 p-5 text-left shadow-sm transition-colors hover:border-emerald-200"
+              >
+                <h2 className="text-sm font-semibold text-stone-900 mb-2">{beneficio.titulo}</h2>
+                <p className="text-xs sm:text-sm text-stone-500 leading-relaxed">{beneficio.desc}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -500,15 +531,15 @@ export default function LandingPage() {
           <p className="text-xs font-semibold text-emerald-400 uppercase tracking-widest mb-4">Empieza hoy</p>
           <h2 className="font-playfair text-3xl sm:text-4xl font-bold text-white mb-6">Todo listo para empezar.<br />Sin registro. Sin coste.</h2>
           <p className="text-gray-400 text-base sm:text-lg mb-10 max-w-lg mx-auto leading-relaxed">
-            Entra a la beta y empieza con una ruta recomendada para entender el proceso,
-            ejecutar con más orden y reducir errores desde el principio.
+            Entra gratis y sigue el paso a paso para empezar con más orden, entender qué toca hacer
+            y ejecutar con más claridad desde el principio.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link href="/bienvenida" className="w-full sm:w-auto bg-emerald-500 hover:bg-emerald-400 text-white font-bold text-lg px-10 py-4 rounded-xl transition-colors shadow-lg shadow-emerald-900/40">
-              Entrar ahora y empezar paso a paso →
+              Entrar gratis y seguir el paso a paso →
             </Link>
             <Link href="/guias" className="w-full sm:w-auto border border-white/20 hover:bg-white/10 text-white font-semibold text-base px-8 py-4 rounded-xl transition-colors">
-              Ver guías
+              Ver guías gratis
             </Link>
           </div>
           <p className="text-gray-500 text-xs mt-10 max-w-lg mx-auto leading-relaxed">Solo para uso educativo. Apuesta con responsabilidad.</p>
