@@ -12,7 +12,7 @@ type Moneda = '€' | 'USD' | 'MXN' | 'COP' | 'CLP' | 'PEN'
 
 const MONEDAS: Moneda[] = ['€', 'USD', 'MXN', 'COP', 'CLP', 'PEN']
 
-type CalculadoraPrefill = {
+export type CalculadoraPrefill = {
   modo?: ModoClasica
   stake?: string
   backOdds?: string
@@ -32,6 +32,14 @@ function isModoClasica(value: string | null): value is ModoClasica {
 
 function isReembolsoTipo(value: string | null): value is ReembolsoTipo {
   return value === 'cash' || value === 'freebet'
+}
+
+function hasPrefillValues(prefill: CalculadoraPrefill | undefined) {
+  if (!prefill) {
+    return false
+  }
+
+  return Object.values(prefill).some((value) => value !== undefined)
 }
 
 function mapCurrency(value: string | null): Moneda | undefined {
@@ -222,12 +230,12 @@ function OddsMatcherCalc({
   moneda: Moneda
   prefill?: CalculadoraPrefill
 }) {
-  const [tipoReembolso, setTipoReembolso] = useState<ReembolsoTipo>('cash')
-  const [stake, setStake] = useState('100')
-  const [cuotaBM, setCuotaBM] = useState('2.00')
-  const [cuotaExch, setCuotaExch] = useState('2.10')
-  const [comision, setComision] = useState('2')
-  const [reembolso, setReembolso] = useState('100')
+  const [tipoReembolso, setTipoReembolso] = useState<ReembolsoTipo>(prefill?.refundType ?? 'cash')
+  const [stake, setStake] = useState(prefill?.stake ?? '100')
+  const [cuotaBM, setCuotaBM] = useState(prefill?.backOdds ?? '2.00')
+  const [cuotaExch, setCuotaExch] = useState(prefill?.layOdds ?? '2.10')
+  const [comision, setComision] = useState(prefill?.commission ?? '2')
+  const [reembolso, setReembolso] = useState(prefill?.refundAmount ?? '100')
   const [tasaExtraccion, setTasaExtraccion] = useState('75')
   const [rolloverX, setRolloverX] = useState('10')
   const [copiado, setCopiado] = useState(false)
@@ -723,11 +731,15 @@ function DutcherCalc({
   )
 }
 
-export default function CalculadoraPage() {
+export default function CalculadoraPage({
+  initialPrefill,
+}: {
+  initialPrefill?: CalculadoraPrefill
+}) {
   const [tab, setTab] = useState<Tab>('oddsmatcher')
-  const [oddsmatcherMode, setOddsmatcherMode] = useState<ModoClasica>('dinero-real')
+  const [oddsmatcherMode, setOddsmatcherMode] = useState<ModoClasica>(initialPrefill?.modo ?? 'dinero-real')
   const [dutcherMode, setDutcherMode] = useState<ModoDutcher>('dinero-real')
-  const [moneda, setMoneda] = useState<Moneda>('€')
+  const [moneda, setMoneda] = useState<Moneda>(initialPrefill?.currency ?? '€')
   const searchParams = useSearchParams()
 
   const prefill = useMemo<CalculadoraPrefill | undefined>(() => {
@@ -744,7 +756,7 @@ export default function CalculadoraPage() {
     ].some((key) => searchParams.get(key) !== null)
 
     if (!hasParams) {
-      return undefined
+      return hasPrefillValues(initialPrefill) ? initialPrefill : undefined
     }
 
     const modo = searchParams.get('modo')
@@ -761,7 +773,7 @@ export default function CalculadoraPage() {
       refundAmount: searchParams.get('refundAmount') ?? undefined,
       currency: mapCurrency(searchParams.get('currency')),
     }
-  }, [searchParams])
+  }, [initialPrefill, searchParams])
 
   useEffect(() => {
     if (!prefill) {
