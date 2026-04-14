@@ -136,29 +136,34 @@ const GUIAS_DESTACADAS = [
 
 const FAQS = [
   {
-    pregunta: '¿Qué es la beta?',
+    pregunta: '¿Necesito experiencia previa para usar IAPredictHub?',
     respuesta:
-      'Es la versión inicial gratuita de IAPredictHub. Puedes usar las herramientas y guías sin coste ni registro mientras seguimos mejorando el producto.',
+      'No. Está pensada para ayudarte a empezar con más orden y menos lío, aunque todavía no domines el proceso. La idea es que tengas una ruta más clara desde el principio.',
   },
   {
-    pregunta: '¿Necesito experiencia previa?',
+    pregunta: '¿Voy a tener que rellenarlo todo a mano?',
     respuesta:
-      'No. La app está pensada para quien empieza y necesita una ruta más clara para entender el proceso sin ir a ciegas.',
+      'No del todo. La app te guía por el flujo y la calculadora ya ayuda a reducir pasos manuales. Aun así, seguirás revisando datos y tomando decisiones, pero con menos trabajo repetitivo y menos errores evitables.',
   },
   {
-    pregunta: '¿La app promete beneficios garantizados?',
+    pregunta: '¿Puedo perder dinero usando la app?',
     respuesta:
-      'No. La propuesta de valor está en ayudarte a ejecutar con más método, más orden y menos errores en España y LATAM.',
+      'Sí, ese riesgo existe. La app no elimina el riesgo por completo: su función es ayudarte a ejecutar con más método, más orden y menos errores evitables. Conviene usarla con criterio y siempre dentro de un uso responsable.',
   },
   {
-    pregunta: '¿Qué incluye ahora mismo?',
+    pregunta: '¿Sirve solo para España o también para LATAM?',
     respuesta:
-      'Incluye onboarding, dashboard, calculadora, casas con fases, seguimiento de bonos, historial, guías integradas y pronósticos con combinada diaria gratuita.',
+      'Está pensada principalmente para España, que sigue siendo el foco principal del proyecto. Aun así, varias partes también son utilizables en LATAM, sobre todo la parte de aprendizaje, calculadora y organización del flujo.',
   },
   {
-    pregunta: '¿Qué es la combinada diaria gratuita?',
+    pregunta: '¿Qué incluye gratis ahora mismo?',
     respuesta:
-      'Cada día publicamos una selección de picks generada automáticamente para usarla como apuesta cualificante o simplemente seguirla. Incluye una explicación de cómo se construye la selección. Accede desde la sección Pronósticos en el menú superior.',
+      'Ahora mismo puedes usar gratis el onboarding, el dashboard, la calculadora, las casas, el checklist, el seguimiento y las guías. La idea es que puedas entrar y entender el flujo completo sin pagar en esta fase.',
+  },
+  {
+    pregunta: '¿Necesito registrarme para probarla?',
+    respuesta:
+      'No. En esta fase puedes entrar y usar la app sin registro. Así puedes ver si el enfoque encaja contigo antes de complicarte con pasos extra.',
   },
 ]
 
@@ -169,34 +174,34 @@ export default function LandingPage() {
     mainEntity: [
       {
         '@type': 'Question',
-        name: '¿Qué es la beta?',
+        name: '¿Necesito experiencia previa para usar IAPredictHub?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Es la versión inicial gratuita de IAPredictHub. Puedes usar las herramientas y guías sin coste ni registro mientras seguimos mejorando el producto.',
+          text: 'No. Está pensada para ayudarte a empezar con más orden y menos lío, aunque todavía no domines el proceso. La idea es que tengas una ruta más clara desde el principio.',
         },
       },
       {
         '@type': 'Question',
-        name: '¿Necesito experiencia previa?',
+        name: '¿Puedo perder dinero usando la app?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'No. La app está pensada para quien empieza y necesita una ruta más clara para entender el proceso sin ir a ciegas.',
+          text: 'Sí, ese riesgo existe. La app no elimina el riesgo por completo: su función es ayudarte a ejecutar con más método, más orden y menos errores evitables. Conviene usarla con criterio y siempre dentro de un uso responsable.',
         },
       },
       {
         '@type': 'Question',
-        name: '¿La app promete beneficios garantizados?',
+        name: '¿Sirve solo para España o también para LATAM?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'No. La propuesta de valor está en ayudarte a ejecutar con más método, más orden y menos errores en España y LATAM.',
+          text: 'Está pensada principalmente para España, que sigue siendo el foco principal del proyecto. Aun así, varias partes también son utilizables en LATAM, sobre todo la parte de aprendizaje, calculadora y organización del flujo.',
         },
       },
       {
         '@type': 'Question',
-        name: '¿Qué incluye ahora mismo?',
+        name: '¿Qué incluye gratis ahora mismo?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Incluye onboarding, dashboard, calculadora, casas con fases, seguimiento de bonos, historial y guías integradas.',
+          text: 'Ahora mismo puedes usar gratis el onboarding, el dashboard, la calculadora, las casas, el checklist, el seguimiento y las guías. La idea es que puedas entrar y entender el flujo completo sin pagar en esta fase.',
         },
       },
     ],
@@ -510,6 +515,9 @@ export default function LandingPage() {
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
           <div className="text-center mb-10">
             <h2 className="font-playfair text-2xl sm:text-3xl font-bold text-stone-900">Preguntas frecuentes</h2>
+            <p className="text-stone-500 mt-3 max-w-xl mx-auto text-sm sm:text-base leading-relaxed">
+              Resuelve las dudas más habituales antes de entrar, entiende qué puedes esperar de la app y comprueba si este enfoque encaja contigo.
+            </p>
           </div>
           <div className="bg-white rounded-2xl border border-stone-100 overflow-hidden divide-y divide-stone-100 shadow-sm">
             {FAQS.map((faq) => (
