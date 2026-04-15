@@ -292,12 +292,12 @@ export default function LandingPage() {
           <div className="flex flex-col items-center mb-8">
             <div className="inline-flex items-center gap-2 bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-xs font-semibold px-4 py-1.5 rounded-full">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              Acceso libre · Sin registro
+              Acceso Gratuito · Sin registro
             </div>
           </div>
 
           <h1 className="font-playfair text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-tight mb-6">
-            Aprovecha mejor los bonos de bienvenida en España sin perderte ni cometer errores evitables.
+            Aprovecha mejor los bonos de bienvenida en España sin cometer errores evitables.
           </h1>
 
           <p className="text-gray-300 text-base sm:text-lg lg:text-xl max-w-3xl mx-auto leading-relaxed mb-10">
@@ -310,7 +310,7 @@ export default function LandingPage() {
           >
             <span className="inline-flex shrink-0 items-center gap-2 text-sm font-bold text-emerald-100">
               <span className="h-2 w-2 rounded-full bg-emerald-400" aria-hidden="true" />
-              Nuevo: Freebet diaria GRATIS
+              Nuevo: Freebet GRATIS
             </span>
             <span className="text-sm leading-relaxed text-emerald-50/85 sm:border-l sm:border-emerald-300/25 sm:pl-4">
               Accede a nuestra freebet con los mejores pronósticos filtrados y verificados por agentes de IA.
@@ -339,14 +339,10 @@ export default function LandingPage() {
             Algunas promociones cambian con frecuencia: mejor revisarlas con una ruta clara.
           </p>
 
-          <p className="text-sm text-gray-400 max-w-2xl mx-auto mb-8 leading-relaxed">
-            No necesitas entenderlo todo antes de empezar: entras, ves el siguiente paso y avanzas con más orden.
-          </p>
-
           <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-gray-400">
             <span className="flex items-center gap-1.5"><span className="text-emerald-400">✓</span> Sin tarjeta ni registro</span>
             <span className="flex items-center gap-1.5"><span className="text-emerald-400">✓</span> 100% gratuito en beta</span>
-            <span className="flex items-center gap-1.5"><span className="text-emerald-400">✓</span> España principal · LATAM como soporte</span>
+            <span className="flex items-center gap-1.5"><span className="text-emerald-400">✓</span> También disponible en versión LATAM</span>
           </div>
         </div>
       </section>
