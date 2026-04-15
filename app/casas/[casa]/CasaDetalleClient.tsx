@@ -129,6 +129,69 @@ function getTiempoEstimado(tipologia?: string): string {
     return "15–20 min"
 }
 
+const CALCULADORA_COMMISSION = "2"
+const CALCULADORA_STAKE_FALLBACK = 10
+type CalculadoraModo = "dinero-real" | "apuesta-gratis" | "bonos" | "reembolso" | "rollover"
+
+function getPrimerStakeRecomendado(casa: Casa): number | undefined {
+    for (const promo of casa.promos) {
+        for (const fase of promo.fases) {
+            if (fase.stakeRecomendado > 0) {
+                return fase.stakeRecomendado
+            }
+        }
+    }
+    return undefined
+}
+
+function getPrimerReembolsoEstimado(casa: Casa): number | undefined {
+    for (const promo of casa.promos) {
+        for (const fase of promo.fases) {
+            if (typeof fase.reembolsoEstimado === "number" && fase.reembolsoEstimado > 0) {
+                return fase.reembolsoEstimado
+            }
+        }
+    }
+    return undefined
+}
+
+function getModoPrincipalCalculadora(casa: Casa) {
+    if (casa.tipologia === "reembolso") return "reembolso"
+    if (casa.tipologia === "rollover") return "rollover"
+    return "dinero-real"
+}
+
+function buildCalculadoraHref(
+    casa: Casa,
+    modo: CalculadoraModo,
+    options?: {
+        refundAmount?: number
+        refundType?: "cash" | "freebet"
+    }
+) {
+    const params = new URLSearchParams()
+    const stake = getPrimerStakeRecomendado(casa) ?? CALCULADORA_STAKE_FALLBACK
+
+    params.set("modo", modo)
+    params.set("stake", String(stake))
+    params.set("commission", CALCULADORA_COMMISSION)
+    params.set("bookmaker", casa.id)
+    params.set("currency", casa.market === "espana" ? "EUR" : "USD")
+
+    if (modo === "reembolso") {
+        const refundAmount = options?.refundAmount ?? getPrimerReembolsoEstimado(casa)
+        if (typeof refundAmount === "number") {
+            params.set("refundAmount", String(refundAmount))
+        }
+
+        if (options?.refundType) {
+            params.set("refundType", options.refundType)
+        }
+    }
+
+    return `/calculadora?${params.toString()}`
+}
+
 function getSiguienteAccion(estado: EstadoCasa, faseActual: number, totalFases: number, casa: Casa, simbolo: string): string {
     if (estado === "completada") return "Oferta completada. ¡Bien hecho!"
     if (estado === "descartada") return "Oferta descartada."
@@ -480,9 +543,9 @@ export default function CasaDetalleClient({ casa, hasGuide }: CasaDetalleClientP
     const tiempoEstimado = getTiempoEstimado(casa.tipologia)
     const guiaHref = `/guias/casas/${casa.id}`
     const content = TIPOLOGIA_CONTENT[casa.tipologia ?? "default"] ?? TIPOLOGIA_CONTENT.default
-    const firstStake = casa.promos[0]?.fases[0]?.stakeRecomendado ?? 10
-    const paso1Href = `/calculadora?modo=${content.paso1Mode}&stake=${firstStake}&commission=2&bookmaker=${casa.id}`
-    const paso2Href = `/calculadora?modo=${content.paso2Mode}&stake=${firstStake}&commission=2&bookmaker=${casa.id}`
+    const mainCalculadoraHref = buildCalculadoraHref(casa, getModoPrincipalCalculadora(casa))
+    const paso1Href = buildCalculadoraHref(casa, content.paso1Mode as CalculadoraModo)
+    const paso2Href = buildCalculadoraHref(casa, content.paso2Mode as CalculadoraModo)
 
     return (
         <div className="max-w-3xl mx-auto px-4 py-8 flex flex-col gap-6">
@@ -555,7 +618,7 @@ export default function CasaDetalleClient({ casa, hasGuide }: CasaDetalleClientP
                         </a>
                     )}
                     <Link
-                        href="/calculadora"
+                        href={mainCalculadoraHref}
                         className="bg-[#2A1F3D] hover:bg-[#3d2e57] text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition-colors"
                     >
                         Abrir calculadora
@@ -748,7 +811,7 @@ export default function CasaDetalleClient({ casa, hasGuide }: CasaDetalleClientP
                         ← Ver todas las casas
                     </Link>
                     <Link
-                        href="/calculadora"
+                        href={mainCalculadoraHref}
                         className="text-xs font-semibold px-4 py-2 rounded-lg bg-[#2A1F3D] hover:bg-[#3d2e57] text-white transition-colors"
                     >
                         Abrir calculadora
