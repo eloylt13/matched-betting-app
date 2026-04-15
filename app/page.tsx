@@ -250,7 +250,7 @@ export default function LandingPage() {
                 href="/bienvenida"
                 className="bg-emerald-500 hover:bg-emerald-400 text-white text-xs sm:text-sm font-bold px-3 sm:px-5 py-1.5 sm:py-2 rounded-full transition-colors"
               >
-                Quiero aprovechar mejor los bonos →
+                Entrar en la app →
               </Link>
             </nav>
           </div>
@@ -300,7 +300,7 @@ export default function LandingPage() {
             >
               <span className="inline-flex items-center gap-2">
                 <span>Quiero aprovechar mejor los bonos</span>
-                <span className="text-lg leading-none transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">➜</span>
+                <span className="text-lg leading-none transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">→</span>
               </span>
             </Link>
             <Link
