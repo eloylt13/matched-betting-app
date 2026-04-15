@@ -88,6 +88,32 @@ const rankingLatam = [...casasLatam]
     return a.nombre.localeCompare(b.nombre, 'es')
   })
 
+const duplicateCasaNames = rankingLatam.reduce((counts, casa) => {
+  const key = casa.nombre.trim().toLowerCase()
+  counts.set(key, (counts.get(key) ?? 0) + 1)
+  return counts
+}, new Map<string, number>())
+
+function getCasaLabel(casa: (typeof rankingLatam)[number]) {
+  const nombre = casa.nombre.trim()
+
+  if (casa.pais === 'regionales') {
+    return nombre
+  }
+
+  const isRepeated = (duplicateCasaNames.get(nombre.toLowerCase()) ?? 0) > 1
+  if (!isRepeated) {
+    return nombre
+  }
+
+  const paisLabel = getPaisLabel(casa.pais)
+  if (nombre.toLowerCase().includes(paisLabel.toLowerCase())) {
+    return nombre
+  }
+
+  return `${nombre} ${paisLabel}`
+}
+
 export default function MejoresBonosLatamPage() {
   return (
     <article className="max-w-3xl mx-auto flex flex-col gap-6 pb-8">
@@ -144,7 +170,7 @@ export default function MejoresBonosLatamPage() {
                       href={getCasaHref(casa.id)}
                       className="inline-block text-stone-800 hover:text-purple-700 hover:underline underline-offset-2 decoration-stone-300 transition-colors"
                     >
-                      {casa.nombre}
+                      {getCasaLabel(casa)}
                     </Link>
                   </td>
                   <td className="px-3 py-2.5 text-stone-600 whitespace-nowrap">
