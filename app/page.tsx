@@ -366,7 +366,8 @@ export default function LandingPage() {
                       Freebet GRATIS
                     </span>
                     <p className="max-w-xl text-base leading-relaxed text-slate-100 sm:text-lg">
-                      Accede a nuestra freebet con pronósticos filtrados y verificados por IA
+                      Accede a nuestra freebet con pronósticos filtrados y verificados por{' '}
+                      <span className="whitespace-nowrap">IA</span>
                     </p>
                   </div>
                 </TrackedLink>
