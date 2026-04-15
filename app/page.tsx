@@ -347,7 +347,7 @@ export default function LandingPage() {
 
               <div className="mx-auto mb-5 flex max-w-3xl items-center gap-3">
                 <span className="h-px flex-1 bg-gradient-to-r from-transparent via-cyan-200/35 to-transparent" aria-hidden="true" />
-                <p className="text-sm font-semibold tracking-[0.18em] text-cyan-100/90 sm:text-base">
+                <p className="text-base font-semibold tracking-[0.16em] text-cyan-100/95 sm:text-lg lg:text-xl xl:text-2xl">
                   También disponible en versión LATAM
                 </p>
                 <span className="h-px flex-1 bg-gradient-to-r from-transparent via-cyan-200/35 to-transparent" aria-hidden="true" />
@@ -361,10 +361,10 @@ export default function LandingPage() {
                 href="/pronosticos"
                 eventName="home_freebet_banner_clicked"
                 eventProps={{ location: 'hero', target_path: '/pronosticos' }}
-                className="group mx-auto mb-8 flex w-full max-w-2xl flex-col rounded-[1.5rem] border border-emerald-200/20 bg-slate-950/55 px-4 py-4 text-left shadow-[0_24px_80px_rgba(0,0,0,0.32)] backdrop-blur-md transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-200/35 hover:bg-slate-950/70 hover:shadow-[0_30px_90px_rgba(0,0,0,0.38)] sm:px-5"
+                className="group mx-auto mb-8 flex w-full max-w-2xl flex-col items-center rounded-[1.5rem] border border-emerald-200/20 bg-slate-950/55 px-4 py-4 text-center shadow-[0_24px_80px_rgba(0,0,0,0.32)] backdrop-blur-md transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-200/35 hover:bg-slate-950/70 hover:shadow-[0_30px_90px_rgba(0,0,0,0.38)] sm:px-5"
               >
-                <div className="flex flex-col gap-3">
-                  <span className="inline-flex w-fit items-center rounded-full border border-emerald-300/20 bg-emerald-300/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.24em] text-emerald-200 shadow-sm shadow-emerald-950/20">
+                <div className="flex flex-col items-center gap-3">
+                  <span className="text-[11px] font-semibold uppercase tracking-[0.28em] text-emerald-200">
                     Freebet GRATIS
                   </span>
                   <p className="max-w-xl text-base leading-relaxed text-slate-100 sm:text-lg">
