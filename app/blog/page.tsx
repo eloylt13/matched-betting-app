@@ -42,6 +42,13 @@ const articulos: Array<{
     descripcion:
       'Comparativa de casas disponibles en México, Colombia, Chile, Perú, Ecuador y más países con tipo de bono, requisitos y ganancia potencial en USD.',
   },
+  {
+    slug: 'mejores-bonos-apuesta-y-recibe-espana',
+    titulo: 'Mejores bonos apuesta y recibe en España (2026): freebets garantizadas comparadas',
+    fecha: '15 de abril de 2026',
+    descripcion:
+      'Comparativa de los mejores bonos apuesta y recibe (bet and get) en casas españolas. Freebets garantizadas, análisis por casa, qué revisar antes de activarlos y errores a evitar.',
+  },
 ]
 
 export default function BlogPage() {
