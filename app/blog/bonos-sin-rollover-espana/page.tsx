@@ -184,7 +184,9 @@ export default function BonosSinRolloverEspanaPage() {
                 <td className="px-3 py-2.5 text-stone-600 font-medium">Baja</td>
               </tr>
               <tr className="border-b border-stone-100 bg-stone-50/50">
-                <td className="px-3 py-2.5 font-medium text-stone-800">Reembolso</td>
+                <td className="px-3 py-2.5 font-medium text-stone-800">
+                  <Link href="/blog/casas-apuestas-reembolso-espana" className="text-purple-600 hover:text-purple-700 font-medium">Reembolso</Link>
+                </td>
                 <td className="px-3 py-2.5">
                   <span className="bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full text-xs font-medium">No*</span>
                 </td>
@@ -207,8 +209,15 @@ export default function BonosSinRolloverEspanaPage() {
         </p>
 
         <p>
-          Como se puede ver, los bonos <strong>apuesta y recibe</strong> y los de <strong>reembolso</strong> son
-          en la práctica los más próximos a la categoría &quot;sin rollover&quot; en el mercado español. El rollover
+          Como se puede ver, los bonos{' '}
+          <Link href="/blog/mejores-bonos-apuesta-y-recibe-espana" className="text-purple-600 hover:text-purple-700 font-medium">
+            apuesta y recibe
+          </Link>{' '}
+          y los de{' '}
+          <Link href="/blog/casas-apuestas-reembolso-espana" className="text-purple-600 hover:text-purple-700 font-medium">
+            reembolso
+          </Link>{' '}
+          son en la práctica los más próximos a la categoría &quot;sin rollover&quot; en el mercado español. El rollover
           exigente aparece casi exclusivamente en los bonos de <em>depósito igualado</em>, que son los
           más comunes en casinos online pero también existen en algunas casas de apuestas. Para entender
           en profundidad cómo funciona el rollover y qué estrategias se usan para gestionarlo,{' '}
@@ -599,6 +608,30 @@ export default function BonosSinRolloverEspanaPage() {
               className="text-sm text-purple-600 hover:text-purple-700 font-medium transition-colors"
             >
               Guía de bienvenida: por dónde empezar con IAPredictHub →
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/blog/mejores-bonos-apuesta-y-recibe-espana"
+              className="text-sm text-purple-600 hover:text-purple-700 font-medium transition-colors"
+            >
+              Mejores bonos apuesta y recibe en España 2026 (freebets garantizadas) →
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/blog/casas-apuestas-reembolso-espana"
+              className="text-sm text-purple-600 hover:text-purple-700 font-medium transition-colors"
+            >
+              Casas de apuestas con reembolso en España 2026 →
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/blog/que-es-una-freebet"
+              className="text-sm text-purple-600 hover:text-purple-700 font-medium transition-colors"
+            >
+              ¿Qué es una freebet y cómo convertirla en dinero real? →
             </Link>
           </li>
         </ul>

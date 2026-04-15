@@ -276,6 +276,13 @@ export default function CasasReembolsoEspanaPage() {
             recibes la freebet de reembolso. A continuación, la conviertes en dinero real con la
             calculadora en modo <em>Apuesta Gratis (SNR)</em>, buscando cuotas altas para maximizar
             la retención. Si la calificante gana, cobras en dinero real y el proceso termina.
+            Para entender en detalle cómo funciona una freebet y cómo convertirla, consulta:{' '}
+            <Link
+              href="/blog/que-es-una-freebet"
+              className="text-purple-600 hover:text-purple-700 font-medium"
+            >
+              ¿Qué es una freebet y cómo convertirla en dinero real? →
+            </Link>
           </li>
         </ol>
         <p>
@@ -316,7 +323,15 @@ export default function CasasReembolsoEspanaPage() {
           <li>
             <strong>¿Hay rollover sobre el bono recibido?</strong> Algunas casas (como Interwetten)
             aplican un multiplicador de rollover al bono de reembolso antes de poder retirar
-            el saldo. Comprueba si lo hay y cuál es el multiplicador.
+            el saldo. Comprueba si lo hay y cuál es el multiplicador. La mayoría de reembolsos
+            en España se acreditan como freebet sin rollover: puedes ver qué casas ofrecen{' '}
+            <Link
+              href="/blog/bonos-sin-rollover-espana"
+              className="text-purple-600 hover:text-purple-700 font-medium"
+            >
+              bonos sin rollover en España
+            </Link>
+            {' '}para comparar antes de elegir.
           </li>
           <li>
             <strong>¿Se requiere activar el bono manualmente?</strong> Casos como Interwetten o
@@ -498,6 +513,30 @@ export default function CasasReembolsoEspanaPage() {
               className="text-sm text-purple-600 hover:text-purple-700 font-medium transition-colors"
             >
               Guía de bienvenida — por dónde empezar →
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/blog/que-es-una-freebet"
+              className="text-sm text-purple-600 hover:text-purple-700 font-medium transition-colors"
+            >
+              ¿Qué es una freebet y cómo convertirla en dinero real? →
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/blog/bonos-sin-rollover-espana"
+              className="text-sm text-purple-600 hover:text-purple-700 font-medium transition-colors"
+            >
+              Bonos sin rollover en España: cuáles encontrar y cómo aprovecharlos →
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/blog/mejores-bonos-apuesta-y-recibe-espana"
+              className="text-sm text-purple-600 hover:text-purple-700 font-medium transition-colors"
+            >
+              Mejores bonos apuesta y recibe en España 2026 →
             </Link>
           </li>
         </ul>

@@ -56,6 +56,27 @@ const articulos: Array<{
     descripcion:
       'Guía completa sobre bonos sin rollover en casas de apuestas españolas. Qué significa sin rollover, diferencias con otros tipos de bono, qué casas los ofrecen y qué revisar antes de activarlos.',
   },
+  {
+    slug: 'casas-apuestas-reembolso-espana',
+    titulo: 'Casas de apuestas con reembolso en España (2026): comparativa y guía práctica',
+    fecha: '15 de abril de 2026',
+    descripcion:
+      'Comparativa actualizada de las mejores casas de apuestas con bono de reembolso en España. Qué son las apuestas sin riesgo, cuándo convienen más que una freebet y qué mirar antes de activarlas.',
+  },
+  {
+    slug: 'que-es-una-freebet',
+    titulo: '¿Qué es una freebet y cómo convertirla en dinero real?',
+    fecha: '15 de abril de 2026',
+    descripcion:
+      'Aprende qué es una freebet, los tipos más comunes (stake devuelto y stake no devuelto) y cómo convertirla en dinero real con la técnica del matched betting paso a paso.',
+  },
+  {
+    slug: 'es-legal-matched-betting-espana',
+    titulo: '¿Es legal el matched betting en España?',
+    fecha: '15 de abril de 2026',
+    descripcion:
+      'Analizamos si el matched betting es legal en España: qué dice la regulación vigente, qué papel juegan las casas reguladas y Betfair Exchange, y cuáles son los riesgos reales.',
+  },
 ]
 
 export default function BlogPage() {

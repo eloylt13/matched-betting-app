@@ -196,7 +196,14 @@ export default function EsLegalMatchedBettingEspanaPage() {
           bonos: cuota mínima, deporte válido, plazo de uso, fragmentabilidad de la freebet,
           etc. Si no se cumplen esos requisitos, la casa puede anular el bono sin que eso
           constituya ninguna irregularidad por su parte. Leer los T&amp;C antes de activar
-          cualquier bono es imprescindible.
+          cualquier bono es imprescindible. Si no tienes claro qué es exactamente una freebet
+          y cómo funciona, consulta:{' '}
+          <Link
+            href="/blog/que-es-una-freebet"
+            className="text-purple-600 hover:text-purple-700 font-medium"
+          >
+            ¿Qué es una freebet y cómo convertirla en dinero real? →
+          </Link>
         </p>
 
         <h3 className="text-base font-semibold text-stone-800">
@@ -348,6 +355,38 @@ export default function EsLegalMatchedBettingEspanaPage() {
               className="text-sm text-purple-600 hover:text-purple-700 font-medium transition-colors"
             >
               Calculadora de cobertura de matched betting →
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/blog/que-es-una-freebet"
+              className="text-sm text-purple-600 hover:text-purple-700 font-medium transition-colors"
+            >
+              ¿Qué es una freebet y cómo convertirla en dinero real? →
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/blog/mejores-bonos-apuesta-y-recibe-espana"
+              className="text-sm text-purple-600 hover:text-purple-700 font-medium transition-colors"
+            >
+              Mejores bonos apuesta y recibe en España 2026 →
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/blog/casas-apuestas-reembolso-espana"
+              className="text-sm text-purple-600 hover:text-purple-700 font-medium transition-colors"
+            >
+              Casas de apuestas con reembolso en España 2026 →
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/blog/bonos-sin-rollover-espana"
+              className="text-sm text-purple-600 hover:text-purple-700 font-medium transition-colors"
+            >
+              Bonos sin rollover en España: cuáles encontrar y cómo aprovecharlos →
             </Link>
           </li>
         </ul>

@@ -141,7 +141,14 @@ export default function MejoresBonosApuestaYRecibePage() {
           La freebet es una <strong>apuesta gratis</strong>: si gana, cobras las ganancias (sin
           recuperar el importe de la freebet, que no es dinero real); si pierde, no has perdido
           nada de tu propio bolsillo. Esta asimetría es lo que hace que sean tan interesantes para
-          el matched betting.
+          el matched betting. Si quieres entender en detalle cómo funciona una freebet y los tipos
+          existentes (SNR y SR), consulta:{' '}
+          <Link
+            href="/blog/que-es-una-freebet"
+            className="text-purple-600 hover:text-purple-700 font-medium"
+          >
+            ¿Qué es una freebet y cómo convertirla en dinero real? →
+          </Link>
         </p>
         <ul className="list-disc list-inside space-y-1 text-stone-600 pl-1">
           <li>La freebet se recibe <strong>independientemente del resultado</strong> de la calificación.</li>
@@ -174,7 +181,9 @@ export default function MejoresBonosApuestaYRecibePage() {
                 <td className="px-3 py-2.5 text-stone-500">Cobras la apuesta normal + recibes la freebet</td>
               </tr>
               <tr className="border-b border-stone-100 bg-stone-50/50">
-                <td className="px-3 py-2.5 font-medium text-stone-800">Reembolso</td>
+                <td className="px-3 py-2.5 font-medium text-stone-800">
+                  <Link href="/blog/casas-apuestas-reembolso-espana" className="text-purple-600 hover:text-purple-700 font-medium">Reembolso</Link>
+                </td>
                 <td className="px-3 py-2.5 text-stone-600">Solo si pierdes</td>
                 <td className="px-3 py-2.5 text-stone-500">No hay freebet, solo cobras tu apuesta</td>
               </tr>
@@ -381,7 +390,7 @@ export default function MejoresBonosApuestaYRecibePage() {
           <li>
             <strong>¿Es fragmentable?</strong> Algunas casas permiten dividir la freebet en varias
             apuestas más pequeñas (fragmentable), lo que da más flexibilidad para cubrir en Betfair.
-            Otras exigen usarla de una sola vez. Compruébalo antes.
+            Otras exigen usarla de una sola vez. Comprueba siempre antes.
           </li>
           <li>
             <strong>Plazo de uso.</strong> La freebet tiene fecha de caducidad, normalmente entre
@@ -396,6 +405,18 @@ export default function MejoresBonosApuestaYRecibePage() {
             <strong>Verificación de identidad.</strong> Hazla el mismo día del registro, antes de
             apostar. Sin verificación completada, muchas casas bloquean las retiradas aunque el
             bono ya esté convertido.
+          </li>
+          <li>
+            <strong>Comprueba que no hay rollover sobre la freebet.</strong> La inmensa mayoría de
+            bonos apuesta y recibe en España son{' '}
+            <Link
+              href="/blog/bonos-sin-rollover-espana"
+              className="text-purple-600 hover:text-purple-700 font-medium"
+            >
+              bonos sin rollover
+            </Link>
+            : la apuestas una vez y las ganancias son tuyas. Pero verifica siempre los T&amp;C
+            por si hubiera excepciones.
           </li>
         </ul>
 
@@ -563,6 +584,30 @@ export default function MejoresBonosApuestaYRecibePage() {
               className="text-sm text-purple-600 hover:text-purple-700 font-medium transition-colors"
             >
               Guía de bienvenida: por dónde empezar con IAPredictHub →
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/blog/que-es-una-freebet"
+              className="text-sm text-purple-600 hover:text-purple-700 font-medium transition-colors"
+            >
+              ¿Qué es una freebet y cómo convertirla? (SNR, SR y conversión) →
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/blog/casas-apuestas-reembolso-espana"
+              className="text-sm text-purple-600 hover:text-purple-700 font-medium transition-colors"
+            >
+              Casas de apuestas con reembolso en España 2026 →
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/blog/bonos-sin-rollover-espana"
+              className="text-sm text-purple-600 hover:text-purple-700 font-medium transition-colors"
+            >
+              Bonos sin rollover en España: qué son y cuáles encontrar →
             </Link>
           </li>
         </ul>

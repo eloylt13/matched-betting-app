@@ -86,12 +86,14 @@ export default function MejoresBonos2026Page() {
         </p>
         <ul className="list-disc list-inside space-y-2 text-stone-600 pl-1">
           <li>
-            <strong>Apuesta y recibe (Bet &amp; Get / Freebet):</strong> depositas y apuestas un importe, y recibes
+            <Link href="/blog/mejores-bonos-apuesta-y-recibe-espana" className="text-purple-600 hover:text-purple-700 font-medium"><strong>Apuesta y recibe (Bet &amp; Get / Freebet):</strong></Link>{' '}
+            depositas y apuestas un importe, y recibes
             una cantidad equivalente en &quot;apuesta gratis&quot; (freebet) independientemente del resultado.
             Ejemplo: &quot;Apuesta 100€ y recibe 100€ en freebets&quot;. Son los más sencillos de aprovechar.
           </li>
           <li>
-            <strong>Reembolso (apuesta sin riesgo):</strong> realizas una apuesta y, si pierdes, la casa te
+            <Link href="/blog/casas-apuestas-reembolso-espana" className="text-purple-600 hover:text-purple-700 font-medium"><strong>Reembolso (apuesta sin riesgo):</strong></Link>{' '}
+            realizas una apuesta y, si pierdes, la casa te
             devuelve el importe apostado en forma de apuesta gratis o crédito. Ejemplo: &quot;Reembolso 100%
             hasta 100€ si tu primera apuesta falla&quot;.
           </li>
@@ -424,6 +426,38 @@ export default function MejoresBonos2026Page() {
               className="text-sm text-purple-600 hover:text-purple-700 font-medium transition-colors"
             >
               Ver todas las casas y sus bonos de bienvenida →
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/blog/mejores-bonos-apuesta-y-recibe-espana"
+              className="text-sm text-purple-600 hover:text-purple-700 font-medium transition-colors"
+            >
+              Mejores bonos apuesta y recibe en España 2026 →
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/blog/casas-apuestas-reembolso-espana"
+              className="text-sm text-purple-600 hover:text-purple-700 font-medium transition-colors"
+            >
+              Casas de apuestas con reembolso en España 2026 →
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/blog/bonos-sin-rollover-espana"
+              className="text-sm text-purple-600 hover:text-purple-700 font-medium transition-colors"
+            >
+              Bonos sin rollover en España: cuáles encontrar y cómo aprovecharlos →
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/blog/que-es-una-freebet"
+              className="text-sm text-purple-600 hover:text-purple-700 font-medium transition-colors"
+            >
+              ¿Qué es una freebet y cómo convertirla en dinero real? →
             </Link>
           </li>
         </ul>

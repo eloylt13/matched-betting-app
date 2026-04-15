@@ -141,6 +141,14 @@ export default function QueEsMatchedBettingPage() {
           <strong>Sí, el matched betting es completamente legal en España.</strong> No
           existe ninguna ley que prohíba utilizar bonos de bienvenida de la forma más
           eficiente posible, ni tampoco apostar simultáneamente en distintas plataformas.
+          Si quieres un análisis completo del marco legal, los riesgos reales y las
+          obligaciones fiscales, consulta:{' '}
+          <Link
+            href="/blog/es-legal-matched-betting-espana"
+            className="text-purple-600 hover:text-purple-700 font-medium"
+          >
+            ¿Es legal el matched betting en España? →
+          </Link>
         </p>
         <p>
           Las casas de apuestas que operan en España están reguladas y supervisadas por
@@ -236,6 +244,15 @@ export default function QueEsMatchedBettingPage() {
                 Calculadora de cobertura
               </Link>
               <span className="text-stone-500"> — calcula automáticamente cuánto apostar en Betfair para cubrir cada bono con la máxima eficiencia.</span>
+            </div>
+          </li>
+          <li className="flex items-start gap-3">
+            <span className="text-purple-500 font-bold mt-0.5">→</span>
+            <div>
+              <Link href="/blog/mejores-bonos-bienvenida-apuestas-espana" className="font-semibold text-purple-600 hover:text-purple-700">
+                Comparativa de bonos de bienvenida 2026
+              </Link>
+              <span className="text-stone-500"> — ranking actualizado de más de 20 casas españolas con tipo de bono, dificultad y ganancia estimada.</span>
             </div>
           </li>
           <li className="flex items-start gap-3">
@@ -395,6 +412,30 @@ export default function QueEsMatchedBettingPage() {
               className="text-sm text-purple-600 hover:text-purple-700 font-medium transition-colors"
             >
               Cómo usar Betfair Exchange paso a paso →
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/blog/es-legal-matched-betting-espana"
+              className="text-sm text-purple-600 hover:text-purple-700 font-medium transition-colors"
+            >
+              ¿Es legal el matched betting en España? →
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/blog/mejores-bonos-bienvenida-apuestas-espana"
+              className="text-sm text-purple-600 hover:text-purple-700 font-medium transition-colors"
+            >
+              Mejores bonos de bienvenida en casas de apuestas España 2026 →
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/blog/que-es-una-freebet"
+              className="text-sm text-purple-600 hover:text-purple-700 font-medium transition-colors"
+            >
+              ¿Qué es una freebet y cómo convertirla en dinero real? →
             </Link>
           </li>
         </ul>
