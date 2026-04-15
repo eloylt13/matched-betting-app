@@ -49,6 +49,13 @@ const articulos: Array<{
     descripcion:
       'Comparativa de los mejores bonos apuesta y recibe (bet and get) en casas españolas. Freebets garantizadas, análisis por casa, qué revisar antes de activarlos y errores a evitar.',
   },
+  {
+    slug: 'bonos-sin-rollover-espana',
+    titulo: 'Bonos sin rollover en España (2026): qué son, cuáles encontrar y cómo aprovecharlos',
+    fecha: '15 de abril de 2026',
+    descripcion:
+      'Guía completa sobre bonos sin rollover en casas de apuestas españolas. Qué significa sin rollover, diferencias con otros tipos de bono, qué casas los ofrecen y qué revisar antes de activarlos.',
+  },
 ]
 
 export default function BlogPage() {
