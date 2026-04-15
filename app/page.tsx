@@ -607,8 +607,8 @@ export default function LandingPage() {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {BENEFICIOS.map((b) => (
-              <div key={b.titulo} className="bg-white rounded-2xl border border-stone-100 p-5 hover:shadow-md hover:border-emerald-200 transition-all">
-                <span className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl border border-emerald-100 bg-emerald-50/70 text-emerald-700">
+              <div key={b.titulo} className="relative overflow-hidden rounded-lg border border-stone-200/70 bg-gradient-to-br from-white via-white to-emerald-50/35 p-5 shadow-[0_14px_34px_rgba(18,17,42,0.08)] ring-1 ring-white/80 transition-all duration-200 before:absolute before:inset-x-4 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-emerald-300/55 before:to-transparent hover:-translate-y-0.5 hover:border-emerald-300/60 hover:shadow-[0_18px_42px_rgba(18,17,42,0.11)]">
+                <span className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg border border-emerald-200/70 bg-white/80 text-emerald-700 shadow-sm shadow-emerald-950/5">
                   <LandingIcon name={b.icon as LandingIconName} />
                 </span>
                 <h3 className="font-semibold text-stone-800 text-sm mb-2">{b.titulo}</h3>
@@ -675,8 +675,8 @@ export default function LandingPage() {
             </div>
             <div className="flex flex-col gap-3">
               {BETA_FEATURES.map((f) => (
-                <div key={f.titulo} className="flex items-start gap-3 bg-stone-50 rounded-xl border border-stone-100 p-4 hover:border-emerald-200 transition-colors">
-                  <span className="mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-stone-200 bg-white text-emerald-700">
+                <div key={f.titulo} className="relative flex items-start gap-3 overflow-hidden rounded-lg border border-stone-200/70 bg-gradient-to-r from-white via-stone-50/80 to-emerald-50/30 p-4 shadow-[0_10px_28px_rgba(18,17,42,0.06)] ring-1 ring-white/80 transition-all duration-200 before:absolute before:inset-y-3 before:left-0 before:w-px before:bg-gradient-to-b before:from-transparent before:via-emerald-300/65 before:to-transparent hover:border-emerald-300/60 hover:shadow-[0_14px_34px_rgba(18,17,42,0.09)]">
+                  <span className="mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-emerald-200/70 bg-white/85 text-emerald-700 shadow-sm shadow-emerald-950/5">
                     <LandingIcon name={f.icon as LandingIconName} className="h-4 w-4" />
                   </span>
                   <div>
@@ -727,8 +727,8 @@ export default function LandingPage() {
           </div>
           <div className="grid sm:grid-cols-2 gap-4 mb-8">
             {GUIAS_DESTACADAS.map((g) => (
-              <a key={g.archivo} href={`/guias/${g.archivo}`} target="_blank" rel="noopener noreferrer" className="group flex items-start gap-4 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-emerald-500/40 rounded-2xl p-5 transition-all">
-                <span className="mt-0.5 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.06] text-emerald-300 transition-colors group-hover:border-emerald-400/30 group-hover:bg-emerald-400/10">
+              <a key={g.archivo} href={`/guias/${g.archivo}`} target="_blank" rel="noopener noreferrer" className="group relative flex items-start gap-4 overflow-hidden rounded-lg border border-white/10 bg-white/[0.055] p-5 shadow-[0_18px_44px_rgba(0,0,0,0.18)] ring-1 ring-white/[0.035] backdrop-blur-sm transition-all duration-200 before:absolute before:inset-x-4 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-emerald-300/45 before:to-transparent hover:-translate-y-0.5 hover:border-emerald-300/35 hover:bg-white/[0.075] hover:shadow-[0_22px_54px_rgba(0,0,0,0.24)]">
+                <span className="mt-0.5 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-white/12 bg-white/[0.07] text-emerald-300 shadow-sm shadow-black/10 transition-colors group-hover:border-emerald-300/35 group-hover:bg-emerald-300/10">
                   <LandingIcon name={g.icono as LandingIconName} />
                 </span>
                 <div className="min-w-0 flex-1">
