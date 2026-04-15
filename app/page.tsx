@@ -293,75 +293,116 @@ export default function LandingPage() {
         </div>
       </header>
 
-      <section
-        style={{ background: 'linear-gradient(160deg, #0e0d1f 0%, #12112A 40%, #1e1840 70%, #2A1F3D 100%)' }}
-        className="relative overflow-hidden"
-      >
+      <section className="relative overflow-hidden bg-[#080B16]">
         <div
-          className="absolute inset-0 opacity-[0.04]"
-          style={{ backgroundImage: 'radial-gradient(circle, #ffffff 1px, transparent 1px)', backgroundSize: '28px 28px' }}
+          className="absolute inset-0"
+          style={{
+            background:
+              'radial-gradient(circle at 18% 18%, rgba(16, 185, 129, 0.16), transparent 30%), radial-gradient(circle at 82% 12%, rgba(99, 102, 241, 0.14), transparent 28%), linear-gradient(145deg, #080B16 0%, #10172A 48%, #151029 100%)',
+          }}
         />
-        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 lg:py-36 text-center">
-          <div className="flex flex-col items-center mb-8">
-            <div className="inline-flex items-center gap-2 bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-xs font-semibold px-4 py-1.5 rounded-full">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              Acceso Gratuito · Sin registro
+        <div
+          className="absolute inset-0 opacity-[0.07]"
+          style={{
+            backgroundImage:
+              'linear-gradient(rgba(255,255,255,.55) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.55) 1px, transparent 1px)',
+            backgroundSize: '72px 72px',
+            maskImage: 'linear-gradient(to bottom, transparent 0%, black 18%, black 72%, transparent 100%)',
+          }}
+        />
+        <div className="absolute left-1/2 top-16 h-64 w-64 -translate-x-1/2 rounded-full bg-emerald-400/10 blur-3xl" />
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black/25 to-transparent" />
+
+        <div className="relative mx-auto max-w-5xl px-4 py-16 text-center sm:px-6 sm:py-24 lg:px-8 lg:py-32">
+          <div className="relative mx-auto overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.055] px-5 py-8 shadow-2xl shadow-black/40 backdrop-blur-md sm:px-8 sm:py-12 lg:px-12">
+            <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-white/35 to-transparent" />
+            <div className="pointer-events-none absolute -right-20 -top-24 h-56 w-56 rounded-full bg-emerald-300/10 blur-3xl" />
+            <div className="pointer-events-none absolute -bottom-28 -left-16 h-60 w-60 rounded-full bg-indigo-400/10 blur-3xl" />
+
+            <div className="relative">
+              <div className="mb-8 flex flex-col items-center">
+                <div className="inline-flex items-center gap-2 rounded-full border border-emerald-300/25 bg-emerald-300/10 px-4 py-2 text-xs font-semibold text-emerald-200 shadow-sm shadow-emerald-950/20 backdrop-blur-sm">
+                  <span className="h-2 w-2 rounded-full bg-emerald-300 shadow-[0_0_16px_rgba(110,231,183,0.75)]" />
+                  Acceso Gratuito · Sin registro
+                </div>
+              </div>
+
+              <h1 className="mx-auto mb-6 max-w-4xl font-playfair text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl xl:text-6xl">
+                Aprovecha mejor los bonos de bienvenida en España sin cometer errores evitables.
+              </h1>
+
+              <p className="mx-auto mb-9 max-w-3xl text-base leading-relaxed text-slate-300 sm:text-lg lg:text-xl">
+                IAPredictHub te guía paso a paso para entender el proceso, usar la calculadora adecuada y seguir una ruta clara desde el primer día.
+              </p>
+
+              <TrackedLink
+                href="/pronosticos"
+                eventName="home_freebet_banner_clicked"
+                eventProps={{ location: 'hero', target_path: '/pronosticos' }}
+                className="group mx-auto mb-8 flex w-full max-w-2xl flex-col gap-2 rounded-2xl border border-emerald-300/25 bg-white/[0.075] px-4 py-4 text-left shadow-lg shadow-black/20 backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-300/50 hover:bg-white/[0.105] hover:shadow-emerald-950/25 sm:flex-row sm:items-center sm:gap-4 sm:px-5"
+              >
+                <span className="inline-flex shrink-0 items-center gap-2 text-sm font-bold text-emerald-100">
+                  <span className="h-2 w-2 rounded-full bg-emerald-300 shadow-[0_0_14px_rgba(110,231,183,0.65)]" aria-hidden="true" />
+                  Nuevo: Freebet GRATIS
+                </span>
+                <span className="text-sm leading-relaxed text-slate-200/85 sm:border-l sm:border-white/10 sm:pl-4">
+                  Accede a nuestra freebet con los mejores pronósticos filtrados y verificados por agentes de IA.
+                </span>
+              </TrackedLink>
+
+              <div className="mb-6 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
+                <TrackedLink
+                  href="/bienvenida"
+                  eventName="home_cta_primary_clicked"
+                  eventProps={{ location: 'hero', target_path: '/bienvenida' }}
+                  className="group w-full rounded-xl bg-emerald-400 px-8 py-3.5 text-base font-bold text-slate-950 shadow-lg shadow-emerald-950/30 transition-all duration-200 hover:-translate-y-0.5 hover:bg-emerald-300 hover:shadow-xl hover:shadow-emerald-950/35 sm:w-auto"
+                >
+                  <span className="inline-flex items-center gap-2">
+                    <span>Quiero aprovechar mejor los bonos</span>
+                    <span className="text-lg leading-none transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">→</span>
+                  </span>
+                </TrackedLink>
+                <TrackedLink
+                  href="/guias"
+                  eventName="home_cta_secondary_clicked"
+                  eventProps={{ location: 'hero', target_path: '/guias' }}
+                  className="w-full rounded-xl border border-white/15 bg-white/[0.045] px-8 py-3.5 text-base font-semibold text-white shadow-sm shadow-black/10 backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-white/25 hover:bg-white/[0.085] sm:w-auto"
+                >
+                  Ver guía y herramientas
+                </TrackedLink>
+              </div>
+
+              <p className="mx-auto mb-7 max-w-xl text-xs leading-relaxed text-slate-400 sm:text-sm">
+                Algunas promociones cambian con frecuencia: mejor revisarlas con una ruta clara.
+              </p>
+
+              <div className="mb-8 flex flex-wrap items-center justify-center gap-2 text-sm text-slate-300">
+                <span className="rounded-full border border-white/10 bg-white/[0.055] px-3 py-1.5 transition-colors duration-200 hover:border-emerald-300/30 hover:bg-white/[0.085]">
+                  <span className="text-emerald-300">✓</span> Sin tarjeta ni registro
+                </span>
+                <span className="rounded-full border border-white/10 bg-white/[0.055] px-3 py-1.5 transition-colors duration-200 hover:border-emerald-300/30 hover:bg-white/[0.085]">
+                  <span className="text-emerald-300">✓</span> 100% gratuito en beta
+                </span>
+                <span className="rounded-full border border-white/10 bg-white/[0.055] px-3 py-1.5 transition-colors duration-200 hover:border-emerald-300/30 hover:bg-white/[0.085]">
+                  <span className="text-emerald-300">✓</span> También disponible en versión LATAM
+                </span>
+              </div>
+
+              <div className="mx-auto grid max-w-2xl grid-cols-3 divide-x divide-white/10 overflow-hidden rounded-2xl border border-white/10 bg-black/10 text-left shadow-inner shadow-white/[0.03] backdrop-blur-sm">
+                <div className="px-3 py-4 text-center sm:px-5">
+                  <p className="text-lg font-bold text-white sm:text-2xl">50+</p>
+                  <p className="mt-1 text-[11px] leading-tight text-slate-400 sm:text-xs">casas ordenadas</p>
+                </div>
+                <div className="px-3 py-4 text-center sm:px-5">
+                  <p className="text-lg font-bold text-white sm:text-2xl">7</p>
+                  <p className="mt-1 text-[11px] leading-tight text-slate-400 sm:text-xs">módulos guía</p>
+                </div>
+                <div className="px-3 py-4 text-center sm:px-5">
+                  <p className="text-lg font-bold text-white sm:text-2xl">4</p>
+                  <p className="mt-1 text-[11px] leading-tight text-slate-400 sm:text-xs">modos de cálculo</p>
+                </div>
+              </div>
             </div>
-          </div>
-
-          <h1 className="font-playfair text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-tight mb-6">
-            Aprovecha mejor los bonos de bienvenida en España sin cometer errores evitables.
-          </h1>
-
-          <p className="text-gray-300 text-base sm:text-lg lg:text-xl max-w-3xl mx-auto leading-relaxed mb-10">
-            IAPredictHub te guía paso a paso para entender el proceso, usar la calculadora adecuada y seguir una ruta clara desde el primer día.
-          </p>
-
-          <TrackedLink
-            href="/pronosticos"
-            eventName="home_freebet_banner_clicked"
-            eventProps={{ location: 'hero', target_path: '/pronosticos' }}
-            className="group mx-auto mb-8 flex w-full max-w-2xl flex-col gap-2 rounded-2xl border border-emerald-400/30 bg-gradient-to-r from-emerald-500/15 to-emerald-300/10 px-4 py-4 text-left shadow-lg shadow-emerald-950/20 transition-all hover:border-emerald-300/60 hover:from-emerald-500/25 hover:to-emerald-300/15 sm:flex-row sm:items-center sm:gap-4 sm:px-5"
-          >
-            <span className="inline-flex shrink-0 items-center gap-2 text-sm font-bold text-emerald-100">
-              <span className="h-2 w-2 rounded-full bg-emerald-400" aria-hidden="true" />
-              Nuevo: Freebet GRATIS
-            </span>
-            <span className="text-sm leading-relaxed text-emerald-50/85 sm:border-l sm:border-emerald-300/25 sm:pl-4">
-              Accede a nuestra freebet con los mejores pronósticos filtrados y verificados por agentes de IA.
-            </span>
-          </TrackedLink>
-
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-6">
-            <TrackedLink
-              href="/bienvenida"
-              eventName="home_cta_primary_clicked"
-              eventProps={{ location: 'hero', target_path: '/bienvenida' }}
-              className="group w-full sm:w-auto bg-emerald-500 hover:bg-emerald-400 text-white font-bold text-base px-8 py-3.5 rounded-xl transition-colors shadow-lg shadow-emerald-900/30"
-            >
-              <span className="inline-flex items-center gap-2">
-                <span>Quiero aprovechar mejor los bonos</span>
-                <span className="text-lg leading-none transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">→</span>
-              </span>
-            </TrackedLink>
-            <TrackedLink
-              href="/guias"
-              eventName="home_cta_secondary_clicked"
-              eventProps={{ location: 'hero', target_path: '/guias' }}
-              className="w-full sm:w-auto border border-white/20 hover:bg-white/10 text-white font-semibold text-base px-8 py-3.5 rounded-xl transition-colors"
-            >
-              Ver guía y herramientas
-            </TrackedLink>
-          </div>
-
-          <p className="text-xs sm:text-sm text-gray-400 max-w-xl mx-auto mb-6 leading-relaxed">
-            Algunas promociones cambian con frecuencia: mejor revisarlas con una ruta clara.
-          </p>
-
-          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-gray-400">
-            <span className="flex items-center gap-1.5"><span className="text-emerald-400">✓</span> Sin tarjeta ni registro</span>
-            <span className="flex items-center gap-1.5"><span className="text-emerald-400">✓</span> 100% gratuito en beta</span>
-            <span className="flex items-center gap-1.5"><span className="text-emerald-400">✓</span> También disponible en versión LATAM</span>
           </div>
         </div>
       </section>
