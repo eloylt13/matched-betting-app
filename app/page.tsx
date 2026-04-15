@@ -267,18 +267,6 @@ export default function LandingPage() {
         />
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 lg:py-36 text-center">
           <div className="flex flex-col items-center mb-8">
-            <Link
-              href="/pronosticos"
-              className="group inline-flex items-center gap-3 bg-gradient-to-r from-emerald-500/20 to-emerald-400/10 border border-emerald-400/30 text-emerald-100 hover:text-white hover:border-emerald-300/60 hover:from-emerald-500/30 hover:to-emerald-300/20 text-sm font-bold px-4 py-2 rounded-full mb-4 shadow-lg shadow-emerald-950/25 transition-all hover:shadow-emerald-900/40"
-            >
-              <span>Nuevo: Freebet diaria GRATIS</span>
-              <span
-                className="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-300 text-[#12112A] shadow-sm transition-transform duration-200 group-hover:translate-x-0.5"
-                aria-hidden="true"
-              >
-                →
-              </span>
-            </Link>
             <div className="inline-flex items-center gap-2 bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-xs font-semibold px-4 py-1.5 rounded-full">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
               Acceso libre · Sin registro
@@ -292,6 +280,19 @@ export default function LandingPage() {
           <p className="text-gray-300 text-base sm:text-lg lg:text-xl max-w-3xl mx-auto leading-relaxed mb-10">
             IAPredictHub te guía paso a paso para entender el proceso, usar la calculadora adecuada y seguir una ruta clara desde el primer día.
           </p>
+
+          <Link
+            href="/pronosticos"
+            className="group mx-auto mb-8 flex w-full max-w-2xl flex-col gap-2 rounded-2xl border border-emerald-400/30 bg-gradient-to-r from-emerald-500/15 to-emerald-300/10 px-4 py-4 text-left shadow-lg shadow-emerald-950/20 transition-all hover:border-emerald-300/60 hover:from-emerald-500/25 hover:to-emerald-300/15 sm:flex-row sm:items-center sm:gap-4 sm:px-5"
+          >
+            <span className="inline-flex shrink-0 items-center gap-2 text-sm font-bold text-emerald-100">
+              <span className="h-2 w-2 rounded-full bg-emerald-400" aria-hidden="true" />
+              Nuevo: Freebet diaria GRATIS
+            </span>
+            <span className="text-sm leading-relaxed text-emerald-50/85 sm:border-l sm:border-emerald-300/25 sm:pl-4">
+              Accede a nuestra freebet con los mejores pronósticos filtrados y verificados por agentes de IA.
+            </span>
+          </Link>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-6">
             <Link
