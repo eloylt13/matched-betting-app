@@ -218,6 +218,12 @@ function getAlertaNivel(texto: string): "critico" | "importante" | "consejo" {
     return "consejo"
 }
 
+function getAntesRegistroItems(casa: Casa): string[] {
+    const requisitos = casa.requisitos.filter(Boolean)
+    const notas = (casa.notas ?? []).filter(Boolean)
+    return [...requisitos, ...notas].slice(0, 5)
+}
+
 // ── Componente de alerta por nivel ────────────────────────────────────────────
 function AlertaItem({ texto }: { texto: string }) {
     const nivel = getAlertaNivel(texto)
@@ -546,6 +552,7 @@ export default function CasaDetalleClient({ casa, hasGuide }: CasaDetalleClientP
     const mainCalculadoraHref = buildCalculadoraHref(casa, getModoPrincipalCalculadora(casa))
     const paso1Href = buildCalculadoraHref(casa, content.paso1Mode as CalculadoraModo)
     const paso2Href = buildCalculadoraHref(casa, content.paso2Mode as CalculadoraModo)
+    const antesRegistroItems = getAntesRegistroItems(casa)
 
     return (
         <div className="max-w-3xl mx-auto px-4 py-8 flex flex-col gap-6">
@@ -633,6 +640,42 @@ export default function CasaDetalleClient({ casa, hasGuide }: CasaDetalleClientP
                     )}
                 </div>
             </div>
+
+            {(casa.resumen || antesRegistroItems.length > 0) && (
+                <section className="bg-white rounded-2xl border border-stone-100 p-5 shadow-sm">
+                    <div className="flex items-start justify-between gap-3">
+                        <div>
+                            <p className="text-xs font-semibold text-emerald-600 uppercase tracking-wide mb-1">
+                                Antes de registrarte
+                            </p>
+                            <h2 className="text-lg font-semibold text-stone-900">Revisa las condiciones clave</h2>
+                        </div>
+                        <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700">
+                            Checklist previa
+                        </span>
+                    </div>
+
+                    {casa.resumen && (
+                        <p className="mt-3 text-sm leading-6 text-stone-600">{casa.resumen}</p>
+                    )}
+
+                    {antesRegistroItems.length > 0 && (
+                        <ul className="mt-4 grid gap-2 sm:grid-cols-2">
+                            {antesRegistroItems.map((item, index) => (
+                                <li
+                                    key={`${casa.id}-antes-registro-${index}`}
+                                    className="flex gap-2 rounded-xl border border-stone-100 bg-stone-50 px-3 py-2 text-sm text-stone-700"
+                                >
+                                    <span className="mt-0.5 h-5 w-5 shrink-0 rounded-full bg-emerald-100 text-center text-xs font-bold leading-5 text-emerald-700">
+                                        {index + 1}
+                                    </span>
+                                    <span className="leading-5">{item}</span>
+                                </li>
+                            ))}
+                        </ul>
+                    )}
+                </section>
+            )}
 
             {/* Estado + progreso integrados */}
             <div className="bg-white rounded-2xl shadow-sm border border-stone-100 p-5">
@@ -803,23 +846,33 @@ export default function CasaDetalleClient({ casa, hasGuide }: CasaDetalleClientP
                     <p className="text-xs font-semibold text-stone-400 uppercase tracking-wide mb-1">Estado actual</p>
                     <p className="text-sm font-semibold text-stone-800">{siguienteAccion}</p>
                 </div>
-                <div className="flex flex-wrap gap-2 pt-2 border-t border-stone-100">
+                <div className="flex flex-col gap-2 pt-2 border-t border-stone-100 sm:flex-row sm:flex-wrap">
+                    {casa.url && !completada && (
+                        <a
+                            href={casa.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex justify-center rounded-lg bg-emerald-500 px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-emerald-400"
+                        >
+                            Ir al bono de {casa.nombre} &rarr;
+                        </a>
+                    )}
                     <Link
                         href="/casas"
-                        className="text-xs font-semibold px-4 py-2 rounded-lg bg-stone-100 hover:bg-stone-200 text-stone-600 transition-colors"
+                        className="inline-flex justify-center rounded-lg bg-stone-100 px-4 py-2 text-xs font-semibold text-stone-600 transition-colors hover:bg-stone-200"
                     >
                         ← Ver todas las casas
                     </Link>
                     <Link
                         href={mainCalculadoraHref}
-                        className="text-xs font-semibold px-4 py-2 rounded-lg bg-[#2A1F3D] hover:bg-[#3d2e57] text-white transition-colors"
+                        className="inline-flex justify-center rounded-lg bg-[#2A1F3D] px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-[#3d2e57]"
                     >
                         Abrir calculadora
                     </Link>
                     {!completada && (
                         <button
                             onClick={() => handleEstado("completada")}
-                            className="text-xs font-semibold px-4 py-2 rounded-lg bg-emerald-100 hover:bg-emerald-200 text-emerald-700 transition-colors ml-auto"
+                            className="rounded-lg bg-emerald-100 px-4 py-2 text-xs font-semibold text-emerald-700 transition-colors hover:bg-emerald-200 sm:ml-auto"
                         >
                             ✅ Marcar como completada
                         </button>
