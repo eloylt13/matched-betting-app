@@ -381,6 +381,42 @@ export default function LandingPage() {
 
   return (
     <div className="min-h-screen">
+      <style>{`
+        .landing-reveal {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        @supports (animation-timeline: view()) {
+          .landing-reveal {
+            opacity: 0;
+            transform: translateY(14px);
+            animation: landing-reveal-in 1s both;
+            animation-timeline: view();
+            animation-range: entry 0% cover 18%;
+            animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+          }
+        }
+
+        @keyframes landing-reveal-in {
+          from {
+            opacity: 0;
+            transform: translateY(14px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .landing-reveal {
+            animation: none !important;
+            opacity: 1 !important;
+            transform: none !important;
+          }
+        }
+      `}</style>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }} />
       <header
@@ -571,7 +607,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-[#f6f8fc] border-y border-slate-200/80">
+      <section className="landing-reveal relative overflow-hidden bg-[#f6f8fc] border-y border-slate-200/80">
         <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-slate-300/70 to-transparent" />
         <div className="pointer-events-none absolute left-1/2 top-[-6rem] h-40 w-40 -translate-x-1/2 rounded-full bg-emerald-400/5 blur-3xl" />
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
@@ -598,7 +634,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section className="bg-[#F5F3EE]">
+      <section className="landing-reveal bg-[#F5F3EE]">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
           <div className="text-center mb-12">
             <p className="text-xs font-semibold text-emerald-600 uppercase tracking-widest mb-3">Por qué usar esta herramienta</p>
@@ -660,7 +696,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section className="bg-white">
+      <section className="landing-reveal bg-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <div>
@@ -698,7 +734,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section className="bg-gradient-to-b from-[#f6f3ec] to-[#efebe2]">
+      <section className="landing-reveal bg-gradient-to-b from-[#f6f3ec] to-[#efebe2]">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
           <div className="text-center mb-12">
             <p className="text-xs font-semibold text-stone-400 uppercase tracking-widest mb-3">La app, en detalle</p>
@@ -726,7 +762,10 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section style={{ background: 'linear-gradient(135deg, #12112A 0%, #1e1840 50%, #2A1F3D 100%)' }} className="relative overflow-hidden">
+      <section
+        style={{ background: 'linear-gradient(135deg, #12112A 0%, #1e1840 50%, #2A1F3D 100%)' }}
+        className="landing-reveal relative overflow-hidden"
+      >
         <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
           <div className="text-center mb-12">
             <p className="text-xs font-semibold text-emerald-400 uppercase tracking-widest mb-3">Formación incluida</p>
@@ -755,7 +794,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section className="bg-gradient-to-b from-white via-stone-50 to-stone-100">
+      <section className="landing-reveal bg-gradient-to-b from-white via-stone-50 to-stone-100">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 text-center">
           <p className="text-xs font-semibold text-stone-400 uppercase tracking-widest mb-3">Mantente al día</p>
           <h2 className="font-playfair text-2xl sm:text-3xl font-bold text-stone-900 mb-3">Recibe novedades y nuevas guías</h2>
@@ -800,7 +839,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section className="bg-stone-50 border-y border-stone-200">
+      <section className="landing-reveal bg-stone-50 border-y border-stone-200">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12">
           <div className="max-w-2xl">
             <p className="text-xs font-semibold uppercase tracking-widest text-emerald-600 mb-3">Antes de empezar</p>
@@ -825,7 +864,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-[linear-gradient(180deg,#F7F4EE_0%,#F4F1EA_100%)] border-t border-stone-200/80">
+      <section className="landing-reveal relative overflow-hidden bg-[linear-gradient(180deg,#F7F4EE_0%,#F4F1EA_100%)] border-t border-stone-200/80">
         <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white to-transparent" />
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
           <div className="text-center mb-10">
