@@ -335,9 +335,16 @@ export default function LandingPage() {
                 </div>
               </div>
 
-              <h1 className="mx-auto mb-6 max-w-4xl font-playfair text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl xl:text-6xl">
-                Aprovecha mejor los bonos de bienvenida en España sin cometer errores evitables.
+              <h1 className="mx-auto mb-4 max-w-4xl font-playfair text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl xl:text-6xl">
+                Aprende a aprovechar los bonos de bienvenida con una ruta clara y guiada.
               </h1>
+
+              <div className="mx-auto mb-5 flex justify-center">
+                <div className="inline-flex items-center gap-2 rounded-full border border-cyan-200/20 bg-cyan-200/10 px-4 py-2 text-[11px] font-semibold tracking-wide text-cyan-100 shadow-sm shadow-cyan-950/10 backdrop-blur-sm sm:text-xs">
+                  <span className="text-cyan-200">✓</span>
+                  También disponible en versión LATAM
+                </div>
+              </div>
 
               <p className="mx-auto mb-9 max-w-3xl text-base leading-relaxed text-slate-300 sm:text-lg lg:text-xl">
                 IAPredictHub te guía paso a paso para entender el proceso, usar la calculadora adecuada y seguir una ruta clara desde el primer día.
@@ -401,23 +408,24 @@ export default function LandingPage() {
                 <span className="rounded-full border border-white/10 bg-white/[0.055] px-3 py-1.5 transition-colors duration-200 hover:border-emerald-300/30 hover:bg-white/[0.085]">
                   <span className="text-emerald-300">✓</span> 100% gratuito en beta
                 </span>
-                <span className="rounded-full border border-white/10 bg-white/[0.055] px-3 py-1.5 transition-colors duration-200 hover:border-emerald-300/30 hover:bg-white/[0.085]">
-                  <span className="text-emerald-300">✓</span> También disponible en versión LATAM
-                </span>
               </div>
 
-              <div className="mx-auto grid max-w-2xl grid-cols-3 divide-x divide-white/10 overflow-hidden rounded-2xl border border-white/10 bg-black/10 text-left shadow-inner shadow-white/[0.03] backdrop-blur-sm">
-                <div className="px-3 py-4 text-center sm:px-5">
+              <div className="mx-auto grid max-w-2xl grid-cols-2 overflow-hidden rounded-2xl border border-white/10 bg-black/10 text-left shadow-inner shadow-white/[0.03] backdrop-blur-sm md:grid-cols-4 md:divide-x md:divide-white/10">
+                <div className="border-b border-r border-white/10 px-3 py-4 text-center md:border-b-0 md:border-r-0 sm:px-5">
                   <p className="text-lg font-bold text-white sm:text-2xl">50+</p>
                   <p className="mt-1 text-[11px] leading-tight text-slate-400 sm:text-xs">casas verificadas</p>
                 </div>
-                <div className="px-3 py-4 text-center sm:px-5">
+                <div className="border-b border-white/10 px-3 py-4 text-center md:border-b-0 sm:px-5">
                   <p className="text-lg font-bold text-white sm:text-2xl">7</p>
                   <p className="mt-1 text-[11px] leading-tight text-slate-400 sm:text-xs">módulos guiados</p>
                 </div>
-                <div className="px-3 py-4 text-center sm:px-5">
+                <div className="border-r border-white/10 px-3 py-4 text-center md:border-r-0 sm:px-5">
                   <p className="text-lg font-bold text-white sm:text-2xl">4</p>
                   <p className="mt-1 text-[11px] leading-tight text-slate-400 sm:text-xs">modos de cálculo</p>
+                </div>
+                <div className="px-3 py-4 text-center sm:px-5">
+                  <p className="text-lg font-bold text-white sm:text-2xl">+2.000€</p>
+                  <p className="mt-1 text-[11px] leading-tight text-slate-400 sm:text-xs">bonos documentados</p>
                 </div>
               </div>
             </div>
