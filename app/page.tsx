@@ -335,6 +335,10 @@ export default function LandingPage() {
             </Link>
           </div>
 
+          <p className="text-xs sm:text-sm text-gray-400 max-w-xl mx-auto mb-6 leading-relaxed">
+            Algunas promociones cambian con frecuencia: mejor revisarlas con una ruta clara.
+          </p>
+
           <p className="text-sm text-gray-400 max-w-2xl mx-auto mb-8 leading-relaxed">
             No necesitas entenderlo todo antes de empezar: entras, ves el siguiente paso y avanzas con más orden.
           </p>
@@ -564,6 +568,31 @@ export default function LandingPage() {
               <h3 className="font-semibold text-stone-800 text-sm mb-2">Sin datos personales</h3>
               <p className="text-xs text-stone-500 leading-relaxed">No pedimos registro ni almacenamos información. Todo se guarda en tu navegador.</p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-stone-50 border-y border-stone-200">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12">
+          <div className="max-w-2xl">
+            <p className="text-xs font-semibold uppercase tracking-widest text-emerald-600 mb-3">Antes de empezar</p>
+            <h2 className="font-playfair text-2xl sm:text-3xl font-bold text-stone-900 mb-4">
+              Lo que más hace perder tiempo y bonos al principio
+            </h2>
+            <ul className="space-y-3 text-sm sm:text-base text-stone-600 leading-relaxed">
+              <li className="flex gap-3">
+                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-500" aria-hidden="true" />
+                <span>Sin una ruta clara, es fácil activar bonos mal o dejarlos a medias.</span>
+              </li>
+              <li className="flex gap-3">
+                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-500" aria-hidden="true" />
+                <span>Muchas promociones cambian condiciones, pasos o plazos sin que lo notes.</span>
+              </li>
+              <li className="flex gap-3">
+                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-500" aria-hidden="true" />
+                <span>Usar calculadora, guías y seguimiento ayuda a reducir errores evitables desde el inicio.</span>
+              </li>
+            </ul>
           </div>
         </div>
       </section>
