@@ -825,7 +825,8 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section className="bg-[#F5F3EE]">
+      <section className="relative overflow-hidden bg-[linear-gradient(180deg,#F7F4EE_0%,#F4F1EA_100%)] border-t border-stone-200/80">
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white to-transparent" />
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
           <div className="text-center mb-10">
             <h2 className="font-playfair text-2xl sm:text-3xl font-bold text-stone-900">Preguntas frecuentes</h2>
@@ -833,16 +834,16 @@ export default function LandingPage() {
               Resuelve las dudas más habituales antes de entrar, entiende qué puedes esperar de la app y comprueba si este enfoque encaja contigo.
             </p>
           </div>
-          <div className="bg-white rounded-2xl border border-stone-100 overflow-hidden divide-y divide-stone-100 shadow-sm">
+          <div className="overflow-hidden rounded-[1.75rem] border border-stone-200/80 bg-white/90 shadow-[0_18px_60px_rgba(28,25,23,0.08)] ring-1 ring-white/60 backdrop-blur-sm">
             {FAQS.map((faq) => (
-              <details key={faq.pregunta} className="group">
-                <summary className="flex items-start justify-between gap-4 px-6 py-5 cursor-pointer list-none hover:bg-stone-50 transition-colors">
+              <details key={faq.pregunta} className="group border-b border-stone-100 last:border-b-0">
+                <summary className="flex items-start justify-between gap-4 px-6 py-5 cursor-pointer list-none transition-colors hover:bg-stone-50/90 group-open:bg-stone-50/80">
                   <span className="font-semibold text-stone-800 text-sm leading-relaxed">{faq.pregunta}</span>
-                  <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-stone-200 text-stone-400 transition-transform duration-200 group-open:rotate-180">
+                  <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-stone-200 bg-white text-stone-400 shadow-sm transition-all duration-200 group-open:rotate-180 group-open:border-emerald-200 group-open:text-emerald-600">
                     <LandingIcon name="chevronDown" className="h-3.5 w-3.5" />
                   </span>
                 </summary>
-                <div className="px-6 pb-5 text-sm text-stone-500 leading-relaxed border-t border-stone-50">{faq.respuesta}</div>
+                <div className="border-t border-stone-100 bg-stone-50/60 px-6 pb-5 pt-4 text-sm text-stone-500 leading-relaxed">{faq.respuesta}</div>
               </details>
             ))}
           </div>
@@ -884,9 +885,13 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <footer style={{ background: '#0a0918' }} className="border-t border-white/5">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-          <div className="flex flex-col sm:flex-row items-center sm:items-start justify-between gap-8 mb-10">
+      <footer
+        style={{ background: 'linear-gradient(180deg, #0a0918 0%, #090816 100%)' }}
+        className="relative overflow-hidden border-t border-white/10"
+      >
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald-300/30 to-transparent" />
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-11">
+          <div className="flex flex-col sm:flex-row items-center sm:items-start justify-between gap-8 mb-9 rounded-[1.5rem] border border-white/8 bg-white/[0.025] px-5 py-6 sm:px-7 sm:py-7 shadow-[0_18px_50px_rgba(0,0,0,0.18)]">
             <div className="text-center sm:text-left">
               <div className="flex items-center gap-2 justify-center sm:justify-start mb-2">
                 <img src="/logo.png" alt="IAPredictHub" className="w-7 h-7 rounded-full object-cover" />
@@ -931,7 +936,7 @@ export default function LandingPage() {
               </div>
             </div>
           </div>
-          <div className="border-t border-white/5 pt-6">
+          <div className="border-t border-white/8 pt-6">
             <p className="text-center text-[11px] text-gray-600 leading-relaxed mb-2">
               Algunos enlaces pueden ser de afiliado. Esto no cambia el precio para el usuario.
             </p>
