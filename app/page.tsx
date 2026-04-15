@@ -636,7 +636,6 @@ export default function LandingPage() {
               Ver guía y herramientas
             </Link>
           </div>
-          <p className="text-gray-500 text-xs mt-10 max-w-lg mx-auto leading-relaxed">Solo para uso educativo. Apuesta con responsabilidad.</p>
         </div>
       </section>
 
