@@ -107,6 +107,29 @@ const BENEFICIOS_RAPIDOS = [
   },
 ]
 
+const TESTIMONIOS_BETA = [
+  {
+    nombre: 'Carlos',
+    ciudad: 'Valencia',
+    texto: 'Por fin entiendo por dónde empezar y qué hacer primero sin ir saltando entre mil páginas.',
+  },
+  {
+    nombre: 'Marta',
+    ciudad: 'Madrid',
+    texto: 'La veo mucho más clara que otras opciones. Me ayuda a seguir una ruta y no improvisar tanto.',
+  },
+  {
+    nombre: 'Sergio',
+    ciudad: 'Sevilla',
+    texto: 'Lo que más me sirve es tener guías, calculadora y casas en el mismo sitio desde el principio.',
+  },
+  {
+    nombre: 'Laura',
+    ciudad: 'Barcelona',
+    texto: 'Da sensación de producto útil de verdad. Para empezar, tener todo más ordenado se nota mucho.',
+  },
+]
+
 const GUIAS_DESTACADAS = [
   {
     icono: '📖',
@@ -381,6 +404,42 @@ export default function LandingPage() {
                 <span className="text-2xl mb-3 block">{b.icon}</span>
                 <h3 className="font-semibold text-stone-800 text-sm mb-2">{b.titulo}</h3>
                 <p className="text-xs text-stone-500 leading-relaxed">{b.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-stone-50 border-y border-stone-200">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-16">
+          <div className="max-w-2xl mx-auto text-center mb-8 sm:mb-10">
+            <p className="inline-flex items-center rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-emerald-700">
+              Beta temprana
+            </p>
+            <h2 className="font-playfair text-2xl sm:text-3xl font-bold text-stone-900 mt-4">
+              Lo que están viendo los primeros beta testers
+            </h2>
+            <p className="mt-4 text-sm sm:text-base text-stone-500 leading-relaxed">
+              Usuarios iniciales ya la están usando para entender mejor el proceso, seguir una ruta más clara y evitar errores al empezar.
+            </p>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {TESTIMONIOS_BETA.map((testimonio) => (
+              <div
+                key={testimonio.nombre}
+                className="rounded-2xl border border-stone-200 bg-white p-5 shadow-sm transition-shadow hover:shadow-md"
+              >
+                <div className="mb-4 flex items-center justify-between gap-3">
+                  <div>
+                    <p className="text-sm font-semibold text-stone-900">{testimonio.nombre}</p>
+                    <p className="text-xs text-stone-500">{testimonio.ciudad}</p>
+                  </div>
+                  <span className="shrink-0 rounded-full bg-stone-100 px-2.5 py-1 text-[11px] font-medium text-stone-600">
+                    Beta tester
+                  </span>
+                </div>
+                <p className="text-sm text-stone-600 leading-relaxed">{testimonio.texto}</p>
               </div>
             ))}
           </div>
