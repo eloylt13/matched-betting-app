@@ -2,6 +2,7 @@
 import Link from 'next/link'
 import TrackedLink from '@/components/analytics/TrackedLink'
 import EmailCapture from '@/components/landing/EmailCapture'
+import HeroMockup from '@/components/landing/HeroMockup'
 import TelegramButton from '@/components/landing/TelegramButton'
 
 export const metadata: Metadata = {
@@ -313,110 +314,110 @@ export default function LandingPage() {
         <div className="absolute left-1/2 top-16 h-64 w-64 -translate-x-1/2 rounded-full bg-emerald-400/10 blur-3xl" />
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black/25 to-transparent" />
 
-        <div className="relative mx-auto max-w-5xl px-4 py-16 text-center sm:px-6 sm:py-24 lg:px-8 lg:py-32">
-          <div className="relative mx-auto overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.055] px-5 py-8 shadow-2xl shadow-black/40 backdrop-blur-md sm:px-8 sm:py-12 lg:px-12">
-            <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-white/35 to-transparent" />
-            <div className="pointer-events-none absolute -right-20 -top-24 h-56 w-56 rounded-full bg-emerald-300/10 blur-3xl" />
-            <div className="pointer-events-none absolute -bottom-28 -left-16 h-60 w-60 rounded-full bg-indigo-400/10 blur-3xl" />
+        <div className="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-32">
+          <div className="grid items-center gap-10 lg:grid-cols-[1.06fr_0.94fr] lg:gap-12">
+            <div className="text-center lg:text-left">
+              <div className="relative mx-auto overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.055] px-5 py-8 shadow-2xl shadow-black/40 backdrop-blur-md sm:px-8 sm:py-12 lg:px-12">
+                <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-white/35 to-transparent" />
+                <div className="pointer-events-none absolute -right-20 -top-24 h-56 w-56 rounded-full bg-emerald-300/10 blur-3xl" />
+                <div className="pointer-events-none absolute -bottom-28 -left-16 h-60 w-60 rounded-full bg-indigo-400/10 blur-3xl" />
 
-            <div className="relative">
-              <div className="mb-8 flex flex-col items-center gap-4">
-                <div className="inline-flex items-center gap-2 rounded-full border border-emerald-300/25 bg-emerald-300/10 px-4 py-2 text-xs font-semibold text-emerald-200 shadow-sm shadow-emerald-950/20 backdrop-blur-sm">
-                  <span className="h-2 w-2 rounded-full bg-emerald-300 shadow-[0_0_16px_rgba(110,231,183,0.75)]" />
-                  Acceso Gratuito · Sin registro
-                </div>
-                <div className="flex flex-wrap items-center justify-center gap-2 text-[11px] font-semibold text-slate-300 sm:text-xs">
-                  <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 backdrop-blur-sm">
-                    IA aplicada
-                  </span>
-                  <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 backdrop-blur-sm">
-                    Modo guiado
-                  </span>
-                  <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 backdrop-blur-sm">
-                    Sin tarjeta ni registro
-                  </span>
-                  <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 backdrop-blur-sm">
-                    100% gratuito en beta
-                  </span>
-                </div>
-              </div>
+                <div className="relative">
+                  <div className="mb-8 flex flex-col items-center gap-4">
+                    <div className="inline-flex items-center gap-2 rounded-full border border-emerald-300/25 bg-emerald-300/10 px-4 py-2 text-xs font-semibold text-emerald-200 shadow-sm shadow-emerald-950/20 backdrop-blur-sm">
+                      <span className="h-2 w-2 rounded-full bg-emerald-300 shadow-[0_0_16px_rgba(110,231,183,0.75)]" />
+                      Acceso Gratuito · Sin registro
+                    </div>
+                    <div className="flex flex-wrap items-center justify-center gap-2 text-[11px] font-semibold text-slate-300 sm:text-xs">
+                      <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 backdrop-blur-sm">IA aplicada</span>
+                      <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 backdrop-blur-sm">Modo guiado</span>
+                      <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 backdrop-blur-sm">Sin tarjeta ni registro</span>
+                      <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 backdrop-blur-sm">100% gratuito en beta</span>
+                    </div>
+                  </div>
 
-              <h1 className="mx-auto mb-4 max-w-4xl font-playfair text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl xl:text-6xl">
-                Aprende a aprovechar los bonos de bienvenida con una ruta clara y guiada.
-              </h1>
+                  <h1 className="mx-auto mb-4 max-w-4xl font-playfair text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl xl:text-6xl">
+                    Aprende a aprovechar los bonos de bienvenida con una ruta clara y guiada.
+                  </h1>
 
-              <div className="mx-auto mb-5 flex max-w-3xl items-center gap-3">
-                <span className="h-px flex-1 bg-gradient-to-r from-transparent via-cyan-200/35 to-transparent" aria-hidden="true" />
-                <p className="text-base font-semibold tracking-[0.16em] text-cyan-100/95 sm:text-lg lg:text-xl xl:text-2xl">
-                  También disponible en versión LATAM
-                </p>
-                <span className="h-px flex-1 bg-gradient-to-r from-transparent via-cyan-200/35 to-transparent" aria-hidden="true" />
-              </div>
+                  <div className="mx-auto mb-5 flex max-w-3xl items-center gap-3">
+                    <span className="h-px flex-1 bg-gradient-to-r from-transparent via-cyan-200/35 to-transparent" aria-hidden="true" />
+                    <p className="text-base font-semibold tracking-[0.16em] text-cyan-100/95 sm:text-lg lg:text-xl xl:text-2xl">
+                      También disponible en versión LATAM
+                    </p>
+                    <span className="h-px flex-1 bg-gradient-to-r from-transparent via-cyan-200/35 to-transparent" aria-hidden="true" />
+                  </div>
 
-              <p className="mx-auto mb-9 max-w-3xl text-base leading-relaxed text-slate-300 sm:text-lg lg:text-xl">
-                IAPredictHub te guía paso a paso para entender el proceso, usar la calculadora adecuada y seguir una ruta clara desde el primer día.
-              </p>
-
-              <TrackedLink
-                href="/pronosticos"
-                eventName="home_freebet_banner_clicked"
-                eventProps={{ location: 'hero', target_path: '/pronosticos' }}
-                className="group mx-auto mb-8 flex w-full max-w-2xl flex-col items-center rounded-[1.5rem] border border-emerald-200/20 bg-slate-950/55 px-4 py-4 text-center shadow-[0_24px_80px_rgba(0,0,0,0.32)] backdrop-blur-md transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-200/35 hover:bg-slate-950/70 hover:shadow-[0_30px_90px_rgba(0,0,0,0.38)] sm:px-5"
-              >
-                <div className="flex flex-col items-center gap-3">
-                  <span className="text-[11px] font-semibold uppercase tracking-[0.28em] text-emerald-200">
-                    Freebet GRATIS
-                  </span>
-                  <p className="max-w-xl text-base leading-relaxed text-slate-100 sm:text-lg">
-                    Accede a nuestra freebet con pronósticos filtrados y verificados por IA
+                  <p className="mx-auto mb-9 max-w-3xl text-base leading-relaxed text-slate-300 sm:text-lg lg:text-xl">
+                    IAPredictHub te guía paso a paso para entender el proceso, usar la calculadora adecuada y seguir una ruta clara desde el primer día.
                   </p>
-                </div>
-              </TrackedLink>
 
-              <div className="mb-6 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
-                <TrackedLink
-                  href="/bienvenida"
-                  eventName="home_cta_primary_clicked"
-                  eventProps={{ location: 'hero', target_path: '/bienvenida' }}
-                  className="group w-full rounded-xl bg-emerald-400 px-8 py-3.5 text-base font-bold text-slate-950 shadow-lg shadow-emerald-950/30 transition-all duration-200 hover:-translate-y-0.5 hover:bg-emerald-300 hover:shadow-xl hover:shadow-emerald-950/35 sm:w-auto"
-                >
-                  <span className="inline-flex items-center gap-2">
-                    <span>Quiero aprovechar mejor los bonos</span>
-                    <span className="text-lg leading-none transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">→</span>
-                  </span>
-                </TrackedLink>
-                <TrackedLink
-                  href="/guias"
-                  eventName="home_cta_secondary_clicked"
-                  eventProps={{ location: 'hero', target_path: '/guias' }}
-                  className="w-full rounded-xl border border-white/15 bg-white/[0.045] px-8 py-3.5 text-base font-semibold text-white shadow-sm shadow-black/10 backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-white/25 hover:bg-white/[0.085] sm:w-auto"
-                >
-                  Ver guía y herramientas
-                </TrackedLink>
+                  <TrackedLink
+                    href="/pronosticos"
+                    eventName="home_freebet_banner_clicked"
+                    eventProps={{ location: 'hero', target_path: '/pronosticos' }}
+                    className="group mx-auto mb-8 flex w-full max-w-2xl flex-col items-center rounded-[1.5rem] border border-emerald-200/20 bg-slate-950/55 px-4 py-4 text-center shadow-[0_24px_80px_rgba(0,0,0,0.32)] backdrop-blur-md transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-200/35 hover:bg-slate-950/70 hover:shadow-[0_30px_90px_rgba(0,0,0,0.38)] sm:px-5"
+                  >
+                    <div className="flex flex-col items-center gap-3">
+                      <span className="text-[11px] font-semibold uppercase tracking-[0.28em] text-emerald-200">
+                        Freebet GRATIS
+                      </span>
+                      <p className="max-w-xl text-base leading-relaxed text-slate-100 sm:text-lg">
+                        Accede a nuestra freebet con pronósticos filtrados y verificados por IA
+                      </p>
+                    </div>
+                  </TrackedLink>
+
+                  <div className="mb-6 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
+                    <TrackedLink
+                      href="/bienvenida"
+                      eventName="home_cta_primary_clicked"
+                      eventProps={{ location: 'hero', target_path: '/bienvenida' }}
+                      className="group w-full rounded-xl bg-emerald-400 px-8 py-3.5 text-base font-bold text-slate-950 shadow-lg shadow-emerald-950/30 transition-all duration-200 hover:-translate-y-0.5 hover:bg-emerald-300 hover:shadow-xl hover:shadow-emerald-950/35 sm:w-auto"
+                    >
+                      <span className="inline-flex items-center gap-2">
+                        <span>Quiero aprovechar mejor los bonos</span>
+                        <span className="text-lg leading-none transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">→</span>
+                      </span>
+                    </TrackedLink>
+                    <TrackedLink
+                      href="/guias"
+                      eventName="home_cta_secondary_clicked"
+                      eventProps={{ location: 'hero', target_path: '/guias' }}
+                      className="w-full rounded-xl border border-white/15 bg-white/[0.045] px-8 py-3.5 text-base font-semibold text-white shadow-sm shadow-black/10 backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-white/25 hover:bg-white/[0.085] sm:w-auto"
+                    >
+                      Ver guía y herramientas
+                    </TrackedLink>
+                  </div>
+
+                  <p className="mx-auto mb-7 max-w-xl text-xs leading-relaxed text-slate-400 sm:text-sm">
+                    Algunas promociones cambian con frecuencia: mejor revisarlas con una ruta clara.
+                  </p>
+
+                  <div className="mx-auto grid max-w-2xl grid-cols-2 overflow-hidden rounded-2xl border border-white/10 bg-black/10 text-left shadow-inner shadow-white/[0.03] backdrop-blur-sm md:grid-cols-4 md:divide-x md:divide-white/10">
+                    <div className="border-b border-r border-white/10 px-3 py-4 text-center md:border-b-0 md:border-r-0 sm:px-5">
+                      <p className="text-lg font-bold text-white sm:text-2xl">50+</p>
+                      <p className="mt-1 text-[11px] leading-tight text-slate-400 sm:text-xs">casas verificadas</p>
+                    </div>
+                    <div className="border-b border-white/10 px-3 py-4 text-center md:border-b-0 sm:px-5">
+                      <p className="text-lg font-bold text-white sm:text-2xl">7</p>
+                      <p className="mt-1 text-[11px] leading-tight text-slate-400 sm:text-xs">módulos guiados</p>
+                    </div>
+                    <div className="border-r border-white/10 px-3 py-4 text-center md:border-r-0 sm:px-5">
+                      <p className="text-lg font-bold text-white sm:text-2xl">4</p>
+                      <p className="mt-1 text-[11px] leading-tight text-slate-400 sm:text-xs">modos de cálculo</p>
+                    </div>
+                    <div className="px-3 py-4 text-center sm:px-5">
+                      <p className="text-lg font-bold text-white sm:text-2xl">+2.000€</p>
+                      <p className="mt-1 text-[11px] leading-tight text-slate-400 sm:text-xs">bonos documentados</p>
+                    </div>
+                  </div>
+                </div>
               </div>
+            </div>
 
-              <p className="mx-auto mb-7 max-w-xl text-xs leading-relaxed text-slate-400 sm:text-sm">
-                Algunas promociones cambian con frecuencia: mejor revisarlas con una ruta clara.
-              </p>
-
-              <div className="mx-auto grid max-w-2xl grid-cols-2 overflow-hidden rounded-2xl border border-white/10 bg-black/10 text-left shadow-inner shadow-white/[0.03] backdrop-blur-sm md:grid-cols-4 md:divide-x md:divide-white/10">
-                <div className="border-b border-r border-white/10 px-3 py-4 text-center md:border-b-0 md:border-r-0 sm:px-5">
-                  <p className="text-lg font-bold text-white sm:text-2xl">50+</p>
-                  <p className="mt-1 text-[11px] leading-tight text-slate-400 sm:text-xs">casas verificadas</p>
-                </div>
-                <div className="border-b border-white/10 px-3 py-4 text-center md:border-b-0 sm:px-5">
-                  <p className="text-lg font-bold text-white sm:text-2xl">7</p>
-                  <p className="mt-1 text-[11px] leading-tight text-slate-400 sm:text-xs">módulos guiados</p>
-                </div>
-                <div className="border-r border-white/10 px-3 py-4 text-center md:border-r-0 sm:px-5">
-                  <p className="text-lg font-bold text-white sm:text-2xl">4</p>
-                  <p className="mt-1 text-[11px] leading-tight text-slate-400 sm:text-xs">modos de cálculo</p>
-                </div>
-                <div className="px-3 py-4 text-center sm:px-5">
-                  <p className="text-lg font-bold text-white sm:text-2xl">+2.000€</p>
-                  <p className="mt-1 text-[11px] leading-tight text-slate-400 sm:text-xs">bonos documentados</p>
-                </div>
-              </div>
+            <div className="mx-auto w-full max-w-[28rem] lg:max-w-none">
+              <HeroMockup />
             </div>
           </div>
         </div>
