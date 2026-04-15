@@ -1,5 +1,6 @@
 ﻿import type { Metadata } from 'next'
 import Link from 'next/link'
+import TrackedLink from '@/components/analytics/TrackedLink'
 import EmailCapture from '@/components/landing/EmailCapture'
 import TelegramButton from '@/components/landing/TelegramButton'
 
@@ -263,18 +264,30 @@ export default function LandingPage() {
               </span>
             </Link>
             <nav className="flex items-center gap-2 sm:gap-4">
-              <Link href="/guias" className="hidden sm:inline text-gray-300 hover:text-white text-sm transition-colors">
-                Guías gratis
-              </Link>
-              <Link href="/blog" className="hidden sm:inline text-gray-300 hover:text-white text-sm transition-colors">
-                Blog
-              </Link>
-              <Link
-                href="/bienvenida"
-                className="bg-emerald-500 hover:bg-emerald-400 text-white text-xs sm:text-sm font-bold px-3 sm:px-5 py-1.5 sm:py-2 rounded-full transition-colors"
-              >
-                Entrar en la app →
-              </Link>
+            <TrackedLink
+              href="/guias"
+              eventName="header_guides_clicked"
+              eventProps={{ location: 'header', target_path: '/guias' }}
+              className="hidden sm:inline text-gray-300 hover:text-white text-sm transition-colors"
+            >
+              Guías gratis
+            </TrackedLink>
+            <TrackedLink
+              href="/blog"
+              eventName="header_blog_clicked"
+              eventProps={{ location: 'header', target_path: '/blog' }}
+              className="hidden sm:inline text-gray-300 hover:text-white text-sm transition-colors"
+            >
+              Blog
+            </TrackedLink>
+            <TrackedLink
+              href="/bienvenida"
+              eventName="header_enter_app_clicked"
+              eventProps={{ location: 'header', target_path: '/bienvenida' }}
+              className="bg-emerald-500 hover:bg-emerald-400 text-white text-xs sm:text-sm font-bold px-3 sm:px-5 py-1.5 sm:py-2 rounded-full transition-colors"
+            >
+              Entrar en la app →
+            </TrackedLink>
             </nav>
           </div>
         </div>
@@ -304,8 +317,10 @@ export default function LandingPage() {
             IAPredictHub te guía paso a paso para entender el proceso, usar la calculadora adecuada y seguir una ruta clara desde el primer día.
           </p>
 
-          <Link
+          <TrackedLink
             href="/pronosticos"
+            eventName="home_freebet_banner_clicked"
+            eventProps={{ location: 'hero', target_path: '/pronosticos' }}
             className="group mx-auto mb-8 flex w-full max-w-2xl flex-col gap-2 rounded-2xl border border-emerald-400/30 bg-gradient-to-r from-emerald-500/15 to-emerald-300/10 px-4 py-4 text-left shadow-lg shadow-emerald-950/20 transition-all hover:border-emerald-300/60 hover:from-emerald-500/25 hover:to-emerald-300/15 sm:flex-row sm:items-center sm:gap-4 sm:px-5"
           >
             <span className="inline-flex shrink-0 items-center gap-2 text-sm font-bold text-emerald-100">
@@ -315,24 +330,28 @@ export default function LandingPage() {
             <span className="text-sm leading-relaxed text-emerald-50/85 sm:border-l sm:border-emerald-300/25 sm:pl-4">
               Accede a nuestra freebet con los mejores pronósticos filtrados y verificados por agentes de IA.
             </span>
-          </Link>
+          </TrackedLink>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-6">
-            <Link
+            <TrackedLink
               href="/bienvenida"
+              eventName="home_cta_primary_clicked"
+              eventProps={{ location: 'hero', target_path: '/bienvenida' }}
               className="group w-full sm:w-auto bg-emerald-500 hover:bg-emerald-400 text-white font-bold text-base px-8 py-3.5 rounded-xl transition-colors shadow-lg shadow-emerald-900/30"
             >
               <span className="inline-flex items-center gap-2">
                 <span>Quiero aprovechar mejor los bonos</span>
                 <span className="text-lg leading-none transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">→</span>
               </span>
-            </Link>
-            <Link
+            </TrackedLink>
+            <TrackedLink
               href="/guias"
+              eventName="home_cta_secondary_clicked"
+              eventProps={{ location: 'hero', target_path: '/guias' }}
               className="w-full sm:w-auto border border-white/20 hover:bg-white/10 text-white font-semibold text-base px-8 py-3.5 rounded-xl transition-colors"
             >
               Ver guía y herramientas
-            </Link>
+            </TrackedLink>
           </div>
 
           <p className="text-xs sm:text-sm text-gray-400 max-w-xl mx-auto mb-6 leading-relaxed">
@@ -455,9 +474,14 @@ export default function LandingPage() {
               <p className="text-stone-500 text-sm sm:text-base mb-8 leading-relaxed">
                 La beta incluye las herramientas principales para aprender el flujo, calcular mejor y seguir cada casa con más orden.
               </p>
-              <Link href="/bienvenida" className="inline-flex items-center gap-2 bg-gradient-to-r from-[#12112A] to-[#2A1F3D] text-white font-semibold px-6 py-3 rounded-xl transition-all shadow-md">
+              <TrackedLink
+                href="/bienvenida"
+                eventName="home_cta_mid_clicked"
+                eventProps={{ location: 'features', target_path: '/bienvenida' }}
+                className="inline-flex items-center gap-2 bg-gradient-to-r from-[#12112A] to-[#2A1F3D] text-white font-semibold px-6 py-3 rounded-xl transition-all shadow-md"
+              >
                 Entrar ahora y empezar con más orden →
-              </Link>
+              </TrackedLink>
             </div>
             <div className="flex flex-col gap-3">
               {BETA_FEATURES.map((f) => (
@@ -625,12 +649,22 @@ export default function LandingPage() {
             y ejecutar con más claridad desde el principio.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link href="/bienvenida" className="w-full sm:w-auto bg-emerald-500 hover:bg-emerald-400 text-white font-bold text-lg px-10 py-4 rounded-xl transition-colors shadow-lg shadow-emerald-900/40">
+            <TrackedLink
+              href="/bienvenida"
+              eventName="home_cta_final_clicked"
+              eventProps={{ location: 'final_cta', target_path: '/bienvenida' }}
+              className="w-full sm:w-auto bg-emerald-500 hover:bg-emerald-400 text-white font-bold text-lg px-10 py-4 rounded-xl transition-colors shadow-lg shadow-emerald-900/40"
+            >
               Entrar ahora y empezar con más orden →
-            </Link>
-            <Link href="/guias" className="w-full sm:w-auto border border-white/20 hover:bg-white/10 text-white font-semibold text-base px-8 py-4 rounded-xl transition-colors">
+            </TrackedLink>
+            <TrackedLink
+              href="/guias"
+              eventName="home_cta_final_secondary_clicked"
+              eventProps={{ location: 'final_cta', target_path: '/guias' }}
+              className="w-full sm:w-auto border border-white/20 hover:bg-white/10 text-white font-semibold text-base px-8 py-4 rounded-xl transition-colors"
+            >
               Ver guía y herramientas
-            </Link>
+            </TrackedLink>
           </div>
         </div>
       </section>
