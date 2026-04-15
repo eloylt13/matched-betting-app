@@ -250,7 +250,7 @@ export default function LandingPage() {
                 href="/bienvenida"
                 className="bg-emerald-500 hover:bg-emerald-400 text-white text-xs sm:text-sm font-bold px-3 sm:px-5 py-1.5 sm:py-2 rounded-full transition-colors"
               >
-                Entrar en la app →
+                Quiero aprovechar mejor los bonos →
               </Link>
             </nav>
           </div>
@@ -299,7 +299,7 @@ export default function LandingPage() {
               className="group w-full sm:w-auto bg-emerald-500 hover:bg-emerald-400 text-white font-bold text-base px-8 py-3.5 rounded-xl transition-colors shadow-lg shadow-emerald-900/30"
             >
               <span className="inline-flex items-center gap-2">
-                <span>Entrar gratis y seguir el paso a paso</span>
+                <span>Quiero aprovechar mejor los bonos</span>
                 <span className="text-lg leading-none transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">➜</span>
               </span>
             </Link>
@@ -307,7 +307,7 @@ export default function LandingPage() {
               href="/guias"
               className="w-full sm:w-auto border border-white/20 hover:bg-white/10 text-white font-semibold text-base px-8 py-3.5 rounded-xl transition-colors"
             >
-              Ver guías gratis
+              Ver guía y herramientas
             </Link>
           </div>
 
@@ -396,7 +396,7 @@ export default function LandingPage() {
                 La beta incluye las herramientas principales para aprender el flujo, calcular mejor y seguir cada casa con más orden.
               </p>
               <Link href="/bienvenida" className="inline-flex items-center gap-2 bg-gradient-to-r from-[#12112A] to-[#2A1F3D] text-white font-semibold px-6 py-3 rounded-xl transition-all shadow-md">
-                Entrar y seguir la ruta inicial →
+                Entrar ahora y empezar con más orden →
               </Link>
             </div>
             <div className="flex flex-col gap-3">
@@ -541,10 +541,10 @@ export default function LandingPage() {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link href="/bienvenida" className="w-full sm:w-auto bg-emerald-500 hover:bg-emerald-400 text-white font-bold text-lg px-10 py-4 rounded-xl transition-colors shadow-lg shadow-emerald-900/40">
-              Entrar gratis y seguir el paso a paso →
+              Entrar ahora y empezar con más orden →
             </Link>
             <Link href="/guias" className="w-full sm:w-auto border border-white/20 hover:bg-white/10 text-white font-semibold text-base px-8 py-4 rounded-xl transition-colors">
-              Ver guías gratis
+              Ver guía y herramientas
             </Link>
           </div>
           <p className="text-gray-500 text-xs mt-10 max-w-lg mx-auto leading-relaxed">Solo para uso educativo. Apuesta con responsabilidad.</p>
