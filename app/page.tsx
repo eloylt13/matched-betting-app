@@ -698,7 +698,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section className="bg-gradient-to-b from-stone-100 to-stone-50">
+      <section className="bg-gradient-to-b from-[#f6f3ec] to-[#efebe2]">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
           <div className="text-center mb-12">
             <p className="text-xs font-semibold text-stone-400 uppercase tracking-widest mb-3">La app, en detalle</p>
@@ -707,16 +707,19 @@ export default function LandingPage() {
               Ya existe y ya funciona. Estas son algunas de las piezas que conectan la experiencia real de entrada.
             </p>
           </div>
-          <div className="grid sm:grid-cols-3 gap-4">
+          <div className="grid gap-4 rounded-[2rem] border border-stone-200/80 bg-white/70 p-4 shadow-[0_18px_48px_rgba(18,17,42,0.08)] backdrop-blur-sm sm:grid-cols-3 sm:p-5">
             {[
               ['Dashboard', 'Empieza aquí, progreso y siguientes acciones.'],
               ['Calculadora', 'Selector guiado para elegir el modo más lógico.'],
               ['Guías', 'Módulos y material para entender el orden recomendado.'],
             ].map(([title, desc]) => (
-              <div key={title} className="bg-white rounded-2xl border border-stone-200 p-5 shadow-sm">
-                <p className="text-xs font-semibold text-stone-400 uppercase tracking-wider mb-3">{title}</p>
-                <p className="text-sm font-semibold text-stone-800 mb-2">{title}</p>
-                <p className="text-xs text-stone-500 leading-relaxed">{desc}</p>
+              <div
+                key={title}
+                className="group relative overflow-hidden rounded-[1.5rem] border border-white/10 bg-[#11162b] p-5 shadow-[0_16px_38px_rgba(8,15,31,0.28)] ring-1 ring-white/[0.04] transition-all duration-200 before:absolute before:inset-x-4 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-emerald-300/35 before:to-transparent hover:-translate-y-0.5 hover:border-emerald-300/25 hover:shadow-[0_20px_44px_rgba(8,15,31,0.34)]"
+              >
+                <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-emerald-200/75">{title}</p>
+                <p className="mb-2 text-sm font-semibold text-white">{title}</p>
+                <p className="text-xs leading-relaxed text-slate-300">{desc}</p>
               </div>
             ))}
           </div>
@@ -752,7 +755,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section className="bg-white">
+      <section className="bg-gradient-to-b from-white via-stone-50 to-stone-100">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 text-center">
           <p className="text-xs font-semibold text-stone-400 uppercase tracking-widest mb-3">Mantente al día</p>
           <h2 className="font-playfair text-2xl sm:text-3xl font-bold text-stone-900 mb-3">Recibe novedades y nuevas guías</h2>
@@ -846,8 +849,13 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section style={{ background: 'linear-gradient(135deg, #0e0d1f 0%, #12112A 50%, #2A1F3D 100%)' }} className="relative overflow-hidden">
+      <section
+        style={{ background: 'linear-gradient(135deg, #0b1020 0%, #10162a 48%, #1b2140 100%)' }}
+        className="relative overflow-hidden border-t border-white/5"
+      >
         <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 text-center">
+          <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.045] px-6 py-10 shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-md sm:px-10 sm:py-14">
+            <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
           <p className="text-xs font-semibold text-emerald-400 uppercase tracking-widest mb-4">Empieza hoy</p>
           <h2 className="font-playfair text-3xl sm:text-4xl font-bold text-white mb-6">Todo listo para empezar.<br />Sin registro. Sin coste.</h2>
           <p className="text-gray-400 text-base sm:text-lg mb-10 max-w-lg mx-auto leading-relaxed">
@@ -859,7 +867,7 @@ export default function LandingPage() {
               href="/bienvenida"
               eventName="home_cta_final_clicked"
               eventProps={{ location: 'final_cta', target_path: '/bienvenida' }}
-              className="w-full sm:w-auto bg-emerald-500 hover:bg-emerald-400 text-white font-bold text-lg px-10 py-4 rounded-xl transition-colors shadow-lg shadow-emerald-900/40"
+              className="w-full sm:w-auto rounded-xl border border-emerald-300/20 bg-emerald-400 px-10 py-4 text-lg font-bold text-slate-950 shadow-[0_16px_36px_rgba(16,185,129,0.24)] transition-all hover:-translate-y-0.5 hover:bg-emerald-300 hover:shadow-[0_18px_42px_rgba(16,185,129,0.3)]"
             >
               Entrar ahora y empezar con más orden →
             </TrackedLink>
@@ -867,10 +875,11 @@ export default function LandingPage() {
               href="/guias"
               eventName="home_cta_final_secondary_clicked"
               eventProps={{ location: 'final_cta', target_path: '/guias' }}
-              className="w-full sm:w-auto border border-white/20 hover:bg-white/10 text-white font-semibold text-base px-8 py-4 rounded-xl transition-colors"
+              className="w-full sm:w-auto rounded-xl border border-white/14 bg-white/[0.04] px-8 py-4 text-base font-semibold text-white transition-all hover:bg-white/[0.08] hover:border-white/20"
             >
               Ver guía y herramientas
             </TrackedLink>
+          </div>
           </div>
         </div>
       </section>
