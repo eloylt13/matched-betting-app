@@ -2,6 +2,7 @@
 import Link from 'next/link'
 import TrackedLink from '@/components/analytics/TrackedLink'
 import EmailCapture from '@/components/landing/EmailCapture'
+import HeroAtmosphere from '@/components/landing/HeroAtmosphere'
 import HeroMockup from '@/components/landing/HeroMockup'
 import TelegramButton from '@/components/landing/TelegramButton'
 
@@ -462,24 +463,7 @@ export default function LandingPage() {
       </header>
 
       <section className="relative overflow-hidden bg-[#080B16]">
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              'radial-gradient(circle at 18% 18%, rgba(16, 185, 129, 0.16), transparent 30%), radial-gradient(circle at 82% 12%, rgba(99, 102, 241, 0.14), transparent 28%), linear-gradient(145deg, #080B16 0%, #10172A 48%, #151029 100%)',
-          }}
-        />
-        <div
-          className="absolute inset-0 opacity-[0.07]"
-          style={{
-            backgroundImage:
-              'linear-gradient(rgba(255,255,255,.55) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.55) 1px, transparent 1px)',
-            backgroundSize: '72px 72px',
-            maskImage: 'linear-gradient(to bottom, transparent 0%, black 18%, black 72%, transparent 100%)',
-          }}
-        />
-        <div className="absolute left-1/2 top-16 h-64 w-64 -translate-x-1/2 rounded-full bg-emerald-400/10 blur-3xl" />
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black/25 to-transparent" />
+        <HeroAtmosphere />
 
         <div className="relative mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-32">
           <div className="text-center">
