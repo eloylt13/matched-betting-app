@@ -320,17 +320,23 @@ export default function LandingPage() {
             <div className="pointer-events-none absolute -bottom-28 -left-16 h-60 w-60 rounded-full bg-indigo-400/10 blur-3xl" />
 
             <div className="relative">
-              <div className="mb-8 flex flex-col items-center gap-3">
+              <div className="mb-8 flex flex-col items-center gap-4">
                 <div className="inline-flex items-center gap-2 rounded-full border border-emerald-300/25 bg-emerald-300/10 px-4 py-2 text-xs font-semibold text-emerald-200 shadow-sm shadow-emerald-950/20 backdrop-blur-sm">
                   <span className="h-2 w-2 rounded-full bg-emerald-300 shadow-[0_0_16px_rgba(110,231,183,0.75)]" />
                   Acceso Gratuito · Sin registro
                 </div>
-                <div className="flex flex-wrap items-center justify-center gap-2 text-[11px] font-semibold text-slate-300">
-                  <span className="rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-1 backdrop-blur-sm">
+                <div className="flex flex-wrap items-center justify-center gap-2 text-[11px] font-semibold text-slate-300 sm:text-xs">
+                  <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 backdrop-blur-sm">
                     IA aplicada
                   </span>
-                  <span className="rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-1 backdrop-blur-sm">
+                  <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 backdrop-blur-sm">
                     Modo guiado
+                  </span>
+                  <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 backdrop-blur-sm">
+                    Sin tarjeta ni registro
+                  </span>
+                  <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 backdrop-blur-sm">
+                    100% gratuito en beta
                   </span>
                 </div>
               </div>
@@ -339,11 +345,12 @@ export default function LandingPage() {
                 Aprende a aprovechar los bonos de bienvenida con una ruta clara y guiada.
               </h1>
 
-              <div className="mx-auto mb-5 flex justify-center">
-                <div className="inline-flex items-center gap-2 rounded-full border border-cyan-200/20 bg-cyan-200/10 px-4 py-2 text-[11px] font-semibold tracking-wide text-cyan-100 shadow-sm shadow-cyan-950/10 backdrop-blur-sm sm:text-xs">
-                  <span className="text-cyan-200">✓</span>
+              <div className="mx-auto mb-5 flex max-w-3xl items-center gap-3">
+                <span className="h-px flex-1 bg-gradient-to-r from-transparent via-cyan-200/35 to-transparent" aria-hidden="true" />
+                <p className="text-sm font-semibold tracking-[0.18em] text-cyan-100/90 sm:text-base">
                   También disponible en versión LATAM
-                </div>
+                </p>
+                <span className="h-px flex-1 bg-gradient-to-r from-transparent via-cyan-200/35 to-transparent" aria-hidden="true" />
               </div>
 
               <p className="mx-auto mb-9 max-w-3xl text-base leading-relaxed text-slate-300 sm:text-lg lg:text-xl">
@@ -354,25 +361,16 @@ export default function LandingPage() {
                 href="/pronosticos"
                 eventName="home_freebet_banner_clicked"
                 eventProps={{ location: 'hero', target_path: '/pronosticos' }}
-                className="group mx-auto mb-8 flex w-full max-w-2xl flex-col gap-4 rounded-[1.5rem] border border-emerald-200/20 bg-slate-950/55 px-4 py-4 text-left shadow-[0_24px_80px_rgba(0,0,0,0.32)] backdrop-blur-md transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-200/35 hover:bg-slate-950/70 hover:shadow-[0_30px_90px_rgba(0,0,0,0.38)] sm:flex-row sm:items-center sm:gap-5 sm:px-5"
+                className="group mx-auto mb-8 flex w-full max-w-2xl flex-col rounded-[1.5rem] border border-emerald-200/20 bg-slate-950/55 px-4 py-4 text-left shadow-[0_24px_80px_rgba(0,0,0,0.32)] backdrop-blur-md transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-200/35 hover:bg-slate-950/70 hover:shadow-[0_30px_90px_rgba(0,0,0,0.38)] sm:px-5"
               >
-                <div className="flex min-w-0 flex-1 flex-col gap-2">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <span className="inline-flex items-center rounded-full border border-white/10 bg-white/[0.06] px-3 py-1 text-[11px] font-semibold tracking-wide text-slate-200 shadow-sm shadow-black/10">
-                      IAPredict Combi
-                    </span>
-                    <span className="inline-flex items-center rounded-full border border-emerald-300/20 bg-emerald-300/10 px-3 py-1 text-[11px] font-semibold text-emerald-200 shadow-sm shadow-emerald-950/20">
-                      Filtrado por IA
-                    </span>
-                  </div>
-                  <span className="inline-flex items-center gap-2 text-sm font-bold text-emerald-100">
-                    <span className="h-2 w-2 rounded-full bg-emerald-300 shadow-[0_0_14px_rgba(110,231,183,0.65)]" aria-hidden="true" />
+                <div className="flex flex-col gap-3">
+                  <span className="inline-flex w-fit items-center rounded-full border border-emerald-300/20 bg-emerald-300/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.24em] text-emerald-200 shadow-sm shadow-emerald-950/20">
                     Freebet GRATIS
                   </span>
+                  <p className="max-w-xl text-base leading-relaxed text-slate-100 sm:text-lg">
+                    Accede a nuestra freebet con pronósticos filtrados y verificados por IA
+                  </p>
                 </div>
-                <span className="text-sm leading-relaxed text-slate-200/[0.88] sm:max-w-[18rem] sm:border-l sm:border-white/10 sm:pl-4">
-                  Accede a nuestra freebet con pronósticos filtrados y verificados por IA, dentro de una experiencia más clara y ordenada.
-                </span>
               </TrackedLink>
 
               <div className="mb-6 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
@@ -400,15 +398,6 @@ export default function LandingPage() {
               <p className="mx-auto mb-7 max-w-xl text-xs leading-relaxed text-slate-400 sm:text-sm">
                 Algunas promociones cambian con frecuencia: mejor revisarlas con una ruta clara.
               </p>
-
-              <div className="mb-8 flex flex-wrap items-center justify-center gap-2 text-sm text-slate-300">
-                <span className="rounded-full border border-white/10 bg-white/[0.055] px-3 py-1.5 transition-colors duration-200 hover:border-emerald-300/30 hover:bg-white/[0.085]">
-                  <span className="text-emerald-300">✓</span> Sin tarjeta ni registro
-                </span>
-                <span className="rounded-full border border-white/10 bg-white/[0.055] px-3 py-1.5 transition-colors duration-200 hover:border-emerald-300/30 hover:bg-white/[0.085]">
-                  <span className="text-emerald-300">✓</span> 100% gratuito en beta
-                </span>
-              </div>
 
               <div className="mx-auto grid max-w-2xl grid-cols-2 overflow-hidden rounded-2xl border border-white/10 bg-black/10 text-left shadow-inner shadow-white/[0.03] backdrop-blur-sm md:grid-cols-4 md:divide-x md:divide-white/10">
                 <div className="border-b border-r border-white/10 px-3 py-4 text-center md:border-b-0 md:border-r-0 sm:px-5">
