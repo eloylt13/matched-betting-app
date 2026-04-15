@@ -286,14 +286,11 @@ export default function LandingPage() {
           </div>
 
           <h1 className="font-playfair text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-tight mb-6">
-            Organiza mejor tus bonos de bienvenida y empieza con matched betting paso a paso
-            <span className="block text-emerald-400 mt-2">más claro en España, y también usable en LATAM</span>
+            Aprovecha mejor los bonos de bienvenida en España sin perderte ni cometer errores evitables.
           </h1>
 
           <p className="text-gray-300 text-base sm:text-lg lg:text-xl max-w-3xl mx-auto leading-relaxed mb-10">
-            La app te ayuda a seguir un orden claro desde el principio, usar la calculadora adecuada
-            y no perderte entre casas, bonos y siguientes pasos. Está pensada principalmente para España,
-            con soporte también para LATAM.
+            IAPredictHub te guía paso a paso para entender el proceso, usar la calculadora adecuada y seguir una ruta clara desde el primer día.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-6">
