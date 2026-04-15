@@ -114,6 +114,71 @@ function getCasaLabel(casa: (typeof rankingLatam)[number]) {
   return `${nombre} ${paisLabel}`
 }
 
+const casasPorId = new Map(rankingLatam.map((casa) => [casa.id, casa] as const))
+
+const opcionesFaciles = [
+  {
+    id: 'betfair-sportsbook-latam',
+    razon: 'Flujo regional muy directo: apuesta-recibe simple, cuota mínima clara y una mecánica fácil de seguir para una primera prueba.',
+  },
+  {
+    id: 'sportium-co',
+    razon: 'Dificultad baja y proceso corto: código DEPORTES, requisito previo a cuota 1.50 y freebet con caducidad conocida.',
+  },
+  {
+    id: 'betway-uy',
+    razon: 'Rollover corto de x1 y entrada sencilla; conviene revisar la moneda exacta y el plazo dentro de la cuenta antes de activar.',
+  },
+  {
+    id: 'betway-pa',
+    razon: 'Reembolso fácil de entender en app: una sola apuesta triple o superior y la freebet solo aparece si la primera pierde.',
+  },
+] as const
+
+const opcionesPotencial = [
+  {
+    id: 'betano-ec',
+    razon: 'Es la casa con mayor beneficioPotencial del proyecto en LATAM y mantiene un bono de primer depósito con importe alto.',
+  },
+  {
+    id: 'novibet-mx',
+    razon: 'Muy alta ganancia estimada y buen techo de bono, aunque el mínimo oficial tiene conflicto y conviene verificarlo con cuidado.',
+  },
+  {
+    id: 'betano-cl',
+    razon: 'Sigue en la parte alta del ranking y tiene un bono grande, con rollover a cuota 1.50 ya confirmado en la ficha.',
+  },
+  {
+    id: 'novibet-cl',
+    razon: 'Mantiene una de las mayores ganancias estimadas, pero es más delicada porque rollover, cuota mínima y plazo siguen pendientes.',
+  },
+] as const
+
+function CasaDestacadaCard({
+  casa,
+  razon,
+}: {
+  casa: (typeof rankingLatam)[number]
+  razon: string
+}) {
+  return (
+    <div className="rounded-xl border border-stone-200 bg-white p-4 shadow-sm">
+      <div className="flex items-start justify-between gap-3">
+        <Link
+          href={getCasaHref(casa.id)}
+          className="font-semibold text-stone-800 hover:text-purple-700 hover:underline underline-offset-2 decoration-stone-300 transition-colors"
+        >
+          {getCasaLabel(casa)}
+        </Link>
+        <span className="shrink-0 rounded-full bg-purple-50 px-2 py-0.5 text-xs font-semibold text-purple-700 whitespace-nowrap">
+          ~{casa.beneficioPotencial} USD
+        </span>
+      </div>
+      <p className="mt-2 text-xs leading-relaxed text-stone-500">{razon}</p>
+    </div>
+  )
+}
+
 export default function MejoresBonosLatamPage() {
   return (
     <article className="max-w-3xl mx-auto flex flex-col gap-6 pb-8">
@@ -198,6 +263,73 @@ export default function MejoresBonosLatamPage() {
           * La ganancia estimada es orientativa y depende de los T&amp;C vigentes, la conversión real de
           cada bono y el país. Conviene revisar siempre la ficha de cada casa antes de operar.
         </p>
+
+        <h2 className="text-lg font-semibold text-stone-800 mt-2">
+          Opciones más fáciles para empezar
+        </h2>
+        <p>
+          Si todavía estás dando los primeros pasos, estas cuatro casas concentran los flujos más limpios
+          del proyecto o una dificultad más baja. No son necesariamente las de mayor importe, pero sí las
+          más cómodas para aprender sin cargar demasiado la ejecución.
+        </p>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-1">
+          {opcionesFaciles.map((opcion) => {
+            const casa = casasPorId.get(opcion.id)
+            if (!casa) return null
+
+            return <CasaDestacadaCard key={casa.id} casa={casa} razon={opcion.razon} />
+          })}
+        </div>
+
+        <h2 className="text-lg font-semibold text-stone-800 mt-2">
+          Bonos con mayor potencial
+        </h2>
+        <p>
+          Aquí van las casas LATAM con mayor beneficioPotencial estimado dentro de los presets actuales.
+          Suelen exigir más atención, porque el volumen, los rollovers o las condiciones pendientes pesan
+          más que en las opciones de entrada.
+        </p>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-1">
+          {opcionesPotencial.map((opcion) => {
+            const casa = casasPorId.get(opcion.id)
+            if (!casa) return null
+
+            return <CasaDestacadaCard key={casa.id} casa={casa} razon={opcion.razon} />
+          })}
+        </div>
+
+        <h2 className="text-lg font-semibold text-stone-800 mt-2">
+          Qué revisar antes de activar un bono LATAM
+        </h2>
+        <p>
+          Antes de depositar o aceptar una promo, conviene hacer una revisión rápida para evitar
+          sorpresas. En LATAM las diferencias entre países, landings y T&amp;C son más frecuentes de lo que
+          parece.
+        </p>
+        <ul className="list-disc list-inside space-y-2 text-stone-600 pl-1">
+          <li>
+            <strong>Condiciones variables por país.</strong> La misma casa puede mostrar importes,
+            requisitos o plazos distintos según el país, así que no basta con mirar una única ficha.
+          </li>
+          <li>
+            <strong>Promos con incertidumbre o campos pendientes.</strong> Si ves datos marcados como
+            pendientes, dudosos o sin confirmar, mejor frenar antes de activar.
+          </li>
+          <li>
+            <strong>Revisar siempre los T&amp;C.</strong> La landing comercial puede resumir el bono, pero
+            las reglas que mandan de verdad suelen estar en los términos y condiciones.
+          </li>
+          <li>
+            <strong>Comprobar exchange o cobertura según país.</strong> No todas las rutas LATAM se
+            cubren igual, así que la viabilidad real depende también de cómo se pueda cerrar la apuesta.
+          </li>
+          <li>
+            <strong>Buscar inconsistencias entre landing y T&amp;C.</strong> Si el texto promocional y las
+            condiciones no dicen lo mismo, toma como referencia la versión más restrictiva hasta verificar.
+          </li>
+        </ul>
       </div>
     </article>
   )
