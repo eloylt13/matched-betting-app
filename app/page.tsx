@@ -5,6 +5,138 @@ import EmailCapture from '@/components/landing/EmailCapture'
 import HeroMockup from '@/components/landing/HeroMockup'
 import TelegramButton from '@/components/landing/TelegramButton'
 
+type LandingIconName =
+  | 'calculator'
+  | 'route'
+  | 'bonus'
+  | 'houses'
+  | 'history'
+  | 'compass'
+  | 'dashboard'
+  | 'guide'
+  | 'trend'
+  | 'exchange'
+  | 'check'
+  | 'build'
+  | 'shield'
+  | 'chevronDown'
+
+function LandingIcon({ name, className = 'h-5 w-5' }: { name: LandingIconName; className?: string }) {
+  const commonProps = {
+    className,
+    viewBox: '0 0 24 24',
+    fill: 'none',
+    stroke: 'currentColor',
+    strokeWidth: 1.8,
+    strokeLinecap: 'round' as const,
+    strokeLinejoin: 'round' as const,
+    'aria-hidden': true,
+  }
+
+  switch (name) {
+    case 'calculator':
+      return (
+        <svg {...commonProps}>
+          <rect x="5" y="3" width="14" height="18" rx="3" />
+          <path d="M8.5 7h7" />
+          <path d="M8.5 11h.01M12 11h.01M15.5 11h.01M8.5 15h.01M12 15h.01M15.5 15h.01" />
+        </svg>
+      )
+    case 'route':
+      return (
+        <svg {...commonProps}>
+          <path d="M6 18c4.5 0 3-12 8-12h4" />
+          <circle cx="6" cy="18" r="2" />
+          <circle cx="18" cy="6" r="2" />
+        </svg>
+      )
+    case 'bonus':
+      return (
+        <svg {...commonProps}>
+          <path d="M4.5 10h15v9.5h-15z" />
+          <path d="M12 10v9.5M4.5 14.5h15M7.5 7.5c0-1.1.9-2 2-2 1.8 0 2.5 2.2 2.5 4.5-2.3 0-4.5-.7-4.5-2.5ZM16.5 7.5c0-1.1-.9-2-2-2-1.8 0-2.5 2.2-2.5 4.5 2.3 0 4.5-.7 4.5-2.5Z" />
+        </svg>
+      )
+    case 'houses':
+      return (
+        <svg {...commonProps}>
+          <path d="M4 20V9.5l8-5.5 8 5.5V20" />
+          <path d="M8 20v-7h8v7M9.5 10.5h.01M14.5 10.5h.01" />
+        </svg>
+      )
+    case 'history':
+      return (
+        <svg {...commonProps}>
+          <path d="M6 4.5h12v15H6z" />
+          <path d="M9 8h6M9 12h6M9 16h3" />
+        </svg>
+      )
+    case 'compass':
+      return (
+        <svg {...commonProps}>
+          <circle cx="12" cy="12" r="8.5" />
+          <path d="m15 9-1.7 4.3L9 15l1.7-4.3L15 9Z" />
+        </svg>
+      )
+    case 'dashboard':
+      return (
+        <svg {...commonProps}>
+          <rect x="4" y="5" width="16" height="14" rx="3" />
+          <path d="M8 15v-3M12 15V9M16 15v-5" />
+        </svg>
+      )
+    case 'guide':
+      return (
+        <svg {...commonProps}>
+          <path d="M6 4.5h8.5A3.5 3.5 0 0 1 18 8v11.5H8.5A2.5 2.5 0 0 0 6 22V4.5Z" />
+          <path d="M9 8h5M9 12h6" />
+        </svg>
+      )
+    case 'trend':
+      return (
+        <svg {...commonProps}>
+          <path d="M4 18h16" />
+          <path d="m6 15 4-4 3 3 5-7" />
+          <path d="M15 7h3v3" />
+        </svg>
+      )
+    case 'exchange':
+      return (
+        <svg {...commonProps}>
+          <path d="M7 7h10l-3-3M17 17H7l3 3" />
+          <path d="M17 7 7 17" />
+        </svg>
+      )
+    case 'check':
+      return (
+        <svg {...commonProps}>
+          <circle cx="12" cy="12" r="8.5" />
+          <path d="m8.5 12.5 2.2 2.2 4.8-5.4" />
+        </svg>
+      )
+    case 'build':
+      return (
+        <svg {...commonProps}>
+          <rect x="5" y="5" width="14" height="14" rx="3" />
+          <path d="M9 9h6M9 12h6M9 15h3" />
+        </svg>
+      )
+    case 'shield':
+      return (
+        <svg {...commonProps}>
+          <path d="M12 3.5 19 6v5.5c0 4.1-2.8 7.2-7 8.8-4.2-1.6-7-4.7-7-8.8V6l7-2.5Z" />
+          <path d="m9 12 2 2 4-4" />
+        </svg>
+      )
+    case 'chevronDown':
+      return (
+        <svg {...commonProps}>
+          <path d="m7 10 5 5 5-5" />
+        </svg>
+      )
+  }
+}
+
 export const metadata: Metadata = {
   title: 'Matched Betting España y LATAM 2026 | Guía, Calculadora y Bonos | IAPredictHub',
   description:
@@ -30,32 +162,32 @@ export const metadata: Metadata = {
 
 const BENEFICIOS = [
   {
-    icon: '🧮',
+    icon: 'calculator',
     titulo: 'Calculadora de cobertura precisa',
     desc: 'Calcula stakes, lay bets y escenarios sin fórmulas manuales ni errores evitables.',
   },
   {
-    icon: '📚',
+    icon: 'route',
     titulo: 'Ruta guiada para empezar',
     desc: 'Entras por una secuencia clara para no perderte entre guías, exchange, casas y calculadora.',
   },
   {
-    icon: '🎁',
+    icon: 'bonus',
     titulo: 'Seguimiento de bonos y freebets',
     desc: 'Todo queda ordenado para saber qué has activado, qué falta y qué toca hacer después.',
   },
   {
-    icon: '🏠',
+    icon: 'houses',
     titulo: 'Organizado por casa',
     desc: 'Cada casa tiene fases, checklist y contexto para que sepas siempre por dónde vas.',
   },
   {
-    icon: '📋',
+    icon: 'history',
     titulo: 'Historial claro de operaciones',
     desc: 'Registra lo que haces y revisa tu progreso con más contexto y menos improvisación.',
   },
   {
-    icon: '🧭',
+    icon: 'compass',
     titulo: 'Pensado para principiantes',
     desc: 'No necesitas dominar todo al entrar. La app te orienta por el orden más lógico.',
   },
@@ -63,32 +195,32 @@ const BENEFICIOS = [
 
 const BETA_FEATURES = [
   {
-    icon: '📊',
+    icon: 'dashboard',
     titulo: 'Dashboard de progreso',
     desc: 'Primero te dice qué hacer y después te enseña métricas, progreso y bonos pendientes.',
   },
   {
-    icon: '🧮',
+    icon: 'calculator',
     titulo: 'Calculadora de cobertura',
     desc: 'Oddsmatcher y Dutcher con varios modos para elegir la herramienta adecuada en cada caso.',
   },
   {
-    icon: '🏠',
+    icon: 'houses',
     titulo: 'Casas y fases',
     desc: 'Listado de casas con fases, checklist y ayudas para ejecutar con más orden.',
   },
   {
-    icon: '🎁',
+    icon: 'bonus',
     titulo: 'Bonos y freebets',
     desc: 'Panel de seguimiento para no dejar pasos a medias ni perder contexto al avanzar.',
   },
   {
-    icon: '📚',
+    icon: 'guide',
     titulo: 'Guías integradas',
     desc: 'Guías y módulos accesibles desde la propia app para acompañar el primer recorrido.',
   },
   {
-    icon: '📝',
+    icon: 'history',
     titulo: 'Historial de operaciones',
     desc: 'Registro sencillo para revisar qué has hecho y mantener una ejecución más limpia.',
   },
@@ -134,25 +266,25 @@ const TESTIMONIOS_BETA = [
 
 const GUIAS_DESTACADAS = [
   {
-    icono: '📖',
+    icono: 'guide',
     titulo: 'Introducción al Matched Betting',
     desc: 'Qué es, cómo funciona y por qué conviene entender el método antes de ejecutar.',
     archivo: 'inicio/introduccion-matched-betting.pdf',
   },
   {
-    icono: '💰',
+    icono: 'trend',
     titulo: 'Cuánto se puede ganar',
     desc: 'Contexto realista del mercado español y LATAM, con foco en método, orden y ejecución.',
     archivo: 'inicio/cuanto-se-puede-ganar-espana.pdf',
   },
   {
-    icono: '♻️',
+    icono: 'exchange',
     titulo: 'Módulo 1 — Betfair Exchange',
     desc: 'Base práctica para cubrir apuestas correctamente y entender el exchange.',
     archivo: 'modulos/modulo-1-betfair.pdf',
   },
   {
-    icono: '🟢',
+    icono: 'check',
     titulo: 'Módulo 2 — Apuesta y Recibe',
     desc: 'Cómo empezar por ofertas sencillas con una ejecución paso a paso.',
     archivo: 'modulos/modulo-2-apuesta-y-recibe.pdf',
@@ -476,7 +608,9 @@ export default function LandingPage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {BENEFICIOS.map((b) => (
               <div key={b.titulo} className="bg-white rounded-2xl border border-stone-100 p-5 hover:shadow-md hover:border-emerald-200 transition-all">
-                <span className="text-2xl mb-3 block">{b.icon}</span>
+                <span className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl border border-emerald-100 bg-emerald-50/70 text-emerald-700">
+                  <LandingIcon name={b.icon as LandingIconName} />
+                </span>
                 <h3 className="font-semibold text-stone-800 text-sm mb-2">{b.titulo}</h3>
                 <p className="text-xs text-stone-500 leading-relaxed">{b.desc}</p>
               </div>
@@ -542,7 +676,9 @@ export default function LandingPage() {
             <div className="flex flex-col gap-3">
               {BETA_FEATURES.map((f) => (
                 <div key={f.titulo} className="flex items-start gap-3 bg-stone-50 rounded-xl border border-stone-100 p-4 hover:border-emerald-200 transition-colors">
-                  <span className="text-xl shrink-0 mt-0.5">{f.icon}</span>
+                  <span className="mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-stone-200 bg-white text-emerald-700">
+                    <LandingIcon name={f.icon as LandingIconName} className="h-4 w-4" />
+                  </span>
                   <div>
                     <div className="flex items-center gap-2 mb-0.5">
                       <p className="font-semibold text-stone-800 text-sm">{f.titulo}</p>
@@ -592,7 +728,9 @@ export default function LandingPage() {
           <div className="grid sm:grid-cols-2 gap-4 mb-8">
             {GUIAS_DESTACADAS.map((g) => (
               <a key={g.archivo} href={`/guias/${g.archivo}`} target="_blank" rel="noopener noreferrer" className="group flex items-start gap-4 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-emerald-500/40 rounded-2xl p-5 transition-all">
-                <span className="text-2xl shrink-0 mt-0.5">{g.icono}</span>
+                <span className="mt-0.5 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.06] text-emerald-300 transition-colors group-hover:border-emerald-400/30 group-hover:bg-emerald-400/10">
+                  <LandingIcon name={g.icono as LandingIconName} />
+                </span>
                 <div className="min-w-0 flex-1">
                   <h3 className="font-semibold text-white text-sm group-hover:text-emerald-300 transition-colors mb-1">{g.titulo}</h3>
                   <p className="text-xs text-gray-400 leading-relaxed">{g.desc}</p>
@@ -630,17 +768,23 @@ export default function LandingPage() {
           </div>
           <div className="grid sm:grid-cols-3 gap-4 mt-8">
             <div className="bg-white rounded-2xl border border-stone-100 p-6 hover:shadow-md hover:border-emerald-200 transition-all">
-              <span className="text-2xl mb-3 block">🛠</span>
+              <span className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl border border-emerald-100 bg-emerald-50/70 text-emerald-700">
+                <LandingIcon name="build" />
+              </span>
               <h3 className="font-semibold text-stone-800 text-sm mb-2">Desarrollo activo</h3>
               <p className="text-xs text-stone-500 leading-relaxed">La app se actualiza regularmente con nuevas casas, mejoras en la calculadora y contenido de formación.</p>
             </div>
             <div className="bg-white rounded-2xl border border-stone-100 p-6 hover:shadow-md hover:border-emerald-200 transition-all">
-              <span className="text-2xl mb-3 block">🎯</span>
+              <span className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl border border-emerald-100 bg-emerald-50/70 text-emerald-700">
+                <LandingIcon name="compass" />
+              </span>
               <h3 className="font-semibold text-stone-800 text-sm mb-2">Enfoque principiante</h3>
               <p className="text-xs text-stone-500 leading-relaxed">Todo está pensado para quien empieza desde cero, sin jerga innecesaria ni pasos confusos.</p>
             </div>
             <div className="bg-white rounded-2xl border border-stone-100 p-6 hover:shadow-md hover:border-emerald-200 transition-all">
-              <span className="text-2xl mb-3 block">🔒</span>
+              <span className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl border border-emerald-100 bg-emerald-50/70 text-emerald-700">
+                <LandingIcon name="shield" />
+              </span>
               <h3 className="font-semibold text-stone-800 text-sm mb-2">Sin datos personales</h3>
               <p className="text-xs text-stone-500 leading-relaxed">No pedimos registro ni almacenamos información. Todo se guarda en tu navegador.</p>
             </div>
@@ -686,8 +830,9 @@ export default function LandingPage() {
               <details key={faq.pregunta} className="group">
                 <summary className="flex items-start justify-between gap-4 px-6 py-5 cursor-pointer list-none hover:bg-stone-50 transition-colors">
                   <span className="font-semibold text-stone-800 text-sm leading-relaxed">{faq.pregunta}</span>
-                  <span className="text-stone-400 text-xl font-light shrink-0 mt-0.5 group-open:hidden">+</span>
-                  <span className="text-stone-400 text-xl font-light shrink-0 mt-0.5 hidden group-open:block">−</span>
+                  <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-stone-200 text-stone-400 transition-transform duration-200 group-open:rotate-180">
+                    <LandingIcon name="chevronDown" className="h-3.5 w-3.5" />
+                  </span>
                 </summary>
                 <div className="px-6 pb-5 text-sm text-stone-500 leading-relaxed border-t border-stone-50">{faq.respuesta}</div>
               </details>
