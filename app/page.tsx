@@ -384,8 +384,7 @@ export default function LandingPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }} />
       <header
-        style={{ background: 'linear-gradient(135deg, #12112A 0%, #2A1F3D 100%)' }}
-        className="sticky top-0 z-50 shadow-lg"
+        className="sticky top-0 z-50 border-b border-white/10 bg-[#0b1020]/85 shadow-[0_12px_32px_rgba(2,6,23,0.26)] backdrop-blur-xl"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-14">
@@ -396,31 +395,31 @@ export default function LandingPage() {
                 <span className="text-purple-300 font-normal hidden sm:inline"> · Bonos de bienvenida</span>
               </span>
             </Link>
-            <nav className="flex items-center gap-2 sm:gap-4">
-            <TrackedLink
-              href="/guias"
-              eventName="header_guides_clicked"
-              eventProps={{ location: 'header', target_path: '/guias' }}
-              className="hidden sm:inline text-gray-300 hover:text-white text-sm transition-colors"
-            >
-              Guías gratis
-            </TrackedLink>
-            <TrackedLink
-              href="/blog"
-              eventName="header_blog_clicked"
-              eventProps={{ location: 'header', target_path: '/blog' }}
-              className="hidden sm:inline text-gray-300 hover:text-white text-sm transition-colors"
-            >
-              Blog
-            </TrackedLink>
-            <TrackedLink
-              href="/bienvenida"
-              eventName="header_enter_app_clicked"
-              eventProps={{ location: 'header', target_path: '/bienvenida' }}
-              className="bg-emerald-500 hover:bg-emerald-400 text-white text-xs sm:text-sm font-bold px-3 sm:px-5 py-1.5 sm:py-2 rounded-full transition-colors"
-            >
-              Entrar en la app →
-            </TrackedLink>
+            <nav className="flex items-center gap-2 sm:gap-3">
+              <TrackedLink
+                href="/guias"
+                eventName="header_guides_clicked"
+                eventProps={{ location: 'header', target_path: '/guias' }}
+                className="hidden sm:inline-flex items-center rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-sm text-slate-200 transition-colors hover:border-white/20 hover:bg-white/[0.08] hover:text-white"
+              >
+                Guías gratis
+              </TrackedLink>
+              <TrackedLink
+                href="/blog"
+                eventName="header_blog_clicked"
+                eventProps={{ location: 'header', target_path: '/blog' }}
+                className="hidden sm:inline-flex items-center rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-sm text-slate-200 transition-colors hover:border-white/20 hover:bg-white/[0.08] hover:text-white"
+              >
+                Blog
+              </TrackedLink>
+              <TrackedLink
+                href="/bienvenida"
+                eventName="header_enter_app_clicked"
+                eventProps={{ location: 'header', target_path: '/bienvenida' }}
+                className="inline-flex items-center rounded-full border border-emerald-300/25 bg-emerald-400 px-3 sm:px-5 py-1.5 sm:py-2 text-xs sm:text-sm font-bold text-slate-950 shadow-[0_8px_24px_rgba(16,185,129,0.22)] transition-colors hover:bg-emerald-300"
+              >
+                Entrar en la app →
+              </TrackedLink>
             </nav>
           </div>
         </div>
@@ -554,40 +553,46 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section className="bg-white border-b border-stone-100">
+      <section className="relative overflow-hidden bg-gradient-to-b from-[#0b1020] via-[#10192a] to-[#f6f8fc] border-b border-white/10">
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/18 to-transparent" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-white" />
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
           <div className="grid gap-4 md:grid-cols-3">
             {BENEFICIOS_RAPIDOS.map((beneficio) => (
               <div
                 key={beneficio.titulo}
-                className="rounded-2xl border border-stone-200 bg-stone-50 p-5 text-left shadow-sm transition-colors hover:border-emerald-200"
+                className="rounded-2xl border border-white/10 bg-white/[0.06] p-5 text-left shadow-[0_18px_40px_rgba(2,6,23,0.18)] backdrop-blur-sm transition-colors hover:border-white/20 hover:bg-white/[0.09]"
               >
-                <h2 className="text-sm font-semibold text-stone-900 mb-2">{beneficio.titulo}</h2>
-                <p className="text-xs sm:text-sm text-stone-500 leading-relaxed">{beneficio.desc}</p>
+                <h2 className="text-sm font-semibold text-white mb-2">{beneficio.titulo}</h2>
+                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">{beneficio.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="bg-stone-50 border-y border-stone-200">
+      <section className="relative overflow-hidden bg-[#f6f8fc] border-y border-slate-200/80">
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-slate-300/70 to-transparent" />
+        <div className="pointer-events-none absolute left-1/2 top-[-6rem] h-40 w-40 -translate-x-1/2 rounded-full bg-emerald-400/5 blur-3xl" />
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
-          <div className="grid grid-cols-2 sm:grid-cols-4 text-center divide-y sm:divide-y-0 divide-x-0 sm:divide-x divide-stone-200">
-            <div className="py-4 sm:py-0 sm:px-6">
-              <p className="text-3xl sm:text-4xl font-bold text-emerald-600">50+</p>
-              <p className="text-[13px] text-stone-400 mt-1 leading-tight">casas organizadas</p>
-            </div>
-            <div className="py-4 sm:py-0 sm:px-6 border-l border-stone-200">
-              <p className="text-2xl sm:text-3xl font-bold text-emerald-600">+2.500€ / +3.000$</p>
-              <p className="text-[13px] text-stone-400 mt-1 leading-tight">en bonos documentados</p>
-            </div>
-            <div className="py-4 sm:py-0 sm:px-6 border-t sm:border-t-0 border-stone-200 sm:border-l">
-              <p className="text-3xl sm:text-4xl font-bold text-emerald-600">7</p>
-              <p className="text-[13px] text-stone-400 mt-1 leading-tight">módulos de formación</p>
-            </div>
-            <div className="py-4 sm:py-0 sm:px-6 border-t sm:border-t-0 border-l border-stone-200">
-              <p className="text-3xl sm:text-4xl font-bold text-emerald-600">4</p>
-              <p className="text-[13px] text-stone-400 mt-1 leading-tight">modos de calculadora</p>
+          <div className="overflow-hidden rounded-[1.25rem] border border-white/70 bg-white/75 text-center shadow-[0_20px_60px_rgba(15,23,42,0.08)] backdrop-blur-sm">
+            <div className="grid grid-cols-2 sm:grid-cols-4 divide-y sm:divide-y-0 divide-x-0 sm:divide-x divide-slate-200/80">
+              <div className="py-4 sm:py-0 sm:px-6">
+                <p className="text-3xl sm:text-4xl font-bold text-emerald-600">50+</p>
+                <p className="text-[13px] text-slate-500 mt-1 leading-tight">casas organizadas</p>
+              </div>
+              <div className="py-4 sm:py-0 sm:px-6 border-l border-slate-200/80">
+                <p className="text-2xl sm:text-3xl font-bold text-emerald-600">+2.500€ / +3.000$</p>
+                <p className="text-[13px] text-slate-500 mt-1 leading-tight">en bonos documentados</p>
+              </div>
+              <div className="py-4 sm:py-0 sm:px-6 border-t sm:border-t-0 border-slate-200/80 sm:border-l">
+                <p className="text-3xl sm:text-4xl font-bold text-emerald-600">7</p>
+                <p className="text-[13px] text-slate-500 mt-1 leading-tight">módulos de formación</p>
+              </div>
+              <div className="py-4 sm:py-0 sm:px-6 border-t sm:border-t-0 border-l border-slate-200/80">
+                <p className="text-3xl sm:text-4xl font-bold text-emerald-600">4</p>
+                <p className="text-[13px] text-slate-500 mt-1 leading-tight">modos de calculadora</p>
+              </div>
             </div>
           </div>
         </div>
