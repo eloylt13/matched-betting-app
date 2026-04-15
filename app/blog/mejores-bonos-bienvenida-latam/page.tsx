@@ -1,62 +1,177 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 
+import { casasLatam } from '@/lib/presets/data/latam'
+
 export const metadata: Metadata = {
   title: 'Mejores bonos de bienvenida LATAM 2026 | IAPredictHub',
-  description: 'Comparativa de casas disponibles en México, Colombia, Chile, Perú, Ecuador y más con tipo de bono, requisitos y ganancia potencial en USD.',
+  description:
+    'Ranking actualizado de casas LATAM reales del proyecto, ordenadas por beneficio potencial, con país o región, tipo de bono, requisitos y ganancia estimada en USD.',
 }
+
+const paises: Record<string, string> = {
+  mx: 'México',
+  ar: 'Argentina',
+  cl: 'Chile',
+  co: 'Colombia',
+  pe: 'Perú',
+  ec: 'Ecuador',
+  pa: 'Panamá',
+  uy: 'Uruguay',
+  regionales: 'Regional LATAM',
+}
+
+const tipos: Record<string, string> = {
+  'apuesta-recibe': 'Apuesta y recibe',
+  reembolso: 'Reembolso',
+  rollover: 'Rollover',
+  exchange: 'Exchange',
+}
+
+function getCasaHref(id: string) {
+  return `/casas/${id}`
+}
+
+function getPaisLabel(pais: string) {
+  return paises[pais] ?? pais.toUpperCase()
+}
+
+function getTipoLabel(tipo?: string) {
+  if (!tipo) return 'Sin clasificar'
+  return tipos[tipo] ?? tipo
+}
+
+function getRequisitosBreves(requisitos: string[]) {
+  if (requisitos.length <= 2) {
+    return requisitos.join(' · ')
+  }
+
+  return `${requisitos.slice(0, 2).join(' · ')} · …`
+}
+
+function DificultadBadge({ nivel }: { nivel?: number }) {
+  const value = nivel ?? 0
+  const colores: Record<number, string> = {
+    1: 'bg-emerald-100 text-emerald-700',
+    2: 'bg-green-100 text-green-700',
+    3: 'bg-amber-100 text-amber-700',
+    4: 'bg-orange-100 text-orange-700',
+    5: 'bg-red-100 text-red-700',
+  }
+  const etiquetas: Record<number, string> = {
+    1: '1/5 · Muy fácil',
+    2: '2/5 · Fácil',
+    3: '3/5 · Media',
+    4: '4/5 · Alta',
+    5: '5/5 · Muy alta',
+  }
+
+  if (!colores[value] || !etiquetas[value]) {
+    return <span className="inline-block px-2 py-0.5 rounded-full text-xs font-medium whitespace-nowrap bg-stone-100 text-stone-500">N/D</span>
+  }
+
+  return (
+    <span
+      className={`inline-block px-2 py-0.5 rounded-full text-xs font-medium whitespace-nowrap ${colores[value]}`}
+    >
+      {etiquetas[value]}
+    </span>
+  )
+}
+
+const rankingLatam = [...casasLatam]
+  .sort((a, b) => {
+    if (b.beneficioPotencial !== a.beneficioPotencial) {
+      return b.beneficioPotencial - a.beneficioPotencial
+    }
+
+    return a.nombre.localeCompare(b.nombre, 'es')
+  })
 
 export default function MejoresBonosLatamPage() {
   return (
-    <article className="max-w-2xl mx-auto flex flex-col gap-6 pb-8">
-      <time dateTime="2026-04-08" className="text-xs text-stone-400">
-        8 de abril de 2026
+    <article className="max-w-3xl mx-auto flex flex-col gap-6 pb-8">
+      <time dateTime="2026-04-15" className="text-xs text-stone-400">
+        15 de abril de 2026
       </time>
+
       <h1 className="text-2xl font-bold text-stone-800 tracking-tight leading-snug">
         Mejores bonos de bienvenida en casas de apuestas LATAM (2026)
       </h1>
-      <p className="text-stone-600 leading-relaxed">
-        El mercado LATAM tiene cada vez más casas con bonos de bienvenida aprovechables. Esta comparativa recoge las opciones más claras disponibles hoy en México, Colombia, Chile, Perú y Ecuador.
-      </p>
-      <h2 className="text-lg font-bold text-stone-800">Casas regionales (varios países)</h2>
-      <div className="flex flex-col gap-3">
-        {[
-          { nombre: 'Betfair Sportsbook', bono: '10 USD → 10 USD freebet', tipo: 'Apuesta & Recibe', paises: '15 países LATAM', dificultad: 'Fácil' },
-          { nombre: 'LSBet', bono: '100% hasta ~120 USD', tipo: 'Rollover', paises: 'Regional', dificultad: 'Alta' },
-          { nombre: 'ReloadBet', bono: '100% hasta ~120 USD', tipo: 'Rollover', paises: 'Regional', dificultad: 'Alta' },
-        ].map((casa) => (
-          <div key={casa.nombre} className="bg-white rounded-xl border border-stone-100 p-4">
-            <div className="flex items-center justify-between mb-1">
-              <p className="font-semibold text-stone-800 text-sm">{casa.nombre}</p>
-              <span className="text-xs text-stone-400">{casa.paises}</span>
-            </div>
-            <p className="text-sm text-emerald-600 font-medium">{casa.bono}</p>
-            <p className="text-xs text-stone-400 mt-1">{casa.tipo} · Dificultad: {casa.dificultad}</p>
-          </div>
-        ))}
-      </div>
-      <h2 className="text-lg font-bold text-stone-800">Por país</h2>
-      <div className="flex flex-col gap-3">
-        {[
-          { pais: '🇲🇽 México', casas: 'Betano, Novibet, Sportium, Codere' },
-          { pais: '🇨🇴 Colombia', casas: 'Wplay, RushBet, Sportium' },
-          { pais: '🇨🇱 Chile', casas: 'Betano, Betsson, Novibet, Betway' },
-          { pais: '🇵🇪 Perú', casas: 'Betano, Betsson' },
-          { pais: '🇪🇨 Ecuador', casas: 'Betano, Novibet, Betway' },
-        ].map((item) => (
-          <div key={item.pais} className="bg-stone-50 rounded-xl border border-stone-100 p-4">
-            <p className="font-semibold text-stone-800 text-sm mb-1">{item.pais}</p>
-            <p className="text-xs text-stone-500">{item.casas}</p>
-          </div>
-        ))}
-      </div>
-      <div className="flex flex-wrap gap-3 mt-2">
-        <Link href="/casas" className="bg-emerald-500 hover:bg-emerald-400 text-white text-sm font-semibold px-4 py-2 rounded-xl transition-colors">
-          Ver todas las casas →
-        </Link>
-        <Link href="/calculadora" className="bg-stone-100 hover:bg-stone-200 text-stone-700 text-sm font-semibold px-4 py-2 rounded-xl transition-colors">
-          Abrir calculadora
-        </Link>
+
+      <div className="flex flex-col gap-4 text-sm text-stone-700 leading-relaxed">
+        <p>
+          Esta guía reúne las casas LATAM reales que ya existen en los presets del proyecto y las ordena
+          por beneficio potencial estimado. La idea es tener una comparativa útil, limpia y coherente con
+          el artículo de España, pero centrada solo en el mercado LATAM.
+        </p>
+        <p>
+          El ranking incluye casas por país y también opciones regionales. Si estás empezando, la tabla te
+          sirve para ver de un vistazo qué casas tienen mejor retorno estimado, qué tipo de bono ofrecen y
+          qué nivel de dificultad suele tener cada una.
+        </p>
+
+        <h2 className="text-lg font-semibold text-stone-800 mt-2">
+          Ranking principal de bonos LATAM
+        </h2>
+        <p>
+          Todas las casas de la tabla salen directamente de{' '}
+          <code className="rounded bg-stone-100 px-1.5 py-0.5 text-xs text-stone-600">casasLatam</code> y
+          están ordenadas de mayor a menor beneficio potencial. Las cantidades se muestran en{' '}
+          <strong>USD aproximados</strong> para mantener una comparación homogénea entre países.
+        </p>
+
+        <div className="overflow-x-auto rounded-xl border border-stone-200">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="bg-stone-50 border-b border-stone-200">
+                <th className="text-left px-3 py-3 font-semibold text-stone-700">Casa</th>
+                <th className="text-left px-3 py-3 font-semibold text-stone-700">País / región</th>
+                <th className="text-left px-3 py-3 font-semibold text-stone-700">Tipo de bono</th>
+                <th className="text-left px-3 py-3 font-semibold text-stone-700 hidden md:table-cell">Requisitos breves</th>
+                <th className="text-center px-3 py-3 font-semibold text-stone-700">Dificultad</th>
+                <th className="text-right px-3 py-3 font-semibold text-stone-700">Ganancia estimada</th>
+              </tr>
+            </thead>
+            <tbody>
+              {rankingLatam.map((casa, index) => (
+                <tr
+                  key={casa.id}
+                  className={`border-b border-stone-100 last:border-0 ${index % 2 === 0 ? 'bg-white' : 'bg-stone-50/50'}`}
+                >
+                  <td className="px-3 py-2.5 font-medium text-stone-800 whitespace-nowrap">
+                    <Link
+                      href={getCasaHref(casa.id)}
+                      className="inline-block text-stone-800 hover:text-purple-700 hover:underline underline-offset-2 decoration-stone-300 transition-colors"
+                    >
+                      {casa.nombre}
+                    </Link>
+                  </td>
+                  <td className="px-3 py-2.5 text-stone-600 whitespace-nowrap">
+                    {getPaisLabel(casa.pais)}
+                  </td>
+                  <td className="px-3 py-2.5 text-stone-600 whitespace-nowrap">
+                    {getTipoLabel(casa.tipologia)}
+                  </td>
+                  <td className="px-3 py-2.5 text-stone-500 hidden md:table-cell">
+                    {getRequisitosBreves(casa.requisitos)}
+                  </td>
+                  <td className="px-3 py-2.5 text-center">
+                    <DificultadBadge nivel={casa.dificultad} />
+                  </td>
+                  <td className="px-3 py-2.5 text-right font-semibold text-purple-700 whitespace-nowrap">
+                    ~{casa.beneficioPotencial} USD aprox.
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <p className="text-xs text-stone-400 -mt-2">
+          * La ganancia estimada es orientativa y depende de los T&amp;C vigentes, la conversión real de
+          cada bono y el país. Conviene revisar siempre la ficha de cada casa antes de operar.
+        </p>
       </div>
     </article>
   )
