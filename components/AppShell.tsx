@@ -1,16 +1,40 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import BottomNav from '@/components/BottomNav'
 
-function NavLink({ href, emoji, label }: { href: string; emoji: string; label: string }) {
+type NavLinkProps = {
+  href: string
+  label: string
+  icon: string
+  pathname: string
+}
+
+function NavLink({ href, label, icon, pathname }: NavLinkProps) {
+  const isActive = pathname === href || pathname.startsWith(`${href}/`)
+
   return (
     <Link
       href={href}
-      className="flex items-center gap-1 px-2 sm:px-3 py-1.5 rounded-lg text-gray-300 hover:text-white hover:bg-white/10 transition-all text-xs sm:text-sm font-medium"
+      aria-current={isActive ? 'page' : undefined}
+      className={`group inline-flex items-center gap-2 rounded-full border px-3 py-2 text-xs font-medium tracking-wide transition-all duration-200 sm:px-4 sm:text-sm ${
+        isActive
+          ? 'border-violet-200/30 bg-violet-500/15 text-white shadow-[0_10px_28px_rgba(124,58,237,0.2)]'
+          : 'border-white/10 bg-white/[0.035] text-slate-300 hover:border-violet-200/20 hover:bg-white/[0.07] hover:text-white'
+      }`}
     >
-      <span className="text-sm">{emoji}</span>
+      <span
+        className={`flex h-7 w-7 items-center justify-center rounded-full border text-[12px] transition-all duration-200 ${
+          isActive
+            ? 'border-violet-200/30 bg-violet-400/15 text-violet-100 shadow-[0_0_0_1px_rgba(167,139,250,0.08)]'
+            : 'border-white/10 bg-white/[0.04] text-slate-300 group-hover:border-violet-200/20 group-hover:bg-violet-500/10 group-hover:text-violet-100'
+        }`}
+        aria-hidden="true"
+      >
+        {icon}
+      </span>
       <span className="hidden md:inline">{label}</span>
     </Link>
   )
@@ -19,6 +43,17 @@ function NavLink({ href, emoji, label }: { href: string; emoji: string; label: s
 export default function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
 
+  const navItems = [
+    { href: '/dashboard', label: 'Dashboard', icon: 'D' },
+    { href: '/guias', label: 'Guías', icon: 'G' },
+    { href: '/blog', label: 'Blog', icon: 'B' },
+    { href: '/pronosticos', label: 'Pronósticos', icon: 'P' },
+    { href: '/calculadora', label: 'Calculadora', icon: 'C' },
+    { href: '/casas', label: 'Casas', icon: 'H' },
+    { href: '/bonos', label: 'Bonos', icon: 'O' },
+    { href: '/historial', label: 'Historial', icon: 'I' },
+  ]
+
   // La landing maneja su propio nav y layout
   if (pathname === '/') {
     return <>{children}</>
@@ -26,90 +61,113 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      <nav
-        style={{ background: 'linear-gradient(135deg, #12112A 0%, #2A1F3D 100%)' }}
-        className="sticky top-0 z-50 shadow-lg"
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-14">
-            <Link href="/" className="flex items-center gap-2">
-              <img src="/logo.png" alt="IAPredictHub" className="w-8 h-8 rounded-full object-cover" />
-              <span className="font-bold text-white text-sm sm:text-base tracking-tight">
-                IAPredictHub
-                <span className="text-purple-300 font-normal hidden sm:inline"> · Matched Betting</span>
+      <nav className="sticky top-0 z-50 border-b border-white/10 bg-[linear-gradient(135deg,rgba(9,11,24,0.96)_0%,rgba(18,17,42,0.96)_45%,rgba(42,31,61,0.94)_100%)] shadow-[0_14px_40px_rgba(2,6,23,0.24)] backdrop-blur-xl">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="flex h-16 items-center justify-between gap-4">
+            <Link href="/" className="group flex items-center gap-3">
+              <span className="relative flex h-10 w-10 items-center justify-center overflow-hidden rounded-2xl border border-violet-200/15 bg-white/[0.05] shadow-[0_12px_30px_rgba(88,28,135,0.18)]">
+                <Image src="/logo.png" alt="IAPredictHub" width={40} height={40} className="h-10 w-10 rounded-2xl object-cover" />
+              </span>
+              <span className="flex flex-col leading-tight">
+                <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-violet-200/70">
+                  Internal app
+                </span>
+                <span className="text-sm font-semibold text-white sm:text-base">
+                  IAPredictHub
+                  <span className="hidden sm:inline text-violet-200/80"> · Matched Betting</span>
+                </span>
               </span>
             </Link>
-            <div className="hidden md:flex items-center gap-1 sm:gap-2">
-              <NavLink href="/dashboard" emoji="📊" label="Dashboard" />
-              <NavLink href="/guias" emoji="📚" label="Guías" />
-              <NavLink href="/blog" emoji="✍️" label="Blog" />
-              <NavLink href="/pronosticos" emoji="🎯" label="Pronósticos" />
-              <NavLink href="/calculadora" emoji="🧮" label="Calculadora" />
-              <NavLink href="/casas" emoji="🏠" label="Casas" />
-              <NavLink href="/bonos" emoji="🎁" label="Bonos" />
-              <NavLink href="/historial" emoji="📋" label="Historial" />
+
+            <div className="hidden items-center gap-2 md:flex">
+              {navItems.map((item) => (
+                <NavLink key={item.href} href={item.href} label={item.label} icon={item.icon} pathname={pathname} />
+              ))}
             </div>
           </div>
         </div>
       </nav>
 
-      {/* Banner Betfair — solo desktop */}
-      <div className="hidden md:block bg-gradient-to-r from-[#1a3a2a] to-[#1e4d35] border-b border-green-900/40">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex items-center justify-between gap-4">
-          <div className="flex items-center gap-2 text-sm text-green-200">
-            <span className="text-base">♻️</span>
-            <span className="font-semibold text-white">Betfair Exchange</span>
-            <span className="hidden sm:inline text-green-300">— Imprescindible para cubrir apuestas en España y también útil si operas desde LATAM</span>
-          </div>
-          <div className="flex items-center gap-2 shrink-0">
-            <a href="https://www.betfair.es/exchange/plus/" target="_blank" rel="noopener noreferrer" className="bg-green-500 hover:bg-green-400 text-white text-xs font-bold px-3 py-1.5 rounded-full transition-colors">
-              🇪🇸 España principal →
-            </a>
-            <a href="https://apuestas.betfair.es/latinoamerica/" target="_blank" rel="noopener noreferrer" className="bg-green-700 hover:bg-green-600 text-white text-xs font-bold px-3 py-1.5 rounded-full transition-colors">
-              🌎 LATAM soporte →
-            </a>
+      <div className="hidden md:block border-b border-white/10 bg-[linear-gradient(135deg,rgba(10,11,24,0.88)_0%,rgba(23,16,45,0.9)_45%,rgba(43,31,67,0.92)_100%)]">
+        <div className="mx-auto max-w-7xl px-4 py-3 sm:px-6 lg:px-8">
+          <div className="relative overflow-hidden rounded-2xl border border-violet-200/14 bg-white/[0.045] px-4 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_16px_42px_rgba(15,23,42,0.18)] backdrop-blur-md">
+            <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-violet-200/35 to-transparent" />
+            <div className="pointer-events-none absolute -left-10 -top-10 h-28 w-28 rounded-full bg-violet-500/12 blur-3xl" />
+            <div className="relative flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+              <div className="flex items-start gap-3">
+                <div className="mt-0.5 flex h-10 w-10 items-center justify-center rounded-2xl border border-violet-200/20 bg-violet-300/10 text-violet-100 shadow-[0_10px_22px_rgba(124,58,237,0.16)]">
+                  B
+                </div>
+                <div className="space-y-1">
+                  <div className="inline-flex items-center gap-2 rounded-full border border-violet-200/20 bg-violet-300/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-violet-100">
+                    Betfair Exchange
+                  </div>
+                  <p className="max-w-2xl text-sm leading-6 text-slate-200">
+                    Punto clave del flujo interno para cubrir apuestas con una presentación más limpia,
+                    más premium y totalmente integrada con el resto del producto.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex flex-wrap items-center gap-2">
+                <a
+                  href="https://www.betfair.es/exchange/plus/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center rounded-full border border-violet-200/25 bg-violet-500 px-4 py-2 text-xs font-semibold text-white shadow-[0_14px_30px_rgba(124,58,237,0.26)] transition-all hover:-translate-y-0.5 hover:bg-violet-400 hover:shadow-[0_18px_40px_rgba(139,92,246,0.34)]"
+                >
+                  España principal
+                </a>
+                <a
+                  href="https://apuestas.betfair.es/latinoamerica/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center rounded-full border border-violet-200/18 bg-white/[0.04] px-4 py-2 text-xs font-semibold text-violet-100 transition-all hover:-translate-y-0.5 hover:border-violet-200/30 hover:bg-white/[0.08]"
+                >
+                  LATAM soporte
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 pb-20 md:pb-6">
-        {children}
-      </main>
+      <main className="mx-auto max-w-7xl px-4 py-6 pb-20 sm:px-6 lg:px-8 md:pb-8">{children}</main>
 
-      <footer className="hidden md:block mt-12 border-t border-gray-200 py-6 text-center text-xs text-gray-400">
-        <p>IAPredictHub · Matched Betting — Solo para uso educativo. Apuesta con responsabilidad.</p>
+      <footer className="hidden md:block border-t border-white/10 bg-[linear-gradient(180deg,rgba(8,10,20,0.92)_0%,rgba(10,11,24,0.98)_100%)]">
+        <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+          <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.035] px-5 py-6 shadow-[0_18px_54px_rgba(2,6,23,0.24)] backdrop-blur-md sm:px-6">
+            <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+              <div className="flex items-center gap-3">
+                <Image src="/logo-iamagica.png" alt="IAMagica" width={120} height={32} className="h-8 w-auto rounded-md" />
+                <div className="space-y-1">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-violet-200/70">
+                    IAMagica
+                  </p>
+                  <p className="text-sm font-medium text-slate-200">
+                    IAPredictHub · Matched Betting para uso educativo y responsable.
+                  </p>
+                </div>
+              </div>
+
+              <a
+                href="mailto:info@iamagica.es"
+                className="inline-flex items-center gap-3 rounded-full border border-violet-200/18 bg-white/[0.04] px-4 py-2.5 text-sm font-medium text-slate-200 transition-all hover:-translate-y-0.5 hover:border-violet-200/28 hover:bg-violet-500/10 hover:text-white"
+              >
+                <span className="flex h-8 w-8 items-center justify-center rounded-full border border-violet-200/18 bg-violet-300/10 text-violet-100">
+                  @
+                </span>
+                <span>info@iamagica.es</span>
+              </a>
+            </div>
+
+            <div className="mt-5 border-t border-white/10 pt-4 text-xs text-slate-400 sm:flex sm:items-center sm:justify-between">
+              <span>© 2026 IAMagica</span>
+              <span>IAPredictHub · Solo para uso educativo. Apuesta con responsabilidad.</span>
+            </div>
+          </div>
+        </div>
       </footer>
-
-      <div
-        className="hidden md:flex flex-wrap gap-4"
-        style={{
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          borderTop: '1px solid #e5e7eb',
-          padding: '1.5rem',
-        }}
-      >
-        {/* Izquierda: logo + copyright */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/logo-iamagica.png" alt="IAMagica" height={28} style={{ height: '28px', width: 'auto' }} />
-          <span style={{ fontSize: '12px', color: '#9ca3af' }}>© 2026 IAMagica</span>
-        </div>
-
-        {/* Derecha: contacto */}
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '4px' }}>
-          <span style={{ fontSize: '12px', fontWeight: 600, color: '#1B4332', letterSpacing: '0.5px' }}>
-            DIGITALIZA TU NEGOCIO
-          </span>
-          <a
-            href="mailto:info@iamagica.es"
-            style={{ textDecoration: 'none', color: '#6b7280', display: 'flex', alignItems: 'center', gap: '6px' }}
-          >
-            <span style={{ fontSize: '20px' }}>✉</span>
-            <span style={{ fontSize: '12px' }}>info@iamagica.es</span>
-          </a>
-        </div>
-      </div>
 
       <BottomNav />
     </>
