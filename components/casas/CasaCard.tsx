@@ -62,7 +62,7 @@ export function CasaCard({ casa, estado }: Props) {
   return (
     <Link
       href={`/casas/${casa.id}`}
-      className={`block bg-white rounded-2xl shadow-sm border border-gray-100 ${style.border} overflow-hidden hover:shadow-md transition-all group ${completada ? 'opacity-60' : ''}`}
+      className={`block rounded-2xl border border-violet-100/70 bg-[linear-gradient(180deg,rgba(255,255,255,0.94)_0%,rgba(248,250,255,0.9)_46%,rgba(255,255,255,0.96)_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,0.85),0_18px_44px_rgba(15,23,42,0.1),0_6px_18px_rgba(88,28,135,0.06)] ${style.border} overflow-hidden hover:shadow-md transition-all group ${completada ? 'opacity-60' : ''}`}
     >
       <div className="p-3 sm:p-5">
         {/* Header */}
