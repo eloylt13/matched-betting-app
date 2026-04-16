@@ -227,21 +227,6 @@ const BETA_FEATURES = [
   },
 ]
 
-const BENEFICIOS_RAPIDOS = [
-  {
-    titulo: 'Paso a paso claro',
-    desc: 'Sigue un orden recomendado para no empezar perdido.',
-  },
-  {
-    titulo: 'Calculadora preparada para ejecutar',
-    desc: 'Menos campos manuales, menos errores evitables.',
-  },
-  {
-    titulo: 'Todo organizado en un solo sitio',
-    desc: 'Casas, bonos, progreso y siguientes acciones.',
-  },
-]
-
 const TESTIMONIOS_BETA = [
   {
     nombre: 'Carlos',
@@ -465,154 +450,65 @@ export default function LandingPage() {
       <section className="relative overflow-hidden bg-[#080B16]">
         <HeroAtmosphere />
 
-        <div className="relative mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-32">
-          <div className="text-center">
-            <div className="relative mx-auto overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.055] px-5 py-8 shadow-2xl shadow-black/40 backdrop-blur-md sm:px-8 sm:py-12 lg:px-12">
-              <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-white/35 to-transparent" />
-              <div className="pointer-events-none absolute -right-20 -top-24 h-56 w-56 rounded-full bg-emerald-300/10 blur-3xl" />
-              <div className="pointer-events-none absolute -bottom-28 -left-16 h-60 w-60 rounded-full bg-indigo-400/10 blur-3xl" />
+        <div className="relative mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8 lg:py-16">
+          <div className="grid items-center gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:gap-10">
+            <div className="text-center lg:text-left">
+              <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-violet-300/25 bg-violet-300/10 px-3.5 py-1.5 text-xs font-semibold text-violet-100 shadow-[0_0_28px_rgba(139,92,246,0.16)] backdrop-blur-sm">
+                <span className="h-2 w-2 rounded-full bg-violet-300 shadow-[0_0_16px_rgba(196,181,253,0.8)]" />
+                Beta gratuita · Sin registro
+              </div>
 
-              <div className="relative">
-                <div className="mb-8 flex flex-col items-center gap-4">
-                  <div className="inline-flex items-center gap-2 rounded-full border border-emerald-300/25 bg-emerald-300/10 px-4 py-2 text-xs font-semibold text-emerald-200 shadow-sm shadow-emerald-950/20 backdrop-blur-sm">
-                    <span className="h-2 w-2 rounded-full bg-emerald-300 shadow-[0_0_16px_rgba(110,231,183,0.75)]" />
-                    Acceso Gratuito · Sin registro
-                  </div>
-                  <div className="flex flex-wrap items-center justify-center gap-2 text-[11px] font-semibold text-slate-300 sm:text-xs">
-                    <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 backdrop-blur-sm">IA aplicada</span>
-                    <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 backdrop-blur-sm">Modo guiado</span>
-                    <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 backdrop-blur-sm">Sin tarjeta ni registro</span>
-                    <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 backdrop-blur-sm">100% gratuito en beta</span>
-                  </div>
-                </div>
+              <h1 className="mx-auto max-w-4xl font-playfair text-4xl font-bold leading-tight text-white sm:text-5xl lg:mx-0 lg:text-[3.55rem]">
+                Deja de perder bonos de bienvenida por falta de método.
+              </h1>
 
-                <h1 className="mx-auto mb-4 max-w-4xl font-playfair text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl xl:text-6xl">
-                  Aprende a aprovechar los bonos de bienvenida con una ruta clara y guiada.
-                </h1>
+              <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg lg:mx-0">
+                La app te guía paso a paso para saber qué hacer primero, qué calculadora usar y cómo avanzar con orden.
+              </p>
 
-                <div className="mx-auto mb-5 flex max-w-3xl items-center gap-3">
-                  <span className="h-px flex-1 bg-gradient-to-r from-transparent via-cyan-200/35 to-transparent" aria-hidden="true" />
-                  <p className="text-base font-semibold tracking-[0.16em] text-cyan-100/95 sm:text-lg lg:text-xl xl:text-2xl">
-                    También disponible en versión LATAM
-                  </p>
-                  <span className="h-px flex-1 bg-gradient-to-r from-transparent via-cyan-200/35 to-transparent" aria-hidden="true" />
-                </div>
-
-                <p className="mx-auto mb-8 max-w-3xl text-base leading-relaxed text-slate-300 sm:text-lg lg:text-xl">
-                  IAPredictHub te guía paso a paso para entender el proceso, usar la calculadora adecuada y seguir una ruta clara desde el primer día.
-                </p>
-
-                <div className="mb-7">
-                  <HeroMockup />
-                </div>
-
+              <div className="mt-7 flex flex-col items-center gap-3 sm:flex-row lg:items-start">
                 <TrackedLink
-                  href="/pronosticos"
-                  eventName="home_freebet_banner_clicked"
-                  eventProps={{ location: 'hero', target_path: '/pronosticos' }}
-                  className="group mx-auto mb-8 flex w-full max-w-2xl flex-col items-center rounded-[1.5rem] border border-emerald-200/20 bg-slate-950/55 px-4 py-4 text-center shadow-[0_24px_80px_rgba(0,0,0,0.32)] backdrop-blur-md transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-200/35 hover:bg-slate-950/70 hover:shadow-[0_30px_90px_rgba(0,0,0,0.38)] sm:px-5"
+                  href="/bienvenida"
+                  eventName="home_cta_primary_clicked"
+                  eventProps={{ location: 'hero', target_path: '/bienvenida' }}
+                  className="group w-full rounded-lg border border-violet-300/40 bg-violet-500 px-7 py-3.5 text-center text-base font-bold text-white shadow-[0_18px_48px_rgba(124,58,237,0.32)] transition-all duration-200 hover:-translate-y-0.5 hover:border-violet-200/70 hover:bg-violet-400 hover:shadow-[0_20px_58px_rgba(139,92,246,0.38)] sm:w-auto"
                 >
-                  <div className="flex flex-col items-center gap-3">
-                    <span className="text-[11px] font-semibold uppercase tracking-[0.28em] text-emerald-200">
-                      Freebet GRATIS
-                    </span>
-                    <p className="max-w-xl text-base leading-relaxed text-slate-100 sm:text-lg">
-                      Accede a nuestra freebet con pronósticos filtrados y verificados por{' '}
-                      <span className="whitespace-nowrap">IA</span>
-                    </p>
-                  </div>
+                  <span className="inline-flex items-center gap-2">
+                    <span>Empezar ruta guiada</span>
+                    <span className="text-lg leading-none transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">→</span>
+                  </span>
                 </TrackedLink>
+                <TrackedLink
+                  href="/guias"
+                  eventName="home_cta_secondary_clicked"
+                  eventProps={{ location: 'hero', target_path: '/guias' }}
+                  className="w-full rounded-lg border border-white/15 bg-white/[0.045] px-7 py-3.5 text-center text-base font-semibold text-white shadow-sm shadow-black/10 backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-violet-200/30 hover:bg-white/[0.085] sm:w-auto"
+                >
+                  Ver guías gratis
+                </TrackedLink>
+              </div>
 
-                <div className="mb-6 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
-                  <TrackedLink
-                    href="/bienvenida"
-                    eventName="home_cta_primary_clicked"
-                    eventProps={{ location: 'hero', target_path: '/bienvenida' }}
-                    className="group w-full rounded-xl bg-emerald-400 px-8 py-3.5 text-base font-bold text-slate-950 shadow-lg shadow-emerald-950/30 transition-all duration-200 hover:-translate-y-0.5 hover:bg-emerald-300 hover:shadow-xl hover:shadow-emerald-950/35 sm:w-auto"
+              <div className="mt-7 grid grid-cols-2 gap-2.5 sm:grid-cols-4">
+                {[
+                  ['50+', 'casas'],
+                  ['+2.000€', 'documentados'],
+                  ['7', 'módulos'],
+                  ['4', 'modos'],
+                ].map(([value, label]) => (
+                  <div
+                    key={label}
+                    className="rounded-lg border border-violet-200/12 bg-white/[0.045] px-3 py-2.5 text-center shadow-inner shadow-white/[0.03] backdrop-blur-sm lg:text-left"
                   >
-                    <span className="inline-flex items-center gap-2">
-                      <span>Quiero aprovechar mejor los bonos</span>
-                      <span className="text-lg leading-none transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">→</span>
-                    </span>
-                  </TrackedLink>
-                  <TrackedLink
-                    href="/guias"
-                    eventName="home_cta_secondary_clicked"
-                    eventProps={{ location: 'hero', target_path: '/guias' }}
-                    className="w-full rounded-xl border border-white/15 bg-white/[0.045] px-8 py-3.5 text-base font-semibold text-white shadow-sm shadow-black/10 backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-white/25 hover:bg-white/[0.085] sm:w-auto"
-                  >
-                    Ver guía y herramientas
-                  </TrackedLink>
-                </div>
-
-                <p className="mx-auto mb-7 max-w-xl text-xs leading-relaxed text-slate-400 sm:text-sm">
-                  Algunas promociones cambian con frecuencia: mejor revisarlas con una ruta clara.
-                </p>
-
-                <div className="mx-auto grid max-w-2xl grid-cols-2 overflow-hidden rounded-2xl border border-white/10 bg-black/10 text-left shadow-inner shadow-white/[0.03] backdrop-blur-sm md:grid-cols-4 md:divide-x md:divide-white/10">
-                  <div className="border-b border-r border-white/10 px-3 py-4 text-center md:border-b-0 md:border-r-0 sm:px-5">
-                    <p className="text-lg font-bold text-white sm:text-2xl">50+</p>
-                    <p className="mt-1 text-[11px] leading-tight text-slate-400 sm:text-xs">casas verificadas</p>
+                    <p className="text-lg font-bold text-white sm:text-xl">{value}</p>
+                    <p className="mt-1 text-[11px] leading-tight text-slate-400 sm:text-xs">{label}</p>
                   </div>
-                  <div className="border-b border-white/10 px-3 py-4 text-center md:border-b-0 sm:px-5">
-                    <p className="text-lg font-bold text-white sm:text-2xl">7</p>
-                    <p className="mt-1 text-[11px] leading-tight text-slate-400 sm:text-xs">módulos guiados</p>
-                  </div>
-                  <div className="border-r border-white/10 px-3 py-4 text-center md:border-r-0 sm:px-5">
-                    <p className="text-lg font-bold text-white sm:text-2xl">4</p>
-                    <p className="mt-1 text-[11px] leading-tight text-slate-400 sm:text-xs">modos de cálculo</p>
-                  </div>
-                  <div className="px-3 py-4 text-center sm:px-5">
-                    <p className="text-lg font-bold text-white sm:text-2xl">+2.000€</p>
-                    <p className="mt-1 text-[11px] leading-tight text-slate-400 sm:text-xs">bonos documentados</p>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
-          </div>
-        </div>
-      </section>
 
-      <section className="relative overflow-hidden bg-gradient-to-b from-[#0b1020] via-[#10192a] to-[#f6f8fc] border-b border-white/10">
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/18 to-transparent" />
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-white" />
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
-          <div className="grid gap-4 md:grid-cols-3">
-            {BENEFICIOS_RAPIDOS.map((beneficio) => (
-              <div
-                key={beneficio.titulo}
-                className="rounded-2xl border border-white/10 bg-white/[0.06] p-5 text-left shadow-[0_18px_40px_rgba(2,6,23,0.18)] backdrop-blur-sm transition-colors hover:border-white/20 hover:bg-white/[0.09]"
-              >
-                <h2 className="text-sm font-semibold text-white mb-2">{beneficio.titulo}</h2>
-                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">{beneficio.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="landing-reveal relative overflow-hidden bg-[#f6f8fc] border-y border-slate-200/80">
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-slate-300/70 to-transparent" />
-        <div className="pointer-events-none absolute left-1/2 top-[-6rem] h-40 w-40 -translate-x-1/2 rounded-full bg-emerald-400/5 blur-3xl" />
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
-          <div className="overflow-hidden rounded-[1.25rem] border border-white/70 bg-white/75 text-center shadow-[0_20px_60px_rgba(15,23,42,0.08)] backdrop-blur-sm">
-            <div className="grid grid-cols-2 sm:grid-cols-4 divide-y sm:divide-y-0 divide-x-0 sm:divide-x divide-slate-200/80">
-              <div className="py-4 sm:py-0 sm:px-6">
-                <p className="text-3xl sm:text-4xl font-bold text-emerald-600">50+</p>
-                <p className="text-[13px] text-slate-500 mt-1 leading-tight">casas organizadas</p>
-              </div>
-              <div className="py-4 sm:py-0 sm:px-6 border-l border-slate-200/80">
-                <p className="text-2xl sm:text-3xl font-bold text-emerald-600">+2.500€ / +3.000$</p>
-                <p className="text-[13px] text-slate-500 mt-1 leading-tight">en bonos documentados</p>
-              </div>
-              <div className="py-4 sm:py-0 sm:px-6 border-t sm:border-t-0 border-slate-200/80 sm:border-l">
-                <p className="text-3xl sm:text-4xl font-bold text-emerald-600">7</p>
-                <p className="text-[13px] text-slate-500 mt-1 leading-tight">módulos de formación</p>
-              </div>
-              <div className="py-4 sm:py-0 sm:px-6 border-t sm:border-t-0 border-l border-slate-200/80">
-                <p className="text-3xl sm:text-4xl font-bold text-emerald-600">4</p>
-                <p className="text-[13px] text-slate-500 mt-1 leading-tight">modos de calculadora</p>
-              </div>
+            <div className="relative">
+              <div className="pointer-events-none absolute -inset-6 rounded-full bg-violet-500/12 blur-3xl" />
+              <HeroMockup />
             </div>
           </div>
         </div>
