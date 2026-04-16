@@ -56,77 +56,92 @@ export default function CasasPage() {
 
   return (
     <main className="max-w-5xl mx-auto px-4 py-5 sm:py-8">
-      <h1 className="text-2xl font-bold text-emerald-400 mb-2">Casas de apuestas</h1>
-      <p className="text-stone-400 mb-4 sm:mb-6">
-        Explora primero las casas de España y, si lo necesitas, consulta también opciones disponibles en LATAM.
-      </p>
+      <section className="relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-b from-slate-950 via-slate-950/95 to-slate-900/95 px-4 py-5 shadow-[0_24px_70px_-38px_rgba(15,23,42,0.9)] sm:px-6 sm:py-6">
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-violet-300/45 to-transparent" />
+        <div className="pointer-events-none absolute -top-24 right-[-6rem] h-48 w-48 rounded-full bg-violet-500/10 blur-3xl" />
+        <div className="pointer-events-none absolute -left-16 top-10 h-40 w-40 rounded-full bg-emerald-400/6 blur-3xl" />
 
-      <div className="flex gap-2 mb-4">
-        {(["espana", "latam"] as MarketKey[]).map((market) => (
-          <button
-            key={market}
-            type="button"
-            onClick={() => handleMarketChange(market)}
-            className={`px-4 py-2 rounded-full text-sm font-bold transition-colors border ${
-              activeMarket === market
-                ? "bg-emerald-500 border-emerald-500 text-white"
-                : "bg-stone-900 border-stone-700 text-stone-300 hover:border-stone-500"
-            }`}
-          >
-            {market === "espana" ? "🇪🇸 España" : "🌎 LATAM"}
-          </button>
-        ))}
-      </div>
+        <div className="relative space-y-4 sm:space-y-5">
+          <div className="space-y-2">
+            <h1 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">Casas de apuestas</h1>
+            <p className="max-w-2xl text-sm leading-6 text-slate-300 sm:text-[15px]">
+              Explora primero las casas de España y, si lo necesitas, consulta también opciones disponibles en LATAM.
+            </p>
+          </div>
 
-      {activeMarket === "latam" && (
-        <div className="mb-3">
-          <div className="flex gap-2 overflow-x-auto pb-1 -mx-1 px-1 [scrollbar-width:none]">
-            {PAISES.map((pais) => (
+          <div className="flex flex-wrap gap-2">
+            {(["espana", "latam"] as MarketKey[]).map((market) => (
               <button
-                key={pais.key}
+                key={market}
                 type="button"
-                onClick={() => setActivePais(pais.key)}
-                title={pais.label}
-                className={`shrink-0 rounded-full border px-3 py-1 text-xs font-bold transition-colors ${
-                  activePais === pais.key
-                    ? "border-blue-500 bg-blue-500 text-white"
-                    : "border-stone-700 bg-stone-900 text-stone-400 hover:border-stone-500 hover:text-stone-100"
+                onClick={() => handleMarketChange(market)}
+                className={`rounded-full border px-4 py-2 text-sm font-semibold transition-all ${
+                  activeMarket === market
+                    ? "border-emerald-400/80 bg-emerald-400/15 text-emerald-100 shadow-[0_0_0_1px_rgba(52,211,153,0.15)]"
+                    : "border-white/10 bg-white/[0.05] text-slate-300 hover:border-white/20 hover:bg-white/[0.08] hover:text-white"
                 }`}
               >
-                {pais.label}
+                {market === "espana" ? "🇪🇸 España" : "🌎 LATAM"}
               </button>
             ))}
           </div>
-        </div>
-      )}
 
-      <div className="mb-3 sm:mb-5">
-        <div className="flex gap-2 overflow-x-auto pb-1 -mx-1 px-1 [scrollbar-width:none]">
-          {FILTERS.map((filter) => (
-            <button
-              key={filter.key}
-              type="button"
-              onClick={() => setActiveFilter(filter.key)}
-              className={`shrink-0 rounded-full border px-3 py-1 text-xs sm:text-sm font-medium transition-colors ${
-                activeFilter === filter.key
-                  ? "border-emerald-500 bg-emerald-500 text-white"
-                  : "border-stone-700 bg-stone-900 text-stone-300 hover:border-stone-500 hover:text-stone-100"
-              }`}
-            >
-              {filter.label}
-            </button>
-          ))}
-        </div>
-      </div>
+          {activeMarket === "latam" && (
+            <div className="space-y-2 rounded-2xl border border-white/[0.08] bg-white/[0.03] p-3 sm:p-4">
+              <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-slate-400">País</p>
+              <div className="flex gap-2 overflow-x-auto pb-1 -mx-1 px-1 [scrollbar-width:none]">
+                {PAISES.map((pais) => (
+                  <button
+                    key={pais.key}
+                    type="button"
+                    onClick={() => setActivePais(pais.key)}
+                    title={pais.label}
+                    className={`shrink-0 rounded-full border px-3 py-1.5 text-xs font-semibold transition-colors ${
+                      activePais === pais.key
+                        ? "border-blue-400/80 bg-blue-400/18 text-blue-50"
+                        : "border-white/10 bg-slate-950/40 text-slate-400 hover:border-white/20 hover:bg-white/[0.05] hover:text-slate-100"
+                    }`}
+                  >
+                    {pais.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
 
-      <div className="flex items-center justify-between gap-2 mb-3 sm:mb-5">
-        <p className="text-xs sm:text-sm text-stone-400">
-          {filteredCasas.length} casa{filteredCasas.length !== 1 ? "s" : ""} visible{filteredCasas.length !== 1 ? "s" : ""}
-        </p>
-        <p className="text-[11px] sm:text-xs text-stone-500 text-right">
-          Aviso: algunos enlaces de esta sección pueden ser de afiliación.
-        </p>
-      </div>
+          <div className="space-y-2 rounded-2xl border border-white/[0.08] bg-white/[0.03] p-3 sm:p-4">
+            <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-slate-400">Tipología</p>
+            <div className="flex gap-2 overflow-x-auto pb-1 -mx-1 px-1 [scrollbar-width:none]">
+              {FILTERS.map((filter) => (
+                <button
+                  key={filter.key}
+                  type="button"
+                  onClick={() => setActiveFilter(filter.key)}
+                  className={`shrink-0 rounded-full border px-3 py-1.5 text-xs sm:text-sm font-medium transition-colors ${
+                    activeFilter === filter.key
+                      ? "border-emerald-400/80 bg-emerald-400/15 text-white"
+                      : "border-white/10 bg-slate-950/40 text-slate-300 hover:border-white/20 hover:bg-white/[0.05] hover:text-white"
+                  }`}
+                >
+                  {filter.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-2 border-t border-white/10 pt-3 text-sm sm:flex-row sm:items-center sm:justify-between">
+            <p className="text-sm text-slate-300">
+              <span className="font-semibold text-white">
+                {filteredCasas.length} casa{filteredCasas.length !== 1 ? "s" : ""}
+              </span>{" "}
+              visible{filteredCasas.length !== 1 ? "s" : ""}
+            </p>
+            <p className="text-[11px] leading-5 text-slate-400 sm:text-xs sm:text-right">
+              Aviso: algunos enlaces de esta sección pueden ser de afiliación.
+            </p>
+          </div>
+        </div>
+      </section>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 sm:gap-4">
         {filteredCasas.map((casa) => (
