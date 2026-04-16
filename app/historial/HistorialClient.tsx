@@ -35,14 +35,14 @@ const MODO_LABEL: Partial<Record<ModoCalculo, string>> = {
 
 const MODOS_FORM: ModoCalculo[] = ['cualificante', 'freebet', 'reembolso', 'dutcher']
 
-const MODO_TONE: Record<ModoCalculo, string> = {
+const MODO_TONE: Partial<Record<ModoCalculo, string>> = {
   cualificante: 'border-violet-200/80 bg-violet-50/85 text-violet-700 shadow-sm shadow-violet-950/5',
   freebet: 'border-fuchsia-200/80 bg-fuchsia-50/85 text-fuchsia-700 shadow-sm shadow-fuchsia-950/5',
   reembolso: 'border-amber-200/80 bg-amber-50/85 text-amber-700 shadow-sm shadow-amber-950/5',
   dutcher: 'border-sky-200/80 bg-sky-50/85 text-sky-700 shadow-sm shadow-sky-950/5',
 }
 
-const MODE_ICON_TONE: Record<ModoCalculo, string> = {
+const MODE_ICON_TONE: Partial<Record<ModoCalculo, string>> = {
   cualificante: 'bg-violet-500/10 text-violet-700 border-violet-200/80',
   freebet: 'bg-fuchsia-500/10 text-fuchsia-700 border-fuchsia-200/80',
   reembolso: 'bg-amber-500/10 text-amber-700 border-amber-200/80',
