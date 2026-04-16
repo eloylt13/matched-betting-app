@@ -20,7 +20,16 @@ interface WizardStep {
     externalLabel?: string
 }
 
+const MARKET_SELECTION_STEP: WizardStep = {
+    title: '¿Desde dónde apuestas?',
+    description: [
+        'Elige tu mercado para adaptar la ruta, las casas recomendadas y los enlaces importantes desde el primer paso.',
+    ],
+    primaryLabel: 'Elegir mercado',
+}
+
 const WIZARD_STEPS_ESPANA: WizardStep[] = [
+    MARKET_SELECTION_STEP,
     {
         title: 'Antes de empezar',
         description: [
@@ -64,6 +73,7 @@ const WIZARD_STEPS_ESPANA: WizardStep[] = [
 ]
 
 const WIZARD_STEPS_LATAM: WizardStep[] = [
+    MARKET_SELECTION_STEP,
     {
         title: 'Antes de empezar',
         description: [
@@ -83,7 +93,7 @@ const WIZARD_STEPS_LATAM: WizardStep[] = [
         externalLabel: 'Abrir Betfair Exchange LATAM',
     },
     {
-        title: 'Empieza por Betfair Sportsbook',
+        title: 'Empieza por una casa fácil',
         description: [
             'Betfair Sportsbook es la mejor primera opción en LATAM: disponible en 15 países, apuesta 10 USD y recibe 10 USD. Código ZRW10M.',
         ],
@@ -133,6 +143,7 @@ export default function BienvenidaClient() {
     }, [selectedMode])
 
     const currentStep = WIZARD_STEPS[step]
+    const isMarketSelectionStep = currentStep?.title === '¿Desde dónde apuestas?'
     const progress = useMemo(
         () => ((step + 1) / WIZARD_STEPS.length) * 100,
         [step, WIZARD_STEPS]
@@ -154,6 +165,11 @@ export default function BienvenidaClient() {
         persistPreferences('guiado')
         setSelectedMode('guiado')
         setStep(0)
+    }
+
+    function handleMarketChoice(nextMarket: Market) {
+        setMarket(nextMarket)
+        setStep(1)
     }
 
     function handlePrimaryAction() {
@@ -283,6 +299,40 @@ export default function BienvenidaClient() {
                         ))}
                     </div>
 
+                    {isMarketSelectionStep && (
+                        <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                            <button
+                                type="button"
+                                onClick={() => handleMarketChoice('espana')}
+                                className={`rounded-2xl border p-4 text-left transition-all hover:shadow-sm ${
+                                    market === 'espana'
+                                        ? 'border-emerald-400 bg-emerald-50 text-emerald-900'
+                                        : 'border-stone-200 bg-white text-stone-700 hover:border-stone-300'
+                                }`}
+                            >
+                                <span className="block text-sm font-bold">España</span>
+                                <span className="mt-1 block text-xs leading-relaxed text-stone-500">
+                                    Ruta con Versus como primera casa recomendada.
+                                </span>
+                            </button>
+
+                            <button
+                                type="button"
+                                onClick={() => handleMarketChoice('latam')}
+                                className={`rounded-2xl border p-4 text-left transition-all hover:shadow-sm ${
+                                    market === 'latam'
+                                        ? 'border-emerald-400 bg-emerald-50 text-emerald-900'
+                                        : 'border-stone-200 bg-white text-stone-700 hover:border-stone-300'
+                                }`}
+                            >
+                                <span className="block text-sm font-bold">LATAM</span>
+                                <span className="mt-1 block text-xs leading-relaxed text-stone-500">
+                                    Ruta con Betfair Sportsbook LATAM como primera casa recomendada.
+                                </span>
+                            </button>
+                        </div>
+                    )}
+
                     {currentStep.title === 'Ruta recomendada' && (
                         <div className="mt-5 rounded-2xl border border-stone-100 bg-stone-50 p-4">
                             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500 mb-3">
@@ -297,25 +347,27 @@ export default function BienvenidaClient() {
                         </div>
                     )}
 
-                    <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
-                        {currentStep.externalHref && (
-                            <a
-                                href={currentStep.externalHref}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center justify-center rounded-2xl border border-stone-200 px-4 py-3 text-sm font-semibold text-stone-700 hover:bg-stone-50 transition-colors"
-                            >
-                                {currentStep.externalLabel}
-                            </a>
-                        )}
+                    {!isMarketSelectionStep && (
+                        <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
+                            {currentStep.externalHref && (
+                                <a
+                                    href={currentStep.externalHref}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center justify-center rounded-2xl border border-stone-200 px-4 py-3 text-sm font-semibold text-stone-700 hover:bg-stone-50 transition-colors"
+                                >
+                                    {currentStep.externalLabel}
+                                </a>
+                            )}
 
-                        <button
-                            onClick={handlePrimaryAction}
-                            className="inline-flex items-center justify-center rounded-2xl bg-emerald-500 px-5 py-3 text-sm font-semibold text-white hover:bg-emerald-400 transition-colors"
-                        >
-                            {currentStep.primaryLabel}
-                        </button>
-                    </div>
+                            <button
+                                onClick={handlePrimaryAction}
+                                className="inline-flex items-center justify-center rounded-2xl bg-emerald-500 px-5 py-3 text-sm font-semibold text-white hover:bg-emerald-400 transition-colors"
+                            >
+                                {currentStep.primaryLabel}
+                            </button>
+                        </div>
+                    )}
                 </section>
             )}
         </div>
