@@ -75,10 +75,10 @@ export default function CasasPage() {
                 key={market}
                 type="button"
                 onClick={() => handleMarketChange(market)}
-                className={`rounded-full border px-4 py-2 text-sm font-semibold transition-all ${
+                className={`rounded-full border px-4 py-2 text-sm font-semibold transition-all duration-200 ${
                   activeMarket === market
-                    ? "border-emerald-400/80 bg-emerald-400/15 text-emerald-100 shadow-[0_0_0_1px_rgba(52,211,153,0.15)]"
-                    : "border-white/10 bg-white/[0.05] text-slate-300 hover:border-white/20 hover:bg-white/[0.08] hover:text-white"
+                    ? "border-violet-400/70 bg-violet-500/18 text-violet-50 shadow-[0_0_0_1px_rgba(139,92,246,0.16),0_10px_24px_-16px_rgba(139,92,246,0.45)]"
+                    : "border-white/10 bg-slate-900/75 text-slate-300 hover:border-violet-300/30 hover:bg-slate-800/80 hover:text-white"
                 }`}
               >
                 {market === "espana" ? "🇪🇸 España" : "🌎 LATAM"}
@@ -96,10 +96,10 @@ export default function CasasPage() {
                     type="button"
                     onClick={() => setActivePais(pais.key)}
                     title={pais.label}
-                    className={`shrink-0 rounded-full border px-3 py-1.5 text-xs font-semibold transition-colors ${
+                    className={`shrink-0 rounded-full border px-3 py-1.5 text-xs font-semibold transition-all duration-200 ${
                       activePais === pais.key
-                        ? "border-blue-400/80 bg-blue-400/18 text-blue-50"
-                        : "border-white/10 bg-slate-950/40 text-slate-400 hover:border-white/20 hover:bg-white/[0.05] hover:text-slate-100"
+                        ? "border-violet-400/65 bg-violet-500/16 text-violet-50 shadow-[0_0_0_1px_rgba(139,92,246,0.12),0_8px_18px_-14px_rgba(139,92,246,0.4)]"
+                        : "border-white/10 bg-slate-900/70 text-slate-300 hover:border-violet-300/25 hover:bg-slate-800/85 hover:text-white"
                     }`}
                   >
                     {pais.label}
@@ -117,10 +117,10 @@ export default function CasasPage() {
                   key={filter.key}
                   type="button"
                   onClick={() => setActiveFilter(filter.key)}
-                  className={`shrink-0 rounded-full border px-3 py-1.5 text-xs sm:text-sm font-medium transition-colors ${
+                  className={`shrink-0 rounded-full border px-3 py-1.5 text-xs sm:text-sm font-medium transition-all duration-200 ${
                     activeFilter === filter.key
-                      ? "border-emerald-400/80 bg-emerald-400/15 text-white"
-                      : "border-white/10 bg-slate-950/40 text-slate-300 hover:border-white/20 hover:bg-white/[0.05] hover:text-white"
+                      ? "border-violet-400/65 bg-violet-500/16 text-violet-50 shadow-[0_0_0_1px_rgba(139,92,246,0.12),0_8px_18px_-14px_rgba(139,92,246,0.4)]"
+                      : "border-white/10 bg-slate-900/70 text-slate-300 hover:border-violet-300/25 hover:bg-slate-800/85 hover:text-white"
                   }`}
                 >
                   {filter.label}
