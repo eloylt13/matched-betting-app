@@ -281,79 +281,7 @@ const GUIAS_DESTACADAS = [
   },
 ]
 
-const FAQS = [
-  {
-    pregunta: '¿Necesito experiencia previa para usar IAPredictHub?',
-    respuesta:
-      'No. Está pensada para ayudarte a empezar con más orden y menos lío, aunque todavía no domines el proceso. La idea es que tengas una ruta más clara desde el principio.',
-  },
-  {
-    pregunta: '¿Voy a tener que rellenarlo todo a mano?',
-    respuesta:
-      'No del todo. La app te guía por el flujo y la calculadora ya ayuda a reducir pasos manuales. Aun así, seguirás revisando datos y tomando decisiones, pero con menos trabajo repetitivo y menos errores evitables.',
-  },
-  {
-    pregunta: '¿Puedo perder dinero usando la app?',
-    respuesta:
-      'Sí, ese riesgo existe. La app no elimina el riesgo por completo: su función es ayudarte a ejecutar con más método, más orden y menos errores evitables. Conviene usarla con criterio y siempre dentro de un uso responsable.',
-  },
-  {
-    pregunta: '¿Sirve solo para España o también para LATAM?',
-    respuesta:
-      'Está pensada principalmente para España, que sigue siendo el foco principal del proyecto. Aun así, varias partes también son utilizables en LATAM, sobre todo la parte de aprendizaje, calculadora y organización del flujo.',
-  },
-  {
-    pregunta: '¿Qué incluye gratis ahora mismo?',
-    respuesta:
-      'Ahora mismo puedes usar gratis el onboarding, el dashboard, la calculadora, las casas, el checklist, el seguimiento y las guías. La idea es que puedas entrar y entender el flujo completo sin pagar en esta fase.',
-  },
-  {
-    pregunta: '¿Necesito registrarme para probarla?',
-    respuesta:
-      'No. En esta fase puedes entrar y usar la app sin registro. Así puedes ver si el enfoque encaja contigo antes de complicarte con pasos extra.',
-  },
-]
-
 export default function LandingPage() {
-  const faqSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: [
-      {
-        '@type': 'Question',
-        name: '¿Necesito experiencia previa para usar IAPredictHub?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'No. Está pensada para ayudarte a empezar con más orden y menos lío, aunque todavía no domines el proceso. La idea es que tengas una ruta más clara desde el principio.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: '¿Puedo perder dinero usando la app?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Sí, ese riesgo existe. La app no elimina el riesgo por completo: su función es ayudarte a ejecutar con más método, más orden y menos errores evitables. Conviene usarla con criterio y siempre dentro de un uso responsable.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: '¿Sirve solo para España o también para LATAM?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Está pensada principalmente para España, que sigue siendo el foco principal del proyecto. Aun así, varias partes también son utilizables en LATAM, sobre todo la parte de aprendizaje, calculadora y organización del flujo.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: '¿Qué incluye gratis ahora mismo?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Ahora mismo puedes usar gratis el onboarding, el dashboard, la calculadora, las casas, el checklist, el seguimiento y las guías. La idea es que puedas entrar y entender el flujo completo sin pagar en esta fase.',
-        },
-      },
-    ],
-  }
-
   const softwareSchema = {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
@@ -407,7 +335,6 @@ export default function LandingPage() {
           }
         }
       `}</style>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }} />
       <header
         className="sticky top-0 z-50 border-b border-white/10 bg-[#0b1020]/85 shadow-[0_12px_32px_rgba(2,6,23,0.26)] backdrop-blur-xl"
@@ -691,90 +618,6 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section className="bg-[linear-gradient(180deg,#F8FAFC_0%,#F2EEFF_100%)] border-t border-violet-100/80">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
-          <div className="text-center mb-10">
-            <h2 className="font-playfair text-2xl sm:text-3xl font-bold text-slate-950">Sobre este proyecto</h2>
-            <p className="text-slate-500 mt-4 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
-              IAPredictHub es un proyecto independiente desarrollado en España, pensado para ofrecer una forma más clara y ordenada de empezar con bonos de bienvenida, con foco principal en España y soporte adicional para LATAM. La herramienta nace de la necesidad de tener todo en un mismo sitio: calculadora, guías, seguimiento y una ruta lógica para no perderse al empezar.
-            </p>
-          </div>
-          <div className="grid sm:grid-cols-3 gap-4 mt-8">
-            <div className="relative overflow-hidden rounded-lg border border-violet-200/60 bg-white/80 p-6 shadow-[0_16px_42px_rgba(46,16,101,0.08)] ring-1 ring-white/90 backdrop-blur-sm transition-all before:absolute before:inset-x-4 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-violet-300/50 before:to-transparent hover:-translate-y-0.5 hover:border-violet-300/60 hover:bg-white/90 hover:shadow-[0_20px_52px_rgba(46,16,101,0.12)]">
-              <span className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg border border-violet-200/75 bg-violet-50/90 text-violet-700 shadow-sm shadow-violet-950/5">
-                <LandingIcon name="build" />
-              </span>
-              <h3 className="font-semibold text-slate-800 text-sm mb-2">Desarrollo activo</h3>
-              <p className="text-xs text-slate-500 leading-relaxed">La app se actualiza regularmente con nuevas casas, mejoras en la calculadora y contenido de formación.</p>
-            </div>
-            <div className="relative overflow-hidden rounded-lg border border-violet-200/60 bg-white/80 p-6 shadow-[0_16px_42px_rgba(46,16,101,0.08)] ring-1 ring-white/90 backdrop-blur-sm transition-all before:absolute before:inset-x-4 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-violet-300/50 before:to-transparent hover:-translate-y-0.5 hover:border-violet-300/60 hover:bg-white/90 hover:shadow-[0_20px_52px_rgba(46,16,101,0.12)]">
-              <span className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg border border-violet-200/75 bg-violet-50/90 text-violet-700 shadow-sm shadow-violet-950/5">
-                <LandingIcon name="compass" />
-              </span>
-              <h3 className="font-semibold text-slate-800 text-sm mb-2">Enfoque principiante</h3>
-              <p className="text-xs text-slate-500 leading-relaxed">Todo está pensado para quien empieza desde cero, sin jerga innecesaria ni pasos confusos.</p>
-            </div>
-            <div className="relative overflow-hidden rounded-lg border border-violet-200/60 bg-white/80 p-6 shadow-[0_16px_42px_rgba(46,16,101,0.08)] ring-1 ring-white/90 backdrop-blur-sm transition-all before:absolute before:inset-x-4 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-violet-300/50 before:to-transparent hover:-translate-y-0.5 hover:border-violet-300/60 hover:bg-white/90 hover:shadow-[0_20px_52px_rgba(46,16,101,0.12)]">
-              <span className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg border border-violet-200/75 bg-violet-50/90 text-violet-700 shadow-sm shadow-violet-950/5">
-                <LandingIcon name="shield" />
-              </span>
-              <h3 className="font-semibold text-slate-800 text-sm mb-2">Sin datos personales</h3>
-              <p className="text-xs text-slate-500 leading-relaxed">No pedimos registro ni almacenamos información. Todo se guarda en tu navegador.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="landing-reveal bg-[linear-gradient(135deg,#0b1020_0%,#11162a_48%,#21183e_100%)] border-y border-white/10">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12">
-          <div className="max-w-2xl rounded-lg border border-violet-200/12 bg-white/[0.035] p-6 shadow-[0_20px_58px_rgba(0,0,0,0.22)] ring-1 ring-white/[0.035] backdrop-blur-sm sm:p-7">
-            <p className="text-xs font-semibold uppercase tracking-widest text-violet-300 mb-3">Antes de empezar</p>
-            <h2 className="font-playfair text-2xl sm:text-3xl font-bold text-white mb-4">
-              Lo que más hace perder tiempo y bonos al principio
-            </h2>
-            <ul className="space-y-3 text-sm sm:text-base text-slate-300 leading-relaxed">
-              <li className="flex gap-3">
-                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-violet-300 shadow-[0_0_14px_rgba(196,181,253,0.65)]" aria-hidden="true" />
-                <span>Sin una ruta clara, es fácil activar bonos mal o dejarlos a medias.</span>
-              </li>
-              <li className="flex gap-3">
-                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-violet-300 shadow-[0_0_14px_rgba(196,181,253,0.65)]" aria-hidden="true" />
-                <span>Muchas promociones cambian condiciones, pasos o plazos sin que lo notes.</span>
-              </li>
-              <li className="flex gap-3">
-                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-violet-300 shadow-[0_0_14px_rgba(196,181,253,0.65)]" aria-hidden="true" />
-                <span>Usar calculadora, guías y seguimiento ayuda a reducir errores evitables desde el inicio.</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section className="landing-reveal relative overflow-hidden bg-[linear-gradient(180deg,#F8FAFC_0%,#F3F0FF_100%)] border-t border-violet-100/80">
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-violet-200/70 to-transparent" />
-        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
-          <div className="text-center mb-10">
-            <h2 className="font-playfair text-2xl sm:text-3xl font-bold text-slate-950">Preguntas frecuentes</h2>
-            <p className="text-slate-500 mt-3 max-w-xl mx-auto text-sm sm:text-base leading-relaxed">
-              Resuelve las dudas más habituales antes de entrar, entiende qué puedes esperar de la app y comprueba si este enfoque encaja contigo.
-            </p>
-          </div>
-          <div className="overflow-hidden rounded-[1.5rem] border border-violet-100/80 bg-white/85 shadow-[0_22px_70px_rgba(30,27,75,0.11)] ring-1 ring-white/70 backdrop-blur-sm">
-            {FAQS.map((faq) => (
-              <details key={faq.pregunta} className="group border-b border-violet-100/70 last:border-b-0">
-                <summary className="flex items-start justify-between gap-4 px-6 py-5 cursor-pointer list-none transition-colors hover:bg-violet-50/55 group-open:bg-violet-50/65">
-                  <span className="font-semibold text-slate-800 text-sm leading-relaxed">{faq.pregunta}</span>
-                  <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-violet-100 bg-white text-violet-400 shadow-sm transition-all duration-200 group-open:rotate-180 group-open:border-violet-300 group-open:text-violet-700">
-                    <LandingIcon name="chevronDown" className="h-3.5 w-3.5" />
-                  </span>
-                </summary>
-                <div className="border-t border-violet-100/70 bg-white/60 px-6 pb-5 pt-4 text-sm text-slate-500 leading-relaxed">{faq.respuesta}</div>
-              </details>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section
         style={{ background: 'linear-gradient(135deg, #0b1020 0%, #10162a 48%, #1b2140 100%)' }}
         className="relative overflow-hidden border-t border-white/5"
@@ -826,7 +669,7 @@ export default function LandingPage() {
                 Herramienta en español para organizar bonos, guías y cálculo paso a paso.
               </p>
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 sm:gap-6 text-xs">
+            <div className="grid grid-cols-2 sm:grid-cols-5 gap-8 sm:gap-6 text-xs">
               <div>
                 <p className="font-semibold text-violet-200/75 uppercase tracking-wider mb-3 text-[11px]">Herramienta</p>
                 <div className="flex flex-col gap-2">
@@ -834,6 +677,13 @@ export default function LandingPage() {
                   <Link href="/calculadora" className="text-gray-500 hover:text-violet-100 transition-colors">Calculadora</Link>
                   <Link href="/casas" className="text-gray-500 hover:text-violet-100 transition-colors">Casas</Link>
                   <Link href="/dashboard" className="text-gray-500 hover:text-violet-100 transition-colors">Dashboard</Link>
+                </div>
+              </div>
+              <div>
+                <p className="font-semibold text-violet-200/75 uppercase tracking-wider mb-3 text-[11px]">Proyecto</p>
+                <div className="flex flex-col gap-2">
+                  <Link href="/sobre-este-proyecto" className="text-gray-500 hover:text-violet-100 transition-colors">Sobre este proyecto</Link>
+                  <Link href="/preguntas-frecuentes" className="text-gray-500 hover:text-violet-100 transition-colors">Preguntas frecuentes</Link>
                 </div>
               </div>
               <div>
