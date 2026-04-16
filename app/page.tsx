@@ -231,22 +231,26 @@ const TESTIMONIOS_BETA = [
   {
     nombre: 'Carlos',
     ciudad: 'Valencia',
-    texto: 'Por fin entiendo por dónde empezar y qué hacer primero sin ir saltando entre mil páginas.',
+    contexto: 'Primer recorrido',
+    texto: 'Me ha servido para ver el orden de los pasos. Antes tenía bonos, guías y calculadora abiertos por separado y acababa dudando de por dónde seguir.',
   },
   {
     nombre: 'Marta',
     ciudad: 'Madrid',
-    texto: 'La veo mucho más clara que otras opciones. Me ayuda a seguir una ruta y no improvisar tanto.',
+    contexto: 'Organización',
+    texto: 'Se nota que aún está en beta, pero el flujo ya se entiende. No me vende humo; simplemente me ayuda a no ir tan perdida al empezar.',
   },
   {
     nombre: 'Sergio',
     ciudad: 'Sevilla',
-    texto: 'Lo que más me sirve es tener guías, calculadora y casas en el mismo sitio desde el principio.',
+    contexto: 'Calculadora y casas',
+    texto: 'Lo que más agradezco es tener la casa, la fase y la calculadora cerca. No es que lo haga por mí, pero me evita perder contexto cada dos minutos.',
   },
   {
     nombre: 'Laura',
     ciudad: 'Barcelona',
-    texto: 'Da sensación de producto útil de verdad. Para empezar, tener todo más ordenado se nota mucho.',
+    contexto: 'Feedback temprano',
+    texto: 'Para alguien que está empezando, tenerlo todo junto baja bastante la fricción. Todavía faltan pulidos, pero ya transmite más orden que hacerlo a mano.',
   },
 ]
 
@@ -548,7 +552,7 @@ export default function LandingPage() {
               Lo que están viendo los primeros beta testers
             </h2>
             <p className="mt-4 text-sm sm:text-base text-slate-500 leading-relaxed">
-              Usuarios iniciales ya la están usando para entender mejor el proceso, seguir una ruta más clara y evitar errores al empezar.
+              Primeras impresiones de usuarios que están probando la beta para ordenar el inicio, entender el flujo y detectar qué partes todavía necesitan más pulido.
             </p>
           </div>
 
@@ -558,15 +562,18 @@ export default function LandingPage() {
                 key={testimonio.nombre}
                 className="relative overflow-hidden rounded-lg border border-violet-200/60 bg-white/75 p-5 shadow-[0_16px_42px_rgba(46,16,101,0.08)] ring-1 ring-white/80 backdrop-blur-sm transition-all duration-200 before:absolute before:inset-x-4 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-violet-300/55 before:to-transparent hover:-translate-y-0.5 hover:border-violet-300/60 hover:bg-white/90 hover:shadow-[0_20px_52px_rgba(46,16,101,0.13)]"
               >
-                <div className="mb-4 flex items-center justify-between gap-3">
+                <div className="mb-4 flex items-start justify-between gap-3">
                   <div>
                     <p className="text-sm font-semibold text-slate-950">{testimonio.nombre}</p>
                     <p className="text-xs text-slate-500">{testimonio.ciudad}</p>
                   </div>
                   <span className="shrink-0 rounded-full border border-violet-200/70 bg-violet-50/80 px-2.5 py-1 text-[11px] font-medium text-violet-700 shadow-sm shadow-violet-950/5">
-                    Beta tester
+                    Beta
                   </span>
                 </div>
+                <p className="mb-3 inline-flex rounded-md border border-slate-200/80 bg-slate-50 px-2 py-1 text-[11px] font-medium text-slate-500">
+                  {testimonio.contexto}
+                </p>
                 <p className="text-sm text-slate-600 leading-relaxed">{testimonio.texto}</p>
               </div>
             ))}
