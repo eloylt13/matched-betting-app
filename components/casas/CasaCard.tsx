@@ -119,9 +119,9 @@ export function CasaCard({ casa, estado }: Props) {
             </div>
 
             <span
-              className="inline-flex sm:hidden items-center rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-1 text-[11px] font-semibold text-emerald-700 transition-all group-hover:border-emerald-300 group-hover:bg-emerald-100 group-hover:translate-x-0.5"
+              className="inline-flex sm:hidden h-8 min-w-[88px] items-center justify-center rounded-full border border-violet-200/70 bg-slate-950/90 px-3 text-center text-[11px] font-semibold text-violet-50 shadow-[0_8px_18px_rgba(15,23,42,0.12)] transition-all group-hover:border-violet-300 group-hover:bg-violet-950 group-hover:shadow-[0_10px_24px_rgba(76,29,149,0.18)] group-hover:translate-x-0.5"
             >
-              Ver detalle →
+              Ver más
             </span>
           </div>
         </div>
@@ -142,9 +142,9 @@ export function CasaCard({ casa, estado }: Props) {
           </div>
 
           <span
-            className="inline-flex items-center rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1.5 text-xs sm:text-sm font-semibold text-emerald-700 transition-all group-hover:border-emerald-300 group-hover:bg-emerald-100 group-hover:translate-x-0.5 ml-auto"
+            className="ml-auto inline-flex h-9 min-w-[104px] items-center justify-center rounded-full border border-violet-200/70 bg-slate-950/90 px-4 text-center text-xs font-semibold text-violet-50 shadow-[0_8px_18px_rgba(15,23,42,0.12)] transition-all group-hover:border-violet-300 group-hover:bg-violet-950 group-hover:shadow-[0_10px_24px_rgba(76,29,149,0.18)] group-hover:translate-x-0.5 sm:text-sm"
           >
-            Ver detalle →
+            Ver más
           </span>
         </div>
       </div>
