@@ -471,7 +471,7 @@ export default function LandingPage() {
                   href="/bienvenida"
                   eventName="home_cta_primary_clicked"
                   eventProps={{ location: 'hero', target_path: '/bienvenida' }}
-                  className="group w-full rounded-lg border border-violet-300/40 bg-violet-500 px-7 py-3.5 text-center text-base font-bold text-white shadow-[0_18px_48px_rgba(124,58,237,0.32)] transition-all duration-200 hover:-translate-y-0.5 hover:border-violet-200/70 hover:bg-violet-400 hover:shadow-[0_20px_58px_rgba(139,92,246,0.38)] sm:w-auto"
+                  className="group w-full rounded-lg border border-violet-300/45 bg-violet-500 px-7 py-3.5 text-center text-base font-bold text-white shadow-[0_20px_56px_rgba(124,58,237,0.4)] transition-all duration-200 hover:-translate-y-0.5 hover:border-violet-200/70 hover:bg-violet-400 hover:shadow-[0_24px_66px_rgba(139,92,246,0.48)] sm:w-auto"
                 >
                   <span className="inline-flex items-center gap-2">
                     <span>Empezar ruta guiada</span>
@@ -482,7 +482,7 @@ export default function LandingPage() {
                   href="/guias"
                   eventName="home_cta_secondary_clicked"
                   eventProps={{ location: 'hero', target_path: '/guias' }}
-                  className="w-full rounded-lg border border-white/15 bg-white/[0.045] px-7 py-3.5 text-center text-base font-semibold text-white shadow-sm shadow-black/10 backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-violet-200/30 hover:bg-white/[0.085] sm:w-auto"
+                  className="w-full rounded-lg border border-white/15 bg-white/[0.05] px-7 py-3.5 text-center text-base font-semibold text-white shadow-[0_14px_34px_rgba(15,23,42,0.16)] backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-violet-200/30 hover:bg-white/[0.09] hover:shadow-[0_18px_42px_rgba(124,58,237,0.18)] sm:w-auto"
                 >
                   Ver guías gratis
                 </TrackedLink>
