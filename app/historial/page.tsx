@@ -36,4 +36,3 @@ export const metadata: Metadata = {
 export default function HistorialPage() {
   return <HistorialClient />
 }
-
