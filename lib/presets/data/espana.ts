@@ -299,7 +299,7 @@ export const casasEspana: Casa[] = [
     market: 'espana',
     pais: 'espana',
     tipologia: 'apuesta-recibe',
-    url: 'https://bdeal.io/Versus/139372/1',
+    url: 'https://app.afiliago.com/go/19148/JqXVcHDWdu/2',
     descripcionBreve: 'Deposita 100€ y recibe 100€ en freebet al instante',
     resumen: 'Deposita 100€ y te regalan 100€ en Freebet al instante. Gana 65€. Dif 1/5',
     beneficioPotencial: 65,

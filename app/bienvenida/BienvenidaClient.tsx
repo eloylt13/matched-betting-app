@@ -42,10 +42,10 @@ const WIZARD_STEPS_ESPANA: WizardStep[] = [
     {
         title: 'Empieza por una casa fácil',
         description: [
-            'Sportium es una buena primera opción porque el flujo es claro, fácil de seguir y cómoda para empezar.',
+            'Versus es una buena primera opción porque el flujo es claro, fácil de seguir y cómoda para empezar.',
         ],
-        primaryLabel: 'Ir a Sportium',
-        primaryHref: '/casas/sportium',
+        primaryLabel: 'Ir a Versus',
+        primaryHref: '/casas/versus',
     },
     {
         title: 'Usa la calculadora cuando hagas una apuesta',
@@ -59,7 +59,7 @@ const WIZARD_STEPS_ESPANA: WizardStep[] = [
         title: 'Ruta recomendada',
         description: [],
         primaryLabel: 'Empezar ahora',
-        primaryHref: '/casas/sportium',
+        primaryHref: '/casas/versus',
     },
 ]
 
@@ -291,7 +291,7 @@ export default function BienvenidaClient() {
                             <ol className="space-y-2 text-sm text-stone-700">
                                 <li>1. Guía inicial</li>
                                 <li>2. Betfair Exchange</li>
-                                <li>3. {market === 'espana' ? 'Sportium' : 'Betfair Sportsbook LATAM'}</li>
+                                <li>3. {market === 'espana' ? 'Versus' : 'Betfair Sportsbook LATAM'}</li>
                                 <li>4. Calculadora</li>
                             </ol>
                         </div>
