@@ -10,9 +10,9 @@ const dmSans = DM_Sans({ subsets: ['latin'], variable: '--font-dm-sans' })
 const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair' })
 
 export const metadata: Metadata = {
-  title: 'Bonos de bienvenida en España | Guía y calculadora con soporte LATAM | IAPredictHub',
+  title: 'Bonos de bienvenida en España | Ruta guiada, calculadora y seguimiento | IAPredictHub',
   description:
-    'Herramienta en español pensada principalmente para España para entender bonos de bienvenida, calcular cada paso y llevar el proceso ordenado, con contenido útil también para LATAM.',
+    'IAPredictHub es una herramienta en español para bonos de bienvenida, con ruta guiada, calculadora, guías y seguimiento. Foco principal en España y apoyo adicional para LATAM.',
   keywords: [
     'bonos de bienvenida apuestas',
     'bonos casas de apuestas españa',
@@ -43,9 +43,9 @@ export const metadata: Metadata = {
     locale: 'es_ES',
     url: 'https://iapredicthub.es',
     siteName: 'IAPredictHub',
-    title: 'Guía y calculadora de bonos de bienvenida en España | IAPredictHub',
+    title: 'Bonos de bienvenida en España | Ruta guiada, calculadora y seguimiento | IAPredictHub',
     description:
-      'Herramienta en español enfocada en España para seguir bonos de bienvenida, calcular cada paso y mantener todo ordenado, con soporte adicional para LATAM.',
+      'IAPredictHub es una herramienta en español para bonos de bienvenida, con ruta guiada, calculadora, guías y seguimiento. Foco principal en España y apoyo adicional para LATAM.',
     images: [
       {
         url: 'https://iapredicthub.es/logo.png',
@@ -57,9 +57,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary',
-    title: 'Bonos de bienvenida en España | Guía y calculadora | IAPredictHub',
+    title: 'Bonos de bienvenida en España | IAPredictHub',
     description:
-      'Herramienta pensada sobre todo para España para entender bonos de bienvenida, calcularlos y llevar el proceso ordenado, con uso posible también en LATAM.',
+      'Herramienta en español para bonos de bienvenida, con ruta guiada, calculadora, guías y seguimiento. Foco principal en España y apoyo adicional para LATAM.',
     images: ['https://iapredicthub.es/logo.png'],
   },
   verification: {

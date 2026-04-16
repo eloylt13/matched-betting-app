@@ -42,9 +42,33 @@ function mapCurrency(value: string | undefined): CalculadoraPrefill['currency'] 
 }
 
 export const metadata: Metadata = {
-  title: 'Calculadora de Matched Betting España | Soporte también para LATAM | IAPredictHub',
+  title: 'Calculadora de bonos de bienvenida | IAPredictHub',
   description:
-    'Calculadora de matched betting para calcular stake, lay stake, liability, beneficio estimado, freebet, reembolso, rollover y dutcher. Pensada principalmente para España, con soporte también para usuarios de LATAM.',
+    'Calcula stake, lay stake, liability, freebets, reembolsos, rollover y dutcher en una herramienta en español, pensada primero para España y también útil en LATAM.',
+  alternates: {
+    canonical: 'https://iapredicthub.es/calculadora',
+  },
+  openGraph: {
+    title: 'Calculadora de bonos de bienvenida | IAPredictHub',
+    description:
+      'Calcula stake, lay stake, liability, freebets, reembolsos, rollover y dutcher en una herramienta en español, pensada primero para España y también útil en LATAM.',
+    url: 'https://iapredicthub.es/calculadora',
+    images: [
+      {
+        url: 'https://iapredicthub.es/logo.png',
+        width: 512,
+        height: 512,
+        alt: 'IAPredictHub — Calculadora de bonos de bienvenida',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary',
+    title: 'Calculadora de bonos de bienvenida | IAPredictHub',
+    description:
+      'Calcula stake, lay stake, liability, freebets, reembolsos, rollover y dutcher en una herramienta en español, pensada primero para España y también útil en LATAM.',
+    images: ['https://iapredicthub.es/logo.png'],
+  },
   robots: {
     index: true,
     follow: true,

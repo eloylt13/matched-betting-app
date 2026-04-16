@@ -1,4 +1,4 @@
-﻿import type { Metadata } from 'next'
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import TrackedLink from '@/components/analytics/TrackedLink'
 import EmailCapture from '@/components/landing/EmailCapture'
@@ -139,25 +139,43 @@ function LandingIcon({ name, className = 'h-5 w-5' }: { name: LandingIconName; c
 }
 
 export const metadata: Metadata = {
-  title: 'Matched Betting España y LATAM 2026 | Guía, Calculadora y Bonos | IAPredictHub',
+  title: 'IAPredictHub | Bonos de bienvenida en España con ruta guiada',
   description:
-    'Herramienta gratuita de matched betting para España y LATAM. Calculadora de cobertura, guías paso a paso y seguimiento de bonos de bienvenida. Sin registro. +50 casas organizadas por fases.',
+    'Empieza con una ruta clara para bonos de bienvenida: calculadora, guías y seguimiento en español. Foco principal en España, con apoyo adicional para LATAM.',
   alternates: {
     canonical: 'https://iapredicthub.es',
   },
   openGraph: {
-    title: 'Matched Betting España y LATAM 2026 | Guía, Calculadora y Bonos | IAPredictHub',
+    type: 'website',
+    locale: 'es_ES',
+    siteName: 'IAPredictHub',
+    title: 'Bonos de bienvenida en España | Ruta guiada | IAPredictHub',
     description:
-      'Herramienta gratuita de matched betting para España y LATAM. Calculadora de cobertura, guías paso a paso y seguimiento de bonos de bienvenida. Sin registro. +50 casas organizadas por fases.',
+      'Empieza con una ruta clara para bonos de bienvenida: calculadora, guías y seguimiento en español. Foco principal en España, con apoyo adicional para LATAM.',
     url: 'https://iapredicthub.es',
     images: [
       {
         url: 'https://iapredicthub.es/logo.png',
         width: 512,
         height: 512,
-        alt: 'IAPredictHub — Matched Betting España y LATAM',
+        alt: 'IAPredictHub — bonos de bienvenida en España y LATAM',
       },
     ],
+  },
+  twitter: {
+    card: 'summary',
+    title: 'Bonos de bienvenida en España | Ruta guiada | IAPredictHub',
+    description:
+      'Empieza con una ruta guiada para bonos de bienvenida, con calculadora, guías y seguimiento en español. Foco principal en España, con apoyo adicional para LATAM.',
+    images: ['https://iapredicthub.es/logo.png'],
+  },
+  robots: {
+    follow: true,
+    index: true,
+    googleBot: {
+      follow: true,
+      index: true,
+    },
   },
 }
 
@@ -294,7 +312,7 @@ export default function LandingPage() {
       priceCurrency: 'EUR',
     },
     description:
-      'Herramienta gratuita de matched betting para España y LATAM con calculadora, guías y seguimiento de bonos.',
+      'IAPredictHub ayuda a ordenar bonos de bienvenida con una ruta guiada, calculadora, guías y seguimiento.',
   }
 
   return (

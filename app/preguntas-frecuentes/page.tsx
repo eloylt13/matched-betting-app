@@ -4,7 +4,31 @@ import Link from 'next/link'
 export const metadata: Metadata = {
   title: 'Preguntas frecuentes | IAPredictHub',
   description:
-    'Dudas habituales sobre IAPredictHub, matched betting, riesgo, registro, soporte para España y LATAM, calculadora, guías y seguimiento.',
+    'Resuelve dudas sobre la ruta guiada, la calculadora, el seguimiento, el alcance en España y el apoyo para LATAM, además de riesgos, registro y uso de la app.',
+  alternates: {
+    canonical: 'https://iapredicthub.es/preguntas-frecuentes',
+  },
+  openGraph: {
+    title: 'Preguntas frecuentes | IAPredictHub',
+    description:
+      'Resuelve dudas sobre la ruta guiada, la calculadora, el seguimiento, el alcance en España y el apoyo para LATAM, además de riesgos, registro y uso de la app.',
+    url: 'https://iapredicthub.es/preguntas-frecuentes',
+    images: [
+      {
+        url: 'https://iapredicthub.es/logo.png',
+        width: 512,
+        height: 512,
+        alt: 'IAPredictHub — Preguntas frecuentes',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary',
+    title: 'Preguntas frecuentes | IAPredictHub',
+    description:
+      'Resuelve dudas sobre la ruta guiada, la calculadora, el seguimiento, el alcance en España y el apoyo para LATAM, además de riesgos, registro y uso de la app.',
+    images: ['https://iapredicthub.es/logo.png'],
+  },
 }
 
 const FAQS = [

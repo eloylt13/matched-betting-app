@@ -2,9 +2,33 @@ import type { Metadata } from 'next'
 import BienvenidaClient from './BienvenidaClient'
 
 export const metadata: Metadata = {
-  title: 'Bienvenido a IAPredictHub | Matched Betting España y LATAM',
+  title: 'Ruta de bienvenida | IAPredictHub',
   description:
-    'Empieza con una ruta clara: guía, Betfair Exchange, primera casa y calculadora. Matched betting paso a paso para España y LATAM.',
+    'Empieza por la ruta guiada para entender el orden, usar la calculadora y avanzar con más contexto en bonos de bienvenida. Foco principal en España, con apoyo adicional para LATAM.',
+  alternates: {
+    canonical: 'https://iapredicthub.es/bienvenida',
+  },
+  openGraph: {
+    title: 'Ruta de bienvenida | IAPredictHub',
+    description:
+      'Empieza por la ruta guiada para entender el orden, usar la calculadora y avanzar con más contexto en bonos de bienvenida. Foco principal en España, con apoyo adicional para LATAM.',
+    url: 'https://iapredicthub.es/bienvenida',
+    images: [
+      {
+        url: 'https://iapredicthub.es/logo.png',
+        width: 512,
+        height: 512,
+        alt: 'IAPredictHub — Ruta de bienvenida',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary',
+    title: 'Ruta de bienvenida | IAPredictHub',
+    description:
+      'Empieza por la ruta guiada para entender el orden, usar la calculadora y avanzar con más contexto en bonos de bienvenida. Foco principal en España, con apoyo adicional para LATAM.',
+    images: ['https://iapredicthub.es/logo.png'],
+  },
 }
 
 export default function BienvenidaPage() {

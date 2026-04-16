@@ -2,9 +2,33 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Sobre este proyecto | IAPredictHub',
+  title: 'Sobre IAPredictHub | Criterio, alcance y enfoque',
   description:
-    'Conoce el enfoque de IAPredictHub: una herramienta independiente para empezar con bonos de bienvenida con más orden, foco en España y soporte adicional para LATAM.',
+    'Conoce el propósito de IAPredictHub: una herramienta en español para bonos de bienvenida, con ruta guiada, calculadora, guías y seguimiento, centrada en España y útil también en LATAM.',
+  alternates: {
+    canonical: 'https://iapredicthub.es/sobre-este-proyecto',
+  },
+  openGraph: {
+    title: 'Sobre IAPredictHub | Criterio, alcance y enfoque',
+    description:
+      'Conoce el propósito de IAPredictHub: una herramienta en español para bonos de bienvenida, con ruta guiada, calculadora, guías y seguimiento, centrada en España y útil también en LATAM.',
+    url: 'https://iapredicthub.es/sobre-este-proyecto',
+    images: [
+      {
+        url: 'https://iapredicthub.es/logo.png',
+        width: 512,
+        height: 512,
+        alt: 'IAPredictHub — Sobre este proyecto',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary',
+    title: 'Sobre IAPredictHub | Criterio, alcance y enfoque',
+    description:
+      'Conoce el propósito de IAPredictHub: una herramienta en español para bonos de bienvenida, con ruta guiada, calculadora, guías y seguimiento, centrada en España y útil también en LATAM.',
+    images: ['https://iapredicthub.es/logo.png'],
+  },
 }
 
 const VALORES = [
