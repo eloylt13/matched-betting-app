@@ -438,7 +438,7 @@ export default function LandingPage() {
                 href="/bienvenida"
                 eventName="header_enter_app_clicked"
                 eventProps={{ location: 'header', target_path: '/bienvenida' }}
-                className="inline-flex items-center rounded-full border border-emerald-300/25 bg-emerald-400 px-3 sm:px-5 py-1.5 sm:py-2 text-xs sm:text-sm font-bold text-slate-950 shadow-[0_8px_24px_rgba(16,185,129,0.22)] transition-colors hover:bg-emerald-300"
+                className="inline-flex items-center rounded-full border border-violet-200/35 bg-violet-500 px-3 sm:px-5 py-1.5 sm:py-2 text-xs sm:text-sm font-bold text-white shadow-[0_10px_28px_rgba(124,58,237,0.28)] transition-colors hover:bg-violet-400"
               >
                 Entrar en la app →
               </TrackedLink>
@@ -512,42 +512,42 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section className="landing-reveal bg-[#F5F3EE]">
+      <section className="landing-reveal bg-[linear-gradient(180deg,#F1ECFF_0%,#F8FAFC_48%,#F4F0FF_100%)]">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
           <div className="text-center mb-12">
-            <p className="text-xs font-semibold text-emerald-600 uppercase tracking-widest mb-3">Por qué usar esta herramienta</p>
-            <h2 className="font-playfair text-2xl sm:text-3xl lg:text-4xl font-bold text-stone-900">
+            <p className="text-xs font-semibold text-violet-600 uppercase tracking-widest mb-3">Por qué usar esta herramienta</p>
+            <h2 className="font-playfair text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-950">
               Claridad, orden y ejecución desde el primer uso
             </h2>
-            <p className="text-stone-500 mt-4 max-w-xl mx-auto text-sm sm:text-base">
+            <p className="text-slate-500 mt-4 max-w-xl mx-auto text-sm sm:text-base">
               Menos dispersión, menos dudas al empezar y una forma más práctica de seguir cada paso.
             </p>
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {BENEFICIOS.map((b) => (
-              <div key={b.titulo} className="relative overflow-hidden rounded-lg border border-stone-200/70 bg-gradient-to-br from-white via-white to-emerald-50/35 p-5 shadow-[0_14px_34px_rgba(18,17,42,0.08)] ring-1 ring-white/80 transition-all duration-200 before:absolute before:inset-x-4 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-emerald-300/55 before:to-transparent hover:-translate-y-0.5 hover:border-emerald-300/60 hover:shadow-[0_18px_42px_rgba(18,17,42,0.11)]">
-                <span className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg border border-emerald-200/70 bg-white/80 text-emerald-700 shadow-sm shadow-emerald-950/5">
+              <div key={b.titulo} className="relative overflow-hidden rounded-lg border border-violet-200/65 bg-white/80 p-5 shadow-[0_18px_48px_rgba(46,16,101,0.09)] ring-1 ring-white/90 backdrop-blur-sm transition-all duration-200 before:absolute before:inset-x-4 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-violet-300/70 before:to-transparent hover:-translate-y-0.5 hover:border-violet-300/70 hover:bg-white/90 hover:shadow-[0_22px_58px_rgba(46,16,101,0.14)]">
+                <span className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg border border-violet-200/80 bg-gradient-to-br from-violet-50 to-white text-violet-700 shadow-[0_10px_24px_rgba(109,40,217,0.08)]">
                   <LandingIcon name={b.icon as LandingIconName} />
                 </span>
-                <h3 className="font-semibold text-stone-800 text-sm mb-2">{b.titulo}</h3>
-                <p className="text-xs text-stone-500 leading-relaxed">{b.desc}</p>
+                <h3 className="font-semibold text-slate-800 text-sm mb-2">{b.titulo}</h3>
+                <p className="text-xs text-slate-500 leading-relaxed">{b.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="bg-stone-50 border-y border-stone-200">
+      <section className="bg-[linear-gradient(180deg,#F8FAFC_0%,#F1EDFF_100%)] border-y border-violet-100/80">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-16">
           <div className="max-w-2xl mx-auto text-center mb-8 sm:mb-10">
-            <p className="inline-flex items-center rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-emerald-700">
+            <p className="inline-flex items-center rounded-full border border-violet-200/80 bg-white/75 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-violet-700 shadow-sm shadow-violet-950/5 backdrop-blur-sm">
               Beta temprana
             </p>
-            <h2 className="font-playfair text-2xl sm:text-3xl font-bold text-stone-900 mt-4">
+            <h2 className="font-playfair text-2xl sm:text-3xl font-bold text-slate-950 mt-4">
               Lo que están viendo los primeros beta testers
             </h2>
-            <p className="mt-4 text-sm sm:text-base text-stone-500 leading-relaxed">
+            <p className="mt-4 text-sm sm:text-base text-slate-500 leading-relaxed">
               Usuarios iniciales ya la están usando para entender mejor el proceso, seguir una ruta más clara y evitar errores al empezar.
             </p>
           </div>
@@ -556,54 +556,54 @@ export default function LandingPage() {
             {TESTIMONIOS_BETA.map((testimonio) => (
               <div
                 key={testimonio.nombre}
-                className="rounded-2xl border border-stone-200 bg-white p-5 shadow-sm transition-shadow hover:shadow-md"
+                className="relative overflow-hidden rounded-lg border border-violet-200/60 bg-white/75 p-5 shadow-[0_16px_42px_rgba(46,16,101,0.08)] ring-1 ring-white/80 backdrop-blur-sm transition-all duration-200 before:absolute before:inset-x-4 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-violet-300/55 before:to-transparent hover:-translate-y-0.5 hover:border-violet-300/60 hover:bg-white/90 hover:shadow-[0_20px_52px_rgba(46,16,101,0.13)]"
               >
                 <div className="mb-4 flex items-center justify-between gap-3">
                   <div>
-                    <p className="text-sm font-semibold text-stone-900">{testimonio.nombre}</p>
-                    <p className="text-xs text-stone-500">{testimonio.ciudad}</p>
+                    <p className="text-sm font-semibold text-slate-950">{testimonio.nombre}</p>
+                    <p className="text-xs text-slate-500">{testimonio.ciudad}</p>
                   </div>
-                  <span className="shrink-0 rounded-full bg-stone-100 px-2.5 py-1 text-[11px] font-medium text-stone-600">
+                  <span className="shrink-0 rounded-full border border-violet-200/70 bg-violet-50/80 px-2.5 py-1 text-[11px] font-medium text-violet-700 shadow-sm shadow-violet-950/5">
                     Beta tester
                   </span>
                 </div>
-                <p className="text-sm text-stone-600 leading-relaxed">{testimonio.texto}</p>
+                <p className="text-sm text-slate-600 leading-relaxed">{testimonio.texto}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="landing-reveal bg-white">
+      <section className="landing-reveal bg-[linear-gradient(180deg,#F1EDFF_0%,#FFFFFF_42%,#F8FAFC_100%)]">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <div>
               <p className="text-xs font-semibold text-purple-600 uppercase tracking-widest mb-3">Acceso completo · Sin límites</p>
-              <h2 className="font-playfair text-2xl sm:text-3xl font-bold text-stone-900 mb-4">Qué incluye la app gratuita</h2>
-              <p className="text-stone-500 text-sm sm:text-base mb-8 leading-relaxed">
+              <h2 className="font-playfair text-2xl sm:text-3xl font-bold text-slate-950 mb-4">Qué incluye la app gratuita</h2>
+              <p className="text-slate-500 text-sm sm:text-base mb-8 leading-relaxed">
                 La beta incluye las herramientas principales para aprender el flujo, calcular mejor y seguir cada casa con más orden.
               </p>
               <TrackedLink
                 href="/bienvenida"
                 eventName="home_cta_mid_clicked"
                 eventProps={{ location: 'features', target_path: '/bienvenida' }}
-                className="inline-flex items-center gap-2 bg-gradient-to-r from-[#12112A] to-[#2A1F3D] text-white font-semibold px-6 py-3 rounded-xl transition-all shadow-md"
+                className="inline-flex items-center gap-2 rounded-lg border border-violet-300/35 bg-gradient-to-r from-[#171330] via-[#31205F] to-[#6D28D9] px-6 py-3 font-semibold text-white shadow-[0_18px_46px_rgba(76,29,149,0.28)] transition-all hover:-translate-y-0.5 hover:shadow-[0_22px_58px_rgba(76,29,149,0.34)]"
               >
                 Entrar ahora y empezar con más orden →
               </TrackedLink>
             </div>
             <div className="flex flex-col gap-3">
               {BETA_FEATURES.map((f) => (
-                <div key={f.titulo} className="relative flex items-start gap-3 overflow-hidden rounded-lg border border-stone-200/70 bg-gradient-to-r from-white via-stone-50/80 to-emerald-50/30 p-4 shadow-[0_10px_28px_rgba(18,17,42,0.06)] ring-1 ring-white/80 transition-all duration-200 before:absolute before:inset-y-3 before:left-0 before:w-px before:bg-gradient-to-b before:from-transparent before:via-emerald-300/65 before:to-transparent hover:border-emerald-300/60 hover:shadow-[0_14px_34px_rgba(18,17,42,0.09)]">
-                  <span className="mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-emerald-200/70 bg-white/85 text-emerald-700 shadow-sm shadow-emerald-950/5">
+                <div key={f.titulo} className="relative flex items-start gap-3 overflow-hidden rounded-lg border border-violet-200/65 bg-white/80 p-4 shadow-[0_14px_36px_rgba(46,16,101,0.08)] ring-1 ring-white/90 backdrop-blur-sm transition-all duration-200 before:absolute before:inset-y-3 before:left-0 before:w-px before:bg-gradient-to-b before:from-transparent before:via-violet-300/70 before:to-transparent hover:border-violet-300/70 hover:bg-white/95 hover:shadow-[0_18px_46px_rgba(46,16,101,0.12)]">
+                  <span className="mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-violet-200/75 bg-violet-50/85 text-violet-700 shadow-sm shadow-violet-950/5">
                     <LandingIcon name={f.icon as LandingIconName} className="h-4 w-4" />
                   </span>
                   <div>
                     <div className="flex items-center gap-2 mb-0.5">
-                      <p className="font-semibold text-stone-800 text-sm">{f.titulo}</p>
-                      <span className="text-xs bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full font-medium shrink-0">Disponible</span>
+                      <p className="font-semibold text-slate-800 text-sm">{f.titulo}</p>
+                      <span className="shrink-0 rounded-full border border-violet-200/70 bg-violet-50/90 px-2 py-0.5 text-xs font-medium text-violet-700">Disponible</span>
                     </div>
-                    <p className="text-xs text-stone-500 leading-relaxed">{f.desc}</p>
+                    <p className="text-xs text-slate-500 leading-relaxed">{f.desc}</p>
                   </div>
                 </div>
               ))}
@@ -612,16 +612,16 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section className="landing-reveal bg-gradient-to-b from-[#f6f3ec] to-[#efebe2]">
+      <section className="landing-reveal bg-[linear-gradient(180deg,#F8FAFC_0%,#F0EBFF_52%,#EEF2FF_100%)]">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
           <div className="text-center mb-12">
-            <p className="text-xs font-semibold text-stone-400 uppercase tracking-widest mb-3">La app, en detalle</p>
-            <h2 className="font-playfair text-2xl sm:text-3xl font-bold text-stone-900">Una herramienta real para empezar con más contexto</h2>
-            <p className="text-stone-500 mt-3 max-w-xl mx-auto text-sm">
+            <p className="text-xs font-semibold text-violet-500 uppercase tracking-widest mb-3">La app, en detalle</p>
+            <h2 className="font-playfair text-2xl sm:text-3xl font-bold text-slate-950">Una herramienta real para empezar con más contexto</h2>
+            <p className="text-slate-500 mt-3 max-w-xl mx-auto text-sm">
               Ya existe y ya funciona. Estas son algunas de las piezas que conectan la experiencia real de entrada.
             </p>
           </div>
-          <div className="grid gap-4 rounded-[2rem] border border-stone-200/80 bg-white/70 p-4 shadow-[0_18px_48px_rgba(18,17,42,0.08)] backdrop-blur-sm sm:grid-cols-3 sm:p-5">
+          <div className="grid gap-4 rounded-[1.5rem] border border-violet-200/55 bg-white/60 p-4 shadow-[0_24px_72px_rgba(46,16,101,0.12)] ring-1 ring-white/85 backdrop-blur-md sm:grid-cols-3 sm:p-5">
             {[
               ['Dashboard', 'Empieza aquí, progreso y siguientes acciones.'],
               ['Calculadora', 'Selector guiado para elegir el modo más lógico.'],
@@ -629,9 +629,9 @@ export default function LandingPage() {
             ].map(([title, desc]) => (
               <div
                 key={title}
-                className="group relative overflow-hidden rounded-[1.5rem] border border-white/10 bg-[#11162b] p-5 shadow-[0_16px_38px_rgba(8,15,31,0.28)] ring-1 ring-white/[0.04] transition-all duration-200 before:absolute before:inset-x-4 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-emerald-300/35 before:to-transparent hover:-translate-y-0.5 hover:border-emerald-300/25 hover:shadow-[0_20px_44px_rgba(8,15,31,0.34)]"
+                className="group relative overflow-hidden rounded-lg border border-white/10 bg-[#0f1022] p-5 shadow-[0_20px_50px_rgba(8,15,31,0.34)] ring-1 ring-white/[0.04] transition-all duration-200 before:absolute before:inset-x-4 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-violet-300/50 before:to-transparent hover:-translate-y-0.5 hover:border-violet-300/35 hover:shadow-[0_24px_60px_rgba(8,15,31,0.42)]"
               >
-                <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-emerald-200/75">{title}</p>
+                <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-violet-200/80">{title}</p>
                 <p className="mb-2 text-sm font-semibold text-white">{title}</p>
                 <p className="text-xs leading-relaxed text-slate-300">{desc}</p>
               </div>
@@ -641,100 +641,101 @@ export default function LandingPage() {
       </section>
 
       <section
-        style={{ background: 'linear-gradient(135deg, #12112A 0%, #1e1840 50%, #2A1F3D 100%)' }}
+        style={{ background: 'linear-gradient(135deg, #0b1020 0%, #171330 45%, #2A1F4A 100%)' }}
         className="landing-reveal relative overflow-hidden"
       >
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-violet-200/35 to-transparent" />
         <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
           <div className="text-center mb-12">
-            <p className="text-xs font-semibold text-emerald-400 uppercase tracking-widest mb-3">Formación incluida</p>
+            <p className="text-xs font-semibold text-violet-300 uppercase tracking-widest mb-3">Formación incluida</p>
             <h2 className="font-playfair text-2xl sm:text-3xl font-bold text-white mb-3">Guías gratuitas para empezar</h2>
             <p className="text-gray-400 text-sm max-w-xl mx-auto">Accede gratis a los módulos de formación y empieza con una base más clara.</p>
           </div>
           <div className="grid sm:grid-cols-2 gap-4 mb-8">
             {GUIAS_DESTACADAS.map((g) => (
-              <a key={g.archivo} href={`/guias/${g.archivo}`} target="_blank" rel="noopener noreferrer" className="group relative flex items-start gap-4 overflow-hidden rounded-lg border border-white/10 bg-white/[0.055] p-5 shadow-[0_18px_44px_rgba(0,0,0,0.18)] ring-1 ring-white/[0.035] backdrop-blur-sm transition-all duration-200 before:absolute before:inset-x-4 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-emerald-300/45 before:to-transparent hover:-translate-y-0.5 hover:border-emerald-300/35 hover:bg-white/[0.075] hover:shadow-[0_22px_54px_rgba(0,0,0,0.24)]">
-                <span className="mt-0.5 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-white/12 bg-white/[0.07] text-emerald-300 shadow-sm shadow-black/10 transition-colors group-hover:border-emerald-300/35 group-hover:bg-emerald-300/10">
+              <a key={g.archivo} href={`/guias/${g.archivo}`} target="_blank" rel="noopener noreferrer" className="group relative flex items-start gap-4 overflow-hidden rounded-lg border border-violet-200/12 bg-white/[0.055] p-5 shadow-[0_20px_52px_rgba(0,0,0,0.22)] ring-1 ring-white/[0.035] backdrop-blur-sm transition-all duration-200 before:absolute before:inset-x-4 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-violet-300/50 before:to-transparent hover:-translate-y-0.5 hover:border-violet-300/35 hover:bg-white/[0.08] hover:shadow-[0_24px_62px_rgba(0,0,0,0.28)]">
+                <span className="mt-0.5 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-white/12 bg-violet-300/10 text-violet-200 shadow-sm shadow-black/10 transition-colors group-hover:border-violet-300/35 group-hover:bg-violet-300/15">
                   <LandingIcon name={g.icono as LandingIconName} />
                 </span>
                 <div className="min-w-0 flex-1">
-                  <h3 className="font-semibold text-white text-sm group-hover:text-emerald-300 transition-colors mb-1">{g.titulo}</h3>
+                  <h3 className="font-semibold text-white text-sm group-hover:text-violet-200 transition-colors mb-1">{g.titulo}</h3>
                   <p className="text-xs text-gray-400 leading-relaxed">{g.desc}</p>
                 </div>
-                <span className="text-xs text-emerald-400 font-semibold shrink-0 mt-0.5">PDF →</span>
+                <span className="text-xs text-violet-300 font-semibold shrink-0 mt-0.5">PDF →</span>
               </a>
             ))}
           </div>
           <div className="text-center">
-            <Link href="/guias" className="inline-flex items-center gap-2 border border-white/20 hover:bg-white/10 text-white font-semibold px-6 py-3 rounded-xl transition-all text-sm">
+            <Link href="/guias" className="inline-flex items-center gap-2 rounded-lg border border-violet-200/25 bg-white/[0.04] px-6 py-3 text-sm font-semibold text-white transition-all hover:border-violet-200/40 hover:bg-white/10">
               Ver todas las guías →
             </Link>
           </div>
         </div>
       </section>
 
-      <section className="landing-reveal bg-gradient-to-b from-white via-stone-50 to-stone-100">
+      <section className="landing-reveal bg-[linear-gradient(180deg,#FFFFFF_0%,#F5F1FF_56%,#F8FAFC_100%)]">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 text-center">
-          <p className="text-xs font-semibold text-stone-400 uppercase tracking-widest mb-3">Mantente al día</p>
-          <h2 className="font-playfair text-2xl sm:text-3xl font-bold text-stone-900 mb-3">Recibe novedades y nuevas guías</h2>
-          <p className="text-stone-500 text-sm mb-8 max-w-md mx-auto leading-relaxed">
+          <p className="text-xs font-semibold text-violet-500 uppercase tracking-widest mb-3">Mantente al día</p>
+          <h2 className="font-playfair text-2xl sm:text-3xl font-bold text-slate-950 mb-3">Recibe novedades y nuevas guías</h2>
+          <p className="text-slate-500 text-sm mb-8 max-w-md mx-auto leading-relaxed">
             Avisamos cuando añadamos nuevas casas, módulos o mejoras útiles en la herramienta.
           </p>
           <EmailCapture />
         </div>
       </section>
 
-      <section className="bg-stone-50 border-t border-stone-100">
+      <section className="bg-[linear-gradient(180deg,#F8FAFC_0%,#F2EEFF_100%)] border-t border-violet-100/80">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
           <div className="text-center mb-10">
-            <h2 className="font-playfair text-2xl sm:text-3xl font-bold text-stone-900">Sobre este proyecto</h2>
-            <p className="text-stone-500 mt-4 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
+            <h2 className="font-playfair text-2xl sm:text-3xl font-bold text-slate-950">Sobre este proyecto</h2>
+            <p className="text-slate-500 mt-4 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
               IAPredictHub es un proyecto independiente desarrollado en España, pensado para ofrecer una forma más clara y ordenada de empezar con bonos de bienvenida, con foco principal en España y soporte adicional para LATAM. La herramienta nace de la necesidad de tener todo en un mismo sitio: calculadora, guías, seguimiento y una ruta lógica para no perderse al empezar.
             </p>
           </div>
           <div className="grid sm:grid-cols-3 gap-4 mt-8">
-            <div className="bg-white rounded-2xl border border-stone-100 p-6 hover:shadow-md hover:border-emerald-200 transition-all">
-              <span className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl border border-emerald-100 bg-emerald-50/70 text-emerald-700">
+            <div className="relative overflow-hidden rounded-lg border border-violet-200/60 bg-white/80 p-6 shadow-[0_16px_42px_rgba(46,16,101,0.08)] ring-1 ring-white/90 backdrop-blur-sm transition-all before:absolute before:inset-x-4 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-violet-300/50 before:to-transparent hover:-translate-y-0.5 hover:border-violet-300/60 hover:bg-white/90 hover:shadow-[0_20px_52px_rgba(46,16,101,0.12)]">
+              <span className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg border border-violet-200/75 bg-violet-50/90 text-violet-700 shadow-sm shadow-violet-950/5">
                 <LandingIcon name="build" />
               </span>
-              <h3 className="font-semibold text-stone-800 text-sm mb-2">Desarrollo activo</h3>
-              <p className="text-xs text-stone-500 leading-relaxed">La app se actualiza regularmente con nuevas casas, mejoras en la calculadora y contenido de formación.</p>
+              <h3 className="font-semibold text-slate-800 text-sm mb-2">Desarrollo activo</h3>
+              <p className="text-xs text-slate-500 leading-relaxed">La app se actualiza regularmente con nuevas casas, mejoras en la calculadora y contenido de formación.</p>
             </div>
-            <div className="bg-white rounded-2xl border border-stone-100 p-6 hover:shadow-md hover:border-emerald-200 transition-all">
-              <span className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl border border-emerald-100 bg-emerald-50/70 text-emerald-700">
+            <div className="relative overflow-hidden rounded-lg border border-violet-200/60 bg-white/80 p-6 shadow-[0_16px_42px_rgba(46,16,101,0.08)] ring-1 ring-white/90 backdrop-blur-sm transition-all before:absolute before:inset-x-4 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-violet-300/50 before:to-transparent hover:-translate-y-0.5 hover:border-violet-300/60 hover:bg-white/90 hover:shadow-[0_20px_52px_rgba(46,16,101,0.12)]">
+              <span className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg border border-violet-200/75 bg-violet-50/90 text-violet-700 shadow-sm shadow-violet-950/5">
                 <LandingIcon name="compass" />
               </span>
-              <h3 className="font-semibold text-stone-800 text-sm mb-2">Enfoque principiante</h3>
-              <p className="text-xs text-stone-500 leading-relaxed">Todo está pensado para quien empieza desde cero, sin jerga innecesaria ni pasos confusos.</p>
+              <h3 className="font-semibold text-slate-800 text-sm mb-2">Enfoque principiante</h3>
+              <p className="text-xs text-slate-500 leading-relaxed">Todo está pensado para quien empieza desde cero, sin jerga innecesaria ni pasos confusos.</p>
             </div>
-            <div className="bg-white rounded-2xl border border-stone-100 p-6 hover:shadow-md hover:border-emerald-200 transition-all">
-              <span className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl border border-emerald-100 bg-emerald-50/70 text-emerald-700">
+            <div className="relative overflow-hidden rounded-lg border border-violet-200/60 bg-white/80 p-6 shadow-[0_16px_42px_rgba(46,16,101,0.08)] ring-1 ring-white/90 backdrop-blur-sm transition-all before:absolute before:inset-x-4 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-violet-300/50 before:to-transparent hover:-translate-y-0.5 hover:border-violet-300/60 hover:bg-white/90 hover:shadow-[0_20px_52px_rgba(46,16,101,0.12)]">
+              <span className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg border border-violet-200/75 bg-violet-50/90 text-violet-700 shadow-sm shadow-violet-950/5">
                 <LandingIcon name="shield" />
               </span>
-              <h3 className="font-semibold text-stone-800 text-sm mb-2">Sin datos personales</h3>
-              <p className="text-xs text-stone-500 leading-relaxed">No pedimos registro ni almacenamos información. Todo se guarda en tu navegador.</p>
+              <h3 className="font-semibold text-slate-800 text-sm mb-2">Sin datos personales</h3>
+              <p className="text-xs text-slate-500 leading-relaxed">No pedimos registro ni almacenamos información. Todo se guarda en tu navegador.</p>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="landing-reveal bg-stone-50 border-y border-stone-200">
+      <section className="landing-reveal bg-[linear-gradient(135deg,#0b1020_0%,#11162a_48%,#21183e_100%)] border-y border-white/10">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12">
-          <div className="max-w-2xl">
-            <p className="text-xs font-semibold uppercase tracking-widest text-emerald-600 mb-3">Antes de empezar</p>
-            <h2 className="font-playfair text-2xl sm:text-3xl font-bold text-stone-900 mb-4">
+          <div className="max-w-2xl rounded-lg border border-violet-200/12 bg-white/[0.035] p-6 shadow-[0_20px_58px_rgba(0,0,0,0.22)] ring-1 ring-white/[0.035] backdrop-blur-sm sm:p-7">
+            <p className="text-xs font-semibold uppercase tracking-widest text-violet-300 mb-3">Antes de empezar</p>
+            <h2 className="font-playfair text-2xl sm:text-3xl font-bold text-white mb-4">
               Lo que más hace perder tiempo y bonos al principio
             </h2>
-            <ul className="space-y-3 text-sm sm:text-base text-stone-600 leading-relaxed">
+            <ul className="space-y-3 text-sm sm:text-base text-slate-300 leading-relaxed">
               <li className="flex gap-3">
-                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-500" aria-hidden="true" />
+                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-violet-300 shadow-[0_0_14px_rgba(196,181,253,0.65)]" aria-hidden="true" />
                 <span>Sin una ruta clara, es fácil activar bonos mal o dejarlos a medias.</span>
               </li>
               <li className="flex gap-3">
-                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-500" aria-hidden="true" />
+                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-violet-300 shadow-[0_0_14px_rgba(196,181,253,0.65)]" aria-hidden="true" />
                 <span>Muchas promociones cambian condiciones, pasos o plazos sin que lo notes.</span>
               </li>
               <li className="flex gap-3">
-                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-500" aria-hidden="true" />
+                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-violet-300 shadow-[0_0_14px_rgba(196,181,253,0.65)]" aria-hidden="true" />
                 <span>Usar calculadora, guías y seguimiento ayuda a reducir errores evitables desde el inicio.</span>
               </li>
             </ul>
@@ -742,25 +743,25 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section className="landing-reveal relative overflow-hidden bg-[linear-gradient(180deg,#F7F4EE_0%,#F4F1EA_100%)] border-t border-stone-200/80">
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white to-transparent" />
+      <section className="landing-reveal relative overflow-hidden bg-[linear-gradient(180deg,#F8FAFC_0%,#F3F0FF_100%)] border-t border-violet-100/80">
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-violet-200/70 to-transparent" />
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
           <div className="text-center mb-10">
-            <h2 className="font-playfair text-2xl sm:text-3xl font-bold text-stone-900">Preguntas frecuentes</h2>
-            <p className="text-stone-500 mt-3 max-w-xl mx-auto text-sm sm:text-base leading-relaxed">
+            <h2 className="font-playfair text-2xl sm:text-3xl font-bold text-slate-950">Preguntas frecuentes</h2>
+            <p className="text-slate-500 mt-3 max-w-xl mx-auto text-sm sm:text-base leading-relaxed">
               Resuelve las dudas más habituales antes de entrar, entiende qué puedes esperar de la app y comprueba si este enfoque encaja contigo.
             </p>
           </div>
-          <div className="overflow-hidden rounded-[1.75rem] border border-stone-200/80 bg-white/90 shadow-[0_18px_60px_rgba(28,25,23,0.08)] ring-1 ring-white/60 backdrop-blur-sm">
+          <div className="overflow-hidden rounded-[1.5rem] border border-violet-100/80 bg-white/85 shadow-[0_22px_70px_rgba(30,27,75,0.11)] ring-1 ring-white/70 backdrop-blur-sm">
             {FAQS.map((faq) => (
-              <details key={faq.pregunta} className="group border-b border-stone-100 last:border-b-0">
-                <summary className="flex items-start justify-between gap-4 px-6 py-5 cursor-pointer list-none transition-colors hover:bg-stone-50/90 group-open:bg-stone-50/80">
-                  <span className="font-semibold text-stone-800 text-sm leading-relaxed">{faq.pregunta}</span>
-                  <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-stone-200 bg-white text-stone-400 shadow-sm transition-all duration-200 group-open:rotate-180 group-open:border-emerald-200 group-open:text-emerald-600">
+              <details key={faq.pregunta} className="group border-b border-violet-100/70 last:border-b-0">
+                <summary className="flex items-start justify-between gap-4 px-6 py-5 cursor-pointer list-none transition-colors hover:bg-violet-50/55 group-open:bg-violet-50/65">
+                  <span className="font-semibold text-slate-800 text-sm leading-relaxed">{faq.pregunta}</span>
+                  <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-violet-100 bg-white text-violet-400 shadow-sm transition-all duration-200 group-open:rotate-180 group-open:border-violet-300 group-open:text-violet-700">
                     <LandingIcon name="chevronDown" className="h-3.5 w-3.5" />
                   </span>
                 </summary>
-                <div className="border-t border-stone-100 bg-stone-50/60 px-6 pb-5 pt-4 text-sm text-stone-500 leading-relaxed">{faq.respuesta}</div>
+                <div className="border-t border-violet-100/70 bg-white/60 px-6 pb-5 pt-4 text-sm text-slate-500 leading-relaxed">{faq.respuesta}</div>
               </details>
             ))}
           </div>
@@ -772,9 +773,9 @@ export default function LandingPage() {
         className="relative overflow-hidden border-t border-white/5"
       >
         <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 text-center">
-          <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.045] px-6 py-10 shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-md sm:px-10 sm:py-14">
-            <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
-          <p className="text-xs font-semibold text-emerald-400 uppercase tracking-widest mb-4">Empieza hoy</p>
+          <div className="relative overflow-hidden rounded-[1.75rem] border border-violet-200/15 bg-white/[0.045] px-6 py-10 shadow-[0_24px_80px_rgba(0,0,0,0.28)] ring-1 ring-white/[0.04] backdrop-blur-md sm:px-10 sm:py-14">
+            <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-violet-200/45 to-transparent" />
+          <p className="text-xs font-semibold text-violet-300 uppercase tracking-widest mb-4">Empieza hoy</p>
           <h2 className="font-playfair text-3xl sm:text-4xl font-bold text-white mb-6">Todo listo para empezar.<br />Sin registro. Sin coste.</h2>
           <p className="text-gray-400 text-base sm:text-lg mb-10 max-w-lg mx-auto leading-relaxed">
             Entra gratis y sigue el paso a paso para empezar con más orden, entender qué toca hacer
@@ -785,7 +786,7 @@ export default function LandingPage() {
               href="/bienvenida"
               eventName="home_cta_final_clicked"
               eventProps={{ location: 'final_cta', target_path: '/bienvenida' }}
-              className="w-full sm:w-auto rounded-xl border border-emerald-300/20 bg-emerald-400 px-10 py-4 text-lg font-bold text-slate-950 shadow-[0_16px_36px_rgba(16,185,129,0.24)] transition-all hover:-translate-y-0.5 hover:bg-emerald-300 hover:shadow-[0_18px_42px_rgba(16,185,129,0.3)]"
+              className="w-full sm:w-auto rounded-lg border border-violet-200/35 bg-violet-500 px-10 py-4 text-lg font-bold text-white shadow-[0_18px_46px_rgba(124,58,237,0.34)] transition-all hover:-translate-y-0.5 hover:bg-violet-400 hover:shadow-[0_22px_56px_rgba(139,92,246,0.42)]"
             >
               Entrar ahora y empezar con más orden →
             </TrackedLink>
@@ -793,7 +794,7 @@ export default function LandingPage() {
               href="/guias"
               eventName="home_cta_final_secondary_clicked"
               eventProps={{ location: 'final_cta', target_path: '/guias' }}
-              className="w-full sm:w-auto rounded-xl border border-white/14 bg-white/[0.04] px-8 py-4 text-base font-semibold text-white transition-all hover:bg-white/[0.08] hover:border-white/20"
+              className="w-full sm:w-auto rounded-lg border border-white/14 bg-white/[0.04] px-8 py-4 text-base font-semibold text-white transition-all hover:border-violet-200/30 hover:bg-white/[0.08]"
             >
               Ver guía y herramientas
             </TrackedLink>
@@ -806,9 +807,9 @@ export default function LandingPage() {
         style={{ background: 'linear-gradient(180deg, #0a0918 0%, #090816 100%)' }}
         className="relative overflow-hidden border-t border-white/10"
       >
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald-300/30 to-transparent" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-violet-300/35 to-transparent" />
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-11">
-          <div className="flex flex-col sm:flex-row items-center sm:items-start justify-between gap-8 mb-9 rounded-[1.5rem] border border-white/8 bg-white/[0.025] px-5 py-6 sm:px-7 sm:py-7 shadow-[0_18px_50px_rgba(0,0,0,0.18)]">
+          <div className="flex flex-col sm:flex-row items-center sm:items-start justify-between gap-8 mb-9 rounded-[1.25rem] border border-violet-200/10 bg-white/[0.035] px-5 py-6 shadow-[0_20px_58px_rgba(0,0,0,0.22)] ring-1 ring-white/[0.035] backdrop-blur-sm sm:px-7 sm:py-7">
             <div className="text-center sm:text-left">
               <div className="flex items-center gap-2 justify-center sm:justify-start mb-2">
                 <img src="/logo.png" alt="IAPredictHub" className="w-7 h-7 rounded-full object-cover" />
@@ -820,31 +821,31 @@ export default function LandingPage() {
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 sm:gap-6 text-xs">
               <div>
-                <p className="font-semibold text-gray-400 uppercase tracking-wider mb-3 text-[11px]">Herramienta</p>
+                <p className="font-semibold text-violet-200/75 uppercase tracking-wider mb-3 text-[11px]">Herramienta</p>
                 <div className="flex flex-col gap-2">
-                  <Link href="/guias" className="text-gray-500 hover:text-white transition-colors">Guías</Link>
-                  <Link href="/calculadora" className="text-gray-500 hover:text-white transition-colors">Calculadora</Link>
-                  <Link href="/casas" className="text-gray-500 hover:text-white transition-colors">Casas</Link>
-                  <Link href="/dashboard" className="text-gray-500 hover:text-white transition-colors">Dashboard</Link>
+                  <Link href="/guias" className="text-gray-500 hover:text-violet-100 transition-colors">Guías</Link>
+                  <Link href="/calculadora" className="text-gray-500 hover:text-violet-100 transition-colors">Calculadora</Link>
+                  <Link href="/casas" className="text-gray-500 hover:text-violet-100 transition-colors">Casas</Link>
+                  <Link href="/dashboard" className="text-gray-500 hover:text-violet-100 transition-colors">Dashboard</Link>
                 </div>
               </div>
               <div>
-                <p className="font-semibold text-gray-400 uppercase tracking-wider mb-3 text-[11px]">Legal</p>
+                <p className="font-semibold text-violet-200/75 uppercase tracking-wider mb-3 text-[11px]">Legal</p>
                 <div className="flex flex-col gap-2">
-                  <Link href="/legal/aviso" className="text-gray-500 hover:text-white transition-colors">Aviso legal</Link>
-                  <Link href="/legal/privacidad" className="text-gray-500 hover:text-white transition-colors">Privacidad</Link>
-                  <Link href="/legal/cookies" className="text-gray-500 hover:text-white transition-colors">Cookies</Link>
+                  <Link href="/legal/aviso" className="text-gray-500 hover:text-violet-100 transition-colors">Aviso legal</Link>
+                  <Link href="/legal/privacidad" className="text-gray-500 hover:text-violet-100 transition-colors">Privacidad</Link>
+                  <Link href="/legal/cookies" className="text-gray-500 hover:text-violet-100 transition-colors">Cookies</Link>
                 </div>
               </div>
               <div>
-                <p className="font-semibold text-gray-400 uppercase tracking-wider mb-3 text-[11px]">Contacto</p>
+                <p className="font-semibold text-violet-200/75 uppercase tracking-wider mb-3 text-[11px]">Contacto</p>
                 <div className="flex flex-col gap-2">
-                  <a href="https://t.me/Elte13" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-white transition-colors">Telegram</a>
-                  <a href="https://www.instagram.com/iapredicthub/" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-white transition-colors">Instagram</a>
+                  <a href="https://t.me/Elte13" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-violet-100 transition-colors">Telegram</a>
+                  <a href="https://www.instagram.com/iapredicthub/" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-violet-100 transition-colors">Instagram</a>
                 </div>
               </div>
               <div>
-                <p className="font-semibold text-gray-400 uppercase tracking-wider mb-3 text-[11px]">Confianza</p>
+                <p className="font-semibold text-violet-200/75 uppercase tracking-wider mb-3 text-[11px]">Confianza</p>
                 <div className="flex flex-col gap-2 text-gray-500">
                   <span>Mayores de 18</span>
                   <span>Juego responsable</span>
