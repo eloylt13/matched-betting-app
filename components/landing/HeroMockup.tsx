@@ -17,10 +17,9 @@ export default function HeroMockup() {
           </div>
 
           <div className="min-w-0 flex-1">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-violet-100/75">
-              Casas disponibles
-            </p>
-            <h3 className="mt-1 text-sm font-semibold leading-tight text-white">Explora bonos por casa</h3>
+            <h3 className="bg-gradient-to-r from-violet-100 via-cyan-100 to-emerald-100 bg-clip-text text-sm font-semibold leading-tight text-transparent">
+              Explora bonos por casa
+            </h3>
             <p className="mt-1 text-xs leading-snug text-slate-300">50+ casas disponibles</p>
           </div>
 
