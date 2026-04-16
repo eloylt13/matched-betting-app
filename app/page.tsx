@@ -450,65 +450,63 @@ export default function LandingPage() {
       <section className="relative overflow-hidden bg-[#080B16]">
         <HeroAtmosphere />
 
-        <div className="relative mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8 lg:py-16">
-          <div className="grid items-center gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:gap-10">
-            <div className="text-center lg:text-left">
-              <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-violet-300/25 bg-violet-300/10 px-3.5 py-1.5 text-xs font-semibold text-violet-100 shadow-[0_0_28px_rgba(139,92,246,0.16)] backdrop-blur-sm">
-                <span className="h-2 w-2 rounded-full bg-violet-300 shadow-[0_0_16px_rgba(196,181,253,0.8)]" />
-                Beta gratuita · Sin registro
-              </div>
-
-              <h1 className="mx-auto max-w-4xl font-playfair text-4xl font-bold leading-tight text-white sm:text-5xl lg:mx-0 lg:text-[3.55rem]">
-                Deja de perder bonos de bienvenida por falta de método.
-              </h1>
-
-              <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg lg:mx-0">
-                La app te guía paso a paso para saber qué hacer primero, qué calculadora usar y cómo avanzar con orden.
-              </p>
-
-              <div className="mt-7 flex flex-col items-center gap-3 sm:flex-row lg:items-start">
-                <TrackedLink
-                  href="/bienvenida"
-                  eventName="home_cta_primary_clicked"
-                  eventProps={{ location: 'hero', target_path: '/bienvenida' }}
-                  className="group w-full rounded-lg border border-violet-300/45 bg-violet-500 px-7 py-3.5 text-center text-base font-bold text-white shadow-[0_20px_56px_rgba(124,58,237,0.4)] transition-all duration-200 hover:-translate-y-0.5 hover:border-violet-200/70 hover:bg-violet-400 hover:shadow-[0_24px_66px_rgba(139,92,246,0.48)] sm:w-auto"
-                >
-                  <span className="inline-flex items-center gap-2">
-                    <span>Empezar ruta guiada</span>
-                    <span className="text-lg leading-none transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">→</span>
-                  </span>
-                </TrackedLink>
-                <TrackedLink
-                  href="/guias"
-                  eventName="home_cta_secondary_clicked"
-                  eventProps={{ location: 'hero', target_path: '/guias' }}
-                  className="w-full rounded-lg border border-white/15 bg-white/[0.05] px-7 py-3.5 text-center text-base font-semibold text-white shadow-[0_14px_34px_rgba(15,23,42,0.16)] backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-violet-200/30 hover:bg-white/[0.09] hover:shadow-[0_18px_42px_rgba(124,58,237,0.18)] sm:w-auto"
-                >
-                  Ver guías gratis
-                </TrackedLink>
-              </div>
-
-              <div className="mt-7 grid grid-cols-2 gap-2.5 sm:grid-cols-4">
-                {[
-                  ['50+', 'casas'],
-                  ['+2.000€', 'documentados'],
-                  ['7', 'módulos'],
-                  ['4', 'modos'],
-                ].map(([value, label]) => (
-                  <div
-                    key={label}
-                    className="rounded-lg border border-violet-200/12 bg-white/[0.045] px-3 py-2.5 text-center shadow-inner shadow-white/[0.03] backdrop-blur-sm lg:text-left"
-                  >
-                    <p className="text-lg font-bold text-white sm:text-xl">{value}</p>
-                    <p className="mt-1 text-[11px] leading-tight text-slate-400 sm:text-xs">{label}</p>
-                  </div>
-                ))}
-              </div>
+        <div className="relative mx-auto max-w-5xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8 lg:py-16">
+          <div className="mx-auto max-w-4xl text-center">
+            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-violet-300/25 bg-violet-300/10 px-3.5 py-1.5 text-xs font-semibold text-violet-100 shadow-[0_0_28px_rgba(139,92,246,0.16)] backdrop-blur-sm">
+              <span className="h-2 w-2 rounded-full bg-violet-300 shadow-[0_0_16px_rgba(196,181,253,0.8)]" />
+              Beta gratuita · Sin registro
             </div>
 
-            <div className="relative">
-              <div className="pointer-events-none absolute -inset-6 rounded-full bg-violet-500/12 blur-3xl" />
+            <h1 className="mx-auto max-w-4xl font-playfair text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-[3.55rem]">
+              Deja de perder bonos de bienvenida por falta de método.
+            </h1>
+
+            <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg">
+              La app te guía paso a paso para saber qué hacer primero, qué calculadora usar y cómo avanzar con orden.
+            </p>
+
+            <div className="relative mt-6">
+              <div className="pointer-events-none absolute inset-x-1/2 top-1/2 h-24 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet-500/12 blur-3xl" />
               <HeroMockup />
+            </div>
+
+            <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <TrackedLink
+                href="/bienvenida"
+                eventName="home_cta_primary_clicked"
+                eventProps={{ location: 'hero', target_path: '/bienvenida' }}
+                className="group w-full rounded-lg border border-violet-300/45 bg-violet-500 px-7 py-3.5 text-center text-base font-bold text-white shadow-[0_20px_56px_rgba(124,58,237,0.4)] transition-all duration-200 hover:-translate-y-0.5 hover:border-violet-200/70 hover:bg-violet-400 hover:shadow-[0_24px_66px_rgba(139,92,246,0.48)] sm:w-auto"
+              >
+                <span className="inline-flex items-center gap-2">
+                  <span>Empezar ruta guiada</span>
+                  <span className="text-lg leading-none transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">→</span>
+                </span>
+              </TrackedLink>
+              <TrackedLink
+                href="/guias"
+                eventName="home_cta_secondary_clicked"
+                eventProps={{ location: 'hero', target_path: '/guias' }}
+                className="w-full rounded-lg border border-white/15 bg-white/[0.05] px-7 py-3.5 text-center text-base font-semibold text-white shadow-[0_14px_34px_rgba(15,23,42,0.16)] backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-violet-200/30 hover:bg-white/[0.09] hover:shadow-[0_18px_42px_rgba(124,58,237,0.18)] sm:w-auto"
+              >
+                Ver guías gratis
+              </TrackedLink>
+            </div>
+
+            <div className="mx-auto mt-7 grid max-w-3xl grid-cols-2 gap-2.5 sm:grid-cols-4">
+              {[
+                ['50+', 'casas'],
+                ['+2.000€', 'documentados'],
+                ['7', 'módulos'],
+                ['4', 'modos'],
+              ].map(([value, label]) => (
+                <div
+                  key={label}
+                  className="rounded-lg border border-violet-200/12 bg-white/[0.045] px-3 py-2.5 text-center shadow-inner shadow-white/[0.03] backdrop-blur-sm"
+                >
+                  <p className="text-lg font-bold text-white sm:text-xl">{value}</p>
+                  <p className="mt-1 text-[11px] leading-tight text-slate-400 sm:text-xs">{label}</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
