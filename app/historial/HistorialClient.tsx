@@ -60,6 +60,13 @@ function EmptyState({ onAdd }: { onAdd: () => void }) {
         ))}
       </div>
 
+      <Link
+        href="/bienvenida"
+        className="w-full max-w-sm rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-semibold text-emerald-700 text-center hover:bg-emerald-100 transition-colors"
+      >
+        ¿Aún no has conseguido ningún bono? Empieza aquí
+      </Link>
+
       <button
         onClick={onAdd}
         className="px-5 py-2.5 rounded-xl bg-[#2A1F3D] text-white text-sm font-semibold hover:bg-[#3d2e57] transition-colors"
