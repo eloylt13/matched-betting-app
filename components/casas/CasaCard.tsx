@@ -113,9 +113,9 @@ export function CasaCard({ casa, estado }: Props) {
 
           {/* Beneficio */}
           <div className="flex shrink-0 flex-col items-end gap-2 sm:gap-0">
-            <div className="text-right rounded-lg sm:rounded-xl bg-emerald-50 px-2 py-1.5 sm:bg-transparent sm:px-0 sm:py-0">
-              <p className="text-base sm:text-lg font-bold text-gray-900 leading-none">+{casa.beneficioPotencial} {casa.market === 'latam' ? 'USD' : '€'}</p>
-              <p className="text-[11px] text-emerald-700 sm:text-xs sm:text-gray-400 mt-0.5 sm:mt-1">potencial</p>
+            <div className="relative overflow-hidden rounded-xl border border-violet-100/80 bg-[linear-gradient(135deg,rgba(255,255,255,0.96)_0%,rgba(245,243,255,0.9)_48%,rgba(236,253,245,0.86)_100%)] px-2.5 py-1.5 text-right shadow-[inset_0_1px_0_rgba(255,255,255,0.9),0_10px_22px_rgba(76,29,149,0.09),0_2px_8px_rgba(16,185,129,0.08)] ring-1 ring-white/70 before:pointer-events-none before:absolute before:inset-x-2 before:top-0 before:h-px before:bg-white/90 before:content-[''] sm:px-3 sm:py-2">
+              <p className="relative text-[15px] font-extrabold leading-none text-slate-950 sm:text-[17px]">+{casa.beneficioPotencial} {casa.market === 'latam' ? 'USD' : '€'}</p>
+              <p className="relative mt-0.5 text-[11px] font-semibold leading-none text-violet-500/80 sm:text-xs">potencial</p>
             </div>
 
             <span
