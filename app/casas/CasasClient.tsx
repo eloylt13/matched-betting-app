@@ -27,7 +27,7 @@ const FILTERS: Array<{ key: FilterKey; label: string }> = [
   { key: "apuesta-recibe", label: "Apuesta & Recibe" },
   { key: "reembolso", label: "Reembolso" },
   { key: "rollover", label: "Rollover" },
-  { key: "faciles", label: "MÃ¡s fÃ¡ciles" },
+  { key: "faciles", label: "Más fáciles" },
 ]
 
 function matchesFilter(casa: Casa, filter: FilterKey) {
@@ -72,80 +72,109 @@ export default function CasasPage() {
             <div className="space-y-2">
               <h1 className="text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">Casas de apuestas</h1>
               <p className="max-w-2xl text-sm leading-6 text-slate-600 sm:text-[15px]">
-                Explora primero las casas de EspaÃ±a y, si lo necesitas, consulta tambiÃ©n opciones disponibles en LATAM.
+                Explora primero las casas de España y, si lo necesitas, consulta también opciones disponibles en LATAM.
               </p>
             </div>
 
-            <div className="flex flex-wrap gap-2">
-              {(["espana", "latam"] as MarketKey[]).map((market) => (
-                <button
-                  key={market}
-                  type="button"
-                  onClick={() => handleMarketChange(market)}
-                  className={`rounded-full border px-4 py-2 text-sm font-semibold transition-all duration-200 ${
-                    activeMarket === market
-                      ? "border-violet-400/55 bg-violet-500/12 text-violet-950 shadow-[0_0_0_1px_rgba(139,92,246,0.12),0_10px_24px_-18px_rgba(139,92,246,0.3)]"
-                      : "border-slate-200 bg-white/80 text-slate-600 hover:border-violet-300/40 hover:bg-white hover:text-slate-900"
-                  }`}
-                >
-                  {market === "espana" ? "ðŸ‡ªðŸ‡¸ EspaÃ±a" : "ðŸŒŽ LATAM"}
-                </button>
-              ))}
-            </div>
-
-            {activeMarket === "latam" && (
-              <div className="space-y-2 rounded-2xl border border-slate-200/80 bg-white/65 p-3 shadow-[0_12px_32px_-24px_rgba(15,23,42,0.2)] sm:p-4">
-                <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-slate-500">PaÃ­s</p>
-                <div className="flex gap-2 overflow-x-auto pb-1 -mx-1 px-1 [scrollbar-width:none]">
-                  {PAISES.map((pais) => (
-                    <button
-                      key={pais.key}
-                      type="button"
-                      onClick={() => setActivePais(pais.key)}
-                      title={pais.label}
-                      className={`shrink-0 rounded-full border px-3 py-1.5 text-xs font-semibold transition-all duration-200 ${
-                        activePais === pais.key
-                          ? "border-violet-400/55 bg-violet-500/12 text-violet-950 shadow-[0_0_0_1px_rgba(139,92,246,0.1),0_8px_18px_-14px_rgba(139,92,246,0.3)]"
-                          : "border-slate-200 bg-white/80 text-slate-600 hover:border-violet-300/35 hover:bg-white hover:text-slate-900"
-                      }`}
-                    >
-                      {pais.label}
-                    </button>
-                  ))}
+            <div className="space-y-4 rounded-3xl border border-slate-200/70 bg-slate-50/70 p-3 shadow-[0_12px_32px_-28px_rgba(15,23,42,0.16)] sm:p-4 lg:p-5">
+              <div className="space-y-3">
+                <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-slate-500">Contexto</p>
+                <div className="rounded-2xl border border-slate-200/80 bg-white/75 p-3 shadow-[0_10px_28px_-24px_rgba(15,23,42,0.18)] sm:p-4">
+                  <div className="flex flex-wrap gap-2">
+                    {(["espana", "latam"] as MarketKey[]).map((market) => (
+                      <button
+                        key={market}
+                        type="button"
+                        onClick={() => handleMarketChange(market)}
+                        className={`rounded-full border px-4 py-2 text-sm font-semibold transition-all duration-200 ${
+                          activeMarket === market
+                            ? "border-violet-400/55 bg-violet-500/12 text-violet-950 shadow-[0_0_0_1px_rgba(139,92,246,0.12),0_10px_24px_-18px_rgba(139,92,246,0.3)]"
+                            : "border-slate-200 bg-white/80 text-slate-600 hover:border-violet-300/40 hover:bg-white hover:text-slate-900"
+                        }`}
+                      >
+                        {market === "espana" ? "🇪🇸 España" : "🌎 LATAM"}
+                      </button>
+                    ))}
+                  </div>
                 </div>
               </div>
-            )}
 
-            <div className="space-y-2 rounded-2xl border border-slate-200/80 bg-white/65 p-3 shadow-[0_12px_32px_-24px_rgba(15,23,42,0.2)] sm:p-4">
-              <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-slate-500">TipologÃ­a</p>
-              <div className="flex gap-2 overflow-x-auto pb-1 -mx-1 px-1 [scrollbar-width:none]">
-                {FILTERS.map((filter) => (
-                  <button
-                    key={filter.key}
-                    type="button"
-                    onClick={() => setActiveFilter(filter.key)}
-                    className={`shrink-0 rounded-full border px-3 py-1.5 text-xs sm:text-sm font-medium transition-all duration-200 ${
-                      activeFilter === filter.key
-                        ? "border-violet-400/55 bg-violet-500/12 text-violet-950 shadow-[0_0_0_1px_rgba(139,92,246,0.1),0_8px_18px_-14px_rgba(139,92,246,0.3)]"
-                        : "border-slate-200 bg-white/80 text-slate-600 hover:border-violet-300/35 hover:bg-white hover:text-slate-900"
-                    }`}
-                  >
-                    {filter.label}
-                  </button>
-                ))}
+              {activeMarket === "latam" ? (
+                <div className="grid gap-3 lg:grid-cols-[0.92fr_1.08fr]">
+                  <div className="space-y-2 rounded-2xl border border-slate-200/80 bg-white/65 p-3 shadow-[0_10px_28px_-24px_rgba(15,23,42,0.18)] sm:p-4">
+                    <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-slate-500">País</p>
+                    <div className="flex gap-2 overflow-x-auto pb-1 -mx-1 px-1 [scrollbar-width:none]">
+                      {PAISES.map((pais) => (
+                        <button
+                          key={pais.key}
+                          type="button"
+                          onClick={() => setActivePais(pais.key)}
+                          title={pais.label}
+                          className={`shrink-0 rounded-full border px-3 py-1.5 text-xs font-semibold transition-all duration-200 ${
+                            activePais === pais.key
+                              ? "border-violet-400/55 bg-violet-500/12 text-violet-950 shadow-[0_0_0_1px_rgba(139,92,246,0.1),0_8px_18px_-14px_rgba(139,92,246,0.3)]"
+                              : "border-slate-200 bg-white/80 text-slate-600 hover:border-violet-300/35 hover:bg-white hover:text-slate-900"
+                          }`}
+                        >
+                          {pais.label}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="space-y-2 rounded-2xl border border-slate-200/80 bg-white/65 p-3 shadow-[0_10px_28px_-24px_rgba(15,23,42,0.18)] sm:p-4">
+                    <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-slate-500">Filtrar por tipología</p>
+                    <div className="flex gap-2 overflow-x-auto pb-1 -mx-1 px-1 [scrollbar-width:none]">
+                      {FILTERS.map((filter) => (
+                        <button
+                          key={filter.key}
+                          type="button"
+                          onClick={() => setActiveFilter(filter.key)}
+                          className={`shrink-0 rounded-full border px-3 py-1.5 text-xs sm:text-sm font-medium transition-all duration-200 ${
+                            activeFilter === filter.key
+                              ? "border-violet-400/55 bg-violet-500/12 text-violet-950 shadow-[0_0_0_1px_rgba(139,92,246,0.1),0_8px_18px_-14px_rgba(139,92,246,0.3)]"
+                              : "border-slate-200 bg-white/80 text-slate-600 hover:border-violet-300/35 hover:bg-white hover:text-slate-900"
+                          }`}
+                        >
+                          {filter.label}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <div className="space-y-2 rounded-2xl border border-slate-200/80 bg-white/65 p-3 shadow-[0_10px_28px_-24px_rgba(15,23,42,0.18)] sm:p-4">
+                  <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-slate-500">Filtrar por tipología</p>
+                  <div className="flex gap-2 overflow-x-auto pb-1 -mx-1 px-1 [scrollbar-width:none]">
+                    {FILTERS.map((filter) => (
+                      <button
+                        key={filter.key}
+                        type="button"
+                        onClick={() => setActiveFilter(filter.key)}
+                        className={`shrink-0 rounded-full border px-3 py-1.5 text-xs sm:text-sm font-medium transition-all duration-200 ${
+                          activeFilter === filter.key
+                            ? "border-violet-400/55 bg-violet-500/12 text-violet-950 shadow-[0_0_0_1px_rgba(139,92,246,0.1),0_8px_18px_-14px_rgba(139,92,246,0.3)]"
+                            : "border-slate-200 bg-white/80 text-slate-600 hover:border-violet-300/35 hover:bg-white hover:text-slate-900"
+                        }`}
+                      >
+                        {filter.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              <div className="flex flex-col gap-2 rounded-2xl border border-slate-200/80 bg-white/65 px-3 py-3 text-sm shadow-[0_12px_32px_-24px_rgba(15,23,42,0.2)] backdrop-blur-sm sm:flex-row sm:items-center sm:justify-between sm:px-4">
+                <p className="inline-flex self-start items-center gap-2 rounded-full border border-violet-300/25 bg-violet-500/10 px-3 py-1.5 text-sm text-slate-700 shadow-[0_0_0_1px_rgba(139,92,246,0.06)]">
+                  <span className="font-semibold text-slate-900">
+                    {filteredCasas.length} casa{filteredCasas.length !== 1 ? "s" : ""}
+                  </span>{" "}
+                  <span className="text-slate-500">visible{filteredCasas.length !== 1 ? "s" : ""}</span>
+                </p>
+                <p className="max-w-full rounded-full border border-slate-200/80 bg-white/70 px-3 py-1.5 text-[11px] leading-5 text-slate-500 sm:max-w-[60%] sm:text-xs sm:text-right">
+                  Aviso: algunos enlaces de esta sección pueden ser de afiliación.
+                </p>
               </div>
-            </div>
-
-            <div className="flex flex-col gap-2 rounded-2xl border border-slate-200/80 bg-white/65 px-3 py-3 text-sm shadow-[0_12px_32px_-24px_rgba(15,23,42,0.2)] backdrop-blur-sm sm:flex-row sm:items-center sm:justify-between sm:px-4">
-              <p className="inline-flex self-start items-center gap-2 rounded-full border border-violet-300/25 bg-violet-500/10 px-3 py-1.5 text-sm text-slate-700 shadow-[0_0_0_1px_rgba(139,92,246,0.06)]">
-                <span className="font-semibold text-slate-900">
-                  {filteredCasas.length} casa{filteredCasas.length !== 1 ? "s" : ""}
-                </span>{" "}
-                <span className="text-slate-500">visible{filteredCasas.length !== 1 ? "s" : ""}</span>
-              </p>
-              <p className="max-w-full rounded-full border border-slate-200/80 bg-white/70 px-3 py-1.5 text-[11px] leading-5 text-slate-500 sm:max-w-[60%] sm:text-xs sm:text-right">
-                Aviso: algunos enlaces de esta secciÃ³n pueden ser de afiliaciÃ³n.
-              </p>
             </div>
           </div>
         </section>
