@@ -129,14 +129,14 @@ export default function CasasPage() {
             </div>
           </div>
 
-          <div className="flex flex-col gap-2 border-t border-white/10 pt-3 text-sm sm:flex-row sm:items-center sm:justify-between">
-            <p className="text-sm text-slate-300">
+          <div className="flex flex-col gap-2 rounded-2xl border border-white/10 bg-white/[0.03] px-3 py-3 text-sm shadow-[0_14px_40px_-30px_rgba(15,23,42,0.8)] sm:flex-row sm:items-center sm:justify-between sm:px-4">
+            <p className="inline-flex self-start items-center gap-2 rounded-full border border-violet-400/20 bg-violet-500/10 px-3 py-1.5 text-sm text-slate-200 shadow-[0_0_0_1px_rgba(139,92,246,0.08)]">
               <span className="font-semibold text-white">
                 {filteredCasas.length} casa{filteredCasas.length !== 1 ? "s" : ""}
               </span>{" "}
-              visible{filteredCasas.length !== 1 ? "s" : ""}
+              <span className="text-slate-300">visible{filteredCasas.length !== 1 ? "s" : ""}</span>
             </p>
-            <p className="text-[11px] leading-5 text-slate-400 sm:text-xs sm:text-right">
+            <p className="max-w-full rounded-full border border-white/10 bg-slate-950/35 px-3 py-1.5 text-[11px] leading-5 text-slate-400 sm:max-w-[60%] sm:text-xs sm:text-right">
               Aviso: algunos enlaces de esta sección pueden ser de afiliación.
             </p>
           </div>
