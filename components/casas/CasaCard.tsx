@@ -11,28 +11,28 @@ function getTipologiaStyle(casa: Casa) {
   const tipo = casa.tipologia
 
   if (tipo === 'exchange') return {
-    border: 'border-l-4 border-l-purple-500',
+    border: 'border-purple-200/70 before:bg-purple-400/50 before:shadow-[0_0_18px_rgba(168,85,247,0.28)] after:bg-purple-400/10',
     badge: 'bg-purple-100 text-purple-700',
     dot: 'bg-purple-500',
     label: 'Exchange',
     icon: '♻️',
   }
   if (tipo === 'rollover') return {
-    border: 'border-l-4 border-l-amber-400',
+    border: 'border-amber-200/75 before:bg-amber-400/55 before:shadow-[0_0_18px_rgba(251,191,36,0.3)] after:bg-amber-300/10',
     badge: 'bg-amber-100 text-amber-700',
     dot: 'bg-amber-400',
     label: 'Rollover',
     icon: '🔄',
   }
   if (tipo === 'reembolso') return {
-    border: 'border-l-4 border-l-blue-400',
+    border: 'border-sky-200/75 before:bg-sky-400/50 before:shadow-[0_0_18px_rgba(56,189,248,0.28)] after:bg-sky-300/10',
     badge: 'bg-blue-100 text-blue-700',
     dot: 'bg-blue-400',
     label: 'Reembolso',
     icon: '🔵',
   }
   return {
-    border: 'border-l-4 border-l-emerald-500',
+    border: 'border-emerald-200/75 before:bg-emerald-400/55 before:shadow-[0_0_18px_rgba(52,211,153,0.3)] after:bg-emerald-300/10',
     badge: 'bg-emerald-100 text-emerald-700',
     dot: 'bg-emerald-500',
     label: 'Apuesta & Recibe',
@@ -62,9 +62,9 @@ export function CasaCard({ casa, estado }: Props) {
   return (
     <Link
       href={`/casas/${casa.id}`}
-      className={`block rounded-2xl border border-violet-100/70 bg-[linear-gradient(180deg,rgba(255,255,255,0.94)_0%,rgba(248,250,255,0.9)_46%,rgba(255,255,255,0.96)_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,0.85),0_18px_44px_rgba(15,23,42,0.1),0_6px_18px_rgba(88,28,135,0.06)] ${style.border} overflow-hidden hover:shadow-md transition-all group ${completada ? 'opacity-60' : ''}`}
+      className={`relative isolate block rounded-2xl border border-violet-100/70 bg-[linear-gradient(180deg,rgba(255,255,255,0.94)_0%,rgba(248,250,255,0.9)_46%,rgba(255,255,255,0.96)_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,0.85),0_18px_44px_rgba(15,23,42,0.1),0_6px_18px_rgba(88,28,135,0.06)] ${style.border} overflow-hidden transition-all before:pointer-events-none before:absolute before:inset-y-4 before:left-0 before:z-0 before:w-px before:rounded-r-full before:content-[''] after:pointer-events-none after:absolute after:inset-y-0 after:left-0 after:z-0 after:w-16 after:content-[''] group hover:shadow-md ${completada ? 'opacity-60' : ''}`}
     >
-      <div className="p-3 sm:p-5">
+      <div className="relative z-10 p-3 sm:p-5">
         {/* Header */}
         <div className="flex items-start justify-between gap-2.5 sm:gap-3">
           <div className="flex items-start gap-2.5 sm:gap-3 min-w-0 flex-1">
