@@ -46,9 +46,9 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
 
   const navItems = [
     { href: '/dashboard', label: 'Dashboard', icon: 'D' },
-    { href: '/guias', label: 'GuÃ­as', icon: 'G' },
+    { href: '/guias', label: 'Guías', icon: 'G' },
     { href: '/blog', label: 'Blog', icon: 'B' },
-    { href: '/pronosticos', label: 'PronÃ³sticos', icon: 'P' },
+    { href: '/pronosticos', label: 'Pronósticos', icon: 'P' },
     { href: '/calculadora', label: 'Calculadora', icon: 'C' },
     { href: '/casas', label: 'Casas', icon: 'H' },
     { href: '/bonos', label: 'Bonos', icon: 'O' },
@@ -143,7 +143,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                     IAMagica
                   </p>
                   <p className="text-sm font-medium text-slate-200">
-                    IAPredictHub Â· Matched Betting para uso educativo y responsable.
+                    IAPredictHub · Matched Betting para uso educativo y responsable.
                   </p>
                 </div>
               </div>
@@ -160,8 +160,8 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
             </div>
 
             <div className="mt-5 border-t border-white/10 pt-4 text-xs text-slate-400 sm:flex sm:items-center sm:justify-between">
-              <span>Â© 2026 IAMagica</span>
-              <span>IAPredictHub Â· Solo para uso educativo. Apuesta con responsabilidad.</span>
+              <span>© 2026 IAMagica</span>
+              <span>IAPredictHub · Solo para uso educativo. Apuesta con responsabilidad.</span>
             </div>
           </div>
         </div>
