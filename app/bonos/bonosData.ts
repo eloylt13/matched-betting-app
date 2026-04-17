@@ -20,6 +20,60 @@ export type BonoLatamUsCurado = {
   url: string
 }
 
+export const ordenBonosEspana = [
+  '888sport',
+  'bet777',
+  'betfair',
+  'betsson',
+  'betway',
+  'casino-gran-madrid',
+  'codere',
+  'golden-bull',
+  'goldenpark',
+  'interwetten',
+  'kirolbet',
+  'lsbet',
+  'luckia',
+  'marca-apuestas',
+  'optimbet',
+  'paf',
+  'pokerstars',
+  'slottojam',
+  'sportium',
+  'tornadobet',
+  'versus',
+  'william-hill',
+  'winamax',
+  'yosports',
+] as const
+
+export const ordenBonosLatamUs = [
+  'REG:20Bet LATAM',
+  'CL:Betano CL',
+  'EC:Betano EC',
+  'MX:Betano MX',
+  'PE:Betano PE',
+  'PE:Betcris PE',
+  'PE:Betsafe PE',
+  'REG:Betfair LATAM',
+  'CL:BetSala CL',
+  'CL:Betsson CL',
+  'PE:Betsson PE',
+  'MX:Codere MX',
+  'CL:Coolbet CL',
+  'PE:Coolbet PE',
+  'PE:Inkabet PE',
+  'MX:Jugabet MX',
+  'REG:LSbet',
+  'CL:LVBET CL',
+  'CL:Novibet CL',
+  'MX:Novibet MX',
+  'REG:ReloadBet',
+  'MX:Sportiumbet MX',
+  'MX:Winner MX',
+  'MX:Winpot MX',
+] as const
+
 export const bonosEspanaCurados: BonoListadoEspana[] = [
   {
     id: '888sport',

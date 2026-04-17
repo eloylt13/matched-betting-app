@@ -1,13 +1,30 @@
 'use client'
 
 import { useState } from 'react'
-import { bonosEspanaCurados, bonosLatamUsCurados, type BonoLatamUsCurado, type BonoListadoEspana } from './bonosData'
+import {
+  bonosEspanaCurados,
+  bonosLatamUsCurados,
+  ordenBonosEspana,
+  ordenBonosLatamUs,
+  type BonoLatamUsCurado,
+  type BonoListadoEspana,
+} from './bonosData'
 
 type MarketKey = 'espana' | 'latam'
 type BonoListadoItem = BonoListadoEspana | BonoLatamUsCurado
 
-function sortByName<T extends { nombre: string }>(casas: T[]) {
-  return [...casas].sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'))
+const ordenEspanaPorId = new Map(ordenBonosEspana.map((id, index) => [id, index]))
+const ordenLatamUsPorClave = new Map(ordenBonosLatamUs.map((clave, index) => [clave, index]))
+
+function ordenarPorOrdenManual<T>(items: T[], getClave: (item: T) => string, orden: Map<string, number>) {
+  return [...items].sort((a, b) => {
+    const claveA = getClave(a)
+    const claveB = getClave(b)
+    const ordenA = orden.get(claveA) ?? Number.MAX_SAFE_INTEGER
+    const ordenB = orden.get(claveB) ?? Number.MAX_SAFE_INTEGER
+
+    return ordenA - ordenB || claveA.localeCompare(claveB, 'es')
+  })
 }
 
 function MarketSelector({
@@ -90,9 +107,11 @@ function BonusList({ casas, showLatamMarket = false }: { casas: BonoListadoItem[
 
 export default function BonosClient() {
   const [activeMarket, setActiveMarket] = useState<MarketKey>('espana')
-  const casasEspana = sortByName(bonosEspanaCurados)
-  const casasLatam = sortByName(
+  const casasEspana = ordenarPorOrdenManual(bonosEspanaCurados, (casa) => casa.id, ordenEspanaPorId)
+  const casasLatam = ordenarPorOrdenManual(
     bonosLatamUsCurados.filter((casa) => casa.decision === 'ok' || casa.decision === 'prudente'),
+    (casa) => `${casa.mercado}:${casa.nombre}`,
+    ordenLatamUsPorClave,
   )
   const activeCasas = activeMarket === 'latam' ? casasLatam : casasEspana
 
