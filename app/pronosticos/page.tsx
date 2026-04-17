@@ -59,14 +59,6 @@ export default async function PronosticosPage() {
           </div>
 
           <div className="px-6 py-6 sm:px-8 sm:py-8">
-            <div className="mb-6 rounded-2xl border border-stone-100 bg-stone-50 px-4 py-3">
-              <p className="text-sm text-stone-600">
-                {hasDailyCombinada
-                  ? dailyCombinada.motivoGeneral
-                  : 'Solo publicamos la combinada gratis diaria cuando hay partidos y mercados suficientes para validarla.'}
-              </p>
-            </div>
-
             {hasDailyCombinada ? (
               <>
                 <FreebetDailyReveal dailyCombinada={dailyCombinada} />
