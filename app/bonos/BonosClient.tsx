@@ -61,15 +61,18 @@ function MarketSelector({
 
 function BonusList({ casas, showLatamMarket = false }: { casas: BonoListadoItem[]; showLatamMarket?: boolean }) {
   const gridClass = showLatamMarket
-    ? 'sm:grid-cols-[minmax(0,1fr)_6rem_9rem_15rem]'
+    ? 'sm:grid-cols-[minmax(8rem,1fr)_minmax(18rem,2.4fr)_5.5rem_10rem]'
     : 'sm:grid-cols-[minmax(0,1fr)_minmax(0,2fr)_15rem]'
+  const ofertaClass = showLatamMarket
+    ? 'min-w-0 text-sm font-semibold leading-6 text-slate-800 sm:pr-4'
+    : 'text-sm font-semibold text-slate-800'
 
   return (
     <div className="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-[0_18px_45px_-38px_rgba(15,23,42,0.28)]">
       <div className={`hidden ${gridClass} border-b border-slate-200 bg-slate-50 px-4 py-3 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:grid`}>
         <span>Casa</span>
-        {showLatamMarket ? <span>Mercado</span> : null}
         <span>Oferta</span>
+        {showLatamMarket ? <span>Mercado</span> : null}
         <span className="text-right">Acciones</span>
       </div>
 
@@ -80,12 +83,12 @@ function BonusList({ casas, showLatamMarket = false }: { casas: BonoListadoItem[
             className={`grid gap-3 px-4 py-4 transition-colors hover:bg-slate-50/70 ${gridClass} sm:items-center`}
           >
             <h3 className="min-w-0 text-base font-semibold text-slate-950">{casa.nombre}</h3>
+            <p className={ofertaClass}>{casa.ofertaTexto}</p>
             {showLatamMarket ? (
               <span className="inline-flex w-fit items-center rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs font-semibold text-slate-600">
                 {'mercado' in casa ? casa.mercado : null}
               </span>
             ) : null}
-            <p className="text-sm font-semibold text-slate-800">{casa.ofertaTexto}</p>
             <div className="flex flex-wrap gap-2 sm:justify-end">
               {casa.url ? (
                 <a
