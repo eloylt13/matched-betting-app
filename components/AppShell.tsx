@@ -65,17 +65,18 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between gap-4">
             <Link href="/" className="group flex items-center gap-3">
-              <span className="relative flex h-10 w-10 items-center justify-center overflow-hidden rounded-2xl border border-violet-200/15 bg-white/[0.05] shadow-[0_12px_30px_rgba(88,28,135,0.18)]">
-                <Image src="/logo.png" alt="IAPredictHub" width={40} height={40} className="h-10 w-10 rounded-2xl object-cover" />
+              <span className="relative flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-violet-200/15 bg-white/[0.05] p-1 shadow-[0_12px_30px_rgba(88,28,135,0.18)] sm:h-[3.25rem] sm:w-[3.25rem]">
+                <Image
+                  src="/logo.png"
+                  alt="IAPredictHub"
+                  width={52}
+                  height={52}
+                  className="h-full w-full object-contain"
+                  priority
+                />
               </span>
-              <span className="flex flex-col leading-tight">
-                <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-violet-200/70">
-                  Internal app
-                </span>
-                <span className="text-sm font-semibold text-white sm:text-base">
-                  IAPredictHub
-                  <span className="hidden sm:inline text-violet-200/80"> · Matched Betting</span>
-                </span>
+              <span className="text-[15px] font-semibold tracking-tight text-white sm:text-base">
+                IAPredictHub
               </span>
             </Link>
 
