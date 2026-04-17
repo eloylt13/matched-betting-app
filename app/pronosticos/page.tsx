@@ -30,9 +30,6 @@ export default async function PronosticosPage() {
             Freebet diaria
           </h1>
 
-          <p className="mt-3 max-w-2xl text-sm sm:text-base text-stone-500 leading-relaxed">
-            Una vista previa simple de la selección diaria para seguirla de un vistazo.
-          </p>
         </div>
 
         <section className="overflow-hidden rounded-3xl border border-stone-200 bg-white shadow-sm">
