@@ -47,12 +47,12 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   const navItems = [
     { href: '/dashboard', label: 'Dashboard', icon: 'D' },
     { href: '/guias', label: 'Guías', icon: 'G' },
-    { href: '/blog', label: 'Blog', icon: 'B' },
-    { href: '/pronosticos', label: 'Pronósticos', icon: 'P' },
-    { href: '/calculadora', label: 'Calculadora', icon: 'C' },
     { href: '/casas', label: 'Casas', icon: 'H' },
+    { href: '/calculadora', label: 'Calculadora', icon: 'C' },
+    { href: '/historial', label: 'Seguimiento', icon: 'S' },
+    { href: '/pronosticos', label: 'Pronósticos', icon: 'P' },
+    { href: '/blog', label: 'Blog', icon: 'B' },
     { href: '/bonos', label: 'Bonos', icon: 'O' },
-    { href: '/historial', label: 'Seguimiento', icon: 'I' },
   ]
 
   // La landing maneja su propio nav y layout
