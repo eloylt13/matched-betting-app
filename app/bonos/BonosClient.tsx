@@ -1,8 +1,10 @@
 'use client'
 
-import Link from 'next/link'
+import { useState } from 'react'
 import { todasLasCasas } from '@/lib/presets'
 import type { Casa } from '@/types/presets'
+
+type MarketKey = 'espana' | 'latam'
 
 const LATAM_MARKET_LABELS: Partial<Record<Casa['pais'], string>> = {
   regionales: 'REG',
@@ -33,25 +35,33 @@ function getLatamMarketLabel(casa: Casa) {
   return LATAM_MARKET_LABELS[casa.pais] ?? casa.pais.toUpperCase()
 }
 
-function MarketSelector() {
+function MarketSelector({
+  activeMarket,
+  onMarketChange,
+}: {
+  activeMarket: MarketKey
+  onMarketChange: (market: MarketKey) => void
+}) {
   return (
     <nav
       aria-label="Mercados de bonos"
       className="mt-6 rounded-2xl border border-slate-200/80 bg-white/75 p-3 shadow-[0_18px_45px_-38px_rgba(15,23,42,0.24)] backdrop-blur-sm sm:mt-8 sm:inline-flex"
     >
       <div className="flex flex-wrap gap-2">
-        <a
-          href="#bonos-espana"
-          className="rounded-full border border-violet-400/55 bg-violet-500/12 px-4 py-2 text-sm font-semibold text-violet-950 shadow-[0_0_0_1px_rgba(139,92,246,0.12),0_10px_24px_-18px_rgba(139,92,246,0.3)] transition-colors hover:bg-violet-500/16"
-        >
-          Es España
-        </a>
-        <a
-          href="#bonos-latam"
-          className="rounded-full border border-slate-200 bg-white/85 px-4 py-2 text-sm font-semibold text-slate-700 transition-colors hover:border-violet-300/40 hover:text-slate-950"
-        >
-          🌎 LATAM
-        </a>
+        {(['espana', 'latam'] as MarketKey[]).map((market) => (
+          <button
+            key={market}
+            type="button"
+            onClick={() => onMarketChange(market)}
+            className={`rounded-full border px-4 py-2 text-sm font-semibold transition-colors ${
+              activeMarket === market
+                ? 'border-violet-400/55 bg-violet-500/12 text-violet-950 shadow-[0_0_0_1px_rgba(139,92,246,0.12),0_10px_24px_-18px_rgba(139,92,246,0.3)] hover:bg-violet-500/16'
+                : 'border-slate-200 bg-white/85 text-slate-700 hover:border-violet-300/40 hover:text-slate-950'
+            }`}
+          >
+            {market === 'espana' ? 'España' : 'LATAM'}
+          </button>
+        ))}
       </div>
     </nav>
   )
@@ -95,12 +105,6 @@ function BonusList({ casas, showLatamMarket = false }: { casas: Casa[]; showLata
                   Ir a la oferta
                 </a>
               ) : null}
-              <Link
-                href={`/casas/${casa.id}`}
-                className="inline-flex h-9 items-center justify-center rounded-md border border-slate-300 bg-white px-3 text-sm font-semibold text-slate-700 transition-colors hover:border-slate-500 hover:text-slate-950"
-              >
-                Ver ficha
-              </Link>
             </div>
           </div>
         ))}
@@ -110,8 +114,10 @@ function BonusList({ casas, showLatamMarket = false }: { casas: Casa[]; showLata
 }
 
 export default function BonosClient() {
+  const [activeMarket, setActiveMarket] = useState<MarketKey>('espana')
   const casasEspana = sortByName(todasLasCasas.filter((casa) => casa.market === 'espana'))
   const casasLatam = sortByName(todasLasCasas.filter((casa) => casa.market === 'latam'))
+  const activeCasas = activeMarket === 'latam' ? casasLatam : casasEspana
 
   return (
     <main className="bg-slate-50">
@@ -120,16 +126,13 @@ export default function BonosClient() {
           Mejores bonos de apuestas online España y LATAM
         </h1>
 
-        <MarketSelector />
+        <MarketSelector activeMarket={activeMarket} onMarketChange={setActiveMarket} />
 
-        <section id="bonos-espana" className="mt-8 scroll-mt-6 sm:mt-10">
-          <h2 className="mb-3 text-lg font-semibold text-slate-950">España</h2>
-          <BonusList casas={casasEspana} />
-        </section>
-
-        <section id="bonos-latam" className="mt-8 scroll-mt-6 sm:mt-10">
-          <h2 className="mb-3 text-lg font-semibold text-slate-950">LATAM</h2>
-          <BonusList casas={casasLatam} showLatamMarket />
+        <section className="mt-8 sm:mt-10">
+          <h2 className="mb-3 text-lg font-semibold text-slate-950">
+            {activeMarket === 'latam' ? 'LATAM' : 'España'}
+          </h2>
+          <BonusList casas={activeCasas} showLatamMarket={activeMarket === 'latam'} />
         </section>
       </div>
     </main>
