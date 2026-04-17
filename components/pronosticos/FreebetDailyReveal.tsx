@@ -90,9 +90,9 @@ export function FreebetDailyReveal({ dailyCombinada }: FreebetDailyRevealProps) 
             <button
               type="button"
               onClick={handleStartProcessing}
-              className="inline-flex min-h-12 items-center justify-center rounded-2xl bg-emerald-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-emerald-700"
+              className="relative isolate inline-flex min-h-12 items-center justify-center rounded-lg border border-emerald-300/60 bg-emerald-500 px-6 py-3 text-sm font-bold text-white shadow-[0_18px_46px_rgba(16,185,129,0.35),0_0_0_1px_rgba(255,255,255,0.08)_inset] transition-all duration-200 after:pointer-events-none after:absolute after:inset-0 after:-z-10 after:rounded-lg after:bg-emerald-400/20 after:blur-xl hover:-translate-y-0.5 hover:border-emerald-200/80 hover:bg-emerald-400 hover:shadow-[0_22px_58px_rgba(16,185,129,0.46),0_0_22px_rgba(52,211,153,0.22)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-500"
             >
-              Procesar Freebet diaria
+              Procesar Freebet
             </button>
           </div>
         </div>
