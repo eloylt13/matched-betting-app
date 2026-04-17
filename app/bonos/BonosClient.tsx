@@ -74,7 +74,7 @@ function BonusList({ casas, showLatamMarket = false }: { casas: BonoListadoItem[
                 <a
                   href={casa.url}
                   target="_blank"
-                  rel="noopener noreferrer sponsored"
+                  rel="nofollow sponsored noopener noreferrer"
                   className="inline-flex h-9 items-center justify-center rounded-md border border-slate-950 bg-slate-950 px-3 text-sm font-semibold text-white transition-colors hover:bg-slate-800"
                 >
                   Ir a la oferta
