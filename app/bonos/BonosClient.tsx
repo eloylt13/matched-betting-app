@@ -2,9 +2,28 @@
 
 import { useState } from 'react'
 import { todasLasCasas } from '@/lib/presets'
+import { casasEspana as todasLasCasasEspana } from '@/lib/presets/data/espana'
 import type { Casa } from '@/types/presets'
 
 type MarketKey = 'espana' | 'latam'
+
+const CASAS_ESPANA_AFILIACION_ACTIVA = [
+  'sportium',
+  'versus',
+  'codere',
+  'paf',
+  'casino-gran-madrid',
+  'marca-apuestas',
+  'winamax',
+  '888sport',
+  'pokerstars',
+  'interwetten',
+  'william-hill',
+  'betway',
+  'goldenpark',
+  'betsson',
+  'betfair',
+]
 
 const LATAM_MARKET_LABELS: Partial<Record<Casa['pais'], string>> = {
   regionales: 'REG',
@@ -33,6 +52,10 @@ function sortByName(casas: Casa[]) {
 
 function getLatamMarketLabel(casa: Casa) {
   return LATAM_MARKET_LABELS[casa.pais] ?? casa.pais.toUpperCase()
+}
+
+function getCasaNombreListado(casa: Casa) {
+  return casa.market === 'espana' && casa.id === 'pokerstars' ? 'PokerStars' : casa.nombre
 }
 
 function MarketSelector({
@@ -87,7 +110,7 @@ function BonusList({ casas, showLatamMarket = false }: { casas: Casa[]; showLata
             key={casa.id}
             className={`grid gap-3 px-4 py-4 transition-colors hover:bg-slate-50/70 ${gridClass} sm:items-center`}
           >
-            <h3 className="min-w-0 text-base font-semibold text-slate-950">{casa.nombre}</h3>
+            <h3 className="min-w-0 text-base font-semibold text-slate-950">{getCasaNombreListado(casa)}</h3>
             {showLatamMarket ? (
               <span className="inline-flex w-fit items-center rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs font-semibold text-slate-600">
                 {getLatamMarketLabel(casa)}
@@ -115,7 +138,9 @@ function BonusList({ casas, showLatamMarket = false }: { casas: Casa[]; showLata
 
 export default function BonosClient() {
   const [activeMarket, setActiveMarket] = useState<MarketKey>('espana')
-  const casasEspana = sortByName(todasLasCasas.filter((casa) => casa.market === 'espana'))
+  const casasEspana = sortByName(
+    todasLasCasasEspana.filter((casa) => CASAS_ESPANA_AFILIACION_ACTIVA.includes(casa.id)),
+  )
   const casasLatam = sortByName(todasLasCasas.filter((casa) => casa.market === 'latam'))
   const activeCasas = activeMarket === 'latam' ? casasLatam : casasEspana
 
