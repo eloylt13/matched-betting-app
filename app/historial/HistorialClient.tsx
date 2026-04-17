@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from 'react'
 import Link from 'next/link'
+import BonosPendientesOperativo from '@/components/bonos/BonosPendientesOperativo'
 import { loadState, agregarHistorial, resetState } from '@/lib/storage/userState'
 import type { UserState, EntradaHistorial } from '@/types/user'
 import { todasLasCasas } from '@/lib/presets'
@@ -280,6 +281,8 @@ export default function HistorialClient() {
           helper={entradas.length > 0 ? `${positivas} de ${entradas.length} operaciones cerradas en positivo.` : 'Aún no hay datos suficientes.'}
         />
       </section>
+
+      <BonosPendientesOperativo state={state} onUpdate={refresh} variant="premium" />
 
       {showForm && (
         <section className="relative overflow-hidden rounded-[1.75rem] border border-violet-200/60 bg-[linear-gradient(180deg,rgba(255,255,255,0.95)_0%,rgba(248,244,255,0.96)_100%)] p-5 shadow-[0_24px_70px_rgba(46,16,101,0.08)] ring-1 ring-white/85 backdrop-blur-md sm:p-6">
