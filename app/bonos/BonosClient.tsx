@@ -2,28 +2,10 @@
 
 import { useState } from 'react'
 import { todasLasCasas } from '@/lib/presets'
-import { casasEspana as todasLasCasasEspana } from '@/lib/presets/data/espana'
 import type { Casa } from '@/types/presets'
+import { bonosEspanaCurados, type BonoListadoCasa } from './bonosData'
 
 type MarketKey = 'espana' | 'latam'
-
-const CASAS_ESPANA_AFILIACION_ACTIVA = [
-  'sportium',
-  'versus',
-  'codere',
-  'paf',
-  'casino-gran-madrid',
-  'marca-apuestas',
-  'winamax',
-  '888sport',
-  'pokerstars',
-  'interwetten',
-  'william-hill',
-  'betway',
-  'goldenpark',
-  'betsson',
-  'betfair',
-]
 
 const LATAM_MARKET_LABELS: Partial<Record<Casa['pais'], string>> = {
   regionales: 'REG',
@@ -37,7 +19,7 @@ const LATAM_MARKET_LABELS: Partial<Record<Casa['pais'], string>> = {
   uy: 'UY',
 }
 
-function formatBono(casa: Casa) {
+function formatBono(casa: BonoListadoCasa) {
   const currency = casa.market === 'latam' ? 'USD' : '€'
   const amount = new Intl.NumberFormat('es-ES', {
     maximumFractionDigits: 0,
@@ -46,15 +28,15 @@ function formatBono(casa: Casa) {
   return casa.market === 'latam' ? `${amount} ${currency}` : `${amount}${currency}`
 }
 
-function sortByName(casas: Casa[]) {
+function sortByName<T extends BonoListadoCasa>(casas: T[]) {
   return [...casas].sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'))
 }
 
-function getLatamMarketLabel(casa: Casa) {
+function getLatamMarketLabel(casa: BonoListadoCasa) {
   return LATAM_MARKET_LABELS[casa.pais] ?? casa.pais.toUpperCase()
 }
 
-function getCasaNombreListado(casa: Casa) {
+function getCasaNombreListado(casa: BonoListadoCasa) {
   return casa.market === 'espana' && casa.id === 'pokerstars' ? 'PokerStars' : casa.nombre
 }
 
@@ -90,7 +72,7 @@ function MarketSelector({
   )
 }
 
-function BonusList({ casas, showLatamMarket = false }: { casas: Casa[]; showLatamMarket?: boolean }) {
+function BonusList({ casas, showLatamMarket = false }: { casas: BonoListadoCasa[]; showLatamMarket?: boolean }) {
   const gridClass = showLatamMarket
     ? 'sm:grid-cols-[minmax(0,1fr)_6rem_9rem_15rem]'
     : 'sm:grid-cols-[minmax(0,1fr)_9rem_15rem]'
@@ -138,9 +120,7 @@ function BonusList({ casas, showLatamMarket = false }: { casas: Casa[]; showLata
 
 export default function BonosClient() {
   const [activeMarket, setActiveMarket] = useState<MarketKey>('espana')
-  const casasEspana = sortByName(
-    todasLasCasasEspana.filter((casa) => CASAS_ESPANA_AFILIACION_ACTIVA.includes(casa.id)),
-  )
+  const casasEspana = sortByName(bonosEspanaCurados)
   const casasLatam = sortByName(todasLasCasas.filter((casa) => casa.market === 'latam'))
   const activeCasas = activeMarket === 'latam' ? casasLatam : casasEspana
 
