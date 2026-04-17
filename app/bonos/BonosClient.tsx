@@ -1,52 +1,13 @@
 'use client'
 
 import { useState } from 'react'
-import type { Casa } from '@/types/presets'
-import { bonosEspanaCurados, bonosLatamUsCurados, type BonoLatamUsCurado, type BonoListadoCasa } from './bonosData'
+import { bonosEspanaCurados, bonosLatamUsCurados, type BonoLatamUsCurado, type BonoListadoEspana } from './bonosData'
 
 type MarketKey = 'espana' | 'latam'
-type BonoListadoItem = BonoListadoCasa | BonoLatamUsCurado
-
-const LATAM_MARKET_LABELS: Partial<Record<Casa['pais'], string>> = {
-  regionales: 'REG',
-  co: 'CO',
-  mx: 'MX',
-  cl: 'CL',
-  pe: 'PE',
-  ec: 'EC',
-  ar: 'AR',
-  pa: 'PA',
-  uy: 'UY',
-  us: 'US',
-}
-
-function formatBono(casa: Casa) {
-  const currency = casa.market === 'latam' ? 'USD' : '€'
-  const amount = new Intl.NumberFormat('es-ES', {
-    maximumFractionDigits: 0,
-  }).format(casa.beneficioPotencial)
-
-  return casa.market === 'latam' ? `${amount} ${currency}` : `${amount}${currency}`
-}
-
-function getOfertaListado(casa: BonoListadoItem) {
-  return 'ofertaTexto' in casa ? casa.ofertaTexto : formatBono(casa)
-}
+type BonoListadoItem = BonoListadoEspana | BonoLatamUsCurado
 
 function sortByName<T extends { nombre: string }>(casas: T[]) {
   return [...casas].sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'))
-}
-
-function getLatamMarketLabel(casa: BonoListadoItem) {
-  if ('mercado' in casa) {
-    return casa.mercado
-  }
-
-  return LATAM_MARKET_LABELS[casa.pais] ?? casa.pais.toUpperCase()
-}
-
-function getCasaNombreListado(casa: BonoListadoItem) {
-  return 'market' in casa && casa.market === 'espana' && casa.id === 'pokerstars' ? 'PokerStars' : casa.nombre
 }
 
 function MarketSelector({
@@ -101,13 +62,13 @@ function BonusList({ casas, showLatamMarket = false }: { casas: BonoListadoItem[
             key={'id' in casa ? casa.id : `${casa.mercado}-${casa.nombre}`}
             className={`grid gap-3 px-4 py-4 transition-colors hover:bg-slate-50/70 ${gridClass} sm:items-center`}
           >
-            <h3 className="min-w-0 text-base font-semibold text-slate-950">{getCasaNombreListado(casa)}</h3>
+            <h3 className="min-w-0 text-base font-semibold text-slate-950">{casa.nombre}</h3>
             {showLatamMarket ? (
               <span className="inline-flex w-fit items-center rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs font-semibold text-slate-600">
-                {getLatamMarketLabel(casa)}
+                {'mercado' in casa ? casa.mercado : null}
               </span>
             ) : null}
-            <p className="text-sm font-semibold text-slate-800">{getOfertaListado(casa)}</p>
+            <p className="text-sm font-semibold text-slate-800">{casa.ofertaTexto}</p>
             <div className="flex flex-wrap gap-2 sm:justify-end">
               {casa.url ? (
                 <a
