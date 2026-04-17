@@ -69,6 +69,12 @@ export default function BonosClient() {
                 Oportunidades disponibles en las casas del proyecto, incluidas ofertas que todavia no tienen una guia
                 completa. Revisa siempre las condiciones antes de registrarte.
               </p>
+              <Link
+                href="/historial"
+                className="inline-flex w-fit items-center gap-2 rounded-full border border-violet-200/70 bg-white/72 px-4 py-2 text-xs font-semibold text-violet-700 shadow-sm shadow-violet-950/5 transition-all hover:-translate-y-0.5 hover:border-violet-300/80 hover:bg-violet-50"
+              >
+                ¿Ya activaste una oferta? Llévala a tu seguimiento →
+              </Link>
             </div>
 
             <div className="grid gap-3 sm:grid-cols-3">

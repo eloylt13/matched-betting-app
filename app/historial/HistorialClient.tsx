@@ -252,6 +252,12 @@ export default function HistorialClient() {
                 </span>
               ))}
             </div>
+            <Link
+              href="/bonos"
+              className="mt-4 inline-flex w-fit items-center gap-2 rounded-full border border-violet-200/70 bg-white/78 px-4 py-2 text-xs font-semibold text-violet-700 shadow-sm shadow-violet-950/5 transition-all hover:-translate-y-0.5 hover:border-violet-300/80 hover:bg-violet-50"
+            >
+              ¿Buscas nuevas oportunidades? Ver bonos y ofertas activas →
+            </Link>
           </div>
 
           <button
