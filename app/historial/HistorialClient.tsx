@@ -108,7 +108,7 @@ function EmptyState({ onAdd }: { onAdd: () => void }) {
         <div className="max-w-2xl">
           <span className="mb-3 inline-flex items-center gap-2 rounded-full border border-violet-200/70 bg-white/75 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-violet-700 shadow-sm shadow-violet-950/5">
             <span className="h-2 w-2 rounded-full bg-violet-500" />
-            Historial premium
+            Seguimiento premium
           </span>
           <p className="text-balance text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl">
             Aún no hay operaciones registradas
@@ -234,13 +234,13 @@ export default function HistorialClient() {
           <div className="max-w-3xl">
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-violet-200/70 bg-violet-50/85 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-violet-700 shadow-sm shadow-violet-950/5">
               <span className="h-2 w-2 rounded-full bg-violet-500 shadow-[0_0_16px_rgba(167,139,250,0.75)]" />
-              Historial premium
+              Seguimiento premium
             </div>
             <h1 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
-              Historial y resultados de tus operaciones
+              Seguimiento de bonos y operaciones
             </h1>
             <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-600 sm:text-base">
-              Revisa el resultado final de cada operación para mantener el control y el seguimiento, tanto en España como en fichas LATAM.
+              Controla tus bonos pendientes, registra cada operación y revisa tu actividad con claridad.
             </p>
             <div className="mt-4 flex flex-wrap items-center gap-2">
               {['Seguimiento claro', 'Registro manual', 'Control LATAM'].map(label => (
@@ -267,7 +267,7 @@ export default function HistorialClient() {
         <MetricCard
           value={`${entradas.length}`}
           label="Operaciones"
-          helper="Total de entradas guardadas en tu historial."
+          helper="Total de entradas guardadas en tu seguimiento."
         />
         <MetricCard
           value={formatSignedAmount(totalResultado)}
@@ -447,7 +447,7 @@ export default function HistorialClient() {
         <section className="relative overflow-hidden rounded-[1.75rem] border border-violet-200/60 bg-[linear-gradient(180deg,rgba(255,255,255,0.94)_0%,rgba(248,244,255,0.95)_100%)] p-5 shadow-[0_22px_64px_rgba(46,16,101,0.07)] ring-1 ring-white/80 backdrop-blur-md">
           <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-violet-300/70 to-transparent" />
           <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-violet-700">
-            ¿Cómo se alimenta el historial?
+            ¿Cómo se alimenta el seguimiento?
           </p>
           <div className="mt-4 grid gap-3">
             {[
