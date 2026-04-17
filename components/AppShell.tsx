@@ -64,18 +64,18 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
       <nav className="sticky top-0 z-50 border-b border-white/10 bg-[linear-gradient(135deg,rgba(9,11,24,0.96)_0%,rgba(18,17,42,0.96)_45%,rgba(42,31,61,0.94)_100%)] shadow-[0_14px_40px_rgba(2,6,23,0.24)] backdrop-blur-xl">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between gap-4">
-            <Link href="/" className="group flex items-center gap-3">
-              <span className="relative flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-violet-200/15 bg-white/[0.05] p-1 shadow-[0_12px_30px_rgba(88,28,135,0.18)] sm:h-[3.25rem] sm:w-[3.25rem]">
+            <Link href="/" className="group flex items-center gap-4">
+              <span className="relative flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-violet-200/15 bg-white/[0.05] shadow-[0_12px_30px_rgba(88,28,135,0.18)] sm:h-16 sm:w-16">
                 <Image
                   src="/logo.png"
                   alt="IAPredictHub"
                   width={52}
                   height={52}
-                  className="h-full w-full object-contain"
+                  className="h-full w-full object-contain object-center"
                   priority
                 />
               </span>
-              <span className="text-[15px] font-semibold tracking-tight text-white sm:text-base">
+              <span className="text-[15px] font-semibold leading-none tracking-tight text-white sm:text-base">
                 IAPredictHub
               </span>
             </Link>
