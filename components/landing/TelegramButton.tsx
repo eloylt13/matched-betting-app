@@ -6,7 +6,7 @@ export default function TelegramButton() {
       href="https://t.me/Elte13"
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-6 right-6 z-50 flex items-center gap-2 px-4 py-3 rounded-full text-white text-sm font-semibold shadow-lg hover:opacity-90 transition-all"
+      className="fixed bottom-6 right-6 z-50 hidden items-center gap-2 px-4 py-3 rounded-full text-white text-sm font-semibold shadow-lg transition-all hover:opacity-90 md:flex"
       style={{ backgroundColor: '#229ED9' }}
     >
       {/* Icono SVG oficial de Telegram */}

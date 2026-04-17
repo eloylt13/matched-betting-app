@@ -58,7 +58,7 @@ export default function BottomNav() {
                   <path strokeLinecap="round" strokeLinejoin="round" d={item.icon} />
                 </svg>
               </span>
-              <span className="text-[10px] font-medium leading-none">{item.name}</span>
+              <span className="sr-only">{item.name}</span>
             </Link>
           )
         })}

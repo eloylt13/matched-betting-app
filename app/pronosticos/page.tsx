@@ -26,10 +26,6 @@ export default async function PronosticosPage() {
     <div className="min-h-[70vh] px-4 py-10 sm:py-14">
       <div className="mx-auto flex w-full max-w-4xl flex-col gap-8">
         <div className="text-center sm:text-left">
-          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-4 py-1.5 text-xs font-semibold text-emerald-600 mb-4">
-            Beta
-          </div>
-
           <h1 className="text-3xl sm:text-4xl font-bold text-stone-800 tracking-tight">
             Freebet diaria
           </h1>
