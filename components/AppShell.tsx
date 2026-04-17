@@ -132,41 +132,6 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
 
       <main className="mx-auto max-w-7xl px-4 py-6 pb-20 sm:px-6 lg:px-8 md:pb-8">{children}</main>
 
-      <footer className="hidden md:block border-t border-white/10 bg-[linear-gradient(180deg,rgba(8,10,20,0.92)_0%,rgba(10,11,24,0.98)_100%)]">
-        <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-          <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.035] px-5 py-6 shadow-[0_18px_54px_rgba(2,6,23,0.24)] backdrop-blur-md sm:px-6">
-            <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-              <div className="flex items-center gap-3">
-                <Image src="/logo-iamagica.png" alt="IAMagica" width={120} height={32} className="h-8 w-auto rounded-md" />
-                <div className="space-y-1">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-violet-200/70">
-                    IAMagica
-                  </p>
-                  <p className="text-sm font-medium text-slate-200">
-                    IAPredictHub · Matched Betting para uso educativo y responsable.
-                  </p>
-                </div>
-              </div>
-
-              <a
-                href="mailto:info@iamagica.es"
-                className="inline-flex items-center gap-3 rounded-full border border-violet-200/18 bg-white/[0.04] px-4 py-2.5 text-sm font-medium text-slate-200 transition-all hover:-translate-y-0.5 hover:border-violet-200/28 hover:bg-violet-500/10 hover:text-white"
-              >
-                <span className="flex h-8 w-8 items-center justify-center rounded-full border border-violet-200/18 bg-violet-300/10 text-violet-100">
-                  @
-                </span>
-                <span>info@iamagica.es</span>
-              </a>
-            </div>
-
-            <div className="mt-5 border-t border-white/10 pt-4 text-xs text-slate-400 sm:flex sm:items-center sm:justify-between">
-              <span>© 2026 IAMagica</span>
-              <span>IAPredictHub · Solo para uso educativo. Apuesta con responsabilidad.</span>
-            </div>
-          </div>
-        </div>
-      </footer>
-
       <BottomNav />
     </>
   )

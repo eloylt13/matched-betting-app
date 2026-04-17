@@ -3,6 +3,8 @@ import type { Metadata } from 'next'
 import { DM_Sans, Playfair_Display } from 'next/font/google'
 import AppShell from '@/components/AppShell'
 import PostHogProvider from '@/components/PostHogProvider'
+import SiteFooter from '@/components/SiteFooter'
+import TelegramButton from '@/components/landing/TelegramButton'
 import { Analytics } from '@vercel/analytics/react'
 import './globals.css'
 
@@ -80,6 +82,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <PostHogProvider>
           <AppShell>{children}</AppShell>
         </PostHogProvider>
+        <SiteFooter />
+        <TelegramButton />
         <Analytics />
       </body>
     </html>
