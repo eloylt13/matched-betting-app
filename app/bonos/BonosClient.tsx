@@ -17,6 +17,7 @@ const LATAM_MARKET_LABELS: Partial<Record<Casa['pais'], string>> = {
   ar: 'AR',
   pa: 'PA',
   uy: 'UY',
+  us: 'US',
 }
 
 function formatBono(casa: Casa) {

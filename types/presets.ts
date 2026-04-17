@@ -24,6 +24,8 @@ export type PaisLatam =
     | 'ec'
     | 'pa'
     | 'uy'
+    | 'us'
+    // Campañas multi-país o regionales se representan como REG.
     | 'regionales'
 
 export type Pais = 'espana' | PaisLatam
