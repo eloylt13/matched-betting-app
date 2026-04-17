@@ -60,10 +60,6 @@ export default async function PronosticosPage() {
               <>
                 <FreebetDailyReveal dailyCombinada={dailyCombinada} />
 
-                <div className="mt-6 rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800">
-                  Selección diaria validada con partidos reales dentro de la ventana del día
-                </div>
-
                 <div className="mt-6 rounded-2xl border border-stone-200 bg-stone-50 px-4 py-4 sm:px-5">
                   <details className="group rounded-2xl border border-stone-200 bg-white">
                     <summary className="cursor-pointer list-none px-4 py-3 text-sm font-semibold text-stone-800 sm:px-5 [&::-webkit-details-marker]:hidden">

@@ -83,7 +83,7 @@ export function FreebetDailyReveal({ dailyCombinada }: FreebetDailyRevealProps) 
             <div className="max-w-2xl">
               <h3 className="text-lg font-bold text-stone-800">Tu Freebet diaria está lista</h3>
               <p className="mt-1 text-sm text-stone-600">
-                Procesa la selección diaria para revelar los picks ya generados y ver el detalle completo de cada uno.
+                Procesa la selección diaria para revelar los pronósticos seleccionados
               </p>
             </div>
 
