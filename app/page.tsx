@@ -431,20 +431,23 @@ export default function LandingPage() {
                 </span>
               </TrackedLink>
               <TrackedLink
-                href="/pronosticos"
-                eventName="home_cta_freebet_clicked"
-                eventProps={{ location: 'hero', target_path: '/pronosticos' }}
-                className="w-full rounded-lg border border-emerald-300/25 bg-emerald-300/[0.08] px-6 py-3.5 text-center text-base font-semibold text-emerald-50 shadow-[0_14px_34px_rgba(16,185,129,0.12)] backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-200/45 hover:bg-emerald-300/[0.12] hover:shadow-[0_18px_42px_rgba(16,185,129,0.16)] sm:w-auto"
-              >
-                Nuevo: Freebet
-              </TrackedLink>
-              <TrackedLink
                 href="/guias"
                 eventName="home_cta_secondary_clicked"
                 eventProps={{ location: 'hero', target_path: '/guias' }}
                 className="w-full rounded-lg border border-white/15 bg-white/[0.05] px-7 py-3.5 text-center text-base font-semibold text-white shadow-[0_14px_34px_rgba(15,23,42,0.16)] backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-violet-200/30 hover:bg-white/[0.09] hover:shadow-[0_18px_42px_rgba(124,58,237,0.18)] sm:w-auto"
               >
                 Ver guías gratis
+              </TrackedLink>
+            </div>
+
+            <div className="mt-4 flex justify-center">
+              <TrackedLink
+                href="/pronosticos"
+                eventName="home_cta_freebet_clicked"
+                eventProps={{ location: 'hero', target_path: '/pronosticos' }}
+                className="inline-flex rounded-full border border-emerald-300/20 bg-slate-950/35 px-4 py-2 text-sm font-semibold text-emerald-300 shadow-[0_12px_30px_rgba(16,185,129,0.08)] backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-200/35 hover:bg-emerald-300/[0.08] hover:text-emerald-200"
+              >
+                Nuevo: Freebet diaria
               </TrackedLink>
             </div>
 
