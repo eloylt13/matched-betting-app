@@ -19,13 +19,17 @@ const LATAM_MARKET_LABELS: Partial<Record<Casa['pais'], string>> = {
   uy: 'UY',
 }
 
-function formatBono(casa: BonoListadoCasa) {
+function formatBono(casa: Casa) {
   const currency = casa.market === 'latam' ? 'USD' : '€'
   const amount = new Intl.NumberFormat('es-ES', {
     maximumFractionDigits: 0,
   }).format(casa.beneficioPotencial)
 
   return casa.market === 'latam' ? `${amount} ${currency}` : `${amount}${currency}`
+}
+
+function getOfertaListado(casa: BonoListadoCasa) {
+  return 'ofertaTexto' in casa ? casa.ofertaTexto : formatBono(casa)
 }
 
 function sortByName<T extends BonoListadoCasa>(casas: T[]) {
@@ -75,14 +79,14 @@ function MarketSelector({
 function BonusList({ casas, showLatamMarket = false }: { casas: BonoListadoCasa[]; showLatamMarket?: boolean }) {
   const gridClass = showLatamMarket
     ? 'sm:grid-cols-[minmax(0,1fr)_6rem_9rem_15rem]'
-    : 'sm:grid-cols-[minmax(0,1fr)_9rem_15rem]'
+    : 'sm:grid-cols-[minmax(0,1fr)_minmax(0,2fr)_15rem]'
 
   return (
     <div className="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-[0_18px_45px_-38px_rgba(15,23,42,0.28)]">
       <div className={`hidden ${gridClass} border-b border-slate-200 bg-slate-50 px-4 py-3 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:grid`}>
         <span>Casa</span>
         {showLatamMarket ? <span>Mercado</span> : null}
-        <span>Bono</span>
+        <span>{showLatamMarket ? 'Bono' : 'Oferta'}</span>
         <span className="text-right">Acciones</span>
       </div>
 
@@ -98,7 +102,7 @@ function BonusList({ casas, showLatamMarket = false }: { casas: BonoListadoCasa[
                 {getLatamMarketLabel(casa)}
               </span>
             ) : null}
-            <p className="text-sm font-semibold text-slate-800">{formatBono(casa)}</p>
+            <p className="text-sm font-semibold text-slate-800">{getOfertaListado(casa)}</p>
             <div className="flex flex-wrap gap-2 sm:justify-end">
               {casa.url ? (
                 <a

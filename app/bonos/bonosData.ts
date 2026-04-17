@@ -1,15 +1,19 @@
 import type { Casa } from '@/types/presets'
 
-export type BonoListadoCasa = Pick<Casa, 'id' | 'nombre' | 'market' | 'pais' | 'url' | 'beneficioPotencial'>
+export type BonoListadoEspana = Pick<Casa, 'id' | 'nombre' | 'market' | 'pais' | 'url'> & {
+  ofertaTexto: string
+}
 
-export const bonosEspanaCurados: BonoListadoCasa[] = [
+export type BonoListadoCasa = BonoListadoEspana | Casa
+
+export const bonosEspanaCurados: BonoListadoEspana[] = [
   {
     id: '888sport',
     nombre: '888Sport',
     market: 'espana',
     pais: 'espana',
     url: 'https://bdeal.io/888Sport/136728/1',
-    beneficioPotencial: 75,
+    ofertaTexto: '10€ gratis al registrarte + 1ª apuesta asegurada hasta 100€',
   },
   {
     id: 'bet777',
@@ -17,7 +21,7 @@ export const bonosEspanaCurados: BonoListadoCasa[] = [
     market: 'espana',
     pais: 'espana',
     url: 'https://bdeal.io/Bet777/145118/1',
-    beneficioPotencial: 10,
+    ofertaTexto: 'Freebet de 10€ con tu primer depósito',
   },
   {
     id: 'betfair',
@@ -25,7 +29,7 @@ export const bonosEspanaCurados: BonoListadoCasa[] = [
     market: 'espana',
     pais: 'espana',
     url: 'https://bdeal.io/Betfair/139419/2',
-    beneficioPotencial: 150,
+    ofertaTexto: 'Bono del 400% hasta 200€ · apuesta hasta 50€ y recibe hasta 200€ de bono',
   },
   {
     id: 'betsson',
@@ -33,7 +37,7 @@ export const bonosEspanaCurados: BonoListadoCasa[] = [
     market: 'espana',
     pais: 'espana',
     url: 'https://bdeal.io/Betsson/136727/1',
-    beneficioPotencial: 50,
+    ofertaTexto: '100% extra hasta 100€ con tu primer depósito',
   },
   {
     id: 'betway',
@@ -41,7 +45,7 @@ export const bonosEspanaCurados: BonoListadoCasa[] = [
     market: 'espana',
     pais: 'espana',
     url: 'https://app.afiliago.com/go/popup18/21553?url=https%3A%2F%2Fapp.afiliago.com%2Fgo%2F21553%2FfIkqcOFwoh%2F2',
-    beneficioPotencial: 140,
+    ofertaTexto: 'Hasta 200€ Free Bet + 50 Free Spins si pierdes tu primera apuesta',
   },
   {
     id: 'casino-gran-madrid',
@@ -49,7 +53,7 @@ export const bonosEspanaCurados: BonoListadoCasa[] = [
     market: 'espana',
     pais: 'espana',
     url: 'https://app.afiliago.com/go/21694/3kE5KVXDC1/2',
-    beneficioPotencial: 62,
+    ofertaTexto: 'Hasta 200€ con tu primer depósito',
   },
   {
     id: 'codere',
@@ -57,7 +61,7 @@ export const bonosEspanaCurados: BonoListadoCasa[] = [
     market: 'espana',
     pais: 'espana',
     url: 'https://bdeal.io/Codere/136722/1',
-    beneficioPotencial: 65,
+    ofertaTexto: '100% de tu primer depósito hasta 200€',
   },
   {
     id: 'golden-bull',
@@ -65,7 +69,7 @@ export const bonosEspanaCurados: BonoListadoCasa[] = [
     market: 'espana',
     pais: 'espana',
     url: 'https://bdeal.io/goldenbull/145119/1',
-    beneficioPotencial: 10,
+    ofertaTexto: 'FreeBet 10€',
   },
   {
     id: 'goldenpark',
@@ -73,7 +77,7 @@ export const bonosEspanaCurados: BonoListadoCasa[] = [
     market: 'espana',
     pais: 'espana',
     url: 'https://app.afiliago.com/go/popup18/19149?url=https%3A%2F%2Fapp.afiliago.com%2Fgo%2F19149%2FWs1nYCo4gw',
-    beneficioPotencial: 50,
+    ofertaTexto: 'Bono hasta 100€ gratis',
   },
   {
     id: 'interwetten',
@@ -81,7 +85,7 @@ export const bonosEspanaCurados: BonoListadoCasa[] = [
     market: 'espana',
     pais: 'espana',
     url: 'https://bdeal.io/Interwetten/136723/1',
-    beneficioPotencial: 35,
+    ofertaTexto: '50€ Freebet para nuevos usuarios',
   },
   {
     id: 'kirolbet',
@@ -89,7 +93,7 @@ export const bonosEspanaCurados: BonoListadoCasa[] = [
     market: 'espana',
     pais: 'espana',
     url: 'https://bdeal.io/Kirolbet/101909/1',
-    beneficioPotencial: 100,
+    ofertaTexto: '100€ Freebets + 50 tiradas gratis · código KB100',
   },
   {
     id: 'lsbet',
@@ -97,7 +101,7 @@ export const bonosEspanaCurados: BonoListadoCasa[] = [
     market: 'espana',
     pais: 'espana',
     url: 'https://go.aff.o-affiliates.com/7vutqmwx',
-    beneficioPotencial: 120,
+    ofertaTexto: 'Bono de bienvenida hasta 120€',
   },
   {
     id: 'luckia',
@@ -105,7 +109,7 @@ export const bonosEspanaCurados: BonoListadoCasa[] = [
     market: 'espana',
     pais: 'espana',
     url: 'https://bdeal.io/Luckia/145120/1',
-    beneficioPotencial: 200,
+    ofertaTexto: 'Bono de bienvenida hasta 200€',
   },
   {
     id: 'marca-apuestas',
@@ -113,7 +117,7 @@ export const bonosEspanaCurados: BonoListadoCasa[] = [
     market: 'espana',
     pais: 'espana',
     url: 'https://bdeal.io/marcaapuestas/136724/1',
-    beneficioPotencial: 90,
+    ofertaTexto: 'Gana hasta 200€ gratis',
   },
   {
     id: 'optimbet',
@@ -121,7 +125,7 @@ export const bonosEspanaCurados: BonoListadoCasa[] = [
     market: 'espana',
     pais: 'espana',
     url: 'https://go.aff.o-affiliates.com/nex0qo1g',
-    beneficioPotencial: 300,
+    ofertaTexto: 'Paquete de bienvenida hasta 300€',
   },
   {
     id: 'paf',
@@ -129,7 +133,7 @@ export const bonosEspanaCurados: BonoListadoCasa[] = [
     market: 'espana',
     pais: 'espana',
     url: 'https://bdeal.io/PAF/100477/1',
-    beneficioPotencial: 14,
+    ofertaTexto: 'Hasta 20€ en Freebets',
   },
   {
     id: 'pokerstars',
@@ -137,7 +141,7 @@ export const bonosEspanaCurados: BonoListadoCasa[] = [
     market: 'espana',
     pais: 'espana',
     url: 'https://bdeal.io/PokerStars/101907/1',
-    beneficioPotencial: 60,
+    ofertaTexto: 'Hasta 100€ en apuestas gratuitas si tu primera apuesta resulta perdedora',
   },
   {
     id: 'slottojam',
@@ -145,7 +149,7 @@ export const bonosEspanaCurados: BonoListadoCasa[] = [
     market: 'espana',
     pais: 'espana',
     url: 'https://go.aff.o-affiliates.com/9duezfia',
-    beneficioPotencial: 300,
+    ofertaTexto: 'Paquete de bienvenida hasta 300€',
   },
   {
     id: 'sportium',
@@ -153,7 +157,7 @@ export const bonosEspanaCurados: BonoListadoCasa[] = [
     market: 'espana',
     pais: 'espana',
     url: 'https://bdeal.io/Sportium/136726/1',
-    beneficioPotencial: 140,
+    ofertaTexto: 'Doble bono hasta 200€',
   },
   {
     id: 'tornadobet',
@@ -161,7 +165,7 @@ export const bonosEspanaCurados: BonoListadoCasa[] = [
     market: 'espana',
     pais: 'espana',
     url: 'https://go.aff.o-affiliates.com/ke1cz7hv',
-    beneficioPotencial: 300,
+    ofertaTexto: 'Paquete de bienvenida hasta 300€',
   },
   {
     id: 'versus',
@@ -169,7 +173,7 @@ export const bonosEspanaCurados: BonoListadoCasa[] = [
     market: 'espana',
     pais: 'espana',
     url: 'https://app.afiliago.com/go/19148/JqXVcHDWdu/2',
-    beneficioPotencial: 65,
+    ofertaTexto: 'Hasta 200€ con tus dos primeros depósitos',
   },
   {
     id: 'william-hill',
@@ -177,7 +181,7 @@ export const bonosEspanaCurados: BonoListadoCasa[] = [
     market: 'espana',
     pais: 'espana',
     url: 'https://bdeal.io/WilliamHill/136725/1',
-    beneficioPotencial: 130,
+    ofertaTexto: 'Hasta 200€ asegurados en tu primera apuesta',
   },
   {
     id: 'winamax',
@@ -185,14 +189,14 @@ export const bonosEspanaCurados: BonoListadoCasa[] = [
     market: 'espana',
     pais: 'espana',
     url: 'https://bdeal.io/Winamax/99945/1',
-    beneficioPotencial: 70,
+    ofertaTexto: '150€ de Freebets',
   },
   {
     id: 'yosports',
     nombre: 'YoSports',
     market: 'espana',
     pais: 'espana',
-    url: 'https://app.afiliago.com/go/21535/At5p84GuWP/2',
-    beneficioPotencial: 50,
+    url: 'https://www.yosports.es/promociones/apuesta-gratis-bienvenida?btag=a_10275b_25c_',
+    ofertaTexto: 'Hasta 150€ en bonos de bienvenida',
   },
 ]
