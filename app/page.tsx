@@ -402,7 +402,7 @@ export default function LandingPage() {
           <div className="mx-auto max-w-4xl text-center">
             <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-violet-300/25 bg-violet-300/10 px-3.5 py-1.5 text-xs font-semibold text-violet-100 shadow-[0_0_28px_rgba(139,92,246,0.16)] backdrop-blur-sm">
               <span className="h-2 w-2 rounded-full bg-violet-300 shadow-[0_0_16px_rgba(196,181,253,0.8)]" />
-              Beta gratuita · Sin registro
+              Herramienta guiada · Sin registro
             </div>
 
             <h1 className="mx-auto max-w-4xl font-playfair text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-[3.55rem]">
@@ -410,7 +410,7 @@ export default function LandingPage() {
             </h1>
 
             <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg">
-              La app te guía paso a paso para saber qué hacer primero, qué calculadora usar y cómo avanzar con orden.
+              Calculadora, ruta personalizada y seguimiento automático.
             </p>
 
             <div className="relative mt-6">
@@ -429,6 +429,14 @@ export default function LandingPage() {
                   <span>Empezar ruta guiada</span>
                   <span className="text-lg leading-none transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">→</span>
                 </span>
+              </TrackedLink>
+              <TrackedLink
+                href="/pronosticos"
+                eventName="home_cta_freebet_clicked"
+                eventProps={{ location: 'hero', target_path: '/pronosticos' }}
+                className="w-full rounded-lg border border-emerald-300/25 bg-emerald-300/[0.08] px-6 py-3.5 text-center text-base font-semibold text-emerald-50 shadow-[0_14px_34px_rgba(16,185,129,0.12)] backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-200/45 hover:bg-emerald-300/[0.12] hover:shadow-[0_18px_42px_rgba(16,185,129,0.16)] sm:w-auto"
+              >
+                Nuevo: Freebet
               </TrackedLink>
               <TrackedLink
                 href="/guias"
