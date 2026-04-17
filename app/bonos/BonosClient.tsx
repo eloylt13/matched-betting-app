@@ -4,6 +4,18 @@ import Link from 'next/link'
 import { todasLasCasas } from '@/lib/presets'
 import type { Casa } from '@/types/presets'
 
+const LATAM_MARKET_LABELS: Partial<Record<Casa['pais'], string>> = {
+  regionales: 'REG',
+  co: 'CO',
+  mx: 'MX',
+  cl: 'CL',
+  pe: 'PE',
+  ec: 'EC',
+  ar: 'AR',
+  pa: 'PA',
+  uy: 'UY',
+}
+
 function formatBono(casa: Casa) {
   const currency = casa.market === 'latam' ? 'USD' : '€'
   const amount = new Intl.NumberFormat('es-ES', {
@@ -17,11 +29,44 @@ function sortByName(casas: Casa[]) {
   return [...casas].sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'))
 }
 
-function BonusList({ casas }: { casas: Casa[] }) {
+function getLatamMarketLabel(casa: Casa) {
+  return LATAM_MARKET_LABELS[casa.pais] ?? casa.pais.toUpperCase()
+}
+
+function MarketSelector() {
+  return (
+    <nav
+      aria-label="Mercados de bonos"
+      className="mt-6 rounded-2xl border border-slate-200/80 bg-white/75 p-3 shadow-[0_18px_45px_-38px_rgba(15,23,42,0.24)] backdrop-blur-sm sm:mt-8 sm:inline-flex"
+    >
+      <div className="flex flex-wrap gap-2">
+        <a
+          href="#bonos-espana"
+          className="rounded-full border border-violet-400/55 bg-violet-500/12 px-4 py-2 text-sm font-semibold text-violet-950 shadow-[0_0_0_1px_rgba(139,92,246,0.12),0_10px_24px_-18px_rgba(139,92,246,0.3)] transition-colors hover:bg-violet-500/16"
+        >
+          Es España
+        </a>
+        <a
+          href="#bonos-latam"
+          className="rounded-full border border-slate-200 bg-white/85 px-4 py-2 text-sm font-semibold text-slate-700 transition-colors hover:border-violet-300/40 hover:text-slate-950"
+        >
+          🌎 LATAM
+        </a>
+      </div>
+    </nav>
+  )
+}
+
+function BonusList({ casas, showLatamMarket = false }: { casas: Casa[]; showLatamMarket?: boolean }) {
+  const gridClass = showLatamMarket
+    ? 'sm:grid-cols-[minmax(0,1fr)_6rem_9rem_15rem]'
+    : 'sm:grid-cols-[minmax(0,1fr)_9rem_15rem]'
+
   return (
     <div className="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-[0_18px_45px_-38px_rgba(15,23,42,0.28)]">
-      <div className="hidden grid-cols-[minmax(0,1fr)_9rem_15rem] border-b border-slate-200 bg-slate-50 px-4 py-3 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:grid">
+      <div className={`hidden ${gridClass} border-b border-slate-200 bg-slate-50 px-4 py-3 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:grid`}>
         <span>Casa</span>
+        {showLatamMarket ? <span>Mercado</span> : null}
         <span>Bono</span>
         <span className="text-right">Acciones</span>
       </div>
@@ -30,9 +75,14 @@ function BonusList({ casas }: { casas: Casa[] }) {
         {casas.map((casa) => (
           <div
             key={casa.id}
-            className="grid gap-3 px-4 py-4 transition-colors hover:bg-slate-50/70 sm:grid-cols-[minmax(0,1fr)_9rem_15rem] sm:items-center"
+            className={`grid gap-3 px-4 py-4 transition-colors hover:bg-slate-50/70 ${gridClass} sm:items-center`}
           >
             <h3 className="min-w-0 text-base font-semibold text-slate-950">{casa.nombre}</h3>
+            {showLatamMarket ? (
+              <span className="inline-flex w-fit items-center rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs font-semibold text-slate-600">
+                {getLatamMarketLabel(casa)}
+              </span>
+            ) : null}
             <p className="text-sm font-semibold text-slate-800">{formatBono(casa)}</p>
             <div className="flex flex-wrap gap-2 sm:justify-end">
               {casa.url ? (
@@ -70,14 +120,16 @@ export default function BonosClient() {
           Mejores bonos de apuestas online España y LATAM
         </h1>
 
-        <section className="mt-8 sm:mt-10">
+        <MarketSelector />
+
+        <section id="bonos-espana" className="mt-8 scroll-mt-6 sm:mt-10">
           <h2 className="mb-3 text-lg font-semibold text-slate-950">España</h2>
           <BonusList casas={casasEspana} />
         </section>
 
-        <section className="mt-8 sm:mt-10">
+        <section id="bonos-latam" className="mt-8 scroll-mt-6 sm:mt-10">
           <h2 className="mb-3 text-lg font-semibold text-slate-950">LATAM</h2>
-          <BonusList casas={casasLatam} />
+          <BonusList casas={casasLatam} showLatamMarket />
         </section>
       </div>
     </main>
