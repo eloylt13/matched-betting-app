@@ -68,11 +68,7 @@ export default async function PronosticosPage() {
                 </div>
 
                 <div className="mt-6 rounded-2xl border border-stone-200 bg-stone-50 px-4 py-4 sm:px-5">
-                  <p className="text-sm leading-relaxed text-stone-600">
-                    La Freebet diaria no se publica por relleno. Solo mostramos una combinada gratis diaria cuando el motor encuentra partidos y mercados suficientes para validarla con criterios mínimos de calidad.
-                  </p>
-
-                  <details className="mt-4 group rounded-2xl border border-stone-200 bg-white">
+                  <details className="group rounded-2xl border border-stone-200 bg-white">
                     <summary className="cursor-pointer list-none px-4 py-3 text-sm font-semibold text-stone-800 sm:px-5 [&::-webkit-details-marker]:hidden">
                       <span className="flex items-center justify-between gap-4">
                         <span>Cómo funciona la Freebet diaria</span>
@@ -82,6 +78,10 @@ export default async function PronosticosPage() {
 
                     <div className="border-t border-stone-100 px-4 py-4 sm:px-5">
                       <div className="space-y-4 text-sm leading-relaxed text-stone-600">
+                        <p>
+                          La Freebet diaria no se publica por relleno. Solo mostramos una combinada gratis diaria cuando el motor encuentra partidos y mercados suficientes para validarla con criterios mínimos de calidad.
+                        </p>
+
                         <div>
                           <h3 className="font-semibold text-stone-800">1. Filtrado de partidos</h3>
                           <p className="mt-1">Analizamos solo partidos prepartido y competiciones compatibles con el motor. Si un evento no tiene datos suficientes o no encaja en la ventana diaria, se descarta.</p>
