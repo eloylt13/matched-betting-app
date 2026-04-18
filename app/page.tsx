@@ -406,7 +406,10 @@ export default function LandingPage() {
             </div>
 
             <h1 className="mx-auto max-w-4xl font-playfair text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-[3.55rem]">
-              Deja de perder bonos de bienvenida por falta de método.
+              Convierte bonos de bienvenida en dinero real
+              <span className="bg-gradient-to-r from-violet-300 via-purple-300 to-fuchsia-200 bg-clip-text text-transparent">
+                {" "}con un método claro
+              </span>.
             </h1>
 
             <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg">
