@@ -398,77 +398,72 @@ export default function LandingPage() {
       <section className="relative overflow-hidden bg-[#080B16]">
         <HeroAtmosphere />
 
-        <div className="relative mx-auto max-w-5xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8 lg:py-16">
+        <div className="relative mx-auto max-w-5xl px-4 py-20 sm:px-6 sm:py-28 lg:px-8 lg:py-36">
           <div className="mx-auto max-w-4xl text-center">
-            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-violet-300/25 bg-violet-300/10 px-3.5 py-1.5 text-xs font-semibold text-violet-100 shadow-[0_0_28px_rgba(139,92,246,0.16)] backdrop-blur-sm">
-              <span className="h-2 w-2 rounded-full bg-violet-300 shadow-[0_0_16px_rgba(196,181,253,0.8)]" />
-              Herramienta guiada · Sin registro
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-emerald-400/25 bg-emerald-500/15 px-4 py-1.5 text-xs font-semibold text-emerald-100 shadow-[0_0_28px_rgba(16,185,129,0.14)] backdrop-blur-sm">
+              <span className="relative flex h-2.5 w-2.5 items-center justify-center">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400/50" />
+                <span className="relative h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_16px_rgba(52,211,153,0.85)]" />
+              </span>
+              Matched betting · Gratis · Sin registro
             </div>
 
             <h1 className="mx-auto max-w-4xl font-playfair text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-[3.55rem]">
-              Convierte bonos de bienvenida en dinero real
-              <span className="bg-gradient-to-r from-violet-300 via-purple-300 to-fuchsia-200 bg-clip-text text-transparent">
-                {" "}con un método claro
-              </span>.
+              <span className="text-emerald-400">+2.000€</span> en bonos de bienvenida disponibles. Te enseñamos a aprovecharlos.
             </h1>
 
-            <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg">
-              Calculadora, ruta personalizada y seguimiento automático.
+            <p className="mx-auto mt-5 max-w-3xl text-base leading-relaxed text-gray-300 sm:text-lg">
+              Matched betting para España y LATAM: registras casas legales, activas sus bonos de bienvenida y cubres las apuestas con la calculadora para reducir al mínimo la exposición al resultado.
             </p>
 
-            <div className="relative mt-6">
-              <div className="pointer-events-none absolute inset-x-1/2 top-1/2 h-24 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet-500/12 blur-3xl" />
-              <HeroMockup />
+            <div className="mx-auto mt-8 max-w-xl rounded-2xl border border-white/10 bg-white/5 p-6 text-left shadow-[0_24px_80px_rgba(3,7,18,0.35)] backdrop-blur-md sm:p-8">
+              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-emerald-400">Ejemplo</p>
+              <div className="mt-4 space-y-3 text-sm leading-relaxed text-gray-300">
+                <p>· Una casa te da 50€ de freebet al depositar 50€</p>
+                <p>· Apuestas los 50€ a un resultado y cubres el contrario en Betfair Exchange</p>
+                <p>· Recuperas la mayoría y la freebet queda lista para convertir en saldo real</p>
+              </div>
             </div>
 
-            <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
               <TrackedLink
-                href="/bienvenida"
+                href="/pronosticos"
                 eventName="home_cta_primary_clicked"
-                eventProps={{ location: 'hero', target_path: '/bienvenida' }}
-                className="group w-full rounded-lg border border-violet-300/45 bg-violet-500 px-7 py-3.5 text-center text-base font-bold text-white shadow-[0_20px_56px_rgba(124,58,237,0.4)] transition-all duration-200 hover:-translate-y-0.5 hover:border-violet-200/70 hover:bg-violet-400 hover:shadow-[0_24px_66px_rgba(139,92,246,0.48)] sm:w-auto"
+                eventProps={{ location: 'hero', target_path: '/pronosticos' }}
+                className="group w-full rounded-lg bg-emerald-500 px-7 py-3.5 text-center text-base font-bold text-white shadow-[0_20px_56px_rgba(16,185,129,0.32)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-emerald-400 hover:shadow-[0_24px_66px_rgba(52,211,153,0.42)] sm:w-auto"
               >
                 <span className="inline-flex items-center gap-2">
-                  <span>Empezar ruta guiada</span>
+                  <span>Ver freebet de hoy</span>
                   <span className="text-lg leading-none transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">→</span>
                 </span>
               </TrackedLink>
               <TrackedLink
-                href="/guias"
+                href="/bienvenida"
                 eventName="home_cta_secondary_clicked"
-                eventProps={{ location: 'hero', target_path: '/guias' }}
-                className="w-full rounded-lg border border-white/15 bg-white/[0.05] px-7 py-3.5 text-center text-base font-semibold text-white shadow-[0_14px_34px_rgba(15,23,42,0.16)] backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-violet-200/30 hover:bg-white/[0.09] hover:shadow-[0_18px_42px_rgba(124,58,237,0.18)] sm:w-auto"
+                eventProps={{ location: 'hero', target_path: '/bienvenida' }}
+                className="w-full rounded-lg border border-white/20 bg-transparent px-7 py-3.5 text-center text-base font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/10 sm:w-auto"
               >
-                Ver guías gratis
+                Empezar con bonos
               </TrackedLink>
             </div>
 
-            <div className="mt-4 flex justify-center">
-              <TrackedLink
-                href="/pronosticos"
-                eventName="home_cta_freebet_clicked"
-                eventProps={{ location: 'hero', target_path: '/pronosticos' }}
-                className="inline-flex rounded-full border border-emerald-300/20 bg-slate-950/35 px-4 py-2 text-sm font-semibold text-emerald-300 shadow-[0_12px_30px_rgba(16,185,129,0.08)] backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-200/35 hover:bg-emerald-300/[0.08] hover:text-emerald-200"
-              >
-                Nuevo: Freebet diaria
-              </TrackedLink>
-            </div>
-
-            <div className="mx-auto mt-7 grid max-w-3xl grid-cols-2 gap-2.5 sm:grid-cols-4">
-              {[
-                ['50+', 'casas'],
-                ['+2.000€', 'documentados'],
-                ['7', 'módulos'],
-                ['4', 'modos'],
-              ].map(([value, label]) => (
-                <div
-                  key={label}
-                  className="rounded-lg border border-violet-200/12 bg-white/[0.045] px-3 py-2.5 text-center shadow-inner shadow-white/[0.03] backdrop-blur-sm"
-                >
-                  <p className="text-lg font-bold text-white sm:text-xl">{value}</p>
-                  <p className="mt-1 text-[11px] leading-tight text-slate-400 sm:text-xs">{label}</p>
-                </div>
-              ))}
+            <div className="mt-6 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-gray-400">
+              <div className="inline-flex items-center gap-2">
+                <span className="text-emerald-400">✓</span>
+                <span>Sin tarjeta</span>
+              </div>
+              <div className="inline-flex items-center gap-2">
+                <span className="text-emerald-400">✓</span>
+                <span>Sin registro</span>
+              </div>
+              <div className="inline-flex items-center gap-2">
+                <span className="text-emerald-400">✓</span>
+                <span>+2.000€ en bonos disponibles</span>
+              </div>
+              <div className="inline-flex items-center gap-2">
+                <span className="text-emerald-400">✓</span>
+                <span>30+ casas en España y LATAM</span>
+              </div>
             </div>
           </div>
         </div>
