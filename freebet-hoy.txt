@@ -1,58 +1,58 @@
 === FREEBET DIARIA ===
 
-ETIQUETA_DIA: "lunes 20 de abril"
-HORA_ACTUALIZACION: "15:00"
-CUOTA_TOTAL: "13.64"
+ETIQUETA_DIA: "miércoles 22 de abril"
+HORA_ACTUALIZACION: "14:15"
+CUOTA_TOTAL: "11.36"
 CONFIANZA: "Media · 7/10"
-NOTA_CONFIANZA: "Sólido anclaje en Tier 1; riesgo moderado en la liga turca."
-MOTIVO_GENERAL: "Se explotan las crisis defensivas en Portugal y Turquía, junto con la inercia ganadora de la Fiorentina y la tendencia goleadora histórica del duelo Palace-West Ham."
+NOTA_CONFIANZA: "Riesgo controlado en goles apoyado por la fragilidad defensiva de los visitantes."
+MOTIVO_GENERAL: "Se explota el récord perfecto del Barcelona en casa y las bajas críticas en la defensa del Getafe. La combinada equilibra favoritos sólidos con mercados de goles de alto valor estadístico."
 
 PICKS:
 
 PICK_1:
-partido: "Crystal Palace vs West Ham"
-liga: "Premier League"
-hora: "18:00"
-mercado: "Más de 2.5 goles"
-cuota: "1.88"
-probabilidadModelo: "0.560"
-fairOdds: "1.79"
-ev: "0.053"
-motivoCorto: "Tendencia histórica de 2+ goles en H2H y debilidad defensiva visitante con bajas en portería."
+partido: "Barcelona vs Celta Vigo"
+liga: "La Liga"
+hora: "20:30"
+mercado: "Más de 3.5 goles"
+cuota: "1.80"
+probabilidadModelo: "0.620"
+fairOdds: "1.61"
+ev: "0.116"
+motivoCorto: "Barcelona mantiene un 100% de victorias en casa promediando 2.7 goles por partido."
 
 PICK_2:
-partido: "Lecce vs Fiorentina"
-liga: "Serie A"
-hora: "18:45"
+partido: "Elche vs Atlético Madrid"
+liga: "La Liga"
+hora: "18:00"
 mercado: "Gana visitante"
-cuota: "2.16"
-probabilidadModelo: "0.500"
-fairOdds: "2.00"
-ev: "0.080"
-motivoCorto: "Lecce encadena 4 derrotas seguidas y la Fiorentina llega en racha con el regreso de Gudmundsson."
-
-PICK_3:
-partido: "Moreirense vs Estoril"
-liga: "Primeira Liga"
-hora: "21:15"
-mercado: "Más de 2.5 goles"
-cuota: "2.10"
-probabilidadModelo: "0.537"
-fairOdds: "1.86"
-ev: "0.113"
-motivoCorto: "Grave crisis defensiva en Moreirense con 3 titulares fuera y Begraoui en gran estado de forma."
-
-PICK_4:
-partido: "Gaziantep FK vs Kayserispor"
-liga: "Süper Lig"
-hora: "19:00"
-mercado: "Gana local"
-cuota: "1.60"
+cuota: "1.56"
 probabilidadModelo: "0.680"
 fairOdds: "1.47"
-ev: "0.088"
-motivoCorto: "Gaziantep fuerte en casa ante un Kayserispor diezmado en defensa y en zona de descenso."
+ev: "0.061"
+motivoCorto: "El Atleti necesita asegurar Champions tras perder la Copa; Elche es el 18º de la tabla."
 
-RESUMEN_FINAL: "Combinada de 4 picks que promedia un alto EV gracias a la debilidad defensiva de los equipos visitantes en mercados de goles y 1X2."
+PICK_3:
+partido: "Real Sociedad vs Getafe"
+liga: "La Liga"
+hora: "19:00"
+mercado: "Más de 2.5 goles"
+cuota: "2.38"
+probabilidadModelo: "0.460"
+fairOdds: "2.17"
+ev: "0.096"
+motivoCorto: "Getafe viaja con sus dos centrales titulares suspendidos y un H2H histórico de goles en Anoeta."
+
+PICK_4:
+partido: "Bournemouth vs Leeds"
+liga: "Premier League"
+hora: "20:00"
+mercado: "Más de 2.5 goles"
+cuota: "1.70"
+probabilidadModelo: "0.640"
+fairOdds: "1.56"
+ev: "0.088"
+motivoCorto: "Duelo de estilos ofensivos sin presión defensiva; 16 goles en sus últimos 3 enfrentamientos."
+
+RESUMEN_FINAL: "Combinada de 4 selecciones de Tier 1 con cuota 11.36, enfocada en la potencia ofensiva del Barcelona y la vulnerabilidad defensiva por bajas en Getafe y Elche."
 
 === FIN FREEBET DIARIA ===

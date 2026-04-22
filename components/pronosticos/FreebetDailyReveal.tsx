@@ -122,7 +122,35 @@ export function FreebetDailyReveal({ dailyCombinada }: FreebetDailyRevealProps) 
       ) : null}
 
       {status === 'revealed' ? (
-        <div className="grid gap-3">
+        <>
+          <div className="mb-5 sm:mb-6">
+            <div
+              className="relative overflow-hidden rounded-2xl border border-white/10 px-5 py-6 shadow-[0_20px_50px_rgba(16,185,129,0.12)] sm:px-8 sm:py-7"
+              style={{ background: 'linear-gradient(135deg, #12112A 0%, #1e1840 50%, #2A1F3D 100%)' }}
+            >
+              <div className="grid grid-cols-2 divide-x divide-white/10">
+                <div className="pr-4 sm:pr-6">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-300">
+                    CUOTA TOTAL
+                  </p>
+                  <p className="mt-2 font-playfair text-4xl font-bold leading-none text-emerald-400 sm:text-5xl">
+                    {dailyCombinada.cuotaTotal}
+                  </p>
+                </div>
+
+                <div className="pl-4 sm:pl-6">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-300">
+                    CONFIANZA
+                  </p>
+                  <p className="mt-2 text-xl font-semibold leading-tight text-white sm:text-2xl">
+                    {dailyCombinada.confianza}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid gap-3">
           {picks.map((pick, index) => (
             <div
               key={`${pick.partido}-${pick.mercado}-${index}`}
@@ -175,7 +203,8 @@ export function FreebetDailyReveal({ dailyCombinada }: FreebetDailyRevealProps) 
               </div>
             </div>
           ))}
-        </div>
+          </div>
+        </>
       ) : null}
     </div>
   )
