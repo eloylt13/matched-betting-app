@@ -545,6 +545,93 @@ export default function LandingPage() {
         </div>
       </section>
 
+      <section className="bg-[#F5F3EE] py-16 sm:py-24">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-12 text-center">
+            <p className="text-xs font-semibold text-emerald-600 uppercase tracking-widest mb-3">Empieza por aquí</p>
+            <h2 className="font-playfair text-2xl sm:text-3xl lg:text-4xl font-bold text-stone-900">
+              La casa recomendada para empezar
+            </h2>
+            <p className="text-stone-500 mt-4 max-w-xl mx-auto text-sm sm:text-base">
+              Una sola casa y una guía clara. La forma más simple de entender el método y aprovechar tu primer bono.
+            </p>
+          </div>
+
+          <div className="max-w-3xl mx-auto">
+            <div className="relative rounded-2xl border border-stone-200 bg-white p-6 shadow-sm transition-all duration-200 hover:shadow-md sm:p-8">
+              <span className="absolute top-4 right-4 rounded-full bg-emerald-500 px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-white shadow-sm sm:top-6 sm:right-6">
+                Hasta 65€ de bono
+              </span>
+
+              <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
+                <div className="shrink-0">
+                  <img src="/logos/casas/versus.svg" alt="Versus" className="h-12 w-auto" />
+                </div>
+                <div>
+                  <h3 className="font-playfair text-2xl font-bold text-stone-900">Versus</h3>
+                  <p className="mt-1 text-sm text-stone-500">Apuesta & Recibe · Dificultad 1/5</p>
+                </div>
+              </div>
+
+              <div className="mb-6 space-y-3">
+                <div className="flex items-start gap-2">
+                  <span className="font-semibold text-emerald-500">✓</span>
+                  <p className="text-sm text-stone-700">Buena opción para empezar desde cero</p>
+                </div>
+                <div className="flex items-start gap-2">
+                  <span className="font-semibold text-emerald-500">✓</span>
+                  <p className="text-sm text-stone-700">Bono sencillo de entender</p>
+                </div>
+                <div className="flex items-start gap-2">
+                  <span className="font-semibold text-emerald-500">✓</span>
+                  <p className="text-sm text-stone-700">Dificultad baja: 1/5</p>
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <TrackedLink
+                  href="https://app.afiliago.com/go/19148/JqXVcHDWdu/2"
+                  eventName="home_casa_recomendada_primary_clicked"
+                  eventProps={{ location: 'casa_recomendada', casa: 'versus', target_path: 'afiliado_versus' }}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex-1 rounded-lg bg-emerald-500 px-6 py-3 text-center text-sm font-bold text-white shadow-sm transition-all duration-200 hover:bg-emerald-400 hover:shadow-md sm:flex-initial sm:text-base"
+                >
+                  <span className="inline-flex items-center justify-center gap-2">
+                    <span>Registrarme en Versus</span>
+                    <span
+                      className="text-lg leading-none transition-transform duration-200 group-hover:translate-x-1"
+                      aria-hidden="true"
+                    >
+                      →
+                    </span>
+                  </span>
+                </TrackedLink>
+                <TrackedLink
+                  href="/casas/versus"
+                  eventName="home_casa_recomendada_secondary_clicked"
+                  eventProps={{ location: 'casa_recomendada', casa: 'versus', target_path: '/casas/versus' }}
+                  className="flex-1 rounded-lg border border-stone-300 px-6 py-3 text-center text-sm font-semibold text-stone-700 transition-colors duration-200 hover:bg-stone-50 sm:flex-initial sm:text-base"
+                >
+                  Ver guía →
+                </TrackedLink>
+              </div>
+            </div>
+
+            <div className="mt-8 flex justify-center">
+              <TrackedLink
+                href="/casas"
+                eventName="home_casa_recomendada_otras_casas_clicked"
+                eventProps={{ location: 'casa_recomendada', target_path: '/casas' }}
+                className="mx-auto inline-flex items-center gap-1 text-sm text-stone-500 transition-colors duration-200 hover:text-emerald-600"
+              >
+                ¿Ya tienes cuenta en Versus? Ver otras casas →
+              </TrackedLink>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="landing-reveal bg-[linear-gradient(180deg,#F1ECFF_0%,#F8FAFC_48%,#F4F0FF_100%)]">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
           <div className="text-center mb-12">

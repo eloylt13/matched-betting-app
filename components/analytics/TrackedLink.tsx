@@ -1,10 +1,18 @@
 'use client'
 
 import Link, { type LinkProps } from 'next/link'
-import type { MouseEventHandler, ReactNode } from 'react'
+import type {
+  AnchorHTMLAttributes,
+  MouseEventHandler,
+  ReactNode,
+} from 'react'
 import { captureEvent, type AnalyticsProps } from '@/lib/analytics'
 
-type TrackedLinkProps = LinkProps & {
+type TrackedLinkProps = LinkProps &
+  Omit<
+    AnchorHTMLAttributes<HTMLAnchorElement>,
+    'children' | 'className' | 'href' | 'onClick'
+  > & {
   eventName: string
   eventProps?: AnalyticsProps
   className?: string
