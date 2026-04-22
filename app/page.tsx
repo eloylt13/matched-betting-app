@@ -494,6 +494,57 @@ export default function LandingPage() {
         </div>
       </section>
 
+      <section className="bg-[#0a0918] py-16 sm:py-24">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-12 text-center">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-emerald-400">Cómo funciona</p>
+            <h2 className="font-playfair text-2xl font-bold text-white sm:text-3xl lg:text-4xl">
+              Tres pasos para empezar con matched betting
+            </h2>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-3 sm:gap-6">
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all duration-200 hover:border-emerald-400/30 hover:bg-white/8">
+              <span className="mb-4 block font-playfair text-4xl font-bold text-emerald-400">01</span>
+              <h3 className="mb-2 text-base font-semibold text-white">Eliges una casa y activas el bono</h3>
+              <p className="text-sm leading-relaxed text-gray-400">
+                Te registras en una casa de apuestas de España o LATAM y activas su bono de bienvenida. La app te recomienda por cuál empezar.
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all duration-200 hover:border-emerald-400/30 hover:bg-white/8">
+              <span className="mb-4 block font-playfair text-4xl font-bold text-emerald-400">02</span>
+              <h3 className="mb-2 text-base font-semibold text-white">Cubres la apuesta con la calculadora</h3>
+              <p className="text-sm leading-relaxed text-gray-400">
+                Apuestas en la casa y cubres la apuesta contraria con la calculadora. Te dice cuánto poner en cada lado.
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all duration-200 hover:border-emerald-400/30 hover:bg-white/8">
+              <span className="mb-4 block font-playfair text-4xl font-bold text-emerald-400">03</span>
+              <h3 className="mb-2 text-base font-semibold text-white">Recuperas y aprovechas el bono</h3>
+              <p className="text-sm leading-relaxed text-gray-400">
+                Recuperas gran parte del depósito y aprovechas el bono siguiendo la ruta guiada.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-12 text-center">
+            <TrackedLink
+              href="/casas"
+              eventName="home_como_funciona_cta_clicked"
+              eventProps={{ location: 'como_funciona', target_path: '/casas' }}
+              className="group inline-flex items-center gap-2 rounded-lg border border-white/20 bg-transparent px-7 py-3.5 text-base font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/10"
+            >
+              <span>Ver casas recomendadas para empezar</span>
+              <span className="text-lg leading-none transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">
+                →
+              </span>
+            </TrackedLink>
+          </div>
+        </div>
+      </section>
+
       <section className="landing-reveal bg-[linear-gradient(180deg,#F1ECFF_0%,#F8FAFC_48%,#F4F0FF_100%)]">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
           <div className="text-center mb-12">
