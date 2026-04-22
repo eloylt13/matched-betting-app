@@ -244,32 +244,6 @@ const BETA_FEATURES = [
   },
 ]
 
-const TESTIMONIOS_BETA = [
-  {
-    nombre: 'Carlos',
-    ciudad: 'Valencia',
-    contexto: 'Primer recorrido',
-    texto: 'Me ha servido para ver el orden de los pasos. Antes tenía bonos, guías y calculadora abiertos por separado y acababa dudando de por dónde seguir.',
-  },
-  {
-    nombre: 'Marta',
-    ciudad: 'Madrid',
-    contexto: 'Organización',
-    texto: 'Se nota que aún está en beta, pero el flujo ya se entiende. No me vende humo; simplemente me ayuda a no ir tan perdida al empezar.',
-  },
-  {
-    nombre: 'Sergio',
-    ciudad: 'Sevilla',
-    contexto: 'Calculadora y casas',
-    texto: 'Lo que más agradezco es tener la casa, la fase y la calculadora cerca. No es que lo haga por mí, pero me evita perder contexto cada dos minutos.',
-  },
-  {
-    nombre: 'Laura',
-    ciudad: 'Barcelona',
-    contexto: 'Feedback temprano',
-    texto: 'Para alguien que está empezando, tenerlo todo junto baja bastante la fricción. Todavía faltan pulidos, pero ya transmite más orden que hacerlo a mano.',
-  },
-]
 
 const GUIAS_DESTACADAS = [
   {
@@ -658,44 +632,6 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section className="bg-[linear-gradient(180deg,#F8FAFC_0%,#F1EDFF_100%)] border-y border-violet-100/80">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-16">
-          <div className="max-w-2xl mx-auto text-center mb-8 sm:mb-10">
-            <p className="inline-flex items-center rounded-full border border-violet-200/80 bg-white/75 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-violet-700 shadow-sm shadow-violet-950/5 backdrop-blur-sm">
-              Beta temprana
-            </p>
-            <h2 className="font-playfair text-2xl sm:text-3xl font-bold text-slate-950 mt-4">
-              Lo que están viendo los primeros beta testers
-            </h2>
-            <p className="mt-4 text-sm sm:text-base text-slate-500 leading-relaxed">
-              Primeras impresiones de usuarios que están probando la beta para ordenar el inicio, entender el flujo y detectar qué partes todavía necesitan más pulido.
-            </p>
-          </div>
-
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {TESTIMONIOS_BETA.map((testimonio) => (
-              <div
-                key={testimonio.nombre}
-                className="relative overflow-hidden rounded-lg border border-violet-200/60 bg-white/75 p-5 shadow-[0_16px_42px_rgba(46,16,101,0.08)] ring-1 ring-white/80 backdrop-blur-sm transition-all duration-200 before:absolute before:inset-x-4 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-violet-300/55 before:to-transparent hover:-translate-y-0.5 hover:border-violet-300/60 hover:bg-white/90 hover:shadow-[0_20px_52px_rgba(46,16,101,0.13)]"
-              >
-                <div className="mb-4 flex items-start justify-between gap-3">
-                  <div>
-                    <p className="text-sm font-semibold text-slate-950">{testimonio.nombre}</p>
-                    <p className="text-xs text-slate-500">{testimonio.ciudad}</p>
-                  </div>
-                  <span className="shrink-0 rounded-full border border-violet-200/70 bg-violet-50/80 px-2.5 py-1 text-[11px] font-medium text-violet-700 shadow-sm shadow-violet-950/5">
-                    Beta
-                  </span>
-                </div>
-                <p className="mb-3 inline-flex rounded-md border border-slate-200/80 bg-slate-50 px-2 py-1 text-[11px] font-medium text-slate-500">
-                  {testimonio.contexto}
-                </p>
-                <p className="text-sm text-slate-600 leading-relaxed">{testimonio.texto}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       <section className="landing-reveal bg-[linear-gradient(180deg,#F1EDFF_0%,#FFFFFF_42%,#F8FAFC_100%)]">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
