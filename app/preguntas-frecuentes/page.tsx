@@ -2,65 +2,65 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Preguntas frecuentes | IAPredictHub',
+  title: 'Preguntas frecuentes sobre matched betting | IAPredictHub',
   description:
-    'Resuelve dudas sobre la ruta guiada, la calculadora, el seguimiento, el alcance en España y el apoyo para LATAM, además de riesgos, registro y uso de la app.',
+    'Las dudas más habituales antes de empezar con matched betting: legalidad, riesgo, tiempo, cierres de cuenta y aspectos fiscales.',
   alternates: {
     canonical: 'https://iapredicthub.es/preguntas-frecuentes',
   },
   openGraph: {
-    title: 'Preguntas frecuentes | IAPredictHub',
+    title: 'Preguntas frecuentes sobre matched betting | IAPredictHub',
     description:
-      'Resuelve dudas sobre la ruta guiada, la calculadora, el seguimiento, el alcance en España y el apoyo para LATAM, además de riesgos, registro y uso de la app.',
+      'Las dudas más habituales antes de empezar con matched betting: legalidad, riesgo, tiempo, cierres de cuenta y aspectos fiscales.',
     url: 'https://iapredicthub.es/preguntas-frecuentes',
     images: [
       {
         url: 'https://iapredicthub.es/logo.png',
         width: 512,
         height: 512,
-        alt: 'IAPredictHub — Preguntas frecuentes',
+        alt: 'IAPredictHub — Preguntas frecuentes sobre matched betting',
       },
     ],
   },
   twitter: {
     card: 'summary',
-    title: 'Preguntas frecuentes | IAPredictHub',
+    title: 'Preguntas frecuentes sobre matched betting | IAPredictHub',
     description:
-      'Resuelve dudas sobre la ruta guiada, la calculadora, el seguimiento, el alcance en España y el apoyo para LATAM, además de riesgos, registro y uso de la app.',
+      'Las dudas más habituales antes de empezar con matched betting: legalidad, riesgo, tiempo, cierres de cuenta y aspectos fiscales.',
     images: ['https://iapredicthub.es/logo.png'],
   },
 }
 
 const FAQS = [
   {
-    pregunta: '¿Necesito experiencia previa para usar IAPredictHub?',
+    pregunta: '¿El matched betting es legal en España?',
     respuesta:
-      'No. Está pensada para ayudarte a empezar con más orden y menos lío, aunque todavía no domines el proceso. La idea es que tengas una ruta más clara desde el principio.',
+      'El matched betting consiste en aprovechar promociones y cubrir apuestas para reducir el riesgo. La actividad se apoya en bonos y mercados ofrecidos por operadores autorizados. Aun así, cada usuario debe revisar las condiciones de cada casa y actuar conforme a la normativa aplicable.',
   },
   {
-    pregunta: '¿Voy a tener que rellenarlo todo a mano?',
+    pregunta: '¿Puedo perder dinero real haciendo esto?',
     respuesta:
-      'No del todo. La app te guía por el flujo y la calculadora ya ayuda a reducir pasos manuales. Aun así, seguirás revisando datos y tomando decisiones, pero con menos trabajo repetitivo y menos errores evitables.',
+      'El matched betting está diseñado para minimizar el riesgo, no eliminarlo. Si sigues los pasos correctamente y usas la calculadora, el riesgo es mínimo: recuperas la mayor parte del depósito incluso perdiendo la apuesta, y desbloqueas el bono para convertirlo en dinero. El mayor riesgo real es el error humano: equivocarse al introducir datos en la calculadora o al hacer la apuesta. Por eso la app te guía paso a paso.',
   },
   {
-    pregunta: '¿Puedo perder dinero usando la app?',
+    pregunta: '¿Las casas pueden limitar o cerrar mi cuenta?',
     respuesta:
-      'Sí, ese riesgo existe. La app no elimina el riesgo por completo: su función es ayudarte a ejecutar con más método, más orden y menos errores evitables. Conviene usarla con criterio y siempre dentro de un uso responsable.',
+      'Sí, puede ocurrir. Algunas casas detectan ciertos patrones de uso de promociones y pueden limitar mercados, reducir importes máximos de apuesta o, en algunos casos, cerrar la cuenta. Esto suele afectar más a usuarios muy activos a largo plazo que a quien solo aprovecha un bono de bienvenida. Antes de registrarte, conviene revisar las condiciones de cada casa para entender mejor cómo funciona cada promoción.',
   },
   {
-    pregunta: '¿Sirve solo para España o también para LATAM?',
+    pregunta: '¿Cuánto tiempo necesito para empezar?',
     respuesta:
-      'Está pensada principalmente para España, que sigue siendo el foco principal del proyecto. Aun así, varias partes también son utilizables en LATAM, sobre todo la parte de aprendizaje, calculadora y organización del flujo.',
+      'Para activar tu primer bono de bienvenida necesitas entre 20 y 40 minutos: registro en la casa, verificación, depósito y la ejecución de los pasos. A medida que ganas práctica, cada bono adicional te lleva menos tiempo. No necesitas hacer matched betting todos los días, puedes ejecutarlos al ritmo que quieras.',
   },
   {
-    pregunta: '¿Qué incluye gratis ahora mismo?',
+    pregunta: '¿Necesito saber de fútbol, deportes o apuestas?',
     respuesta:
-      'Ahora mismo puedes usar gratis el onboarding, el dashboard, la calculadora, las casas, el checklist, el seguimiento y las guías. La idea es que puedas entrar y entender el flujo completo sin pagar en esta fase.',
+      'No. El matched betting no es apostar a lo que creas que va a pasar. Es cubrir todas las posibilidades para aprovechar el bono. Da igual qué equipo juega o quién gana: la calculadora te dice exactamente qué hacer. Muchos usuarios que hacen matched betting nunca han apostado antes.',
   },
   {
-    pregunta: '¿Necesito registrarme para probarla?',
+    pregunta: '¿Tengo que declarar las ganancias en Hacienda?',
     respuesta:
-      'No. En esta fase puedes entrar y usar la app sin registro. Así puedes ver si el enfoque encaja contigo antes de complicarte con pasos extra.',
+      'Las ganancias de juego pueden tener implicaciones fiscales. La situación concreta depende del importe, de tus circunstancias y de la normativa aplicable. Para tu caso, conviene consultarlo con un asesor fiscal. Esta app no ofrece asesoramiento legal ni fiscal.',
   },
 ]
 
@@ -104,8 +104,7 @@ export default function PreguntasFrecuentesPage() {
               Dudas habituales antes de empezar.
             </h1>
             <p className="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-slate-300 sm:text-base">
-              Respuestas claras sobre qué puedes esperar de la app, cómo encaja el método y qué conviene tener en
-              cuenta antes de ejecutar promociones.
+              Las dudas más habituales antes de empezar con matched betting.
             </p>
           </header>
         </div>
