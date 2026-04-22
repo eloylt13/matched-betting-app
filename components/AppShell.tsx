@@ -130,7 +130,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
         </div>
       ) : null}
 
-      <main className="mx-auto max-w-7xl px-4 py-6 pb-20 sm:px-6 lg:px-8 md:pb-8">{children}</main>
+      <main className="mx-auto max-w-7xl px-4 py-6 pb-[calc(5.5rem+env(safe-area-inset-bottom))] sm:px-6 lg:px-8 md:pb-8">{children}</main>
 
       <BottomNav />
     </>

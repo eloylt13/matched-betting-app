@@ -23,7 +23,7 @@ export default function BottomNav() {
   ]
 
   return (
-    <div className="fixed inset-x-3 bottom-3 z-50 md:hidden">
+    <div className="fixed inset-x-3 bottom-[calc(0.5rem+env(safe-area-inset-bottom))] z-50 md:hidden">
       <div className="grid h-[4.75rem] grid-cols-7 overflow-hidden rounded-[1.5rem] border border-white/10 bg-[linear-gradient(135deg,rgba(9,11,24,0.94)_0%,rgba(18,17,42,0.96)_46%,rgba(42,31,61,0.94)_100%)] px-1 py-1 shadow-[0_18px_54px_rgba(2,6,23,0.3)] backdrop-blur-xl">
         {navItems.map((item) => {
           const isActive = pathname === item.path || pathname.startsWith(`${item.path}/`)
