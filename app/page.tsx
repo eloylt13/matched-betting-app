@@ -362,7 +362,7 @@ export default function LandingPage() {
               <img src="/logo.png" alt="IAPredictHub" className="w-8 h-8 rounded-full object-cover" />
               <span className="font-bold text-white text-sm sm:text-base tracking-tight">
                 IAPredictHub
-                <span className="text-purple-300 font-normal hidden sm:inline"> · Bonos de bienvenida</span>
+                <span className="text-purple-300 font-normal hidden sm:inline"> · Matched Betting</span>
               </span>
             </Link>
             <nav className="flex items-center gap-2 sm:gap-3">
@@ -400,20 +400,45 @@ export default function LandingPage() {
 
         <div className="relative mx-auto max-w-5xl px-4 py-20 sm:px-6 sm:py-28 lg:px-8 lg:py-36">
           <div className="mx-auto max-w-4xl text-center">
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-emerald-400/25 bg-emerald-500/15 px-4 py-1.5 text-xs font-semibold text-emerald-100 shadow-[0_0_28px_rgba(16,185,129,0.14)] backdrop-blur-sm">
-              <span className="relative flex h-2.5 w-2.5 items-center justify-center">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400/50" />
-                <span className="relative h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_16px_rgba(52,211,153,0.85)]" />
+            <TrackedLink
+              href="/pronosticos"
+              eventName="home_freebet_card_clicked"
+              eventProps={{ location: 'hero', target_path: '/pronosticos' }}
+              className="group mx-auto mb-8 flex max-w-sm items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 backdrop-blur-sm transition-all duration-200 hover:border-emerald-400/40 hover:bg-white/10"
+            >
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-emerald-400/30 bg-emerald-500/10">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="h-5 w-5 text-emerald-400"
+                >
+                  <polyline points="20 12 20 22 4 22 4 12" />
+                  <rect x="2" y="7" width="20" height="5" />
+                  <line x1="12" y1="22" x2="12" y2="7" />
+                  <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z" />
+                  <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z" />
+                </svg>
+              </div>
+              <div className="min-w-0 flex-1 text-left">
+                <p className="text-sm font-semibold text-white">Freebet diaria de hoy</p>
+                <p className="text-xs text-gray-400">Reclámala en 2 minutos</p>
+              </div>
+              <span className="shrink-0 text-lg text-emerald-400 transition-transform duration-200 group-hover:translate-x-1">
+                →
               </span>
-              Matched betting · Gratis · Sin registro
-            </div>
+            </TrackedLink>
 
             <h1 className="mx-auto max-w-4xl font-playfair text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-[3.55rem]">
               <span className="text-emerald-400">+2.000€</span> en bonos de bienvenida disponibles. Te enseñamos a aprovecharlos.
             </h1>
 
             <p className="mx-auto mt-5 max-w-3xl text-base leading-relaxed text-gray-300 sm:text-lg">
-              Matched betting para España y LATAM: registras casas legales, activas sus bonos de bienvenida y cubres las apuestas con la calculadora para reducir al mínimo la exposición al resultado.
+              Matched betting para España y LATAM: un método para aprovechar bonos de bienvenida cubriendo la apuesta contraria con la calculadora.
             </p>
 
             <div className="mx-auto mt-8 max-w-xl rounded-2xl border border-white/10 bg-white/5 p-6 text-left shadow-[0_24px_80px_rgba(3,7,18,0.35)] backdrop-blur-md sm:p-8">
@@ -421,29 +446,29 @@ export default function LandingPage() {
               <div className="mt-4 space-y-3 text-sm leading-relaxed text-gray-300">
                 <p>· Una casa te da 50€ de freebet al depositar 50€</p>
                 <p>· Apuestas los 50€ a un resultado y cubres el contrario en Betfair Exchange</p>
-                <p>· Recuperas la mayoría y la freebet queda lista para convertir en saldo real</p>
+                <p>· Recuperas gran parte del depósito y luego conviertes la freebet siguiendo la ruta guiada</p>
               </div>
             </div>
 
             <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
               <TrackedLink
-                href="/pronosticos"
+                href="/bienvenida"
                 eventName="home_cta_primary_clicked"
-                eventProps={{ location: 'hero', target_path: '/pronosticos' }}
+                eventProps={{ location: 'hero', target_path: '/bienvenida' }}
                 className="group w-full rounded-lg bg-emerald-500 px-7 py-3.5 text-center text-base font-bold text-white shadow-[0_20px_56px_rgba(16,185,129,0.32)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-emerald-400 hover:shadow-[0_24px_66px_rgba(52,211,153,0.42)] sm:w-auto"
               >
                 <span className="inline-flex items-center gap-2">
-                  <span>Ver freebet de hoy</span>
+                  <span>Empezar con bonos</span>
                   <span className="text-lg leading-none transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">→</span>
                 </span>
               </TrackedLink>
               <TrackedLink
-                href="/bienvenida"
+                href="/guias"
                 eventName="home_cta_secondary_clicked"
-                eventProps={{ location: 'hero', target_path: '/bienvenida' }}
+                eventProps={{ location: 'hero', target_path: '/guias' }}
                 className="w-full rounded-lg border border-white/20 bg-transparent px-7 py-3.5 text-center text-base font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/10 sm:w-auto"
               >
-                Empezar con bonos
+                Ver guías gratis
               </TrackedLink>
             </div>
 
