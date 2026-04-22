@@ -388,7 +388,7 @@ export default function LandingPage() {
                 eventProps={{ location: 'header', target_path: '/bienvenida' }}
                 className="inline-flex items-center rounded-full border border-violet-200/35 bg-violet-500 px-3 sm:px-5 py-1.5 sm:py-2 text-xs sm:text-sm font-bold text-white shadow-[0_10px_28px_rgba(124,58,237,0.28)] transition-colors hover:bg-violet-400"
               >
-                Entrar en la app →
+                Probar gratis →
               </TrackedLink>
             </nav>
           </div>
@@ -445,7 +445,7 @@ export default function LandingPage() {
               <p className="text-xs font-semibold uppercase tracking-[0.28em] text-emerald-400">Ejemplo</p>
               <div className="mt-4 space-y-3 text-sm leading-relaxed text-gray-300">
                 <p>· Una casa te da 50€ de freebet al depositar 50€</p>
-                <p>· Apuestas los 50€ a un resultado y cubres el contrario en Betfair Exchange</p>
+                <p>· Apuestas los 50€ a un resultado y cubres la apuesta contraria utilizando la calculadora</p>
                 <p>· Recuperas gran parte del depósito y luego conviertes la freebet siguiendo la ruta guiada</p>
               </div>
             </div>
@@ -536,7 +536,7 @@ export default function LandingPage() {
               eventProps={{ location: 'como_funciona', target_path: '/casas' }}
               className="group inline-flex items-center gap-2 rounded-lg border border-white/20 bg-transparent px-7 py-3.5 text-base font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/10"
             >
-              <span>Ver casas recomendadas para empezar</span>
+              <span>Ver casas para empezar</span>
               <span className="text-lg leading-none transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">
                 →
               </span>
