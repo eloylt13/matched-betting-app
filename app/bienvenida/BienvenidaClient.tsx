@@ -16,6 +16,7 @@ interface WizardStep {
     description: string[]
     primaryLabel: string
     primaryHref?: string
+    advanceOnPrimaryNavigation?: boolean
     secondaryLabel?: string
     secondaryHref?: string
     externalHref?: string
@@ -121,6 +122,7 @@ const WIZARD_STEPS_ESPANA: WizardStep[] = [
         ],
         primaryLabel: 'Ir a Versus',
         primaryHref: '/casas/versus',
+        advanceOnPrimaryNavigation: true,
         secondaryLabel: 'Ya tengo Versus / ver otras casas',
         secondaryHref: '/casas',
     },
@@ -131,6 +133,7 @@ const WIZARD_STEPS_ESPANA: WizardStep[] = [
         ],
         primaryLabel: 'Ver calculadora',
         primaryHref: '/calculadora',
+        advanceOnPrimaryNavigation: true,
     },
     {
         title: 'Ruta recomendada',
@@ -168,6 +171,7 @@ const WIZARD_STEPS_LATAM: WizardStep[] = [
         ],
         primaryLabel: 'Ver bono',
         primaryHref: '/casas/betfair-sportsbook-latam',
+        advanceOnPrimaryNavigation: true,
     },
     {
         title: 'Usa la calculadora cuando hagas una apuesta',
@@ -176,6 +180,7 @@ const WIZARD_STEPS_LATAM: WizardStep[] = [
         ],
         primaryLabel: 'Ver calculadora',
         primaryHref: '/calculadora',
+        advanceOnPrimaryNavigation: true,
     },
     {
         title: 'Ruta recomendada',
@@ -262,6 +267,13 @@ export default function BienvenidaClient() {
             setStep((prev) => Math.min(prev + 1, WIZARD_STEPS.length - 1))
             return
         }
+
+        if (currentStep.advanceOnPrimaryNavigation) {
+            const nextStep = Math.min(step + 1, WIZARD_STEPS.length - 1)
+            setStep(nextStep)
+            saveGuidedWizardProgress({ market, step: nextStep })
+        }
+
         router.push(currentStep.primaryHref)
     }
 
