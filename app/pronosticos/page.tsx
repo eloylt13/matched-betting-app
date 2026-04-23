@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 
 const todayUpdateLabel = new Date().toLocaleDateString('es-ES', {
   day: '2-digit',
@@ -8,7 +9,6 @@ const todayUpdateLabel = new Date().toLocaleDateString('es-ES', {
 })
 
 import { FreebetDailyReveal } from '@/components/pronosticos/FreebetDailyReveal'
-import { PronosticosCtas } from '@/components/pronosticos/PronosticosCtas'
 import { getQuantLiteCombinada } from '@/lib/pronosticos/engine'
 
 export const metadata: Metadata = {
@@ -105,13 +105,29 @@ export default async function PronosticosPage() {
                 </div>
               </>
             ) : (
-              <div className="rounded-2xl border border-stone-200 bg-stone-50 p-5 sm:p-6">
-                <h3 className="text-lg font-bold text-stone-800">Freebet diaria no disponible por ahora</h3>
-                <p className="mt-2 text-sm leading-relaxed text-stone-600">
-                  Solo la mostramos cuando hay partidos y mercados suficientes para validarla.
+              <div className="rounded-2xl border border-emerald-100 bg-gradient-to-br from-emerald-50 via-white to-stone-50 p-5 shadow-sm sm:p-6">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-700">
+                  Alternativa disponible hoy
                 </p>
-                <div className="mt-5">
-                  <PronosticosCtas />
+                <h3 className="mt-3 text-xl font-bold leading-tight text-stone-900 sm:text-2xl">
+                  Hoy no hay selección del día, pero puedes activar 100€ en freebet ahora
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-stone-600 sm:text-base">
+                  Versus te da 100€ en freebet al hacer tu primer depósito. Siguiendo la ruta guiada, puedes convertirla en un beneficio estimado de ~65€.
+                </p>
+                <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
+                  <Link
+                    href="/casas/versus"
+                    className="inline-flex items-center justify-center rounded-xl bg-emerald-600 px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
+                  >
+                    Ver bono de Versus →
+                  </Link>
+                  <Link
+                    href="/casas"
+                    className="inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold text-emerald-800 transition hover:bg-emerald-100"
+                  >
+                    Ver otras casas con bono →
+                  </Link>
                 </div>
               </div>
             )}
