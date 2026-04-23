@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useMemo, useState } from 'react'
+import Link from 'next/link'
 
 import type { CombinadaData } from '@/app/pronosticos/mockData'
 
@@ -147,6 +148,33 @@ export function FreebetDailyReveal({ dailyCombinada }: FreebetDailyRevealProps) 
                   </p>
                 </div>
               </div>
+            </div>
+          </div>
+
+          <div className="mb-5 rounded-2xl border border-emerald-100 bg-emerald-50/80 p-5 shadow-sm sm:mb-6 sm:p-6">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-700">
+              Siguiente paso recomendado
+            </p>
+            <h3 className="mt-2 text-lg font-bold leading-tight text-stone-900">
+              Si quieres activar una freebet real hoy, empieza por Versus
+            </h3>
+            <p className="mt-2 text-sm leading-6 text-stone-600">
+              Versus te da 100€ en freebet al registrarte. Después puedes seguir la ruta guiada para convertirla en
+              beneficio estimado de ~65€.
+            </p>
+            <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:items-center">
+              <Link
+                href="/casas/versus"
+                className="inline-flex min-h-11 items-center justify-center rounded-lg bg-emerald-600 px-5 py-3 text-sm font-bold text-white shadow-sm transition-colors hover:bg-emerald-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600"
+              >
+                Ver bono de Versus →
+              </Link>
+              <Link
+                href="/casas"
+                className="inline-flex min-h-11 items-center justify-center rounded-lg px-4 py-3 text-sm font-semibold text-stone-600 transition-colors hover:bg-white/70 hover:text-stone-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600"
+              >
+                Ver otras casas con bono →
+              </Link>
             </div>
           </div>
 
