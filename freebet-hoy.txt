@@ -1,58 +1,58 @@
 === FREEBET DIARIA ===
 
-ETIQUETA_DIA: "miércoles 22 de abril"
-HORA_ACTUALIZACION: "14:15"
-CUOTA_TOTAL: "11.36"
-CONFIANZA: "Media · 7/10"
-NOTA_CONFIANZA: "Riesgo controlado en goles apoyado por la fragilidad defensiva de los visitantes."
-MOTIVO_GENERAL: "Se explota el récord perfecto del Barcelona en casa y las bajas críticas en la defensa del Getafe. La combinada equilibra favoritos sólidos con mercados de goles de alto valor estadístico."
+ETIQUETA_DIA: "Viernes 24 de Abril"
+HORA_ACTUALIZACION: "11:15"
+CUOTA_TOTAL: "5.82"
+CONFIANZA: "Alta · 8/10"
+NOTA_CONFIANZA: "Alta probabilidad basada en la superioridad de locales en Italia y Alemania, y la inercia del Madrid."
+MOTIVO_GENERAL: "Selección que combina favoritos con gran volumen ofensivo y equipos con bajas críticas en su estructura defensiva o ataque."
 
 PICKS:
 
 PICK_1:
-partido: "Barcelona vs Celta Vigo"
-liga: "La Liga"
-hora: "20:30"
-mercado: "Más de 3.5 goles"
-cuota: "1.80"
-probabilidadModelo: "0.620"
-fairOdds: "1.61"
-ev: "0.116"
-motivoCorto: "Barcelona mantiene un 100% de victorias en casa promediando 2.7 goles por partido."
-
-PICK_2:
-partido: "Elche vs Atlético Madrid"
+partido: "Levante vs Sevilla"
 liga: "La Liga"
 hora: "18:00"
-mercado: "Gana visitante"
-cuota: "1.56"
-probabilidadModelo: "0.680"
-fairOdds: "1.47"
-ev: "0.061"
-motivoCorto: "El Atleti necesita asegurar Champions tras perder la Copa; Elche es el 18º de la tabla."
-
-PICK_3:
-partido: "Real Sociedad vs Getafe"
-liga: "La Liga"
-hora: "19:00"
-mercado: "Más de 2.5 goles"
-cuota: "2.38"
-probabilidadModelo: "0.460"
-fairOdds: "2.17"
-ev: "0.096"
-motivoCorto: "Getafe viaja con sus dos centrales titulares suspendidos y un H2H histórico de goles en Anoeta."
-
-PICK_4:
-partido: "Bournemouth vs Leeds"
-liga: "Premier League"
-hora: "20:00"
-mercado: "Más de 2.5 goles"
-cuota: "1.70"
+mercado: "Gana o Empata: Levante"
+cuota: "1.65"
 probabilidadModelo: "0.640"
 fairOdds: "1.56"
-ev: "0.088"
-motivoCorto: "Duelo de estilos ofensivos sin presión defensiva; 16 goles en sus últimos 3 enfrentamientos."
+ev: "0.057"
+motivoCorto: "El Levante ha perdido solo 1 de sus últimos 6 partidos y el Sevilla es muy frágil fuera de casa."
 
-RESUMEN_FINAL: "Combinada de 4 selecciones de Tier 1 con cuota 11.36, enfocada en la potencia ofensiva del Barcelona y la vulnerabilidad defensiva por bajas en Getafe y Elche."
+PICK_2:
+partido: "Napoli vs Cremonese"
+liga: "Serie A"
+hora: "19:45"
+mercado: "Gana: Napoli"
+cuota: "1.36"
+probabilidadModelo: "0.785"
+fairOdds: "1.27"
+ev: "0.068"
+motivoCorto: "Napoli es casi imbatible en casa y la Cremonese viaja sin su delantero estrella Jamie Vardy."
+
+PICK_3:
+partido: "RB Leipzig vs Union Berlin"
+liga: "Bundesliga"
+hora: "18:30"
+mercado: "Más de 2.5 goles"
+cuota: "1.72"
+probabilidadModelo: "0.615"
+fairOdds: "1.62"
+ev: "0.058"
+motivoCorto: "El Leipzig promedia un xG muy alto y el Union Berlin llega con bajas defensivas y entrenador interino."
+
+PICK_4:
+partido: "Real Betis vs Real Madrid"
+liga: "La Liga"
+hora: "20:00"
+mercado: "Más de 1.5 goles"
+cuota: "1.51"
+probabilidadModelo: "0.710"
+fairOdds: "1.41"
+ev: "0.071"
+motivoCorto: "El Madrid ha marcado en 18 salidas consecutivas y el Betis recupera a Isco potenciando su ataque."
+
+RESUMEN_FINAL: "Combinada de alto valor que aprovecha el momento de forma de los equipos de Champions y la crisis de los visitantes."
 
 === FIN FREEBET DIARIA ===

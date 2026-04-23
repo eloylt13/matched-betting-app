@@ -55,7 +55,7 @@ const FAQS = [
   {
     pregunta: '¿Necesito saber de fútbol, deportes o apuestas?',
     respuesta:
-      'No. El matched betting no es apostar a lo que creas que va a pasar. Es cubrir todas las posibilidades para aprovechar el bono. Da igual qué equipo juega o quién gana: la calculadora te dice exactamente qué hacer. Muchos usuarios que hacen matched betting nunca han apostado antes.',
+      'No. El matched betting no es apostar a lo que creas que va a pasar. Es cubrir todas las posibilidades para aprovechar el bono. Da igual qué equipo juega o quién gana: la calculadora te dice exactamente qué hacer.',
   },
   {
     pregunta: '¿Tengo que declarar las ganancias en Hacienda?',

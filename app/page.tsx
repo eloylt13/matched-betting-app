@@ -482,7 +482,7 @@ export default function LandingPage() {
               <span className="mb-4 block font-playfair text-4xl font-bold text-emerald-400">01</span>
               <h3 className="mb-2 text-base font-semibold text-white">Eliges una casa y activas el bono</h3>
               <p className="text-sm leading-relaxed text-gray-400">
-                Te registras en una casa de apuestas de España o LATAM y activas su bono de bienvenida. La app te recomienda por cuál empezar.
+                Te registras en una casa de apuestas de España o LATAM y activas su bono de bienvenida. Te sugerimos por cuál empezar.
               </p>
             </div>
 
