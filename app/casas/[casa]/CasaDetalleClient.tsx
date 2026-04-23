@@ -553,6 +553,7 @@ export default function CasaDetalleClient({ casa, hasGuide }: CasaDetalleClientP
     const paso1Href = buildCalculadoraHref(casa, content.paso1Mode as CalculadoraModo)
     const paso2Href = buildCalculadoraHref(casa, content.paso2Mode as CalculadoraModo)
     const antesRegistroItems = getAntesRegistroItems(casa)
+    const isVersus = casa.id === "versus"
 
     return (
         <div className="max-w-3xl mx-auto px-4 py-8 flex flex-col gap-6">
@@ -615,7 +616,48 @@ export default function CasaDetalleClient({ casa, hasGuide }: CasaDetalleClientP
                 </div>
 
                 {/* CTAs */}
-                <div className="flex flex-wrap gap-3 mt-4">
+                {isVersus ? (
+                    <div className="mt-5 flex flex-col gap-3">
+                        {casa.url && !completada && (
+                            <a
+                                href={casa.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex w-full items-center justify-center rounded-2xl bg-emerald-500 px-6 py-4 text-base font-bold text-white shadow-lg shadow-emerald-500/20 ring-1 ring-emerald-400/60 transition-colors hover:bg-emerald-400 sm:w-auto sm:self-start"
+                            >
+                                Registrarte en {casa.nombre} &rarr;
+                            </a>
+                        )}
+                        {!completada && (
+                            <div className="flex flex-col gap-2 text-sm text-stone-500 sm:flex-row sm:flex-wrap sm:items-center">
+                                <span>Después te guiamos con calculadora y pasos.</span>
+                                <Link
+                                    href={mainCalculadoraHref}
+                                    className="font-medium text-stone-500 underline decoration-stone-300 underline-offset-4 transition-colors hover:text-stone-700"
+                                >
+                                    Abrir calculadora
+                                </Link>
+                                {hasGuide && (
+                                    <Link
+                                        href={guiaHref}
+                                        className="font-medium text-stone-500 underline decoration-stone-300 underline-offset-4 transition-colors hover:text-stone-700"
+                                    >
+                                        Ver guía
+                                    </Link>
+                                )}
+                            </div>
+                        )}
+                        {completada && (
+                            <button
+                                onClick={() => handleEstado("no_empezada")}
+                                className="self-start rounded-xl border border-stone-200 px-3 py-2 text-xs text-stone-400 transition-colors hover:text-stone-600"
+                            >
+                                Reabrir oferta
+                            </button>
+                        )}
+                    </div>
+                ) : (
+                    <div className="flex flex-wrap gap-3 mt-4">
                     {casa.url && !completada && (
                         <a
                             href={casa.url} target="_blank" rel="noopener noreferrer"
@@ -638,7 +680,8 @@ export default function CasaDetalleClient({ casa, hasGuide }: CasaDetalleClientP
                             Reabrir oferta
                         </button>
                     )}
-                </div>
+                    </div>
+                )}
             </div>
 
             {(casa.resumen || antesRegistroItems.length > 0) && (
