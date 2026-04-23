@@ -16,6 +16,8 @@ interface WizardStep {
     description: string[]
     primaryLabel: string
     primaryHref?: string
+    secondaryLabel?: string
+    secondaryHref?: string
     externalHref?: string
     externalLabel?: string
 }
@@ -118,6 +120,8 @@ const WIZARD_STEPS_ESPANA: WizardStep[] = [
         ],
         primaryLabel: 'Ir a Versus',
         primaryHref: '/casas/versus',
+        secondaryLabel: 'Ya tengo Versus / ver otras casas',
+        secondaryHref: '/casas',
     },
     {
         title: 'Usa la calculadora cuando hagas una apuesta',
@@ -465,6 +469,16 @@ export default function BienvenidaClient() {
                             >
                                 {currentStep.primaryLabel}
                             </button>
+
+                            {currentStep.secondaryHref && currentStep.secondaryLabel && (
+                                <button
+                                    type="button"
+                                    onClick={() => router.push(currentStep.secondaryHref!)}
+                                    className="inline-flex items-center justify-center rounded-lg border border-white/10 bg-white/[0.035] px-5 py-3 text-sm font-semibold text-slate-200 transition-all duration-200 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.065] hover:text-white sm:px-4"
+                                >
+                                    {currentStep.secondaryLabel}
+                                </button>
+                            )}
                         </div>
                     )}
                 </section>
