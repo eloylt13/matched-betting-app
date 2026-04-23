@@ -28,6 +28,69 @@ const MARKET_SELECTION_STEP: WizardStep = {
     primaryLabel: 'Elegir mercado',
 }
 
+interface GuidedWizardProgress {
+    market: Market
+    step: number
+}
+
+const GUIDED_WIZARD_PROGRESS_KEY = 'mb_bienvenida_guided_progress'
+
+function isMarket(value: unknown): value is Market {
+    return value === 'espana' || value === 'latam'
+}
+
+function getWizardStepsLength(nextMarket: Market): number {
+    return nextMarket === 'espana' ? WIZARD_STEPS_ESPANA.length : WIZARD_STEPS_LATAM.length
+}
+
+function normalizeGuidedWizardProgress(progress: GuidedWizardProgress): GuidedWizardProgress {
+    const maxStep = getWizardStepsLength(progress.market) - 1
+
+    return {
+        market: progress.market,
+        step: Math.min(Math.max(progress.step, 0), maxStep),
+    }
+}
+
+function loadGuidedWizardProgress(): GuidedWizardProgress | null {
+    if (typeof window === 'undefined') return null
+
+    try {
+        const raw = localStorage.getItem(GUIDED_WIZARD_PROGRESS_KEY)
+        if (!raw) return null
+
+        const parsed: unknown = JSON.parse(raw)
+        if (
+            typeof parsed !== 'object' ||
+            parsed === null ||
+            !('market' in parsed) ||
+            !('step' in parsed)
+        ) {
+            return null
+        }
+
+        const progress = parsed as Record<'market' | 'step', unknown>
+        if (!isMarket(progress.market) || typeof progress.step !== 'number') {
+            return null
+        }
+
+        return normalizeGuidedWizardProgress({
+            market: progress.market,
+            step: progress.step,
+        })
+    } catch {
+        return null
+    }
+}
+
+function saveGuidedWizardProgress(progress: GuidedWizardProgress): void {
+    if (typeof window === 'undefined') return
+    localStorage.setItem(
+        GUIDED_WIZARD_PROGRESS_KEY,
+        JSON.stringify(normalizeGuidedWizardProgress(progress))
+    )
+}
+
 const WIZARD_STEPS_ESPANA: WizardStep[] = [
     MARKET_SELECTION_STEP,
     {
@@ -127,6 +190,13 @@ export default function BienvenidaClient() {
 
     useEffect(() => {
         const preferences = loadOnboardingPreferences()
+        const guidedProgress = loadGuidedWizardProgress()
+
+        if (guidedProgress) {
+            setMarket(guidedProgress.market)
+            setStep(guidedProgress.step)
+        }
+
         if (preferences.onboardingMode === 'guiado') {
             setSelectedMode('guiado')
         }
@@ -141,6 +211,11 @@ export default function BienvenidaClient() {
             wizardRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
         }
     }, [selectedMode])
+
+    useEffect(() => {
+        if (checking || selectedMode !== 'guiado') return
+        saveGuidedWizardProgress({ market, step })
+    }, [checking, market, selectedMode, step])
 
     const currentStep = WIZARD_STEPS[step]
     const isMarketSelectionStep = currentStep?.title === '¿Desde dónde apuestas?'
@@ -163,8 +238,12 @@ export default function BienvenidaClient() {
 
     function handleGuidedChoice() {
         persistPreferences('guiado')
+        const guidedProgress = loadGuidedWizardProgress()
+        if (guidedProgress) {
+            setMarket(guidedProgress.market)
+            setStep(guidedProgress.step)
+        }
         setSelectedMode('guiado')
-        setStep(0)
     }
 
     function handleMarketChoice(nextMarket: Market) {
