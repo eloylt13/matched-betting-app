@@ -104,12 +104,13 @@ const WIZARD_STEPS_ESPANA: WizardStep[] = [
         primaryLabel: 'Entendido',
     },
     {
-        title: 'Necesitas Betfair Exchange',
+        title: 'Betfair Exchange es la vía recomendada',
         description: [
-            'Betfair Exchange te sirve para cubrir apuestas y ejecutar con más control desde el principio.',
-            'Tenlo listo antes de empezar con tu primera casa para ir con más seguridad.',
+            'Betfair Exchange te ayuda a empezar con más control y suele ser la ruta más clara para cubrir apuestas.',
+            'Si prefieres empezar sin Exchange, también puedes continuar y avanzar al siguiente paso.',
         ],
         primaryLabel: 'Ya lo tengo / seguir',
+        secondaryLabel: 'Prefiero empezar sin Exchange',
         externalHref: 'https://www.betfair.es/exchange/plus/',
         externalLabel: 'Abrir Betfair Exchange',
     },
@@ -150,12 +151,13 @@ const WIZARD_STEPS_LATAM: WizardStep[] = [
         primaryLabel: 'Entendido',
     },
     {
-        title: 'Necesitas Betfair Exchange',
+        title: 'Betfair Exchange es la vía recomendada',
         description: [
-            'Betfair Exchange está disponible en la mayoría de países LATAM y te sirve para cubrir apuestas.',
-            'Tenlo listo antes de empezar con tu primera casa.',
+            'Betfair Exchange te ayuda a empezar con más control y suele ser la ruta más clara para cubrir apuestas.',
+            'Si prefieres empezar sin Exchange, también puedes continuar y avanzar al siguiente paso.',
         ],
         primaryLabel: 'Ya lo tengo / seguir',
+        secondaryLabel: 'Prefiero empezar sin Exchange',
         externalHref: 'https://apuestas.betfair.es/latinoamerica/',
         externalLabel: 'Abrir Betfair Exchange LATAM',
     },
@@ -470,10 +472,16 @@ export default function BienvenidaClient() {
                                 {currentStep.primaryLabel}
                             </button>
 
-                            {currentStep.secondaryHref && currentStep.secondaryLabel && (
+                            {currentStep.secondaryLabel && (
                                 <button
                                     type="button"
-                                    onClick={() => router.push(currentStep.secondaryHref!)}
+                                    onClick={() => {
+                                        if (currentStep.secondaryHref) {
+                                            router.push(currentStep.secondaryHref)
+                                            return
+                                        }
+                                        setStep((prev) => Math.min(prev + 1, WIZARD_STEPS.length - 1))
+                                    }}
                                     className="inline-flex items-center justify-center rounded-lg border border-white/10 bg-white/[0.035] px-5 py-3 text-sm font-semibold text-slate-200 transition-all duration-200 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.065] hover:text-white sm:px-4"
                                 >
                                     {currentStep.secondaryLabel}
