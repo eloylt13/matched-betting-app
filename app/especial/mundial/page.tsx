@@ -9,6 +9,7 @@ type ScenarioCard = {
   nombre: string
   pais: string
   analisis: string
+  imagen: string
   className: string
 }
 
@@ -30,8 +31,9 @@ const ESCENARIO: ScenarioCard[] = [
     pais: 'PT',
     analisis:
       'Parte como la selección que mejor combina talento diferencial, soluciones para partidos largos y margen para adaptarse a distintos guiones de eliminatoria.',
+    imagen: '/especial/mundial/jugadores/pt.png',
     className:
-      'lg:col-span-2 lg:row-span-2 border-stone-900 bg-[#17151F] text-white shadow-[0_24px_80px_rgba(23,21,31,0.18)]',
+      'lg:col-span-2 lg:row-span-2 border border-[#D4AF37]/40 text-white shadow-[0_0_0_1px_rgba(212,175,55,0.15),0_24px_80px_rgba(212,175,55,0.08)]',
   },
   {
     etiqueta: 'Finalista previsto',
@@ -39,7 +41,8 @@ const ESCENARIO: ScenarioCard[] = [
     pais: 'ES',
     analisis:
       'Su capacidad para mandar con la pelota y sostener ritmo competitivo la coloca en una trayectoria muy creíble hacia la final si mantiene continuidad en las áreas.',
-    className: 'border-emerald-200 bg-emerald-50 text-stone-900',
+    imagen: '/especial/mundial/jugadores/es.png',
+    className: 'border border-[#D4AF37]/40 bg-white text-stone-900',
   },
   {
     etiqueta: 'Semifinalista',
@@ -47,7 +50,8 @@ const ESCENARIO: ScenarioCard[] = [
     pais: 'FR',
     analisis:
       'Sigue teniendo una plantilla preparada para sobrevivir a cruces exigentes incluso en días menos fluidos, con pegada suficiente para sostener un torneo largo.',
-    className: 'border-stone-200 bg-white text-stone-900',
+    imagen: '/especial/mundial/jugadores/fr.png',
+    className: 'border border-stone-200 bg-white text-stone-900',
   },
   {
     etiqueta: 'Semifinalista',
@@ -55,7 +59,8 @@ const ESCENARIO: ScenarioCard[] = [
     pais: 'BR',
     analisis:
       'Su techo competitivo aparece cuando encuentra equilibrio defensivo alrededor de su talento ofensivo, un perfil muy apto para llegar lejos en eliminatorias.',
-    className: 'border-stone-200 bg-white text-stone-900',
+    imagen: '/especial/mundial/jugadores/br.png',
+    className: 'border border-stone-200 bg-white text-stone-900',
   },
 ] as const
 
@@ -201,63 +206,100 @@ export default function EspecialMundialPage() {
             {ESCENARIO.map((item) => (
               <article
                 key={`${item.etiqueta}-${item.nombre}`}
-                className={`relative overflow-hidden rounded-3xl border p-6 sm:p-7 ${item.className}`}
+                className={`relative overflow-hidden rounded-3xl p-6 sm:p-7 ${item.className}`}
+                style={
+                  item.nombre === 'Portugal'
+                    ? {
+                        background:
+                          'linear-gradient(135deg, #0a2e1f 0%, #0f3a27 100%)',
+                      }
+                    : undefined
+                }
               >
                 <div
                   aria-hidden="true"
                   className={`pointer-events-none absolute inset-x-6 top-0 h-px ${
-                    item.className.includes('text-white') ? 'bg-white/20' : 'bg-emerald-200/80'
+                    item.nombre === 'Portugal'
+                      ? 'bg-[#E8C767]/30'
+                      : item.nombre === 'España'
+                        ? 'bg-[#D4AF37]/25'
+                        : 'bg-stone-200/80'
                   }`}
                 />
-                <div
-                  className={`flex items-start justify-between gap-4 border-b pb-4 ${
-                    item.className.includes('text-white') ? 'border-white/10' : 'border-stone-200/80'
-                  }`}
-                >
-                  <p
-                    className={`text-xs font-semibold uppercase tracking-[0.18em] ${
-                      item.className.includes('text-white') ? 'text-emerald-200' : 'text-emerald-700'
+                <div className="flex h-full flex-col justify-between gap-5 lg:flex-row lg:items-end">
+                  <div className="min-w-0 flex-1 self-start">
+                    <div
+                      className={`flex items-start justify-between gap-4 border-b pb-4 ${
+                        item.nombre === 'Portugal'
+                          ? 'border-[#D4AF37]/20'
+                          : item.nombre === 'España'
+                            ? 'border-[#D4AF37]/20'
+                            : 'border-stone-200/80'
+                      }`}
+                    >
+                      <p
+                        className={`text-xs font-semibold uppercase tracking-[0.18em] ${
+                          item.nombre === 'Portugal'
+                            ? 'text-[#E8C767]'
+                            : item.nombre === 'España'
+                              ? 'text-[#B8941F]'
+                              : 'text-emerald-700'
+                        }`}
+                      >
+                        {item.etiqueta}
+                      </p>
+                      <span
+                        className={`inline-flex shrink-0 items-center rounded-full border px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] ${
+                          item.nombre === 'Portugal'
+                            ? 'border-[#D4AF37]/50 bg-transparent text-[#E8C767]'
+                            : item.nombre === 'España'
+                              ? 'border-[#D4AF37]/50 bg-transparent text-[#B8941F]'
+                              : 'border-stone-200 bg-stone-50 text-stone-700'
+                        }`}
+                      >
+                        {item.pais}
+                      </span>
+                    </div>
+                    <p
+                      className={`mt-5 inline-flex rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] ${
+                        item.nombre === 'Portugal'
+                          ? 'bg-[#D4AF37]/10 text-[#E8C767] ring-1 ring-inset ring-[#D4AF37]/20'
+                          : item.nombre === 'España'
+                            ? 'bg-[#D4AF37]/10 text-[#B8941F] ring-1 ring-inset ring-[#D4AF37]/20'
+                            : 'bg-stone-100 text-stone-700 ring-1 ring-inset ring-stone-200'
+                      }`}
+                    >
+                      Escalón decisivo
+                    </p>
+                    <h3
+                      className={`mt-4 font-playfair font-bold tracking-tight ${
+                        item.className.includes('lg:row-span-2') ? 'text-4xl sm:text-5xl' : 'text-3xl sm:text-4xl'
+                      }`}
+                    >
+                      {item.nombre}
+                    </h3>
+                    <p
+                      className={`mt-4 text-sm leading-relaxed sm:text-base ${
+                        item.nombre === 'Portugal' ? 'text-stone-300' : 'text-stone-600'
+                      }`}
+                    >
+                      {item.analisis}
+                    </p>
+                  </div>
+
+                  <Image
+                    src={item.imagen}
+                    alt={`Jugador ${item.nombre}`}
+                    width={1024}
+                    height={1536}
+                    priority={false}
+                    className={`-mb-4 w-auto shrink-0 self-end object-contain drop-shadow-[0_12px_24px_rgba(0,0,0,0.25)] sm:-mb-5 ${
+                      item.nombre === 'Portugal'
+                        ? 'h-[240px] lg:h-[320px]'
+                        : 'h-[140px] lg:h-[180px]'
                     }`}
-                  >
-                    {item.etiqueta}
-                  </p>
-                  <span
-                    className={`inline-flex shrink-0 items-center rounded-full border px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] ${
-                      item.className.includes('text-white')
-                        ? 'border-white/15 bg-white/10 text-white'
-                        : item.className.includes('bg-emerald-50')
-                          ? 'border-emerald-300 bg-white/80 text-emerald-800'
-                          : 'border-stone-200 bg-stone-50 text-stone-700'
-                    }`}
-                  >
-                    {item.pais}
-                  </span>
+                  />
                 </div>
-                <p
-                  className={`mt-5 inline-flex rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] ${
-                    item.className.includes('text-white')
-                      ? 'bg-white/8 text-stone-200 ring-1 ring-inset ring-white/10'
-                      : item.className.includes('bg-emerald-50')
-                        ? 'bg-emerald-100 text-emerald-800 ring-1 ring-inset ring-emerald-200'
-                        : 'bg-stone-100 text-stone-700 ring-1 ring-inset ring-stone-200'
-                  }`}
-                >
-                  Escalón decisivo
-                </p>
-                <h3
-                  className={`mt-4 font-playfair font-bold tracking-tight ${
-                    item.className.includes('lg:row-span-2') ? 'text-4xl sm:text-5xl' : 'text-3xl sm:text-4xl'
-                  }`}
-                >
-                  {item.nombre}
-                </h3>
-                <p
-                  className={`mt-4 text-sm leading-relaxed sm:text-base ${
-                    item.className.includes('text-white') ? 'text-stone-300' : 'text-stone-600'
-                  }`}
-                >
-                  {item.analisis}
-                </p>
               </article>
             ))}
           </div>
