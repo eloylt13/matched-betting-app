@@ -3,171 +3,138 @@ import Link from 'next/link'
 
 const FECHA_ACTUALIZACION = 'Abril 2026'
 
-type ProbabilityOption = {
+type ScenarioCard = {
+  etiqueta: string
   nombre: string
-  porcentaje: string
+  analisis: string
+  className: string
+}
+
+type MarketOption = {
+  nombre: string
   nota: string
 }
 
-type ProbabilityMarket = {
+type Market = {
   titulo: string
   descripcion: string
-  opciones: ProbabilityOption[]
+  opciones: MarketOption[]
 }
 
 const COMO_LEER = [
   'Simulación como punto de partida',
   'Ajuste editorial propio según forma, contexto y plantilla',
-  'No es asesoramiento de apuesta',
+  'Lectura revisable, no cerrada, según evolucione el torneo',
 ] as const
 
-const MERCADOS: ProbabilityMarket[] = [
+const ESCENARIO: ScenarioCard[] = [
   {
-    titulo: 'Ganador del Mundial',
-    descripcion: 'Escenario editorial provisional para favoritos y perseguidores antes del tramo final de preparación.',
-    opciones: [
-      {
-        nombre: 'Francia',
-        porcentaje: '18% \u00B7 ejemplo editorial',
-        nota: 'Profundidad de plantilla y varias soluciones ofensivas si llega con su bloque principal sano.',
-      },
-      {
-        nombre: 'Brasil',
-        porcentaje: '16% \u00B7 ejemplo editorial',
-        nota: 'Techo competitivo muy alto cuando junta ritmo, talento individual y una defensa estable.',
-      },
-      {
-        nombre: 'Inglaterra',
-        porcentaje: '13% \u00B7 ejemplo editorial',
-        nota: 'Tiene volumen de talento y margen para dominar fases largas si afina su equilibrio sin balón.',
-      },
-      {
-        nombre: 'Argentina',
-        porcentaje: '11% \u00B7 ejemplo editorial',
-        nota: 'Bloque reconocible y muy competitivo, aunque depende de llegar con buena energia en las piezas clave.',
-      },
-      {
-        nombre: 'España',
-        porcentaje: '10% \u00B7 ejemplo editorial',
-        nota: 'Controla partidos con facilidad, pero su techo final depende de convertir dominio en pegada.',
-      },
-    ],
+    etiqueta: 'Campeón previsto',
+    nombre: 'Portugal',
+    analisis:
+      'Parte como la selección que mejor combina talento diferencial, soluciones para partidos largos y margen para adaptarse a distintos guiones de eliminatoria.',
+    className:
+      'lg:col-span-2 lg:row-span-2 border-stone-900 bg-[#17151F] text-white shadow-[0_24px_80px_rgba(23,21,31,0.18)]',
   },
   {
+    etiqueta: 'Finalista previsto',
+    nombre: 'España',
+    analisis:
+      'Su capacidad para mandar con la pelota y sostener ritmo competitivo la coloca en una trayectoria muy creíble hacia la final si mantiene continuidad en las áreas.',
+    className: 'border-emerald-200 bg-emerald-50 text-stone-900',
+  },
+  {
+    etiqueta: 'Semifinalista',
+    nombre: 'Francia',
+    analisis:
+      'Sigue teniendo una plantilla preparada para sobrevivir a cruces exigentes incluso en días menos fluidos, con pegada suficiente para sostener un torneo largo.',
+    className: 'border-stone-200 bg-white text-stone-900',
+  },
+  {
+    etiqueta: 'Semifinalista',
+    nombre: 'Brasil',
+    analisis:
+      'Su techo competitivo aparece cuando encuentra equilibrio defensivo alrededor de su talento ofensivo, un perfil muy apto para llegar lejos en eliminatorias.',
+    className: 'border-stone-200 bg-white text-stone-900',
+  },
+] as const
+
+const MERCADOS: Market[] = [
+  {
     titulo: 'Máximo goleador',
-    descripcion: 'Lectura preliminar basada en volumen esperado de tiros, rol ofensivo y recorrido potencial en el torneo.',
+    descripcion:
+      'Lectura editorial sobre quién puede capitalizar mejor volumen de remate, rol ofensivo y recorrido dentro del torneo.',
     opciones: [
       {
-        nombre: 'Kylian Mbappe',
-        porcentaje: '19% \u00B7 ejemplo editorial',
-        nota: 'Parte con volumen de remate alto y capacidad para generar goles incluso en partidos cerrados.',
+        nombre: 'Kylian Mbappé',
+        nota: 'Su capacidad para generarse ocasiones por sí mismo le mantiene en primera línea incluso en partidos cerrados.',
       },
       {
         nombre: 'Harry Kane',
-        porcentaje: '16% \u00B7 ejemplo editorial',
-        nota: 'Suma penaltis, continuidad de minutos y una seleccion capaz de llevarle balones al area.',
+        nota: 'Acumula minutos, peso en el área y un contexto ofensivo que suele sostenerle cerca del gol durante torneos largos.',
       },
       {
-        nombre: 'Vinicius Junior',
-        porcentaje: '12% \u00B7 ejemplo editorial',
-        nota: 'Su amenaza al espacio puede disparar cifras si Brasil encuentra continuidad ofensiva.',
+        nombre: 'Vinícius Júnior',
+        nota: 'Puede dispararse si Brasil encuentra continuidad en campo rival y le deja correr con frecuencia sobre defensa replegada.',
       },
       {
-        nombre: 'Julian Alvarez',
-        porcentaje: '10% \u00B7 ejemplo editorial',
-        nota: 'Encaja bien en un ataque coral y puede beneficiarse de varios perfiles creativos a su alrededor.',
+        nombre: 'Julián Álvarez',
+        nota: 'Encaja muy bien en ataques corales y puede crecer si su selección le coloca repetidamente en zonas de remate.',
       },
     ],
   },
   {
     titulo: 'Máximo asistente',
-    descripcion: 'Estimación editorial apoyada en peso creativo, balón parado y volumen de pases de último tercio.',
+    descripcion:
+      'Aquí pesa la capacidad para activar el último pase, asumir balón parado y aparecer de forma constante en campo rival.',
     opciones: [
       {
         nombre: 'Kevin De Bruyne',
-        porcentaje: '17% \u00B7 ejemplo editorial',
-        nota: 'Cuando está sano sigue siendo uno de los generadores más constantes de ocasiones claras.',
+        nota: 'Si llega con buen tono físico, sigue siendo uno de los generadores más fiables del torneo en pases que rompen partidos.',
       },
       {
         nombre: 'Jamal Musiala',
-        porcentaje: '13% \u00B7 ejemplo editorial',
-        nota: 'Puede acumular ventajas por conducción y último pase si Alemania acelera su ritmo en campo rival.',
+        nota: 'Su mezcla de conducción y claridad en el último tercio le da un perfil muy fuerte para producir ventajas continuas.',
       },
       {
         nombre: 'Pedri',
-        porcentaje: '11% \u00B7 ejemplo editorial',
-        nota: 'Su lectura entre líneas gana valor en un equipo que monopoliza posesión y campo.',
+        nota: 'En un equipo que quiere gobernar desde la posesión, su lectura interior puede traducirse en muchas acciones de último pase.',
       },
       {
         nombre: 'Bruno Fernandes',
-        porcentaje: '10% \u00B7 ejemplo editorial',
-        nota: 'Aporta pase final, balón parado y mucha presencia en la producción ofensiva de Portugal.',
+        nota: 'Suma creatividad, llegada y balón parado en un Portugal que aspira a pasar muchas fases del torneo.',
       },
     ],
   },
   {
     titulo: 'Mejor jugador',
-    descripcion: 'Proyección preliminar sobre impacto global, minutos esperados y narrativa competitiva del torneo.',
+    descripcion:
+      'Este mercado se acerca mejor desde el impacto total: jerarquía competitiva, peso narrativo y capacidad para decidir noches grandes.',
     opciones: [
       {
-        nombre: 'Kylian Mbappe',
-        porcentaje: '15% \u00B7 ejemplo editorial',
-        nota: 'Su mezcla de producción ofensiva y protagonismo mediático le deja siempre muy arriba en este mercado.',
+        nombre: 'Kylian Mbappé',
+        nota: 'Su protagonismo competitivo y mediático le coloca siempre cerca de este desenlace si Francia pisa semifinales.',
       },
       {
         nombre: 'Jude Bellingham',
-        porcentaje: '12% \u00B7 ejemplo editorial',
-        nota: 'Puede dominar varias alturas del juego si Inglaterra firma un torneo largo y consistente.',
+        nota: 'Tiene un rango de influencia enorme y puede dominar distintos registros si Inglaterra firma un torneo maduro.',
       },
       {
-        nombre: 'Vinicius Junior',
-        porcentaje: '11% \u00B7 ejemplo editorial',
-        nota: 'Su desequilibrio cambia partidos grandes y gana peso si Brasil avanza con autoridad.',
+        nombre: 'Vinícius Júnior',
+        nota: 'Cuando Brasil encuentra vuelo ofensivo, su desequilibrio es de esos que cambian eliminatorias enteras.',
       },
       {
         nombre: 'Florian Wirtz',
-        porcentaje: '9% \u00B7 ejemplo editorial',
-        nota: 'Tiene talento para marcar diferencias entre líneas si Alemania sostiene el plan competitivo.',
+        nota: 'Su talento entre líneas y su capacidad para acelerar ataques le convierten en un candidato muy serio si Alemania despega.',
       },
     ],
   },
-  {
-    titulo: 'Llegar a semifinales',
-    descripcion: 'Lectura de probabilidad editorial condicionada por nivel medio, posibles cruces y profundidad de banquillo.',
-    opciones: [
-      {
-        nombre: 'Francia',
-        porcentaje: '42% \u00B7 ejemplo editorial',
-        nota: 'Tiene una base competitiva muy sólida para superar eliminatorias incluso sin dominar del todo.',
-      },
-      {
-        nombre: 'Brasil',
-        porcentaje: '39% \u00B7 ejemplo editorial',
-        nota: 'Si el bloque defensivo acompaña, su talento arriba eleva mucho la probabilidad de recorrido.',
-      },
-      {
-        nombre: 'Inglaterra',
-        porcentaje: '34% \u00B7 ejemplo editorial',
-        nota: 'Plantilla profunda y experiencia reciente en torneos, aunque necesita más continuidad en partidos top.',
-      },
-      {
-        nombre: 'España',
-        porcentaje: '30% \u00B7 ejemplo editorial',
-        nota: 'La capacidad para controlar ritmos le sostiene, pero el cuadro final pesará mucho en la revisión.',
-      },
-      {
-        nombre: 'Portugal',
-        porcentaje: '27% \u00B7 ejemplo editorial',
-        nota: 'Tiene suficiente calidad para un torneo largo si encuentra una versión coral y estable sin balón.',
-      },
-    ],
-  },
-]
+] as const
 
 export const metadata: Metadata = {
-  title: 'Probabilidades IAPredictHub · Especial Mundial 2026',
+  title: 'Escenario IAPredictHub · Especial Mundial 2026',
   description:
-    'Especial editorial con estimaciones propias de IAPredictHub sobre mercados especiales del Mundial 2026, en una primera versión estática pendiente de revisión editorial.',
+    'Lectura editorial propia de IAPredictHub sobre el escenario del Mundial 2026, con favoritos de torneo, mercados especiales de jugadores y revisiones segun cambie el contexto.',
   alternates: {
     canonical: 'https://iapredicthub.es/especial/mundial',
   },
@@ -183,18 +150,18 @@ export default function EspecialMundialPage() {
         }}
       >
         <div className="mx-auto flex w-full max-w-6xl flex-col gap-6">
-          <div className="inline-flex w-fit items-center rounded-full border border-white/15 bg-white/10 px-4 py-1.5 text-xs font-semibold tracking-[0.18em] text-emerald-200 uppercase backdrop-blur-sm">
+          <div className="inline-flex w-fit items-center rounded-full border border-white/15 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-emerald-200 backdrop-blur-sm">
             Actualizado: {FECHA_ACTUALIZACION}
           </div>
 
           <div className="max-w-4xl">
             <h1 className="font-playfair text-3xl font-bold leading-tight tracking-tight text-white sm:text-5xl">
-              Probabilidades IAPredictHub &middot; Especial Mundial 2026
+              Escenario IAPredictHub · Especial Mundial 2026
             </h1>
             <p className="mt-4 max-w-3xl text-sm leading-relaxed text-stone-300 sm:text-base">
-              Estimaciones propias sobre mercados especiales del Mundial, construidas a partir de simulación
-              y análisis contextual, con revisiones previstas cuando cambie información relevante antes o
-              durante el torneo.
+              Una lectura editorial propia del torneo construida a partir de simulación y contexto deportivo.
+              Este escenario se revisa cuando cambia información relevante antes del arranque o durante el
+              desarrollo del Mundial.
             </p>
           </div>
         </div>
@@ -208,10 +175,7 @@ export default function EspecialMundialPage() {
             </p>
             <ul className="mt-5 grid gap-3 text-sm leading-relaxed text-stone-700 sm:grid-cols-3">
               {COMO_LEER.map((item) => (
-                <li
-                  key={item}
-                  className="rounded-2xl border border-stone-100 bg-stone-50 px-4 py-4"
-                >
+                <li key={item} className="rounded-2xl border border-stone-100 bg-stone-50 px-4 py-4">
                   <span className="font-semibold text-emerald-600">&bull; </span>
                   {item}
                 </li>
@@ -223,27 +187,85 @@ export default function EspecialMundialPage() {
 
       <section className="bg-white px-4 py-10 sm:px-6 sm:py-12 lg:px-8">
         <div className="mx-auto flex max-w-6xl flex-col gap-6">
-          <div className="rounded-3xl border-2 border-amber-300 bg-amber-50 px-5 py-5 shadow-sm sm:px-6">
+          <div className="rounded-3xl border border-amber-200 bg-gradient-to-r from-amber-50 to-white px-5 py-5 shadow-sm sm:px-6">
             <p className="text-xs font-bold uppercase tracking-[0.22em] text-amber-800">
-              Datos de ejemplo &mdash; pendiente de revisión editorial
+              Versión inicial editorial
             </p>
-            <p className="mt-2 max-w-3xl text-sm leading-relaxed text-amber-900">
-              Esta V1 usa porcentajes mock y textos provisionales. No debe considerarse una versión final ni
-              publicarse sin sustituir cada cifra por datos revisados editorialmente.
+            <p className="mt-2 max-w-3xl text-sm leading-relaxed text-amber-950">
+              Esta página presenta una lectura revisable del torneo, pendiente de ajustes a medida que cambie
+              el contexto competitivo, las convocatorias o el estado de forma de las selecciones.
             </p>
           </div>
 
-          <div className="grid gap-5 lg:grid-cols-2 xl:grid-cols-3">
+          <div className="max-w-3xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-600">
+              Mi escenario del torneo
+            </p>
+            <h2 className="mt-3 font-playfair text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">
+              Una lectura jerarquizada del desenlace más probable hoy
+            </h2>
+            <p className="mt-4 text-sm leading-relaxed text-stone-600 sm:text-base">
+              No es un cuadro completo ni una simulación exhaustiva fase a fase. Es la síntesis editorial de
+              cómo veo ahora mismo la zona alta del torneo y quiénes tienen mejor perfil para ocupar cada
+              escalón decisivo.
+            </p>
+          </div>
+
+          <div className="grid gap-4 lg:grid-cols-4 lg:grid-rows-2">
+            {ESCENARIO.map((item) => (
+              <article
+                key={`${item.etiqueta}-${item.nombre}`}
+                className={`rounded-3xl border p-6 sm:p-7 ${item.className}`}
+              >
+                <p
+                  className={`text-xs font-semibold uppercase tracking-[0.18em] ${
+                    item.className.includes('text-white') ? 'text-emerald-200' : 'text-emerald-700'
+                  }`}
+                >
+                  {item.etiqueta}
+                </p>
+                <h3 className="mt-3 font-playfair text-3xl font-bold tracking-tight sm:text-4xl">
+                  {item.nombre}
+                </h3>
+                <p
+                  className={`mt-4 text-sm leading-relaxed sm:text-base ${
+                    item.className.includes('text-white') ? 'text-stone-300' : 'text-stone-600'
+                  }`}
+                >
+                  {item.analisis}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[#F5F3EE] px-4 py-10 sm:px-6 sm:py-12 lg:px-8">
+        <div className="mx-auto flex max-w-6xl flex-col gap-6">
+          <div className="max-w-3xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-600">
+              Mercados especiales de jugadores
+            </p>
+            <h2 className="mt-3 font-playfair text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">
+              Nombres que encajan con el escenario general
+            </h2>
+            <p className="mt-4 text-sm leading-relaxed text-stone-600 sm:text-base">
+              Este bloque no repite el campeón previsto. Se centra en perfiles individuales que pueden salir
+              reforzados si el torneo evoluciona cerca de este escenario.
+            </p>
+          </div>
+
+          <div className="grid gap-5 xl:grid-cols-3">
             {MERCADOS.map((mercado) => (
               <article
                 key={mercado.titulo}
-                className="rounded-3xl border border-stone-100 bg-white p-6 shadow-sm"
+                className="rounded-3xl border border-stone-200 bg-white p-6 shadow-sm sm:p-7"
               >
                 <div className="border-b border-stone-100 pb-4">
                   <p className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-600">
-                    Probabilidad editorial provisional
+                    Mercado especial
                   </p>
-                  <h2 className="mt-2 text-2xl font-semibold tracking-tight text-stone-800">
+                  <h2 className="mt-2 text-2xl font-semibold tracking-tight text-stone-900">
                     {mercado.titulo}
                   </h2>
                   <p className="mt-3 text-sm leading-relaxed text-stone-600">{mercado.descripcion}</p>
@@ -253,16 +275,9 @@ export default function EspecialMundialPage() {
                   {mercado.opciones.map((opcion) => (
                     <div
                       key={`${mercado.titulo}-${opcion.nombre}`}
-                      className="rounded-2xl border border-stone-100 bg-[#F5F3EE] px-4 py-4"
+                      className="rounded-2xl border border-stone-100 bg-stone-50 px-4 py-4"
                     >
-                      <div className="flex items-start justify-between gap-4">
-                        <div>
-                          <h3 className="text-base font-semibold text-stone-800">{opcion.nombre}</h3>
-                        </div>
-                        <span className="shrink-0 rounded-full border border-amber-200 bg-white px-3 py-1 text-xs font-bold text-amber-800">
-                          {opcion.porcentaje}
-                        </span>
-                      </div>
+                      <h3 className="text-base font-semibold text-stone-900">{opcion.nombre}</h3>
                       <p className="mt-2 text-sm leading-relaxed text-stone-600">{opcion.nota}</p>
                     </div>
                   ))}
@@ -273,24 +288,24 @@ export default function EspecialMundialPage() {
         </div>
       </section>
 
-      <section className="bg-[#F5F3EE] px-4 py-10 sm:px-6 sm:py-12 lg:px-8">
+      <section className="bg-white px-4 py-10 sm:px-6 sm:py-12 lg:px-8">
         <div className="mx-auto grid max-w-6xl gap-6 lg:grid-cols-[1.4fr_0.9fr]">
           <div className="rounded-3xl border border-stone-100 bg-white p-6 shadow-sm sm:p-8">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-600">
               Metodología resumida
             </p>
             <h2 className="mt-3 font-playfair text-2xl font-bold text-stone-800 sm:text-3xl">
-              Cómo se construye esta estimación
+              Cómo se construye esta lectura
             </h2>
             <div className="mt-5 space-y-4 text-sm leading-relaxed text-stone-700 sm:text-base">
               <p>
-                La base de este especial combina simuladores internos con lectura contextual del momento
-                deportivo de cada selección y de los perfiles individuales que pueden dominar cada mercado.
+                El punto de partida combina simulación interna y contexto deportivo para ordenar las
+                selecciones y detectar los perfiles individuales con más opciones de marcar el torneo.
               </p>
               <p>
-                Sobre esa base aplicamos ajustes manuales por lesiones, convocatorias, estado de forma y
-                dificultad esperada del grupo o del cuadro. Las probabilidades pueden cambiar cuando aparece
-                información nueva que altere de forma material el escenario competitivo.
+                A partir de ahí ajustamos manualmente según forma reciente, lesiones, convocatorias y camino
+                de torneo. El resultado no pretende ser una verdad cerrada, sino una lectura editorial
+                revisable a medida que aparecen señales nuevas.
               </p>
             </div>
           </div>
@@ -315,11 +330,11 @@ export default function EspecialMundialPage() {
               Acceso guiado
             </p>
             <h2 className="mt-3 text-2xl font-semibold text-stone-800">
-              &#191;Prefieres empezar por los bonos?
+              Más allá del análisis: la herramienta
             </h2>
             <p className="mt-3 max-w-2xl text-sm leading-relaxed text-stone-600">
-              Si quieres entrar por la parte más práctica de IAPredictHub, puedes seguir la ruta habitual del
-              producto y volver más tarde a este especial cuando tenga revisión editorial completa.
+              Si además del análisis deportivo te interesa aprovechar el torneo para ejecutar bonos de
+              bienvenida con método, esta es la puerta de entrada.
             </p>
 
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
@@ -339,8 +354,8 @@ export default function EspecialMundialPage() {
           </div>
 
           <p className="mt-6 text-center text-xs leading-relaxed text-stone-500">
-            Estas probabilidades son estimaciones editoriales propias de IAPredictHub y no constituyen
-            asesoramiento de apuesta.
+            Esta lectura editorial de IAPredictHub se ajustará cuando el torneo y su contexto ofrezcan nueva
+            información relevante.
           </p>
         </div>
       </section>
