@@ -150,16 +150,7 @@ export default function EspecialMundialPage() {
         }}
       >
         <div className="mx-auto flex w-full max-w-6xl flex-col gap-6">
-          <div className="flex flex-col items-start gap-5 sm:gap-6 lg:flex-row lg:items-center lg:gap-8">
-            <Image
-              src="/especial/mundial/copa.png"
-              alt="Trofeo Mundial 2026"
-              priority
-              width={1254}
-              height={1254}
-              className="h-[90px] w-auto shrink-0 drop-shadow-[0_12px_32px_rgba(0,0,0,0.35)] lg:h-[140px]"
-            />
-
+          <div className="flex flex-col items-start gap-5 sm:gap-6 lg:flex-row lg:items-center lg:justify-between lg:gap-10">
             <div className="max-w-4xl">
               <div className="inline-flex w-fit items-center rounded-full border border-white/15 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-emerald-200 backdrop-blur-sm">
                 Actualizado: {FECHA_ACTUALIZACION}
@@ -169,6 +160,15 @@ export default function EspecialMundialPage() {
                 Escenario IAPredictHub · Especial Mundial 2026
               </h1>
             </div>
+
+            <Image
+              src="/especial/mundial/copa.png"
+              alt="Trofeo Mundial 2026"
+              priority
+              width={1254}
+              height={1254}
+              className="h-[90px] w-auto shrink-0 self-center drop-shadow-[0_12px_32px_rgba(0,0,0,0.35)] lg:h-[140px] lg:self-auto"
+            />
           </div>
         </div>
       </section>
