@@ -144,14 +144,23 @@ export default function EspecialMundialPage() {
   return (
     <main className="min-h-[70vh] bg-[#F5F3EE] text-stone-800">
       <section
-        className="px-4 py-10 text-white sm:px-6 sm:py-14 lg:px-8"
+        className="px-4 py-10 text-white sm:px-6 sm:py-14 lg:px-8 lg:py-16"
         style={{
           background: 'linear-gradient(135deg, #12112A 0%, #2A1F3D 100%)',
         }}
       >
         <div className="mx-auto flex w-full max-w-6xl flex-col gap-6">
-          <div className="flex flex-col items-start gap-5 sm:gap-6 lg:flex-row lg:items-center lg:justify-between lg:gap-10">
-            <div className="max-w-4xl">
+          <div className="flex flex-col items-start gap-5 sm:gap-6 lg:flex-row lg:items-center lg:justify-between lg:gap-12">
+            <Image
+              src="/especial/mundial/copa.png"
+              alt="Trofeo Mundial 2026"
+              priority
+              width={1254}
+              height={1254}
+              className="order-1 h-[100px] w-auto shrink-0 self-center drop-shadow-[0_12px_32px_rgba(0,0,0,0.35)] lg:order-2 lg:h-[260px] lg:self-auto"
+            />
+
+            <div className="order-2 max-w-4xl lg:order-1">
               <div className="inline-flex w-fit items-center rounded-full border border-white/15 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-emerald-200 backdrop-blur-sm">
                 Actualizado: {FECHA_ACTUALIZACION}
               </div>
@@ -161,14 +170,6 @@ export default function EspecialMundialPage() {
               </h1>
             </div>
 
-            <Image
-              src="/especial/mundial/copa.png"
-              alt="Trofeo Mundial 2026"
-              priority
-              width={1254}
-              height={1254}
-              className="h-[90px] w-auto shrink-0 self-center drop-shadow-[0_12px_32px_rgba(0,0,0,0.35)] lg:h-[140px] lg:self-auto"
-            />
           </div>
         </div>
       </section>
