@@ -921,6 +921,9 @@ export default function CasaDetalleClient({ casa, hasGuide }: CasaDetalleClientP
                         </button>
                     )}
                 </div>
+                <p className="hidden md:block mt-6 text-center text-xs text-stone-400">
+                    ¿El enlace no se abre? Desactiva tu bloqueador para este sitio e inténtalo de nuevo.
+                </p>
             </div>
 
         </div>

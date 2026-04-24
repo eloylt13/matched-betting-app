@@ -134,7 +134,7 @@ export function FreebetDailyReveal({ dailyCombinada }: FreebetDailyRevealProps) 
                   <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-300">
                     CUOTA TOTAL
                   </p>
-                  <p className="mt-2 font-playfair text-4xl font-bold leading-none text-emerald-400 sm:text-5xl">
+                  <p className="mt-2 text-4xl font-extrabold leading-none tracking-tight text-emerald-400 tabular-nums sm:text-5xl">
                     {dailyCombinada.cuotaTotal}
                   </p>
                 </div>
@@ -148,6 +148,23 @@ export function FreebetDailyReveal({ dailyCombinada }: FreebetDailyRevealProps) 
                   </p>
                 </div>
               </div>
+            </div>
+          </div>
+
+          <div className="mb-5 rounded-2xl border border-stone-200/80 bg-stone-50/80 p-4 shadow-sm shadow-stone-950/[0.03] backdrop-blur-sm sm:mb-6 sm:p-5">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-500">
+              Resumen de la combinada
+            </p>
+            <div className="mt-3 space-y-2">
+              {picks.map((pick, index) => (
+                <p
+                  key={`summary-${pick.partido}-${pick.mercado}-${index}`}
+                  className="text-sm leading-6 text-stone-700 sm:text-[15px]"
+                >
+                  <span className="font-semibold text-stone-900">{index + 1}.</span>{' '}
+                  <span className="font-medium text-stone-900">{pick.partido}</span> {'\u2192'} {pick.mercado}
+                </p>
+              ))}
             </div>
           </div>
 
