@@ -144,12 +144,27 @@ export default function EspecialMundialPage() {
   return (
     <main className="min-h-[70vh] bg-[#F5F3EE] text-stone-800">
       <section
-        className="px-4 py-10 text-white sm:px-6 sm:py-14 lg:px-8 lg:py-16"
+        className="relative overflow-hidden px-4 py-10 text-white sm:px-6 sm:py-14 lg:px-8 lg:py-16"
         style={{
-          background: 'linear-gradient(135deg, #12112A 0%, #2A1F3D 100%)',
+          background:
+            'linear-gradient(135deg, #0a2e1f 0%, #1a4d32 50%, #0a1410 100%)',
         }}
       >
-        <div className="mx-auto flex w-full max-w-6xl flex-col gap-6">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0"
+          style={{
+            backgroundImage: [
+              'radial-gradient(circle at 72% 44%, rgba(212, 175, 55, 0.14) 0%, rgba(212, 175, 55, 0.08) 18%, rgba(212, 175, 55, 0.03) 34%, rgba(212, 175, 55, 0) 56%)',
+              `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cg fill='%23ffffff' fill-opacity='0.045'%3E%3Ccircle cx='18' cy='24' r='1'/%3E%3Ccircle cx='76' cy='38' r='1'/%3E%3Ccircle cx='132' cy='26' r='1'/%3E%3Ccircle cx='40' cy='92' r='1'/%3E%3Ccircle cx='108' cy='82' r='1'/%3E%3Ccircle cx='146' cy='118' r='1'/%3E%3Ccircle cx='22' cy='138' r='1'/%3E%3Ccircle cx='86' cy='146' r='1'/%3E%3C/g%3E%3C/svg%3E")`,
+            ].join(', '),
+            backgroundPosition: 'center, center',
+            backgroundRepeat: 'no-repeat, repeat',
+            backgroundSize: '100% 100%, 160px 160px',
+          }}
+        />
+
+        <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col gap-6">
           <div className="flex flex-col items-start gap-5 sm:gap-6 lg:flex-row lg:items-center lg:justify-between lg:gap-12">
             <Image
               src="/especial/mundial/copa.png"
@@ -157,11 +172,11 @@ export default function EspecialMundialPage() {
               priority
               width={1254}
               height={1254}
-              className="order-1 h-[100px] w-auto shrink-0 self-center drop-shadow-[0_12px_32px_rgba(0,0,0,0.35)] lg:order-2 lg:h-[260px] lg:self-auto"
+              className="order-1 h-[100px] w-auto shrink-0 self-center drop-shadow-[0_12px_32px_rgba(0,0,0,0.5)] lg:order-2 lg:h-[260px] lg:self-auto"
             />
 
             <div className="order-2 max-w-4xl lg:order-1">
-              <div className="inline-flex w-fit items-center rounded-full border border-white/15 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-emerald-200 backdrop-blur-sm">
+              <div className="inline-flex w-fit items-center rounded-full border border-white/15 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-[#E8C767] backdrop-blur-sm">
                 Actualizado: {FECHA_ACTUALIZACION}
               </div>
 
