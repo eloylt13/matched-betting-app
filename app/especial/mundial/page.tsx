@@ -22,12 +22,6 @@ type Market = {
   opciones: MarketOption[]
 }
 
-const COMO_LEER = [
-  'Simulación como punto de partida',
-  'Ajuste editorial propio según forma, contexto y plantilla',
-  'Lectura revisable, no cerrada, según evolucione el torneo',
-] as const
-
 const ESCENARIO: ScenarioCard[] = [
   {
     etiqueta: 'Campeón previsto',
@@ -163,56 +157,15 @@ export default function EspecialMundialPage() {
             <h1 className="font-playfair text-3xl font-bold leading-tight tracking-tight text-white sm:text-5xl">
               Escenario IAPredictHub · Especial Mundial 2026
             </h1>
-            <p className="mt-4 max-w-3xl text-sm leading-relaxed text-stone-300 sm:text-base">
-              Una lectura editorial propia del torneo construida a partir de simulación y contexto deportivo.
-              Este escenario se revisa cuando cambia información relevante antes del arranque o durante el
-              desarrollo del Mundial.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-stone-50 px-4 py-10 sm:px-6 sm:py-12 lg:px-8">
-        <div className="mx-auto max-w-6xl">
-          <div className="rounded-3xl border border-stone-200 bg-white p-6 shadow-sm sm:p-8">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-600">
-              Cómo leer esta página
-            </p>
-            <ul className="mt-5 grid gap-3 text-sm leading-relaxed text-stone-700 sm:grid-cols-3">
-              {COMO_LEER.map((item) => (
-                <li key={item} className="rounded-2xl border border-stone-100 bg-stone-50 px-4 py-4">
-                  <span className="font-semibold text-emerald-600">&bull; </span>
-                  {item}
-                </li>
-              ))}
-            </ul>
           </div>
         </div>
       </section>
 
       <section className="bg-white px-4 py-10 sm:px-6 sm:py-12 lg:px-8">
         <div className="mx-auto flex max-w-6xl flex-col gap-6">
-          <div className="rounded-3xl border border-amber-200 bg-gradient-to-r from-amber-50 to-white px-5 py-5 shadow-sm sm:px-6">
-            <p className="text-xs font-bold uppercase tracking-[0.22em] text-amber-800">
-              Versión inicial editorial
-            </p>
-            <p className="mt-2 max-w-3xl text-sm leading-relaxed text-amber-950">
-              Esta página presenta una lectura revisable del torneo, pendiente de ajustes a medida que cambie
-              el contexto competitivo, las convocatorias o el estado de forma de las selecciones.
-            </p>
-          </div>
-
           <div className="max-w-3xl">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-600">
               Mi escenario del torneo
-            </p>
-            <h2 className="mt-3 font-playfair text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">
-              Una lectura jerarquizada del desenlace más probable hoy
-            </h2>
-            <p className="mt-4 text-sm leading-relaxed text-stone-600 sm:text-base">
-              No es un cuadro completo ni una simulación exhaustiva fase a fase. Es la síntesis editorial de
-              cómo veo ahora mismo la zona alta del torneo y quiénes tienen mejor perfil para ocupar cada
-              escalón decisivo.
             </p>
           </div>
 
@@ -289,13 +242,6 @@ export default function EspecialMundialPage() {
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-600">
               Mercados especiales de jugadores
             </p>
-            <h2 className="mt-3 font-playfair text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">
-              Nombres que encajan con el escenario general
-            </h2>
-            <p className="mt-4 text-sm leading-relaxed text-stone-600 sm:text-base">
-              Este bloque no repite el campeón previsto. Se centra en perfiles individuales que pueden salir
-              reforzados si el torneo evoluciona cerca de este escenario.
-            </p>
           </div>
 
           <div className="grid gap-5 xl:grid-cols-3">
@@ -327,41 +273,6 @@ export default function EspecialMundialPage() {
                 </div>
               </article>
             ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-white px-4 py-10 sm:px-6 sm:py-12 lg:px-8">
-        <div className="mx-auto grid max-w-6xl gap-6 lg:grid-cols-[1.4fr_0.9fr]">
-          <div className="rounded-3xl border border-stone-100 bg-white p-6 shadow-sm sm:p-8">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-600">
-              Metodología resumida
-            </p>
-            <h2 className="mt-3 font-playfair text-2xl font-bold text-stone-800 sm:text-3xl">
-              Cómo se construye esta lectura
-            </h2>
-            <div className="mt-5 space-y-4 text-sm leading-relaxed text-stone-700 sm:text-base">
-              <p>
-                El punto de partida combina simulación interna y contexto deportivo para ordenar las
-                selecciones y detectar los perfiles individuales con más opciones de marcar el torneo.
-              </p>
-              <p>
-                A partir de ahí ajustamos manualmente según forma reciente, lesiones, convocatorias y camino
-                de torneo. El resultado no pretende ser una verdad cerrada, sino una lectura editorial
-                revisable a medida que aparecen señales nuevas.
-              </p>
-            </div>
-          </div>
-
-          <div className="rounded-3xl border border-stone-100 bg-stone-50 p-6 shadow-sm sm:p-8">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-600">
-              Frecuencia de revisión
-            </p>
-            <h2 className="mt-3 text-2xl font-semibold text-stone-800">Cada cuánto se revisa</h2>
-            <div className="mt-5 space-y-3 text-sm leading-relaxed text-stone-700">
-              <p>Antes del torneo: revisión semanal o por noticia relevante.</p>
-              <p>Durante el torneo: revisión cada 3 días o antes si hay un cambio importante.</p>
-            </div>
           </div>
         </div>
       </section>
