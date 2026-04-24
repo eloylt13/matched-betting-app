@@ -6,6 +6,7 @@ const FECHA_ACTUALIZACION = 'Abril 2026'
 type ScenarioCard = {
   etiqueta: string
   nombre: string
+  pais: string
   analisis: string
   className: string
 }
@@ -31,6 +32,7 @@ const ESCENARIO: ScenarioCard[] = [
   {
     etiqueta: 'Campeón previsto',
     nombre: 'Portugal',
+    pais: 'PT',
     analisis:
       'Parte como la selección que mejor combina talento diferencial, soluciones para partidos largos y margen para adaptarse a distintos guiones de eliminatoria.',
     className:
@@ -39,6 +41,7 @@ const ESCENARIO: ScenarioCard[] = [
   {
     etiqueta: 'Finalista previsto',
     nombre: 'España',
+    pais: 'ES',
     analisis:
       'Su capacidad para mandar con la pelota y sostener ritmo competitivo la coloca en una trayectoria muy creíble hacia la final si mantiene continuidad en las áreas.',
     className: 'border-emerald-200 bg-emerald-50 text-stone-900',
@@ -46,6 +49,7 @@ const ESCENARIO: ScenarioCard[] = [
   {
     etiqueta: 'Semifinalista',
     nombre: 'Francia',
+    pais: 'FR',
     analisis:
       'Sigue teniendo una plantilla preparada para sobrevivir a cruces exigentes incluso en días menos fluidos, con pegada suficiente para sostener un torneo largo.',
     className: 'border-stone-200 bg-white text-stone-900',
@@ -53,6 +57,7 @@ const ESCENARIO: ScenarioCard[] = [
   {
     etiqueta: 'Semifinalista',
     nombre: 'Brasil',
+    pais: 'BR',
     analisis:
       'Su techo competitivo aparece cuando encuentra equilibrio defensivo alrededor de su talento ofensivo, un perfil muy apto para llegar lejos en eliminatorias.',
     className: 'border-stone-200 bg-white text-stone-900',
@@ -215,16 +220,54 @@ export default function EspecialMundialPage() {
             {ESCENARIO.map((item) => (
               <article
                 key={`${item.etiqueta}-${item.nombre}`}
-                className={`rounded-3xl border p-6 sm:p-7 ${item.className}`}
+                className={`relative overflow-hidden rounded-3xl border p-6 sm:p-7 ${item.className}`}
               >
-                <p
-                  className={`text-xs font-semibold uppercase tracking-[0.18em] ${
-                    item.className.includes('text-white') ? 'text-emerald-200' : 'text-emerald-700'
+                <div
+                  aria-hidden="true"
+                  className={`pointer-events-none absolute inset-x-6 top-0 h-px ${
+                    item.className.includes('text-white') ? 'bg-white/20' : 'bg-emerald-200/80'
+                  }`}
+                />
+                <div
+                  className={`flex items-start justify-between gap-4 border-b pb-4 ${
+                    item.className.includes('text-white') ? 'border-white/10' : 'border-stone-200/80'
                   }`}
                 >
-                  {item.etiqueta}
+                  <p
+                    className={`text-xs font-semibold uppercase tracking-[0.18em] ${
+                      item.className.includes('text-white') ? 'text-emerald-200' : 'text-emerald-700'
+                    }`}
+                  >
+                    {item.etiqueta}
+                  </p>
+                  <span
+                    className={`inline-flex shrink-0 items-center rounded-full border px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] ${
+                      item.className.includes('text-white')
+                        ? 'border-white/15 bg-white/10 text-white'
+                        : item.className.includes('bg-emerald-50')
+                          ? 'border-emerald-300 bg-white/80 text-emerald-800'
+                          : 'border-stone-200 bg-stone-50 text-stone-700'
+                    }`}
+                  >
+                    {item.pais}
+                  </span>
+                </div>
+                <p
+                  className={`mt-5 inline-flex rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] ${
+                    item.className.includes('text-white')
+                      ? 'bg-white/8 text-stone-200 ring-1 ring-inset ring-white/10'
+                      : item.className.includes('bg-emerald-50')
+                        ? 'bg-emerald-100 text-emerald-800 ring-1 ring-inset ring-emerald-200'
+                        : 'bg-stone-100 text-stone-700 ring-1 ring-inset ring-stone-200'
+                  }`}
+                >
+                  Escalón decisivo
                 </p>
-                <h3 className="mt-3 font-playfair text-3xl font-bold tracking-tight sm:text-4xl">
+                <h3
+                  className={`mt-4 font-playfair font-bold tracking-tight ${
+                    item.className.includes('lg:row-span-2') ? 'text-4xl sm:text-5xl' : 'text-3xl sm:text-4xl'
+                  }`}
+                >
                   {item.nombre}
                 </h3>
                 <p
