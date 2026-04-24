@@ -206,7 +206,11 @@ export default function EspecialMundialPage() {
             {ESCENARIO.map((item) => (
               <article
                 key={`${item.etiqueta}-${item.nombre}`}
-                className={`relative overflow-hidden rounded-3xl p-6 sm:p-7 ${item.className}`}
+                className={`relative overflow-hidden rounded-3xl p-6 sm:p-7 ${
+                  item.nombre === 'Portugal'
+                    ? 'min-h-[430px] pb-52 sm:min-h-[470px] sm:pb-60 lg:min-h-[560px] lg:pb-7'
+                    : 'min-h-[300px] pb-28 sm:min-h-[320px] sm:pb-32'
+                } ${item.className}`}
                 style={
                   item.nombre === 'Portugal'
                     ? {
@@ -226,8 +230,7 @@ export default function EspecialMundialPage() {
                         : 'bg-stone-200/80'
                   }`}
                 />
-                <div className="flex h-full flex-col justify-between gap-5 lg:flex-row lg:items-end">
-                  <div className="min-w-0 flex-1 self-start">
+                <div className="relative z-10 h-full">
                     <div
                       className={`flex items-start justify-between gap-4 border-b pb-4 ${
                         item.nombre === 'Portugal'
@@ -280,23 +283,42 @@ export default function EspecialMundialPage() {
                     </h3>
                     <p
                       className={`mt-4 text-sm leading-relaxed sm:text-base ${
-                        item.nombre === 'Portugal' ? 'text-stone-300' : 'text-stone-600'
+                        item.nombre === 'Portugal' ? 'max-w-xl text-stone-300' : 'text-stone-600'
                       }`}
                     >
                       {item.analisis}
                     </p>
-                  </div>
+                </div>
 
+                <div
+                  aria-hidden="true"
+                  className={`pointer-events-none absolute z-0 ${
+                    item.nombre === 'Portugal'
+                      ? '-bottom-8 -right-8 h-[300px] w-[280px] sm:h-[360px] sm:w-[340px] lg:h-[470px] lg:w-[430px]'
+                      : item.pais === 'ES'
+                        ? '-bottom-5 -right-4 h-[185px] w-[170px] sm:h-[215px] sm:w-[200px]'
+                        : '-bottom-5 -right-4 h-[165px] w-[150px] sm:h-[190px] sm:w-[175px]'
+                  }`}
+                >
+                  <div
+                    className={`absolute inset-0 z-10 ${
+                      item.nombre === 'Portugal'
+                        ? 'bg-gradient-to-tr from-[#0a2e1f] via-[#0a2e1f]/10 to-transparent'
+                        : 'bg-gradient-to-tr from-white via-white/20 to-transparent'
+                    }`}
+                  />
                   <Image
                     src={item.imagen}
                     alt={`Jugador ${item.nombre}`}
-                    width={1024}
-                    height={1536}
-                    priority={false}
-                    className={`-mb-4 w-auto shrink-0 self-end object-contain drop-shadow-[0_12px_24px_rgba(0,0,0,0.25)] sm:-mb-5 ${
+                    fill
+                    sizes={
                       item.nombre === 'Portugal'
-                        ? 'h-[240px] lg:h-[320px]'
-                        : 'h-[140px] lg:h-[180px]'
+                        ? '(min-width: 1024px) 430px, 340px'
+                        : '(min-width: 640px) 200px, 170px'
+                    }
+                    priority={false}
+                    className={`object-contain object-bottom drop-shadow-[0_8px_18px_rgba(0,0,0,0.14)] ${
+                      item.nombre === 'Portugal' ? 'opacity-75' : item.pais === 'ES' ? 'opacity-50' : 'opacity-45'
                     }`}
                   />
                 </div>
