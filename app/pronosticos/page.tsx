@@ -60,6 +60,28 @@ export default async function PronosticosPage() {
               <>
                 <FreebetDailyReveal dailyCombinada={dailyCombinada} />
 
+                <Link
+                  href="/especial/mundial"
+                  className="mt-6 block rounded-3xl border border-stone-200 bg-stone-50 px-5 py-5 shadow-sm transition hover:border-emerald-200 hover:bg-white sm:px-6"
+                >
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-700">
+                    Especial editorial
+                  </p>
+                  <div className="mt-3 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+                    <div className="max-w-2xl">
+                      <h3 className="text-lg font-semibold leading-tight text-stone-800 sm:text-xl">
+                        Probabilidades IAPredictHub · Especial Mundial 2026
+                      </h3>
+                      <p className="mt-2 text-sm leading-relaxed text-stone-600">
+                        Una lectura propia sobre ganador, máximo goleador, asistentes y otros mercados del torneo, con metodología visible y revisiones periódicas.
+                      </p>
+                    </div>
+                    <span className="inline-flex items-center text-sm font-semibold text-emerald-700">
+                      Ver especial →
+                    </span>
+                  </div>
+                </Link>
+
                 <div className="mt-6 rounded-2xl border border-stone-200 bg-stone-50 px-4 py-4 sm:px-5">
                   <details className="group rounded-2xl border border-stone-200 bg-white">
                     <summary className="cursor-pointer list-none px-4 py-3 text-sm font-semibold text-stone-800 sm:px-5 [&::-webkit-details-marker]:hidden">
@@ -129,6 +151,28 @@ export default async function PronosticosPage() {
                     Ver otras casas con bono →
                   </Link>
                 </div>
+
+                <Link
+                  href="/especial/mundial"
+                  className="mt-6 block rounded-3xl border border-stone-200 bg-stone-50 px-5 py-5 shadow-sm transition hover:border-emerald-200 hover:bg-white sm:px-6"
+                >
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-700">
+                    Especial editorial
+                  </p>
+                  <div className="mt-3 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+                    <div className="max-w-2xl">
+                      <h3 className="text-lg font-semibold leading-tight text-stone-800 sm:text-xl">
+                        Probabilidades IAPredictHub · Especial Mundial 2026
+                      </h3>
+                      <p className="mt-2 text-sm leading-relaxed text-stone-600">
+                        Una lectura propia sobre ganador, máximo goleador, asistentes y otros mercados del torneo, con metodología visible y revisiones periódicas.
+                      </p>
+                    </div>
+                    <span className="inline-flex items-center text-sm font-semibold text-emerald-700">
+                      Ver especial →
+                    </span>
+                  </div>
+                </Link>
               </div>
             )}
           </div>
