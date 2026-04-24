@@ -9,7 +9,7 @@ type ScenarioCard = {
   nombre: string
   pais: string
   analisis: string
-  imagen: string
+  imagen?: string
   className: string
 }
 
@@ -41,7 +41,6 @@ const ESCENARIO: ScenarioCard[] = [
     pais: 'ES',
     analisis:
       'Su capacidad para mandar con la pelota y sostener ritmo competitivo la coloca en una trayectoria muy creíble hacia la final si mantiene continuidad en las áreas.',
-    imagen: '/especial/mundial/jugadores/es.png',
     className: 'border border-[#D4AF37]/40 bg-white text-stone-900',
   },
   {
@@ -50,7 +49,6 @@ const ESCENARIO: ScenarioCard[] = [
     pais: 'FR',
     analisis:
       'Sigue teniendo una plantilla preparada para sobrevivir a cruces exigentes incluso en días menos fluidos, con pegada suficiente para sostener un torneo largo.',
-    imagen: '/especial/mundial/jugadores/fr.png',
     className: 'border border-stone-200 bg-white text-stone-900',
   },
   {
@@ -59,7 +57,6 @@ const ESCENARIO: ScenarioCard[] = [
     pais: 'BR',
     analisis:
       'Su techo competitivo aparece cuando encuentra equilibrio defensivo alrededor de su talento ofensivo, un perfil muy apto para llegar lejos en eliminatorias.',
-    imagen: '/especial/mundial/jugadores/br.png',
     className: 'border border-stone-200 bg-white text-stone-900',
   },
 ] as const
@@ -208,8 +205,8 @@ export default function EspecialMundialPage() {
                 key={`${item.etiqueta}-${item.nombre}`}
                 className={`relative overflow-hidden rounded-3xl p-6 sm:p-7 ${
                   item.nombre === 'Portugal'
-                    ? 'min-h-[430px] pb-52 sm:min-h-[470px] sm:pb-60 lg:min-h-[560px] lg:pb-7'
-                    : 'min-h-[300px] pb-28 sm:min-h-[320px] sm:pb-32'
+                    ? 'min-h-[390px] pb-44 sm:min-h-[420px] sm:pb-48 lg:min-h-[460px] lg:pb-7'
+                    : ''
                 } ${item.className}`}
                 style={
                   item.nombre === 'Portugal'
@@ -283,45 +280,29 @@ export default function EspecialMundialPage() {
                     </h3>
                     <p
                       className={`mt-4 text-sm leading-relaxed sm:text-base ${
-                        item.nombre === 'Portugal' ? 'max-w-xl text-stone-300' : 'text-stone-600'
+                        item.nombre === 'Portugal' ? 'max-w-lg text-stone-300' : 'text-stone-600'
                       }`}
                     >
                       {item.analisis}
                     </p>
                 </div>
 
-                <div
-                  aria-hidden="true"
-                  className={`pointer-events-none absolute z-0 ${
-                    item.nombre === 'Portugal'
-                      ? '-bottom-8 -right-8 h-[300px] w-[280px] sm:h-[360px] sm:w-[340px] lg:h-[470px] lg:w-[430px]'
-                      : item.pais === 'ES'
-                        ? '-bottom-5 -right-4 h-[185px] w-[170px] sm:h-[215px] sm:w-[200px]'
-                        : '-bottom-5 -right-4 h-[165px] w-[150px] sm:h-[190px] sm:w-[175px]'
-                  }`}
-                >
+                {item.imagen ? (
                   <div
-                    className={`absolute inset-0 z-10 ${
-                      item.nombre === 'Portugal'
-                        ? 'bg-gradient-to-tr from-[#0a2e1f] via-[#0a2e1f]/10 to-transparent'
-                        : 'bg-gradient-to-tr from-white via-white/20 to-transparent'
-                    }`}
-                  />
-                  <Image
-                    src={item.imagen}
-                    alt={`Jugador ${item.nombre}`}
-                    fill
-                    sizes={
-                      item.nombre === 'Portugal'
-                        ? '(min-width: 1024px) 430px, 340px'
-                        : '(min-width: 640px) 200px, 170px'
-                    }
-                    priority={false}
-                    className={`object-contain object-bottom drop-shadow-[0_8px_18px_rgba(0,0,0,0.14)] ${
-                      item.nombre === 'Portugal' ? 'opacity-75' : item.pais === 'ES' ? 'opacity-50' : 'opacity-45'
-                    }`}
-                  />
-                </div>
+                    aria-hidden="true"
+                    className="pointer-events-none absolute -bottom-8 -right-6 z-0 h-[270px] w-[250px] sm:h-[315px] sm:w-[300px] lg:-bottom-10 lg:right-0 lg:h-[390px] lg:w-[360px]"
+                  >
+                    <div className="absolute inset-0 z-10 bg-gradient-to-tr from-[#0a2e1f] via-[#0a2e1f]/10 to-transparent" />
+                    <Image
+                      src={item.imagen}
+                      alt={`Jugador ${item.nombre}`}
+                      fill
+                      sizes="(min-width: 1024px) 360px, (min-width: 640px) 300px, 250px"
+                      priority={false}
+                      className="object-contain object-bottom opacity-75 drop-shadow-[0_8px_18px_rgba(0,0,0,0.14)]"
+                    />
+                  </div>
+                ) : null}
               </article>
             ))}
           </div>
