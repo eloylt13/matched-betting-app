@@ -146,7 +146,7 @@ export default function EspecialMundialPage() {
   return (
     <main className="min-h-[70vh] bg-[#F5F3EE] text-stone-800">
       <section
-        className="relative overflow-hidden px-4 py-10 text-white sm:px-6 sm:py-14 lg:px-8 lg:py-16"
+        className="relative overflow-hidden px-4 py-10 text-white sm:px-6 sm:py-14 lg:px-8 lg:py-12"
         style={{
           background:
             'linear-gradient(135deg, #0a2e1f 0%, #1a4d32 50%, #0a1410 100%)',
@@ -174,7 +174,7 @@ export default function EspecialMundialPage() {
               priority
               width={1254}
               height={1254}
-              className="order-1 h-[100px] w-auto shrink-0 self-center drop-shadow-[0_12px_32px_rgba(0,0,0,0.5)] lg:order-2 lg:h-[260px] lg:self-auto"
+              className="order-1 hidden h-[100px] w-auto shrink-0 self-center drop-shadow-[0_12px_32px_rgba(0,0,0,0.5)] lg:order-2 lg:block lg:h-[260px] lg:self-auto"
             />
 
             <div className="order-2 max-w-4xl lg:order-1">
@@ -183,7 +183,8 @@ export default function EspecialMundialPage() {
               </div>
 
               <h1 className="mt-4 font-playfair text-3xl font-bold leading-tight tracking-tight text-white sm:text-5xl">
-                Escenario IAPredictHub · Especial Mundial 2026
+                Escenario IAPredictHub ·{' '}
+                <span className="whitespace-nowrap">Especial Mundial 2026</span>
               </h1>
             </div>
 
