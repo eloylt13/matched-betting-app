@@ -8,7 +8,6 @@ type ScenarioCard = {
   etiqueta: string
   nombre: string
   pais: string
-  analisis: string
   imagen?: string
   className: string
 }
@@ -26,37 +25,29 @@ type Market = {
 
 const ESCENARIO: ScenarioCard[] = [
   {
-    etiqueta: 'Campeón previsto',
+    etiqueta: 'Campeón',
     nombre: 'Portugal',
     pais: 'PT',
-    analisis:
-      'Parte como la selección que mejor combina talento diferencial, soluciones para partidos largos y margen para adaptarse a distintos guiones de eliminatoria.',
     imagen: '/especial/mundial/jugadores/pt.png',
     className:
       'lg:col-span-2 lg:row-span-2 border border-[#D4AF37]/40 text-white shadow-[0_0_0_1px_rgba(212,175,55,0.15),0_24px_80px_rgba(212,175,55,0.08)]',
   },
   {
-    etiqueta: 'Finalista previsto',
+    etiqueta: 'Subcampeón',
     nombre: 'España',
     pais: 'ES',
-    analisis:
-      'Su capacidad para mandar con la pelota y sostener ritmo competitivo la coloca en una trayectoria muy creíble hacia la final si mantiene continuidad en las áreas.',
     className: 'border border-[#D4AF37]/40 bg-white text-stone-900',
   },
   {
-    etiqueta: 'Semifinalista',
+    etiqueta: '3º puesto',
     nombre: 'Francia',
     pais: 'FR',
-    analisis:
-      'Sigue teniendo una plantilla preparada para sobrevivir a cruces exigentes incluso en días menos fluidos, con pegada suficiente para sostener un torneo largo.',
     className: 'border border-stone-200 bg-white text-stone-900',
   },
   {
-    etiqueta: 'Semifinalista',
+    etiqueta: '4º puesto',
     nombre: 'Brasil',
     pais: 'BR',
-    analisis:
-      'Su techo competitivo aparece cuando encuentra equilibrio defensivo alrededor de su talento ofensivo, un perfil muy apto para llegar lejos en eliminatorias.',
     className: 'border border-stone-200 bg-white text-stone-900',
   },
 ] as const
@@ -144,7 +135,13 @@ export const metadata: Metadata = {
 
 export default function EspecialMundialPage() {
   return (
-    <main className="min-h-[70vh] bg-[#F5F3EE] text-stone-800">
+    <>
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/css/flag-icons.min.css"
+        precedence="default"
+      />
+      <main className="min-h-[70vh] bg-[#F5F3EE] text-stone-800">
       <section
         className="relative overflow-hidden px-4 py-10 text-white sm:px-6 sm:py-14 lg:px-8 lg:py-12"
         style={{
@@ -196,7 +193,7 @@ export default function EspecialMundialPage() {
         <div className="mx-auto flex max-w-6xl flex-col gap-6">
           <div className="max-w-3xl">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-600">
-              Mi escenario del torneo
+              PREDICCIONES IAPREDICTHUB
             </p>
           </div>
 
@@ -250,7 +247,7 @@ export default function EspecialMundialPage() {
                         {item.etiqueta}
                       </p>
                       <span
-                        className={`inline-flex shrink-0 items-center rounded-full border px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] ${
+                        className={`inline-flex h-8 w-10 shrink-0 items-center justify-center rounded-full border text-lg ${
                           item.nombre === 'Portugal'
                             ? 'border-[#D4AF37]/50 bg-transparent text-[#E8C767]'
                             : item.nombre === 'España'
@@ -258,34 +255,17 @@ export default function EspecialMundialPage() {
                               : 'border-stone-200 bg-stone-50 text-stone-700'
                         }`}
                       >
-                        {item.pais}
+                        <span className={`fi fi-${item.pais.toLowerCase()}`} aria-hidden="true" />
+                        <span className="sr-only">{item.nombre}</span>
                       </span>
                     </div>
-                    <p
-                      className={`mt-5 inline-flex rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] ${
-                        item.nombre === 'Portugal'
-                          ? 'bg-[#D4AF37]/10 text-[#E8C767] ring-1 ring-inset ring-[#D4AF37]/20'
-                          : item.nombre === 'España'
-                            ? 'bg-[#D4AF37]/10 text-[#B8941F] ring-1 ring-inset ring-[#D4AF37]/20'
-                            : 'bg-stone-100 text-stone-700 ring-1 ring-inset ring-stone-200'
-                      }`}
-                    >
-                      Escalón decisivo
-                    </p>
                     <h3
-                      className={`mt-4 font-playfair font-bold tracking-tight ${
+                      className={`mt-5 font-playfair font-bold tracking-tight ${
                         item.className.includes('lg:row-span-2') ? 'text-4xl sm:text-5xl' : 'text-3xl sm:text-4xl'
                       }`}
                     >
                       {item.nombre}
                     </h3>
-                    <p
-                      className={`mt-4 text-sm leading-relaxed sm:text-base ${
-                        item.nombre === 'Portugal' ? 'max-w-lg text-stone-300' : 'text-stone-600'
-                      }`}
-                    >
-                      {item.analisis}
-                    </p>
                 </div>
 
                 {item.imagen ? (
@@ -387,6 +367,7 @@ export default function EspecialMundialPage() {
           </p>
         </div>
       </section>
-    </main>
+      </main>
+    </>
   )
 }
