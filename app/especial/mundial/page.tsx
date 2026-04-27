@@ -18,15 +18,10 @@ type ScenarioCard = {
   imageClassName: string
 }
 
-type MarketOption = {
-  nombre: string
-  nota: string
-}
-
 type Market = {
   titulo: string
-  descripcion: string
-  opciones: MarketOption[]
+  jugador: string
+  imagen: string
 }
 
 const ESCENARIO: ScenarioCard[] = [
@@ -88,72 +83,18 @@ const ESCENARIO: ScenarioCard[] = [
 const MERCADOS: Market[] = [
   {
     titulo: 'Máximo goleador',
-    descripcion:
-      'Lectura editorial sobre quién puede capitalizar mejor volumen de remate, rol ofensivo y recorrido dentro del torneo.',
-    opciones: [
-      {
-        nombre: 'Kylian Mbappé',
-        nota: 'Su capacidad para generarse ocasiones por sí mismo le mantiene en primera línea incluso en partidos cerrados.',
-      },
-      {
-        nombre: 'Harry Kane',
-        nota: 'Acumula minutos, peso en el área y un contexto ofensivo que suele sostenerle cerca del gol durante torneos largos.',
-      },
-      {
-        nombre: 'Vinícius Júnior',
-        nota: 'Puede dispararse si Brasil encuentra continuidad en campo rival y le deja correr con frecuencia sobre defensa replegada.',
-      },
-      {
-        nombre: 'Julián Álvarez',
-        nota: 'Encaja muy bien en ataques corales y puede crecer si su selección le coloca repetidamente en zonas de remate.',
-      },
-    ],
+    jugador: 'Harry Kane',
+    imagen: '/especial/mundial/jugadores/kane.png',
   },
   {
     titulo: 'Máximo asistente',
-    descripcion:
-      'Aquí pesa la capacidad para activar el último pase, asumir balón parado y aparecer de forma constante en campo rival.',
-    opciones: [
-      {
-        nombre: 'Kevin De Bruyne',
-        nota: 'Si llega con buen tono físico, sigue siendo uno de los generadores más fiables del torneo en pases que rompen partidos.',
-      },
-      {
-        nombre: 'Jamal Musiala',
-        nota: 'Su mezcla de conducción y claridad en el último tercio le da un perfil muy fuerte para producir ventajas continuas.',
-      },
-      {
-        nombre: 'Pedri',
-        nota: 'En un equipo que quiere gobernar desde la posesión, su lectura interior puede traducirse en muchas acciones de último pase.',
-      },
-      {
-        nombre: 'Bruno Fernandes',
-        nota: 'Suma creatividad, llegada y balón parado en un Portugal que aspira a pasar muchas fases del torneo.',
-      },
-    ],
+    jugador: 'Bruno Fernandes',
+    imagen: '/especial/mundial/jugadores/bruno.png',
   },
   {
     titulo: 'Mejor jugador',
-    descripcion:
-      'Este mercado se acerca mejor desde el impacto total: jerarquía competitiva, peso narrativo y capacidad para decidir noches grandes.',
-    opciones: [
-      {
-        nombre: 'Kylian Mbappé',
-        nota: 'Su protagonismo competitivo y mediático le coloca siempre cerca de este desenlace si Francia pisa semifinales.',
-      },
-      {
-        nombre: 'Jude Bellingham',
-        nota: 'Tiene un rango de influencia enorme y puede dominar distintos registros si Inglaterra firma un torneo maduro.',
-      },
-      {
-        nombre: 'Vinícius Júnior',
-        nota: 'Cuando Brasil encuentra vuelo ofensivo, su desequilibrio es de esos que cambian eliminatorias enteras.',
-      },
-      {
-        nombre: 'Florian Wirtz',
-        nota: 'Su talento entre líneas y su capacidad para acelerar ataques le convierten en un candidato muy serio si Alemania despega.',
-      },
-    ],
+    jugador: 'Vitinha',
+    imagen: '/especial/mundial/jugadores/vitinha.png',
   },
 ] as const
 
@@ -283,32 +224,36 @@ export default function EspecialMundialPage() {
             </p>
           </div>
 
-          <div className="grid gap-5 xl:grid-cols-3">
+          <div className="grid grid-cols-1 gap-5 lg:auto-rows-fr xl:grid-cols-3">
             {MERCADOS.map((mercado) => (
               <article
                 key={mercado.titulo}
-                className="rounded-3xl border border-stone-200 bg-white p-6 shadow-sm sm:p-7"
+                className="relative flex min-h-[440px] flex-col overflow-hidden rounded-3xl border border-stone-200 bg-white p-6 sm:p-7 lg:h-full"
               >
-                <div className="border-b border-stone-100 pb-4">
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-600">
-                    Mercado especial
+                <div className="relative z-10 flex items-center justify-between gap-4 text-stone-500">
+                  <p className="min-w-0">
+                    <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-600 lg:text-sm">
+                      {mercado.titulo}
+                    </span>
+                    <span className="mx-2 align-middle text-sm opacity-50">·</span>
+                    <span className="align-middle font-playfair text-xl font-bold tracking-normal text-stone-900 lg:text-2xl">
+                      {mercado.jugador}
+                    </span>
                   </p>
-                  <h2 className="mt-2 text-2xl font-semibold tracking-tight text-stone-900">
-                    {mercado.titulo}
-                  </h2>
-                  <p className="mt-3 text-sm leading-relaxed text-stone-600">{mercado.descripcion}</p>
                 </div>
 
-                <div className="mt-5 space-y-3">
-                  {mercado.opciones.map((opcion) => (
-                    <div
-                      key={`${mercado.titulo}-${opcion.nombre}`}
-                      className="rounded-2xl border border-stone-100 bg-stone-50 px-4 py-4"
-                    >
-                      <h3 className="text-base font-semibold text-stone-900">{opcion.nombre}</h3>
-                      <p className="mt-2 text-sm leading-relaxed text-stone-600">{opcion.nota}</p>
-                    </div>
-                  ))}
+                <div className="relative z-10 mt-4 border-b border-stone-200" />
+
+                <div className="relative z-0 flex flex-1 items-end justify-center pt-2 lg:pt-3">
+                  <Image
+                    src={mercado.imagen}
+                    alt={mercado.jugador}
+                    width={1024}
+                    height={1536}
+                    sizes="(min-width: 1280px) 280px, 240px"
+                    priority={false}
+                    className="h-[240px] w-auto object-contain object-bottom drop-shadow-[0_12px_24px_rgba(0,0,0,0.15)] lg:h-[280px]"
+                  />
                 </div>
               </article>
             ))}
