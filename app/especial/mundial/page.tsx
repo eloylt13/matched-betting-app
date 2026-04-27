@@ -10,6 +10,11 @@ type ScenarioCard = {
   pais: string
   imagen?: string
   className: string
+  headerClassName: string
+  eyebrowClassName: string
+  nameClassName: string
+  dividerClassName: string
+  imageClassName: string
 }
 
 type MarketOption = {
@@ -30,25 +35,48 @@ const ESCENARIO: ScenarioCard[] = [
     pais: 'PT',
     imagen: '/especial/mundial/jugadores/pt.png',
     className:
-      'lg:col-span-2 lg:row-span-2 border border-[#D4AF37]/40 text-white shadow-[0_0_0_1px_rgba(212,175,55,0.15),0_24px_80px_rgba(212,175,55,0.08)]',
+      'border border-[#D4AF37]/40 bg-[linear-gradient(135deg,#0a2e1f_0%,#0f3a27_100%)] text-white shadow-[0_0_0_1px_rgba(212,175,55,0.15),0_24px_80px_rgba(212,175,55,0.08)]',
+    headerClassName: 'text-white',
+    eyebrowClassName: 'text-[#E8C767]',
+    nameClassName: 'text-white',
+    dividerClassName: 'border-[#D4AF37]/30',
+    imageClassName: 'h-[280px] lg:h-[320px]',
   },
   {
     etiqueta: 'Subcampeón',
     nombre: 'España',
     pais: 'ES',
+    imagen: '/especial/mundial/jugadores/es.png',
     className: 'border border-[#D4AF37]/40 bg-white text-stone-900',
+    headerClassName: 'text-[#B8941F]',
+    eyebrowClassName: 'text-[#B8941F]',
+    nameClassName: 'text-stone-900',
+    dividerClassName: 'border-[#D4AF37]/30',
+    imageClassName: 'h-[260px] lg:h-[300px]',
   },
   {
     etiqueta: '3º puesto',
     nombre: 'Francia',
     pais: 'FR',
+    imagen: '/especial/mundial/jugadores/fr.png',
     className: 'border border-stone-200 bg-white text-stone-900',
+    headerClassName: 'text-stone-500',
+    eyebrowClassName: 'text-emerald-700',
+    nameClassName: 'text-stone-900',
+    dividerClassName: 'border-stone-200',
+    imageClassName: 'h-[260px] lg:h-[300px]',
   },
   {
     etiqueta: '4º puesto',
     nombre: 'Brasil',
     pais: 'BR',
+    imagen: '/especial/mundial/jugadores/br.png',
     className: 'border border-stone-200 bg-white text-stone-900',
+    headerClassName: 'text-stone-500',
+    eyebrowClassName: 'text-emerald-700',
+    nameClassName: 'text-stone-900',
+    dividerClassName: 'border-stone-200',
+    imageClassName: 'h-[260px] lg:h-[300px]',
   },
 ] as const
 
@@ -197,93 +225,45 @@ export default function EspecialMundialPage() {
             </p>
           </div>
 
-          <div className="grid gap-4 lg:grid-cols-4 lg:grid-rows-2">
+          <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
             {ESCENARIO.map((item) => (
               <article
                 key={`${item.etiqueta}-${item.nombre}`}
-                className={`relative overflow-hidden rounded-3xl p-6 sm:p-7 ${
-                  item.nombre === 'Portugal'
-                    ? 'min-h-[390px] pb-44 sm:min-h-[420px] sm:pb-48 lg:min-h-[460px] lg:pb-7'
-                    : ''
-                } ${item.className}`}
-                style={
-                  item.nombre === 'Portugal'
-                    ? {
-                        background:
-                          'linear-gradient(135deg, #0a2e1f 0%, #0f3a27 100%)',
-                      }
-                    : undefined
-                }
+                className={`relative flex min-h-[400px] flex-col overflow-hidden rounded-3xl p-6 sm:min-h-[420px] sm:p-7 lg:min-h-[440px] ${item.className}`}
               >
-                <div
-                  aria-hidden="true"
-                  className={`pointer-events-none absolute inset-x-6 top-0 h-px ${
-                    item.nombre === 'Portugal'
-                      ? 'bg-[#E8C767]/30'
-                      : item.nombre === 'España'
-                        ? 'bg-[#D4AF37]/25'
-                        : 'bg-stone-200/80'
-                  }`}
-                />
-                <div className="relative z-10 h-full">
-                    <div
-                      className={`flex items-start justify-between gap-4 border-b pb-4 ${
-                        item.nombre === 'Portugal'
-                          ? 'border-[#D4AF37]/20'
-                          : item.nombre === 'España'
-                            ? 'border-[#D4AF37]/20'
-                            : 'border-stone-200/80'
-                      }`}
-                    >
-                      <p
-                        className={`text-xs font-semibold uppercase tracking-[0.18em] ${
-                          item.nombre === 'Portugal'
-                            ? 'text-[#E8C767]'
-                            : item.nombre === 'España'
-                              ? 'text-[#B8941F]'
-                              : 'text-emerald-700'
-                        }`}
-                      >
+                <div className={`relative z-10 flex items-center justify-between gap-4 ${item.headerClassName}`}>
+                  <div className="min-w-0">
+                    <p className="truncate">
+                      <span className={`text-[11px] font-semibold uppercase tracking-[0.18em] ${item.eyebrowClassName}`}>
                         {item.etiqueta}
-                      </p>
-                      <span
-                        className={`inline-flex h-8 w-10 shrink-0 items-center justify-center rounded-full border text-lg ${
-                          item.nombre === 'Portugal'
-                            ? 'border-[#D4AF37]/50 bg-transparent text-[#E8C767]'
-                            : item.nombre === 'España'
-                              ? 'border-[#D4AF37]/50 bg-transparent text-[#B8941F]'
-                              : 'border-stone-200 bg-stone-50 text-stone-700'
-                        }`}
-                      >
-                        <span className={`fi fi-${item.pais.toLowerCase()}`} aria-hidden="true" />
-                        <span className="sr-only">{item.nombre}</span>
                       </span>
-                    </div>
-                    <h3
-                      className={`mt-5 font-playfair font-bold tracking-tight ${
-                        item.className.includes('lg:row-span-2') ? 'text-4xl sm:text-5xl' : 'text-3xl sm:text-4xl'
-                      }`}
-                    >
-                      {item.nombre}
-                    </h3>
+                      <span className="mx-2 align-middle text-sm opacity-50">·</span>
+                      <span className={`align-middle font-playfair text-xl font-bold tracking-normal lg:text-2xl ${item.nameClassName}`}>
+                        {item.nombre}
+                      </span>
+                    </p>
+                  </div>
+                  <span className="inline-flex h-8 w-10 shrink-0 items-center justify-center rounded-full border border-current/40 bg-transparent text-lg">
+                    <span className={`fi fi-${item.pais.toLowerCase()}`} aria-hidden="true" />
+                    <span className="sr-only">{item.nombre}</span>
+                  </span>
                 </div>
 
-                {item.imagen ? (
-                  <div
-                    aria-hidden="true"
-                    className="pointer-events-none absolute -bottom-8 -right-6 z-0 h-[270px] w-[250px] sm:h-[315px] sm:w-[300px] lg:-bottom-10 lg:right-0 lg:h-[390px] lg:w-[360px]"
-                  >
-                    <div className="absolute inset-0 z-10 bg-gradient-to-tr from-[#0a2e1f] via-[#0a2e1f]/10 to-transparent" />
+                <div className={`relative z-10 mt-4 border-b ${item.dividerClassName}`} />
+
+                <div className="relative z-0 flex flex-1 items-end justify-center pt-5">
+                  {item.imagen ? (
                     <Image
                       src={item.imagen}
                       alt={`Jugador ${item.nombre}`}
-                      fill
-                      sizes="(min-width: 1024px) 360px, (min-width: 640px) 300px, 250px"
+                      width={420}
+                      height={420}
+                      sizes="(min-width: 1024px) 320px, 280px"
                       priority={false}
-                      className="object-contain object-bottom opacity-75 drop-shadow-[0_8px_18px_rgba(0,0,0,0.14)]"
+                      className={`w-auto object-contain object-bottom drop-shadow-[0_14px_22px_rgba(0,0,0,0.18)] ${item.imageClassName}`}
                     />
-                  </div>
-                ) : null}
+                  ) : null}
+                </div>
               </article>
             ))}
           </div>
