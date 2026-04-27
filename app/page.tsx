@@ -411,18 +411,18 @@ export default function LandingPage() {
               href="/especial/mundial"
               eventName="home_worldcup_special_clicked"
               eventProps={{ location: 'hero_freebet', target_path: '/especial/mundial' }}
-              className="group mx-auto mb-8 inline-flex items-center justify-center gap-2 rounded-full border border-amber-300/25 bg-amber-300/10 px-4 py-2.5 text-sm font-semibold text-amber-100 shadow-[0_14px_36px_rgba(245,158,11,0.12)] backdrop-blur-sm transition-all duration-200 hover:border-amber-200/45 hover:bg-amber-300/15 hover:text-white"
+              className="group mx-auto mb-8 flex max-w-sm items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 backdrop-blur-sm transition-all duration-200 hover:border-[#D4AF37]/40 hover:bg-white/10"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                className="h-[18px] w-[18px] shrink-0 text-amber-300"
-                aria-hidden="true"
-              >
-                <path d="M12 2.75 14.72 8.4l6.2.9-4.49 4.37 1.06 6.17L12 16.93 6.51 19.84l1.06-6.17L3.08 9.3l6.2-.9L12 2.75Z" />
-              </svg>
-              <span>Especial Mundial 2026</span>
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#D4AF37]/30 bg-[#D4AF37]/10 text-xl">
+                <span aria-hidden="true">🏆</span>
+              </div>
+              <div className="min-w-0 flex-1 text-left">
+                <p className="text-sm font-semibold text-white">Especial Mundial 2026</p>
+                <p className="text-xs text-stone-300">Mis predicciones del torneo</p>
+              </div>
+              <span className="shrink-0 text-lg text-[#D4AF37] transition-transform duration-200 group-hover:translate-x-1">
+                →
+              </span>
             </TrackedLink>
 
             <h1 className="mx-auto max-w-4xl font-playfair text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-[3.55rem]">
