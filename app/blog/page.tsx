@@ -13,7 +13,16 @@ const articulos: Array<{
   titulo: string
   fecha: string
   descripcion: string
+  destacado?: boolean
 }> = [
+  {
+    slug: 'mundial-2026',
+    titulo: 'Mundial 2026: grupos, favoritos y selecciones actualizadas',
+    fecha: '27 de abril de 2026',
+    descripcion:
+      'Guía actualizada del Mundial 2026: formato, los 12 grupos completos, debutantes, favoritos según las cuotas y qué vigilar antes del 11 de junio.',
+    destacado: true,
+  },
   {
     slug: 'que-es-matched-betting-espana',
     titulo: '¿Qué es el Matched Betting y cómo funciona en España?',
@@ -107,12 +116,19 @@ export default function BlogPage() {
         </div>
       ) : (
         <ul className="flex flex-col gap-4">
-          {articulos.map((art) => (
+          {[...articulos]
+            .sort((a, b) => Number(Boolean(b.destacado)) - Number(Boolean(a.destacado)))
+            .map((art) => (
             <li
               key={art.slug}
               className="bg-white rounded-2xl border border-stone-100 hover:border-purple-200 hover:shadow-lg transition-all p-5"
             >
               <time className="text-xs text-stone-400">{art.fecha}</time>
+              {art.destacado ? (
+                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#B8941F] mb-2">
+                  ESPECIAL MUNDIAL 2026
+                </p>
+              ) : null}
               <h2 className="text-base font-semibold text-stone-800 mt-1 mb-1">{art.titulo}</h2>
               <p className="text-sm text-stone-500 mb-3">{art.descripcion}</p>
               <Link
