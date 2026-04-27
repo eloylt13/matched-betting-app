@@ -225,21 +225,26 @@ export default function EspecialMundialPage() {
           </div>
 
           <div className="grid grid-cols-1 gap-5 lg:auto-rows-fr xl:grid-cols-3">
-            {MERCADOS.map((mercado) => (
+            {MERCADOS.map((mercado, index) => (
               <article
                 key={mercado.titulo}
-                className="relative flex min-h-[440px] flex-col overflow-hidden rounded-3xl border border-stone-200 bg-white p-6 sm:p-7 lg:h-full"
+                className={`relative flex min-h-[440px] flex-col overflow-hidden rounded-3xl border border-stone-200 p-6 sm:p-7 lg:h-full ${
+                  index === 0
+                    ? "bg-[#F8F7F2]"
+                    : index === 1
+                      ? "bg-[#EEF8F2]"
+                      : "bg-[#F3FAF5]"
+                }`}
               >
-                <div className="relative z-10 flex items-center justify-between gap-4 text-stone-500">
-                  <p className="min-w-0">
+                <div className="relative z-10 flex items-start justify-between gap-4">
+                  <div className="min-w-0 flex flex-col gap-1">
                     <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-600 lg:text-sm">
                       {mercado.titulo}
                     </span>
-                    <span className="mx-2 align-middle text-sm opacity-50">·</span>
-                    <span className="align-middle font-playfair text-xl font-bold tracking-normal text-stone-900 lg:text-2xl">
+                    <span className="font-playfair text-xl font-bold tracking-tight text-stone-900 lg:text-2xl">
                       {mercado.jugador}
                     </span>
-                  </p>
+                  </div>
                 </div>
 
                 <div className="relative z-10 mt-4 border-b border-stone-200" />
