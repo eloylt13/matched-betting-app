@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import TrackedLink from '@/components/analytics/TrackedLink'
 import EmailCapture from '@/components/landing/EmailCapture'
@@ -378,7 +379,7 @@ export default function LandingPage() {
               href="/pronosticos"
               eventName="home_freebet_card_clicked"
               eventProps={{ location: 'hero', target_path: '/pronosticos' }}
-              className="group mx-auto mb-8 flex max-w-sm items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 backdrop-blur-sm transition-all duration-200 hover:border-emerald-400/40 hover:bg-white/10"
+              className="group mx-auto mb-3 flex max-w-sm items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 backdrop-blur-sm transition-all duration-200 hover:border-emerald-400/40 hover:bg-white/10"
             >
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-emerald-400/30 bg-emerald-500/10">
                 <svg
@@ -405,6 +406,22 @@ export default function LandingPage() {
               <span className="shrink-0 text-lg text-emerald-400 transition-transform duration-200 group-hover:translate-x-1">
                 →
               </span>
+            </TrackedLink>
+
+            <TrackedLink
+              href="/especial/mundial"
+              eventName="home_worldcup_special_clicked"
+              eventProps={{ location: 'hero_freebet', target_path: '/especial/mundial' }}
+              className="group mx-auto mb-8 inline-flex items-center justify-center gap-2 rounded-full border border-amber-300/25 bg-amber-300/10 px-4 py-2.5 text-sm font-semibold text-amber-100 shadow-[0_14px_36px_rgba(245,158,11,0.12)] backdrop-blur-sm transition-all duration-200 hover:border-amber-200/45 hover:bg-amber-300/15 hover:text-white"
+            >
+              <Image
+                src="/especial/mundial/copa.png"
+                alt="Especial Mundial 2026"
+                width={24}
+                height={24}
+                className="h-6 w-6 object-contain"
+              />
+              <span>Especial Mundial 2026</span>
             </TrackedLink>
 
             <h1 className="mx-auto max-w-4xl font-playfair text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-[3.55rem]">
