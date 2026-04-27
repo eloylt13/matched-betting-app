@@ -14,6 +14,7 @@ type ScenarioCard = {
   eyebrowClassName: string
   nameClassName: string
   dividerClassName: string
+  imageWrapperClassName: string
   imageClassName: string
 }
 
@@ -39,7 +40,8 @@ const ESCENARIO: ScenarioCard[] = [
     headerClassName: 'text-white',
     eyebrowClassName: 'text-[#E8C767]',
     nameClassName: 'text-white',
-    dividerClassName: 'border-[#D4AF37]/30',
+    dividerClassName: 'border-[#D4AF37]/50',
+    imageWrapperClassName: 'pt-5',
     imageClassName: 'h-[280px] lg:h-[320px]',
   },
   {
@@ -47,11 +49,12 @@ const ESCENARIO: ScenarioCard[] = [
     nombre: 'España',
     pais: 'ES',
     imagen: '/especial/mundial/jugadores/es.png',
-    className: 'border border-[#D4AF37]/40 bg-white text-stone-900',
+    className: 'border border-[#D4AF37]/40 bg-[#FAF1F0] text-stone-900',
     headerClassName: 'text-[#B8941F]',
     eyebrowClassName: 'text-[#B8941F]',
     nameClassName: 'text-stone-900',
     dividerClassName: 'border-[#D4AF37]/30',
+    imageWrapperClassName: 'pt-2 lg:pt-3',
     imageClassName: 'h-[260px] lg:h-[300px]',
   },
   {
@@ -59,11 +62,12 @@ const ESCENARIO: ScenarioCard[] = [
     nombre: 'Francia',
     pais: 'FR',
     imagen: '/especial/mundial/jugadores/fr.png',
-    className: 'border border-stone-200 bg-white text-stone-900',
+    className: 'border border-stone-200 bg-[#F4F6FB] text-stone-900',
     headerClassName: 'text-stone-500',
     eyebrowClassName: 'text-emerald-700',
     nameClassName: 'text-stone-900',
     dividerClassName: 'border-stone-200',
+    imageWrapperClassName: 'pt-2 lg:pt-3',
     imageClassName: 'h-[260px] lg:h-[300px]',
   },
   {
@@ -71,11 +75,12 @@ const ESCENARIO: ScenarioCard[] = [
     nombre: 'Brasil',
     pais: 'BR',
     imagen: '/especial/mundial/jugadores/br.png',
-    className: 'border border-stone-200 bg-white text-stone-900',
+    className: 'border border-stone-200 bg-[#FBF7EC] text-stone-900',
     headerClassName: 'text-stone-500',
     eyebrowClassName: 'text-emerald-700',
     nameClassName: 'text-stone-900',
     dividerClassName: 'border-stone-200',
+    imageWrapperClassName: 'pt-2 lg:pt-3',
     imageClassName: 'h-[260px] lg:h-[300px]',
   },
 ] as const
@@ -225,20 +230,20 @@ export default function EspecialMundialPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
+          <div className="grid grid-cols-1 gap-5 lg:auto-rows-fr lg:grid-cols-2">
             {ESCENARIO.map((item) => (
               <article
                 key={`${item.etiqueta}-${item.nombre}`}
-                className={`relative flex min-h-[400px] flex-col overflow-hidden rounded-3xl p-6 sm:min-h-[420px] sm:p-7 lg:min-h-[440px] ${item.className}`}
+                className={`relative flex min-h-[400px] flex-col overflow-hidden rounded-3xl p-6 sm:min-h-[420px] sm:p-7 lg:h-full lg:min-h-[440px] ${item.className}`}
               >
                 <div className={`relative z-10 flex items-center justify-between gap-4 ${item.headerClassName}`}>
                   <div className="min-w-0">
                     <p className="truncate">
-                      <span className={`text-[11px] font-semibold uppercase tracking-[0.18em] ${item.eyebrowClassName}`}>
+                      <span className={`text-[11px] font-semibold uppercase tracking-[0.18em] lg:text-sm ${item.eyebrowClassName}`}>
                         {item.etiqueta}
                       </span>
                       <span className="mx-2 align-middle text-sm opacity-50">·</span>
-                      <span className={`align-middle font-playfair text-xl font-bold tracking-normal lg:text-2xl ${item.nameClassName}`}>
+                      <span className={`align-middle font-playfair text-xl font-bold tracking-normal lg:text-3xl ${item.nameClassName}`}>
                         {item.nombre}
                       </span>
                     </p>
@@ -251,7 +256,7 @@ export default function EspecialMundialPage() {
 
                 <div className={`relative z-10 mt-4 border-b ${item.dividerClassName}`} />
 
-                <div className="relative z-0 flex flex-1 items-end justify-center pt-5">
+                <div className={`relative z-0 flex flex-1 items-end justify-center ${item.imageWrapperClassName}`}>
                   {item.imagen ? (
                     <Image
                       src={item.imagen}
