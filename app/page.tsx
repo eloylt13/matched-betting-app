@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import Image from 'next/image'
 import Link from 'next/link'
 import TrackedLink from '@/components/analytics/TrackedLink'
 import EmailCapture from '@/components/landing/EmailCapture'
@@ -414,13 +413,15 @@ export default function LandingPage() {
               eventProps={{ location: 'hero_freebet', target_path: '/especial/mundial' }}
               className="group mx-auto mb-8 inline-flex items-center justify-center gap-2 rounded-full border border-amber-300/25 bg-amber-300/10 px-4 py-2.5 text-sm font-semibold text-amber-100 shadow-[0_14px_36px_rgba(245,158,11,0.12)] backdrop-blur-sm transition-all duration-200 hover:border-amber-200/45 hover:bg-amber-300/15 hover:text-white"
             >
-              <Image
-                src="/especial/mundial/copa.png"
-                alt="Especial Mundial 2026"
-                width={24}
-                height={24}
-                className="h-6 w-6 object-contain"
-              />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="h-[18px] w-[18px] shrink-0 text-amber-300"
+                aria-hidden="true"
+              >
+                <path d="M12 2.75 14.72 8.4l6.2.9-4.49 4.37 1.06 6.17L12 16.93 6.51 19.84l1.06-6.17L3.08 9.3l6.2-.9L12 2.75Z" />
+              </svg>
               <span>Especial Mundial 2026</span>
             </TrackedLink>
 
