@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
@@ -17,6 +18,18 @@ export default function Mundial2026Page() {
       <h1 className="text-2xl font-bold text-stone-800 tracking-tight leading-snug">
         Mundial 2026: selecciones, grupos y favoritos actualizados
       </h1>
+
+      <div className="my-2 overflow-hidden rounded-2xl">
+        <Image
+          src="/blog/mundial-2026/trofeo.webp"
+          alt="Trofeo de la Copa del Mundo de la FIFA sobre césped"
+          width={1200}
+          height={1200}
+          priority
+          sizes="(min-width: 768px) 672px, 100vw"
+          className="w-full h-auto object-cover"
+        />
+      </div>
 
       <div className="flex flex-col gap-4 text-sm text-stone-700 leading-relaxed">
         <p>
