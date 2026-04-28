@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
+import ClubMundialVipBanner from '@/components/ClubMundialVip/ClubMundialVipBanner'
 
 const FECHA_ACTUALIZACION = 'Abril 2026'
 
@@ -160,6 +161,12 @@ export default function EspecialMundialPage() {
             </div>
 
           </div>
+        </div>
+      </section>
+
+      <section className="bg-[#F5F3EE] px-4 py-12 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-6xl">
+          <ClubMundialVipBanner />
         </div>
       </section>
 
