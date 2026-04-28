@@ -579,6 +579,19 @@ export default function LandingPage() {
                 →
               </span>
             </TrackedLink>
+            <div className="mt-4">
+              <TrackedLink
+                href="/blog/mejores-bonos-bienvenida-apuestas-espana"
+                eventName="home_como_funciona_beneficios_clicked"
+                eventProps={{
+                  location: 'como_funciona',
+                  target_path: '/blog/mejores-bonos-bienvenida-apuestas-espana',
+                }}
+                className="text-sm text-gray-400 transition-colors duration-200 hover:text-emerald-300"
+              >
+                ¿Cuánto se puede ganar? Ver tabla de beneficios estimados →
+              </TrackedLink>
+            </div>
           </div>
         </div>
       </section>
