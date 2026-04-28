@@ -500,7 +500,7 @@ export default function LandingPage() {
                       <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-gray-500">
                         Beneficio estimado
                       </p>
-                      <p className="mt-1 text-sm font-semibold text-gray-100">65€</p>
+                      <p className="mt-1 text-sm font-semibold text-gray-100">125€</p>
                     </div>
                   </div>
                 </div>
@@ -598,7 +598,7 @@ export default function LandingPage() {
           <div className="max-w-3xl mx-auto">
             <div className="relative rounded-2xl border border-stone-200 bg-white p-6 shadow-sm transition-all duration-200 hover:shadow-md sm:p-8">
               <span className="absolute top-4 right-4 rounded-full bg-emerald-500 px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-white shadow-sm sm:top-6 sm:right-6">
-                Hasta 65€ de bono
+                Hasta 200€ en freebets
               </span>
 
               <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
