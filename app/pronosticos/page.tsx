@@ -62,19 +62,22 @@ export default async function PronosticosPage() {
 
                 <Link
                   href="/especial/mundial"
-                  className="mt-6 block rounded-3xl border border-stone-200 bg-stone-50 px-5 py-5 shadow-sm transition hover:border-emerald-200 hover:bg-white sm:px-6"
+                  className="mt-6 block rounded-2xl border border-emerald-200 bg-gradient-to-br from-emerald-50 to-amber-50 px-5 py-5 shadow-sm transition-all hover:border-emerald-300 hover:shadow-md sm:px-6"
                 >
-                  <div className="mt-3 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+                  <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                     <div className="max-w-2xl">
-                      <h3 className="text-lg font-semibold leading-tight text-stone-800 sm:text-xl">
+                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-800 text-[11px] font-semibold tracking-wide mb-3">
+                        Mundial 2026
+                      </span>
+                      <h3 className="text-lg font-bold leading-tight text-stone-900 sm:text-xl">
                         IAPredictHub · Especial Mundial 2026
                       </h3>
                       <p className="mt-2 text-sm leading-relaxed text-stone-600">
                         Mis predicciones para el torneo: ganador, máximo goleador y otros mercados.
                       </p>
                     </div>
-                    <span className="inline-flex items-center text-sm font-semibold text-emerald-700">
-                      Ver especial →
+                    <span className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200 hover:bg-emerald-200 hover:border-emerald-300 font-semibold text-sm transition-colors">
+                      Ver predicciones <span aria-hidden="true">→</span>
                     </span>
                   </div>
                 </Link>
@@ -178,19 +181,22 @@ export default async function PronosticosPage() {
 
                 <Link
                   href="/especial/mundial"
-                  className="mt-6 block rounded-3xl border border-stone-200 bg-stone-50 px-5 py-5 shadow-sm transition hover:border-emerald-200 hover:bg-white sm:px-6"
+                  className="mt-6 block rounded-2xl border border-emerald-200 bg-gradient-to-br from-emerald-50 to-amber-50 px-5 py-5 shadow-sm transition-all hover:border-emerald-300 hover:shadow-md sm:px-6"
                 >
-                  <div className="mt-3 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+                  <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                     <div className="max-w-2xl">
-                      <h3 className="text-lg font-semibold leading-tight text-stone-800 sm:text-xl">
+                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-800 text-[11px] font-semibold tracking-wide mb-3">
+                        Mundial 2026
+                      </span>
+                      <h3 className="text-lg font-bold leading-tight text-stone-900 sm:text-xl">
                         IAPredictHub · Especial Mundial 2026
                       </h3>
                       <p className="mt-2 text-sm leading-relaxed text-stone-600">
                         Mis predicciones para el torneo: ganador, máximo goleador y otros mercados.
                       </p>
                     </div>
-                    <span className="inline-flex items-center text-sm font-semibold text-emerald-700">
-                      Ver especial →
+                    <span className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200 hover:bg-emerald-200 hover:border-emerald-300 font-semibold text-sm transition-colors">
+                      Ver predicciones <span aria-hidden="true">→</span>
                     </span>
                   </div>
                 </Link>
