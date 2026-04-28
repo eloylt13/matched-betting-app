@@ -8,28 +8,28 @@ export const metadata: Metadata = {
 }
 
 const bonos = [
-  { casa: 'SolCasino',        tipo: 'Rollover',         requisitos: 'Depósito mín. 200€, rollover exigente',          dificultad: 5, ganancia: 150 },
-  { casa: 'Betfair',          tipo: 'Rollover',         requisitos: 'Sin depósito mínimo, cuota mín. 1.25',            dificultad: 3, ganancia: 150 },
   { casa: 'Sportium',         tipo: 'Apuesta y recibe', requisitos: 'Depósito 100€, 2 freebets de 100€ SNR',           dificultad: 1, ganancia: 140 },
-  { casa: 'Bwin',             tipo: 'Reembolso',        requisitos: 'Apuesta sin riesgo hasta 100€ + bonos extra',     dificultad: 3, ganancia: 140 },
-  { casa: 'Betway',           tipo: 'Reembolso',        requisitos: 'Reembolso 100% hasta 200€ + 50 tiradas gratis',   dificultad: 4, ganancia: 140 },
-  { casa: 'DaznBet',          tipo: 'Apuesta y recibe', requisitos: 'Depósito 200€, freebet 200€ no fragmentable',     dificultad: 2, ganancia: 130 },
-  { casa: 'William Hill',     tipo: 'Reembolso',        requisitos: 'Reembolso 100% hasta 200€ combinada, código BONO200', dificultad: 4, ganancia: 130 },
   { casa: 'Versus',           tipo: 'Apuesta y recibe', requisitos: 'Hasta 200€ en freebets con tus dos primeros depósitos', dificultad: 1, ganancia: 125 },
-  { casa: 'Pastón',           tipo: 'Rollover',         requisitos: 'Pack bienvenida 3 fases, rollover x10',           dificultad: 4, ganancia: 120 },
+  { casa: 'Bet365',           tipo: 'Apuesta y recibe', requisitos: 'Depósito 100€, créditos de apuesta',              dificultad: 1, ganancia: 60 },
+  { casa: 'DaznBet',          tipo: 'Apuesta y recibe', requisitos: 'Depósito 200€, freebet 200€ no fragmentable',     dificultad: 2, ganancia: 130 },
   { casa: 'RetaBet',          tipo: 'Apuesta y recibe', requisitos: 'Depósito 150€, freebet garantizada SNR',          dificultad: 2, ganancia: 100 },
+  { casa: '888Sport',         tipo: 'Reembolso',        requisitos: 'Reembolso 100€ íntegro si fallas',                dificultad: 2, ganancia: 75 },
+  { casa: 'Codere',           tipo: 'Apuesta y recibe', requisitos: 'Depósito 200€, freebets escalonadas',             dificultad: 2, ganancia: 65 },
+  { casa: 'Kirolbet',         tipo: 'Reembolso',        requisitos: 'Reembolso 100€ + 50 tiradas gratis',              dificultad: 2, ganancia: 60 },
+  { casa: 'Betfair',          tipo: 'Rollover',         requisitos: 'Sin depósito mínimo, cuota mín. 1.25',            dificultad: 3, ganancia: 150 },
+  { casa: 'Bwin',             tipo: 'Reembolso',        requisitos: 'Apuesta sin riesgo hasta 100€ + bonos extra',     dificultad: 3, ganancia: 140 },
   { casa: 'Juegging',         tipo: 'Apuesta y recibe', requisitos: 'Depósito 75€, bono 200%, dos fases',              dificultad: 3, ganancia: 100 },
   { casa: 'Marca Apuestas',   tipo: 'Reembolso',        requisitos: 'Reembolso 100% hasta 200€ si fallas',             dificultad: 3, ganancia: 90 },
-  { casa: '888Sport',         tipo: 'Reembolso',        requisitos: 'Reembolso 100€ íntegro si fallas',                dificultad: 2, ganancia: 75 },
   { casa: 'Winamax',          tipo: 'Reembolso',        requisitos: 'Reembolso 150%, depósito 100€ si pierdes',        dificultad: 3, ganancia: 70 },
   { casa: 'Yaass Casino',     tipo: 'Reembolso',        requisitos: 'Apuesta sin riesgo hasta 100€',                   dificultad: 3, ganancia: 70 },
-  { casa: 'JokerBet',         tipo: 'Rollover',         requisitos: 'Bono 200% hasta 100€, rollover x10',              dificultad: 5, ganancia: 70 },
-  { casa: 'Codere',           tipo: 'Apuesta y recibe', requisitos: 'Depósito 200€, freebets escalonadas',             dificultad: 2, ganancia: 65 },
   { casa: 'EFBet',            tipo: 'Rollover',         requisitos: 'Depósito 100€, freebet 100€ vía email',           dificultad: 3, ganancia: 65 },
   { casa: 'Casino Gran Madrid', tipo: 'Apuesta y recibe', requisitos: 'Bono 50% hasta 100€, cuota máx 3.00',          dificultad: 3, ganancia: 62 },
-  { casa: 'Bet365',           tipo: 'Apuesta y recibe', requisitos: 'Depósito 100€, créditos de apuesta',              dificultad: 1, ganancia: 60 },
-  { casa: 'Kirolbet',         tipo: 'Reembolso',        requisitos: 'Reembolso 100€ + 50 tiradas gratis',              dificultad: 2, ganancia: 60 },
   { casa: 'PokerStars',       tipo: 'Reembolso',        requisitos: 'Seguro 100% hasta 100€ en dos tramos',            dificultad: 3, ganancia: 60 },
+  { casa: 'Betway',           tipo: 'Reembolso',        requisitos: 'Reembolso 100% hasta 200€ + 50 tiradas gratis',   dificultad: 4, ganancia: 140 },
+  { casa: 'William Hill',     tipo: 'Reembolso',        requisitos: 'Reembolso 100% hasta 200€ combinada, código BONO200', dificultad: 4, ganancia: 130 },
+  { casa: 'Pastón',           tipo: 'Rollover',         requisitos: 'Pack bienvenida 3 fases, rollover x10',           dificultad: 4, ganancia: 120 },
+  { casa: 'SolCasino',        tipo: 'Rollover',         requisitos: 'Depósito mín. 200€, rollover exigente',          dificultad: 5, ganancia: 150 },
+  { casa: 'JokerBet',         tipo: 'Rollover',         requisitos: 'Bono 200% hasta 100€, rollover x10',              dificultad: 5, ganancia: 70 },
 ]
 
 const casaLinks = {
@@ -68,20 +68,20 @@ function getCasaHref(casa: string) {
 function DificultadBadge({ nivel }: { nivel: number }) {
   const colores: Record<number, string> = {
     1: 'bg-emerald-100 text-emerald-700',
-    2: 'bg-green-100 text-green-700',
-    3: 'bg-amber-100 text-amber-700',
-    4: 'bg-orange-100 text-orange-700',
-    5: 'bg-red-100 text-red-700',
+    2: 'bg-emerald-50 text-emerald-700',
+    3: 'bg-amber-50 text-amber-700',
+    4: 'bg-orange-50 text-orange-700',
+    5: 'bg-red-50 text-red-700',
   }
   const etiquetas: Record<number, string> = {
-    1: '1/5 — Muy fácil',
-    2: '2/5 — Fácil',
-    3: '3/5 — Media',
-    4: '4/5 — Alta',
-    5: '5/5 — Muy alta',
+    1: '1/5 Muy fácil',
+    2: '2/5 Fácil',
+    3: '3/5 Media',
+    4: '4/5 Alta',
+    5: '5/5 Muy alta',
   }
   return (
-    <span className={`inline-block px-2 py-0.5 rounded-full text-xs font-medium whitespace-nowrap ${colores[nivel]}`}>
+    <span className={`inline-block px-2 py-0.5 rounded-full text-xs font-normal whitespace-nowrap ${colores[nivel]}`}>
       {etiquetas[nivel]}
     </span>
   )
@@ -101,11 +101,70 @@ export default function MejoresBonos2026Page() {
       <div className="flex flex-col gap-4 text-sm text-stone-700 leading-relaxed">
 
         <p>
-          Las casas de apuestas reguladas en España compiten activamente por captar nuevos usuarios
-          ofreciendo bonos de bienvenida cada vez más generosos. Desde que en <strong>abril de 2024</strong>{' '}
-          se reabrió la ventana de bonos para nuevos usuarios en España, la oferta disponible es la mejor
-          de los últimos años. En esta guía encontrarás una comparativa actualizada de <strong>más de 20 casas</strong>,
-          ordenadas por ganancia potencial, para que sepas exactamente por dónde empezar.
+          Más de 20 casas disponibles en España, ordenadas por dificultad y beneficio potencial estimado usando matched betting.
+        </p>
+
+        {/* ── Sección 2: Tabla ── */}
+        <h2 className="text-lg font-semibold text-stone-800 mt-2">
+          Ranking de bonos de bienvenida 2026
+        </h2>
+
+        <div className="overflow-x-auto rounded-xl border border-stone-200 bg-white shadow-sm">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="bg-stone-50 border-b border-stone-200">
+                <th className="text-left px-3 py-3 font-semibold text-stone-700">Casa</th>
+                <th className="text-left px-3 py-3 font-semibold text-stone-700">Tipo de bono</th>
+                <th className="text-left px-3 py-3 font-semibold text-stone-700 hidden md:table-cell">Requisitos</th>
+                <th className="text-center px-3 py-3 font-semibold text-stone-700">Dificultad</th>
+                <th className="text-right px-3 py-3 font-semibold text-stone-700">Ganancia est.</th>
+              </tr>
+            </thead>
+            <tbody>
+              {bonos.map((bono, i) => {
+                const isVersus = bono.casa === 'Versus'
+
+                return (
+                <tr
+                  key={bono.casa}
+                  className={`border-b border-stone-100 last:border-0 transition-colors ${
+                    isVersus
+                      ? 'bg-emerald-50/60 border-l-4 border-l-emerald-500 hover:bg-emerald-50/60'
+                      : `${i % 2 === 0 ? 'bg-white' : 'bg-stone-50/50'} hover:bg-stone-50`
+                  }`}
+                >
+                  <td className="px-3 py-2.5 font-medium text-stone-800 whitespace-nowrap">
+                    <div className="flex items-center gap-2">
+                      <Link
+                        href={getCasaHref(bono.casa) ?? '#'}
+                        className="inline-block text-stone-800 hover:text-purple-700 hover:underline underline-offset-2 decoration-stone-300 transition-colors"
+                      >
+                        {bono.casa}
+                      </Link>
+                      {isVersus ? (
+                        <span className="rounded-full bg-emerald-100 px-1.5 py-0.5 text-[10px] font-medium leading-none text-emerald-700">
+                          RECOMENDADO
+                        </span>
+                      ) : null}
+                    </div>
+                  </td>
+                  <td className="px-3 py-2.5 text-stone-600 whitespace-nowrap">{bono.tipo}</td>
+                  <td className="px-3 py-2.5 text-stone-500 hidden md:table-cell">{bono.requisitos}</td>
+                  <td className="px-3 py-2.5 text-center">
+                    <DificultadBadge nivel={bono.dificultad} />
+                  </td>
+                  <td className="px-3 py-2.5 text-right font-semibold tabular-nums text-purple-700 whitespace-nowrap">
+                    ~{bono.ganancia} €
+                  </td>
+                </tr>
+                )
+              })}
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-stone-400 -mt-2">
+          * Ganancias estimadas con matched betting a cuotas habituales de mercado. No son ingresos garantizados.
+          Consulta siempre los T&amp;C vigentes de cada casa.
         </p>
 
         {/* ── Sección 1 ── */}
@@ -141,59 +200,6 @@ export default function MejoresBonos2026Page() {
           los bonos de bienvenida para nuevos usuarios mayores de 18 años (la restricción de 2021 había
           eliminado estas promociones temporalmente). Esto significa que si aún no has aprovechado los bonos
           de las principales casas, estás a tiempo de hacerlo desde cero.
-        </p>
-
-        {/* ── Sección 2: Tabla ── */}
-        <h2 className="text-lg font-semibold text-stone-800 mt-2">
-          Ranking de bonos de bienvenida 2026
-        </h2>
-        <p>
-          La siguiente tabla incluye todas las casas disponibles actualmente en España, ordenadas de mayor
-          a menor ganancia potencial estimada usando técnicas de matched betting. Los datos provienen de los
-          bonos vigentes y pueden variar según promociones puntuales de cada operador.
-        </p>
-
-        <div className="overflow-x-auto rounded-xl border border-stone-200">
-          <table className="w-full text-xs">
-            <thead>
-              <tr className="bg-stone-50 border-b border-stone-200">
-                <th className="text-left px-3 py-3 font-semibold text-stone-700">Casa</th>
-                <th className="text-left px-3 py-3 font-semibold text-stone-700">Tipo de bono</th>
-                <th className="text-left px-3 py-3 font-semibold text-stone-700 hidden md:table-cell">Requisitos</th>
-                <th className="text-center px-3 py-3 font-semibold text-stone-700">Dificultad</th>
-                <th className="text-right px-3 py-3 font-semibold text-stone-700">Ganancia est.</th>
-              </tr>
-            </thead>
-            <tbody>
-              {bonos.map((bono, i) => (
-                <tr
-                  key={bono.casa}
-                  className={`border-b border-stone-100 last:border-0 ${i % 2 === 0 ? 'bg-white' : 'bg-stone-50/50'}`}
-                >
-                  <td className="px-3 py-2.5 font-medium text-stone-800 whitespace-nowrap">
-                    <Link
-                      href={getCasaHref(bono.casa) ?? '#'}
-                      className="inline-block text-stone-800 hover:text-purple-700 hover:underline underline-offset-2 decoration-stone-300 transition-colors"
-                    >
-                      {bono.casa}
-                    </Link>
-                  </td>
-                  <td className="px-3 py-2.5 text-stone-600 whitespace-nowrap">{bono.tipo}</td>
-                  <td className="px-3 py-2.5 text-stone-500 hidden md:table-cell">{bono.requisitos}</td>
-                  <td className="px-3 py-2.5 text-center">
-                    <DificultadBadge nivel={bono.dificultad} />
-                  </td>
-                  <td className="px-3 py-2.5 text-right font-semibold text-purple-700 whitespace-nowrap">
-                    ~{bono.ganancia} €
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        <p className="text-xs text-stone-400 -mt-2">
-          * Ganancias estimadas con matched betting a cuotas habituales de mercado. No son ingresos garantizados.
-          Consulta siempre los T&amp;C vigentes de cada casa.
         </p>
 
         {/* ── Sección 3 ── */}
@@ -250,14 +256,14 @@ export default function MejoresBonos2026Page() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-1">
           {[
             {
-              casa: 'Sportium',
-              ganancia: '~140 €',
-              por: 'Dos freebets de 100€ SNR con un proceso muy claro y alta liquidez en Betfair.',
-            },
-            {
               casa: 'Versus',
               ganancia: '~125 €',
               por: '2 freebets de hasta 100€ con tus dos primeros depósitos. Beneficio potencial estimado de unos 125€.',
+            },
+            {
+              casa: 'Sportium',
+              ganancia: '~140 €',
+              por: 'Dos freebets de 100€ SNR con un proceso muy claro y alta liquidez en Betfair.',
             },
             {
               casa: 'Bet365',
@@ -432,13 +438,13 @@ export default function MejoresBonos2026Page() {
       {/* ── CTA final ── */}
       <div className="bg-purple-50 border border-purple-100 rounded-2xl p-6 flex flex-col items-start gap-3 mt-2">
         <p className="text-sm font-semibold text-stone-800">
-          Organiza tus bonos paso a paso con IAPredictHub: seguimiento de casas, calculadora y guías en un solo lugar.
+          Empieza por el bono recomendado para principiantes y consulta sus condiciones antes de activarlo.
         </p>
         <Link
-          href="/bienvenida"
+          href="/casas/versus"
           className="inline-block bg-purple-600 hover:bg-purple-700 text-white text-sm font-semibold px-6 py-3 rounded-xl transition-colors"
         >
-          Organiza tus bonos paso a paso con IAPredictHub →
+          Empezar con Versus, el bono recomendado para principiantes →
         </Link>
       </div>
 
