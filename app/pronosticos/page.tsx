@@ -102,7 +102,8 @@ export default async function PronosticosPage() {
                     title="Lista de espera · Club Mundial VIP"
                     loading="lazy"
                     width="100%"
-                    height="360"
+                    height="220"
+                    scrolling="no"
                     className="mt-4 w-full rounded-2xl border border-amber-700/20 bg-white"
                     style={{ border: 0 }}
                   />
@@ -220,7 +221,8 @@ export default async function PronosticosPage() {
                     title="Lista de espera · Club Mundial VIP"
                     loading="lazy"
                     width="100%"
-                    height="360"
+                    height="220"
+                    scrolling="no"
                     className="mt-4 w-full rounded-2xl border border-amber-700/20 bg-white"
                     style={{ border: 0 }}
                   />
