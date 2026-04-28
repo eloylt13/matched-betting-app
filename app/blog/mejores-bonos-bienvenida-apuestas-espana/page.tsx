@@ -121,17 +121,10 @@ export default function MejoresBonos2026Page() {
               </tr>
             </thead>
             <tbody>
-              {bonos.map((bono, i) => {
-                const isVersus = bono.casa === 'Versus'
-
-                return (
+              {bonos.map((bono, i) => (
                 <tr
                   key={bono.casa}
-                  className={`border-b border-stone-100 last:border-0 transition-colors ${
-                    isVersus
-                      ? 'bg-emerald-50/60 border-l-4 border-l-emerald-500 hover:bg-emerald-50/60'
-                      : `${i % 2 === 0 ? 'bg-white' : 'bg-stone-50/50'} hover:bg-stone-50`
-                  }`}
+                  className={`border-b border-stone-100 last:border-0 transition-colors ${i % 2 === 0 ? 'bg-white' : 'bg-stone-50/50'} hover:bg-stone-50`}
                 >
                   <td className="px-3 py-2.5 font-medium text-stone-800 whitespace-nowrap">
                     <div className="flex items-center gap-2">
@@ -141,11 +134,6 @@ export default function MejoresBonos2026Page() {
                       >
                         {bono.casa}
                       </Link>
-                      {isVersus ? (
-                        <span className="rounded-full bg-emerald-100 px-1.5 py-0.5 text-[10px] font-medium leading-none text-emerald-700">
-                          RECOMENDADO
-                        </span>
-                      ) : null}
                     </div>
                   </td>
                   <td className="px-3 py-2.5 text-stone-600 whitespace-nowrap">{bono.tipo}</td>
@@ -157,8 +145,7 @@ export default function MejoresBonos2026Page() {
                     ~{bono.ganancia} €
                   </td>
                 </tr>
-                )
-              })}
+              ))}
             </tbody>
           </table>
         </div>
