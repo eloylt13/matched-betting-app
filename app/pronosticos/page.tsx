@@ -64,16 +64,13 @@ export default async function PronosticosPage() {
                   href="/especial/mundial"
                   className="mt-6 block rounded-3xl border border-stone-200 bg-stone-50 px-5 py-5 shadow-sm transition hover:border-emerald-200 hover:bg-white sm:px-6"
                 >
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-700">
-                    Especial editorial
-                  </p>
                   <div className="mt-3 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
                     <div className="max-w-2xl">
                       <h3 className="text-lg font-semibold leading-tight text-stone-800 sm:text-xl">
-                        Probabilidades IAPredictHub · Especial Mundial 2026
+                        IAPredictHub · Especial Mundial 2026
                       </h3>
                       <p className="mt-2 text-sm leading-relaxed text-stone-600">
-                        Una lectura propia sobre ganador, máximo goleador, asistentes y otros mercados del torneo, con metodología visible y revisiones periódicas.
+                        Mis predicciones para el torneo: ganador, máximo goleador y otros mercados.
                       </p>
                     </div>
                     <span className="inline-flex items-center text-sm font-semibold text-emerald-700">
@@ -183,16 +180,13 @@ export default async function PronosticosPage() {
                   href="/especial/mundial"
                   className="mt-6 block rounded-3xl border border-stone-200 bg-stone-50 px-5 py-5 shadow-sm transition hover:border-emerald-200 hover:bg-white sm:px-6"
                 >
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-700">
-                    Especial editorial
-                  </p>
                   <div className="mt-3 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
                     <div className="max-w-2xl">
                       <h3 className="text-lg font-semibold leading-tight text-stone-800 sm:text-xl">
-                        Probabilidades IAPredictHub · Especial Mundial 2026
+                        IAPredictHub · Especial Mundial 2026
                       </h3>
                       <p className="mt-2 text-sm leading-relaxed text-stone-600">
-                        Una lectura propia sobre ganador, máximo goleador, asistentes y otros mercados del torneo, con metodología visible y revisiones periódicas.
+                        Mis predicciones para el torneo: ganador, máximo goleador y otros mercados.
                       </p>
                     </div>
                     <span className="inline-flex items-center text-sm font-semibold text-emerald-700">
