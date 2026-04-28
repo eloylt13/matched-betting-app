@@ -95,21 +95,9 @@ const rankingLatam = [...casasLatam]
     return 0
   })
 
-const duplicateCasaNames = rankingLatam.reduce((counts, casa) => {
-  const key = casa.nombre.trim().toLowerCase()
-  counts.set(key, (counts.get(key) ?? 0) + 1)
-  return counts
-}, new Map<string, number>())
-
 function getCasaLabel(casa: (typeof rankingLatam)[number]) {
   const nombre = casa.nombre.trim()
-
-  if (casa.pais === 'regionales') {
-    return nombre
-  }
-
-  const isRepeated = (duplicateCasaNames.get(nombre.toLowerCase()) ?? 0) > 1
-  if (!isRepeated) {
+  if (!casa.pais) {
     return nombre
   }
 
@@ -118,7 +106,7 @@ function getCasaLabel(casa: (typeof rankingLatam)[number]) {
     return nombre
   }
 
-  return `${nombre} ${paisLabel}`
+  return `${nombre} · ${paisLabel}`
 }
 
 const casasPorId = new Map(rankingLatam.map((casa) => [casa.id, casa] as const))
@@ -314,11 +302,10 @@ export default function MejoresBonosLatamPage() {
             <thead>
               <tr className="border-b border-white/10">
                 <th className="px-3 py-3 text-left text-[11px] font-medium uppercase tracking-widest text-gray-500">Casa</th>
-                <th className="px-3 py-3 text-left text-[11px] font-medium uppercase tracking-widest text-gray-500">País / región</th>
                 <th className="px-3 py-3 text-left text-[11px] font-medium uppercase tracking-widest text-gray-500">Tipo de bono</th>
-                <th className="hidden px-3 py-3 text-left text-[11px] font-medium uppercase tracking-widest text-gray-500 md:table-cell">Requisitos breves</th>
+                <th className="hidden px-3 py-3 text-left text-[11px] font-medium uppercase tracking-widest text-gray-500 md:table-cell">Requisitos</th>
                 <th className="px-3 py-3 text-center text-[11px] font-medium uppercase tracking-widest text-gray-500">Dificultad</th>
-                <th className="px-3 py-3 text-right text-[11px] font-medium uppercase tracking-widest text-gray-500">Ganancia estimada</th>
+                <th className="px-3 py-3 text-right text-[11px] font-medium uppercase tracking-widest text-gray-500">Ganancia est.</th>
               </tr>
             </thead>
             <tbody>
@@ -335,7 +322,6 @@ export default function MejoresBonosLatamPage() {
                       {getCasaLabel(casa)}
                     </Link>
                   </td>
-                  <td className="whitespace-nowrap px-3 py-3 text-gray-400">{getPaisLabel(casa.pais)}</td>
                   <td className="whitespace-nowrap px-3 py-3 text-gray-400">{getTipoLabel(casa.tipologia)}</td>
                   <td className="hidden px-3 py-3 md:table-cell">
                     <div className="max-w-xs text-xs text-gray-400 line-clamp-2">{getRequisitosBreves(casa.requisitos)}</div>
