@@ -373,12 +373,13 @@ export default function LandingPage() {
         <HeroAtmosphere />
 
         <div className="relative mx-auto max-w-5xl px-4 py-20 sm:px-6 sm:py-28 lg:px-8 lg:py-36">
-          <div className="mx-auto max-w-4xl text-center">
+          <div className="mx-auto grid max-w-5xl items-center gap-12 text-center lg:grid-cols-[minmax(0,1fr)_420px] lg:text-left">
+            <div>
             <TrackedLink
               href="/pronosticos"
               eventName="home_freebet_card_clicked"
               eventProps={{ location: 'hero', target_path: '/pronosticos' }}
-              className="group mx-auto mb-3 flex max-w-sm items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 backdrop-blur-sm transition-all duration-200 hover:border-emerald-400/40 hover:bg-white/10"
+              className="group mx-auto mb-3 flex max-w-sm items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 backdrop-blur-sm transition-all duration-200 hover:border-emerald-400/40 hover:bg-white/10 lg:mx-0"
             >
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-emerald-400/30 bg-emerald-500/10">
                 <svg
@@ -411,7 +412,7 @@ export default function LandingPage() {
               href="/especial/mundial"
               eventName="home_worldcup_special_clicked"
               eventProps={{ location: 'hero_freebet', target_path: '/especial/mundial' }}
-              className="group mx-auto mb-8 flex max-w-sm items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 backdrop-blur-sm transition-all duration-200 hover:border-[#D4AF37]/40 hover:bg-white/10"
+              className="group mx-auto mb-8 flex max-w-sm items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 backdrop-blur-sm transition-all duration-200 hover:border-[#D4AF37]/40 hover:bg-white/10 lg:mx-0"
             >
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#D4AF37]/30 bg-[#D4AF37]/10 text-xl">
                 <span aria-hidden="true">🏆</span>
@@ -425,11 +426,11 @@ export default function LandingPage() {
               </span>
             </TrackedLink>
 
-            <h1 className="mx-auto max-w-4xl font-playfair text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-[3.55rem]">
+            <h1 className="mx-auto max-w-4xl font-playfair text-4xl font-bold leading-tight text-white sm:text-5xl lg:mx-0 lg:text-[3.55rem]">
               Empieza con tu primer bono guiado <span className="text-emerald-400">paso a paso</span>
             </h1>
 
-            <p className="mx-auto mt-5 max-w-3xl text-base leading-relaxed text-gray-300 sm:text-lg">
+            <p className="mx-auto mt-5 max-w-3xl text-base leading-relaxed text-gray-300 sm:text-lg lg:mx-0">
               IAPredictHub te enseña por dónde empezar y te acompaña con guía, calculadora y checklist para ejecutar tu primer bono con más orden y menos errores.
             </p>
 
@@ -442,7 +443,7 @@ export default function LandingPage() {
               </div>
             </div>
 
-            <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
+            <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center lg:justify-start">
               <TrackedLink
                 href="/casas/versus"
                 eventName="home_cta_primary_clicked"
@@ -464,7 +465,7 @@ export default function LandingPage() {
               </TrackedLink>
             </div>
 
-            <div className="mt-6 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-gray-400">
+            <div className="mt-6 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-gray-400 lg:justify-start">
               <div className="inline-flex items-center gap-2">
                 <span className="text-emerald-400">✓</span>
                 <span>Sin tarjeta</span>
@@ -480,6 +481,60 @@ export default function LandingPage() {
               <div className="inline-flex items-center gap-2">
                 <span className="text-emerald-400">✓</span>
                 <span>30+ casas en España y LATAM</span>
+              </div>
+            </div>
+            </div>
+
+            <div className="hidden lg:block">
+              <div className="rounded-2xl border border-white/10 bg-white/[0.06] p-8 text-left shadow-2xl backdrop-blur-xl">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-emerald-400">Paso 1 de 4</p>
+                  <h2 className="mt-3 text-xl font-semibold tracking-tight text-white">
+                    Primer bono guiado · Versus
+                  </h2>
+                </div>
+
+                <div className="mt-7 rounded-2xl border border-white/10 bg-white/[0.04] p-5">
+                  <p className="text-sm font-semibold text-white">Resumen</p>
+                  <div className="mt-4 grid grid-cols-3 gap-3">
+                    <div>
+                      <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-gray-500">Dificultad</p>
+                      <p className="mt-1 text-sm font-semibold text-gray-100">Baja</p>
+                    </div>
+                    <div>
+                      <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-gray-500">Tiempo</p>
+                      <p className="mt-1 text-sm font-semibold text-gray-100">~30 min</p>
+                    </div>
+                    <div>
+                      <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-gray-500">
+                        Beneficio estimado
+                      </p>
+                      <p className="mt-1 text-sm font-semibold text-gray-100">65€</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-7 space-y-4">
+                  {[
+                    { marker: '✓', label: 'Abrir cuenta en Versus', completed: true },
+                    { marker: '2', label: 'Activar bono de bienvenida', completed: false },
+                    { marker: '3', label: 'Calcular cobertura', completed: false },
+                    { marker: '4', label: 'Ejecutar y verificar', completed: false },
+                  ].map((step) => (
+                    <div key={step.label} className="flex items-center gap-3">
+                      <span
+                        className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full border text-xs font-semibold ${
+                          step.completed
+                            ? 'border-emerald-400/40 bg-emerald-400/10 text-emerald-400'
+                            : 'border-white/15 bg-white/[0.03] text-gray-500'
+                        }`}
+                      >
+                        {step.marker}
+                      </span>
+                      <span className="text-sm font-medium text-gray-200">{step.label}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
