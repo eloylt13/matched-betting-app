@@ -49,31 +49,33 @@ function getRequisitosBreves(requisitos: string[]) {
   return `${requisitos.slice(0, 2).join(' · ')} · …`
 }
 
-function DificultadBadge({ nivel }: { nivel?: number }) {
+function DificultadDots({ nivel }: { nivel?: number }) {
   const value = nivel ?? 0
-  const colores: Record<number, string> = {
-    1: 'bg-emerald-100 text-emerald-700',
-    2: 'bg-green-100 text-green-700',
-    3: 'bg-amber-100 text-amber-700',
-    4: 'bg-orange-100 text-orange-700',
-    5: 'bg-red-100 text-red-700',
-  }
   const etiquetas: Record<number, string> = {
-    1: '1/5 · Muy fácil',
-    2: '2/5 · Fácil',
-    3: '3/5 · Media',
-    4: '4/5 · Alta',
-    5: '5/5 · Muy alta',
+    1: 'Muy fácil',
+    2: 'Fácil',
+    3: 'Media',
+    4: 'Alta',
+    5: 'Muy alta',
   }
+  const filledColor = value <= 2 ? 'bg-emerald-400' : value === 3 ? 'bg-amber-400' : 'bg-rose-400'
 
-  if (!colores[value] || !etiquetas[value]) {
-    return <span className="inline-block rounded-full bg-stone-100 px-2 py-0.5 text-xs font-medium whitespace-nowrap text-stone-500">N/D</span>
+  if (!etiquetas[value]) {
+    return <span className="whitespace-nowrap text-[11px] text-gray-500">N/D</span>
   }
 
   return (
-    <span className={`inline-block rounded-full px-2 py-0.5 text-xs font-medium whitespace-nowrap ${colores[value]}`}>
-      {etiquetas[value]}
-    </span>
+    <div className="inline-flex flex-col items-center gap-1">
+      <div className="flex gap-1">
+        {[1, 2, 3, 4, 5].map((dot) => (
+          <span
+            key={dot}
+            className={`h-1.5 w-1.5 rounded-full ${dot <= value ? filledColor : 'bg-white/15'}`}
+          />
+        ))}
+      </div>
+      <span className="whitespace-nowrap text-[11px] text-gray-500">{etiquetas[value]}</span>
+    </div>
   )
 }
 
@@ -294,50 +296,66 @@ export default function MejoresBonosLatamPage() {
           Casas disponibles en LATAM, ordenadas por dificultad y beneficio potencial estimado usando matched betting.
         </p>
 
-        <h2 className="mt-2 text-lg font-semibold text-stone-800">Ranking principal de bonos LATAM</h2>
+        <div className="my-8 overflow-hidden rounded-2xl border border-white/10 bg-[#12112A] shadow-xl shadow-stone-900/10">
+          <div className="flex items-start justify-between gap-4 border-b border-white/10 px-6 py-5">
+            <div>
+              <h2 className="font-playfair text-base font-semibold text-white">
+                Ranking de bonos de bienvenida LATAM 2026
+              </h2>
+              <p className="mt-1 text-xs text-gray-400">Ordenado por dificultad y beneficio estimado</p>
+            </div>
+            <span className="shrink-0 rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[10px] uppercase tracking-widest text-gray-500">
+              Estimaciones orientativas
+            </span>
+          </div>
 
-        <div className="overflow-x-auto rounded-xl border border-stone-200 bg-white shadow-sm">
-          <table className="w-full text-xs">
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-stone-200 bg-stone-50">
-                <th className="px-3 py-3 text-left font-semibold text-stone-700">Casa</th>
-                <th className="px-3 py-3 text-left font-semibold text-stone-700">País / región</th>
-                <th className="px-3 py-3 text-left font-semibold text-stone-700">Tipo de bono</th>
-                <th className="hidden px-3 py-3 text-left font-semibold text-stone-700 md:table-cell">Requisitos breves</th>
-                <th className="px-3 py-3 text-center font-semibold text-stone-700">Dificultad</th>
-                <th className="px-3 py-3 text-right font-semibold text-stone-700">Ganancia estimada</th>
+              <tr className="border-b border-white/10">
+                <th className="px-3 py-3 text-left text-[11px] font-medium uppercase tracking-widest text-gray-500">Casa</th>
+                <th className="px-3 py-3 text-left text-[11px] font-medium uppercase tracking-widest text-gray-500">País / región</th>
+                <th className="px-3 py-3 text-left text-[11px] font-medium uppercase tracking-widest text-gray-500">Tipo de bono</th>
+                <th className="hidden px-3 py-3 text-left text-[11px] font-medium uppercase tracking-widest text-gray-500 md:table-cell">Requisitos breves</th>
+                <th className="px-3 py-3 text-center text-[11px] font-medium uppercase tracking-widest text-gray-500">Dificultad</th>
+                <th className="px-3 py-3 text-right text-[11px] font-medium uppercase tracking-widest text-gray-500">Ganancia estimada</th>
               </tr>
             </thead>
             <tbody>
-              {rankingLatam.map((casa, index) => (
+              {rankingLatam.map((casa) => (
                 <tr
                   key={casa.id}
-                  className={`border-b border-stone-100 last:border-0 ${index % 2 === 0 ? 'bg-white' : 'bg-stone-50/50'}`}
+                  className="border-b border-white/5 text-sm transition-colors last:border-0 hover:bg-white/[0.03]"
                 >
-                  <td className="whitespace-nowrap px-3 py-2.5 font-medium text-stone-800">
+                  <td className="whitespace-nowrap px-3 py-3">
                     <Link
                       href={getCasaHref(casa.id)}
-                      className="inline-block text-stone-800 decoration-stone-300 transition-colors hover:text-purple-700 hover:underline underline-offset-2"
+                      className="font-playfair inline-block font-semibold text-white decoration-white/20 underline-offset-2 transition-colors hover:text-emerald-200 hover:underline"
                     >
                       {getCasaLabel(casa)}
                     </Link>
                   </td>
-                  <td className="whitespace-nowrap px-3 py-2.5 text-stone-600">{getPaisLabel(casa.pais)}</td>
-                  <td className="whitespace-nowrap px-3 py-2.5 text-stone-600">{getTipoLabel(casa.tipologia)}</td>
-                  <td className="hidden px-3 py-2.5 text-stone-500 md:table-cell">{getRequisitosBreves(casa.requisitos)}</td>
-                  <td className="px-3 py-2.5 text-center">
-                    <DificultadBadge nivel={casa.dificultad} />
+                  <td className="whitespace-nowrap px-3 py-3 text-gray-400">{getPaisLabel(casa.pais)}</td>
+                  <td className="whitespace-nowrap px-3 py-3 text-gray-400">{getTipoLabel(casa.tipologia)}</td>
+                  <td className="hidden px-3 py-3 md:table-cell">
+                    <div className="max-w-xs text-xs text-gray-400 line-clamp-2">{getRequisitosBreves(casa.requisitos)}</div>
                   </td>
-                  <td className="whitespace-nowrap px-3 py-2.5 text-right font-semibold text-purple-700">
-                    ~{casa.beneficioPotencial} USD aprox.
+                  <td className="px-3 py-3 text-center">
+                    <DificultadDots nivel={casa.dificultad} />
+                  </td>
+                  <td className="whitespace-nowrap px-3 py-3 text-right text-base tabular-nums">
+                    <span className="font-normal text-gray-500">~</span>
+                    <span className="font-semibold text-emerald-300">{casa.beneficioPotencial}</span>
+                    <span className="font-normal text-gray-500"> USD aprox.</span>
                   </td>
                 </tr>
               ))}
             </tbody>
-          </table>
+            </table>
+          </div>
         </div>
 
-        <p className="-mt-2 text-xs text-stone-400">
+        <p className="mt-3 text-xs text-stone-500">
           * La ganancia estimada es orientativa y depende de los T&amp;C vigentes, la conversión real de cada
           bono y el país. Conviene revisar siempre la ficha de cada casa antes de operar.
         </p>

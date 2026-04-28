@@ -65,25 +65,28 @@ function getCasaHref(casa: string) {
   return casaLinks[casa as keyof typeof casaLinks]
 }
 
-function DificultadBadge({ nivel }: { nivel: number }) {
-  const colores: Record<number, string> = {
-    1: 'bg-emerald-100 text-emerald-700',
-    2: 'bg-emerald-50 text-emerald-700',
-    3: 'bg-amber-50 text-amber-700',
-    4: 'bg-orange-50 text-orange-700',
-    5: 'bg-red-50 text-red-700',
-  }
+function DificultadDots({ nivel }: { nivel: number }) {
   const etiquetas: Record<number, string> = {
-    1: '1/5 Muy fácil',
-    2: '2/5 Fácil',
-    3: '3/5 Media',
-    4: '4/5 Alta',
-    5: '5/5 Muy alta',
+    1: 'Muy fácil',
+    2: 'Fácil',
+    3: 'Media',
+    4: 'Alta',
+    5: 'Muy alta',
   }
+  const filledColor = nivel <= 2 ? 'bg-emerald-400' : nivel === 3 ? 'bg-amber-400' : 'bg-rose-400'
+
   return (
-    <span className={`inline-block px-2 py-0.5 rounded-full text-xs font-normal whitespace-nowrap ${colores[nivel]}`}>
-      {etiquetas[nivel]}
-    </span>
+    <div className="inline-flex flex-col items-center gap-1">
+      <div className="flex gap-1">
+        {[1, 2, 3, 4, 5].map((dot) => (
+          <span
+            key={dot}
+            className={`h-1.5 w-1.5 rounded-full ${dot <= nivel ? filledColor : 'bg-white/15'}`}
+          />
+        ))}
+      </div>
+      <span className="whitespace-nowrap text-[11px] text-gray-500">{etiquetas[nivel]}</span>
+    </div>
   )
 }
 
@@ -112,51 +115,65 @@ export default function MejoresBonos2026Page() {
         </p>
 
         {/* ── Sección 2: Tabla ── */}
-        <h2 className="text-lg font-semibold text-stone-800 mt-2">
-          Ranking de bonos de bienvenida 2026
-        </h2>
+        <div className="my-8 overflow-hidden rounded-2xl border border-white/10 bg-[#12112A] shadow-xl shadow-stone-900/10">
+          <div className="flex items-start justify-between gap-4 border-b border-white/10 px-6 py-5">
+            <div>
+              <h2 className="font-playfair text-base font-semibold text-white">
+                Ranking de bonos de bienvenida 2026
+              </h2>
+              <p className="mt-1 text-xs text-gray-400">Ordenado por dificultad y beneficio estimado</p>
+            </div>
+            <span className="shrink-0 rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[10px] uppercase tracking-widest text-gray-500">
+              Estimaciones orientativas
+            </span>
+          </div>
 
-        <div className="overflow-x-auto rounded-xl border border-stone-200 bg-white shadow-sm">
-          <table className="w-full text-xs">
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
             <thead>
-              <tr className="bg-stone-50 border-b border-stone-200">
-                <th className="text-left px-3 py-3 font-semibold text-stone-700">Casa</th>
-                <th className="text-left px-3 py-3 font-semibold text-stone-700">Tipo de bono</th>
-                <th className="text-left px-3 py-3 font-semibold text-stone-700 hidden md:table-cell">Requisitos</th>
-                <th className="text-center px-3 py-3 font-semibold text-stone-700">Dificultad</th>
-                <th className="text-right px-3 py-3 font-semibold text-stone-700">Ganancia est.</th>
+              <tr className="border-b border-white/10">
+                <th className="px-3 py-3 text-left text-[11px] font-medium uppercase tracking-widest text-gray-500">Casa</th>
+                <th className="px-3 py-3 text-left text-[11px] font-medium uppercase tracking-widest text-gray-500">Tipo de bono</th>
+                <th className="hidden px-3 py-3 text-left text-[11px] font-medium uppercase tracking-widest text-gray-500 md:table-cell">Requisitos</th>
+                <th className="px-3 py-3 text-center text-[11px] font-medium uppercase tracking-widest text-gray-500">Dificultad</th>
+                <th className="px-3 py-3 text-right text-[11px] font-medium uppercase tracking-widest text-gray-500">Ganancia est.</th>
               </tr>
             </thead>
             <tbody>
-              {bonos.map((bono, i) => (
+              {bonos.map((bono) => (
                 <tr
                   key={bono.casa}
-                  className={`border-b border-stone-100 last:border-0 transition-colors ${i % 2 === 0 ? 'bg-white' : 'bg-stone-50/50'} hover:bg-stone-50`}
+                  className="border-b border-white/5 text-sm transition-colors last:border-0 hover:bg-white/[0.03]"
                 >
-                  <td className="px-3 py-2.5 font-medium text-stone-800 whitespace-nowrap">
+                  <td className="whitespace-nowrap px-3 py-3">
                     <div className="flex items-center gap-2">
                       <Link
                         href={getCasaHref(bono.casa) ?? '#'}
-                        className="inline-block text-stone-800 hover:text-purple-700 hover:underline underline-offset-2 decoration-stone-300 transition-colors"
+                        className="font-playfair inline-block font-semibold text-white decoration-white/20 underline-offset-2 transition-colors hover:text-emerald-200 hover:underline"
                       >
                         {bono.casa}
                       </Link>
                     </div>
                   </td>
-                  <td className="px-3 py-2.5 text-stone-600 whitespace-nowrap">{bono.tipo}</td>
-                  <td className="px-3 py-2.5 text-stone-500 hidden md:table-cell">{bono.requisitos}</td>
-                  <td className="px-3 py-2.5 text-center">
-                    <DificultadBadge nivel={bono.dificultad} />
+                  <td className="whitespace-nowrap px-3 py-3 text-gray-400">{bono.tipo}</td>
+                  <td className="hidden px-3 py-3 md:table-cell">
+                    <div className="max-w-xs text-xs text-gray-400 line-clamp-2">{bono.requisitos}</div>
                   </td>
-                  <td className="px-3 py-2.5 text-right font-semibold tabular-nums text-purple-700 whitespace-nowrap">
-                    ~{bono.ganancia} €
+                  <td className="px-3 py-3 text-center">
+                    <DificultadDots nivel={bono.dificultad} />
+                  </td>
+                  <td className="whitespace-nowrap px-3 py-3 text-right text-base tabular-nums">
+                    <span className="font-normal text-gray-500">~</span>
+                    <span className="font-semibold text-emerald-300">{bono.ganancia}</span>
+                    <span className="font-normal text-gray-500"> &euro;</span>
                   </td>
                 </tr>
               ))}
             </tbody>
-          </table>
+            </table>
+          </div>
         </div>
-        <p className="text-xs text-stone-400 -mt-2">
+        <p className="mt-3 text-xs text-stone-500">
           * Ganancias estimadas con matched betting a cuotas habituales de mercado. No son ingresos garantizados.
           Consulta siempre los T&amp;C vigentes de cada casa.
         </p>
