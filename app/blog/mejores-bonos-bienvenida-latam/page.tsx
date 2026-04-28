@@ -49,7 +49,7 @@ function getRequisitosBreves(requisitos: string[]) {
   return `${requisitos.slice(0, 2).join(' · ')} · …`
 }
 
-function DificultadDots({ nivel }: { nivel?: number }) {
+function DificultadDots({ nivel, compact = false }: { nivel?: number; compact?: boolean }) {
   const value = nivel ?? 0
   const etiquetas: Record<number, string> = {
     1: 'Muy fácil',
@@ -62,6 +62,22 @@ function DificultadDots({ nivel }: { nivel?: number }) {
 
   if (!etiquetas[value]) {
     return <span className="whitespace-nowrap text-[11px] text-gray-500">N/D</span>
+  }
+
+  if (compact) {
+    return (
+      <div className="inline-flex items-center gap-2">
+        <div className="flex gap-1">
+          {[1, 2, 3, 4, 5].map((dot) => (
+            <span
+              key={dot}
+              className={`h-1.5 w-1.5 rounded-full ${dot <= value ? filledColor : 'bg-white/15'}`}
+            />
+          ))}
+        </div>
+        <span className="whitespace-nowrap text-[11px] text-gray-500">{etiquetas[value]}</span>
+      </div>
+    )
   }
 
   return (
@@ -285,7 +301,7 @@ export default function MejoresBonosLatamPage() {
         </p>
 
         <div className="my-8 overflow-hidden rounded-2xl border border-white/10 bg-[#12112A] shadow-xl shadow-stone-900/10">
-          <div className="flex items-start justify-between gap-4 border-b border-white/10 px-6 py-5">
+          <div className="flex flex-col items-start gap-4 border-b border-white/10 px-6 py-5 md:flex-row md:justify-between">
             <div>
               <h2 className="font-playfair text-base font-semibold text-white">
                 Ranking de bonos de bienvenida LATAM 2026
@@ -297,7 +313,7 @@ export default function MejoresBonosLatamPage() {
             </span>
           </div>
 
-          <div className="overflow-x-auto">
+          <div className="hidden overflow-x-auto md:block">
             <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-white/10">
@@ -338,6 +354,30 @@ export default function MejoresBonosLatamPage() {
               ))}
             </tbody>
             </table>
+          </div>
+
+          <div className="block space-y-2 p-4 md:hidden">
+            {rankingLatam.map((casa) => (
+              <Link
+                key={casa.id}
+                href={getCasaHref(casa.id)}
+                className="block rounded-xl border border-white/10 bg-white/[0.04] p-4 transition-colors hover:bg-white/[0.07] active:bg-white/[0.07]"
+              >
+                <div className="flex items-start justify-between gap-3">
+                  <span className="font-playfair text-sm font-semibold text-white">{getCasaLabel(casa)}</span>
+                  <span className="whitespace-nowrap tabular-nums">
+                    <span className="font-normal text-gray-500">~</span>
+                    <span className="font-semibold text-emerald-300">{casa.beneficioPotencial}</span>
+                    <span className="font-normal text-gray-500"> USD aprox.</span>
+                  </span>
+                </div>
+                <div className="mt-1 text-xs text-gray-400">{getTipoLabel(casa.tipologia)}</div>
+                <div className="mt-3 flex items-center justify-between">
+                  <DificultadDots nivel={casa.dificultad} compact />
+                  <span className="text-sm text-gray-500">→</span>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
 

@@ -65,7 +65,7 @@ function getCasaHref(casa: string) {
   return casaLinks[casa as keyof typeof casaLinks]
 }
 
-function DificultadDots({ nivel }: { nivel: number }) {
+function DificultadDots({ nivel, compact = false }: { nivel: number; compact?: boolean }) {
   const etiquetas: Record<number, string> = {
     1: 'Muy fácil',
     2: 'Fácil',
@@ -74,6 +74,22 @@ function DificultadDots({ nivel }: { nivel: number }) {
     5: 'Muy alta',
   }
   const filledColor = nivel <= 2 ? 'bg-emerald-400' : nivel === 3 ? 'bg-amber-400' : 'bg-rose-400'
+
+  if (compact) {
+    return (
+      <div className="inline-flex items-center gap-2">
+        <div className="flex gap-1">
+          {[1, 2, 3, 4, 5].map((dot) => (
+            <span
+              key={dot}
+              className={`h-1.5 w-1.5 rounded-full ${dot <= nivel ? filledColor : 'bg-white/15'}`}
+            />
+          ))}
+        </div>
+        <span className="whitespace-nowrap text-[11px] text-gray-500">{etiquetas[nivel]}</span>
+      </div>
+    )
+  }
 
   return (
     <div className="inline-flex flex-col items-center gap-1">
@@ -116,7 +132,7 @@ export default function MejoresBonos2026Page() {
 
         {/* ── Sección 2: Tabla ── */}
         <div className="my-8 overflow-hidden rounded-2xl border border-white/10 bg-[#12112A] shadow-xl shadow-stone-900/10">
-          <div className="flex items-start justify-between gap-4 border-b border-white/10 px-6 py-5">
+          <div className="flex flex-col items-start gap-4 border-b border-white/10 px-6 py-5 md:flex-row md:justify-between">
             <div>
               <h2 className="font-playfair text-base font-semibold text-white">
                 Ranking de bonos de bienvenida 2026
@@ -128,7 +144,7 @@ export default function MejoresBonos2026Page() {
             </span>
           </div>
 
-          <div className="overflow-x-auto">
+          <div className="hidden overflow-x-auto md:block">
             <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-white/10">
@@ -171,6 +187,30 @@ export default function MejoresBonos2026Page() {
               ))}
             </tbody>
             </table>
+          </div>
+
+          <div className="block space-y-2 p-4 md:hidden">
+            {bonos.map((bono) => (
+              <Link
+                key={bono.casa}
+                href={getCasaHref(bono.casa) ?? '#'}
+                className="block rounded-xl border border-white/10 bg-white/[0.04] p-4 transition-colors hover:bg-white/[0.07] active:bg-white/[0.07]"
+              >
+                <div className="flex items-start justify-between gap-3">
+                  <span className="font-playfair text-sm font-semibold text-white">{bono.casa}</span>
+                  <span className="whitespace-nowrap tabular-nums">
+                    <span className="font-normal text-gray-500">~</span>
+                    <span className="font-semibold text-emerald-300">{bono.ganancia}</span>
+                    <span className="font-normal text-gray-500"> &euro;</span>
+                  </span>
+                </div>
+                <div className="mt-1 text-xs text-gray-400">{bono.tipo}</div>
+                <div className="mt-3 flex items-center justify-between">
+                  <DificultadDots nivel={bono.dificultad} compact />
+                  <span className="text-sm text-gray-500">→</span>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
         <p className="mt-3 text-xs text-stone-500">
