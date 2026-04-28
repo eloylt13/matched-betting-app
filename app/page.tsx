@@ -467,7 +467,17 @@ export default function LandingPage() {
               </div>
               <div className="inline-flex items-center gap-2">
                 <span className="text-emerald-400">✓</span>
-                <span>+2.000€ en bonos disponibles</span>
+                <TrackedLink
+                  href="/blog/mejores-bonos-bienvenida-apuestas-espana"
+                  eventName="home_hero_bonos_disponibles_clicked"
+                  eventProps={{
+                    location: 'hero_trust_signal',
+                    target_path: '/blog/mejores-bonos-bienvenida-apuestas-espana',
+                  }}
+                  className="text-emerald-400 underline decoration-emerald-400/40 underline-offset-4 transition-colors duration-200 hover:decoration-emerald-400"
+                >
+                  +2.000€ en bonos disponibles →
+                </TrackedLink>
               </div>
               <div className="inline-flex items-center gap-2">
                 <span className="text-emerald-400">✓</span>
