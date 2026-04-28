@@ -608,9 +608,13 @@ export default function CasaDetalleClient({ casa, hasGuide }: CasaDetalleClientP
                 <div className="mt-3 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 flex items-start gap-2">
                     <span className="text-base shrink-0">🧭</span>
                     <div>
-                        <p className="text-xs font-bold text-emerald-700 uppercase tracking-wide mb-0.5">Primer paso recomendado</p>
+                        <p className="text-xs font-bold text-emerald-700 uppercase tracking-wide mb-0.5">
+                            {isVersus ? "Primer bono guiado recomendado" : "Primer paso recomendado"}
+                        </p>
                         <p className="text-sm text-emerald-800">
-                            Regístrate, prepara el saldo y usa la calculadora en el momento de ejecutar cada paso de la oferta.
+                            {isVersus
+                                ? "Empieza aquí si vienes de cero. Versus es una oferta sencilla, con dificultad baja, guía paso a paso y calculadora para cubrir cada movimiento."
+                                : "Regístrate, prepara el saldo y usa la calculadora en el momento de ejecutar cada paso de la oferta."}
                         </p>
                     </div>
                 </div>
@@ -629,22 +633,33 @@ export default function CasaDetalleClient({ casa, hasGuide }: CasaDetalleClientP
                             </a>
                         )}
                         {!completada && (
-                            <div className="flex flex-col gap-2 text-sm text-stone-500 sm:flex-row sm:flex-wrap sm:items-center">
-                                <span>Después te guiamos con calculadora y pasos.</span>
-                                <Link
-                                    href={mainCalculadoraHref}
-                                    className="font-medium text-stone-500 underline decoration-stone-300 underline-offset-4 transition-colors hover:text-stone-700"
-                                >
-                                    Abrir calculadora
-                                </Link>
-                                {hasGuide && (
+                            <div className="flex flex-col gap-2 text-sm text-stone-500">
+                                <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center">
+                                    <span>Después te guiamos con calculadora y pasos.</span>
                                     <Link
-                                        href={guiaHref}
+                                        href={mainCalculadoraHref}
                                         className="font-medium text-stone-500 underline decoration-stone-300 underline-offset-4 transition-colors hover:text-stone-700"
                                     >
-                                        Ver guía
+                                        Abrir calculadora
                                     </Link>
-                                )}
+                                    {hasGuide && (
+                                        <Link
+                                            href={guiaHref}
+                                            className="font-medium text-stone-500 underline decoration-stone-300 underline-offset-4 transition-colors hover:text-stone-700"
+                                        >
+                                            Ver guía
+                                        </Link>
+                                    )}
+                                </div>
+                                <p className="max-w-xl text-xs leading-5 text-stone-400">
+                                    Antes de registrarte, revisa las condiciones del bono. IAPredictHub es una guía educativa y puede incluir enlaces de afiliado.
+                                </p>
+                                <Link
+                                    href="/casas"
+                                    className="self-start text-xs font-medium text-emerald-700/80 underline decoration-emerald-200 underline-offset-4 transition-colors hover:text-emerald-700"
+                                >
+                                    ¿Ya tienes cuenta en Versus? Ver otras casas recomendadas &rarr;
+                                </Link>
                             </div>
                         )}
                         {completada && (
