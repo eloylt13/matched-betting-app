@@ -434,15 +434,6 @@ export default function LandingPage() {
               IAPredictHub te enseña por dónde empezar y te acompaña con guía, calculadora y checklist para ejecutar tu primer bono con más orden y menos errores.
             </p>
 
-            <div className="mx-auto mt-8 max-w-xl rounded-2xl border border-white/10 bg-white/5 p-6 text-left shadow-[0_24px_80px_rgba(3,7,18,0.35)] backdrop-blur-md sm:p-8">
-              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-emerald-400">Ejemplo</p>
-              <div className="mt-4 space-y-3 text-sm leading-relaxed text-gray-300">
-                <p>· Una casa te da 50€ de freebet al depositar 50€</p>
-                <p>· Apuestas los 50€ a un resultado y cubres la apuesta contraria utilizando la calculadora</p>
-                <p>· Recuperas gran parte del depósito y luego conviertes la freebet siguiendo la ruta guiada</p>
-              </div>
-            </div>
-
             <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center lg:justify-start">
               <TrackedLink
                 href="/casas/versus"
