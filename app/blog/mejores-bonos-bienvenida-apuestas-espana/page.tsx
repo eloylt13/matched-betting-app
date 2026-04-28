@@ -98,6 +98,13 @@ export default function MejoresBonos2026Page() {
         Mejores bonos de bienvenida en casas de apuestas en España (2026)
       </h1>
 
+      <Link
+        href="/blog/mejores-bonos-bienvenida-latam"
+        className="my-1 inline-flex self-start rounded-xl bg-emerald-500 px-4 py-2 font-semibold text-white shadow-sm transition-colors hover:bg-emerald-400"
+      >
+        Por LATAM, clic aquí →
+      </Link>
+
       <div className="flex flex-col gap-4 text-sm text-stone-700 leading-relaxed">
 
         <p>

@@ -275,6 +275,13 @@ export default function MejoresBonosLatamPage() {
         Mejores bonos de bienvenida en casas de apuestas LATAM (2026)
       </h1>
 
+      <Link
+        href="/blog/mejores-bonos-bienvenida-apuestas-espana"
+        className="my-1 inline-flex self-start rounded-xl bg-emerald-500 px-4 py-2 font-semibold text-white shadow-sm transition-colors hover:bg-emerald-400"
+      >
+        Por España, clic aquí →
+      </Link>
+
       <div className="flex flex-col gap-4 text-sm leading-relaxed text-stone-700">
         <p>
           Esta guía reúne las casas LATAM reales que ya existen en los presets del proyecto y las ordena por
