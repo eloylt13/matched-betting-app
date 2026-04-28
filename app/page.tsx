@@ -569,12 +569,12 @@ export default function LandingPage() {
 
           <div className="mt-12 text-center">
             <TrackedLink
-              href="/casas"
+              href="/casas/versus"
               eventName="home_como_funciona_cta_clicked"
-              eventProps={{ location: 'como_funciona', target_path: '/casas' }}
+              eventProps={{ location: 'como_funciona', target_path: '/casas/versus' }}
               className="group inline-flex items-center gap-2 rounded-lg border border-white/20 bg-transparent px-7 py-3.5 text-base font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/10"
             >
-              <span>Ver casas para empezar</span>
+              <span>Empezar con Versus</span>
               <span className="text-lg leading-none transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">
                 →
               </span>
