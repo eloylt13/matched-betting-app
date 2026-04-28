@@ -90,8 +90,8 @@ function DificultadBadge({ nivel }: { nivel: number }) {
 export default function MejoresBonos2026Page() {
   return (
     <article className="max-w-3xl mx-auto flex flex-col gap-6 pb-8">
-      <time dateTime="2026-03-29" className="text-xs text-stone-400">
-        29 de marzo de 2026
+      <time dateTime="2026-04-28" className="text-xs text-stone-400">
+        28 de abril de 2026
       </time>
 
       <h1 className="text-2xl font-bold text-stone-800 tracking-tight leading-snug">

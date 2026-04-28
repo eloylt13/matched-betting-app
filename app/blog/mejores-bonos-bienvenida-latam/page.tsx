@@ -79,11 +79,18 @@ function DificultadBadge({ nivel }: { nivel?: number }) {
 
 const rankingLatam = [...casasLatam]
   .sort((a, b) => {
+    const dificultadA = a.dificultad ?? Number.POSITIVE_INFINITY
+    const dificultadB = b.dificultad ?? Number.POSITIVE_INFINITY
+
+    if (dificultadA !== dificultadB) {
+      return dificultadA - dificultadB
+    }
+
     if (b.beneficioPotencial !== a.beneficioPotencial) {
       return b.beneficioPotencial - a.beneficioPotencial
     }
 
-    return a.nombre.localeCompare(b.nombre, 'es')
+    return 0
   })
 
 const duplicateCasaNames = rankingLatam.reduce((counts, casa) => {
@@ -267,13 +274,13 @@ function RelatedItem({
 export default function MejoresBonosLatamPage() {
   return (
     <article className="mx-auto flex max-w-3xl flex-col gap-6 pb-8">
-      <time dateTime="2026-04-15" className="text-xs text-stone-400">
-        15 de abril de 2026
-      </time>
-
       <h1 className="text-2xl font-bold leading-snug tracking-tight text-stone-800">
         Mejores bonos de bienvenida en casas de apuestas LATAM (2026)
       </h1>
+
+      <time dateTime="2026-04-28" className="text-xs text-stone-400">
+        28 de abril de 2026
+      </time>
 
       <Link
         href="/blog/mejores-bonos-bienvenida-apuestas-espana"
@@ -284,25 +291,12 @@ export default function MejoresBonosLatamPage() {
 
       <div className="flex flex-col gap-4 text-sm leading-relaxed text-stone-700">
         <p>
-          Esta guía reúne las casas LATAM reales que ya existen en los presets del proyecto y las ordena por
-          beneficio potencial estimado. La intención es darte una comparativa útil, limpia y coherente con
-          el artículo de España, pero centrada solo en el mercado latinoamericano.
-        </p>
-        <p>
-          El ranking incluye casas por país y también opciones regionales. Si estás empezando, la tabla te
-          sirve para ver de un vistazo qué casas tienen mejor retorno estimado, qué tipo de bono ofrecen y
-          qué nivel de dificultad suele tener cada una.
+          Casas disponibles en LATAM, ordenadas por dificultad y beneficio potencial estimado usando matched betting.
         </p>
 
         <h2 className="mt-2 text-lg font-semibold text-stone-800">Ranking principal de bonos LATAM</h2>
-        <p>
-          Todas las casas de la tabla salen directamente de{' '}
-          <code className="rounded bg-stone-100 px-1.5 py-0.5 text-xs text-stone-600">casasLatam</code> y
-          están ordenadas de mayor a menor beneficio potencial. Las cantidades se muestran en{' '}
-          <strong>USD aproximados</strong> para mantener una comparación homogénea entre países.
-        </p>
 
-        <div className="overflow-x-auto rounded-xl border border-stone-200">
+        <div className="overflow-x-auto rounded-xl border border-stone-200 bg-white shadow-sm">
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-stone-200 bg-stone-50">
