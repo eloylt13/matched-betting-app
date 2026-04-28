@@ -426,11 +426,11 @@ export default function LandingPage() {
             </TrackedLink>
 
             <h1 className="mx-auto max-w-4xl font-playfair text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-[3.55rem]">
-              <span className="text-emerald-400">+2.000€</span> en bonos de bienvenida disponibles. Te enseñamos a aprovecharlos.
+              Empieza con tu primer bono guiado <span className="text-emerald-400">paso a paso</span>
             </h1>
 
             <p className="mx-auto mt-5 max-w-3xl text-base leading-relaxed text-gray-300 sm:text-lg">
-              Matched betting para España y LATAM: un método para aprovechar bonos de bienvenida cubriendo la apuesta contraria con la calculadora.
+              IAPredictHub te enseña por dónde empezar y te acompaña con guía, calculadora y checklist para ejecutar tu primer bono con más orden y menos errores.
             </p>
 
             <div className="mx-auto mt-8 max-w-xl rounded-2xl border border-white/10 bg-white/5 p-6 text-left shadow-[0_24px_80px_rgba(3,7,18,0.35)] backdrop-blur-md sm:p-8">
@@ -444,13 +444,13 @@ export default function LandingPage() {
 
             <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
               <TrackedLink
-                href="/bienvenida"
+                href="/casas/versus"
                 eventName="home_cta_primary_clicked"
-                eventProps={{ location: 'hero', target_path: '/bienvenida' }}
+                eventProps={{ location: 'hero', target_path: '/casas/versus' }}
                 className="group w-full rounded-lg bg-emerald-500 px-7 py-3.5 text-center text-base font-bold text-white shadow-[0_20px_56px_rgba(16,185,129,0.32)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-emerald-400 hover:shadow-[0_24px_66px_rgba(52,211,153,0.42)] sm:w-auto"
               >
                 <span className="inline-flex items-center gap-2">
-                  <span>Empezar con bonos</span>
+                  <span>Empezar con mi primer bono</span>
                   <span className="text-lg leading-none transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">→</span>
                 </span>
               </TrackedLink>
