@@ -199,7 +199,7 @@ export const bonosEspanaCurados: BonoListadoEspana[] = [
     id: 'versus',
     nombre: 'Versus',
     url: 'https://app.afiliago.com/go/19148/JqXVcHDWdu/2',
-    ofertaTexto: 'Hasta 200€ con tus dos primeros depósitos',
+    ofertaTexto: 'Hasta 200€ en freebets con tus dos primeros depósitos',
   },
   {
     id: 'william-hill',

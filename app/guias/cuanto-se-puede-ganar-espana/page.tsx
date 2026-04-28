@@ -9,11 +9,11 @@ export const metadata: Metadata = {
 const BONOS: Array<{ casa: string; tipo: string; ganancia: number }> = [
   { casa: 'Sportium', tipo: 'Apuesta – Recibe', ganancia: 140 },
   { casa: 'DaznBet', tipo: 'Apuesta – Recibe', ganancia: 130 },
+  { casa: 'Versus', tipo: 'Apuesta – Recibe', ganancia: 125 },
   { casa: 'Juegging', tipo: 'Apuesta – Recibe', ganancia: 100 },
   { casa: 'Retabet', tipo: 'Apuesta – Recibe', ganancia: 100 },
   { casa: 'Bet365', tipo: 'Apuesta – Recibe', ganancia: 65 },
   { casa: 'Zebet', tipo: 'Apuesta – Recibe', ganancia: 65 },
-  { casa: 'Versus', tipo: 'Apuesta – Recibe', ganancia: 65 },
   { casa: 'Codere', tipo: 'Apuesta – Recibe', ganancia: 65 },
   { casa: 'Botemania', tipo: 'Apuesta – Recibe', ganancia: 35 },
   { casa: 'Paf', tipo: 'Apuesta – Recibe', ganancia: 14 },

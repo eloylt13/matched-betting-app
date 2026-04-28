@@ -135,10 +135,10 @@ export default async function PronosticosPage() {
                   Alternativa disponible hoy
                 </p>
                 <h3 className="mt-3 text-xl font-bold leading-tight text-stone-900 sm:text-2xl">
-                  Hoy no hay selección del día, pero puedes activar 100€ en freebet ahora
+                  Hoy no hay selección del día, pero puedes activar hasta 200€ en freebets ahora
                 </h3>
                 <p className="mt-3 text-sm leading-relaxed text-stone-600 sm:text-base">
-                  Versus te da 100€ en freebet al hacer tu primer depósito. Siguiendo la ruta guiada, puedes convertirla en un beneficio estimado de ~65€.
+                  Versus ofrece 2 freebets de hasta 100€: una por cada uno de tus dos primeros depósitos. Siguiendo la ruta guiada, puedes buscar un beneficio potencial estimado de ~125€.
                 </p>
                 <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
                   <Link

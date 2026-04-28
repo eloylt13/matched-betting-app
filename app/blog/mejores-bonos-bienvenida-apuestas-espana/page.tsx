@@ -15,6 +15,7 @@ const bonos = [
   { casa: 'Betway',           tipo: 'Reembolso',        requisitos: 'Reembolso 100% hasta 200â‚¬ + 50 tiradas gratis',   dificultad: 4, ganancia: 140 },
   { casa: 'DaznBet',          tipo: 'Apuesta y recibe', requisitos: 'DepÃ³sito 200â‚¬, freebet 200â‚¬ no fragmentable',     dificultad: 2, ganancia: 130 },
   { casa: 'William Hill',     tipo: 'Reembolso',        requisitos: 'Reembolso 100% hasta 200â‚¬ combinada, cÃ³digo BONO200', dificultad: 4, ganancia: 130 },
+  { casa: 'Versus',           tipo: 'Apuesta y recibe', requisitos: 'Hasta 200â‚¬ en freebets con tus dos primeros depÃ³sitos', dificultad: 1, ganancia: 125 },
   { casa: 'PastÃ³n',           tipo: 'Rollover',         requisitos: 'Pack bienvenida 3 fases, rollover x10',           dificultad: 4, ganancia: 120 },
   { casa: 'RetaBet',          tipo: 'Apuesta y recibe', requisitos: 'DepÃ³sito 150â‚¬, freebet garantizada SNR',          dificultad: 2, ganancia: 100 },
   { casa: 'Juegging',         tipo: 'Apuesta y recibe', requisitos: 'DepÃ³sito 75â‚¬, bono 200%, dos fases',              dificultad: 3, ganancia: 100 },
@@ -23,7 +24,6 @@ const bonos = [
   { casa: 'Winamax',          tipo: 'Reembolso',        requisitos: 'Reembolso 150%, depÃ³sito 100â‚¬ si pierdes',        dificultad: 3, ganancia: 70 },
   { casa: 'Yaass Casino',     tipo: 'Reembolso',        requisitos: 'Apuesta sin riesgo hasta 100â‚¬',                   dificultad: 3, ganancia: 70 },
   { casa: 'JokerBet',         tipo: 'Rollover',         requisitos: 'Bono 200% hasta 100â‚¬, rollover x10',              dificultad: 5, ganancia: 70 },
-  { casa: 'Versus',           tipo: 'Apuesta y recibe', requisitos: 'DepÃ³sito 100â‚¬, freebet instantÃ¡nea SNR',          dificultad: 1, ganancia: 65 },
   { casa: 'Codere',           tipo: 'Apuesta y recibe', requisitos: 'DepÃ³sito 200â‚¬, freebets escalonadas',             dificultad: 2, ganancia: 65 },
   { casa: 'EFBet',            tipo: 'Rollover',         requisitos: 'DepÃ³sito 100â‚¬, freebet 100â‚¬ vÃ­a email',           dificultad: 3, ganancia: 65 },
   { casa: 'Casino Gran Madrid', tipo: 'Apuesta y recibe', requisitos: 'Bono 50% hasta 100â‚¬, cuota mÃ¡x 3.00',          dificultad: 3, ganancia: 62 },
@@ -256,8 +256,8 @@ export default function MejoresBonos2026Page() {
             },
             {
               casa: 'Versus',
-              ganancia: '~65 â‚¬',
-              por: 'Freebet instantÃ¡nea al depositar, sin condiciones complejas. Ideal para el primer bono.',
+              ganancia: '~125 â‚¬',
+              por: '2 freebets de hasta 100â‚¬ con tus dos primeros depÃ³sitos. Beneficio potencial estimado de unos 125â‚¬.',
             },
             {
               casa: 'Bet365',

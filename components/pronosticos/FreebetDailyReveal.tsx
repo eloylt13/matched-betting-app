@@ -173,11 +173,11 @@ export function FreebetDailyReveal({ dailyCombinada }: FreebetDailyRevealProps) 
               Siguiente paso recomendado
             </p>
             <h3 className="mt-2 text-lg font-bold leading-tight text-stone-900">
-              Si quieres activar una freebet real hoy, empieza por Versus
+              Si quieres activar freebets reales hoy, empieza por Versus
             </h3>
             <p className="mt-2 text-sm leading-6 text-stone-600">
-              Versus te da 100€ en freebet al registrarte. Después puedes seguir la ruta guiada para convertirla en
-              beneficio estimado de ~65€.
+              Versus ofrece hasta 200€ en freebets: una por cada uno de tus dos primeros depósitos. Después puedes
+              seguir la ruta guiada para buscar un beneficio potencial estimado de ~125€.
             </p>
             <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:items-center">
               <Link

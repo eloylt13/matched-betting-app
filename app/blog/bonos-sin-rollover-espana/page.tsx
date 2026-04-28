@@ -19,12 +19,12 @@ const casasSinRollover = [
   },
   {
     casa: 'Versus',
-    bono: '100 € en freebet',
-    deposito: '100 €',
+    bono: '2 freebets de hasta 100 €',
+    deposito: '2 primeros depósitos',
     tipo: 'Apuesta y recibe (SNR)',
     dificultad: 1,
-    ganancia: 65,
-    nota: 'Freebet instantánea al depositar. Sin condiciones posteriores. Ideal para el primer bono.',
+    ganancia: 125,
+    nota: 'Hasta 200 € en freebets: una por cada uno de los dos primeros depósitos. Sin rollover posterior.',
   },
   {
     casa: 'Bet365',
@@ -343,10 +343,10 @@ export default function BonosSinRolloverEspanaPage() {
             },
             {
               casa: 'Versus',
-              ganancia: '~65 €',
+              ganancia: '~125 €',
               etiqueta: 'Ideal para el primer bono',
               color: 'bg-stone-50 border-stone-200',
-              detalle: 'Freebet instantánea al depositar. Sin condiciones complejas. El más sencillo para practicar la mecánica.',
+              detalle: '2 freebets de hasta 100 €: una por cada uno de los dos primeros depósitos. Beneficio potencial estimado de unos 125 €.',
             },
           ].map((item) => (
             <div key={item.casa} className={`border rounded-xl p-4 flex flex-col gap-1 ${item.color}`}>

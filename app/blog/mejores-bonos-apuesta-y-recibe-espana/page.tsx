@@ -27,6 +27,15 @@ const casasApuestaYRecibe = [
     nota: 'Freebet única de 200 € no fragmentable. Requiere una sola apuesta de cuota mín. 1.80 para activarla.',
   },
   {
+    casa: 'Versus',
+    bono: '2 freebets de hasta 100 €',
+    deposito: '2 primeros depósitos',
+    fragmentable: 'Sí',
+    dificultad: 1,
+    ganancia: 125,
+    nota: 'Hasta 200 € en freebets: una por cada uno de los dos primeros depósitos. Beneficio potencial estimado de ~125 €.',
+  },
+  {
     casa: 'RetaBet',
     bono: '150 € en freebet',
     deposito: '150 €',
@@ -43,15 +52,6 @@ const casasApuestaYRecibe = [
     dificultad: 3,
     ganancia: 100,
     nota: 'Bono en dos fases. Depósito inicial más bajo que otras casas. Proceso bien documentado.',
-  },
-  {
-    casa: 'Versus',
-    bono: '100 € en freebet',
-    deposito: '100 €',
-    fragmentable: 'Sí',
-    dificultad: 1,
-    ganancia: 65,
-    nota: 'Freebet instantánea al depositar. Sin condiciones complejas. Ideal para el primer bono.',
   },
   {
     casa: 'Codere',
@@ -306,10 +306,10 @@ export default function MejoresBonosApuestaYRecibePage() {
             },
             {
               casa: 'Versus',
-              ganancia: '~65 €',
+              ganancia: '~125 €',
               etiqueta: 'Ideal para el primer bono',
               color: 'bg-purple-50 border-purple-100',
-              detalle: 'Freebet instantánea al depositar. Sin condiciones complejas. Perfecto para practicar la mecánica.',
+              detalle: '2 freebets de hasta 100 € con tus dos primeros depósitos. Beneficio potencial estimado de unos 125 €.',
             },
             {
               casa: 'Bet365',
@@ -481,7 +481,7 @@ export default function MejoresBonosApuestaYRecibePage() {
           ¿Cuánto tiempo tarda en acreditarse la freebet?
         </h3>
         <p>
-          Depende de la casa. En Versus y Sportium la freebet suele aparecer a las pocas horas de
+          Depende de la casa. En Versus y Sportium las freebets suelen aparecer a las pocas horas de
           que se resuelve la apuesta de calificación. En otras casas como DaznBet o Codere puede
           tardar hasta 24-48 horas. Si pasado ese plazo no aparece, contacta con el servicio de
           atención al cliente con el comprobante de la apuesta.
