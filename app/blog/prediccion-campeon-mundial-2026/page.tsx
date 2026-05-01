@@ -56,14 +56,16 @@ export default function PrediccionCampeonMundial2026Page() {
       </div>
 
       <div className="flex flex-col gap-4 text-sm text-stone-700 leading-relaxed">
-        <p>Yo creo que Portugal puede ganar el Mundial 2026.</p>
+        <p>
+          Poca gente la ve como la favorita principal. Las propias casas de
+          apuestas la colocan como la 6.ª favorita. España, Francia, Inglaterra,
+          Brasil, Argentina…
+        </p>
 
         <p>
-          No la veo como la favorita principal. No la pongo por encima de todas
-          en una lista fría de probabilidades. Pero si tengo que elegir una
-          selección con talento suficiente, contexto competitivo, jugadores en
-          momento fuerte y un punto de hambre que no siempre se puede medir, me
-          sale Portugal.
+          Pero si tengo que elegir una selección con talento suficiente,
+          contexto competitivo, jugadores en momento fuerte y un punto de hambre
+          que no siempre se puede medir, me sale Portugal.
         </p>
 
         <p>Y me sale bastante claro.</p>
@@ -84,16 +86,16 @@ export default function PrediccionCampeonMundial2026Page() {
           lo que más ha cambiado respecto a otras Portugal de los últimos años.
         </p>
 
+        <p>
+          A priori, Portugal es favorita en su Grupo K, aunque tendrá que
+          disputarse el liderato ante una Colombia muy peligrosa. Sus otros dos
+          rivales, Uzbekistán y R. D. del Congo, no deberían impedirle avanzar si
+          Portugal compite a su nivel.
+        </p>
+
         <h2 className="text-xl font-bold text-stone-800 tracking-tight mt-6 mb-2">
           Portugal no es la favorita, y eso me gusta
         </h2>
-
-        <p>
-          A mí Portugal me encaja mejor como candidata de segundo escalón que
-          como favorita absoluta. Francia, España, Inglaterra o Argentina van a
-          llevar más foco. Más titulares. Más presión. Más obligación de
-          justificar cada partido.
-        </p>
 
         <p>
           Portugal no va de tapada pequeña, porque sería absurdo decir eso de
@@ -309,14 +311,6 @@ export default function PrediccionCampeonMundial2026Page() {
           final será una de las cosas a mirar cuando se acerque el torneo.
         </p>
 
-        <p>El punto está en cómo lo gestione Portugal.</p>
-
-        <p>
-          Si Cristiano ocupa todo el plan, me genera dudas. Si Cristiano es
-          remate, liderazgo, amenaza de área y momento emocional, entonces sí me
-          encaja. Mucho.
-        </p>
-
         <p>
           Porque un Mundial también se gana con símbolos. Con hambre. Con
           jugadores que sienten que no hay otra oportunidad después.
@@ -324,83 +318,15 @@ export default function PrediccionCampeonMundial2026Page() {
 
         <p>Y Cristiano ahí sigue siendo Cristiano.</p>
 
-        <h2 className="text-xl font-bold text-stone-800 tracking-tight mt-6 mb-2">
-          Lo que no me convence del todo
-        </h2>
-
-        <p>No quiero vender esto como si Portugal fuese una máquina perfecta.</p>
-
-        <p>Hay cosas que me generan dudas.</p>
-
         <p>
-          La primera es precisamente el rol de Cristiano. Si el equipo se adapta
-          demasiado a él, puede perder movilidad. Si el seleccionador no se
-          atreve a tomar decisiones duras, puede haber partidos donde Portugal se
-          vuelva más previsible de lo que debería.
+          Aunque posiblemente no tenga todos los minutos que a él le gustaría,
+          ese liderazgo en el vestuario y su mentalidad ganadora puede contagiar
+          a sus compañeros ese hambre por ganar.
         </p>
 
         <p>
-          También me genera dudas la regularidad de algunos perfiles ofensivos.
-          Rafael Leão tiene un techo brutal, pero no siempre me transmite
-          continuidad. João Félix está firmando buenos números en Arabia Saudí,
-          pero el contexto competitivo obliga a bajar un poco la euforia.
-          Gonçalo Ramos me parece útil, aunque no sé si le da para ser la gran
-          solución si el partido pide algo más.
-        </p>
-
-        <p>
-          Y luego está el cuadro. Portugal quedó encuadrada en el Grupo K del
-          Mundial 2026 junto a RD Congo, Uzbekistán y Colombia. No parece un
-          grupo terrorífico, pero Colombia es un rival serio. Si Portugal se
-          complica y acaba segunda, el camino puede ponerse mucho más feo antes
-          de tiempo.
-        </p>
-
-        <p>
-          Pero esas dudas no me sacan de la predicción. Al revés. Me hacen verla
-          más real.
-        </p>
-
-        <p>
-          Una selección campeona no suele ser perfecta en mayo. Lo importante es
-          que tenga suficientes respuestas cuando llegue junio.
-        </p>
-
-        <h2 className="text-xl font-bold text-stone-800 tracking-tight mt-6 mb-2">
-          La cuota no la pone como favorita, y eso también cuenta
-        </h2>
-
-        <p>
-          En el momento de escribir este artículo, el mercado no coloca a
-          Portugal como favorita principal, pero sí en ese segundo escalón que a
-          mí me parece interesante.
-        </p>
-
-        <p>
-          En casas como{' '}
-          <a
-            href="https://bdeal.io/Winamax/99945/1"
-            className="text-purple-600 hover:text-purple-700 font-semibold transition-colors"
-          >
-            Winamax
-          </a>
-          , Portugal campeona ronda la cuota @12. No es una cuota de favorita
-          absoluta. Tampoco de tapada imposible. Y justo ahí está parte de mi
-          argumento.
-        </p>
-
-        <p>
-          Si Portugal estuviera a cuota muy baja, la predicción tendría menos
-          gracia. Si estuviera a cuota disparatada, quizá sería una fantasía.
-          Pero en esa zona intermedia, alrededor de selecciones que el mercado
-          respeta pero no empuja como número uno, a mí me parece una candidata
-          muy seria.
-        </p>
-
-        <p>
-          No estoy diciendo que sea una apuesta obligatoria. Estoy diciendo que,
-          futbolísticamente, la cuota encaja con lo que veo: Portugal puede
-          ganar sin ser la selección más mencionada.
+          Es su último Mundial y el único título grande que le falta en su
+          vitrina, así que yo creo que llegará en un buen estado de forma.
         </p>
 
         <h2 className="text-xl font-bold text-stone-800 tracking-tight mt-6 mb-2">
@@ -429,62 +355,58 @@ export default function PrediccionCampeonMundial2026Page() {
           laterales.
         </p>
 
-        <p>
-          No me parece una plantilla perfecta. Pero sí me parece una plantilla
-          con respuestas.
-        </p>
-
         <h2 className="text-xl font-bold text-stone-800 tracking-tight mt-6 mb-2">
-          Mi lectura final
+          La cuota no la pone como favorita, y eso también cuenta
         </h2>
 
         <p>
-          Yo creo que Portugal puede ser campeona del Mundial 2026 porque tiene
-          una mezcla difícil de encontrar.
+          En casas como{' '}
+          <Link
+            href="https://bdeal.io/Winamax/99945/1"
+            target="_blank"
+            rel="nofollow sponsored noopener noreferrer"
+            className="text-blue-600 underline underline-offset-4 hover:text-blue-700"
+          >
+            Winamax
+          </Link>
+          , Portugal campeona ronda la cuota @12.
         </p>
 
         <p>
-          Tiene a Bruno Fernandes llegando como uno de los grandes generadores de
-          Europa. Tiene a Vitinha como motor de control. Tiene a João Neves para
-          darle piernas al centro del campo. Tiene a Nuno Mendes como lateral
-          que puede decidir partidos. Tiene a Diogo Costa para sobrevivir a una
-          tanda. Tiene a Cristiano con la última bala cargada. Y tiene banquillo
-          suficiente para no depender siempre del mismo plan.
-        </p>
-
-        <p>¿Hay selecciones más favoritas? Sí.</p>
-
-        <p>
-          España tiene un equipazo, aunque a mí me da la sensación de que va a
-          cargar con muchísima presión. Francia tiene a Mbappé y una cantidad
-          absurda de talento, pero no siempre me convence cuando el partido se
-          vuelve espeso. Inglaterra suele llegar con nombres de sobra y dudas de
-          siempre. Argentina tiene jerarquía competitiva, pero habrá que ver
-          cómo llega el bloque.
+          No es una cuota de favorita absoluta. Tampoco de tapada imposible. Y
+          justo ahí está parte de mi argumento. Si Portugal estuviera a cuota muy
+          baja, la predicción tendría menos gracia. Si estuviera a cuota
+          disparatada, sería una fantasía.
         </p>
 
         <p>
-          Portugal, en cambio, me parece en ese punto perfecto: lo bastante buena
-          para ganar y lo bastante poco señalada para competir sin el ruido de
-          ser la elegida por todos.
+          Pero en esa zona intermedia, alrededor de selecciones que el mercado
+          respeta pero no empuja como número uno, a mí me parece una candidata
+          muy seria.
         </p>
 
-        <p>Por eso le tengo fe.</p>
+        <p>
+          No estoy diciendo que sea una apuesta obligatoria. Estoy diciendo que,
+          futbolísticamente, la cuota encaja con lo que veo: Portugal puede
+          ganar sin ser la selección más mencionada.
+        </p>
 
-        <section className="mt-8 rounded-2xl border border-stone-200 bg-white p-5">
+        <section className="mt-10 rounded-2xl border border-stone-200 bg-stone-50 p-5">
           <h2 className="text-base font-bold text-stone-800 tracking-tight">
             Más predicciones del Mundial 2026
           </h2>
           <p className="mt-2 text-sm text-stone-600">
-            También puedes ver mi especial completo con campeón, finalista,
-            máximo goleador, máximo asistente y mejor jugador.
+            Si quieres ver el resto de mis predicciones para el Mundial 2026 —
+            subcampeón, top 4, máximo goleador y mejores jugadores — puedes
+            consultarlas en el{' '}
+            <Link
+              href="/especial/mundial"
+              className="text-emerald-700 underline underline-offset-4 hover:text-emerald-800"
+            >
+              especial Mundial 2026
+            </Link>
+            .
           </p>
-          <Link
-            href="/especial/mundial"
-            className="inline-block mt-4 text-sm font-semibold text-purple-600 hover:text-purple-700 transition-colors"
-          >
-            Ver Especial Mundial 2026 →
-          </Link>
         </section>
       </div>
     </article>
