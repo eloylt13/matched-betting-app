@@ -195,6 +195,14 @@ export default function EspecialMundialPage() {
                         {item.nombre}
                       </span>
                     </p>
+                    {item.nombre === 'Portugal' ? (
+                      <Link
+                        href="/blog/prediccion-campeon-mundial-2026"
+                        className="mt-2 inline-flex w-fit items-center text-sm font-semibold uppercase tracking-[0.12em] text-[#F2C94C] underline underline-offset-4 decoration-[#F2C94C]/40 transition-colors hover:text-[#FFE08A] hover:decoration-[#FFE08A]"
+                      >
+                        Leer argumentación →
+                      </Link>
+                    ) : null}
                   </div>
                   <span className="inline-flex h-8 w-10 shrink-0 items-center justify-center rounded-full border border-current/40 bg-transparent text-lg">
                     <span className={`fi fi-${item.pais.toLowerCase()}`} aria-hidden="true" />
