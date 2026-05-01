@@ -10,6 +10,7 @@ type ScenarioCard = {
   nombre: string
   pais: string
   imagen?: string
+  articleHref?: string
   className: string
   headerClassName: string
   eyebrowClassName: string
@@ -23,6 +24,7 @@ type Market = {
   titulo: string
   jugador: string
   imagen: string
+  articleHref?: string
 }
 
 const ESCENARIO: ScenarioCard[] = [
@@ -31,6 +33,7 @@ const ESCENARIO: ScenarioCard[] = [
     nombre: 'Portugal',
     pais: 'PT',
     imagen: '/especial/mundial/jugadores/pt.png',
+    articleHref: '/blog/prediccion-campeon-mundial-2026',
     className:
       'border border-[#D4AF37]/40 bg-[linear-gradient(135deg,#0a2e1f_0%,#0f3a27_100%)] text-white shadow-[0_0_0_1px_rgba(212,175,55,0.15),0_24px_80px_rgba(212,175,55,0.08)]',
     headerClassName: 'text-white',
@@ -96,6 +99,7 @@ const MERCADOS: Market[] = [
     titulo: 'Mejor jugador',
     jugador: 'Vitinha',
     imagen: '/especial/mundial/jugadores/vitinha.png',
+    articleHref: '/blog/prediccion-mejor-jugador-mundial-2026',
   },
 ] as const
 
@@ -187,22 +191,26 @@ export default function EspecialMundialPage() {
                 <div className={`relative z-10 flex items-center justify-between gap-4 ${item.headerClassName}`}>
                   <div className="min-w-0">
                     <p className="truncate">
-                      <span className={`text-[11px] font-semibold uppercase tracking-[0.18em] lg:text-sm ${item.eyebrowClassName}`}>
-                        {item.etiqueta}
-                      </span>
+                      {item.articleHref ? (
+                        <Link
+                          href={item.articleHref}
+                          className={`inline-flex cursor-pointer items-center align-middle text-[11px] font-semibold uppercase tracking-[0.18em] opacity-90 underline decoration-current/50 decoration-1 underline-offset-4 transition hover:opacity-100 hover:decoration-current hover:decoration-2 lg:text-sm ${item.eyebrowClassName}`}
+                        >
+                          <span>{item.etiqueta}</span>
+                          <span className="ml-1.5" aria-hidden="true">
+                            &rarr;
+                          </span>
+                        </Link>
+                      ) : (
+                        <span className={`text-[11px] font-semibold uppercase tracking-[0.18em] lg:text-sm ${item.eyebrowClassName}`}>
+                          {item.etiqueta}
+                        </span>
+                      )}
                       <span className="mx-2 align-middle text-sm opacity-50">·</span>
                       <span className={`align-middle font-playfair text-xl font-bold tracking-normal lg:text-3xl ${item.nameClassName}`}>
                         {item.nombre}
                       </span>
                     </p>
-                    {item.nombre === 'Portugal' ? (
-                      <Link
-                        href="/blog/prediccion-campeon-mundial-2026"
-                        className="mt-2 inline-flex w-fit items-center text-sm font-semibold uppercase tracking-[0.12em] text-[#F2C94C] underline underline-offset-4 decoration-[#F2C94C]/40 transition-colors hover:text-[#FFE08A] hover:decoration-[#FFE08A]"
-                      >
-                        Leer argumentación →
-                      </Link>
-                    ) : null}
                   </div>
                   <span className="inline-flex h-8 w-10 shrink-0 items-center justify-center rounded-full border border-current/40 bg-transparent text-lg">
                     <span className={`fi fi-${item.pais.toLowerCase()}`} aria-hidden="true" />
@@ -253,9 +261,21 @@ export default function EspecialMundialPage() {
               >
                 <div className="relative z-10 flex items-start justify-between gap-4">
                   <div className="min-w-0 flex flex-col gap-1">
-                    <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-600 lg:text-sm">
-                      {mercado.titulo}
-                    </span>
+                    {mercado.articleHref ? (
+                      <Link
+                        href={mercado.articleHref}
+                        className="inline-flex cursor-pointer items-center text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-600 opacity-90 underline decoration-current/50 decoration-1 underline-offset-4 transition hover:opacity-100 hover:decoration-current hover:decoration-2 lg:text-sm"
+                      >
+                        <span>{mercado.titulo}</span>
+                        <span className="ml-1.5" aria-hidden="true">
+                          &rarr;
+                        </span>
+                      </Link>
+                    ) : (
+                      <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-600 lg:text-sm">
+                        {mercado.titulo}
+                      </span>
+                    )}
                     <span className="font-playfair text-xl font-bold tracking-tight text-stone-900 lg:text-2xl">
                       {mercado.jugador}
                     </span>
