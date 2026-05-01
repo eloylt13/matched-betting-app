@@ -362,6 +362,30 @@ export default function PrediccionMejorJugadorMundial2026Page() {
           cabeza, ese premio individual va a tener un nombre bastante claro. El
           de su director de orquesta.
         </p>
+
+        <section className="mt-10 rounded-2xl border border-stone-200 bg-stone-50 p-5">
+          <h2 className="text-base font-bold text-stone-800 tracking-tight">
+            Más predicciones del Mundial 2026
+          </h2>
+          <p className="mt-2 text-sm text-stone-600">
+            Esta predicción es la continuación natural de mi{' '}
+            <Link
+              href="/blog/prediccion-campeon-mundial-2026"
+              className="text-purple-600 underline underline-offset-4 hover:text-purple-700"
+            >
+              análisis sobre por qué creo que Portugal puede ganar el Mundial
+            </Link>
+            . Si quieres ver el resto — subcampeón, top 4 y máximo goleador —
+            puedes consultarlas en el{' '}
+            <Link
+              href="/especial/mundial"
+              className="text-purple-600 underline underline-offset-4 hover:text-purple-700"
+            >
+              especial Mundial 2026
+            </Link>
+            .
+          </p>
+        </section>
       </div>
     </article>
   )
