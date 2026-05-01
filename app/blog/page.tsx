@@ -32,7 +32,7 @@ const articulos: Array<{
     descripcion:
       'Mi predicción personal para el campeón del Mundial 2026 y los motivos por los que Portugal puede levantar el título.',
     categoria: 'Mundial 2026',
-    image: '/blog/prediccion-campeon-mundial-2026/portugal-mundial-2026.png',
+    image: '/blog/prediccion-campeon-mundial-2026/portugal-mundial-2026.jpg',
     destacado: true,
   },
   {

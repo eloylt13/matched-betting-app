@@ -9,7 +9,7 @@ const description =
 const canonical =
   'https://iapredicthub.es/blog/prediccion-campeon-mundial-2026'
 const image =
-  '/blog/prediccion-campeon-mundial-2026/portugal-mundial-2026.png'
+  '/blog/prediccion-campeon-mundial-2026/portugal-mundial-2026.jpg'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://iapredicthub.es'),
