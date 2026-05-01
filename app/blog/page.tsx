@@ -36,6 +36,16 @@ const articulos: Array<{
     destacado: true,
   },
   {
+    slug: 'prediccion-mejor-jugador-mundial-2026',
+    titulo: 'Mejor jugador Mundial 2026: por qué creo que Vitinha puede ganar el premio',
+    fecha: '1 de mayo de 2026',
+    descripcion:
+      'Análisis editorial sobre por qué Vitinha puede ser el Mejor Jugador del Mundial 2026 si Portugal gana el torneo.',
+    categoria: 'Mundial 2026',
+    image: '/blog/prediccion-mejor-jugador-mundial-2026/vitinha-mundial-2026.webp',
+    destacado: true,
+  },
+  {
     slug: 'que-es-matched-betting-espana',
     titulo: '¿Qué es el Matched Betting y cómo funciona en España?',
     fecha: '29 de marzo de 2026',
