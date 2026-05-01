@@ -13,6 +13,8 @@ const articulos: Array<{
   titulo: string
   fecha: string
   descripcion: string
+  categoria?: string
+  image?: string
   destacado?: boolean
 }> = [
   {
@@ -21,6 +23,16 @@ const articulos: Array<{
     fecha: '27 de abril de 2026',
     descripcion:
       'Guía actualizada del Mundial 2026: formato, los 12 grupos completos, debutantes, favoritos según las cuotas y qué vigilar antes del 11 de junio.',
+    destacado: true,
+  },
+  {
+    slug: 'prediccion-campeon-mundial-2026',
+    titulo: 'Predicción campeón Mundial 2026: por qué creo que Portugal puede ganar',
+    fecha: '1 de mayo de 2026',
+    descripcion:
+      'Mi predicción personal para el campeón del Mundial 2026 y los motivos por los que Portugal puede levantar el título.',
+    categoria: 'Mundial 2026',
+    image: '/blog/prediccion-campeon-mundial-2026/portugal-mundial-2026.png',
     destacado: true,
   },
   {
@@ -126,7 +138,7 @@ export default function BlogPage() {
               <time className="text-xs text-stone-400">{art.fecha}</time>
               {art.destacado ? (
                 <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#B8941F] mb-2">
-                  ESPECIAL MUNDIAL 2026
+                  {art.categoria?.toUpperCase() ?? 'ESPECIAL MUNDIAL 2026'}
                 </p>
               ) : null}
               <h2 className="text-base font-semibold text-stone-800 mt-1 mb-1">{art.titulo}</h2>
