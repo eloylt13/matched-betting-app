@@ -542,6 +542,8 @@ export default function LandingPage() {
         </div>
       </section>
 
+      <div id="home-hero-sentinel" aria-hidden="true" className="h-px w-full" />
+
       <section className="bg-[#0a0918] py-16 sm:py-24">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-12 text-center">
@@ -832,7 +834,7 @@ export default function LandingPage() {
 
       <section
         style={{ background: 'linear-gradient(135deg, #0b1020 0%, #10162a 48%, #1b2140 100%)' }}
-        className="relative overflow-hidden border-t border-white/5"
+        className="relative overflow-hidden border-t border-white/5 pb-20 md:pb-0"
       >
         <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 text-center">
           <div className="relative overflow-hidden rounded-[1.75rem] border border-violet-200/15 bg-white/[0.045] px-6 py-10 shadow-[0_24px_80px_rgba(0,0,0,0.28)] ring-1 ring-white/[0.04] backdrop-blur-md sm:px-10 sm:py-14">

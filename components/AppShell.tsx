@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import BottomNav from '@/components/BottomNav'
+import HomeFloatingBottomNav from '@/components/HomeFloatingBottomNav'
 
 type NavLinkProps = {
   href: string
@@ -57,7 +58,12 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
 
   // La landing maneja su propio nav y layout
   if (pathname === '/') {
-    return <>{children}</>
+    return (
+      <>
+        {children}
+        <HomeFloatingBottomNav />
+      </>
+    )
   }
 
   return (
