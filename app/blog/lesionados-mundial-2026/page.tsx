@@ -304,6 +304,45 @@ const ESTADOS: Record<
   },
 }
 
+const CTA_LINKS = [
+  {
+    icon: '🏆',
+    title: 'Especial Mundial 2026',
+    href: '/especial/mundial',
+  },
+  {
+    icon: '🎁',
+    title: 'Empezar con mi primer bono',
+    href: '/casas/versus',
+  },
+]
+
+function PremiumCtas({ className = '' }: { className?: string }) {
+  return (
+    <div className={className}>
+      {CTA_LINKS.map((cta) => (
+        <Link
+          key={cta.href}
+          href={cta.href}
+          className="group flex items-center justify-between gap-4 rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4 transition hover:border-white/20 hover:bg-white/[0.06] hover:shadow-lg hover:shadow-violet-500/10"
+        >
+          <span className="flex min-w-0 items-center gap-3">
+            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-violet-400/30 bg-violet-500/10 text-xl">
+              {cta.icon}
+            </span>
+            <span className="truncate text-base font-semibold text-white">
+              {cta.title}
+            </span>
+          </span>
+          <span className="shrink-0 text-violet-300 transition group-hover:translate-x-1">
+            →
+          </span>
+        </Link>
+      ))}
+    </div>
+  )
+}
+
 function getSearchParam(searchParams: SearchParams | undefined, key: keyof SearchParams) {
   const value = searchParams?.[key]
 
@@ -489,19 +528,22 @@ export default async function LesionadosMundial2026Page({
       <div className="pointer-events-none absolute -right-28 top-2 h-96 w-96 rounded-full bg-indigo-500/12 blur-3xl" />
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(124,58,237,0.13),transparent_35%),linear-gradient(180deg,rgba(5,9,20,0.18)_0%,#050914_100%)]" />
       <div className="relative mx-auto flex min-h-[calc(100vh-4rem)] max-w-7xl flex-col gap-5 px-4 py-6 sm:px-6 lg:px-8">
-        <header className="mx-auto flex max-w-3xl flex-col items-center gap-2.5 pt-1 text-center">
-          <p className="rounded-full border border-violet-300/20 bg-violet-300/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.22em] text-violet-100">
-            Especial Mundial 2026
-          </p>
-          <h1 className="font-playfair text-2xl font-bold tracking-tight text-white sm:text-3xl">
-            Lesionados Mundial 2026
-          </h1>
-          <p className="max-w-2xl text-sm leading-6 text-slate-300">
-            Jugadores en duda, posibles bajas y descartados antes del torneo.
-          </p>
-          <span className="rounded-full border border-white/10 bg-white/[0.06] px-3 py-1 text-[11px] font-semibold text-slate-300">
-            Actualizado: 5 de mayo de 2026
-          </span>
+        <header className="mx-auto grid w-full max-w-6xl gap-5 pt-1 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
+          <div className="mx-auto flex max-w-3xl flex-col items-center gap-2.5 text-center lg:mx-0 lg:items-start lg:text-left">
+            <p className="rounded-full border border-violet-300/20 bg-violet-300/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.22em] text-violet-100">
+              Especial Mundial 2026
+            </p>
+            <h1 className="font-playfair text-2xl font-bold tracking-tight text-white sm:text-3xl">
+              Lesionados Mundial 2026
+            </h1>
+            <p className="max-w-2xl text-sm leading-6 text-slate-300">
+              Jugadores en duda, posibles bajas y descartados antes del torneo.
+            </p>
+            <span className="rounded-full border border-white/10 bg-white/[0.06] px-3 py-1 text-[11px] font-semibold text-slate-300">
+              Actualizado: 5 de mayo de 2026
+            </span>
+          </div>
+          <PremiumCtas className="hidden flex-col gap-3 lg:flex" />
         </header>
 
         <section className="mx-auto w-full max-w-6xl px-3 py-3 sm:px-4">
@@ -581,6 +623,8 @@ export default async function LesionadosMundial2026Page({
             jugadores={descartados}
           />
         </div>
+
+        <PremiumCtas className="flex flex-col gap-3 py-2 lg:hidden" />
 
         <footer className="mx-auto flex max-w-3xl flex-col items-center gap-2 border-t border-white/10 pt-5 text-center text-xs leading-5 text-slate-500">
           <p>
