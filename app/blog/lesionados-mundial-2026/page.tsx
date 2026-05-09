@@ -317,24 +317,48 @@ const CTA_LINKS = [
   },
 ]
 
-function PremiumCtas({ className = '' }: { className?: string }) {
+function PremiumCtas({
+  className = '',
+  variant = 'large',
+}: {
+  className?: string
+  variant?: 'compact' | 'large'
+}) {
+  const isCompact = variant === 'compact'
+
   return (
     <div className={className}>
       {CTA_LINKS.map((cta) => (
         <Link
           key={cta.href}
           href={cta.href}
-          className="group flex items-center justify-between gap-4 rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4 transition hover:border-white/20 hover:bg-white/[0.06] hover:shadow-lg hover:shadow-violet-500/10"
+          className={`group flex items-center justify-between border border-white/10 bg-white/[0.03] transition hover:border-white/20 hover:bg-white/[0.06] hover:shadow-violet-500/10 ${
+            isCompact
+              ? 'max-w-xs gap-2 rounded-full px-4 py-2 hover:shadow-md'
+              : 'gap-4 rounded-2xl px-5 py-4 hover:shadow-lg'
+          }`}
         >
-          <span className="flex min-w-0 items-center gap-3">
-            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-violet-400/30 bg-violet-500/10 text-xl">
+          <span className={`flex min-w-0 items-center ${isCompact ? 'gap-2' : 'gap-3'}`}>
+            <span
+              className={`flex shrink-0 items-center justify-center rounded-full border border-violet-400/30 bg-violet-500/10 ${
+                isCompact ? 'h-7 w-7 text-sm' : 'h-11 w-11 text-xl'
+              }`}
+            >
               {cta.icon}
             </span>
-            <span className="truncate text-base font-semibold text-white">
+            <span
+              className={`truncate font-semibold text-white ${
+                isCompact ? 'text-sm' : 'text-base'
+              }`}
+            >
               {cta.title}
             </span>
           </span>
-          <span className="shrink-0 text-violet-300 transition group-hover:translate-x-1">
+          <span
+            className={`shrink-0 text-violet-300 transition group-hover:translate-x-1 ${
+              isCompact ? 'text-xs' : ''
+            }`}
+          >
             →
           </span>
         </Link>
@@ -543,7 +567,10 @@ export default async function LesionadosMundial2026Page({
               Actualizado: 5 de mayo de 2026
             </span>
           </div>
-          <PremiumCtas className="hidden flex-col gap-3 lg:flex" />
+          <PremiumCtas
+            variant="compact"
+            className="hidden w-[300px] max-w-xs flex-col gap-2 justify-self-end lg:flex"
+          />
         </header>
 
         <section className="mx-auto w-full max-w-6xl px-3 py-3 sm:px-4">
