@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
+import BlogCta from '@/components/blog/BlogCta'
 
 export const metadata: Metadata = {
   title: 'Mundial 2026: grupos, favoritos y selecciones | IAPredictHub',
@@ -476,6 +477,8 @@ export default function Mundial2026Page() {
           convocatorias, estado físico real de las estrellas y un mes largo de
           competición en el que los detalles pueden cambiarlo todo.
         </p>
+
+        <BlogCta variant="world-cup" />
 
         <p>
           En IAPredictHub iremos actualizando la lectura del torneo desde un
