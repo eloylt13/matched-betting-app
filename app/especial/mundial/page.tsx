@@ -190,6 +190,26 @@ export default function EspecialMundialPage() {
               >
                 <div className={`relative z-10 flex items-center justify-between gap-4 ${item.headerClassName}`}>
                   <div className="min-w-0">
+                    {item.articleHref && item.nombre === 'Portugal' ? (
+                      <div className="flex min-w-0 flex-col gap-1.5">
+                        <p className="truncate">
+                          <span className={`align-middle text-[11px] font-semibold uppercase tracking-[0.18em] lg:text-sm ${item.eyebrowClassName}`}>
+                            {item.etiqueta}
+                          </span>
+                          <span className="mx-2 align-middle text-sm opacity-50">Â·</span>
+                          <span className={`align-middle font-playfair text-xl font-bold tracking-normal lg:text-3xl ${item.nameClassName}`}>
+                            {item.nombre}
+                          </span>
+                        </p>
+                        <Link
+                          href={item.articleHref}
+                          className={`inline-flex w-fit cursor-pointer items-center text-xs font-semibold opacity-90 underline decoration-current/50 decoration-1 underline-offset-4 transition hover:opacity-100 hover:decoration-current hover:decoration-2 lg:text-sm ${item.eyebrowClassName}`}
+                        >
+                          <span aria-hidden="true">&rarr;</span>
+                          <span className="ml-1.5">Ver más</span>
+                        </Link>
+                      </div>
+                    ) : (
                     <p className="truncate">
                       {item.articleHref ? (
                         <Link
@@ -211,6 +231,7 @@ export default function EspecialMundialPage() {
                         {item.nombre}
                       </span>
                     </p>
+                    )}
                   </div>
                   <span className="inline-flex h-8 w-10 shrink-0 items-center justify-center rounded-full border border-current/40 bg-transparent text-lg">
                     <span className={`fi fi-${item.pais.toLowerCase()}`} aria-hidden="true" />
