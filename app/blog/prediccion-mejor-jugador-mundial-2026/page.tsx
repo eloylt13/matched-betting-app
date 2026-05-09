@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
+import BlogCta from '@/components/blog/BlogCta'
 
 const title =
   'Mejor jugador Mundial 2026: por qué creo que Vitinha puede ganar el premio'
@@ -362,6 +363,8 @@ export default function PrediccionMejorJugadorMundial2026Page() {
           cabeza, ese premio individual va a tener un nombre bastante claro. El
           de su director de orquesta.
         </p>
+
+        <BlogCta variant="world-cup" />
 
         <section className="mt-10 rounded-2xl border border-stone-200 bg-stone-50 p-5">
           <h2 className="text-base font-bold text-stone-800 tracking-tight">
