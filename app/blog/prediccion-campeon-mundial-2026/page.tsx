@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
+import BlogCta from '@/components/blog/BlogCta'
 
 const title =
   'Predicción campeón Mundial 2026: por qué creo que Portugal puede ganar'
@@ -390,6 +391,8 @@ export default function PrediccionCampeonMundial2026Page() {
           futbolísticamente, la cuota encaja con lo que veo: Portugal puede
           ganar sin ser la selección más mencionada.
         </p>
+
+        <BlogCta variant="world-cup" />
 
         <section className="mt-10 rounded-2xl border border-stone-200 bg-stone-50 p-5">
           <h2 className="text-base font-bold text-stone-800 tracking-tight">
