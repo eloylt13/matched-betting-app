@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import BlogCta from "@/components/blog/BlogCta"
 
 export const metadata: Metadata = {
   title: '¿Qué es una freebet y cómo convertirla? Guía práctica | IAPredictHub',
@@ -322,27 +323,7 @@ export default function QueEsUnaFreebetPage() {
 
       </div>
 
-      {/* ── CTA final ── */}
-      <div className="bg-purple-50 border border-purple-100 rounded-2xl p-6 flex flex-col items-start gap-3 mt-2">
-        <p className="text-sm font-semibold text-stone-800">
-          ¿Tienes una freebet y no sabes cómo convertirla? Usa la calculadora gratuita
-          de IAPredictHub y obtén el resultado exacto antes de apostar.
-        </p>
-        <div className="flex flex-wrap gap-3">
-          <Link
-            href="/calculadora"
-            className="inline-block bg-purple-600 hover:bg-purple-700 text-white text-sm font-semibold px-6 py-3 rounded-xl transition-colors"
-          >
-            Usar la calculadora de freebet →
-          </Link>
-          <Link
-            href="/bienvenida"
-            className="inline-block bg-white border border-purple-200 hover:border-purple-400 text-purple-700 text-sm font-semibold px-6 py-3 rounded-xl transition-colors"
-          >
-            Ver guía completa →
-          </Link>
-        </div>
-      </div>
+      <BlogCta variant="freebet" />
 
       {/* ── Artículos relacionados ── */}
       <aside className="bg-white rounded-2xl border border-stone-100 p-5">
