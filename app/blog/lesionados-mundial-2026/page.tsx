@@ -13,11 +13,11 @@ type Jugador = {
   nombre: string
   club: string
   seleccion: string
+  seleccionNombre: string
   lesion: string
   tiempo: string
   estado: Estado
   descartado: boolean
-  demo?: boolean
 }
 
 type SearchParams = {
@@ -36,19 +36,29 @@ export const metadata: Metadata = {
 
 const SELECCIONES: Seleccion[] = [
   {
-    id: 'es',
-    nombre: 'España',
-    flag: 'https://hatscripts.github.io/circle-flags/flags/es.svg',
-  },
-  {
     id: 'ar',
     nombre: 'Argentina',
     flag: 'https://hatscripts.github.io/circle-flags/flags/ar.svg',
   },
   {
+    id: 'es',
+    nombre: 'España',
+    flag: 'https://hatscripts.github.io/circle-flags/flags/es.svg',
+  },
+  {
     id: 'br',
     nombre: 'Brasil',
     flag: 'https://hatscripts.github.io/circle-flags/flags/br.svg',
+  },
+  {
+    id: 'mx',
+    nombre: 'México',
+    flag: 'https://hatscripts.github.io/circle-flags/flags/mx.svg',
+  },
+  {
+    id: 'jp',
+    nombre: 'Japón',
+    flag: 'https://hatscripts.github.io/circle-flags/flags/jp.svg',
   },
   {
     id: 'fr',
@@ -61,57 +71,140 @@ const SELECCIONES: Seleccion[] = [
     flag: 'https://hatscripts.github.io/circle-flags/flags/de.svg',
   },
   {
-    id: 'hr',
-    nombre: 'Croacia',
-    flag: 'https://hatscripts.github.io/circle-flags/flags/hr.svg',
+    id: 'tr',
+    nombre: 'Turquía',
+    flag: 'https://hatscripts.github.io/circle-flags/flags/tr.svg',
+  },
+  {
+    id: 'gh',
+    nombre: 'Ghana',
+    flag: 'https://hatscripts.github.io/circle-flags/flags/gh.svg',
   },
   {
     id: 'gb-eng',
     nombre: 'Inglaterra',
     flag: 'https://hatscripts.github.io/circle-flags/flags/gb-eng.svg',
   },
-  {
-    id: 'nl',
-    nombre: 'Países Bajos',
-    flag: 'https://hatscripts.github.io/circle-flags/flags/nl.svg',
-  },
-  {
-    id: 'tr',
-    nombre: 'Turquía',
-    flag: 'https://hatscripts.github.io/circle-flags/flags/tr.svg',
-  },
-  {
-    id: 'uy',
-    nombre: 'Uruguay',
-    flag: 'https://hatscripts.github.io/circle-flags/flags/uy.svg',
-  },
 ]
 
 const JUGADORES: Jugador[] = [
   {
-    nombre: 'Rodri Hernández',
-    club: 'Manchester City',
+    nombre: 'Juan Foyth',
+    club: 'Villarreal',
+    seleccion: 'ar',
+    seleccionNombre: 'Argentina',
+    lesion: 'Rotura del tendón de Aquiles (ene)',
+    tiempo: 'Baja confirmada',
+    estado: 'descartado',
+    descartado: true,
+  },
+  {
+    nombre: 'Samu Aghehowa',
+    club: 'Porto',
     seleccion: 'es',
-    lesion: 'Molestia ingle (21 abr) · post cruzado',
-    tiempo: '+1-2 sem',
-    estado: 'llegara',
+    seleccionNombre: 'España',
+    lesion: 'Rotura de ligamentos cruzados (feb)',
+    tiempo: 'Baja confirmada',
+    estado: 'descartado',
+    descartado: true,
+  },
+  {
+    nombre: 'Luis Malagón',
+    club: 'América',
+    seleccion: 'mx',
+    seleccionNombre: 'México',
+    lesion: 'Rotura del tendón de Aquiles (mar)',
+    tiempo: 'Baja confirmada',
+    estado: 'descartado',
+    descartado: true,
+  },
+  {
+    nombre: 'Takumi Minamino',
+    club: 'Mónaco',
+    seleccion: 'jp',
+    seleccionNombre: 'Japón',
+    lesion: 'Rotura de ligamentos cruzados (finales de 2025)',
+    tiempo: 'Baja confirmada',
+    estado: 'descartado',
+    descartado: true,
+  },
+  {
+    nombre: 'Rodrygo Goes',
+    club: 'Real Madrid',
+    seleccion: 'br',
+    seleccionNombre: 'Brasil',
+    lesion: 'Rotura de ligamentos cruzados (mar)',
+    tiempo: 'Baja confirmada',
+    estado: 'descartado',
+    descartado: true,
+  },
+  {
+    nombre: 'Joaquín Panichelli',
+    club: 'Racing de Estrasburgo',
+    seleccion: 'ar',
+    seleccionNombre: 'Argentina',
+    lesion: 'Rotura de ligamentos cruzados en entrenamiento con selección',
+    tiempo: 'Baja confirmada',
+    estado: 'descartado',
+    descartado: true,
+  },
+  {
+    nombre: 'Hugo Ekitike',
+    club: 'Liverpool',
+    seleccion: 'fr',
+    seleccionNombre: 'Francia',
+    lesion: 'Rotura del tendón de Aquiles en cuartos frente al PSG',
+    tiempo: 'Baja confirmada',
+    estado: 'descartado',
+    descartado: true,
+  },
+  {
+    nombre: 'Serge Gnabry',
+    club: 'Bayern Munich',
+    seleccion: 'de',
+    seleccionNombre: 'Alemania',
+    lesion: 'Desgarro fibrilar grave en muslo derecho',
+    tiempo: 'Baja confirmada',
+    estado: 'descartado',
+    descartado: true,
+  },
+  {
+    nombre: 'Estevão',
+    club: 'Chelsea',
+    seleccion: 'br',
+    seleccionNombre: 'Brasil',
+    lesion: 'Lesión grado 4 en isquiotibiales',
+    tiempo: 'Muy difícil',
+    estado: 'duda',
     descartado: false,
   },
   {
-    nombre: 'Nico Williams',
-    club: 'Athletic Club',
-    seleccion: 'es',
-    lesion: 'Pubalgia crónica (tratamiento ext.)',
-    tiempo: 'Recuperado',
+    nombre: 'Éder Militão',
+    club: 'Real Madrid',
+    seleccion: 'br',
+    seleccionNombre: 'Brasil',
+    lesion: 'Lesión en bíceps femoral',
+    tiempo: 'Sin ritmo',
     estado: 'sin-ritmo',
+    descartado: false,
+  },
+  {
+    nombre: 'Arda Güler',
+    club: 'Real Madrid',
+    seleccion: 'tr',
+    seleccionNombre: 'Turquía',
+    lesion: 'Lesión en bíceps femoral derecho',
+    tiempo: 'En riesgo',
+    estado: 'duda',
     descartado: false,
   },
   {
     nombre: 'Lamine Yamal',
     club: 'FC Barcelona',
     seleccion: 'es',
-    lesion: 'Bíceps femoral izq. grado 2 (22 abr)',
-    tiempo: '+4-6 sem',
+    seleccionNombre: 'España',
+    lesion: 'Desgarro importante en bíceps femoral',
+    tiempo: 'Sin ritmo',
     estado: 'sin-ritmo',
     descartado: false,
   },
@@ -119,29 +212,62 @@ const JUGADORES: Jugador[] = [
     nombre: 'Mikel Merino',
     club: 'Arsenal',
     seleccion: 'es',
-    lesion: 'Fractura estrés pie der. (feb)',
-    tiempo: '+2-4 sem',
+    seleccionNombre: 'España',
+    lesion: 'Fractura de pie operada en febrero',
+    tiempo: 'Incógnita física',
     estado: 'duda',
     descartado: false,
   },
   {
-    nombre: 'Samu Aghehowa',
-    club: 'Porto',
-    seleccion: 'es',
-    lesion: 'LCA rodilla der. (feb)',
-    tiempo: '+8-9 meses',
-    estado: 'descartado',
-    descartado: true,
+    nombre: 'Mohamed Kudus',
+    club: 'Tottenham',
+    seleccion: 'gh',
+    seleccionNombre: 'Ghana',
+    lesion: 'Lesión de cuádriceps con mala evolución',
+    tiempo: 'Cirugía posible',
+    estado: 'duda',
+    descartado: false,
   },
-  ...makeDemoPlayers('ar', 'Argentina', 5),
-  ...makeDemoPlayers('br', 'Brasil', 3),
-  ...makeDemoPlayers('fr', 'Francia', 2),
-  ...makeDemoPlayers('de', 'Alemania', 2),
-  ...makeDemoPlayers('hr', 'Croacia', 2),
-  ...makeDemoPlayers('gb-eng', 'Inglaterra', 1),
-  ...makeDemoPlayers('nl', 'Países Bajos', 1),
-  ...makeDemoPlayers('tr', 'Turquía', 1),
-  ...makeDemoPlayers('uy', 'Uruguay', 1),
+  {
+    nombre: 'Wataru Endo',
+    club: 'Liverpool',
+    seleccion: 'jp',
+    seleccionNombre: 'Japón',
+    lesion: 'Lesiones de tobillo y rodilla desde febrero',
+    tiempo: 'Muy complicado',
+    estado: 'duda',
+    descartado: false,
+  },
+  {
+    nombre: 'Reece James',
+    club: 'Chelsea',
+    seleccion: 'gb-eng',
+    seleccionNombre: 'Inglaterra',
+    lesion: 'Lesiones musculares recurrentes',
+    tiempo: 'Duda física',
+    estado: 'duda',
+    descartado: false,
+  },
+  {
+    nombre: 'Marcel Ruiz',
+    club: 'Club pendiente',
+    seleccion: 'mx',
+    seleccionNombre: 'México',
+    lesion: 'Rotura parcial de ligamento cruzado y meniscos',
+    tiempo: 'Volvió, riesgo',
+    estado: 'sin-ritmo',
+    descartado: false,
+  },
+  {
+    nombre: 'Cristian Cuti Romero',
+    club: 'Tottenham',
+    seleccion: 'ar',
+    seleccionNombre: 'Argentina',
+    lesion: 'Lesión complicada; duda para el debut frente a Argelia',
+    tiempo: 'Duda debut',
+    estado: 'duda',
+    descartado: false,
+  },
 ]
 
 const ESTADOS: Record<
@@ -176,29 +302,6 @@ const ESTADOS: Record<
     badge:
       'border-rose-300/35 bg-rose-400/10 text-rose-100 shadow-sm shadow-rose-500/20',
   },
-}
-
-function makeDemoPlayers(
-  seleccion: string,
-  nombreSeleccion: string,
-  total: number,
-): Jugador[] {
-  const cycle: Estado[] = ['duda', 'sin-ritmo', 'llegara', 'descartado']
-
-  return Array.from({ length: total }, (_, index) => {
-    const estado = cycle[index % cycle.length]
-
-    return {
-      nombre: `Jugador ${nombreSeleccion} ${index + 1}`,
-      club: 'Club demo',
-      seleccion,
-      lesion: 'Dato demo pendiente de validar',
-      tiempo: estado === 'descartado' ? '+6 meses' : '+2-4 sem',
-      estado,
-      descartado: estado === 'descartado',
-      demo: true,
-    }
-  })
 }
 
 function getSearchParam(searchParams: SearchParams | undefined, key: keyof SearchParams) {
@@ -314,11 +417,6 @@ function TablaJugadores({
                         <span className="font-semibold text-white">
                           {jugador.nombre}
                         </span>
-                        {jugador.demo ? (
-                          <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-violet-300/80">
-                            Demo temporal
-                          </span>
-                        ) : null}
                       </div>
                     </td>
                     <td className="px-4 py-2.5 text-xs font-medium text-slate-400">
@@ -486,8 +584,8 @@ export default async function LesionadosMundial2026Page({
 
         <footer className="mx-auto flex max-w-3xl flex-col items-center gap-2 border-t border-white/10 pt-5 text-center text-xs leading-5 text-slate-500">
           <p>
-            Datos recopilados al 5 de mayo de 2026 basados en reportes médicos
-            oficiales de clubes y medios especializados.
+            Datos recopilados al 5 de mayo de 2026 a partir de partes médicos
+            oficiales y prensa especializada.
           </p>
           <p>
             Los tiempos de recuperación son estimaciones — la evolución real
