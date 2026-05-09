@@ -870,7 +870,7 @@ export default function LandingPage() {
               eventProps={{ location: 'final_cta', target_path: '/preguntas-frecuentes' }}
               className="group inline-flex items-center gap-1.5 text-sm text-gray-400 transition-colors duration-200 hover:text-violet-300"
             >
-              <span>Â¿Tienes dudas antes de empezar? Ver preguntas frecuentes</span>
+              <span>¿Tienes dudas antes de empezar? Ver preguntas frecuentes</span>
               <span
                 className="transition-transform duration-200 group-hover:translate-x-1"
                 aria-hidden="true"

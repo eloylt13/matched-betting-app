@@ -32,6 +32,10 @@ export const metadata: Metadata = {
   authors: [{ name: 'IAPredictHub' }],
   creator: 'IAPredictHub',
   publisher: 'IAPredictHub',
+  icons: {
+    icon: '/logo.png',
+    apple: '/logo.png',
+  },
   robots: {
     index: true,
     follow: true,
