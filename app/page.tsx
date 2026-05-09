@@ -486,6 +486,8 @@ export default function LandingPage() {
             </div>
             </div>
 
+            <div id="home-hero-sentinel" aria-hidden="true" className="h-px w-full" />
+
             <div className="hidden lg:block">
               <div className="rounded-2xl border border-white/10 bg-white/[0.06] p-8 text-left shadow-2xl backdrop-blur-xl">
                 <div>
@@ -541,8 +543,6 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-
-      <div id="home-hero-sentinel" aria-hidden="true" className="h-px w-full" />
 
       <section className="bg-[#0a0918] py-16 sm:py-24">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
