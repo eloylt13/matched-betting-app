@@ -97,22 +97,22 @@ export default async function PronosticosPage() {
                     <div className="border-t border-stone-100 px-4 py-4 sm:px-5">
                       <div className="space-y-4 text-sm leading-relaxed text-stone-600">
                         <p>
-                          La Freebet diaria no se publica por relleno. Solo mostramos una combinada gratis diaria cuando el motor encuentra partidos y mercados suficientes para validarla con criterios mínimos de calidad.
+                          La Freebet diaria parte de una combinada revisada manualmente. Solo mostramos una seleccion gratis diaria cuando los picks han pasado una validacion minima de contexto, cuota y coherencia.
                         </p>
 
                         <div>
-                          <h3 className="font-semibold text-stone-800">1. Filtrado de partidos</h3>
-                          <p className="mt-1">Analizamos solo partidos prepartido y competiciones compatibles con el motor. Si un evento no tiene datos suficientes o no encaja en la ventana diaria, se descarta.</p>
+                          <h3 className="font-semibold text-stone-800">1. Revision de partidos</h3>
+                          <p className="mt-1">La combinada se prepara a partir de partidos prepartido y mercados disponibles en la casa. Si un evento no encaja con el criterio del dia, se descarta antes de publicarlo.</p>
                         </div>
 
                         <div>
-                          <h3 className="font-semibold text-stone-800">2. Mercados priorizados</h3>
-                          <p className="mt-1">Priorizamos mercados de goles y, cuando encaja mejor, ganador. En esta versión evitamos mercados más ruidosos para mantener una selección más estable y entendible.</p>
+                          <h3 className="font-semibold text-stone-800">2. Mercado validado</h3>
+                          <p className="mt-1">Puede incluir ganador, goles, handicap asiatico, ambos marcan, clasificacion u otros mercados disponibles. El mercado se muestra tal como se ha validado en la combinada, sin reinterpretarlo.</p>
                         </div>
 
                         <div>
                           <h3 className="font-semibold text-stone-800">3. Selección de picks</h3>
-                          <p className="mt-1">El motor estima probabilidades, compara cuotas y calcula una referencia interna de valor para elegir una sola selección por partido. Después ordena los picks por consistencia, riesgo y calidad del mercado.</p>
+                          <p className="mt-1">La revision manual contrasta el contexto de cada partido, la cuota y el riesgo para dejar una sola seleccion por evento. El motor automatico queda como apoyo secundario si no hay combinada manual valida para hoy.</p>
                         </div>
 
                         <div>

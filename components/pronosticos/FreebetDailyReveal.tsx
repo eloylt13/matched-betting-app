@@ -13,7 +13,7 @@ type CombinadaPick = CombinadaData['picks'][number]
 
 const PROCESSING_STEPS = [
   'Analizando partidos del día...',
-  'Filtrando mercados de goles y ganador...',
+  'Revisando mercados validados manualmente...',
   'Calculando valor esperado...',
   'Generando Freebet diaria...',
 ]
@@ -21,13 +21,11 @@ const PROCESSING_STEPS = [
 function buildFallbackPickDetails(pick: CombinadaPick) {
   const [partido = pick.text, marketAndOdd = ''] = pick.text.split(' · ')
   const oddMatch = marketAndOdd.match(/@\s*(\d+(?:\.\d+)?)/)
-  const market = marketAndOdd.replace(/\s*@\s*\d+(?:\.\d+)?/, '').trim()
-
   return {
     partido,
     liga: pick.liga ?? 'Dato no disponible',
     hora: pick.hora ?? 'Dato no disponible',
-    mercado: pick.mercado ?? market ?? 'Dato no disponible',
+    mercado: pick.mercado ?? 'Dato no disponible',
     cuota: pick.cuota ?? oddMatch?.[1] ?? 'Dato no disponible',
     probabilidadModelo: pick.probabilidadModelo ?? 'Dato no disponible',
     fairOdds: pick.fairOdds ?? 'Dato no disponible',

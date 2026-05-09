@@ -346,7 +346,16 @@ const getCachedQuantLiteCombinada = unstable_cache(generateQuantLiteCombinada, [
 })
 
 export async function getQuantLiteCombinada(): Promise<CombinadaData | null> {
-  logEngineDiagnostic('Acceso a getQuantLiteCombinada (capa cacheada)', {
+  const manualFallback = getManualFallbackIfToday()
+
+  if (manualFallback) {
+    logEngineDiagnostic('Combinada manual vigente; se omite motor automatico/cacheado', {
+      etiquetaDia: manualFallback.etiquetaDia,
+    })
+    return manualFallback
+  }
+
+  logEngineDiagnostic('Acceso a getQuantLiteCombinada (fallback automatico cacheado)', {
     cacheKey: 'pronosticos-freebet-diaria',
     revalidateSeconds: DAILY_REVALIDATE_SECONDS,
   })
