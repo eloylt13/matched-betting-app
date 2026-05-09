@@ -196,7 +196,7 @@ export default function EspecialMundialPage() {
                           <span className={`align-middle text-[11px] font-semibold uppercase tracking-[0.18em] lg:text-sm ${item.eyebrowClassName}`}>
                             {item.etiqueta}
                           </span>
-                          <span className="mx-2 align-middle text-sm opacity-50">Â·</span>
+                          <span className="mx-2 align-middle text-sm opacity-50">{' · '}</span>
                           <span className={`align-middle font-playfair text-xl font-bold tracking-normal lg:text-3xl ${item.nameClassName}`}>
                             {item.nombre}
                           </span>
