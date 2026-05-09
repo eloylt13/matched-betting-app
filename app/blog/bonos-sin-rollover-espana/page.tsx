@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import BlogCta from '@/components/blog/BlogCta'
 
 export const metadata: Metadata = {
   title: 'Bonos sin rollover en España 2026: las mejores ofertas sin condiciones | IAPredictHub',
@@ -545,26 +546,7 @@ export default function BonosSinRolloverEspanaPage() {
 
       </div>
 
-      {/* ── CTA final ── */}
-      <div className="bg-purple-50 border border-purple-100 rounded-2xl p-6 flex flex-col items-start gap-3 mt-2">
-        <p className="text-sm font-semibold text-stone-800">
-          Empieza con los bonos más sencillos: IAPredictHub te guía paso a paso, con calculadora y seguimiento de casas integrados.
-        </p>
-        <div className="flex flex-wrap gap-3">
-          <Link
-            href="/bienvenida"
-            className="inline-block bg-purple-600 hover:bg-purple-700 text-white text-sm font-semibold px-6 py-3 rounded-xl transition-colors"
-          >
-            Empieza gratis con IAPredictHub →
-          </Link>
-          <Link
-            href="/casas"
-            className="inline-block bg-white hover:bg-stone-50 text-purple-600 border border-purple-200 text-sm font-semibold px-6 py-3 rounded-xl transition-colors"
-          >
-            Ver todas las casas →
-          </Link>
-        </div>
-      </div>
+      <BlogCta variant="bonuses" />
 
       {/* ── Artículos y guías relacionados ── */}
       <aside className="bg-white rounded-2xl border border-stone-100 p-5">
