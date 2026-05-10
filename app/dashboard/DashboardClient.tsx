@@ -11,6 +11,7 @@ import CasasPendientes from '@/components/dashboard/CasasPendientes'
 import BonosPendientes from '@/components/dashboard/BonosPendientes'
 import ProximasAcciones from '@/components/dashboard/ProximasAcciones'
 import CasasProgress from '@/components/dashboard/CasasProgress'
+import FirstStepRecommendation from '@/components/dashboard/FirstStepRecommendation'
 
 type Market = 'espana' | 'latam'
 
@@ -130,6 +131,8 @@ export default function DashboardClient() {
 
   return (
     <div className="flex flex-col gap-6">
+      <FirstStepRecommendation />
+
       <div className="flex gap-2">
         <button
           type="button"
