@@ -9,6 +9,7 @@ const todayUpdateLabel = new Date().toLocaleDateString('es-ES', {
 })
 
 import { FreebetDailyReveal } from '@/components/pronosticos/FreebetDailyReveal'
+import { InstallPwaBlock } from '@/components/pronosticos/InstallPwaBlock'
 import ClubMundialVipForm from '@/components/ClubMundialVip/ClubMundialVipForm'
 import { getQuantLiteCombinada } from '@/lib/pronosticos/engine'
 
@@ -128,6 +129,8 @@ export default async function PronosticosPage() {
                     </div>
                   </details>
                 </div>
+
+                <InstallPwaBlock />
               </>
             ) : (
               <div className="rounded-2xl border border-emerald-100 bg-gradient-to-br from-emerald-50 via-white to-stone-50 p-5 shadow-sm sm:p-6">
