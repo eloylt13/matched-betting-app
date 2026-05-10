@@ -875,7 +875,7 @@ export default function LandingPage() {
                 className="transition-transform duration-200 group-hover:translate-x-1"
                 aria-hidden="true"
               >
-                â†’
+                →
               </span>
             </TrackedLink>
           </div>
