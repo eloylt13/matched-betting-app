@@ -3,8 +3,8 @@ const CACHE_NAME = 'iapredicthub-static-v1'
 const STATIC_ASSET_PATHS = new Set([
   '/favicon.ico',
   '/apple-touch-icon.png',
-  '/icons/icon-192.png',
-  '/icons/icon-512.png',
+  '/icons/web-app-manifest-192x192.png',
+  '/icons/web-app-manifest-512x512.png',
 ])
 
 self.addEventListener('install', () => {
