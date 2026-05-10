@@ -63,15 +63,42 @@ function capitalizeFirstLetter(value: string) {
   return value.charAt(0).toUpperCase() + value.slice(1)
 }
 
-function getTodaySpanishLabel(referenceDate = new Date()) {
+function getMadridDateParts(referenceDate = new Date()) {
+  const parts = new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'Europe/Madrid',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    hourCycle: 'h23',
+  }).formatToParts(referenceDate)
+
+  const getPart = (type: Intl.DateTimeFormatPartTypes) => Number(parts.find((part) => part.type === type)?.value)
+
+  return {
+    year: getPart('year'),
+    month: getPart('month'),
+    day: getPart('day'),
+    hour: getPart('hour'),
+  }
+}
+
+function getOperationalSpanishLabel(referenceDate = new Date()) {
+  const madridDate = getMadridDateParts(referenceDate)
+  const operationalUtcNoon = new Date(Date.UTC(
+    madridDate.year,
+    madridDate.month - 1,
+    madridDate.day - (madridDate.hour < 6 ? 1 : 0),
+    12,
+  ))
+
   return capitalizeFirstLetter(
     new Intl.DateTimeFormat('es-ES', {
       weekday: 'long',
       day: 'numeric',
       month: 'long',
-      year: 'numeric',
       timeZone: 'Europe/Madrid',
-    }).format(referenceDate),
+    }).format(operationalUtcNoon),
   )
 }
 
@@ -86,23 +113,12 @@ function labelNormalized(s: string) {
 }
 
 function getManualFallbackIfToday(): CombinadaData | null {
-  const labelNormalized = (s: string) =>
-    s
-      .toLowerCase()
-      .normalize('NFD')
-      .replace(/\p{Diacritic}/gu, '')
-      .replace(/[,\.]+/g, '')
-      .replace(/\s+/g, ' ')
-      .trim()
+  const operationalDayMadrid = getOperationalSpanishLabel()
 
-  const todayMadrid = new Intl.DateTimeFormat('es-ES', {
-    weekday: 'long', day: 'numeric', month: 'long',
-    timeZone: 'Europe/Madrid',
-  }).format(new Date())
-
-  if (labelNormalized(combinadaDelDia.etiquetaDia) === labelNormalized(todayMadrid)) {
-    logEngineDiagnostic('Usando fallback manual de mockData para hoy', {
+  if (labelNormalized(combinadaDelDia.etiquetaDia) === labelNormalized(operationalDayMadrid)) {
+    logEngineDiagnostic('Usando fallback manual de mockData para dia operativo 06:00 Europe/Madrid', {
       etiquetaDia: combinadaDelDia.etiquetaDia,
+      operationalDayMadrid,
     })
     return combinadaDelDia
   }
