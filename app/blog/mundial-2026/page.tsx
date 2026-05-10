@@ -480,6 +480,46 @@ export default function Mundial2026Page() {
 
         <BlogCta variant="world-cup" />
 
+        <section className="mt-10 rounded-2xl border border-stone-200 bg-stone-50 p-5">
+          <h2 className="text-base font-bold text-stone-800 tracking-tight">
+            Más sobre el Mundial 2026
+          </h2>
+          <ul className="mt-3 flex flex-col gap-2 text-sm text-stone-600">
+            <li>
+              <Link
+                href="/especial/mundial"
+                className="text-purple-600 underline underline-offset-4 hover:text-purple-700"
+              >
+                Especial Mundial 2026 de IAPredictHub
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/blog/prediccion-campeon-mundial-2026"
+                className="text-purple-600 underline underline-offset-4 hover:text-purple-700"
+              >
+                Predicción del campeón del Mundial 2026
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/blog/prediccion-mejor-jugador-mundial-2026"
+                className="text-purple-600 underline underline-offset-4 hover:text-purple-700"
+              >
+                Predicción del mejor jugador del Mundial 2026
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/blog/lesionados-mundial-2026"
+                className="text-purple-600 underline underline-offset-4 hover:text-purple-700"
+              >
+                Lesionados y posibles bajas del Mundial 2026
+              </Link>
+            </li>
+          </ul>
+        </section>
+
         <p>
           En IAPredictHub iremos actualizando la lectura del torneo desde un
           enfoque editorial. Puedes ver la versión visual y resumida en el{' '}

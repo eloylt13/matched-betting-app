@@ -398,18 +398,40 @@ export default function PrediccionCampeonMundial2026Page() {
           <h2 className="text-base font-bold text-stone-800 tracking-tight">
             Más predicciones del Mundial 2026
           </h2>
-          <p className="mt-2 text-sm text-stone-600">
-            Si quieres ver el resto de mis predicciones para el Mundial 2026 —
-            subcampeón, top 4, máximo goleador y mejores jugadores — puedes
-            consultarlas en el{' '}
-            <Link
-              href="/especial/mundial"
-              className="text-emerald-700 underline underline-offset-4 hover:text-emerald-800"
-            >
-              especial Mundial 2026
-            </Link>
-            .
-          </p>
+          <ul className="mt-3 flex flex-col gap-2 text-sm text-stone-600">
+            <li>
+              <Link
+                href="/especial/mundial"
+                className="text-emerald-700 underline underline-offset-4 hover:text-emerald-800"
+              >
+                Especial Mundial 2026 de IAPredictHub
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/blog/mundial-2026"
+                className="text-emerald-700 underline underline-offset-4 hover:text-emerald-800"
+              >
+                Guía completa del Mundial 2026
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/blog/prediccion-mejor-jugador-mundial-2026"
+                className="text-emerald-700 underline underline-offset-4 hover:text-emerald-800"
+              >
+                Predicción del mejor jugador del Mundial 2026
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/blog/lesionados-mundial-2026"
+                className="text-emerald-700 underline underline-offset-4 hover:text-emerald-800"
+              >
+                Lesionados y posibles bajas del Mundial 2026
+              </Link>
+            </li>
+          </ul>
         </section>
       </div>
     </article>

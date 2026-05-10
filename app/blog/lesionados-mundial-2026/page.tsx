@@ -653,6 +653,46 @@ export default async function LesionadosMundial2026Page({
 
         <PremiumCtas className="flex flex-col gap-3 py-2 lg:hidden" />
 
+        <section className="mx-auto w-full max-w-3xl rounded-2xl border border-white/10 bg-white/[0.03] p-5 shadow-lg shadow-black/10">
+          <h2 className="text-base font-bold tracking-tight text-white">
+            Más sobre el Mundial 2026
+          </h2>
+          <ul className="mt-3 flex flex-col gap-2 text-sm text-slate-300">
+            <li>
+              <Link
+                href="/especial/mundial"
+                className="text-violet-200 underline underline-offset-4 hover:text-white"
+              >
+                Especial Mundial 2026 de IAPredictHub
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/blog/mundial-2026"
+                className="text-violet-200 underline underline-offset-4 hover:text-white"
+              >
+                Guía completa del Mundial 2026
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/blog/prediccion-campeon-mundial-2026"
+                className="text-violet-200 underline underline-offset-4 hover:text-white"
+              >
+                Predicción del campeón del Mundial 2026
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/blog/prediccion-mejor-jugador-mundial-2026"
+                className="text-violet-200 underline underline-offset-4 hover:text-white"
+              >
+                Predicción del mejor jugador del Mundial 2026
+              </Link>
+            </li>
+          </ul>
+        </section>
+
         <footer className="mx-auto flex max-w-3xl flex-col items-center gap-2 border-t border-white/10 pt-5 text-center text-xs leading-5 text-slate-500">
           <p>
             Datos recopilados al 5 de mayo de 2026 a partir de partes médicos
