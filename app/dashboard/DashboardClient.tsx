@@ -53,11 +53,11 @@ const START_ACTIONS = {
       external: true,
     },
     {
-      id: 'sportium',
-      title: 'Empezar por Sportium',
-      description: 'Una casa sencilla y clara para arrancar con menos fricción.',
-      href: '/casas/sportium',
-      label: 'Empezar con Sportium',
+      id: 'versus',
+      title: 'Empezar por Versus',
+      description: 'Versus es la primera casa recomendada para hacer tu primer bono guiado paso a paso.',
+      href: '/casas/versus',
+      label: 'Ver guía de Versus',
       external: false,
     },
   ],
@@ -323,7 +323,7 @@ export default function DashboardClient() {
                 <p className="text-emerald-600 font-bold text-sm mb-1">① Elige una casa</p>
                 <p className="text-xs text-stone-500 leading-relaxed">
                   {market === 'espana'
-                    ? 'Empieza por una oferta fácil como Sportium para coger ritmo.'
+                    ? 'Empieza por Versus, la primera casa recomendada para hacer tu primer bono guiado paso a paso.'
                     : 'Empieza por Betfair Sportsbook, disponible en 15 países LATAM.'}
                 </p>
               </div>
