@@ -362,7 +362,7 @@ export default function LandingPage() {
                 eventProps={{ location: 'header', target_path: '/bienvenida' }}
                 className="inline-flex items-center rounded-full border border-violet-200/35 bg-violet-500 px-3 sm:px-5 py-1.5 sm:py-2 text-xs sm:text-sm font-bold text-white shadow-[0_10px_28px_rgba(124,58,237,0.28)] transition-colors hover:bg-violet-400"
               >
-                Probar gratis →
+                Primer bono guiado →
               </TrackedLink>
             </nav>
           </div>
@@ -400,8 +400,8 @@ export default function LandingPage() {
                 </svg>
               </div>
               <div className="min-w-0 flex-1 text-left">
-                <p className="text-sm font-semibold text-white">Freebet diaria de hoy</p>
-                <p className="text-xs text-gray-400">Reclámala en 2 minutos</p>
+                <p className="text-sm font-semibold text-white">Oportunidad de hoy</p>
+                <p className="text-xs text-gray-400">Ver condiciones y pasos</p>
               </div>
               <span className="shrink-0 text-lg text-emerald-400 transition-transform duration-200 group-hover:translate-x-1">
                 →
@@ -431,18 +431,20 @@ export default function LandingPage() {
             </h1>
 
             <p className="mx-auto mt-5 max-w-3xl text-base leading-relaxed text-gray-300 sm:text-lg lg:mx-0">
-              IAPredictHub te enseña por dónde empezar y te acompaña con guía, calculadora y checklist para ejecutar tu primer bono con más orden y menos errores.
+              IAPredictHub es gratis y no necesitas crear cuenta aquí. Para ejecutar el bono sí tendrás que
+              registrarte en la casa de apuestas y contar con capital inicial; te guiamos paso a paso empezando
+              por Versus.
             </p>
 
             <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center lg:justify-start">
               <TrackedLink
-                href="/casas/versus"
+                href="/bienvenida"
                 eventName="home_cta_primary_clicked"
-                eventProps={{ location: 'hero', target_path: '/casas/versus' }}
+                eventProps={{ location: 'hero', target_path: '/bienvenida' }}
                 className="group w-full rounded-lg bg-emerald-500 px-7 py-3.5 text-center text-base font-bold text-white shadow-[0_20px_56px_rgba(16,185,129,0.32)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-emerald-400 hover:shadow-[0_24px_66px_rgba(52,211,153,0.42)] sm:w-auto"
               >
                 <span className="inline-flex items-center gap-2">
-                  <span>Empezar con mi primer bono</span>
+                  <span>Empezar mi primer bono guiado</span>
                   <span className="text-lg leading-none transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">→</span>
                 </span>
               </TrackedLink>
@@ -452,18 +454,18 @@ export default function LandingPage() {
                 eventProps={{ location: 'hero', target_path: '/guias' }}
                 className="w-full rounded-lg border border-white/20 bg-transparent px-7 py-3.5 text-center text-base font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/10 sm:w-auto"
               >
-                Ver guías gratis
+                Entender primero el método
               </TrackedLink>
             </div>
 
             <div className="mt-6 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-gray-400 lg:justify-start">
               <div className="inline-flex items-center gap-2">
                 <span className="text-emerald-400">✓</span>
-                <span>Sin tarjeta</span>
+                <span>IAPredictHub es gratis</span>
               </div>
               <div className="inline-flex items-center gap-2">
                 <span className="text-emerald-400">✓</span>
-                <span>Sin registro</span>
+                <span>Sin cuenta en IAPredictHub</span>
               </div>
               <div className="inline-flex items-center gap-2">
                 <span className="text-emerald-400">✓</span>
@@ -476,12 +478,12 @@ export default function LandingPage() {
                   }}
                   className="text-emerald-400 underline decoration-emerald-400/40 underline-offset-4 transition-colors duration-200 hover:decoration-emerald-400"
                 >
-                  +2.000€ en bonos disponibles →
+                  Bonos disponibles con condiciones →
                 </TrackedLink>
               </div>
               <div className="inline-flex items-center gap-2">
                 <span className="text-emerald-400">✓</span>
-                <span>30+ casas en España y LATAM</span>
+                <span>Registro y depósito en la casa</span>
               </div>
             </div>
             </div>
@@ -510,17 +512,17 @@ export default function LandingPage() {
                     </div>
                     <div>
                       <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-gray-500">
-                        Beneficio estimado
+                        Capital inicial
                       </p>
-                      <p className="mt-1 text-sm font-semibold text-gray-100">125€</p>
+                      <p className="mt-1 text-sm font-semibold text-gray-100">Puede hacer falta</p>
                     </div>
                   </div>
                 </div>
 
                 <div className="mt-7 space-y-4">
                   {[
-                    { marker: '✓', label: 'Abrir cuenta en Versus', completed: true },
-                    { marker: '2', label: 'Activar bono de bienvenida', completed: false },
+                    { marker: '✓', label: 'Seguir la guía de Versus', completed: true },
+                    { marker: '2', label: 'Registrarte y activar el bono', completed: false },
                     { marker: '3', label: 'Calcular cobertura', completed: false },
                     { marker: '4', label: 'Ejecutar y verificar', completed: false },
                   ].map((step) => (
@@ -581,12 +583,12 @@ export default function LandingPage() {
 
           <div className="mt-12 text-center">
             <TrackedLink
-              href="/casas/versus"
+              href="/bienvenida"
               eventName="home_como_funciona_cta_clicked"
-              eventProps={{ location: 'como_funciona', target_path: '/casas/versus' }}
+              eventProps={{ location: 'como_funciona', target_path: '/bienvenida' }}
               className="group inline-flex items-center gap-2 rounded-lg border border-white/20 bg-transparent px-7 py-3.5 text-base font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/10"
             >
-              <span>Empezar con Versus</span>
+              <span>Empezar mi primer bono guiado</span>
               <span className="text-lg leading-none transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">
                 →
               </span>
@@ -601,7 +603,7 @@ export default function LandingPage() {
                 }}
                 className="text-sm text-gray-400 transition-colors duration-200 hover:text-emerald-300"
               >
-                ¿Cuánto se puede ganar? Ver tabla de beneficios estimados →
+                Ver contexto realista de bonos disponibles →
               </TrackedLink>
             </div>
           </div>
@@ -639,15 +641,15 @@ export default function LandingPage() {
               <div className="mb-6 space-y-3">
                 <div className="flex items-start gap-2">
                   <span className="font-semibold text-emerald-500">✓</span>
-                  <p className="text-sm text-stone-700">Buena opción para empezar desde cero</p>
+                  <p className="text-sm text-stone-700">Primera casa recomendada para seguir el bono guiado</p>
                 </div>
                 <div className="flex items-start gap-2">
                   <span className="font-semibold text-emerald-500">✓</span>
-                  <p className="text-sm text-stone-700">Bono sencillo de entender</p>
+                  <p className="text-sm text-stone-700">Bono sencillo de entender, con registro y depósito en Versus</p>
                 </div>
                 <div className="flex items-start gap-2">
                   <span className="font-semibold text-emerald-500">✓</span>
-                  <p className="text-sm text-stone-700">Dificultad baja: 1/5</p>
+                  <p className="text-sm text-stone-700">Dificultad baja: 1/5, pensado para empezar con orden</p>
                 </div>
               </div>
 
@@ -840,10 +842,10 @@ export default function LandingPage() {
           <div className="relative overflow-hidden rounded-[1.75rem] border border-violet-200/15 bg-white/[0.045] px-6 py-10 shadow-[0_24px_80px_rgba(0,0,0,0.28)] ring-1 ring-white/[0.04] backdrop-blur-md sm:px-10 sm:py-14">
             <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-violet-200/45 to-transparent" />
           <p className="text-xs font-semibold text-violet-300 uppercase tracking-widest mb-4">Empieza hoy</p>
-          <h2 className="font-playfair text-3xl sm:text-4xl font-bold text-white mb-6">Todo listo para empezar.<br />Sin registro. Sin coste.</h2>
+          <h2 className="font-playfair text-3xl sm:text-4xl font-bold text-white mb-6">Todo listo para empezar.<br />Gratis en IAPredictHub.</h2>
           <p className="text-gray-400 text-base sm:text-lg mb-10 max-w-lg mx-auto leading-relaxed">
-            Entra gratis y sigue el paso a paso para empezar con más orden, entender qué toca hacer
-            y ejecutar con más claridad desde el principio.
+            No necesitas crear cuenta en IAPredictHub. Para completar el bono guiado tendrás que registrarte
+            en la casa de apuestas y puede hacer falta capital inicial.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <TrackedLink
@@ -852,7 +854,7 @@ export default function LandingPage() {
               eventProps={{ location: 'final_cta', target_path: '/bienvenida' }}
               className="w-full sm:w-auto rounded-lg border border-violet-200/35 bg-violet-500 px-10 py-4 text-lg font-bold text-white shadow-[0_18px_46px_rgba(124,58,237,0.34)] transition-all hover:-translate-y-0.5 hover:bg-violet-400 hover:shadow-[0_22px_56px_rgba(139,92,246,0.42)]"
             >
-              Entrar ahora y empezar con más orden →
+              Empezar mi primer bono guiado →
             </TrackedLink>
             <TrackedLink
               href="/guias"
@@ -860,7 +862,7 @@ export default function LandingPage() {
               eventProps={{ location: 'final_cta', target_path: '/guias' }}
               className="w-full sm:w-auto rounded-lg border border-white/14 bg-white/[0.04] px-8 py-4 text-base font-semibold text-white transition-all hover:border-violet-200/30 hover:bg-white/[0.08]"
             >
-              Ver guía y herramientas
+              Entender primero el método
             </TrackedLink>
           </div>
           <div className="mt-8 flex items-center justify-center">
