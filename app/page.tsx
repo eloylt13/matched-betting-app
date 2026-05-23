@@ -4,6 +4,7 @@ import TrackedLink from '@/components/analytics/TrackedLink'
 import EmailCapture from '@/components/landing/EmailCapture'
 import HeroAtmosphere from '@/components/landing/HeroAtmosphere'
 import HeroMockup from '@/components/landing/HeroMockup'
+import StickyMobileCTA from '@/components/StickyMobileCTA'
 
 type LandingIconName =
   | 'calculator'
@@ -289,7 +290,7 @@ export default function LandingPage() {
   }
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen pb-28 md:pb-0">
       <style>{`
         .landing-reveal {
           opacity: 1;
@@ -885,6 +886,7 @@ export default function LandingPage() {
         </div>
       </section>
 
+      <StickyMobileCTA href="/bienvenida" label="Empezar mi primer bono guiado" />
     </div>
   )
 }

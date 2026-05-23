@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import StickyMobileCTA from '@/components/StickyMobileCTA'
 
 export const metadata: Metadata = {
   title: 'Freebet diaria en pausa | IAPredictHub',
@@ -8,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function PronosticosPage() {
   return (
-    <div className="min-h-[70vh] px-4 py-10 sm:py-14">
+    <div className="min-h-[70vh] px-4 pb-40 pt-10 sm:py-14">
       <div className="mx-auto flex w-full max-w-4xl flex-col gap-8">
         <section className="overflow-hidden rounded-3xl border border-stone-200 bg-white shadow-sm">
           <div
@@ -61,6 +62,8 @@ export default function PronosticosPage() {
           </div>
         </section>
       </div>
+
+      <StickyMobileCTA href="/bienvenida" label="Empezar mi primer bono guiado" offset="aboveNav" />
     </div>
   )
 }

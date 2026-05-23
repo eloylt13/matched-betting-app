@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import StickyMobileCTA from '@/components/StickyMobileCTA'
 
 const introGuideHref = '/guias/primeros-pasos/introduccion-matched-betting'
 const betfairGuideHref = '/guias/primeros-pasos/betfair-exchange'
@@ -127,7 +128,7 @@ export const metadata: Metadata = {
 export default function BienvenidaPage() {
   return (
     <main
-      className="min-h-screen overflow-hidden bg-[#0e0d1f] px-4 py-10 text-white sm:px-6 sm:py-14 lg:px-8"
+      className="min-h-screen overflow-hidden bg-[#0e0d1f] px-4 pb-40 pt-10 text-white sm:px-6 sm:py-14 lg:px-8"
       style={{
         background:
           'linear-gradient(160deg, #0e0d1f 0%, #12112A 42%, #18213a 72%, #101726 100%)',
@@ -343,6 +344,8 @@ export default function BienvenidaPage() {
           </div>
         </section>
       </div>
+
+      <StickyMobileCTA href="/casas/versus" label="Empezar con Versus" offset="aboveNav" />
     </main>
   )
 }
