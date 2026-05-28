@@ -402,7 +402,7 @@ export default function LandingPage() {
               </div>
               <div className="min-w-0 flex-1 text-left">
                 <p className="text-sm font-semibold text-white">Club Mundial VIP</p>
-                <p className="text-xs text-gray-400">Telegram privado · 4,99 € fundador</p>
+                <p className="text-xs text-gray-400">Telegram privado · 5 € fundador</p>
               </div>
               <span className="shrink-0 text-lg text-amber-300 transition-transform duration-200 group-hover:translate-x-1">
                 →

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 
-const PAYGO_URL = 'https://app.afiliago.com/pago/iapredicthub/JAYO1LND'
+const PAYGO_URL = 'https://app.afiliago.com/paygo/iapredicthub/JAYO1LND'
 
 const includes = [
   'Pronósticos a largo plazo: campeón, clasificados de grupo, semifinalistas, máximo goleador y mercados especiales.',
@@ -13,7 +13,7 @@ const includes = [
 ]
 
 const steps = [
-  'Entras al Club por 4,99 €.',
+  'Entras al Club por 5 €.',
   'Afiliago PayGo te muestra automáticamente el enlace privado de Telegram tras el pago.',
   'Recibes los análisis y pronósticos durante el Mundial 2026.',
 ]
@@ -55,7 +55,7 @@ export default function PronosticosPage() {
                 <p className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-200">
                   Precio fundador
                 </p>
-                <p className="mt-2 text-3xl font-bold text-white">Precio fundador: 4,99 €</p>
+                <p className="mt-2 text-3xl font-bold text-white">Precio fundador: 5 €</p>
                 <p className="mt-1 text-sm font-medium text-gray-300 line-through">Antes 9,99 €</p>
                 <a
                   href={PAYGO_URL}
@@ -140,7 +140,7 @@ export default function PronosticosPage() {
               rel="noopener noreferrer"
               className="inline-flex min-h-12 items-center justify-center rounded-xl bg-emerald-600 px-5 py-3 text-center text-sm font-bold text-white shadow-sm transition hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
             >
-              Entrar al Club por 4,99 €
+              Entrar al Club por 5 €
             </a>
             <Link
               href="/especial/mundial"
@@ -159,7 +159,7 @@ export default function PronosticosPage() {
           rel="noopener noreferrer"
           className="flex min-h-12 w-full items-center justify-center rounded-full bg-emerald-600 px-5 py-3 text-center text-sm font-semibold text-white shadow-lg shadow-emerald-950/20 transition hover:bg-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:ring-offset-2 focus:ring-offset-slate-950"
         >
-          Entrar al Club por 4,99 €
+          Entrar al Club por 5 €
         </a>
       </div>
     </div>
