@@ -41,9 +41,10 @@ export default function ClubMundialVipBanner() {
         </div>
 
         <div className="flex shrink-0 flex-col gap-3 lg:w-[240px]">
-          <p className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-2 text-center text-sm font-semibold text-amber-900">
-            Precio fundador: 5 € · Antes 9,99 €
-          </p>
+          <div className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-center text-sm font-semibold leading-6 text-amber-900">
+            <p>Precio anticipado: 5 €</p>
+            <p className="text-xs font-medium text-amber-800">Antes 9,99 €</p>
+          </div>
           <Link
             href="/pronosticos"
             className="inline-flex min-h-11 items-center justify-center rounded-xl bg-emerald-700 px-5 py-3 text-center text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-800 focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:ring-offset-2"
