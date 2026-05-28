@@ -380,31 +380,31 @@ export default function LandingPage() {
               href="/pronosticos"
               eventName="home_freebet_card_clicked"
               eventProps={{ location: 'hero', target_path: '/pronosticos' }}
-              className="group mx-auto mb-3 flex max-w-sm items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 backdrop-blur-sm transition-all duration-200 hover:border-emerald-400/40 hover:bg-white/10 lg:mx-0"
+              className="group mx-auto mb-3 flex max-w-sm items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 backdrop-blur-sm transition-all duration-200 hover:border-amber-300/40 hover:bg-white/10 lg:mx-0"
             >
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-emerald-400/30 bg-emerald-500/10">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-amber-300/30 bg-amber-300/10">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
-                  strokeWidth="2"
+                  strokeWidth="1.8"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  className="h-5 w-5 text-emerald-400"
+                  className="h-5 w-5 text-amber-300"
+                  aria-hidden="true"
                 >
-                  <polyline points="20 12 20 22 4 22 4 12" />
-                  <rect x="2" y="7" width="20" height="5" />
-                  <line x1="12" y1="22" x2="12" y2="7" />
-                  <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z" />
-                  <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z" />
+                  <path d="M7.5 5.5h9l3 4.2L12 19 4.5 9.7l3-4.2Z" />
+                  <path d="M4.5 9.7h15" />
+                  <path d="m8.5 9.7 3.5 9.3 3.5-9.3" />
+                  <path d="m7.5 5.5 1 4.2 3.5-4.2 3.5 4.2 1-4.2" />
                 </svg>
               </div>
               <div className="min-w-0 flex-1 text-left">
-                <p className="text-sm font-semibold text-white">Oportunidad de hoy</p>
-                <p className="text-xs text-gray-400">Ver condiciones y pasos</p>
+                <p className="text-sm font-semibold text-white">Club Mundial VIP</p>
+                <p className="text-xs text-gray-400">Telegram privado · 4,99 € fundador</p>
               </div>
-              <span className="shrink-0 text-lg text-emerald-400 transition-transform duration-200 group-hover:translate-x-1">
+              <span className="shrink-0 text-lg text-amber-300 transition-transform duration-200 group-hover:translate-x-1">
                 →
               </span>
             </TrackedLink>
@@ -420,7 +420,7 @@ export default function LandingPage() {
               </div>
               <div className="min-w-0 flex-1 text-left">
                 <p className="text-sm font-semibold text-white">Especial Mundial 2026</p>
-                <p className="text-xs text-stone-300">Mis predicciones del torneo</p>
+                <p className="text-xs text-stone-300">Predicciones gratis del torneo</p>
               </div>
               <span className="shrink-0 text-lg text-[#D4AF37] transition-transform duration-200 group-hover:translate-x-1">
                 →
