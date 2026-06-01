@@ -490,13 +490,16 @@ export default function LandingPage() {
 
             <div className="mx-auto mt-5 max-w-2xl rounded-xl border border-white/10 bg-white/[0.045] px-4 py-3 text-left shadow-[0_14px_36px_rgba(0,0,0,0.18)] backdrop-blur-sm sm:flex sm:items-center sm:justify-between sm:gap-4 lg:mx-0">
               <div className="min-w-0">
-                <p className="text-sm font-semibold text-white">🔔 ¿Ya tienes cuenta en varias casas?</p>
+                <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-emerald-300/80">
+                  BENEFICIOS RECURRENTES
+                </p>
+                <p className="mt-1 text-sm font-semibold leading-snug text-white">🔔 Alertas de ofertas recurrentes</p>
                 <p className="mt-1 text-xs leading-relaxed text-slate-300">
                   Recibe alertas recurrentes por Telegram con promociones, recargas y reembolsos detectados en casas
                   de apuestas.
                 </p>
                 <p className="mt-2 text-[11px] leading-relaxed text-slate-500">
-                  +18 · Juego responsable · Revisa siempre las condiciones oficiales de cada casa.
+                  +18 &middot; Juego responsable &middot; Revisa siempre las condiciones oficiales de cada casa.
                 </p>
               </div>
               <a
