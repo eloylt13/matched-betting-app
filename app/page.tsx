@@ -493,8 +493,10 @@ export default function LandingPage() {
                 <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-emerald-300/80">
                   BENEFICIOS RECURRENTES
                 </p>
-                <p className="mt-1 text-sm font-semibold leading-snug text-white">🔔 Alertas de ofertas recurrentes</p>
-                <p className="mt-1 text-xs leading-relaxed text-slate-300">
+                <p className="mt-1.5 text-base font-bold leading-snug text-white sm:text-[15px]">
+                  🔔 Alertas de ofertas recurrentes
+                </p>
+                <p className="mt-2 text-xs leading-relaxed text-slate-300">
                   Recibe alertas recurrentes por Telegram con promociones, recargas y reembolsos detectados en casas
                   de apuestas.
                 </p>
@@ -506,7 +508,7 @@ export default function LandingPage() {
                 href="https://t.me/matchedbetiapredict"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-3 inline-flex shrink-0 items-center justify-center rounded-full border border-emerald-300/25 bg-emerald-300/10 px-3 py-1.5 text-xs font-semibold text-emerald-200 transition-colors duration-200 hover:border-emerald-300/45 hover:bg-emerald-300/15 hover:text-white sm:mt-0"
+                className="mt-3 inline-flex shrink-0 items-center justify-center rounded-full border border-emerald-300/35 bg-slate-950/55 px-4 py-2 text-xs font-semibold text-emerald-100 shadow-[0_0_18px_rgba(52,211,153,0.14)] ring-1 ring-inset ring-white/5 backdrop-blur transition-all duration-200 ease-out hover:border-emerald-300/55 hover:bg-emerald-400/10 hover:text-white hover:shadow-[0_0_22px_rgba(52,211,153,0.2)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300/60 sm:mt-0"
               >
                 Ver canal de alertas
               </a>
