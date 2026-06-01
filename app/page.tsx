@@ -431,10 +431,10 @@ export default function LandingPage() {
               Empieza con tu primer bono guiado <span className="text-emerald-400">paso a paso</span>
             </h1>
 
-            <p className="mx-auto mt-5 max-w-3xl text-base leading-relaxed text-gray-300 sm:text-lg lg:mx-0">
-              IAPredictHub es gratis y no necesitas crear cuenta aquí. Para ejecutar el bono sí tendrás que
-              registrarte en la casa de apuestas y contar con capital inicial; te guiamos paso a paso empezando
-              por Versus.
+            <p className="mx-auto mt-5 max-w-3xl space-y-1 text-base leading-relaxed text-gray-300 sm:text-lg lg:mx-0">
+              <span className="block">1º Te registras en una casa, ingresas 100€ y recibes 100€ de bono.</span>
+              <span className="block">2º Apuestas a un resultado y cubres el resultado contrario con Betfair u otra casa usando la calculadora. Resultado: pierdes unos centimos.</span>
+              <span className="block">3º Liberas el bono con beneficio ≈100€.</span>
             </p>
 
             <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center lg:justify-start">
@@ -450,9 +450,9 @@ export default function LandingPage() {
                 </span>
               </TrackedLink>
               <TrackedLink
-                href="/guias"
+                href="/guias/primeros-pasos/introduccion-matched-betting"
                 eventName="home_cta_secondary_clicked"
-                eventProps={{ location: 'hero', target_path: '/guias' }}
+                eventProps={{ location: 'hero', target_path: '/guias/primeros-pasos/introduccion-matched-betting' }}
                 className="w-full rounded-lg border border-white/20 bg-transparent px-7 py-3.5 text-center text-base font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/10 sm:w-auto"
               >
                 Entender primero el método
@@ -587,70 +587,6 @@ export default function LandingPage() {
                   ))}
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-[#0a0918] py-16 sm:py-24">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-12 text-center">
-            <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-emerald-400">Cómo funciona</p>
-            <h2 className="font-playfair text-2xl font-bold text-white sm:text-3xl lg:text-4xl">
-              Tres pasos para empezar con matched betting
-            </h2>
-          </div>
-
-          <div className="grid gap-4 sm:grid-cols-3 sm:gap-6">
-            <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all duration-200 hover:border-emerald-400/30 hover:bg-white/8">
-              <span className="mb-4 block font-playfair text-4xl font-bold text-emerald-400">01</span>
-              <h3 className="mb-2 text-base font-semibold text-white">Eliges una casa y activas el bono</h3>
-              <p className="text-sm leading-relaxed text-gray-400">
-                Te registras en una casa de apuestas de España o LATAM y activas su bono de bienvenida. Te sugerimos por cuál empezar.
-              </p>
-            </div>
-
-            <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all duration-200 hover:border-emerald-400/30 hover:bg-white/8">
-              <span className="mb-4 block font-playfair text-4xl font-bold text-emerald-400">02</span>
-              <h3 className="mb-2 text-base font-semibold text-white">Cubres la apuesta con la calculadora</h3>
-              <p className="text-sm leading-relaxed text-gray-400">
-                Apuestas en la casa y cubres la apuesta contraria con la calculadora. Te dice cuánto poner en cada lado.
-              </p>
-            </div>
-
-            <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all duration-200 hover:border-emerald-400/30 hover:bg-white/8">
-              <span className="mb-4 block font-playfair text-4xl font-bold text-emerald-400">03</span>
-              <h3 className="mb-2 text-base font-semibold text-white">Recuperas y aprovechas el bono</h3>
-              <p className="text-sm leading-relaxed text-gray-400">
-                Recuperas gran parte del depósito y aprovechas el bono siguiendo la ruta guiada.
-              </p>
-            </div>
-          </div>
-
-          <div className="mt-12 text-center">
-            <TrackedLink
-              href="/bienvenida"
-              eventName="home_como_funciona_cta_clicked"
-              eventProps={{ location: 'como_funciona', target_path: '/bienvenida' }}
-              className="group inline-flex items-center gap-2 rounded-lg border border-white/20 bg-transparent px-7 py-3.5 text-base font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/10"
-            >
-              <span>Empezar mi primer bono guiado</span>
-              <span className="text-lg leading-none transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">
-                →
-              </span>
-            </TrackedLink>
-            <div className="mt-4">
-              <TrackedLink
-                href="/blog/mejores-bonos-bienvenida-apuestas-espana"
-                eventName="home_como_funciona_beneficios_clicked"
-                eventProps={{
-                  location: 'como_funciona',
-                  target_path: '/blog/mejores-bonos-bienvenida-apuestas-espana',
-                }}
-                className="text-sm text-gray-400 transition-colors duration-200 hover:text-emerald-300"
-              >
-                Ver contexto realista de bonos disponibles →
-              </TrackedLink>
             </div>
           </div>
         </div>
@@ -903,9 +839,9 @@ export default function LandingPage() {
               Empezar mi primer bono guiado →
             </TrackedLink>
             <TrackedLink
-              href="/guias"
+              href="/guias/primeros-pasos/introduccion-matched-betting"
               eventName="home_cta_final_secondary_clicked"
-              eventProps={{ location: 'final_cta', target_path: '/guias' }}
+              eventProps={{ location: 'final_cta', target_path: '/guias/primeros-pasos/introduccion-matched-betting' }}
               className="w-full sm:w-auto rounded-lg border border-white/14 bg-white/[0.04] px-8 py-4 text-base font-semibold text-white transition-all hover:border-violet-200/30 hover:bg-white/[0.08]"
             >
               Entender primero el método
