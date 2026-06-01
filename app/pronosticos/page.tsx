@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 const PAYGO_URL = 'https://app.afiliago.com/paygo/iapredicthub/JAYO1LND'
+const TELEGRAM_ALERTS_URL = 'https://t.me/matchedbetiapredict'
 
 const includes = [
   'Pronósticos a largo plazo: campeón, clasificados de grupo, semifinalistas, máximo goleador y mercados especiales.',
@@ -70,6 +71,39 @@ export default function PronosticosPage() {
                 </p>
               </div>
             </div>
+          </div>
+        </section>
+
+        <section className="rounded-3xl border border-indigo-100 bg-gradient-to-br from-white via-indigo-50/60 to-sky-50 px-5 py-5 shadow-sm sm:px-7 sm:py-6">
+          <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+            <div className="max-w-3xl">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-indigo-700">
+                Canal gratuito
+              </p>
+              <h2 className="mt-2 text-xl font-bold tracking-tight text-stone-950 sm:text-2xl">
+                Alertas recurrentes por Telegram
+              </h2>
+              <p className="mt-3 text-sm leading-6 text-stone-700 sm:text-base">
+                Recibe avisos de promociones, recargas, reembolsos y oportunidades recurrentes
+                detectadas en casas de apuestas.
+              </p>
+              <p className="mt-2 text-sm leading-6 text-stone-600">
+                Canal de IAPredictHub con alertas prácticas para usuarios que ya tienen cuenta en
+                varias casas.
+              </p>
+              <p className="mt-3 text-xs font-medium leading-5 text-stone-500">
+                +18 · Juego responsable · Revisa siempre las condiciones oficiales de cada casa.
+              </p>
+            </div>
+
+            <a
+              href={TELEGRAM_ALERTS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-12 w-full items-center justify-center rounded-xl bg-slate-950 px-5 py-3 text-center text-sm font-bold text-white shadow-sm transition hover:bg-indigo-950 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto sm:min-w-48"
+            >
+              Ver canal de alertas
+            </a>
           </div>
         </section>
 
