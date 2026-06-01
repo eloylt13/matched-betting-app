@@ -529,7 +529,7 @@ export default function LandingPage() {
                 rel="noopener noreferrer"
                 className="relative mt-3 inline-flex min-h-11 w-full shrink-0 items-center justify-center rounded-full border border-emerald-300/45 bg-slate-950/60 px-4 py-2.5 text-xs font-bold text-emerald-100 shadow-[0_0_24px_rgba(52,211,153,0.18)] ring-1 ring-inset ring-emerald-100/10 backdrop-blur transition-all duration-200 ease-out hover:border-emerald-200/70 hover:bg-emerald-400/12 hover:text-white hover:shadow-[0_0_28px_rgba(52,211,153,0.26)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300/60 sm:mt-0 sm:min-h-10 sm:w-auto"
               >
-                Ver canal de alertas &nearr;
+                Ver canal de alertas ↗
               </a>
             </div>
             </div>
