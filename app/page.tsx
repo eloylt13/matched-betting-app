@@ -469,6 +469,7 @@ export default function LandingPage() {
 
             <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center lg:justify-start">
               <TrackedLink
+                id="home-primary-cta"
                 href="/bienvenida"
                 eventName="home_cta_primary_clicked"
                 eventProps={{ location: 'hero', target_path: '/bienvenida' }}
@@ -485,7 +486,7 @@ export default function LandingPage() {
                 eventProps={{ location: 'hero', target_path: '/guias/primeros-pasos/introduccion-matched-betting' }}
                 className="w-full rounded-lg border border-white/20 bg-transparent px-7 py-3.5 text-center text-base font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/10 sm:w-auto"
               >
-                Entender primero el método
+                Ver guía completa
               </TrackedLink>
             </div>
 
@@ -874,7 +875,7 @@ export default function LandingPage() {
               eventProps={{ location: 'final_cta', target_path: '/guias/primeros-pasos/introduccion-matched-betting' }}
               className="w-full sm:w-auto rounded-lg border border-white/14 bg-white/[0.04] px-8 py-4 text-base font-semibold text-white transition-all hover:border-violet-200/30 hover:bg-white/[0.08]"
             >
-              Entender primero el método
+              Ver guía completa
             </TrackedLink>
           </div>
           <div className="mt-8 flex items-center justify-center">
@@ -897,7 +898,11 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <StickyMobileCTA href="/bienvenida" label="Empezar mi primer bono guiado" />
+      <StickyMobileCTA
+        href="/bienvenida"
+        label="Empezar mi primer bono guiado"
+        hideWhileElementVisibleId="home-primary-cta"
+      />
     </div>
   )
 }
