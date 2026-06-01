@@ -487,6 +487,27 @@ export default function LandingPage() {
                 <span>Registro y depósito en la casa</span>
               </div>
             </div>
+
+            <div className="mx-auto mt-5 max-w-2xl rounded-xl border border-white/10 bg-white/[0.045] px-4 py-3 text-left shadow-[0_14px_36px_rgba(0,0,0,0.18)] backdrop-blur-sm sm:flex sm:items-center sm:justify-between sm:gap-4 lg:mx-0">
+              <div className="min-w-0">
+                <p className="text-sm font-semibold text-white">🔔 ¿Ya tienes cuenta en varias casas?</p>
+                <p className="mt-1 text-xs leading-relaxed text-slate-300">
+                  Recibe alertas recurrentes por Telegram con promociones, recargas y reembolsos detectados en casas
+                  de apuestas.
+                </p>
+                <p className="mt-2 text-[11px] leading-relaxed text-slate-500">
+                  +18 · Juego responsable · Revisa siempre las condiciones oficiales de cada casa.
+                </p>
+              </div>
+              <a
+                href="https://t.me/matchedbetiapredict"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-3 inline-flex shrink-0 items-center justify-center rounded-full border border-emerald-300/25 bg-emerald-300/10 px-3 py-1.5 text-xs font-semibold text-emerald-200 transition-colors duration-200 hover:border-emerald-300/45 hover:bg-emerald-300/15 hover:text-white sm:mt-0"
+              >
+                Ver canal de alertas
+              </a>
+            </div>
             </div>
 
             <div id="home-hero-sentinel" aria-hidden="true" className="h-px w-full" />
