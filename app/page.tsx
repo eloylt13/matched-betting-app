@@ -431,11 +431,41 @@ export default function LandingPage() {
               Empieza con tu primer bono guiado <span className="text-emerald-400">paso a paso</span>
             </h1>
 
-            <p className="mx-auto mt-5 max-w-3xl space-y-1 text-base leading-relaxed text-gray-300 sm:text-lg lg:mx-0">
-              <span className="block">1º Te registras en una casa, ingresas 100€ y recibes 100€ de bono.</span>
-              <span className="block">2º Apuestas a un resultado y cubres el resultado contrario con Betfair u otra casa usando la calculadora. Resultado: pierdes unos centimos.</span>
-              <span className="block">3º Liberas el bono con beneficio ≈100€.</span>
-            </p>
+            <div className="relative mx-auto mt-5 max-w-xl overflow-hidden rounded-xl border border-emerald-300/25 bg-[radial-gradient(circle_at_12%_0%,rgba(52,211,153,0.14),transparent_34%),radial-gradient(circle_at_92%_8%,rgba(167,139,250,0.12),transparent_32%),linear-gradient(135deg,rgba(15,23,42,0.92),rgba(6,10,24,0.78))] p-4 text-left shadow-[0_18px_46px_rgba(0,0,0,0.24),0_0_30px_rgba(16,185,129,0.08)] ring-1 ring-white/[0.06] backdrop-blur-sm lg:mx-0">
+              <div className="pointer-events-none absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-emerald-200/55 to-transparent" />
+              <p className="relative mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-emerald-200">
+                💡 Ejemplo práctico
+              </p>
+              <div className="relative divide-y divide-white/10">
+                <div className="flex gap-3 py-3 first:pt-0">
+                  <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-emerald-300/40 bg-emerald-400/15 text-sm font-bold text-emerald-200 shadow-[0_0_18px_rgba(52,211,153,0.18)]">
+                    1
+                  </span>
+                  <p className="text-sm leading-relaxed text-slate-200 sm:text-base">
+                    Te registras, ingresas 100€ → recibes 100€ bono
+                  </p>
+                </div>
+                <div className="flex gap-3 py-3">
+                  <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-emerald-300/40 bg-emerald-400/15 text-sm font-bold text-emerald-200 shadow-[0_0_18px_rgba(52,211,153,0.18)]">
+                    2
+                  </span>
+                  <p className="text-sm leading-relaxed text-slate-200 sm:text-base">
+                    Apuestas y cubres con Betfair. Resultado: pierdes unos centimos
+                  </p>
+                </div>
+                <div className="flex gap-3 py-3 last:pb-0">
+                  <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-emerald-300/45 bg-emerald-400/20 text-sm font-bold text-emerald-100 shadow-[0_0_20px_rgba(52,211,153,0.22)]">
+                    3
+                  </span>
+                  <div className="min-w-0">
+                    <p className="text-sm leading-relaxed text-slate-200 sm:text-base">Liberas el bono</p>
+                    <p className="mt-0.5 text-base font-bold leading-snug text-emerald-300 sm:text-lg">
+                      Beneficio ≈100€ ✓
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
 
             <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center lg:justify-start">
               <TrackedLink
