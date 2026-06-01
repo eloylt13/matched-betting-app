@@ -488,29 +488,48 @@ export default function LandingPage() {
               </div>
             </div>
 
-            <div className="mx-auto mt-5 max-w-2xl rounded-xl border border-white/10 bg-white/[0.045] px-4 py-3 text-left shadow-[0_14px_36px_rgba(0,0,0,0.18)] backdrop-blur-sm sm:flex sm:items-center sm:justify-between sm:gap-4 lg:mx-0">
-              <div className="min-w-0">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-emerald-300/80">
-                  BENEFICIOS RECURRENTES
-                </p>
-                <p className="mt-1.5 text-base font-bold leading-snug text-white sm:text-[15px]">
-                  🔔 Alertas de ofertas recurrentes
-                </p>
-                <p className="mt-2 text-xs leading-relaxed text-slate-300">
-                  Recibe alertas recurrentes por Telegram con promociones, recargas y reembolsos detectados en casas
-                  de apuestas.
-                </p>
-                <p className="mt-2 text-[11px] leading-relaxed text-slate-500">
-                  +18 &middot; Juego responsable &middot; Revisa siempre las condiciones oficiales de cada casa.
-                </p>
+            <div className="relative mx-auto mt-5 max-w-2xl overflow-hidden rounded-xl border border-emerald-300/22 bg-[radial-gradient(circle_at_12%_0%,rgba(52,211,153,0.16),transparent_34%),radial-gradient(circle_at_92%_10%,rgba(167,139,250,0.12),transparent_32%),linear-gradient(135deg,rgba(15,23,42,0.88),rgba(2,6,23,0.64))] px-4 py-3.5 text-left shadow-[0_18px_46px_rgba(0,0,0,0.26),0_0_34px_rgba(16,185,129,0.08)] ring-1 ring-white/[0.06] backdrop-blur-sm sm:flex sm:items-center sm:justify-between sm:gap-4 lg:mx-0">
+              <div className="pointer-events-none absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-emerald-200/55 to-transparent" />
+              <div className="relative flex min-w-0 gap-3">
+                <span className="mt-0.5 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-emerald-300/35 bg-emerald-300/10 text-emerald-200 shadow-[0_0_24px_rgba(52,211,153,0.22)] ring-1 ring-inset ring-white/10">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="h-5 w-5"
+                    aria-hidden="true"
+                  >
+                    <path d="M15 17h5l-1.4-1.4A2 2 0 0 1 18 14.2V11a6 6 0 0 0-4-5.7V4a2 2 0 1 0-4 0v1.3A6 6 0 0 0 6 11v3.2a2 2 0 0 1-.6 1.4L4 17h5" />
+                    <path d="M10 20a2 2 0 0 0 4 0" />
+                  </svg>
+                </span>
+                <div className="min-w-0">
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-emerald-200/90">
+                    BENEFICIOS RECURRENTES
+                  </p>
+                  <p className="mt-1 text-lg font-bold leading-snug text-white md:text-xl">
+                    Alertas de ofertas recurrentes
+                  </p>
+                  <p className="mt-1.5 text-xs leading-relaxed text-slate-200/90">
+                    Recibe alertas recurrentes por Telegram con promociones, recargas y reembolsos detectados en casas
+                    de apuestas.
+                  </p>
+                  <p className="mt-1.5 text-[11px] leading-relaxed text-slate-400">
+                    +18 &middot; Juego responsable &middot; Revisa siempre las condiciones oficiales de cada casa.
+                  </p>
+                </div>
               </div>
               <a
                 href="https://t.me/matchedbetiapredict"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-3 inline-flex shrink-0 items-center justify-center rounded-full border border-emerald-300/35 bg-slate-950/55 px-4 py-2 text-xs font-semibold text-emerald-100 shadow-[0_0_18px_rgba(52,211,153,0.14)] ring-1 ring-inset ring-white/5 backdrop-blur transition-all duration-200 ease-out hover:border-emerald-300/55 hover:bg-emerald-400/10 hover:text-white hover:shadow-[0_0_22px_rgba(52,211,153,0.2)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300/60 sm:mt-0"
+                className="relative mt-3 inline-flex min-h-11 w-full shrink-0 items-center justify-center rounded-full border border-emerald-300/45 bg-slate-950/60 px-4 py-2.5 text-xs font-bold text-emerald-100 shadow-[0_0_24px_rgba(52,211,153,0.18)] ring-1 ring-inset ring-emerald-100/10 backdrop-blur transition-all duration-200 ease-out hover:border-emerald-200/70 hover:bg-emerald-400/12 hover:text-white hover:shadow-[0_0_28px_rgba(52,211,153,0.26)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300/60 sm:mt-0 sm:min-h-10 sm:w-auto"
               >
-                Ver canal de alertas
+                Ver canal de alertas &nearr;
               </a>
             </div>
             </div>
