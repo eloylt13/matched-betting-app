@@ -377,7 +377,7 @@ export default function LandingPage() {
           <div className="mx-auto grid max-w-5xl items-center gap-12 text-center lg:grid-cols-[minmax(0,1fr)_420px] lg:text-left">
             <div>
             <TrackedLink
-              href="/especial/mundial"
+              href="/pronosticos"
               eventName="home_worldcup_special_clicked"
               eventProps={{ location: 'hero_freebet', target_path: '/especial/mundial' }}
               className="group mx-auto mb-8 flex max-w-sm items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 backdrop-blur-sm transition-all duration-200 hover:border-[#D4AF37]/40 hover:bg-white/10 lg:mx-0"
@@ -386,7 +386,7 @@ export default function LandingPage() {
                 <span aria-hidden="true">🏆</span>
               </div>
               <div className="min-w-0 flex-1 text-left">
-                <p className="text-sm font-semibold text-white">Especial Mundial 2026</p>
+                <p className="text-sm font-semibold text-white">Predicciones Mundial 🏆</p>
                 <p className="text-xs text-stone-300">Predicciones gratis del torneo</p>
               </div>
               <span className="shrink-0 text-lg text-[#D4AF37] transition-transform duration-200 group-hover:translate-x-1">
