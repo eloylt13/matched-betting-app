@@ -511,10 +511,10 @@ export default function Mundial2026Page() {
             </li>
             <li>
               <Link
-                href="/blog/lesionados-mundial-2026"
+                href="/especial/mundial"
                 className="text-purple-600 underline underline-offset-4 hover:text-purple-700"
               >
-                Lesionados y posibles bajas del Mundial 2026
+                Especial Mundial 2026
               </Link>
             </li>
           </ul>

@@ -12,7 +12,6 @@ const GUIA_PRIORITY_BY_CATEGORY: Record<string, number> = {
 }
 
 const BLOG_ROUTES = [
-    { slug: 'lesionados-mundial-2026', lastModified: '2026-05-05', priority: 0.85 },
     { slug: 'mundial-2026', lastModified: '2026-04-27', priority: 0.85 },
     { slug: 'prediccion-campeon-mundial-2026', lastModified: '2026-05-01', priority: 0.85 },
     { slug: 'prediccion-mejor-jugador-mundial-2026', lastModified: '2026-05-01', priority: 0.85 },

@@ -18,15 +18,6 @@ const articulos: Array<{
   destacado?: boolean
 }> = [
   {
-    slug: 'lesionados-mundial-2026',
-    titulo: 'Lesionados Mundial 2026: bajas, dudas y posibles regresos',
-    fecha: '5 de mayo de 2026',
-    descripcion:
-      'Tracker actualizado con jugadores descartados, futbolistas en duda y selecciones afectadas antes del Mundial 2026.',
-    categoria: 'ESPECIAL MUNDIAL 2026',
-    destacado: true,
-  },
-  {
     slug: 'mundial-2026',
     titulo: 'Mundial 2026: grupos, favoritos y selecciones actualizadas',
     fecha: '27 de abril de 2026',

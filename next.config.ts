@@ -11,6 +11,15 @@ const withMDX = createMDX({
 
 const nextConfig: NextConfig = {
   pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
+  async redirects() {
+    return [
+      {
+        source: "/blog/lesionados-mundial-2026",
+        destination: "/especial/mundial",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default withMDX(nextConfig);

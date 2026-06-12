@@ -425,10 +425,10 @@ export default function PrediccionCampeonMundial2026Page() {
             </li>
             <li>
               <Link
-                href="/blog/lesionados-mundial-2026"
+                href="/especial/mundial"
                 className="text-emerald-700 underline underline-offset-4 hover:text-emerald-800"
               >
-                Lesionados y posibles bajas del Mundial 2026
+                Especial Mundial 2026
               </Link>
             </li>
           </ul>
