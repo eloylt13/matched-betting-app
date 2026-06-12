@@ -46,6 +46,13 @@ const articulos: Array<{
     destacado: true,
   },
   {
+    slug: 'que-son-los-bonos-recurrentes',
+    titulo: '¿Qué son los bonos recurrentes?',
+    fecha: '12 de junio de 2026',
+    descripcion:
+      'Qué son los bonos recurrentes, cómo funcionan y cómo aprovechar promociones después de los bonos de bienvenida sin depender de acertar partidos.',
+  },
+  {
     slug: 'que-es-matched-betting-espana',
     titulo: '¿Qué es el Matched Betting y cómo funciona en España?',
     fecha: '29 de marzo de 2026',
@@ -92,7 +99,7 @@ const articulos: Array<{
     titulo: 'Casas de apuestas con reembolso en España (2026): comparativa y guía práctica',
     fecha: '15 de abril de 2026',
     descripcion:
-      'Comparativa actualizada de las mejores casas de apuestas con bono de reembolso en España. Qué son las apuestas sin riesgo, cuándo convienen más que una freebet y qué mirar antes de activarlas.',
+      'Comparativa actualizada de las mejores casas de apuestas con bono de reembolso en España. Cómo funcionan los reembolsos, cuándo convienen más que una freebet y qué mirar antes de activarlas.',
   },
   {
     slug: 'que-es-una-freebet',

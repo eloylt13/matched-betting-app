@@ -15,6 +15,7 @@ const BLOG_ROUTES = [
     { slug: 'mundial-2026', lastModified: '2026-04-27', priority: 0.85 },
     { slug: 'prediccion-campeon-mundial-2026', lastModified: '2026-05-01', priority: 0.85 },
     { slug: 'prediccion-mejor-jugador-mundial-2026', lastModified: '2026-05-01', priority: 0.85 },
+    { slug: 'que-son-los-bonos-recurrentes', lastModified: '2026-06-12', priority: 0.72 },
     { slug: 'que-es-matched-betting-espana', lastModified: '2026-03-29', priority: 0.8 },
     { slug: 'mejores-bonos-bienvenida-apuestas-espana', lastModified: '2026-03-29', priority: 0.8 },
     { slug: 'que-es-matched-betting-latam', lastModified: '2026-04-08', priority: 0.72 },
