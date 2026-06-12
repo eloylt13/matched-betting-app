@@ -1,8 +1,8 @@
 const IAP_BASE_URL = 'https://iapredicthub.es';
 const PROCESSED_IDS_PROPERTY = 'TELEGRAM_ALERTAS_PROCESSED_IDS';
+const OFFERS_INITIALIZED_PROPERTY = 'TELEGRAM_ALERTAS_OFERTAS_INICIALIZADAS';
 const MAX_PROCESSED_IDS = 500;
-const GMAIL_QUERY_OFERTAS =
-  'newer_than:14d (subject:oferta OR subject:promo OR subject:beneficio OR subject:recurrente)';
+const GMAIL_QUERY_OFERTAS = 'subject:"Nueva Oferta:" newer_than:1d';
 
 const CASA_LINKS = {
   versus: 'https://app.afiliago.com/go/19148/JqXVcHDWdu/2',
@@ -72,7 +72,7 @@ const CASA_ALIASES = {
 function enviarMensajePrueba() {
   const alerta = formatearAlerta({
     casa: 'Versus',
-    descripcion: 'Promoción recurrente de prueba',
+    descripcion: 'Promoción de prueba',
     importe: '10€',
   });
 
@@ -88,65 +88,104 @@ function procesarOfertasNuevasPrueba() {
 
 function procesarOfertasNuevasAutomatico() {
   return procesarOfertasNuevas_({
-    limite: 20,
+    limite: 1,
     marcarComoProcesadas: true,
+    requiereInicializacion: true,
   });
 }
 
 function inicializarOfertasRecientesSinEnviar() {
-  const ids = extraerMensajesOferta_().map(function (item) {
-    return item.id;
-  });
+  const lock = LockService.getScriptLock();
 
-  saveProcessedIds_(ids);
-  return ids.length;
+  if (!lock.tryLock(1000)) {
+    Logger.log('No se pudo inicializar: ya hay otra ejecución activa.');
+    return 0;
+  }
+
+  try {
+    const ids = extraerMensajesOferta_().map(function (item) {
+      return item.id;
+    });
+
+    saveProcessedIds_(ids);
+    PropertiesService.getScriptProperties().setProperty(OFFERS_INITIALIZED_PROPERTY, 'true');
+    Logger.log('Inicialización completada sin enviar alertas. Emails marcados: ' + ids.length);
+
+    return ids.length;
+  } finally {
+    lock.releaseLock();
+  }
 }
 
 function procesarOfertasNuevas_(opciones) {
   const config = opciones || {};
   const limite = config.limite || 20;
   const marcarComoProcesadas = config.marcarComoProcesadas !== false;
-  const processedIds = getProcessedIds_();
-  const processedMap = processedIds.reduce(function (acc, id) {
-    acc[id] = true;
-    return acc;
-  }, {});
-  const mensajes = extraerMensajesOferta_().filter(function (item) {
-    return !processedMap[item.id];
-  });
-  const enviados = [];
-  const nuevosProcesados = [];
+  const requiereInicializacion = config.requiereInicializacion === true;
+  const lock = LockService.getScriptLock();
 
-  mensajes.slice(0, limite).forEach(function (item) {
-    const oferta = parsearAsuntoOferta(item.asunto);
-
-    if (!oferta) {
-      nuevosProcesados.push(item.id);
-      return;
-    }
-
-    const alerta = formatearAlerta(oferta);
-    enviarTelegram(alerta);
-    enviados.push(item.id);
-    nuevosProcesados.push(item.id);
-  });
-
-  if (marcarComoProcesadas && nuevosProcesados.length > 0) {
-    saveProcessedIds_(nuevosProcesados.concat(processedIds).slice(0, MAX_PROCESSED_IDS));
+  if (!lock.tryLock(1000)) {
+    Logger.log('No se procesan ofertas: ya hay otra ejecución activa.');
+    return 0;
   }
 
-  return enviados.length;
+  try {
+    if (requiereInicializacion && !ofertasInicializadas_()) {
+      Logger.log(
+        'Falta ejecutar inicializarOfertasRecientesSinEnviar antes de enviar alertas automáticas.'
+      );
+      return 0;
+    }
+
+    const processedIds = getProcessedIds_();
+    const processedMap = processedIds.reduce(function (acc, id) {
+      acc[id] = true;
+      return acc;
+    }, {});
+    const mensajes = extraerMensajesOferta_().filter(function (item) {
+      return !processedMap[item.id];
+    });
+    const enviados = [];
+    const nuevosProcesados = [];
+
+    mensajes.slice(0, limite).forEach(function (item) {
+      const oferta = parsearAsuntoOferta(item.asunto);
+
+      if (!oferta) {
+        nuevosProcesados.push(item.id);
+        return;
+      }
+
+      const alerta = formatearAlerta(oferta);
+      enviarTelegram(alerta);
+      enviados.push(item.id);
+      nuevosProcesados.push(item.id);
+    });
+
+    if (marcarComoProcesadas && nuevosProcesados.length > 0) {
+      saveProcessedIds_(nuevosProcesados.concat(processedIds).slice(0, MAX_PROCESSED_IDS));
+    }
+
+    return enviados.length;
+  } finally {
+    lock.releaseLock();
+  }
 }
 
 function parsearAsuntoOferta(asunto) {
-  if (!asunto) {
+  if (!esAsuntoOfertaValido_(asunto)) {
     return null;
   }
 
   const asuntoLimpio = String(asunto)
-    .replace(/^\s*(iapredicthub|alerta|oferta|promo|promocion)\s*[:|-]\s*/i, '')
+    .replace(/^\s*(?:(?:re|fwd):\s*)*nueva oferta:\s*/i, '')
     .replace(/\s+/g, ' ')
     .trim();
+
+  if (!asuntoLimpio) {
+    return null;
+  }
+
   const importe = extraerImporte_(asuntoLimpio) || 'No disponible';
   const sinImporte = asuntoLimpio
     .replace(/(?:\d{1,3}(?:[.,]\d{3})*|\d+)(?:[.,]\d{1,2})?\s*(?:€|eur|euros)/gi, '')
@@ -157,7 +196,7 @@ function parsearAsuntoOferta(asunto) {
   if (casaDetectada) {
     return {
       casa: casaDetectada.nombre,
-      descripcion: limpiarDescripcion_(sinImporte, casaDetectada.nombre) || sinImporte || 'Oferta recurrente',
+      descripcion: limpiarDescripcion_(sinImporte, casaDetectada.nombre) || sinImporte || 'Oferta',
       importe: importe,
     };
   }
@@ -167,9 +206,23 @@ function parsearAsuntoOferta(asunto) {
 
   return {
     casa: casa,
-    descripcion: partes.join(' - ') || sinImporte || 'Oferta recurrente',
+    descripcion: partes.join(' - ') || sinImporte || 'Oferta',
     importe: importe,
   };
+}
+
+function esAsuntoOfertaValido_(subject) {
+  if (subject === undefined || subject === null) {
+    return false;
+  }
+
+  const subjectLimpio = String(subject).replace(/\s+/g, ' ').trim();
+
+  if (!subjectLimpio) {
+    return false;
+  }
+
+  return /^(?:(?:re|fwd):\s*)*nueva oferta:/i.test(subjectLimpio);
 }
 
 function extraerImporte_(texto) {
@@ -189,7 +242,7 @@ function formatearAlerta(oferta) {
   const slug = resolverSlugCasa_(casa);
   const urlGuia = slug ? IAP_BASE_URL + '/casas/' + slug : IAP_BASE_URL + '/casas';
   const urlCasa = obtenerUrlCasa_(casa);
-  const descripcion = oferta && oferta.descripcion ? oferta.descripcion : 'Oferta recurrente';
+  const descripcion = oferta && oferta.descripcion ? oferta.descripcion : 'Oferta';
   const importe = oferta && oferta.importe ? oferta.importe : 'No disponible';
   const texto = [
     '🚨 Oferta Detectada',
@@ -320,9 +373,15 @@ function extraerMensajesOferta_() {
 
   threads.forEach(function (thread) {
     thread.getMessages().forEach(function (message) {
+      const asunto = message.getSubject();
+
+      if (!esAsuntoOfertaValido_(asunto)) {
+        return;
+      }
+
       items.push({
         id: message.getId(),
-        asunto: message.getSubject(),
+        asunto: asunto,
         fecha: message.getDate(),
       });
     });
@@ -331,6 +390,10 @@ function extraerMensajesOferta_() {
   return items.sort(function (a, b) {
     return b.fecha.getTime() - a.fecha.getTime();
   });
+}
+
+function ofertasInicializadas_() {
+  return PropertiesService.getScriptProperties().getProperty(OFFERS_INITIALIZED_PROPERTY) === 'true';
 }
 
 function detectarCasa_(texto) {
