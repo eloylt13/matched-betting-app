@@ -40,18 +40,18 @@ export default function QueSonLosBonosRecurrentesPage() {
         </p>
         <p>No se trata de adivinar quién gana. Se trata de entender las condiciones.</p>
 
-        <div className="flex flex-col gap-3 rounded-2xl border border-purple-100 bg-purple-50 p-4 sm:flex-row">
-          <Link
-            href="/bienvenida"
-            className="inline-flex min-h-11 items-center justify-center rounded-2xl bg-[#2A1F3D] px-4 py-2 text-center text-sm font-semibold text-white shadow-sm transition-all hover:-translate-y-0.5 hover:bg-[#3d2e57]"
-          >
-            Empezar primer bono guiado
-          </Link>
+        <div className="flex flex-col gap-3 rounded-2xl border border-violet-100 bg-[linear-gradient(135deg,#ffffff_0%,#faf7ff_58%,#f8fbfa_100%)] p-3 shadow-[0_14px_36px_rgba(46,16,101,0.06)] sm:flex-row sm:items-stretch">
           <Link
             href="#cuanto-se-puede-ganar-bonos-recurrentes"
-            className="inline-flex min-h-11 items-center justify-center rounded-2xl border border-purple-200 bg-white px-4 py-2 text-center text-sm font-semibold text-purple-700 transition-colors hover:bg-purple-100"
+            className="relative inline-flex min-h-14 flex-1 items-center justify-center overflow-hidden rounded-2xl border border-emerald-300/30 bg-[radial-gradient(circle_at_10%_8%,rgba(45,212,191,0.18),transparent_36%),linear-gradient(135deg,rgba(15,23,42,0.97),rgba(30,27,75,0.9)_58%,rgba(2,6,23,0.94))] bg-gradient-to-br from-emerald-400/15 via-slate-950 to-violet-950 px-4 py-3 text-center text-sm font-bold text-emerald-50 shadow-[0_16px_40px_rgba(15,23,42,0.18),0_0_24px_rgba(45,212,191,0.10)] ring-1 ring-white/[0.06] transition-all duration-200 ease-out hover:-translate-y-0.5 hover:border-emerald-200/45 hover:text-white hover:shadow-[0_18px_44px_rgba(15,23,42,0.22),0_0_30px_rgba(45,212,191,0.15)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300/55 sm:justify-start sm:text-left"
           >
-            ¿Cuánto se puede ganar?
+            📈 ¿Cuánto se puede ganar?
+          </Link>
+          <Link
+            href="/bienvenida"
+            className="inline-flex min-h-11 items-center justify-center rounded-2xl border border-violet-200 bg-white px-4 py-2 text-center text-sm font-semibold text-[#2A1F3D] shadow-sm transition-all hover:-translate-y-0.5 hover:border-violet-300 hover:bg-violet-50 sm:min-h-14 sm:w-auto"
+          >
+            Empezar primer bono guiado
           </Link>
         </div>
 
