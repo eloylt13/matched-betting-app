@@ -49,6 +49,15 @@ export default function Mundial2026Page() {
           antes de que ruede el balón.
         </p>
 
+        <div>
+          <Link
+            href="#mis-predicciones-mundial-2026"
+            className="inline-flex items-center justify-center rounded-xl border border-stone-300 bg-white px-4 py-2 text-sm font-semibold text-stone-800 shadow-sm transition hover:border-stone-400 hover:bg-stone-50"
+          >
+            Ver mis predicciones del Mundial 2026
+          </Link>
+        </div>
+
         <h2 className="text-xl font-bold text-stone-800 tracking-tight mt-6 mb-2">
           Qué se sabe del Mundial 2026
         </h2>
@@ -603,6 +612,50 @@ export default function Mundial2026Page() {
           y Herzegovina el 31 de marzo de 2026. Es el tercer Mundial consecutivo
           sin la selección italiana.
         </p>
+
+        <section
+          id="mis-predicciones-mundial-2026"
+          className="mt-10 scroll-mt-24 rounded-2xl border border-stone-200 bg-stone-50 p-5 sm:p-6"
+        >
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700">
+            Predicciones IAPredictHub
+          </p>
+          <h2 className="mt-2 text-xl font-bold text-stone-800 tracking-tight">
+            Mis predicciones del Mundial 2026
+          </h2>
+          <p className="mt-3 text-sm leading-relaxed text-stone-700">
+            Mi escenario principal para el torneo coloca a Portugal como
+            campeona, con España llegando a la final y Francia y Brasil
+            completando las semifinales. En los mercados individuales, la
+            lectura favorece a perfiles con peso sostenido en sus selecciones:
+            Harry Kane como máximo goleador, Bruno Fernandes como máximo
+            asistente y Vitinha como MVP del torneo.
+          </p>
+
+          <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
+            {[
+              ['Campeón', 'Portugal'],
+              ['Subcampeón', 'España'],
+              ['Tercer puesto', 'Francia'],
+              ['Cuarto puesto', 'Brasil'],
+              ['Máximo goleador', 'Harry Kane'],
+              ['Máximo asistente', 'Bruno Fernandes'],
+              ['MVP del torneo', 'Vitinha'],
+            ].map(([label, value]) => (
+              <div
+                key={label}
+                className="rounded-xl border border-stone-200 bg-white p-4"
+              >
+                <p className="text-xs font-semibold uppercase tracking-wide text-stone-500">
+                  {label}
+                </p>
+                <p className="mt-1 text-base font-bold text-stone-800">
+                  {value}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
       </div>
     </article>
   )
