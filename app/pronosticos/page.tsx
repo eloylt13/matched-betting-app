@@ -40,6 +40,20 @@ export default function PronosticosPage() {
           </Link>
         </div>
 
+        <a
+          href="https://www.versus.es/landings/mundial-futbol-2026?utm_source=netrfer&utm_medium=affiliation&utm_campaign=lpLOLO&creferer=btag:656191_a9dc5ab372a24c3091be9dcaffff7a77;affiliate:656191"
+          target="_blank"
+          rel="nofollow sponsored noopener noreferrer"
+          className="mt-8 flex w-full flex-col gap-2 rounded-2xl border border-emerald-200 bg-emerald-50 px-5 py-5 text-left shadow-sm transition hover:border-emerald-300 hover:bg-emerald-100 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
+        >
+          <span className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700">
+            Realizado en Versus
+          </span>
+          <span className="text-xl font-bold leading-snug text-stone-950 sm:text-2xl">
+            Regístrate y consigue hasta 200€ en bonos
+          </span>
+        </a>
+
         <p className="mt-8 text-xs font-medium leading-5 text-stone-500">
           +18 · Juego responsable · No garantiza resultados.
         </p>
