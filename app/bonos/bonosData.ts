@@ -285,7 +285,7 @@ export const bonosLatamUsCurados: BonoLatamUsCurado[] = [
   {
     nombre: 'DafaBet LATAM',
     mercado: 'REG',
-    red: 'Afiliago',
+    red: 'Red afiliada',
     ofertaTexto: 'Hasta US$150 en bono de bienvenida',
     usdAprox: 150,
     confianza: 'baja',
@@ -475,7 +475,7 @@ export const bonosLatamUsCurados: BonoLatamUsCurado[] = [
   {
     nombre: 'Codere MX',
     mercado: 'MX',
-    red: 'Afiliago',
+    red: 'Red afiliada',
     ofertaTexto: '200% hasta ~US$289 al depósito para apuestas',
     usdAprox: 289,
     confianza: 'media',
@@ -615,7 +615,7 @@ export const bonosLatamUsCurados: BonoLatamUsCurado[] = [
   {
     nombre: 'Codere AR',
     mercado: 'AR',
-    red: 'Afiliago',
+    red: 'Red afiliada',
     ofertaTexto: 'Duplica tu primer depósito hasta ~US$147',
     usdAprox: 147,
     confianza: 'baja',

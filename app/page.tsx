@@ -377,39 +377,6 @@ export default function LandingPage() {
           <div className="mx-auto grid max-w-5xl items-center gap-12 text-center lg:grid-cols-[minmax(0,1fr)_420px] lg:text-left">
             <div>
             <TrackedLink
-              href="/pronosticos"
-              eventName="home_freebet_card_clicked"
-              eventProps={{ location: 'hero', target_path: '/pronosticos' }}
-              className="group mx-auto mb-3 flex max-w-sm items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 backdrop-blur-sm transition-all duration-200 hover:border-amber-300/40 hover:bg-white/10 lg:mx-0"
-            >
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-amber-300/30 bg-amber-300/10">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.8"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="h-5 w-5 text-amber-300"
-                  aria-hidden="true"
-                >
-                  <path d="M7.5 5.5h9l3 4.2L12 19 4.5 9.7l3-4.2Z" />
-                  <path d="M4.5 9.7h15" />
-                  <path d="m8.5 9.7 3.5 9.3 3.5-9.3" />
-                  <path d="m7.5 5.5 1 4.2 3.5-4.2 3.5 4.2 1-4.2" />
-                </svg>
-              </div>
-              <div className="min-w-0 flex-1 text-left">
-                <p className="text-sm font-semibold text-white">Club Mundial VIP</p>
-                <p className="text-xs text-gray-400">Telegram privado · 5 € fundador</p>
-              </div>
-              <span className="shrink-0 text-lg text-amber-300 transition-transform duration-200 group-hover:translate-x-1">
-                →
-              </span>
-            </TrackedLink>
-
-            <TrackedLink
               href="/especial/mundial"
               eventName="home_worldcup_special_clicked"
               eventProps={{ location: 'hero_freebet', target_path: '/especial/mundial' }}
