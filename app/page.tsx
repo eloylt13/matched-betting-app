@@ -417,7 +417,7 @@ export default function LandingPage() {
                     2
                   </span>
                   <p className="text-sm leading-relaxed text-slate-200 sm:text-base">
-                    Apuestas y cubres con Betfair usando nuestra calculadora. Resultado: pierdes unos centimos
+                    Apuestas y cubres con Betfair usando nuestra calculadora. Resultado: pierdes unos céntimos
                   </p>
                 </div>
                 <div className="flex gap-3 py-3 last:pb-0">

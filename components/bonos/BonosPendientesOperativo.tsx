@@ -171,7 +171,7 @@ export default function BonosPendientesOperativo({
             <div className={isPremium ? 'mx-auto mt-4 max-w-lg' : 'max-w-sm'}>
               <p className={isPremium ? 'text-lg font-semibold tracking-tight text-slate-900' : 'text-stone-700 font-semibold text-base mb-1'}>No hay bonos pendientes de limpiar</p>
               <p className={isPremium ? 'mt-2 text-sm leading-6 text-slate-600' : 'text-stone-400 text-sm leading-relaxed'}>
-                Cuando recibas una freebet o reembolso de una casa de apuestas, registralo aqui para no perder el rastro y luego limpiarlo con la calculadora.
+                Cuando recibas una freebet o reembolso de una casa de apuestas, regístralo aquí para no perder el rastro y luego limpiarlo con la calculadora.
               </p>
             </div>
 
