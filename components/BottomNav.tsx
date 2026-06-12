@@ -18,14 +18,13 @@ export default function BottomNav() {
     { name: 'Pronósticos', path: '/pronosticos', icon: 'M13 10V3L4 14h7v7l9-11h-7z' },
     { name: 'Calculadora', path: '/calculadora', icon: 'M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z' },
     { name: 'Casas', path: '/casas', icon: 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4' },
-    { name: 'Seguimiento', path: '/historial', icon: 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z' },
     { name: 'Blog', path: '/blog', icon: 'M4 22h16a2 2 0 002-2V4a2 2 0 00-2-2H8a2 2 0 00-2 2v16a2 2 0 01-2 2zm0 0a2 2 0 01-2-2v-9c0-1.1.9-2 2-2h2M18 14h-8M15 18h-5M10 6h8v4h-8V6z' },
     { name: 'Bonos', path: '/bonos', icon: 'M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7' },
   ]
 
   return (
     <div className="fixed inset-x-3 bottom-[calc(0.5rem+env(safe-area-inset-bottom))] z-50 md:hidden">
-      <div className="grid h-[4.75rem] grid-cols-8 overflow-hidden rounded-[1.5rem] border border-white/10 bg-[linear-gradient(135deg,rgba(9,11,24,0.94)_0%,rgba(18,17,42,0.96)_46%,rgba(42,31,61,0.94)_100%)] px-1 py-1 shadow-[0_18px_54px_rgba(2,6,23,0.3)] backdrop-blur-xl">
+      <div className="grid h-[4.75rem] grid-cols-7 overflow-hidden rounded-[1.5rem] border border-white/10 bg-[linear-gradient(135deg,rgba(9,11,24,0.94)_0%,rgba(18,17,42,0.96)_46%,rgba(42,31,61,0.94)_100%)] px-1 py-1 shadow-[0_18px_54px_rgba(2,6,23,0.3)] backdrop-blur-xl">
         {navItems.map((item) => {
           const isActive = pathname === item.path || pathname.startsWith(`${item.path}/`)
 
