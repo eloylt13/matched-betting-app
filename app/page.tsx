@@ -521,14 +521,22 @@ export default function LandingPage() {
                   </p>
                 </div>
               </div>
-              <a
-                href="https://t.me/matchedbetiapredict"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="relative mt-3 inline-flex min-h-11 w-full shrink-0 items-center justify-center rounded-full border border-emerald-300/45 bg-slate-950/60 px-4 py-2.5 text-xs font-bold text-emerald-100 shadow-[0_0_24px_rgba(52,211,153,0.18)] ring-1 ring-inset ring-emerald-100/10 backdrop-blur transition-all duration-200 ease-out hover:border-emerald-200/70 hover:bg-emerald-400/12 hover:text-white hover:shadow-[0_0_28px_rgba(52,211,153,0.26)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300/60 sm:mt-0 sm:min-h-10 sm:w-auto"
-              >
-                Ver canal de alertas ↗
-              </a>
+              <div className="relative mt-3 flex w-full shrink-0 flex-col gap-2 sm:mt-0 sm:w-auto">
+                <a
+                  href="https://t.me/beneficiosrecurrentes"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex min-h-11 w-full items-center justify-center rounded-full border border-emerald-300/45 bg-slate-950/60 px-4 py-2.5 text-xs font-bold text-emerald-100 shadow-[0_0_24px_rgba(52,211,153,0.18)] ring-1 ring-inset ring-emerald-100/10 backdrop-blur transition-all duration-200 ease-out hover:border-emerald-200/70 hover:bg-emerald-400/12 hover:text-white hover:shadow-[0_0_28px_rgba(52,211,153,0.26)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300/60 sm:min-h-10 sm:w-auto"
+                >
+                  Ver canal de alertas ↗
+                </a>
+                <Link
+                  href="/blog/que-son-los-bonos-recurrentes"
+                  className="inline-flex min-h-10 w-full items-center justify-center rounded-full border border-white/12 bg-white/[0.03] px-4 py-2 text-center text-xs font-semibold text-slate-200/90 ring-1 ring-inset ring-white/[0.04] transition-all duration-200 ease-out hover:border-emerald-200/35 hover:bg-white/[0.06] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300/45 sm:w-auto"
+                >
+                  Cómo funciona y cuánto se puede ganar
+                </Link>
+              </div>
             </div>
             </div>
 
