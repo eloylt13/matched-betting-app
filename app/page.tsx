@@ -512,10 +512,6 @@ export default function LandingPage() {
                   <p className="mt-1 text-lg font-bold leading-snug text-white md:text-xl">
                     Alertas de ofertas recurrentes
                   </p>
-                  <p className="mt-1.5 text-xs leading-relaxed text-slate-200/90">
-                    Recibe alertas recurrentes por Telegram con promociones, recargas y reembolsos detectados en casas
-                    de apuestas.
-                  </p>
                   <p className="mt-1.5 text-[11px] leading-relaxed text-slate-400">
                     +18 &middot; Juego responsable &middot; Revisa siempre las condiciones oficiales de cada casa.
                   </p>
