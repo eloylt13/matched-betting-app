@@ -427,7 +427,7 @@ export default function LandingPage() {
                   <div className="min-w-0">
                     <p className="text-sm leading-relaxed text-slate-200 sm:text-base">Liberas el bono</p>
                     <p className="mt-0.5 text-base font-bold leading-snug text-emerald-300 sm:text-lg">
-                      Beneficio ≈100€ ✓
+                      Beneficio estimado ≈100€ ✓
                     </p>
                   </div>
                 </div>
