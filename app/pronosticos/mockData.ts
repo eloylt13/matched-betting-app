@@ -21,26 +21,33 @@ export type CombinadaData = {
 }
 
 export const combinadaDelDia: CombinadaData = {
-  etiquetaDia: 'sábado 13 de junio',
-  cuotaTotal: '2,53',
+  etiquetaDia: 'domingo 14 de junio',
+  cuotaTotal: '3,90',
   confianza: 'Combinada recreativa',
   horaActualizacion: '21:00',
   notaConfianza: 'Pick recreativo, no apuesta garantizada.',
-  motivoGeneral: 'Combinada de cuota 2,53 para seguir la jornada con dos mercados seleccionados. Pick recreativo, no apuesta garantizada.',
+  motivoGeneral: 'Combinada de cuota aproximada 3,90 para seguir la jornada con tres mercados seleccionados. Pick recreativo, no apuesta garantizada.',
   picks: [
     {
-      text: 'Catar - Suiza · Suiza gana por al menos 2 goles de diferencia: Sí @ 1,56',
-      partido: 'Catar - Suiza',
-      hora: 'Hoy 21:00',
-      mercado: 'Suiza gana por al menos 2 goles de diferencia: Sí',
-      cuota: '1,56',
+      text: 'Países Bajos - Japón · Ambos equipos anotarán: Sí @ 1,80',
+      partido: 'Países Bajos - Japón',
+      hora: 'Dom 14 jun · 21:00',
+      mercado: 'Ambos equipos anotarán: Sí',
+      cuota: '1,80',
     },
     {
-      text: 'Brasil - Marruecos · Más de 23,5 faltas cometidas @ 1,62',
-      partido: 'Brasil - Marruecos',
-      hora: 'Mañana 00:00',
-      mercado: 'Más de 23,5 faltas cometidas',
-      cuota: '1,62',
+      text: 'Costa de Marfil - Ecuador · Más de 28,5 tiros libres @ 1,50',
+      partido: 'Costa de Marfil - Ecuador',
+      hora: 'Lun 15 jun · 00:00',
+      mercado: 'Más de 28,5 tiros libres',
+      cuota: '1,50',
+    },
+    {
+      text: 'Suecia - Túnez · Más de 27,5 tiros libres @ 1,44',
+      partido: 'Suecia - Túnez',
+      hora: 'Lun 15 jun · 03:00',
+      mercado: 'Más de 27,5 tiros libres',
+      cuota: '1,44',
     },
   ],
 }

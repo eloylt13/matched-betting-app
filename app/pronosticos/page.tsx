@@ -31,7 +31,7 @@ export default async function PronosticosPage() {
 
             <div className="rounded-2xl border border-stone-200 bg-white p-5 shadow-sm">
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500">
-                Cuota total
+                Cuota total aproximada
               </p>
               <p className="mt-2 text-4xl font-bold text-emerald-700">{dailyCombinada.cuotaTotal}</p>
             </div>
