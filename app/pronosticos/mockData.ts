@@ -5,6 +5,11 @@ export type CombinadaData = {
   horaActualizacion: string
   notaConfianza: string
   motivoGeneral: string
+  casa?: {
+    texto: string
+    nombre: string
+    url: string
+  }
   picks: Array<{
     text: string
     motivoBreve?: string
@@ -21,33 +26,35 @@ export type CombinadaData = {
 }
 
 export const combinadaDelDia: CombinadaData = {
-  etiquetaDia: 'domingo 14 de junio',
-  cuotaTotal: '3,90',
+  etiquetaDia: 'martes 16 de junio',
+  cuotaTotal: '3,487',
   confianza: 'Combinada recreativa',
-  horaActualizacion: '21:00',
+  horaActualizacion: '12:00',
   notaConfianza: 'Pick recreativo, no apuesta garantizada.',
-  motivoGeneral: 'Combinada de cuota aproximada 3,90 para seguir la jornada con tres mercados seleccionados. Pick recreativo, no apuesta garantizada.',
+  motivoGeneral: 'Combinada de cuota 3,487 para seguir la jornada con tres mercados seleccionados. Pick recreativo, no apuesta garantizada.',
+  casa: {
+    texto: 'Hecha en Sportium',
+    nombre: 'Sportium',
+    url: 'https://bdeal.io/Sportium/136726/1',
+  },
   picks: [
     {
-      text: 'Países Bajos - Japón · Ambos equipos anotarán: Sí @ 1,80',
-      partido: 'Países Bajos - Japón',
-      hora: 'Dom 14 jun · 21:00',
-      mercado: 'Ambos equipos anotarán: Sí',
-      cuota: '1,80',
+      text: 'Francia - Senegal · Más de 1,5 goles de Francia @ 1,55',
+      partido: 'Francia - Senegal',
+      mercado: 'Más de 1,5 goles de Francia',
+      cuota: '1,55',
     },
     {
-      text: 'Costa de Marfil - Ecuador · Más de 28,5 tiros libres @ 1,50',
-      partido: 'Costa de Marfil - Ecuador',
-      hora: 'Lun 15 jun · 00:00',
-      mercado: 'Más de 28,5 tiros libres',
+      text: 'Argentina - Argelia · Argelia 14 o más faltas cometidas @ 1,50',
+      partido: 'Argentina - Argelia',
+      mercado: 'Argelia 14 o más faltas cometidas',
       cuota: '1,50',
     },
     {
-      text: 'Suecia - Túnez · Más de 27,5 tiros libres @ 1,44',
-      partido: 'Suecia - Túnez',
-      hora: 'Lun 15 jun · 03:00',
-      mercado: 'Más de 27,5 tiros libres',
-      cuota: '1,44',
+      text: 'Austria - Jordania · Más de 1,5 goles de Austria @ 1,50',
+      partido: 'Austria - Jordania',
+      mercado: 'Más de 1,5 goles de Austria',
+      cuota: '1,50',
     },
   ],
 }

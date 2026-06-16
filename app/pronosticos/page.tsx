@@ -31,7 +31,7 @@ export default async function PronosticosPage() {
 
             <div className="rounded-2xl border border-stone-200 bg-white p-5 shadow-sm">
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500">
-                Cuota total aproximada
+                Cuota total
               </p>
               <p className="mt-2 text-4xl font-bold text-emerald-700">{dailyCombinada.cuotaTotal}</p>
             </div>
@@ -59,6 +59,20 @@ export default async function PronosticosPage() {
                 </article>
               ))}
             </div>
+
+            {dailyCombinada.casa ? (
+              <div className="flex items-center justify-between gap-4 rounded-2xl border border-stone-200 bg-white px-5 py-4 shadow-sm">
+                <p className="text-sm font-medium text-stone-600">{dailyCombinada.casa.texto}</p>
+                <a
+                  href={dailyCombinada.casa.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-full border border-stone-300 px-4 py-2 text-sm font-semibold text-stone-700 transition hover:border-emerald-600 hover:text-emerald-700"
+                >
+                  Abrir
+                </a>
+              </div>
+            ) : null}
           </div>
         ) : (
           <div className="rounded-2xl border border-stone-200 bg-white p-5 shadow-sm">
