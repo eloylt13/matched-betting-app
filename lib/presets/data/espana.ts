@@ -163,6 +163,49 @@ export const casasEspana: Casa[] = [
     tipologia: 'apuesta-recibe',
     url: 'https://online.retabet.es/bono?pr=RETA069&utm_campaign=brand&utm_source=ppc&utm_medium=search&utm_term=retabet%20casino&campaignid=23303561015&adgroupid=192782291881&adid=785737353981&gad_source=1&gad_campaignid=23303561015&gbraid=0AAAABBtQEstUHH1LSegq4vx26N5WmJKf3&gclid=CjwKCAiAqKbMBhBmEiwAZ3UboGYFzbTCC3W8XxoVNOcz003-34NRhcswb3tqYytD5syRmmZ9KuvEBRoCxKsQAvD_BwE',
     descripcionBreve: 'Bet & Get — Apuesta 150€ y recibe 150€ en freebets (aunque ganes)',
+    seoTitle: 'Bono Retabet: guía paso a paso | IAPredictHub',
+    seoDescription: 'Guía para entender el bono de bienvenida de Retabet, cubrir la apuesta inicial con calculadora y convertir sus apuestas gratis con matched betting.',
+    seoIntro: 'El bono de Retabet funciona como una promoción de apuesta y recibe. Primero haces una apuesta con dinero real para activar las apuestas gratis y después conviertes esas freebets con ayuda de la calculadora. La clave es controlar el coste de la apuesta inicial y ejecutar cada freebet con orden.',
+    seoSections: [
+      {
+        titulo: 'Cómo funciona el bono Retabet',
+        texto: 'La promoción consiste en realizar una apuesta inicial con dinero real y recibir después varias apuestas gratis. En IAPredictHub se trabaja como una oferta de apuesta y recibe: primero se cubre la apuesta cualificante y luego se convierten las freebets una a una.',
+      },
+      {
+        titulo: 'Paso a paso recomendado',
+        texto: 'Primero entra desde el enlace promocional, marca que quieres recibir promociones y realiza el depósito indicado. Después usa la calculadora en modo dinero real para cubrir la apuesta inicial en Betfair Exchange. Cuando recibas las apuestas gratis, vuelve a la calculadora en modo apuesta gratis y ejecuta cada freebet por separado.',
+      },
+      {
+        titulo: 'Cuánto se puede extraer',
+        texto: 'La estimación de IAPredictHub para Retabet ronda los 100€ de beneficio potencial, siempre como referencia orientativa. El resultado real depende de las cuotas, la liquidez disponible, las comisiones, los límites de la promoción y la ejecución correcta.',
+      },
+      {
+        titulo: 'Errores habituales',
+        texto: 'Los errores más comunes son depositar con un método no válido, olvidar marcar que quieres recibir promociones, usar cuotas fuera del rango permitido, intentar usar varias freebets en el mismo mercado o no cubrir cada apuesta con la calculadora.',
+      },
+    ],
+    seoFaqs: [
+      {
+        pregunta: '¿El bono de Retabet es bueno para matched betting?',
+        respuesta: 'Puede ser interesante porque funciona como apuesta y recibe, pero requiere orden: la apuesta inicial es alta y después hay que convertir varias freebets por separado.',
+      },
+      {
+        pregunta: '¿Cuánto dinero necesito para empezar?',
+        respuesta: 'La guía trabaja con una apuesta inicial de 150€, pero debes revisar siempre las condiciones oficiales y tener saldo suficiente para cubrir la apuesta en Betfair Exchange.',
+      },
+      {
+        pregunta: '¿Puedo usar PayPal para el depósito?',
+        respuesta: 'Según la guía actual, PayPal no sirve para activar este bono. Antes de depositar, revisa siempre los métodos válidos en las condiciones oficiales de Retabet.',
+      },
+      {
+        pregunta: '¿El beneficio de 100€ está garantizado?',
+        respuesta: 'No. Es una estimación orientativa. El beneficio final depende de cuotas, liquidez, comisiones, condiciones vigentes y ejecución correcta.',
+      },
+      {
+        pregunta: '¿Qué calculadora debo usar?',
+        respuesta: 'Primero usa la calculadora en modo dinero real para la apuesta inicial. Después usa el modo apuesta gratis para convertir cada freebet.',
+      },
+    ],
     resumen: 'Apuesta 150€ y Recibe 150€ en Freebets aunque ganes. Gana 100€. Dif 2/5',
     beneficioPotencial: 100,
     dificultad: 2,
