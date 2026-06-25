@@ -68,7 +68,7 @@ export const casasEc: Casa[] = [
     requisitos: [
       'Nuevo usuario residente en Ecuador.',
       'Depósito mínimo: $5 USD.',
-      'Elegir Sportsbook Bonus / Pronósticos Deportivos.',
+      'Elegir el bono deportivo disponible en la cuenta.',
       'No válido con Skrill ni Neteller.',
       'Rollover, cuota mínima y plazo: PENDIENTE.',
     ],
