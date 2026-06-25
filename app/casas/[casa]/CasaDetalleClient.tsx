@@ -161,6 +161,14 @@ function getModoPrincipalCalculadora(casa: Casa) {
     return "dinero-real"
 }
 
+function mapFaseModoToCalculadoraModo(fase: Fase): CalculadoraModo {
+    if (fase.modo === "freebet" || fase.modo === "apuesta-gratis") return "apuesta-gratis"
+    if (fase.modo === "reembolso") return "reembolso"
+    if (fase.modo === "rollover") return "rollover"
+    if (fase.modo === "bonos") return "bonos"
+    return "dinero-real"
+}
+
 function buildCalculadoraHref(
     casa: Casa,
     modo: CalculadoraModo,
@@ -187,6 +195,24 @@ function buildCalculadoraHref(
         if (options?.refundType) {
             params.set("refundType", options.refundType)
         }
+    }
+
+    return `/calculadora?${params.toString()}`
+}
+
+function buildCalculadoraFaseHref(casa: Casa, fase: Fase) {
+    const modo = mapFaseModoToCalculadoraModo(fase)
+    const params = new URLSearchParams()
+
+    params.set("modo", modo)
+    params.set("stake", String(fase.stakeRecomendado || CALCULADORA_STAKE_FALLBACK))
+    params.set("commission", CALCULADORA_COMMISSION)
+    params.set("bookmaker", casa.nombre)
+    params.set("currency", casa.market === "espana" ? "EUR" : "USD")
+
+    if (modo === "reembolso" && typeof fase.reembolsoEstimado === "number") {
+        params.set("refundAmount", String(fase.reembolsoEstimado))
+        params.set("refundType", "freebet")
     }
 
     return `/calculadora?${params.toString()}`
@@ -341,7 +367,7 @@ function ChecklistFase({ pasos, faseId }: { pasos: string[]; faseId: string }) {
 // ── Bloque de fase ────────────────────────────────────────────────────────────
 function FaseCard({
     fase, idx, esFaseActual, esFaseCompletada, totalFasesPromo,
-    onAvanzar, onCompletar, estadoOferta, simbolo
+    onAvanzar, onCompletar, estadoOferta, simbolo, calculadoraHref, casaUrl, casaNombre
 }: {
     fase: Fase
     idx: number
@@ -352,6 +378,9 @@ function FaseCard({
     onCompletar: () => void
     estadoOferta: EstadoCasa
     simbolo: string
+    calculadoraHref: string
+    casaUrl?: string
+    casaNombre: string
 }) {
     const [confirmando, setConfirmando] = useState(false)
     const [checks, setChecks] = useState({ deposito: false, apuesta: false, cobertura: false })
@@ -430,6 +459,38 @@ function FaseCard({
                         {alertasConsejos.map((a, i) => <AlertaItem key={i} texto={a} />)}
                     </ul>
                 )}
+
+                <div className="rounded-xl border border-emerald-100 bg-emerald-50 p-3">
+                    <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                        <div>
+                            <p className="text-[10px] font-bold uppercase tracking-wide text-emerald-700">
+                                Calculadora guiada
+                            </p>
+                            <p className="mt-1 text-xs leading-5 text-emerald-800">
+                                Abre la calculadora con esta fase ya configurada.
+                            </p>
+                        </div>
+                        <div className="flex flex-col gap-2 sm:flex-row sm:shrink-0">
+                            <Link
+                                href={calculadoraHref}
+                                className="inline-flex justify-center rounded-lg bg-[#2A1F3D] px-3 py-2 text-xs font-semibold text-white transition-colors hover:bg-[#3d2e57]"
+                            >
+                                Calcular esta fase
+                            </Link>
+                            {casaUrl && (
+                                <a
+                                    href={casaUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex justify-center rounded-lg border border-emerald-200 bg-white px-3 py-2 text-xs font-semibold text-emerald-700 transition-colors hover:bg-emerald-100"
+                                    aria-label={`Abrir ${casaNombre} en nueva pestana`}
+                                >
+                                    Abrir casa
+                                </a>
+                            )}
+                        </div>
+                    </div>
+                </div>
 
                 {/* 5. Pasos con checklist interactivo */}
                 {fase.checklist.length > 0 && (
@@ -950,6 +1011,9 @@ export default function CasaDetalleClient({ casa, hasGuide }: CasaDetalleClientP
                             onCompletar={() => handleEstado("completada")}
                             estadoOferta={estado}
                             simbolo={simbolo}
+                            calculadoraHref={buildCalculadoraFaseHref(casa, fase)}
+                            casaUrl={casa.url}
+                            casaNombre={casa.nombre}
                         />
                     ))}
                 </div>
