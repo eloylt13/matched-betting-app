@@ -209,6 +209,10 @@ function buildCalculadoraFaseHref(casa: Casa, fase: Fase) {
     params.set("commission", CALCULADORA_COMMISSION)
     params.set("bookmaker", casa.nombre)
     params.set("currency", casa.market === "espana" ? "EUR" : "USD")
+    params.set("casaId", casa.id)
+    params.set("faseId", fase.id)
+    params.set("faseTitle", fase.titulo)
+    params.set("faseNumero", String(fase.numero))
 
     if (modo === "reembolso" && typeof fase.reembolsoEstimado === "number") {
         params.set("refundAmount", String(fase.reembolsoEstimado))

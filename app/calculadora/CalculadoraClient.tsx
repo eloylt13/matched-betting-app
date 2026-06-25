@@ -1,7 +1,9 @@
 'use client'
 
 import { useEffect, useMemo, useState } from 'react'
+import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
+import { getCasaById } from '@/lib/presets'
 
 type Tab = 'oddsmatcher' | 'dutcher'
 type ModoClasica = 'dinero-real' | 'apuesta-gratis' | 'bonos' | 'rollover' | 'reembolso'
@@ -31,6 +33,10 @@ export type CalculadoraPrefill = {
   refundType?: ReembolsoTipo
   refundAmount?: string
   currency?: Moneda
+  casaId?: string
+  faseId?: string
+  faseTitle?: string
+  faseNumero?: string
 }
 
 function n(v: string) {
@@ -65,6 +71,14 @@ function formatBookmaker(value: string) {
     .filter(Boolean)
     .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
     .join(' ')
+}
+
+function getModoLabel(modo: ModoClasica) {
+  if (modo === 'dinero-real') return 'Dinero real'
+  if (modo === 'apuesta-gratis') return 'Apuesta gratis'
+  if (modo === 'reembolso') return 'Reembolso'
+  if (modo === 'rollover') return 'Rollover'
+  return 'Bonos'
 }
 
 function getResultadoLabel(valor: number, modo: ModoClasica): { titulo: string; subtitulo: string } {
