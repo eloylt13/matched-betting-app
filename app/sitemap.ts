@@ -86,6 +86,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
             priority: 0.9,
         },
         {
+            url: `${baseUrl}/beneficios-recurrentes`,
+            lastModified: now,
+            changeFrequency: 'weekly',
+            priority: 0.82,
+        },
+        {
             url: `${baseUrl}/casas`,
             lastModified: now,
             changeFrequency: 'weekly',

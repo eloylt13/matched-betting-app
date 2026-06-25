@@ -20,7 +20,7 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/pronosticos",
-        destination: "/blog/que-son-los-bonos-recurrentes",
+        destination: "/beneficios-recurrentes",
         permanent: true,
       },
     ];
