@@ -87,6 +87,49 @@ export const casasEspana: Casa[] = [
     tipologia: 'apuesta-recibe',
     url: 'https://lp.daznbet.es/promomixta-3/?gad_campaignid=21585366146&gad_source=1&gbraid=0AAAAAo7lT3wjNM9l7FNEmpzJNCH45zEA6&gclid=CjwKCAiAqKbMBhBmEiwAZ3UboJQoeuzr7_GzDr1KlXxNZg2gDdBSGa-yukzAV4YwpiaBD64tJ0mBaRoCmx0QAvD_BwE&utm_campaign=ppcbrand_sports_es_google_daznbet_bb200_SIDN_search_registro_sports-casino_marca_21585366146_171722008288_dazn%20bet_c_p&utm_medium=google&utm_source=ppcbrand',
     descripcionBreve: 'Bet & Get — Apuesta 200€ y recibe 200€ en freebet (no fragmentable)',
+    seoTitle: 'Bono DaznBet: guía paso a paso | IAPredictHub',
+    seoDescription: 'Guía para entender el bono de bienvenida de DaznBet, activar la promoción, cubrir la apuesta inicial y convertir la apuesta gratis con calculadora.',
+    seoIntro: 'El bono de DaznBet funciona como una promoción de apuesta y recibe. Primero activas la oferta, haces una apuesta con dinero real y después conviertes la apuesta gratis recibida con ayuda de la calculadora. La clave es activar bien la promoción antes de depositar y tener saldo suficiente para cubrir la freebet en Betfair Exchange.',
+    seoSections: [
+      {
+        titulo: 'Cómo funciona el bono DaznBet',
+        texto: 'La promoción se basa en hacer una apuesta inicial con dinero real para recibir después una apuesta gratis. En IAPredictHub se trabaja como una oferta de apuesta y recibe: primero se cubre la apuesta cualificante y luego se convierte la freebet con la calculadora.',
+      },
+      {
+        titulo: 'Paso a paso recomendado',
+        texto: 'Primero entra desde el enlace promocional, regístrate y activa la promoción en la página correspondiente antes de depositar. Después verifica la cuenta, deposita, usa la calculadora en modo dinero real para cubrir la apuesta inicial y, cuando recibas la apuesta gratis, vuelve a la calculadora en modo apuesta gratis.',
+      },
+      {
+        titulo: 'Cuánto se puede extraer',
+        texto: 'La estimación de IAPredictHub para DaznBet ronda los 130€ de beneficio potencial, siempre como referencia orientativa. El resultado real depende de cuotas, liquidez, comisiones, condiciones vigentes y ejecución correcta.',
+      },
+      {
+        titulo: 'Errores habituales',
+        texto: 'Los errores más comunes son no activar la promoción antes de depositar, usar un método de pago no válido, no verificar la cuenta a tiempo, intentar dividir una freebet que debe usarse de una sola vez o no tener saldo suficiente en Betfair para cubrir una cuota alta.',
+      },
+    ],
+    seoFaqs: [
+      {
+        pregunta: '¿El bono de DaznBet es bueno para matched betting?',
+        respuesta: 'Puede ser interesante porque funciona como apuesta y recibe, pero requiere más saldo que otras ofertas por el importe de la apuesta inicial y por la responsabilidad necesaria al convertir la freebet.',
+      },
+      {
+        pregunta: '¿Qué significa “Optar para participar” en DaznBet?',
+        respuesta: 'Es el paso de activación de la promoción. Si la oferta vigente lo exige, debes hacerlo antes de depositar para que el bono pueda aplicarse correctamente.',
+      },
+      {
+        pregunta: '¿Cuánto dinero necesito para empezar?',
+        respuesta: 'La guía trabaja con una apuesta inicial de 200€, pero debes revisar siempre las condiciones oficiales y tener saldo suficiente para cubrir la apuesta en Betfair Exchange.',
+      },
+      {
+        pregunta: '¿La apuesta gratis de DaznBet se puede dividir?',
+        respuesta: 'Según la guía actual, la freebet principal debe usarse de una sola vez. Antes de ejecutarla, revisa las condiciones oficiales de la promoción vigente.',
+      },
+      {
+        pregunta: '¿El beneficio de 130€ es fijo?',
+        respuesta: 'No. Es una estimación orientativa. El beneficio final depende de cuotas, liquidez, comisiones, condiciones vigentes y ejecución correcta.',
+      },
+    ],
     resumen: 'Apuesta 200€ y Recibe 200€ en Apuesta Gratis. Gana 130€. Dif 2/5',
     beneficioPotencial: 130,
     dificultad: 2,
