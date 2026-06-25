@@ -591,6 +591,13 @@ export const casasEspana: Casa[] = [
             descripcion: 'Apuesta de 100€ (50% del depósito) a cuota mín 2.00',
             modo: 'cualificante',
             stakeRecomendado: 100,
+            calculatorPrefill: {
+              modo: 'dinero-real',
+              stake: 100,
+              backOdds: 2,
+              layOdds: 2.1,
+              commission: 2,
+            },
             alertas: [
               '⚠️ Verificar DNI ANTES de depositar (límite 150€ sin verificar)',
               'Aceptar comunicaciones comerciales en el registro',
@@ -616,6 +623,13 @@ export const casasEspana: Casa[] = [
             modo: 'freebet',
             stakeRecomendado: 100,
             freebetEstimada: 65,
+            calculatorPrefill: {
+              modo: 'apuesta-gratis',
+              stake: 100,
+              backOdds: 4,
+              layOdds: 4.2,
+              commission: 2,
+            },
             alertas: [
               'Cuota mínima: 1.50',
               'Para maximizar: buscar cuotas altas (3.00-4.00+)',
@@ -781,6 +795,13 @@ export const casasEspana: Casa[] = [
             descripcion: 'Apuesta de 200€ para obtener la freebet máxima de 100€',
             modo: 'cualificante',
             stakeRecomendado: 200,
+            calculatorPrefill: {
+              modo: 'dinero-real',
+              stake: 200,
+              backOdds: 2,
+              layOdds: 2.1,
+              commission: 2,
+            },
             alertas: [
               '⚠️ CRÍTICO: Verificar DNI ANTES de depositar — la ley limita depósitos a 150€ sin verificar',
               'La freebet NO es inmediata — se entrega el martes siguiente',
@@ -807,6 +828,13 @@ export const casasEspana: Casa[] = [
             modo: 'freebet',
             stakeRecomendado: 100,
             freebetEstimada: 62,
+            calculatorPrefill: {
+              modo: 'apuesta-gratis',
+              stake: 100,
+              backOdds: 2.8,
+              layOdds: 2.9,
+              commission: 2,
+            },
             alertas: [
               'Cuota MÁXIMA 3.00 — restricción especial de esta casa',
               'Buscar eventos con cuotas entre 2.50 y 3.00',
@@ -927,6 +955,15 @@ export const casasEspana: Casa[] = [
             modo: 'reembolso',
             stakeRecomendado: 200,
             reembolsoEstimado: 130,
+            calculatorPrefill: {
+              modo: 'reembolso',
+              stake: 200,
+              backOdds: 2,
+              layOdds: 2.1,
+              commission: 2,
+              refundType: 'freebet',
+              refundAmount: 130,
+            },
             alertas: [
               'Registrarse desde la página promocional de Marca Apuestas',
               '⚠️ Saldo elevado necesario en Betfair para cubrir la apuesta de 200€',
@@ -951,6 +988,13 @@ export const casasEspana: Casa[] = [
             modo: 'freebet',
             stakeRecomendado: 200,
             freebetEstimada: 130,
+            calculatorPrefill: {
+              modo: 'apuesta-gratis',
+              stake: 200,
+              backOdds: 4,
+              layOdds: 4.2,
+              commission: 2,
+            },
             alertas: [
               '⚠️ Saldo elevado necesario en Betfair',
               'Buscar cuotas altas (3.00+) para maximizar retención',
