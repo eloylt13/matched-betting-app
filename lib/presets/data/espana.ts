@@ -750,6 +750,13 @@ export const casasEspana: Casa[] = [
             descripcion: 'Realizar la apuesta mínima semanal para desbloquear la freebet de 5€',
             modo: 'cualificante',
             stakeRecomendado: 10,
+            calculatorPrefill: {
+              modo: 'dinero-real',
+              stake: 10,
+              backOdds: 2,
+              layOdds: 2.1,
+              commission: 2,
+            },
             alertas: [
               'Repetir el proceso cada semana para acumular todas las freebets',
               'Verificar el requisito de apuesta semanal en T&C',
@@ -2156,6 +2163,13 @@ export const casasEspana: Casa[] = [
             descripcion: 'Apostar 1000€ en total con saldo real para liberar el bono de 100€',
             modo: 'cualificante',
             stakeRecomendado: 100,
+            calculatorPrefill: {
+              modo: 'rollover',
+              stake: 100,
+              backOdds: 2,
+              layOdds: 2.1,
+              commission: 2,
+            },
             alertas: [
               '⚠️ Riesgo: bloqueos de cuenta temporales reportados a mitad del rollover',
               'Verificar DNI en Usuario > Mis Documentos ANTES de depositar',
@@ -2207,6 +2221,13 @@ export const casasEspana: Casa[] = [
             descripcion: 'Apostar 1000€ en total usando dinero real en mercados 1X2 para liberar el bono',
             modo: 'cualificante',
             stakeRecomendado: 100,
+            calculatorPrefill: {
+              modo: 'rollover',
+              stake: 100,
+              backOdds: 2,
+              layOdds: 2.1,
+              commission: 2,
+            },
             alertas: [
               '⚠️ SOLO contribuyen los mercados "Ganador del partido" (1, X, 2)',
               'Las apuestas a Más/Menos goles, Hándicap Asiático o Par/Impar NO cuentan',
