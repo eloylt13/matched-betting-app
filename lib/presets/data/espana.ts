@@ -304,6 +304,49 @@ export const casasEspana: Casa[] = [
     tipologia: 'apuesta-recibe',
     url: 'https://bdeal.io/Sportium/136726/1',
     descripcionBreve: 'Doble Bono — Deposita 100€ y recibe 100€ dos veces (200€ en freebets)',
+    seoTitle: 'Bono Sportium: guía paso a paso | IAPredictHub',
+    seoDescription: 'Guía para entender el bono de bienvenida de Sportium, activar la promoción, cubrir las apuestas con calculadora y convertir las apuestas gratis.',
+    seoIntro: 'El bono de Sportium es una promoción de apuesta y recibe dividida en dos tramos. La clave es activar correctamente la oferta antes de depositar, cubrir cada apuesta con Betfair Exchange y convertir después las apuestas gratis con la calculadora.',
+    seoSections: [
+      {
+        titulo: 'Cómo funciona el bono Sportium',
+        texto: 'La promoción se basa en realizar una apuesta con dinero real para recibir después una apuesta gratis. En la ficha se trabaja como una oferta de apuesta y recibe, por lo que el objetivo es controlar el coste de la apuesta inicial y convertir la freebet posterior con la mayor retención posible.',
+      },
+      {
+        titulo: 'Paso a paso recomendado',
+        texto: 'Primero entra desde el enlace promocional, revisa la oferta activa y pulsa "ME APUNTO" antes de depositar si la promoción lo requiere. Después verifica la cuenta, deposita, usa la calculadora en modo dinero real para cubrir la apuesta inicial y, cuando recibas la apuesta gratis, vuelve a la calculadora en modo apuesta gratis.',
+      },
+      {
+        titulo: 'Cuánto se puede extraer',
+        texto: 'La guía de IAPredictHub estima un beneficio potencial aproximado de 140€ si se completan correctamente los dos tramos. Es una referencia orientativa: el resultado real depende de cuotas, liquidez, comisiones, condiciones vigentes y ejecución correcta.',
+      },
+      {
+        titulo: 'Errores habituales',
+        texto: 'Los errores más comunes son olvidar apuntarse a la promoción antes de depositar, usar un método de pago no válido, no verificar la cuenta a tiempo, apostar sin cubrir en Betfair o convertir la apuesta gratis con una cuota poco eficiente.',
+      },
+    ],
+    seoFaqs: [
+      {
+        pregunta: '¿El bono de Sportium es bueno para empezar?',
+        respuesta: 'Puede ser una opción interesante, pero requiere seguir bien los pasos: activar la promoción, depositar correctamente, cubrir la apuesta inicial y convertir la apuesta gratis. Si vienes de cero, revisa antes la guía completa y usa la calculadora.',
+      },
+      {
+        pregunta: '¿Qué significa "ME APUNTO" en Sportium?',
+        respuesta: 'Es el paso de activación de la promoción. Si la oferta vigente lo exige, debes pulsarlo antes de depositar para que el bono pueda aplicarse correctamente.',
+      },
+      {
+        pregunta: '¿Cuánto dinero necesito para hacer el bono?',
+        respuesta: 'La guía trabaja con tramos de 100€, pero debes revisar siempre las condiciones oficiales y tener saldo suficiente para cubrir la apuesta en Betfair Exchange.',
+      },
+      {
+        pregunta: '¿El beneficio de 140€ es fijo?',
+        respuesta: 'No. Es una estimación orientativa. El beneficio final depende de las cuotas, la liquidez disponible, las comisiones, los cambios en condiciones y la ejecución correcta.',
+      },
+      {
+        pregunta: '¿Qué calculadora debo usar?',
+        respuesta: 'Primero usa la calculadora en modo dinero real para la apuesta inicial. Cuando recibas la apuesta gratis, usa el modo apuesta gratis para convertirla.',
+      },
+    ],
     resumen: 'Doble Bono. Deposita 100€ y Recibe 100€ (Dos veces). Gana 140€. Dif 1/5',
     beneficioPotencial: 140,
     dificultad: 1,
