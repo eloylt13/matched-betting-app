@@ -1110,6 +1110,49 @@ export const casasEspana: Casa[] = [
     tipologia: 'reembolso',
     url: 'https://bdeal.io/888Sport/136728/1',
     descripcionBreve: 'Reembolso 100% hasta 100€ + 2 freebets de registro de 5€',
+    seoTitle: 'Bono 888Sport: guía paso a paso | IAPredictHub',
+    seoDescription: 'Guía para entender el bono de bienvenida de 888Sport, cubrir el reembolso con calculadora y convertir sus apuestas gratis con matched betting.',
+    seoIntro: 'El bono de 888Sport combina una promoción de reembolso con apuestas gratis de registro. La clave es cubrir bien la primera apuesta con Betfair Exchange y, si recibes una freebet, convertirla después con la calculadora en modo apuesta gratis.',
+    seoSections: [
+      {
+        titulo: 'Cómo funciona el bono 888Sport',
+        texto: 'La promoción puede combinar dos partes: apuestas gratis de registro y un reembolso de la primera apuesta si pierde. En IAPredictHub se trabaja como una oferta de reembolso: primero se cubre la apuesta inicial y después se convierten las freebets recibidas.',
+      },
+      {
+        titulo: 'Paso a paso recomendado',
+        texto: 'Primero entra desde el enlace promocional, regístrate, reclama las apuestas gratis de registro si aparecen y realiza el depósito necesario. Después usa la calculadora en modo reembolso para cubrir la primera apuesta en Betfair Exchange. Si recibes la freebet de reembolso, usa la calculadora en modo apuesta gratis para convertirla.',
+      },
+      {
+        titulo: 'Cuánto se puede extraer',
+        texto: 'La estimación de IAPredictHub para 888Sport ronda los 75€ de beneficio potencial, siempre como referencia orientativa. El resultado real depende de cuotas, liquidez, comisiones, condiciones vigentes, límites de la promoción y ejecución correcta.',
+      },
+      {
+        titulo: 'Errores habituales',
+        texto: 'Los errores más comunes son no reclamar las apuestas gratis de registro, no cubrir correctamente la primera apuesta, usar una cuota fuera de las condiciones, olvidar marcar la freebet en el cupón o dejar caducar las apuestas gratis.',
+      },
+    ],
+    seoFaqs: [
+      {
+        pregunta: '¿El bono de 888Sport es bueno para matched betting?',
+        respuesta: 'Puede ser interesante, pero es menos directo que una oferta simple de apuesta y recibe porque combina registro, reembolso y conversión de freebets. Conviene seguir la guía con calma.',
+      },
+      {
+        pregunta: '¿Qué tipo de bono es 888Sport?',
+        respuesta: 'En la guía de IAPredictHub se trata como una oferta de reembolso con apuestas gratis adicionales. Antes de empezar, revisa siempre las condiciones oficiales vigentes.',
+      },
+      {
+        pregunta: '¿Cuánto dinero necesito para empezar?',
+        respuesta: 'La guía trabaja con una primera apuesta de hasta 100€, pero debes revisar las condiciones oficiales y tener saldo suficiente para cubrir la apuesta en Betfair Exchange.',
+      },
+      {
+        pregunta: '¿El beneficio de 75€ está garantizado?',
+        respuesta: 'No. Es una estimación orientativa. El beneficio final depende de cuotas, liquidez, comisiones, condiciones vigentes y ejecución correcta.',
+      },
+      {
+        pregunta: '¿Qué calculadora debo usar?',
+        respuesta: 'Primero usa la calculadora en modo reembolso para la apuesta inicial. Si recibes freebets, usa después el modo apuesta gratis para convertirlas.',
+      },
+    ],
     resumen: 'Si fallas 100€ te la devuelven íntegra. Gana 60€. Dif 2/5',
     beneficioPotencial: 75,
     dificultad: 2,
