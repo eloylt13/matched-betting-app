@@ -50,8 +50,9 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
     { href: '/guias', label: 'Guías', icon: 'G' },
     { href: '/casas', label: 'Casas', icon: 'H' },
     { href: '/calculadora', label: 'Calculadora', icon: 'C' },
-    { href: '/blog', label: 'Blog', icon: 'B' },
     { href: '/bonos', label: 'Bonos', icon: 'O' },
+    { href: '/beneficios-recurrentes', label: 'Recurrentes', icon: 'R' },
+    { href: '/blog', label: 'Blog', icon: 'B' },
   ]
 
   // La landing maneja su propio nav y layout
