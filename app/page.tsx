@@ -373,7 +373,7 @@ export default function LandingPage() {
       <section className="relative overflow-hidden bg-[#080B16]">
         <HeroAtmosphere />
 
-        <div className="relative mx-auto max-w-5xl px-4 py-20 sm:px-6 sm:py-28 lg:px-8 lg:py-36">
+        <div className="relative mx-auto max-w-5xl px-4 pt-12 pb-16 sm:px-6 sm:pt-16 sm:pb-24 lg:px-8 lg:pt-20 lg:pb-32">
           <div className="mx-auto grid max-w-5xl items-center gap-12 text-center lg:grid-cols-[minmax(0,1fr)_420px] lg:text-left">
             <div>
             <h1 className="mx-auto max-w-4xl font-playfair text-4xl font-bold leading-tight text-white sm:text-5xl lg:mx-0 lg:text-[3.55rem]">
