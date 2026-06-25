@@ -1089,6 +1089,15 @@ export const casasEspana: Casa[] = [
             modo: 'reembolso',
             stakeRecomendado: 100,
             reembolsoEstimado: 100,
+            calculatorPrefill: {
+              modo: 'reembolso',
+              stake: 100,
+              backOdds: 2,
+              layOdds: 2.1,
+              commission: 2,
+              refundType: 'freebet',
+              refundAmount: 100,
+            },
             alertas: [
               'El reembolso es del 150% — si pierdes 100€, recibes freebet de 150€',
               'Verificar cuota mínima en T&C vigentes',
@@ -1112,6 +1121,13 @@ export const casasEspana: Casa[] = [
             modo: 'freebet',
             stakeRecomendado: 150,
             freebetEstimada: 100,
+            calculatorPrefill: {
+              modo: 'apuesta-gratis',
+              stake: 150,
+              backOdds: 4,
+              layOdds: 4.2,
+              commission: 2,
+            },
             alertas: [
               'Buscar cuotas altas (3.00+) para maximizar retención',
               'Marcar "Usar Apuesta Gratis" en el cupón',
@@ -1200,6 +1216,15 @@ export const casasEspana: Casa[] = [
             descripcion: 'Reclamar las 2 freebets de 5€ al registrarse y realizar depósito de 100€',
             modo: 'cualificante',
             stakeRecomendado: 100,
+            calculatorPrefill: {
+              modo: 'reembolso',
+              stake: 100,
+              backOdds: 2,
+              layOdds: 2.1,
+              commission: 2,
+              refundType: 'freebet',
+              refundAmount: 70,
+            },
             alertas: [
               'Reclamar las 2 freebets de 5€ inmediatamente tras el registro (ventana emergente)',
               'Usar tarjeta bancaria — evitar Skrill/Neteller',
@@ -1225,6 +1250,13 @@ export const casasEspana: Casa[] = [
             modo: 'freebet',
             stakeRecomendado: 100,
             freebetEstimada: 70,
+            calculatorPrefill: {
+              modo: 'apuesta-gratis',
+              stake: 100,
+              backOdds: 4,
+              layOdds: 4.2,
+              commission: 2,
+            },
             alertas: [
               'Cuota máxima 5.00',
               'MARCAR casilla "Usar Apuesta Gratis" en el cupón ANTES de confirmar',
@@ -1380,6 +1412,15 @@ export const casasEspana: Casa[] = [
             modo: 'reembolso',
             stakeRecomendado: 50,
             reembolsoEstimado: 35,
+            calculatorPrefill: {
+              modo: 'reembolso',
+              stake: 50,
+              backOdds: 2,
+              layOdds: 2.1,
+              commission: 2,
+              refundType: 'freebet',
+              refundAmount: 35,
+            },
             alertas: [
               'Registrarse desde la página promocional',
               'Verificar cuota mínima en T&C',
@@ -1402,6 +1443,15 @@ export const casasEspana: Casa[] = [
             modo: 'reembolso',
             stakeRecomendado: 50,
             reembolsoEstimado: 35,
+            calculatorPrefill: {
+              modo: 'reembolso',
+              stake: 50,
+              backOdds: 2,
+              layOdds: 2.1,
+              commission: 2,
+              refundType: 'freebet',
+              refundAmount: 35,
+            },
             alertas: [
               'Verificar que el segundo tramo esté activo en la sección de bonos',
             ],
