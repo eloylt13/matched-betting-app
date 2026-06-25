@@ -26,12 +26,11 @@ self.addEventListener('fetch', (event) => {
   const { request } = event
   const url = new URL(request.url)
 
-  // No cachear /pronosticos ni documentos HTML para evitar freebets antiguas.
+  // No cachear documentos HTML ni rutas dinamicas/API.
   if (
     request.method !== 'GET' ||
     request.mode === 'navigate' ||
     request.destination === 'document' ||
-    url.pathname.startsWith('/pronosticos') ||
     url.pathname.startsWith('/api') ||
     request.headers.get('accept')?.includes('text/html')
   ) {
