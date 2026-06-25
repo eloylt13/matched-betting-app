@@ -325,6 +325,13 @@ export const casasEspana: Casa[] = [
             descripcion: 'Apuesta de 150€ para desbloquear las freebets de 150€',
             modo: 'cualificante',
             stakeRecomendado: 150,
+            calculatorPrefill: {
+              modo: 'dinero-real',
+              stake: 150,
+              backOdds: 2,
+              layOdds: 2.1,
+              commission: 2,
+            },
             alertas: [
               'Registrarse desde la página promocional',
               'Cuota mínima 1.50',
@@ -349,6 +356,13 @@ export const casasEspana: Casa[] = [
             modo: 'freebet',
             stakeRecomendado: 150,
             freebetEstimada: 100,
+            calculatorPrefill: {
+              modo: 'apuesta-gratis',
+              stake: 150,
+              backOdds: 4,
+              layOdds: 4.2,
+              commission: 2,
+            },
             alertas: [
               'Buscar cuotas altas (3.00+) para maximizar retención (~65-70%)',
               'Marcar "Usar Apuesta Gratis" en el cupón',
@@ -942,6 +956,45 @@ export const casasEspana: Casa[] = [
     tipologia: 'reembolso',
     url: 'https://bdeal.io/marcaapuestas/136724/1',
     descripcionBreve: 'Reembolso 100% hasta 200€ si pierdes la primera apuesta',
+    seoTitle: 'Bono Marca Apuestas: guía paso a paso | IAPredictHub',
+    seoDescription: 'Guía para entender el bono de bienvenida de Marca Apuestas, cubrir el reembolso con calculadora y convertir la apuesta gratis con matched betting.',
+    seoIntro: 'El bono de Marca Apuestas se trabaja como una promoción de reembolso. La clave es preparar la primera apuesta con calculadora, cubrirla en Betfair Exchange y, si recibes una apuesta gratis, convertirla después en modo apuesta gratis.',
+    seoSections: [
+      {
+        titulo: 'Cómo funciona el bono Marca Apuestas',
+        texto: 'La ficha trabaja Marca Apuestas como una oferta de reembolso. Primero realizas una apuesta con dinero real y, si pierde según las condiciones vigentes, puedes recibir una apuesta gratis de reembolso para convertirla después con la calculadora.',
+      },
+      {
+        titulo: 'Paso a paso recomendado',
+        texto: 'Primero entra desde el enlace promocional, verifica la cuenta y revisa que la oferta esté activa. Después usa la calculadora en modo reembolso para cubrir la apuesta inicial en Betfair Exchange. Si recibes la freebet, vuelve a la calculadora en modo apuesta gratis.',
+      },
+      {
+        titulo: 'Cuánto se puede extraer',
+        texto: 'La estimación de IAPredictHub para Marca Apuestas ronda los 90€ de beneficio potencial, siempre como referencia orientativa. El resultado real depende de cuotas, liquidez, comisiones, condiciones vigentes y ejecución correcta.',
+      },
+      {
+        titulo: 'Errores habituales',
+        texto: 'Los errores más comunes son no revisar las condiciones antes de apostar, no tener saldo suficiente en Betfair, usar cuotas fuera de los requisitos, no cubrir correctamente la primera apuesta o dejar caducar la apuesta gratis.',
+      },
+    ],
+    seoFaqs: [
+      {
+        pregunta: '¿El bono de Marca Apuestas es bueno para matched betting?',
+        respuesta: 'Puede ser interesante porque funciona como reembolso, pero requiere saldo suficiente y una buena cobertura en Betfair Exchange antes de colocar la apuesta inicial.',
+      },
+      {
+        pregunta: '¿Cuánto dinero necesito para empezar?',
+        respuesta: 'La ficha usa una referencia de 200€, pero debes revisar siempre las condiciones oficiales y tener saldo suficiente para cubrir la apuesta en Betfair Exchange.',
+      },
+      {
+        pregunta: '¿El beneficio de 90€ es fijo?',
+        respuesta: 'No. Es una estimación orientativa. El beneficio final depende de cuotas, liquidez, comisiones, condiciones vigentes y ejecución correcta.',
+      },
+      {
+        pregunta: '¿Qué calculadora debo usar?',
+        respuesta: 'Primero usa la calculadora en modo reembolso para la apuesta inicial. Si recibes una freebet, usa después el modo apuesta gratis para convertirla.',
+      },
+    ],
     resumen: 'Reembolso 100% hasta 200€ si fallas. Gana 90€. Dif 3/5',
     beneficioPotencial: 90,
     dificultad: 3,
@@ -1049,6 +1102,15 @@ export const casasEspana: Casa[] = [
             modo: 'reembolso',
             stakeRecomendado: 100,
             reembolsoEstimado: 70,
+            calculatorPrefill: {
+              modo: 'reembolso',
+              stake: 100,
+              backOdds: 2,
+              layOdds: 2.1,
+              commission: 2,
+              refundType: 'freebet',
+              refundAmount: 70,
+            },
             alertas: [
               'Registrarse desde la página promocional de Bwin',
               'Liquidez mínima 100€ en Betfair',
@@ -1071,6 +1133,15 @@ export const casasEspana: Casa[] = [
             modo: 'reembolso',
             stakeRecomendado: 100,
             reembolsoEstimado: 35,
+            calculatorPrefill: {
+              modo: 'reembolso',
+              stake: 100,
+              backOdds: 2,
+              layOdds: 2.1,
+              commission: 2,
+              refundType: 'freebet',
+              refundAmount: 35,
+            },
             alertas: [
               'Usar código promocional DEP2 al realizar el 2º depósito',
               'Reembolso máximo: 50€ (valor real estimado 35€)',
@@ -1092,6 +1163,15 @@ export const casasEspana: Casa[] = [
             modo: 'reembolso',
             stakeRecomendado: 200,
             reembolsoEstimado: 35,
+            calculatorPrefill: {
+              modo: 'reembolso',
+              stake: 200,
+              backOdds: 2,
+              layOdds: 2.1,
+              commission: 2,
+              refundType: 'freebet',
+              refundAmount: 35,
+            },
             alertas: [
               '⚠️ ALERTA RIESGO ALTO: Al apostar 200€ con cuotas altas, la responsabilidad en Betfair será elevada',
               'Asegurar saldo suficiente en el Exchange ANTES de colocar la apuesta',
@@ -1356,6 +1436,15 @@ export const casasEspana: Casa[] = [
             modo: 'reembolso',
             stakeRecomendado: 100,
             reembolsoEstimado: 70,
+            calculatorPrefill: {
+              modo: 'reembolso',
+              stake: 100,
+              backOdds: 2,
+              layOdds: 2.1,
+              commission: 2,
+              refundType: 'freebet',
+              refundAmount: 70,
+            },
             alertas: [
               'Registrarse desde la página promocional de Kirolbet',
               'Verificar cuota mínima en T&C vigentes',
@@ -1378,6 +1467,13 @@ export const casasEspana: Casa[] = [
             modo: 'freebet',
             stakeRecomendado: 100,
             freebetEstimada: 65,
+            calculatorPrefill: {
+              modo: 'apuesta-gratis',
+              stake: 100,
+              backOdds: 4,
+              layOdds: 4.2,
+              commission: 2,
+            },
             alertas: [
               'Usar las tiradas gratis en slots elegibles',
               'Buscar cuotas altas (3.00+) para la freebet',
