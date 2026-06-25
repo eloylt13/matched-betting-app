@@ -18,8 +18,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     if (!casa) return {}
 
     return {
-        title: `${casa.nombre} matched betting: cómo aprovechar el bono | IAPredictHub`,
-        description: `Guía paso a paso para aprovechar el bono de bienvenida de ${casa.nombre}. Beneficio potencial: ${casa.beneficioPotencial}€. Calculadora incluida.`,
+        title: casa.seoTitle ?? `${casa.nombre} matched betting: cómo aprovechar el bono | IAPredictHub`,
+        description: casa.seoDescription ?? `Guía paso a paso para aprovechar el bono de bienvenida de ${casa.nombre}. Beneficio potencial: ${casa.beneficioPotencial}€. Calculadora incluida.`,
     }
 }
 

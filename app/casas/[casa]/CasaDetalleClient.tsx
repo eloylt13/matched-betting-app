@@ -224,6 +224,61 @@ function getAntesRegistroItems(casa: Casa): string[] {
     return [...requisitos, ...notas].slice(0, 5)
 }
 
+function hasSeoContent(casa: Casa): boolean {
+    return Boolean(
+        casa.seoIntro ||
+        (casa.seoSections?.length ?? 0) > 0 ||
+        (casa.seoFaqs?.length ?? 0) > 0
+    )
+}
+
+function CasaSeoSection({ casa }: { casa: Casa }) {
+    if (!hasSeoContent(casa)) return null
+
+    return (
+        <section className="bg-white rounded-2xl border border-stone-100 p-5 shadow-sm">
+            <div>
+                <p className="text-xs font-semibold text-emerald-600 uppercase tracking-wide mb-1">
+                    Bono de bienvenida
+                </p>
+                <h2 className="text-lg font-semibold text-stone-900">Guía rápida del bono de {casa.nombre}</h2>
+            </div>
+
+            {casa.seoIntro && (
+                <p className="mt-3 text-sm leading-6 text-stone-600">{casa.seoIntro}</p>
+            )}
+
+            {(casa.seoSections?.length ?? 0) > 0 && (
+                <div className="mt-5 grid gap-3">
+                    {casa.seoSections?.map((section) => (
+                        <article
+                            key={section.titulo}
+                            className="rounded-xl border border-stone-100 bg-stone-50 px-4 py-3"
+                        >
+                            <h3 className="text-sm font-semibold text-stone-900">{section.titulo}</h3>
+                            <p className="mt-2 text-sm leading-6 text-stone-600">{section.texto}</p>
+                        </article>
+                    ))}
+                </div>
+            )}
+
+            {(casa.seoFaqs?.length ?? 0) > 0 && (
+                <div className="mt-6 border-t border-stone-100 pt-5">
+                    <h3 className="text-sm font-semibold text-stone-900">Preguntas frecuentes</h3>
+                    <div className="mt-3 grid gap-3">
+                        {casa.seoFaqs?.map((faq) => (
+                            <div key={faq.pregunta} className="rounded-xl border border-stone-100 px-4 py-3">
+                                <p className="text-sm font-semibold text-stone-800">{faq.pregunta}</p>
+                                <p className="mt-2 text-sm leading-6 text-stone-600">{faq.respuesta}</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            )}
+        </section>
+    )
+}
+
 // ── Componente de alerta por nivel ────────────────────────────────────────────
 function AlertaItem({ texto }: { texto: string }) {
     const nivel = getAlertaNivel(texto)
@@ -734,6 +789,8 @@ export default function CasaDetalleClient({ casa, hasGuide }: CasaDetalleClientP
                     )}
                 </section>
             )}
+
+            <CasaSeoSection casa={casa} />
 
             {/* Estado + progreso integrados */}
             <div className="bg-white rounded-2xl shadow-sm border border-stone-100 p-5">

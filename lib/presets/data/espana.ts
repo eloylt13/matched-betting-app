@@ -1078,6 +1078,45 @@ export const casasEspana: Casa[] = [
     tipologia: 'reembolso',
     url: 'https://bdeal.io/PokerStars/101907/1',
     descripcionBreve: 'Seguro 100% hasta 100€ en dos tramos',
+    seoTitle: 'Bono PokerStars Sports: guía paso a paso | IAPredictHub',
+    seoDescription: 'Guía para entender el bono de PokerStars Sports, revisar sus dos tramos de reembolso, cubrir apuestas con calculadora y estimar el beneficio potencial.',
+    seoIntro: 'El bono de PokerStars Sports funciona como una promoción de reembolso en dos tramos. La clave no es acertar el resultado, sino revisar condiciones, cubrir cada apuesta con Betfair Exchange y convertir las freebets recibidas con la calculadora.',
+    seoSections: [
+      {
+        titulo: 'Cómo funciona el bono PokerStars Sports',
+        texto: 'La promoción se divide en dos fases. En cada fase realizas una apuesta con dinero real y, si esa apuesta pierde según las condiciones oficiales, puedes recibir una freebet de reembolso. Por eso conviene tratarlo como una oferta de reembolso y no como una apuesta normal.',
+      },
+      {
+        titulo: 'Paso a paso recomendado',
+        texto: 'Primero registra la cuenta desde el enlace promocional, verifica tu identidad y revisa que el bono esté activo. Después usa la calculadora en modo reembolso antes de apostar, cubre la apuesta en Betfair Exchange y espera el resultado. Si recibes una freebet, vuelve a la calculadora en modo apuesta gratis para convertirla.',
+      },
+      {
+        titulo: 'Cuánto se puede extraer',
+        texto: 'El beneficio potencial estimado en IAPredictHub es de unos 60€, siempre como referencia orientativa. El resultado real puede variar por cuotas, liquidez, comisiones, cambios en las condiciones y errores de ejecución. Antes de empezar, revisa siempre los términos oficiales de PokerStars Sports.',
+      },
+      {
+        titulo: 'Errores habituales',
+        texto: 'Los errores más comunes son empezar sin verificar la promoción, no cubrir la apuesta en el momento correcto, usar una cuota que no cumple condiciones o dejar caducar la freebet. Por eso la ficha divide el proceso en fases y enlaza a la calculadora.',
+      },
+    ],
+    seoFaqs: [
+      {
+        pregunta: '¿El bono de PokerStars Sports es bueno para matched betting?',
+        respuesta: 'Puede ser interesante, pero es más delicado que una oferta simple de apuesta y recibe porque funciona por tramos de reembolso. Es recomendable para usuarios que ya entienden la cobertura básica.',
+      },
+      {
+        pregunta: '¿Cuánto dinero necesito para empezar?',
+        respuesta: 'La ficha usa una referencia de 50€ por tramo, pero debes revisar siempre las condiciones oficiales y tener saldo suficiente para cubrir la apuesta en Betfair Exchange.',
+      },
+      {
+        pregunta: '¿El beneficio de 60€ está garantizado?',
+        respuesta: 'No. Es una estimación orientativa. El beneficio final depende de cuotas, liquidez, comisiones, condiciones vigentes y ejecución correcta.',
+      },
+      {
+        pregunta: '¿Qué calculadora debo usar?',
+        respuesta: 'Primero usa la calculadora en modo reembolso para la apuesta inicial. Si recibes una freebet, usa después el modo apuesta gratis para convertirla.',
+      },
+    ],
     resumen: 'Seguro 100% hasta 100€ en dos tramos. Gana 60€. Dif 3/5',
     beneficioPotencial: 60,
     dificultad: 3,

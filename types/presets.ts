@@ -68,6 +68,17 @@ export interface Casa {
     pais: Pais
     url?: string
     descripcionBreve: string
+    seoTitle?: string
+    seoDescription?: string
+    seoIntro?: string
+    seoSections?: Array<{
+        titulo: string
+        texto: string
+    }>
+    seoFaqs?: Array<{
+        pregunta: string
+        respuesta: string
+    }>
     resumen?: string
     tipologia?: Tipologia
     beneficioPotencial: number
