@@ -83,7 +83,7 @@ function getModoLabel(modo: ModoClasica) {
 
 function getResultadoLabel(valor: number, modo: ModoClasica): { titulo: string; subtitulo: string } {
   if (modo === 'dinero-real' || modo === 'rollover') {
-    if (valor >= 0) return { titulo: 'Beneficio estimado', subtitulo: 'Resultado neto garantizado' }
+    if (valor >= 0) return { titulo: 'Beneficio estimado', subtitulo: 'Resultado neto equilibrado' }
     return { titulo: 'Pérdida calificante', subtitulo: 'Coste de desbloquear la oferta' }
   }
 
@@ -177,6 +177,10 @@ export default function CalculadoraPage({
       'refundType',
       'refundAmount',
       'currency',
+      'casaId',
+      'faseId',
+      'faseTitle',
+      'faseNumero',
     ].some((key) => searchParams.get(key) !== null)
 
     if (!hasParams) {
@@ -196,6 +200,10 @@ export default function CalculadoraPage({
       refundType: isReembolsoTipo(refundType) ? refundType : undefined,
       refundAmount: searchParams.get('refundAmount') ?? undefined,
       currency: mapCurrency(searchParams.get('currency')),
+      casaId: searchParams.get('casaId') ?? undefined,
+      faseId: searchParams.get('faseId') ?? undefined,
+      faseTitle: searchParams.get('faseTitle') ?? undefined,
+      faseNumero: searchParams.get('faseNumero') ?? undefined,
     }
   }, [initialPrefill, searchParams])
 
@@ -577,6 +585,19 @@ function OddsMatcherCalc({
   const [tasaExtraccion, setTasaExtraccion] = useState('75')
   const [rolloverX, setRolloverX] = useState('10')
   const [copiado, setCopiado] = useState(false)
+  const casaGuiada = prefill?.casaId ? getCasaById(prefill.casaId) : null
+  const fasesCasaGuiada = casaGuiada?.promos.flatMap((promo) => promo.fases) ?? []
+  const faseNumeroPrefill = prefill?.faseNumero ? Number(prefill.faseNumero) : NaN
+  const faseGuiada = prefill?.faseId
+    ? fasesCasaGuiada.find((fase) => fase.id === prefill.faseId)
+      ?? fasesCasaGuiada.find((fase) => Number.isFinite(faseNumeroPrefill) && fase.numero === faseNumeroPrefill)
+      ?? null
+    : null
+  const nombreCasaGuiada = casaGuiada?.nombre ?? (prefill?.bookmaker ? formatBookmaker(prefill.bookmaker) : undefined)
+  const tituloFaseGuiada = faseGuiada?.titulo ?? prefill?.faseTitle ?? 'Fase seleccionada'
+  const numeroFaseGuiada = faseGuiada?.numero ? String(faseGuiada.numero) : prefill?.faseNumero
+  const showGuidedBlock = Boolean(prefill?.casaId || prefill?.bookmaker)
+  const hasPrefilledOdds = Boolean(prefill?.backOdds || prefill?.layOdds)
 
   useEffect(() => {
     if (!prefill) {
@@ -692,9 +713,89 @@ function OddsMatcherCalc({
             <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-violet-300/70 to-transparent" />
             <div className="pointer-events-none absolute -right-24 -top-24 h-48 w-48 rounded-full bg-violet-500/10 blur-3xl" />
             <div className="space-y-5">
-              {prefill?.bookmaker && (
-                <div className={SUBTLE_BADGE}>
-                  Calculando para: {formatBookmaker(prefill.bookmaker)}
+              {showGuidedBlock && (
+                <div className="rounded-[1.5rem] border border-violet-200/70 bg-[linear-gradient(180deg,rgba(248,244,255,0.96)_0%,rgba(255,255,255,0.98)_100%)] p-4 shadow-[0_16px_38px_rgba(46,16,101,0.06)]">
+                  <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+                    <div>
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-violet-700">Calculadora guiada</p>
+                      <h3 className="mt-2 text-lg font-semibold text-slate-900">
+                        {nombreCasaGuiada ?? 'Casa seleccionada'} · {tituloFaseGuiada}
+                      </h3>
+                      <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-600">
+                        Hemos cargado el modo, stake y comisión recomendados para esta fase. Las cuotas son solo valores editables: cámbialas por las cuotas reales del evento que vayas a usar.
+                      </p>
+                      <div className="mt-3 flex flex-wrap gap-2">
+                        <span className="rounded-full border border-violet-200/70 bg-white/85 px-3 py-1 text-[11px] font-semibold text-violet-700">
+                          Modo: {getModoLabel(modo)}
+                        </span>
+                        <span className="rounded-full border border-violet-200/70 bg-white/85 px-3 py-1 text-[11px] font-semibold text-violet-700">
+                          Stake: {stake}{moneda}
+                        </span>
+                        <span className="rounded-full border border-violet-200/70 bg-white/85 px-3 py-1 text-[11px] font-semibold text-violet-700">
+                          Comisión: {comision}%
+                        </span>
+                        {numeroFaseGuiada && (
+                          <span className="rounded-full border border-violet-200/70 bg-white/85 px-3 py-1 text-[11px] font-semibold text-violet-700">
+                            Fase: {numeroFaseGuiada}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+
+                    <div className="flex shrink-0 flex-wrap gap-2 lg:justify-end">
+                      {casaGuiada?.id && (
+                        <Link
+                          href={`/casas/${casaGuiada.id}`}
+                          className="inline-flex items-center justify-center rounded-full border border-violet-200/70 bg-white/90 px-4 py-2 text-xs font-semibold text-violet-700 transition-all hover:border-violet-300/80 hover:bg-violet-50"
+                        >
+                          Volver a la guía
+                        </Link>
+                      )}
+                      {casaGuiada?.url && (
+                        <a
+                          href={casaGuiada.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center justify-center rounded-full border border-emerald-200/80 bg-emerald-50/90 px-4 py-2 text-xs font-semibold text-emerald-700 transition-all hover:border-emerald-300/80 hover:bg-emerald-100"
+                        >
+                          Abrir casa
+                        </a>
+                      )}
+                      <a
+                        href="https://www.betfair.es/exchange/plus/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center rounded-full border border-violet-200/70 bg-violet-500 px-4 py-2 text-xs font-semibold text-white shadow-[0_14px_34px_rgba(124,58,237,0.24)] transition-all hover:bg-violet-400"
+                      >
+                        Abrir Betfair Exchange
+                      </a>
+                    </div>
+                  </div>
+
+                  {faseGuiada && (
+                    <div className="mt-4 rounded-[1.25rem] border border-violet-100/90 bg-white/80 p-4">
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-violet-700">Antes de apostar</p>
+                      {(faseGuiada.alertas ?? []).length > 0 && (
+                        <div className="mt-3 grid gap-2">
+                          {(faseGuiada.alertas ?? []).slice(0, 2).map((alerta, index) => (
+                            <p key={`${faseGuiada.id}-alerta-${index}`} className="rounded-2xl border border-amber-200/80 bg-amber-50/80 px-3 py-2 text-xs leading-5 text-amber-800">
+                              {alerta}
+                            </p>
+                          ))}
+                        </div>
+                      )}
+                      <ul className="mt-3 grid gap-2">
+                        {faseGuiada.checklist.slice(0, 4).map((item, index) => (
+                          <li key={`${faseGuiada.id}-check-${index}`} className="flex gap-2 rounded-2xl border border-violet-100/90 bg-[linear-gradient(180deg,rgba(255,255,255,0.96)_0%,rgba(248,244,255,0.9)_100%)] px-3 py-2 text-xs leading-5 text-slate-600">
+                            <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-violet-200/80 bg-violet-50 text-[10px] font-bold text-violet-700">
+                              {index + 1}
+                            </span>
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
                 </div>
               )}
 
@@ -707,6 +808,12 @@ function OddsMatcherCalc({
                 <InputField label="Cuota lay (Exchange)" value={cuotaExch} onChange={setCuotaExch} microcopy="Cuota en contra en Betfair." />
                 <InputField label="Comisión Betfair" value={comision} onChange={setComision} suffix="%" microcopy="Ajusta la comisión según tu cuenta o exchange." />
               </div>
+
+              {hasPrefilledOdds && (
+                <p className="rounded-[1.25rem] border border-amber-200/80 bg-amber-50/80 px-4 py-3 text-xs leading-5 text-amber-800">
+                  Edita estas cuotas con las del evento real. IAPredictHub no está recomendando un evento concreto.
+                </p>
+              )}
 
               {modo === 'reembolso' && (
                 <div className="space-y-4 rounded-[1.25rem] border border-violet-200/60 bg-[linear-gradient(180deg,rgba(248,244,255,0.9)_0%,rgba(255,255,255,0.95)_100%)] p-4">

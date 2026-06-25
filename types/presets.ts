@@ -38,6 +38,16 @@ export interface SiguientePaso {
     urgente?: boolean
 }
 
+export interface FaseCalculatorPrefill {
+    modo?: 'dinero-real' | 'apuesta-gratis' | 'reembolso' | 'rollover' | 'bonos'
+    stake?: number
+    backOdds?: number
+    layOdds?: number
+    commission?: number
+    refundType?: 'cash' | 'freebet'
+    refundAmount?: number
+}
+
 export interface Fase {
     id: string
     numero: number
@@ -45,6 +55,7 @@ export interface Fase {
     descripcion: string
     modo: ModoCalculo
     stakeRecomendado: number
+    calculatorPrefill?: FaseCalculatorPrefill
     freebetEstimada?: number
     reembolsoEstimado?: number
     alertas?: string[]

@@ -201,12 +201,13 @@ function buildCalculadoraHref(
 }
 
 function buildCalculadoraFaseHref(casa: Casa, fase: Fase) {
-    const modo = mapFaseModoToCalculadoraModo(fase)
+    const prefill = fase.calculatorPrefill
+    const modo = prefill?.modo ?? mapFaseModoToCalculadoraModo(fase)
     const params = new URLSearchParams()
 
     params.set("modo", modo)
-    params.set("stake", String(fase.stakeRecomendado || CALCULADORA_STAKE_FALLBACK))
-    params.set("commission", CALCULADORA_COMMISSION)
+    params.set("stake", String((prefill?.stake ?? fase.stakeRecomendado) || CALCULADORA_STAKE_FALLBACK))
+    params.set("commission", String(prefill?.commission ?? CALCULADORA_COMMISSION))
     params.set("bookmaker", casa.nombre)
     params.set("currency", casa.market === "espana" ? "EUR" : "USD")
     params.set("casaId", casa.id)
@@ -214,8 +215,23 @@ function buildCalculadoraFaseHref(casa: Casa, fase: Fase) {
     params.set("faseTitle", fase.titulo)
     params.set("faseNumero", String(fase.numero))
 
-    if (modo === "reembolso" && typeof fase.reembolsoEstimado === "number") {
+    if (typeof prefill?.backOdds === "number") {
+        params.set("backOdds", String(prefill.backOdds))
+    }
+
+    if (typeof prefill?.layOdds === "number") {
+        params.set("layOdds", String(prefill.layOdds))
+    }
+
+    if (typeof prefill?.refundAmount === "number") {
+        params.set("refundAmount", String(prefill.refundAmount))
+    } else if (modo === "reembolso" && typeof fase.reembolsoEstimado === "number") {
         params.set("refundAmount", String(fase.reembolsoEstimado))
+    }
+
+    if (prefill?.refundType) {
+        params.set("refundType", prefill.refundType)
+    } else if (modo === "reembolso" && typeof fase.reembolsoEstimado === "number") {
         params.set("refundType", "freebet")
     }
 
