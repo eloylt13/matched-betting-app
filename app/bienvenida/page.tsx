@@ -10,7 +10,7 @@ const importantPoints = [
   'No necesitas crear una cuenta en IAPredictHub para empezar.',
   'Sí tendrás que registrarte en Versus para activar el bono de bienvenida.',
   'Para empezar puedes necesitar aproximadamente 100-120€ disponibles entre apuesta y cobertura.',
-  'El objetivo es cubrir apuestas, no apostar por intuición ni acertar pronósticos.',
+  'El objetivo es cubrir escenarios, no apostar por intuición ni depender de acertar un resultado.',
   'Si no sigues bien los pasos, si cambian las cuotas o si introduces mal los datos, puedes perder dinero.',
 ]
 
@@ -89,7 +89,7 @@ const faqs = [
       'No necesitas experiencia previa, pero sí debes leer la base antes de ejecutar. La prioridad es entender apuesta cualificante, freebet y cobertura.',
   },
   {
-    question: '¿Esto es lo mismo que pronosticar partidos?',
+    question: '¿Dependo de acertar el resultado?',
     answer:
       'No. No se trata de acertar quién gana. La idea es usar una apuesta y una cobertura para convertir parte del bono en beneficio estimado.',
   },

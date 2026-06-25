@@ -409,9 +409,8 @@ export default function QueSonLosBonosRecurrentesPage() {
           ¿Necesito acertar el resultado del partido?
         </h3>
         <p>
-          No es el objetivo. Con matched betting, la idea es cubrir escenarios para no
-          depender de acertar un pronóstico. Lo importante es calcular bien la
-          operación.
+          No es el objetivo. Con matched betting, la idea es cubrir escenarios,
+          revisar condiciones y calcular bien la operación antes de apostar.
         </p>
 
         <h3 className="text-base font-semibold text-stone-800">
