@@ -17,6 +17,49 @@ export const casasEspana: Casa[] = [
     tipologia: 'apuesta-recibe',
     url: 'https://app.afiliago.com/go/19148/JqXVcHDWdu/2',
     descripcionBreve: 'Deposita y recibe hasta 200€ en freebets con tus dos primeros depósitos.',
+    seoTitle: 'Bono Versus: primer bono guiado paso a paso | IAPredictHub',
+    seoDescription: 'Guía para entender el bono de bienvenida de Versus, activar sus freebets, cubrir las apuestas con calculadora y empezar en matched betting paso a paso.',
+    seoIntro: 'Versus es una de las rutas recomendadas para empezar en IAPredictHub porque su bono de bienvenida se puede trabajar como una promoción de apuesta y recibe. La clave es seguir el proceso por orden: registrarse correctamente, hacer los depósitos necesarios, cubrir las apuestas con Betfair Exchange y convertir cada freebet con la calculadora.',
+    seoSections: [
+      {
+        titulo: 'Cómo funciona el bono Versus',
+        texto: 'La promoción puede ofrecer hasta 200€ en freebets repartidas en dos tramos, una por cada uno de los dos primeros depósitos. En IAPredictHub se trabaja como una oferta de apuesta y recibe: primero se cubre la apuesta inicial y después se convierte cada freebet por separado.',
+      },
+      {
+        titulo: 'Paso a paso recomendado',
+        texto: 'Primero entra desde el enlace promocional y selecciona la promoción de bienvenida de apuestas deportivas si aparece durante el registro. Después verifica la cuenta, realiza el depósito correspondiente y usa la calculadora en modo dinero real para cubrir la apuesta inicial. Cuando recibas la freebet, usa la calculadora en modo apuesta gratis antes de ejecutarla.',
+      },
+      {
+        titulo: 'Cuánto se puede extraer',
+        texto: 'La estimación de IAPredictHub para Versus ronda los 125€ de beneficio potencial, con un rango prudente aproximado de 120€ a 130€ si se completan bien los dos tramos. Es una referencia orientativa: el resultado real depende de cuotas, liquidez, comisiones, condiciones vigentes y ejecución correcta.',
+      },
+      {
+        titulo: 'Errores habituales',
+        texto: 'Los errores más comunes son no seleccionar la promoción correcta, depositar sin verificar la cuenta, usar cuotas fuera del rango permitido, no marcar la opción de apuesta gratis en el cupón o no cubrir cada paso con la calculadora.',
+      },
+    ],
+    seoFaqs: [
+      {
+        pregunta: '¿El bono de Versus es bueno para empezar?',
+        respuesta: 'Sí, puede ser una buena ruta inicial porque la mecánica es más directa que otros bonos de reembolso o rollover. Aun así, conviene seguir la guía paso a paso y usar la calculadora antes de cada apuesta.',
+      },
+      {
+        pregunta: '¿Cuánto ofrece el bono de Versus?',
+        respuesta: 'La guía trabaja con una oferta de hasta 200€ en freebets, repartidas en dos tramos de hasta 100€. Revisa siempre las condiciones oficiales vigentes antes de empezar.',
+      },
+      {
+        pregunta: '¿Qué cuotas debo usar en Versus?',
+        respuesta: 'La guía actual indica mantener las apuestas dentro del rango de cuotas 1.50 a 3.50. Antes de ejecutar, revisa siempre los términos oficiales de la promoción.',
+      },
+      {
+        pregunta: '¿El beneficio de 125€ es fijo?',
+        respuesta: 'No. Es una estimación orientativa. El beneficio final depende de cuotas, liquidez, comisiones, condiciones vigentes y ejecución correcta.',
+      },
+      {
+        pregunta: '¿Qué calculadora debo usar?',
+        respuesta: 'Primero usa la calculadora en modo dinero real para cubrir la apuesta inicial. Cuando recibas cada freebet, usa el modo apuesta gratis para convertirla.',
+      },
+    ],
     resumen: 'Hasta 200€ en freebets con tus dos primeros depósitos. Beneficio potencial estimado: ~125€. Dif 1/5',
     beneficioPotencial: 125,
     dificultad: 1,
