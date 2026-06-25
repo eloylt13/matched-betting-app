@@ -2,9 +2,9 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Mejores Bonos de Bienvenida en Casas de Apuestas España 2026 | IAPredictHub',
+  title: 'Mejores bonos de bienvenida en España (2026) | IAPredictHub',
   description:
-    'Lista actualizada de los mejores bonos de bienvenida en casas de apuestas en España 2026. Comparativa con tipo de oferta, requisitos, dificultad y ganancia potencial por casa.',
+    'Compara los mejores bonos de bienvenida de casas de apuestas en España: freebets, reembolsos, rollover, dificultad y beneficio potencial con matched betting.',
 }
 
 const bonos = [

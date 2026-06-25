@@ -2,9 +2,9 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Blog de matched betting en España | Noticias, guías y análisis | IAPredictHub',
+  title: 'Guías de matched betting y bonos en España | IAPredictHub',
   description:
-    'Artículos y guías útiles sobre matched betting en España, con análisis de bonos de bienvenida, casas de apuestas y contenido complementario con referencias también para LATAM.',
+    'Aprende matched betting con guías sobre bonos de bienvenida, freebets, beneficios recurrentes, casas de apuestas, reembolsos, bonos sin rollover y calculadora de cobertura.',
 }
 
 // Lista de artículos — añadir aquí cuando se publiquen
@@ -17,6 +17,76 @@ const articulos: Array<{
   image?: string
   destacado?: boolean
 }> = [
+  {
+    slug: 'mejores-bonos-bienvenida-apuestas-espana',
+    titulo: 'Mejores bonos de bienvenida en casas de apuestas en España (2026)',
+    fecha: '29 de marzo de 2026',
+    descripcion:
+      'Comparativa actualizada de más de 20 casas españolas con tipo de bono, requisitos, dificultad y ganancia potencial. Descubre por dónde empezar.',
+  },
+  {
+    slug: 'que-es-matched-betting-espana',
+    titulo: '¿Qué es el Matched Betting y cómo funciona en España?',
+    fecha: '29 de marzo de 2026',
+    descripcion:
+      'Guía completa para principiantes: qué es el matched betting, cómo funciona paso a paso, si es legal en España y cuánto puedes ganar con ejemplos reales.',
+  },
+  {
+    slug: 'que-son-los-bonos-recurrentes',
+    titulo: '¿Qué son los bonos recurrentes?',
+    fecha: '12 de junio de 2026',
+    descripcion:
+      'Qué son los bonos recurrentes, cómo funcionan y cómo aprovechar promociones después de los bonos de bienvenida sin depender de acertar partidos.',
+  },
+  {
+    slug: 'que-es-una-freebet',
+    titulo: '¿Qué es una freebet y cómo convertirla en dinero real?',
+    fecha: '15 de abril de 2026',
+    descripcion:
+      'Aprende qué es una freebet, los tipos más comunes (stake devuelto y stake no devuelto) y cómo convertirla en dinero real con la técnica del matched betting paso a paso.',
+  },
+  {
+    slug: 'mejores-bonos-apuesta-y-recibe-espana',
+    titulo: 'Mejores bonos apuesta y recibe en España (2026): freebets garantizadas comparadas',
+    fecha: '15 de abril de 2026',
+    descripcion:
+      'Comparativa de los mejores bonos apuesta y recibe (bet and get) en casas españolas. Freebets garantizadas, análisis por casa, qué revisar antes de activarlos y errores a evitar.',
+  },
+  {
+    slug: 'bonos-sin-rollover-espana',
+    titulo: 'Bonos sin rollover en España (2026): qué son, cuáles encontrar y cómo aprovecharlos',
+    fecha: '15 de abril de 2026',
+    descripcion:
+      'Guía completa sobre bonos sin rollover en casas de apuestas españolas. Qué significa sin rollover, diferencias con otros tipos de bono, qué casas los ofrecen y qué revisar antes de activarlos.',
+  },
+  {
+    slug: 'casas-apuestas-reembolso-espana',
+    titulo: 'Casas de apuestas con reembolso en España (2026): comparativa y guía práctica',
+    fecha: '15 de abril de 2026',
+    descripcion:
+      'Comparativa actualizada de las mejores casas de apuestas con bono de reembolso en España. Cómo funcionan los reembolsos, cuándo convienen más que una freebet y qué mirar antes de activarlas.',
+  },
+  {
+    slug: 'es-legal-matched-betting-espana',
+    titulo: '¿Es legal el matched betting en España?',
+    fecha: '15 de abril de 2026',
+    descripcion:
+      'Analizamos si el matched betting es legal en España: qué dice la regulación vigente, qué papel juegan las casas reguladas y Betfair Exchange, y cuáles son los riesgos reales.',
+  },
+  {
+    slug: 'mejores-bonos-bienvenida-latam',
+    titulo: 'Mejores bonos de bienvenida en casas de apuestas LATAM (2026)',
+    fecha: '8 de abril de 2026',
+    descripcion:
+      'Comparativa de casas disponibles en México, Colombia, Chile, Perú, Ecuador y más países con tipo de bono, requisitos y ganancia potencial en USD.',
+  },
+  {
+    slug: 'que-es-matched-betting-latam',
+    titulo: '¿Qué es el Matched Betting y cómo funciona en LATAM?',
+    fecha: '8 de abril de 2026',
+    descripcion:
+      'Guía completa para principiantes en América Latina: qué es el matched betting, cómo funciona, en qué países es viable y cuánto puedes ganar con los bonos de bienvenida disponibles.',
+  },
   {
     slug: 'mundial-2026',
     titulo: 'Mundial 2026: grupos, favoritos y selecciones actualizadas',
@@ -44,76 +114,6 @@ const articulos: Array<{
     categoria: 'Mundial 2026',
     image: '/blog/prediccion-mejor-jugador-mundial-2026/vitinha-mundial-2026.webp',
     destacado: true,
-  },
-  {
-    slug: 'que-son-los-bonos-recurrentes',
-    titulo: '¿Qué son los bonos recurrentes?',
-    fecha: '12 de junio de 2026',
-    descripcion:
-      'Qué son los bonos recurrentes, cómo funcionan y cómo aprovechar promociones después de los bonos de bienvenida sin depender de acertar partidos.',
-  },
-  {
-    slug: 'que-es-matched-betting-espana',
-    titulo: '¿Qué es el Matched Betting y cómo funciona en España?',
-    fecha: '29 de marzo de 2026',
-    descripcion:
-      'Guía completa para principiantes: qué es el matched betting, cómo funciona paso a paso, si es legal en España y cuánto puedes ganar con ejemplos reales.',
-  },
-  {
-    slug: 'mejores-bonos-bienvenida-apuestas-espana',
-    titulo: 'Mejores bonos de bienvenida en casas de apuestas en España (2026)',
-    fecha: '29 de marzo de 2026',
-    descripcion:
-      'Comparativa actualizada de más de 20 casas españolas con tipo de bono, requisitos, dificultad y ganancia potencial. Descubre por dónde empezar.',
-  },
-  {
-    slug: 'que-es-matched-betting-latam',
-    titulo: '¿Qué es el Matched Betting y cómo funciona en LATAM?',
-    fecha: '8 de abril de 2026',
-    descripcion:
-      'Guía completa para principiantes en América Latina: qué es el matched betting, cómo funciona, en qué países es viable y cuánto puedes ganar con los bonos de bienvenida disponibles.',
-  },
-  {
-    slug: 'mejores-bonos-bienvenida-latam',
-    titulo: 'Mejores bonos de bienvenida en casas de apuestas LATAM (2026)',
-    fecha: '8 de abril de 2026',
-    descripcion:
-      'Comparativa de casas disponibles en México, Colombia, Chile, Perú, Ecuador y más países con tipo de bono, requisitos y ganancia potencial en USD.',
-  },
-  {
-    slug: 'mejores-bonos-apuesta-y-recibe-espana',
-    titulo: 'Mejores bonos apuesta y recibe en España (2026): freebets garantizadas comparadas',
-    fecha: '15 de abril de 2026',
-    descripcion:
-      'Comparativa de los mejores bonos apuesta y recibe (bet and get) en casas españolas. Freebets garantizadas, análisis por casa, qué revisar antes de activarlos y errores a evitar.',
-  },
-  {
-    slug: 'bonos-sin-rollover-espana',
-    titulo: 'Bonos sin rollover en España (2026): qué son, cuáles encontrar y cómo aprovecharlos',
-    fecha: '15 de abril de 2026',
-    descripcion:
-      'Guía completa sobre bonos sin rollover en casas de apuestas españolas. Qué significa sin rollover, diferencias con otros tipos de bono, qué casas los ofrecen y qué revisar antes de activarlos.',
-  },
-  {
-    slug: 'casas-apuestas-reembolso-espana',
-    titulo: 'Casas de apuestas con reembolso en España (2026): comparativa y guía práctica',
-    fecha: '15 de abril de 2026',
-    descripcion:
-      'Comparativa actualizada de las mejores casas de apuestas con bono de reembolso en España. Cómo funcionan los reembolsos, cuándo convienen más que una freebet y qué mirar antes de activarlas.',
-  },
-  {
-    slug: 'que-es-una-freebet',
-    titulo: '¿Qué es una freebet y cómo convertirla en dinero real?',
-    fecha: '15 de abril de 2026',
-    descripcion:
-      'Aprende qué es una freebet, los tipos más comunes (stake devuelto y stake no devuelto) y cómo convertirla en dinero real con la técnica del matched betting paso a paso.',
-  },
-  {
-    slug: 'es-legal-matched-betting-espana',
-    titulo: '¿Es legal el matched betting en España?',
-    fecha: '15 de abril de 2026',
-    descripcion:
-      'Analizamos si el matched betting es legal en España: qué dice la regulación vigente, qué papel juegan las casas reguladas y Betfair Exchange, y cuáles son los riesgos reales.',
   },
 ]
 
@@ -145,14 +145,11 @@ export default function BlogPage() {
         </div>
       ) : (
         <ul className="flex flex-col gap-4">
-          {[...articulos]
-            .sort((a, b) => Number(Boolean(b.destacado)) - Number(Boolean(a.destacado)))
-            .map((art) => (
+          {articulos.map((art) => (
             <li
               key={art.slug}
               className="bg-white rounded-2xl border border-stone-100 hover:border-purple-200 hover:shadow-lg transition-all p-5"
             >
-              <time className="text-xs text-stone-400">{art.fecha}</time>
               {art.destacado ? (
                 <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#B8941F] mb-2">
                   {art.categoria?.toUpperCase() ?? 'ESPECIAL MUNDIAL 2026'}

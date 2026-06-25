@@ -2,9 +2,9 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: '¿Qué son los bonos recurrentes? Guía matched betting | IAPredictHub',
+  title: 'Bonos recurrentes: cómo evaluar promociones | IAPredictHub',
   description:
-    'Descubre qué son los bonos recurrentes, cómo funcionan y cómo aprovechar promociones de casas de apuestas con matched betting sin depender de acertar el resultado.',
+    'Descubre qué son los bonos recurrentes, cómo revisar freebets, reembolsos y promociones posteriores al registro, y cómo calcular si compensan.',
 }
 
 export default function QueSonLosBonosRecurrentesPage() {

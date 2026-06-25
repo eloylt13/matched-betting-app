@@ -2,9 +2,9 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: '¿Qué es el Matched Betting? Guía para España 2026 | IAPredictHub',
+  title: 'Matched betting en España: qué es y cómo empezar | IAPredictHub',
   description:
-    'Aprende qué es el matched betting, cómo funciona en España, si es legal y cuánto puedes ganar. Guía completa para principiantes con ejemplos reales paso a paso.',
+    'Aprende qué es el matched betting en España, cómo funciona con bonos de bienvenida, qué herramientas necesitas y qué riesgos revisar antes de empezar.',
 }
 
 export default function QueEsMatchedBettingPage() {

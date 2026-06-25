@@ -3,9 +3,9 @@ import Link from 'next/link'
 import BlogCta from '@/components/blog/BlogCta'
 
 export const metadata: Metadata = {
-  title: 'Bonos sin rollover en España 2026: las mejores ofertas sin condiciones | IAPredictHub',
+  title: 'Bonos sin rollover en España: qué son y cómo revisarlos | IAPredictHub',
   description:
-    'Guía completa sobre bonos sin rollover en casas de apuestas españolas. Qué significa sin rollover, cómo distinguirlos de otros tipos de bono, qué casas los ofrecen y qué revisar antes de activarlos.',
+    'Guía para entender los bonos sin rollover en casas de apuestas españolas, distinguirlos de otros bonos y revisar condiciones antes de activarlos.',
 }
 
 const casasSinRollover = [

@@ -2,9 +2,9 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Mejores Bonos Apuesta y Recibe en España 2026 | IAPredictHub',
+  title: 'Mejores bonos apuesta y recibe en España (2026) | IAPredictHub',
   description:
-    'Comparativa de los mejores bonos apuesta y recibe (bet and get) disponibles en España en 2026. Freebets garantizadas, casas recomendadas para principiantes y guía para aprovecharlos sin errores.',
+    'Comparativa de bonos apuesta y recibe en España: freebets garantizadas, casas recomendadas para principiantes y condiciones clave antes de activarlos.',
 }
 
 const casasApuestaYRecibe = [

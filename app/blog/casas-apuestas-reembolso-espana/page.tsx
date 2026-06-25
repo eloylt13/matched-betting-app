@@ -2,9 +2,9 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Casas de Apuestas con Reembolso en España 2026 — Comparativa | IAPredictHub',
+  title: 'Casas de apuestas con reembolso en España (2026) | IAPredictHub',
   description:
-    'Comparativa actualizada de las mejores casas de apuestas con bono de reembolso en España 2026. Qué son las apuestas sin riesgo, cuándo convienen más que una freebet y qué mirar antes de activarlas.',
+    'Compara casas de apuestas con bono de reembolso en España, entiende cómo funcionan las apuestas sin riesgo y qué revisar antes de usar la calculadora.',
 }
 
 const casasReembolso = [

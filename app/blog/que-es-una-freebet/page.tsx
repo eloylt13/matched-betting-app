@@ -3,9 +3,9 @@ import Link from 'next/link'
 import BlogCta from "@/components/blog/BlogCta"
 
 export const metadata: Metadata = {
-  title: '¿Qué es una freebet y cómo convertirla? Guía práctica | IAPredictHub',
+  title: 'Freebet: qué es y cómo convertirla con matched betting | IAPredictHub',
   description:
-    'Aprende qué es una freebet, los tipos más comunes (stake devuelto y stake no devuelto) y cómo convertirla en dinero real con la técnica del matched betting paso a paso.',
+    'Aprende qué es una freebet, la diferencia entre SNR y SR, y cómo convertir una apuesta gratis en saldo real usando calculadora y cobertura.',
 }
 
 export default function QueEsUnaFreebetPage() {
