@@ -323,7 +323,7 @@ export default function QueEsUnaFreebetPage() {
 
       </div>
 
-      <BlogCta variant="freebet" />
+      <BlogCta variant="recurrentes" />
 
       {/* ── Artículos relacionados ── */}
       <aside className="bg-white rounded-2xl border border-stone-100 p-5">

@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-type BlogCtaVariant = 'world-cup' | 'first-bonus' | 'bonuses' | 'freebet'
+type BlogCtaVariant = 'world-cup' | 'first-bonus' | 'bonuses' | 'recurrentes'
 
 type BlogCtaProps = {
   variant: BlogCtaVariant
@@ -45,14 +45,14 @@ const ctaContent: Record<BlogCtaVariant, BlogCtaContent> = {
     secondaryLabel: 'Ver casas',
     secondaryHref: '/casas',
   },
-  freebet: {
-    eyebrow: 'Freebet diaria',
-    title: 'Usa la freebet con una casa preparada',
-    text: 'Consulta la combinada del día y empieza con una casa recomendada para activar bonos reales.',
-    primaryLabel: 'Ver bono recomendado',
-    primaryHref: '/casas/versus',
-    secondaryLabel: 'Ver pronósticos',
-    secondaryHref: '/pronosticos',
+  recurrentes: {
+    eyebrow: 'Beneficios recurrentes',
+    title: 'Aprende a evaluar promociones recurrentes',
+    text: 'No se trata de acertar partidos, sino de revisar condiciones, cubrir escenarios y calcular si una promoción compensa.',
+    primaryLabel: 'Ver guía de recurrentes',
+    primaryHref: '/blog/que-son-los-bonos-recurrentes',
+    secondaryLabel: 'Abrir calculadora',
+    secondaryHref: '/calculadora',
   },
 }
 
