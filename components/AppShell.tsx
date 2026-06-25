@@ -50,7 +50,6 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
     { href: '/guias', label: 'Guías', icon: 'G' },
     { href: '/casas', label: 'Casas', icon: 'H' },
     { href: '/calculadora', label: 'Calculadora', icon: 'C' },
-    { href: '/pronosticos', label: 'Pronósticos', icon: 'P' },
     { href: '/blog', label: 'Blog', icon: 'B' },
     { href: '/bonos', label: 'Bonos', icon: 'O' },
   ]

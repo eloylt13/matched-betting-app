@@ -18,6 +18,11 @@ const nextConfig: NextConfig = {
         destination: "/especial/mundial",
         permanent: true,
       },
+      {
+        source: "/pronosticos",
+        destination: "/blog/que-son-los-bonos-recurrentes",
+        permanent: true,
+      },
     ];
   },
 };

@@ -376,24 +376,6 @@ export default function LandingPage() {
         <div className="relative mx-auto max-w-5xl px-4 py-20 sm:px-6 sm:py-28 lg:px-8 lg:py-36">
           <div className="mx-auto grid max-w-5xl items-center gap-12 text-center lg:grid-cols-[minmax(0,1fr)_420px] lg:text-left">
             <div>
-            <TrackedLink
-              href="/pronosticos"
-              eventName="home_worldcup_special_clicked"
-              eventProps={{ location: 'hero_freebet', target_path: '/especial/mundial' }}
-              className="group mx-auto mb-8 flex max-w-sm items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 backdrop-blur-sm transition-all duration-200 hover:border-[#D4AF37]/40 hover:bg-white/10 lg:mx-0"
-            >
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#D4AF37]/30 bg-[#D4AF37]/10 text-xl">
-                <span aria-hidden="true">🏆</span>
-              </div>
-              <div className="min-w-0 flex-1 text-left">
-                <p className="text-sm font-semibold text-white">Predicciones Mundial 🏆</p>
-                <p className="text-xs text-stone-300">Predicciones gratis del torneo</p>
-              </div>
-              <span className="shrink-0 text-lg text-[#D4AF37] transition-transform duration-200 group-hover:translate-x-1">
-                →
-              </span>
-            </TrackedLink>
-
             <h1 className="mx-auto max-w-4xl font-playfair text-4xl font-bold leading-tight text-white sm:text-5xl lg:mx-0 lg:text-[3.55rem]">
               Empieza con tu primer bono guiado <span className="text-emerald-400">paso a paso</span>
             </h1>
