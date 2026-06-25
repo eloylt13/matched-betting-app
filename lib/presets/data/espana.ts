@@ -79,6 +79,13 @@ export const casasEspana: Casa[] = [
             descripcion: 'Realizar el primer depósito para recibir una freebet de hasta 100€',
             modo: 'cualificante',
             stakeRecomendado: 100,
+            calculatorPrefill: {
+              modo: 'dinero-real',
+              stake: 100,
+              backOdds: 2,
+              layOdds: 2.1,
+              commission: 2,
+            },
             alertas: [
               'Registrarse desde el enlace promocional',
               'La primera freebet se acredita tras el primer depósito según T&C',
@@ -101,6 +108,13 @@ export const casasEspana: Casa[] = [
             descripcion: 'Convertir los 200€ en freebets en dinero real con estrategia SNR',
             modo: 'freebet',
             stakeRecomendado: 100,
+            calculatorPrefill: {
+              modo: 'apuesta-gratis',
+              stake: 100,
+              backOdds: 4,
+              layOdds: 4.2,
+              commission: 2,
+            },
             freebetEstimada: 125,
             alertas: [
               'Ejecutar cada tramo de 100€ por separado',
@@ -495,6 +509,13 @@ export const casasEspana: Casa[] = [
             descripcion: 'Apuesta de 100€ para desbloquear el primer bloque de freebets',
             modo: 'cualificante',
             stakeRecomendado: 100,
+            calculatorPrefill: {
+              modo: 'dinero-real',
+              stake: 100,
+              backOdds: 2,
+              layOdds: 2.1,
+              commission: 2,
+            },
             alertas: [
               'Registrarse desde el enlace promocional',
               'Verificar T&C actuales para confirmar cuota mínima',
@@ -517,6 +538,13 @@ export const casasEspana: Casa[] = [
             descripcion: 'Convertir la freebet de 100€ en dinero real con estrategia SNR',
             modo: 'freebet',
             stakeRecomendado: 100,
+            calculatorPrefill: {
+              modo: 'apuesta-gratis',
+              stake: 100,
+              backOdds: 4,
+              layOdds: 4.2,
+              commission: 2,
+            },
             freebetEstimada: 65,
             alertas: [
               'Buscar cuotas altas (3.00+) para maximizar retención',
@@ -1664,6 +1692,15 @@ export const casasEspana: Casa[] = [
             modo: 'reembolso',
             stakeRecomendado: 200,
             reembolsoEstimado: 130,
+            calculatorPrefill: {
+              modo: 'reembolso',
+              stake: 200,
+              backOdds: 2,
+              layOdds: 2.1,
+              commission: 2,
+              refundType: 'freebet',
+              refundAmount: 130,
+            },
             alertas: [
               '⚠️ Usar código BONO200 durante el registro — sin él no se activa la oferta',
               '⚠️ Saldo elevado necesario en Betfair para cubrir 200€ en combinada',
@@ -1689,6 +1726,13 @@ export const casasEspana: Casa[] = [
             modo: 'freebet',
             stakeRecomendado: 200,
             freebetEstimada: 130,
+            calculatorPrefill: {
+              modo: 'apuesta-gratis',
+              stake: 200,
+              backOdds: 4,
+              layOdds: 4.2,
+              commission: 2,
+            },
             alertas: [
               '⚠️ Saldo elevado necesario en Betfair',
               'Buscar cuotas altas (3.00+) para maximizar retención',
@@ -1778,6 +1822,15 @@ export const casasEspana: Casa[] = [
             modo: 'reembolso',
             stakeRecomendado: 200,
             reembolsoEstimado: 140,
+            calculatorPrefill: {
+              modo: 'reembolso',
+              stake: 200,
+              backOdds: 2,
+              layOdds: 2.1,
+              commission: 2,
+              refundType: 'freebet',
+              refundAmount: 140,
+            },
             alertas: [
               '⚠️ Registro y apuesta OBLIGATORIAMENTE desde la App de Betway',
               'KYC (DNI) necesario para depositar más de 150€',
@@ -1806,6 +1859,13 @@ export const casasEspana: Casa[] = [
             modo: 'freebet',
             stakeRecomendado: 200,
             freebetEstimada: 140,
+            calculatorPrefill: {
+              modo: 'apuesta-gratis',
+              stake: 200,
+              backOdds: 4,
+              layOdds: 4.2,
+              commission: 2,
+            },
             alertas: [
               'Buscar evento con rating alto (~70%) y cuotas altas para maximizar conversión',
               'Filtrar liquidez mínima 200€ en Betfair',
@@ -2466,6 +2526,13 @@ export const casasEspana: Casa[] = [
             descripcion: 'Las apuestas de cobertura del resto de casas ya cuentan para el volumen',
             modo: 'cualificante',
             stakeRecomendado: 200,
+            calculatorPrefill: {
+              modo: 'dinero-real',
+              stake: 200,
+              backOdds: 2,
+              layOdds: 2.1,
+              commission: 2,
+            },
             alertas: [
               '⚠️ Depositar saldo suficiente para operar con comodidad (recomendado 500€+)',
               'Cuota mínima 1.25 por selección para que cuente al volumen',
