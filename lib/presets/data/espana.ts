@@ -836,6 +836,45 @@ export const casasEspana: Casa[] = [
     tipologia: 'apuesta-recibe',
     url: 'https://bdeal.io/CGranMadrid/139749/1',
     descripcionBreve: 'Bet & Get — Apuesta 200€ y recibe 100€ en freebet (cuota máx 3.00)',
+    seoTitle: 'Bono Casino Gran Madrid: guía paso a paso | IAPredictHub',
+    seoDescription: 'Guía para entender el bono de bienvenida de Casino Gran Madrid, cubrir la apuesta inicial con calculadora y convertir la freebet con matched betting.',
+    seoIntro: 'El bono de Casino Gran Madrid se trabaja como una promoción de apuesta y recibe. Primero realizas una apuesta con dinero real para obtener una freebet posterior y después la conviertes con ayuda de la calculadora.',
+    seoSections: [
+      {
+        titulo: 'Cómo funciona el bono Casino Gran Madrid',
+        texto: 'La ficha trabaja Casino Gran Madrid como una oferta de apuesta y recibe. La referencia actual es una apuesta inicial de 200€ para obtener una freebet posterior de hasta 100€, que después se puede convertir con cobertura en Betfair Exchange.',
+      },
+      {
+        titulo: 'Paso a paso recomendado',
+        texto: 'Primero entra desde el enlace promocional, verifica la cuenta antes de depositar y revisa que la oferta esté activa. Después usa la calculadora en modo dinero real para cubrir la apuesta inicial. Cuando recibas la freebet, usa el modo apuesta gratis.',
+      },
+      {
+        titulo: 'Cuánto se puede extraer',
+        texto: 'La estimación de IAPredictHub para Casino Gran Madrid ronda los 62€ de beneficio potencial, siempre como referencia orientativa. El resultado real depende de cuotas, liquidez, comisiones, condiciones vigentes y ejecución correcta.',
+      },
+      {
+        titulo: 'Errores habituales',
+        texto: 'Los errores más comunes son depositar antes de verificar la cuenta, no revisar la fecha de entrega de la freebet, usar cuotas fuera de condiciones, olvidar marcar la freebet o no cubrir correctamente en Betfair.',
+      },
+    ],
+    seoFaqs: [
+      {
+        pregunta: '¿El bono de Casino Gran Madrid es bueno para matched betting?',
+        respuesta: 'Puede ser interesante porque funciona como apuesta y recibe, pero tiene detalles importantes como la verificación previa, la entrega posterior de la freebet y el límite de cuota al convertirla.',
+      },
+      {
+        pregunta: '¿Cuánto dinero necesito para empezar?',
+        respuesta: 'La ficha usa una referencia de 200€, pero debes revisar siempre las condiciones oficiales y tener saldo suficiente para cubrir la apuesta en Betfair Exchange.',
+      },
+      {
+        pregunta: '¿El beneficio de 62€ es fijo?',
+        respuesta: 'No. Es una estimación orientativa. El beneficio final depende de cuotas, liquidez, comisiones, condiciones vigentes y ejecución correcta.',
+      },
+      {
+        pregunta: '¿Qué calculadora debo usar?',
+        respuesta: 'Primero usa la calculadora en modo dinero real para la apuesta inicial. Cuando recibas la freebet, usa después el modo apuesta gratis para convertirla.',
+      },
+    ],
     resumen: 'Bono 50% hasta 100€, cuota máx 3.00. Gana 65€. Dif 3/5',
     beneficioPotencial: 62,
     dificultad: 3,
