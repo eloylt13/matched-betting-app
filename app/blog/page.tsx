@@ -175,12 +175,13 @@ const articulos: Array<{
   },
 ]
 
-export default function BlogPage({
+export default async function BlogPage({
   searchParams,
 }: {
-  searchParams?: { seccion?: string | string[] }
+  searchParams?: Promise<{ seccion?: string | string[] }>
 }) {
-  const seccionActiva = getSeccionActiva(searchParams?.seccion)
+  const resolvedSearchParams = await searchParams
+  const seccionActiva = getSeccionActiva(resolvedSearchParams?.seccion)
   const articulosFiltrados = articulos.filter((art) => art.secciones.includes(seccionActiva))
   const contadorPorSeccion = seccionesBlog.reduce<Record<SeccionBlog, number>>(
     (acc, seccion) => ({
