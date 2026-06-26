@@ -127,6 +127,14 @@ const articulos: Array<{
     secciones: ['latam'],
   },
   {
+    slug: 'matched-betting-chile',
+    titulo: 'Matched betting en Chile: qué saber antes de usar bonos de apuestas',
+    fecha: '26 de junio de 2026',
+    descripcion:
+      'Guía para entender cómo revisar bonos de apuestas en Chile, qué condiciones comprobar y cómo usar una calculadora antes de activar una promoción.',
+    secciones: ['latam'],
+  },
+  {
     slug: 'mundial-2026',
     titulo: 'Mundial 2026: grupos, favoritos y selecciones actualizadas',
     fecha: '27 de abril de 2026',
