@@ -7,12 +7,25 @@ export const metadata: Metadata = {
     'Aprende matched betting con guías sobre bonos de bienvenida, freebets, beneficios recurrentes, casas de apuestas, reembolsos, bonos sin rollover y calculadora de cobertura.',
 }
 
+type SeccionBlog = 'espana' | 'latam'
+
+const seccionesBlog: Array<{ key: SeccionBlog; label: string; href: string }> = [
+  { key: 'espana', label: 'España', href: '/blog?seccion=espana' },
+  { key: 'latam', label: 'LATAM', href: '/blog?seccion=latam' },
+]
+
+function getSeccionActiva(seccion?: string | string[]): SeccionBlog {
+  const value = Array.isArray(seccion) ? seccion[0] : seccion
+  return value === 'latam' ? 'latam' : 'espana'
+}
+
 // Lista de artículos — añadir aquí cuando se publiquen
 const articulos: Array<{
   slug: string
   titulo: string
   fecha: string
   descripcion: string
+  secciones: SeccionBlog[]
   categoria?: string
   image?: string
   destacado?: boolean
@@ -23,6 +36,7 @@ const articulos: Array<{
     fecha: '29 de marzo de 2026',
     descripcion:
       'Comparativa actualizada de más de 20 casas españolas con tipo de bono, requisitos, dificultad y ganancia potencial. Descubre por dónde empezar.',
+    secciones: ['espana'],
   },
   {
     slug: 'que-es-matched-betting-espana',
@@ -30,6 +44,7 @@ const articulos: Array<{
     fecha: '29 de marzo de 2026',
     descripcion:
       'Guía completa para principiantes: qué es el matched betting, cómo funciona paso a paso, si es legal en España y cuánto puedes ganar con ejemplos reales.',
+    secciones: ['espana'],
   },
   {
     slug: 'que-son-los-bonos-recurrentes',
@@ -37,6 +52,7 @@ const articulos: Array<{
     fecha: '12 de junio de 2026',
     descripcion:
       'Qué son los bonos recurrentes, cómo funcionan y cómo aprovechar promociones después de los bonos de bienvenida sin depender de acertar partidos.',
+    secciones: ['espana', 'latam'],
   },
   {
     slug: 'que-es-una-freebet',
@@ -44,6 +60,7 @@ const articulos: Array<{
     fecha: '15 de abril de 2026',
     descripcion:
       'Aprende qué es una freebet, los tipos más comunes (stake devuelto y stake no devuelto) y cómo convertirla en dinero real con la técnica del matched betting paso a paso.',
+    secciones: ['espana', 'latam'],
   },
   {
     slug: 'mejores-bonos-apuesta-y-recibe-espana',
@@ -51,6 +68,7 @@ const articulos: Array<{
     fecha: '15 de abril de 2026',
     descripcion:
       'Comparativa de los mejores bonos apuesta y recibe (bet and get) en casas españolas. Freebets garantizadas, análisis por casa, qué revisar antes de activarlos y errores a evitar.',
+    secciones: ['espana'],
   },
   {
     slug: 'bonos-sin-rollover-espana',
@@ -58,6 +76,7 @@ const articulos: Array<{
     fecha: '15 de abril de 2026',
     descripcion:
       'Guía completa sobre bonos sin rollover en casas de apuestas españolas. Qué significa sin rollover, diferencias con otros tipos de bono, qué casas los ofrecen y qué revisar antes de activarlos.',
+    secciones: ['espana'],
   },
   {
     slug: 'casas-apuestas-reembolso-espana',
@@ -65,6 +84,7 @@ const articulos: Array<{
     fecha: '15 de abril de 2026',
     descripcion:
       'Comparativa actualizada de las mejores casas de apuestas con bono de reembolso en España. Cómo funcionan los reembolsos, cuándo convienen más que una freebet y qué mirar antes de activarlas.',
+    secciones: ['espana'],
   },
   {
     slug: 'es-legal-matched-betting-espana',
@@ -72,6 +92,7 @@ const articulos: Array<{
     fecha: '15 de abril de 2026',
     descripcion:
       'Analizamos si el matched betting es legal en España: qué dice la regulación vigente, qué papel juegan las casas reguladas y Betfair Exchange, y cuáles son los riesgos reales.',
+    secciones: ['espana'],
   },
   {
     slug: 'mejores-bonos-bienvenida-latam',
@@ -79,6 +100,7 @@ const articulos: Array<{
     fecha: '8 de abril de 2026',
     descripcion:
       'Comparativa de casas disponibles en México, Colombia, Chile, Perú, Ecuador y más países con tipo de bono, requisitos y ganancia potencial en USD.',
+    secciones: ['latam'],
   },
   {
     slug: 'que-es-matched-betting-latam',
@@ -86,6 +108,7 @@ const articulos: Array<{
     fecha: '8 de abril de 2026',
     descripcion:
       'Guía completa para principiantes en América Latina: qué es el matched betting, cómo funciona, en qué países es viable y cuánto puedes ganar con los bonos de bienvenida disponibles.',
+    secciones: ['latam'],
   },
   {
     slug: 'mundial-2026',
@@ -93,6 +116,7 @@ const articulos: Array<{
     fecha: '27 de abril de 2026',
     descripcion:
       'Guía actualizada del Mundial 2026: formato, los 12 grupos completos, debutantes, favoritos según las cuotas y qué vigilar antes del 11 de junio.',
+    secciones: ['espana', 'latam'],
     destacado: true,
   },
   {
@@ -101,6 +125,7 @@ const articulos: Array<{
     fecha: '1 de mayo de 2026',
     descripcion:
       'Mi predicción personal para el campeón del Mundial 2026 y los motivos por los que Portugal puede levantar el título.',
+    secciones: ['espana', 'latam'],
     categoria: 'Mundial 2026',
     image: '/blog/prediccion-campeon-mundial-2026/portugal-mundial-2026.jpg',
     destacado: true,
@@ -111,13 +136,28 @@ const articulos: Array<{
     fecha: '1 de mayo de 2026',
     descripcion:
       'Análisis editorial sobre por qué Vitinha puede ser el Mejor Jugador del Mundial 2026 si Portugal gana el torneo.',
+    secciones: ['espana', 'latam'],
     categoria: 'Mundial 2026',
     image: '/blog/prediccion-mejor-jugador-mundial-2026/vitinha-mundial-2026.webp',
     destacado: true,
   },
 ]
 
-export default function BlogPage() {
+export default function BlogPage({
+  searchParams,
+}: {
+  searchParams?: { seccion?: string | string[] }
+}) {
+  const seccionActiva = getSeccionActiva(searchParams?.seccion)
+  const articulosFiltrados = articulos.filter((art) => art.secciones.includes(seccionActiva))
+  const contadorPorSeccion = seccionesBlog.reduce<Record<SeccionBlog, number>>(
+    (acc, seccion) => ({
+      ...acc,
+      [seccion.key]: articulos.filter((art) => art.secciones.includes(seccion.key)).length,
+    }),
+    { espana: 0, latam: 0 }
+  )
+
   return (
     <div className="flex flex-col gap-8 max-w-3xl mx-auto">
       <header>
@@ -125,11 +165,37 @@ export default function BlogPage() {
           ✍️ Blog de Matched Betting
         </h1>
         <p className="text-sm text-stone-500 mt-1">
-          Artículos y guías para entender y mejorar tu matched betting, con foco principal en España y contenido de apoyo para LATAM
+          Artículos y guías para entender cómo convertir bonos de bienvenida en dinero retirable en España y LATAM.
         </p>
       </header>
 
-      {articulos.length === 0 ? (
+      <div className="rounded-2xl border border-stone-100 bg-white/80 p-3 shadow-[0_12px_32px_-28px_rgba(15,23,42,0.16)]">
+        <div className="flex flex-wrap gap-2">
+          {seccionesBlog.map((seccion) => {
+            const isActive = seccionActiva === seccion.key
+            const count = contadorPorSeccion[seccion.key]
+
+            return (
+              <Link
+                key={seccion.key}
+                href={seccion.href}
+                className={`rounded-full border px-4 py-2 text-sm font-semibold transition-all duration-200 ${
+                  isActive
+                    ? 'border-violet-400/55 bg-violet-500/12 text-violet-950 shadow-[0_0_0_1px_rgba(139,92,246,0.12),0_10px_24px_-18px_rgba(139,92,246,0.3)]'
+                    : 'border-stone-200 bg-white text-stone-600 hover:border-violet-300/40 hover:text-stone-900'
+                }`}
+              >
+                <span>{seccion.label}</span>
+                <span className="ml-2 text-xs font-medium text-stone-500">
+                  {count} artículo{count !== 1 ? 's' : ''}
+                </span>
+              </Link>
+            )
+          })}
+        </div>
+      </div>
+
+      {articulosFiltrados.length === 0 ? (
         <div className="bg-white rounded-2xl border border-stone-100 p-10 text-center">
           <span className="text-4xl">📝</span>
           <p className="mt-4 text-stone-700 font-semibold">Próximamente más artículos</p>
@@ -145,7 +211,7 @@ export default function BlogPage() {
         </div>
       ) : (
         <ul className="flex flex-col gap-4">
-          {articulos.map((art) => (
+          {articulosFiltrados.map((art) => (
             <li
               key={art.slug}
               className="bg-white rounded-2xl border border-stone-100 hover:border-purple-200 hover:shadow-lg transition-all p-5"
