@@ -229,6 +229,7 @@ export default function DashboardClient() {
             const totalFases = casa.promos.reduce((acc, p) => acc + p.fases.length, 0)
             const stakeMax = casa.promos[0]?.fases[0]?.stakeRecomendado ?? 0
             const tip = TIPOLOGIA_BADGE[casa.tipologia ?? 'apuesta-recibe'] ?? TIPOLOGIA_BADGE['apuesta-recibe']
+            const hasBeneficioPotencial = casa.beneficioPotencial > 0
 
             return (
               <Link
@@ -243,8 +244,8 @@ export default function DashboardClient() {
                     </div>
                     <span className="font-semibold text-stone-800 text-sm truncate">{casa.nombre}</span>
                   </div>
-                  <span className="text-base font-bold text-emerald-600 shrink-0">
-                    +{casa.beneficioPotencial} {moneda}
+                  <span className="text-right text-xs font-bold text-emerald-600 shrink-0 sm:text-base">
+                    {hasBeneficioPotencial ? `+${casa.beneficioPotencial} ${moneda}` : 'Condiciones a revisar'}
                   </span>
                 </div>
 

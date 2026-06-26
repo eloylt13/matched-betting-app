@@ -78,6 +78,7 @@ export default function CasasPendientes({ progresos, market }: CasasPendientesPr
                 const estado = progreso?.estado ?? 'no_empezada'
                 const faseActual = progreso?.faseActual ?? 1
                 const totalFases = casa.promos.reduce((acc, p) => acc + p.fases.length, 0)
+                const hasBeneficioPotencial = casa.beneficioPotencial > 0
 
                 return (
                   <Link
@@ -107,8 +108,14 @@ export default function CasasPendientes({ progresos, market }: CasasPendientesPr
                     </div>
 
                     <div className="text-right shrink-0">
-                      <p className="text-sm font-bold text-emerald-600">+{casa.beneficioPotencial.toFixed(0)} {moneda}</p>
-                      <p className="text-xs text-stone-400">potencial</p>
+                      {hasBeneficioPotencial ? (
+                        <>
+                          <p className="text-sm font-bold text-emerald-600">+{casa.beneficioPotencial.toFixed(0)} {moneda}</p>
+                          <p className="text-xs text-stone-400">potencial</p>
+                        </>
+                      ) : (
+                        <p className="max-w-[6rem] text-xs font-semibold leading-tight text-stone-500">Condiciones a revisar</p>
+                      )}
                     </div>
 
                     <span className="text-stone-300 group-hover:text-stone-500 text-lg transition-colors">›</span>

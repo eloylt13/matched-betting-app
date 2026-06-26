@@ -690,6 +690,7 @@ export default function CasaDetalleClient({ casa, hasGuide }: CasaDetalleClientP
     const paso2Href = buildCalculadoraHref(casa, content.paso2Mode as CalculadoraModo)
     const antesRegistroItems = getAntesRegistroItems(casa)
     const isVersus = casa.id === "versus"
+    const hasBeneficioPotencial = casa.beneficioPotencial > 0
 
     return (
         <div className="max-w-3xl mx-auto px-4 py-8 flex flex-col gap-6">
@@ -726,8 +727,17 @@ export default function CasaDetalleClient({ casa, hasGuide }: CasaDetalleClientP
                         </div>
                     </div>
                     <div className="text-right shrink-0">
-                        <p className="text-3xl font-bold text-gray-900">+{casa.beneficioPotencial} {simbolo}</p>
-                        <p className="text-xs text-gray-400">potencial estimado</p>
+                        {hasBeneficioPotencial ? (
+                            <>
+                                <p className="text-3xl font-bold text-gray-900">+{casa.beneficioPotencial} {simbolo}</p>
+                                <p className="text-xs text-gray-400">potencial estimado</p>
+                            </>
+                        ) : (
+                            <>
+                                <p className="text-sm font-bold text-gray-900">Condiciones a revisar</p>
+                                <p className="text-xs text-gray-400">sin estimacion publicada</p>
+                            </>
+                        )}
                     </div>
                 </div>
 
@@ -932,7 +942,9 @@ export default function CasaDetalleClient({ casa, hasGuide }: CasaDetalleClientP
                         </div>
                         <div className="rounded-xl border border-emerald-500/20 bg-stone-900/40 p-4">
                             <p className="text-xs font-semibold uppercase tracking-wide text-emerald-200/80">Beneficio aproximado</p>
-                            <p className="mt-2 text-sm font-medium text-stone-100">{casa.beneficioPotencial} {simbolo}</p>
+                            <p className="mt-2 text-sm font-medium text-stone-100">
+                                {hasBeneficioPotencial ? `${casa.beneficioPotencial} ${simbolo}` : "Condiciones a revisar"}
+                            </p>
                         </div>
                         <div className="rounded-xl border border-emerald-500/20 bg-stone-900/40 p-4">
                             <p className="text-xs font-semibold uppercase tracking-wide text-emerald-200/80">Nivel</p>

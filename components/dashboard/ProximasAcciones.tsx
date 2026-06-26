@@ -55,9 +55,13 @@ export default function ProximasAcciones({ state, market }: ProximasAccionesProp
   for (const casa of casasDelMercado) {
     const progreso = state.progresos[casa.id]
     if (!progreso || progreso.estado === 'no_empezada') {
+      const beneficioTexto = casa.beneficioPotencial > 0
+        ? ` (+${casa.beneficioPotencial.toFixed(0)} ${moneda})`
+        : ''
+
       acciones.push({
         id: `casa-nueva-${casa.id}`,
-        texto: `Empezar oferta en ${casa.nombre} (+${casa.beneficioPotencial.toFixed(0)} ${moneda})`,
+        texto: `Empezar oferta en ${casa.nombre}${beneficioTexto}`,
         href: `/casas/${casa.id}`,
         urgente: false,
         emoji: '🎯',

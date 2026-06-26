@@ -62,6 +62,7 @@ export function CasaCard({ casa, estado }: Props) {
   const completada = estado === 'completada'
   const enProgreso = estado === 'en_progreso' || estado === 'en_curso'
   const fases = casa.promos.reduce((total, promo) => total + promo.fases.length, 0)
+  const hasBeneficioPotencial = casa.beneficioPotencial > 0
 
   return (
     <Link
@@ -114,8 +115,14 @@ export function CasaCard({ casa, estado }: Props) {
           {/* Beneficio */}
           <div className="flex shrink-0 flex-col items-end gap-2 sm:gap-0">
             <div className="relative overflow-hidden rounded-xl border border-violet-100/80 bg-[linear-gradient(135deg,rgba(255,255,255,0.96)_0%,rgba(245,243,255,0.9)_48%,rgba(236,253,245,0.86)_100%)] px-2.5 py-1.5 text-right shadow-[inset_0_1px_0_rgba(255,255,255,0.9),0_10px_22px_rgba(76,29,149,0.09),0_2px_8px_rgba(16,185,129,0.08)] ring-1 ring-white/70 before:pointer-events-none before:absolute before:inset-x-2 before:top-0 before:h-px before:bg-white/90 before:content-[''] sm:px-3 sm:py-2">
-              <p className="relative text-[15px] font-extrabold leading-none text-slate-950 sm:text-[17px]">+{casa.beneficioPotencial} {casa.market === 'latam' ? 'USD' : '€'}</p>
-              <p className="relative mt-0.5 text-[11px] font-semibold leading-none text-violet-500/80 sm:text-xs">potencial</p>
+              {hasBeneficioPotencial ? (
+                <>
+                  <p className="relative text-[15px] font-extrabold leading-none text-slate-950 sm:text-[17px]">+{casa.beneficioPotencial} {casa.market === 'latam' ? 'USD' : '€'}</p>
+                  <p className="relative mt-0.5 text-[11px] font-semibold leading-none text-violet-500/80 sm:text-xs">potencial</p>
+                </>
+              ) : (
+                <p className="relative max-w-[7rem] text-[11px] font-bold leading-tight text-slate-600 sm:text-xs">Condiciones a revisar</p>
+              )}
             </div>
 
             <span

@@ -14,7 +14,7 @@ export type BonoLatamUsCurado = {
   mercado: BonoMercadoLatamUs
   red: string
   ofertaTexto: string
-  usdAprox: number
+  usdAprox: number | null
   confianza: BonoConfianzaLatamUs
   decision: BonoDecisionLatamUs
   url: string
@@ -606,10 +606,10 @@ export const bonosLatamUsCurados: BonoLatamUsCurado[] = [
     nombre: 'Betano AR',
     mercado: 'AR',
     red: 'Bdeal',
-    ofertaTexto: '100% hasta ~US$368 + ~US$15 en apuesta gratis',
-    usdAprox: 383,
+    ofertaTexto: 'Promoción no comprobada oficialmente. Revisar términos oficiales. Disponible solo donde el operador esté autorizado.',
+    usdAprox: null,
     confianza: 'baja',
-    decision: 'ok',
+    decision: 'prudente',
     url: 'https://bdeal.io/betano/144459/1',
   },
   {
