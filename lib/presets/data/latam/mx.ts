@@ -83,7 +83,7 @@ export const casasMx: Casa[] = [
     nombre: 'Sportium',
     market: 'latam',
     pais: 'mx',
-    url: 'https://www.sportiumbet.mx/register',
+    url: 'https://bdeal.io/sportium/144465/1',
     descripcionBreve: 'Tres bonos deportivos distintos en el registro. Elegir uno durante el alta.',
     resumen: 'Reembolso 1ª apuesta, duplicado depósito o duplicado 1ª apuesta ganada. Hasta MXN 3.500. Freebets de 7 días.',
     tipologia: 'apuesta-recibe',
