@@ -241,6 +241,7 @@ function buildCalculadoraFaseHref(casa: Casa, fase: Fase) {
 function getSiguienteAccion(estado: EstadoCasa, faseActual: number, totalFases: number, casa: Casa, simbolo: string): string {
     if (estado === "completada") return "Oferta completada. ¡Bien hecho!"
     if (estado === "descartada") return "Oferta descartada."
+    if (casa.beneficioPotencial <= 0) return "Revisa enlace y condiciones vigentes antes de activar esta ficha."
     if (estado === "no_empezada") {
         const stakeF1 = casa.promos[0]?.fases[0]?.stakeRecomendado
         return stakeF1
@@ -691,6 +692,12 @@ export default function CasaDetalleClient({ casa, hasGuide }: CasaDetalleClientP
     const antesRegistroItems = getAntesRegistroItems(casa)
     const isVersus = casa.id === "versus"
     const hasBeneficioPotencial = casa.beneficioPotencial > 0
+    const canShowExternalCta = Boolean(casa.url && hasBeneficioPotencial)
+    const primerPasoTexto = !hasBeneficioPotencial
+        ? "Ficha en revision: valida enlace y condiciones vigentes antes de activar esta oferta."
+        : isVersus
+            ? "Empieza aquí si vienes de cero. Versus es una oferta sencilla, con dificultad baja, guía paso a paso y calculadora para cubrir cada movimiento."
+            : "Regístrate, prepara el saldo y usa la calculadora en el momento de ejecutar cada paso de la oferta."
 
     return (
         <div className="max-w-3xl mx-auto px-4 py-8 flex flex-col gap-6">
@@ -758,9 +765,7 @@ export default function CasaDetalleClient({ casa, hasGuide }: CasaDetalleClientP
                             {isVersus ? "Primer bono guiado recomendado" : "Primer paso recomendado"}
                         </p>
                         <p className="text-sm text-emerald-800">
-                            {isVersus
-                                ? "Empieza aquí si vienes de cero. Versus es una oferta sencilla, con dificultad baja, guía paso a paso y calculadora para cubrir cada movimiento."
-                                : "Regístrate, prepara el saldo y usa la calculadora en el momento de ejecutar cada paso de la oferta."}
+                            {primerPasoTexto}
                         </p>
                     </div>
                 </div>
@@ -768,7 +773,7 @@ export default function CasaDetalleClient({ casa, hasGuide }: CasaDetalleClientP
                 {/* CTAs */}
                 {isVersus ? (
                     <div className="mt-5 flex flex-col gap-3">
-                        {casa.url && !completada && (
+                        {canShowExternalCta && !completada && (
                             <a
                                 href={casa.url}
                                 target="_blank"
@@ -819,7 +824,7 @@ export default function CasaDetalleClient({ casa, hasGuide }: CasaDetalleClientP
                     </div>
                 ) : (
                     <div className="flex flex-wrap gap-3 mt-4">
-                    {casa.url && !completada && (
+                    {canShowExternalCta && !completada && (
                         <a
                             href={casa.url} target="_blank" rel="noopener noreferrer"
                             className="bg-emerald-500 hover:bg-emerald-400 text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition-colors"
@@ -1044,7 +1049,7 @@ export default function CasaDetalleClient({ casa, hasGuide }: CasaDetalleClientP
                             estadoOferta={estado}
                             simbolo={simbolo}
                             calculadoraHref={buildCalculadoraFaseHref(casa, fase)}
-                            casaUrl={casa.url}
+                            casaUrl={canShowExternalCta ? casa.url : undefined}
                             casaNombre={casa.nombre}
                         />
                     ))}
@@ -1058,7 +1063,7 @@ export default function CasaDetalleClient({ casa, hasGuide }: CasaDetalleClientP
                     <p className="text-sm font-semibold text-stone-800">{siguienteAccion}</p>
                 </div>
                 <div className="flex flex-col gap-2 pt-2 border-t border-stone-100 sm:flex-row sm:flex-wrap">
-                    {casa.url && !completada && (
+                    {canShowExternalCta && !completada && (
                         <a
                             href={casa.url}
                             target="_blank"

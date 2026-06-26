@@ -586,6 +586,9 @@ function OddsMatcherCalc({
   const [rolloverX, setRolloverX] = useState('10')
   const [copiado, setCopiado] = useState(false)
   const casaGuiada = prefill?.casaId ? getCasaById(prefill.casaId) : null
+  const casaGuiadaExternalUrl = casaGuiada?.beneficioPotencial && casaGuiada.beneficioPotencial > 0
+    ? casaGuiada.url
+    : undefined
   const fasesCasaGuiada = casaGuiada?.promos.flatMap((promo) => promo.fases) ?? []
   const faseNumeroPrefill = prefill?.faseNumero ? Number(prefill.faseNumero) : NaN
   const faseGuiada = prefill?.faseId
@@ -751,9 +754,9 @@ function OddsMatcherCalc({
                           Volver a la guía
                         </Link>
                       )}
-                      {casaGuiada?.url && (
+                      {casaGuiadaExternalUrl && (
                         <a
-                          href={casaGuiada.url}
+                          href={casaGuiadaExternalUrl}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="inline-flex items-center justify-center rounded-full border border-emerald-200/80 bg-emerald-50/90 px-4 py-2 text-xs font-semibold text-emerald-700 transition-all hover:border-emerald-300/80 hover:bg-emerald-100"
