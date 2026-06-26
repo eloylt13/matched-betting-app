@@ -111,6 +111,14 @@ const articulos: Array<{
     secciones: ['latam'],
   },
   {
+    slug: 'matched-betting-mexico',
+    titulo: 'Matched betting en México: cómo aprovechar bonos de apuestas con calculadora',
+    fecha: '26 de junio de 2026',
+    descripcion:
+      'Guía para revisar bonos de apuestas en México, calcular coberturas y avanzar con control antes de activar una promoción.',
+    secciones: ['latam'],
+  },
+  {
     slug: 'mundial-2026',
     titulo: 'Mundial 2026: grupos, favoritos y selecciones actualizadas',
     fecha: '27 de abril de 2026',

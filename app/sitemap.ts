@@ -20,6 +20,7 @@ const BLOG_ROUTES = [
     { slug: 'mejores-bonos-bienvenida-apuestas-espana', lastModified: '2026-03-29', priority: 0.8 },
     { slug: 'que-es-matched-betting-latam', lastModified: '2026-04-08', priority: 0.72 },
     { slug: 'mejores-bonos-bienvenida-latam', lastModified: '2026-04-08', priority: 0.72 },
+    { slug: 'matched-betting-mexico', lastModified: '2026-06-26', priority: 0.74 },
     { slug: 'mejores-bonos-apuesta-y-recibe-espana', lastModified: '2026-04-15', priority: 0.72 },
     { slug: 'bonos-sin-rollover-espana', lastModified: '2026-04-15', priority: 0.72 },
     { slug: 'casas-apuestas-reembolso-espana', lastModified: '2026-04-15', priority: 0.72 },

@@ -66,7 +66,7 @@ export const casasMx: Casa[] = [
     descripcionBreve: 'Bono de bienvenida deportivo activo pero con importe exacto inconsistente entre páginas oficiales.',
     resumen: 'Placeholder. No operar hasta confirmar importe deportivo exacto, rollover, cuota mínima y plazo dentro de la cuenta.',
     tipologia: 'rollover',
-    beneficioPotencial: 405,
+    beneficioPotencial: 180,
     dificultad: 4,
     requisitos: [],
     notas: [
