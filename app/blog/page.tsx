@@ -119,6 +119,14 @@ const articulos: Array<{
     secciones: ['latam'],
   },
   {
+    slug: 'matched-betting-peru',
+    titulo: 'Matched betting en Perú: cómo funcionan los bonos de apuestas y por dónde empezar',
+    fecha: '26 de junio de 2026',
+    descripcion:
+      'Guía para entender cómo revisar bonos de apuestas en Perú, qué condiciones comprobar y cómo usar una calculadora antes de empezar.',
+    secciones: ['latam'],
+  },
+  {
     slug: 'mundial-2026',
     titulo: 'Mundial 2026: grupos, favoritos y selecciones actualizadas',
     fecha: '27 de abril de 2026',
