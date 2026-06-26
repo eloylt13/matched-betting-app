@@ -61,7 +61,12 @@ export function CasaCard({ casa, estado }: Props) {
   const style = getTipologiaStyle(casa)
   const completada = estado === 'completada'
   const enProgreso = estado === 'en_progreso' || estado === 'en_curso'
+  const ofertas = casa.promos.length
   const fases = casa.promos.reduce((total, promo) => total + promo.fases.length, 0)
+  const metricas = [
+    ofertas > 0 ? `${ofertas} oferta${ofertas !== 1 ? 's' : ''}` : null,
+    fases > 0 ? `${fases} fase${fases !== 1 ? 's' : ''}` : null,
+  ].filter((metrica): metrica is string => Boolean(metrica))
   const hasBeneficioPotencial = casa.beneficioPotencial > 0
 
   return (
@@ -99,12 +104,17 @@ export function CasaCard({ casa, estado }: Props) {
                 {casa.descripcionBreve}
               </p>
               <div className="flex sm:hidden items-center gap-x-1.5 gap-y-1 mt-1.5 text-[11px] text-stone-400 flex-wrap">
-                <span className="rounded-full bg-stone-100 px-2 py-0.5 text-stone-600">
-                  {casa.promos.length} oferta{casa.promos.length !== 1 ? 's' : ''}
-                </span>
-                <span className="rounded-full bg-stone-100 px-2 py-0.5 text-stone-600">
-                  {fases} fase{fases !== 1 ? 's' : ''}
-                </span>
+                {metricas.length > 0 ? (
+                  metricas.map((metrica) => (
+                    <span key={metrica} className="rounded-full bg-stone-100 px-2 py-0.5 text-stone-600">
+                      {metrica}
+                    </span>
+                  ))
+                ) : (
+                  <span className="rounded-full bg-stone-100 px-2 py-0.5 text-stone-600">
+                    Condiciones a revisar
+                  </span>
+                )}
                 <span className={`font-medium ${getDificultadColor(casa.dificultad ?? 3)}`}>
                   {'⭐'.repeat(casa.dificultad ?? 3)} {getDificultadLabel(casa.dificultad ?? 3)}
                 </span>
@@ -136,13 +146,17 @@ export function CasaCard({ casa, estado }: Props) {
         {/* Footer */}
         <div className="hidden sm:flex items-center justify-between gap-3 mt-4">
           <div className="hidden sm:flex items-center gap-2.5 text-xs text-gray-400 flex-wrap">
-            <span>{casa.promos.length} oferta{casa.promos.length !== 1 ? 's' : ''}</span>
-            <span>·</span>
-            <span>
-              {fases} fase
-              {fases !== 1 ? 's' : ''}
-            </span>
-            <span>·</span>
+            {metricas.length > 0 ? (
+              metricas.map((metrica, index) => (
+                <span key={metrica} className="contents">
+                  {index > 0 ? <span>&middot;</span> : null}
+                  <span>{metrica}</span>
+                </span>
+              ))
+            ) : (
+              <span>Condiciones a revisar</span>
+            )}
+            <span>&middot;</span>
             <span className={`font-medium ${getDificultadColor(casa.dificultad ?? 3)}`}>
               {'⭐'.repeat(casa.dificultad ?? 3)} {getDificultadLabel(casa.dificultad ?? 3)}
             </span>
