@@ -586,6 +586,45 @@ export const casasEspana: Casa[] = [
     tipologia: 'apuesta-recibe',
     url: 'https://bdeal.io/Codere/136722/1',
     descripcionBreve: 'Bet & Get — Deposita 200€ y recibe 100€ en freebets',
+    seoTitle: 'Bono Codere: guía paso a paso | IAPredictHub',
+    seoDescription: 'Guía para entender el bono de bienvenida de Codere, cubrir la apuesta inicial con calculadora y convertir sus freebets con matched betting.',
+    seoIntro: 'El bono de Codere se trabaja como una promoción de apuesta y recibe. Primero haces una apuesta con dinero real para desbloquear las freebets y después las conviertes con la calculadora en modo apuesta gratis.',
+    seoSections: [
+      {
+        titulo: 'Cómo funciona el bono Codere',
+        texto: 'La ficha trabaja Codere como una oferta de apuesta y recibe. La referencia actual es depositar, realizar una apuesta inicial con dinero real y recibir después freebets para convertirlas con cobertura en Betfair Exchange.',
+      },
+      {
+        titulo: 'Paso a paso recomendado',
+        texto: 'Primero entra desde el enlace promocional, acepta comunicaciones comerciales si la promoción lo exige, verifica la cuenta y realiza el depósito. Después usa la calculadora en modo dinero real para cubrir la apuesta inicial y, cuando recibas las freebets, usa el modo apuesta gratis.',
+      },
+      {
+        titulo: 'Cuánto se puede extraer',
+        texto: 'La estimación de IAPredictHub para Codere ronda los 65€ de beneficio potencial, siempre como referencia orientativa. El resultado real depende de cuotas, liquidez, comisiones, condiciones vigentes y ejecución correcta.',
+      },
+      {
+        titulo: 'Errores habituales',
+        texto: 'Los errores más comunes son no verificar la cuenta antes de depositar, no aceptar comunicaciones comerciales si son necesarias, usar una cuota fuera de condiciones, olvidar marcar la freebet o no cubrir correctamente en Betfair.',
+      },
+    ],
+    seoFaqs: [
+      {
+        pregunta: '¿El bono de Codere es bueno para matched betting?',
+        respuesta: 'Puede ser interesante porque funciona como apuesta y recibe, pero requiere seguir bien los pasos de activación, verificación, apuesta inicial y conversión de freebets.',
+      },
+      {
+        pregunta: '¿Cuánto dinero necesito para empezar?',
+        respuesta: 'La ficha usa una referencia de depósito de 200€ y apuesta inicial de 100€, pero debes revisar siempre las condiciones oficiales y tener saldo suficiente para cubrir la apuesta en Betfair Exchange.',
+      },
+      {
+        pregunta: '¿El beneficio de 65€ es fijo?',
+        respuesta: 'No. Es una estimación orientativa. El beneficio final depende de cuotas, liquidez, comisiones, condiciones vigentes y ejecución correcta.',
+      },
+      {
+        pregunta: '¿Qué calculadora debo usar?',
+        respuesta: 'Primero usa la calculadora en modo dinero real para la apuesta inicial. Cuando recibas las freebets, usa después el modo apuesta gratis para convertirlas.',
+      },
+    ],
     resumen: 'Deposita 200€ y llévate 100€ en Freebets. Gana 65€. Dif 2/5',
     beneficioPotencial: 65,
     dificultad: 2,
