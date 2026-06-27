@@ -7,13 +7,16 @@ interface ResultsTableProps {
 }
 
 function fmt(n: number) {
-  const sign = n >= 0 ? '+' : ''
+  const value = Number.isFinite(n) ? n : 0
+  if (!Number.isFinite(n)) return `+0.00 ${String.fromCharCode(8364)}`
+  const sign = value >= 0 ? '+' : ''
   return `${sign}${n.toFixed(2)} €`
 }
 
 function colorClass(n: number) {
-  if (n > 0) return 'text-emerald-400'
-  if (n < 0) return 'text-red-400'
+  const value = Number.isFinite(n) ? n : 0
+  if (value > 0) return 'text-emerald-400'
+  if (value < 0) return 'text-red-400'
   return 'text-zinc-400'
 }
 

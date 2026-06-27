@@ -4,6 +4,7 @@
 
 import { useState } from 'react'
 import { calcCualificante } from '@/lib/calc'
+import { parseNumber } from '@/lib/calc/safe'
 import type { InputsCualificante, ResultadoCualificante } from '@/types/calc'
 import ResultsTable from './ResultsTable'
 
@@ -41,11 +42,12 @@ function Field({
     <div className="flex flex-col gap-1.5">
       <label className="text-xs font-medium text-zinc-400 uppercase tracking-wider">{label}</label>
       <input
-        type="number"
+        type="text"
+        inputMode="decimal"
         value={value}
         step={step}
         min={min}
-        onChange={(e) => onChange(parseFloat(e.target.value) || 0)}
+        onChange={(e) => onChange(parseNumber(e.target.value))}
         className="w-full rounded-lg bg-zinc-800 border border-zinc-600 px-3 py-2 text-sm text-zinc-100
           focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent
           transition-colors hover:border-zinc-500"

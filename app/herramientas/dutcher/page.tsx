@@ -3,18 +3,22 @@
 
 import { useMemo, useState } from 'react'
 import Link from 'next/link'
+import { nonNegativeNumber } from '@/lib/calc/safe'
 
 export default function DutcherPage() {
     const [stake, setStake] = useState('100')
     const [cuotaBM1, setCuotaBM1] = useState('1.90')
     const [cuotaBM2, setCuotaBM2] = useState('1.83')
 
-    const s = parseFloat(stake) || 0
-    const c1 = parseFloat(cuotaBM1) || 0
-    const c2 = parseFloat(cuotaBM2) || 0
+    const s = nonNegativeNumber(stake)
+    const c1 = nonNegativeNumber(cuotaBM1)
+    const c2 = nonNegativeNumber(cuotaBM2)
+    const validationMessage = s > 0 && (c1 <= 1 || c2 <= 1)
+        ? 'Revisa las cuotas: con esos valores no se puede calcular una cobertura válida.'
+        : ''
 
     const { stakeBM1, stakeBM2, benefSiBM1Gana, benefSiBM2Gana } = useMemo(() => {
-        if (s <= 0 || c1 <= 0 || c2 <= 0) {
+        if (s <= 0 || c1 <= 1 || c2 <= 1) {
             return { stakeBM1: 0, stakeBM2: 0, benefSiBM1Gana: 0, benefSiBM2Gana: 0 }
         }
 
@@ -63,7 +67,7 @@ export default function DutcherPage() {
                         <label className="block text-xs font-semibold text-gray-500 mb-1">Stake total (€)</label>
                         <div className="flex">
                             <span className="bg-gray-100 border border-r-0 border-gray-200 px-2.5 py-2 text-xs text-gray-500 rounded-l-lg">€</span>
-                            <input type="number" value={stake} onChange={e => setStake(e.target.value)} step="0.01" min="0"
+                            <input type="text" inputMode="decimal" value={stake} onChange={e => setStake(e.target.value)} step="0.01" min="0"
                                 className="flex-1 border border-gray-200 px-3 py-2 text-sm rounded-r-lg focus:outline-none focus:ring-2 focus:ring-purple-300" />
                         </div>
                     </div>
@@ -73,7 +77,7 @@ export default function DutcherPage() {
                         <p className="text-xs font-bold text-teal-700">BOOKMAKER 1 (apuesta FAVOR)</p>
                         <div>
                             <label className="block text-xs text-teal-600 mb-1">Cuota BM1</label>
-                            <input type="number" value={cuotaBM1} onChange={e => setCuotaBM1(e.target.value)} step="0.01" min="1"
+                            <input type="text" inputMode="decimal" value={cuotaBM1} onChange={e => setCuotaBM1(e.target.value)} step="0.01" min="1"
                                 className="w-full border border-teal-200 bg-white px-3 py-2 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-300" />
                         </div>
                     </div>
@@ -83,10 +87,16 @@ export default function DutcherPage() {
                         <p className="text-xs font-bold text-purple-700">BOOKMAKER 2 (apuesta FAVOR opuesto)</p>
                         <div>
                             <label className="block text-xs text-purple-600 mb-1">Cuota BM2</label>
-                            <input type="number" value={cuotaBM2} onChange={e => setCuotaBM2(e.target.value)} step="0.01" min="1"
+                            <input type="text" inputMode="decimal" value={cuotaBM2} onChange={e => setCuotaBM2(e.target.value)} step="0.01" min="1"
                                 className="w-full border border-purple-200 bg-white px-3 py-2 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-300" />
                         </div>
                     </div>
+
+                    {validationMessage && (
+                        <p className="rounded-xl border border-amber-200 bg-amber-50 px-3 py-2 text-xs text-amber-800">
+                            {validationMessage}
+                        </p>
+                    )}
                 </div>
 
                 {/* Resultado */}

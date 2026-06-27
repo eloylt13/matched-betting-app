@@ -79,7 +79,7 @@ export default function HerramientasPage() {
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
                     <Step n={1} title="Busca el evento" desc="Abre Oddspedia, encuentra un partido con rating alto y copia las cuotas." />
                     <Step n={2} title="Abre la calculadora" desc="Usa Oddsmatcher (con Betfair) o Dutcher (dos bookmakers). Pega las cuotas." />
-                    <Step n={3} title="Ejecuta la apuesta" desc="La calculadora te dice exactamente cuánto apostar en cada lado para garantizar el beneficio." />
+                    <Step n={3} title="Ejecuta la apuesta" desc="La calculadora te dice exactamente cuánto apostar en cada lado para calcular el resultado estimado." />
                 </div>
             </div>
         </div>

@@ -1,15 +1,33 @@
 // lib/calc/freebet.ts
 
 import type { InputsFreeBet, ResultadoFreeBet } from '@/types/calc'
+import { emptyScenario, nonNegativeNumber, parseNumber, roundSafe } from './safe'
 
 export function calcFreeBet(inputs: InputsFreeBet): ResultadoFreeBet {
-    const { stake, cuotaBack, cuotaLay, comision, tipo = 'snr' } = inputs
+    const stake = nonNegativeNumber(inputs.stake)
+    const cuotaBack = parseNumber(inputs.cuotaBack)
+    const cuotaLay = parseNumber(inputs.cuotaLay)
+    const comision = parseNumber(inputs.comision)
+    const { tipo = 'snr' } = inputs
     const comisionDecimal = comision / 100
+    const denominator = cuotaLay - comisionDecimal
+
+    if (stake <= 0 || cuotaBack <= 1 || cuotaLay <= 1 || comision < 0 || comision >= 100 || denominator <= 0) {
+        return {
+            layStake: 0,
+            responsabilidad: 0,
+            retencionReal: 0,
+            escenarios: [
+                emptyScenario('Si gana A Favor (casa)'),
+                emptyScenario('Si gana En Contra (exchange)'),
+            ],
+        }
+    }
 
     // En freebet SNR no se recupera el stake si gana; en SR sí se recupera
     const layStake = tipo === 'sr'
-        ? (stake * cuotaBack) / (cuotaLay - comisionDecimal)
-        : (stake * (cuotaBack - 1)) / (cuotaLay - comisionDecimal)
+        ? (stake * cuotaBack) / denominator
+        : (stake * (cuotaBack - 1)) / denominator
 
     // Dinero bloqueado en el exchange
     const responsabilidad = layStake * (cuotaLay - 1)
@@ -31,21 +49,21 @@ export function calcFreeBet(inputs: InputsFreeBet): ResultadoFreeBet {
     const retencionReal = (beneficioSiGana / stake) * 100
 
     return {
-        layStake: Math.round(layStake * 100) / 100,
-        responsabilidad: Math.round(responsabilidad * 100) / 100,
-        retencionReal: Math.round(retencionReal * 100) / 100,
+        layStake: roundSafe(layStake),
+        responsabilidad: roundSafe(responsabilidad),
+        retencionReal: roundSafe(retencionReal),
         escenarios: [
             {
                 label: 'Si gana A Favor (casa)',
-                beneficio: Math.round(beneficioSiGana * 100) / 100,
-                resultadoCasa: Math.round(resultadoCasaGana * 100) / 100,
-                resultadoExchange: Math.round(resultadoExchangePierde * 100) / 100,
+                beneficio: roundSafe(beneficioSiGana),
+                resultadoCasa: roundSafe(resultadoCasaGana),
+                resultadoExchange: roundSafe(resultadoExchangePierde),
             },
             {
                 label: 'Si gana En Contra (exchange)',
-                beneficio: Math.round(beneficioSiPierde * 100) / 100,
-                resultadoCasa: Math.round(resultadoCasaPierde * 100) / 100,
-                resultadoExchange: Math.round(resultadoExchangeGana * 100) / 100,
+                beneficio: roundSafe(beneficioSiPierde),
+                resultadoCasa: roundSafe(resultadoCasaPierde),
+                resultadoExchange: roundSafe(resultadoExchangeGana),
             },
         ],
     }

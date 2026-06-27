@@ -114,13 +114,13 @@ export default async function CalculadoraPage({
           <li>Stake recomendado, lay stake y liability para apuestas con dinero real</li>
           <li>Beneficio estimado y pérdida calificante antes de desbloquear una promoción</li>
           <li>Conversión de freebet en dinero real con cobertura optimizada</li>
-          <li>Valor de bonos con reembolso o apuestas sin riesgo</li>
+          <li>Valor de bonos con reembolso o apuestas cubiertas</li>
           <li>Progreso y coste estimado de promociones con rollover</li>
-          <li>Dutcher para repartir stakes en varios resultados y asegurar retorno</li>
+          <li>Dutcher para repartir stakes en varios resultados y estimar el retorno</li>
         </ul>
         <h2>Modos incluidos</h2>
         <p>
-          La calculadora incluye modos para dinero real, free bet, bono sin riesgo, reembolso, rollover y
+          La calculadora incluye modos para dinero real, free bet, bono cubierto, reembolso, rollover y
           dutcher, con campos adaptados para introducir cuotas, stake, comisión del exchange y condiciones de
           cada oferta.
         </p>

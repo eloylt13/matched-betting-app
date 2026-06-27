@@ -4,6 +4,7 @@
 
 import { useState } from 'react'
 import { calcDutcher } from '@/lib/calc'
+import { parseNumber } from '@/lib/calc/safe'
 import type { InputsDutcher, ResultadoDutcher } from '@/types/calc'
 import ResultsTable from './ResultsTable'
 
@@ -40,11 +41,12 @@ function Field({
     <div className="flex flex-col gap-1.5">
       <label className="text-xs font-medium text-zinc-400 uppercase tracking-wider">{label}</label>
       <input
-        type="number"
+        type="text"
+        inputMode="decimal"
         value={value}
         step={step}
         min={min}
-        onChange={(e) => onChange(parseFloat(e.target.value) || 0)}
+        onChange={(e) => onChange(parseNumber(e.target.value))}
         className="w-full rounded-lg bg-zinc-800 border border-zinc-600 px-3 py-2 text-sm text-zinc-100
           focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent
           transition-colors hover:border-zinc-500"
@@ -145,7 +147,7 @@ export default function BlockDutcher() {
       </div>
 
       <p className="text-xs text-zinc-500">
-        ⚖️ El dutcher reparte el stake entre dos casas cubiertas para garantizar un resultado similar
+        ⚖️ El dutcher reparte el stake entre dos casas cubiertas para buscar un resultado similar
         en ambos escenarios. Úsalo cuando no tengas acceso a exchange.
       </p>
     </div>

@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import { getCasaById } from '@/lib/presets'
+import { nonNegativeNumber, parseNumber } from '@/lib/calc/safe'
 
 type Tab = 'oddsmatcher' | 'dutcher'
 type ModoClasica = 'dinero-real' | 'apuesta-gratis' | 'bonos' | 'rollover' | 'reembolso'
@@ -39,8 +40,8 @@ export type CalculadoraPrefill = {
   faseNumero?: string
 }
 
-function n(v: string) {
-  return parseFloat(v) || 0
+function n(v: string | number) {
+  return nonNegativeNumber(v)
 }
 
 function isModoClasica(value: string | null): value is ModoClasica {
@@ -107,7 +108,7 @@ function InputField({
   prefix,
   suffix,
   hint,
-  type = 'number',
+  type = 'text',
   microcopy,
 }: {
   label: string
@@ -136,6 +137,7 @@ function InputField({
         )}
         <input
           type={type}
+          inputMode="decimal"
           value={value}
           onChange={(e) => onChange(e.target.value)}
           step="0.01"
@@ -590,10 +592,10 @@ function OddsMatcherCalc({
     ? casaGuiada.url
     : undefined
   const fasesCasaGuiada = casaGuiada?.promos.flatMap((promo) => promo.fases) ?? []
-  const faseNumeroPrefill = prefill?.faseNumero ? Number(prefill.faseNumero) : NaN
+  const faseNumeroPrefill = prefill?.faseNumero ? parseNumber(prefill.faseNumero) : 0
   const faseGuiada = prefill?.faseId
     ? fasesCasaGuiada.find((fase) => fase.id === prefill.faseId)
-      ?? fasesCasaGuiada.find((fase) => Number.isFinite(faseNumeroPrefill) && fase.numero === faseNumeroPrefill)
+      ?? fasesCasaGuiada.find((fase) => faseNumeroPrefill > 0 && fase.numero === faseNumeroPrefill)
       ?? null
     : null
   const nombreCasaGuiada = casaGuiada?.nombre ?? (prefill?.bookmaker ? formatBookmaker(prefill.bookmaker) : undefined)
@@ -618,10 +620,18 @@ function OddsMatcherCalc({
   const s = n(stake)
   const cbm = n(cuotaBM)
   const ce = n(cuotaExch)
-  const com = n(comision) / 100
+  const comisionPct = parseNumber(comision)
+  const com = comisionPct / 100
   const reb = n(reembolso)
   const extraccion = n(tasaExtraccion) / 100
   const rollover = n(rolloverX)
+  const denominator = ce - com
+  const invalidOdds = s > 0 && (cbm <= 1 || ce <= 1)
+  const invalidCommission = s > 0 && (comisionPct < 0 || comisionPct >= 100)
+  const invalidDenominator = s > 0 && denominator <= 0
+  const validationMessage = invalidOdds || invalidCommission || invalidDenominator
+    ? 'Revisa la cuota lay y la comisión: con esos valores no se puede calcular una cobertura válida.'
+    : ''
 
   let sc = 0
   let bGana = 0
@@ -631,30 +641,30 @@ function OddsMatcherCalc({
   let costePorVuelta = 0
   let costeTotalRollover = 0
 
-  if (s > 0 && cbm > 0 && ce > 0) {
+  if (s > 0 && cbm > 1 && ce > 1 && !invalidCommission && denominator > 0) {
     if (modo === 'dinero-real') {
-      sc = (s * cbm) / (ce - com)
+      sc = (s * cbm) / denominator
       liability = sc * (ce - 1)
       bGana = s * (cbm - 1) - liability
       bPierde = sc * (1 - com) - s
     } else if (modo === 'apuesta-gratis') {
-      sc = (s * (cbm - 1)) / (ce - com)
+      sc = (s * (cbm - 1)) / denominator
       liability = sc * (ce - 1)
       bGana = s * (cbm - 1) - liability
       bPierde = sc * (1 - com)
     } else if (modo === 'bonos') {
-      sc = (s * cbm) / (ce - com)
+      sc = (s * cbm) / denominator
       liability = sc * (ce - 1)
       bGana = s * cbm - liability
       bPierde = sc * (1 - com)
     } else if (modo === 'reembolso') {
       valorRealReembolso = tipoReembolso === 'cash' ? reb : reb * extraccion
-      sc = (s * cbm - valorRealReembolso) / (ce - com)
+      sc = (s * cbm - valorRealReembolso) / denominator
       liability = sc * (ce - 1)
       bGana = s * (cbm - 1) - liability
       bPierde = sc * (1 - com) - s + valorRealReembolso
     } else if (modo === 'rollover') {
-      sc = (s * cbm) / (ce - com)
+      sc = (s * cbm) / denominator
       liability = sc * (ce - 1)
       bGana = s * (cbm - 1) - liability
       bPierde = sc * (1 - com) - s
@@ -815,6 +825,12 @@ function OddsMatcherCalc({
               {hasPrefilledOdds && (
                 <p className="rounded-[1.25rem] border border-amber-200/80 bg-amber-50/80 px-4 py-3 text-xs leading-5 text-amber-800">
                   Edita estas cuotas con las del evento real. IAPredictHub no está recomendando un evento concreto.
+                </p>
+              )}
+
+              {validationMessage && (
+                <p className="rounded-[1.25rem] border border-amber-200/80 bg-amber-50/80 px-4 py-3 text-xs leading-5 text-amber-800">
+                  {validationMessage}
                 </p>
               )}
 
@@ -1108,7 +1124,11 @@ function DutcherCalc({
   let bGana = 0
   let bPierde = 0
 
-  if (s > 0 && cc1 > 0 && cc2 > 0) {
+  const dutcherValidationMessage = s > 0 && (cc1 <= 1 || cc2 <= 1)
+    ? 'Revisa las cuotas: con esos valores no se puede calcular una cobertura válida.'
+    : ''
+
+  if (s > 0 && cc1 > 1 && cc2 > 1) {
     stakeA = (s * cc2) / (cc1 + cc2)
     stakeB = s - stakeA
     bGana = stakeA * cc1 - s
@@ -1161,6 +1181,11 @@ function DutcherCalc({
                 <div className="mt-4">
                   <InputField label="Cuota BM2" value={c2} onChange={setC2} microcopy="Cuota del resultado contrario en el segundo bookmaker." />
                 </div>
+                {dutcherValidationMessage && (
+                  <p className="mt-4 rounded-[1.25rem] border border-amber-200/80 bg-amber-50/80 px-4 py-3 text-xs leading-5 text-amber-800">
+                    {dutcherValidationMessage}
+                  </p>
+                )}
               </div>
             </div>
           </div>

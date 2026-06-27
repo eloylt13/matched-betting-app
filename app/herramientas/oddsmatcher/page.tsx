@@ -3,6 +3,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import { nonNegativeNumber, parseNumber } from '@/lib/calc/safe'
 
 type Modo = 'dinero-real' | 'apuesta-gratis' | 'bonos' | 'rollover' | 'reembolso'
 
@@ -23,38 +24,43 @@ export default function OddsMatcherPage() {
     const [reembolso, setReembolso] = useState('100')
     const [rolloverX, setRolloverX] = useState('10')
 
-    const s = parseFloat(stake) || 0
-    const cbm = parseFloat(cuotaBM) || 0
-    const ce = parseFloat(cuotaExch) || 0
-    const com = (parseFloat(comision) || 0) / 100
-    const reb = parseFloat(reembolso) || 0
+    const s = nonNegativeNumber(stake)
+    const cbm = nonNegativeNumber(cuotaBM)
+    const ce = nonNegativeNumber(cuotaExch)
+    const comisionPct = parseNumber(comision)
+    const com = comisionPct / 100
+    const reb = nonNegativeNumber(reembolso)
+    const denominator = ce - com
+    const validationMessage = s > 0 && (cbm <= 1 || ce <= 1 || comisionPct < 0 || comisionPct >= 100 || denominator <= 0)
+        ? 'Revisa la cuota lay y la comisión: con esos valores no se puede calcular una cobertura válida.'
+        : ''
 
     let stakeContra = 0, benefSiGana = 0, benefSiPierde = 0, liability = 0
 
-    if (s > 0 && cbm > 0 && ce > 0) {
+    if (s > 0 && cbm > 1 && ce > 1 && !validationMessage) {
         if (modo === 'dinero-real') {
-            stakeContra = (s * cbm) / (ce - com)
+            stakeContra = (s * cbm) / denominator
             liability = stakeContra * (ce - 1)
             benefSiGana = s * (cbm - 1) - liability
             benefSiPierde = stakeContra * (1 - com) - s
         } else if (modo === 'apuesta-gratis') {
-            stakeContra = (s * (cbm - 1)) / (ce - com)
+            stakeContra = (s * (cbm - 1)) / denominator
             liability = stakeContra * (ce - 1)
             benefSiGana = s * (cbm - 1) - liability
             benefSiPierde = stakeContra * (1 - com)
         } else if (modo === 'bonos') {
-            stakeContra = (s * cbm) / (ce - com)
+            stakeContra = (s * cbm) / denominator
             liability = stakeContra * (ce - 1)
             benefSiGana = s * cbm - s - liability
             benefSiPierde = stakeContra * (1 - com)
         } else if (modo === 'reembolso') {
             const valorReb = reb * 0.70
-            stakeContra = Math.max(0, (s * cbm - valorReb) / (ce - com))
+            stakeContra = Math.max(0, (s * cbm - valorReb) / denominator)
             liability = stakeContra * (ce - 1)
             benefSiGana = s * (cbm - 1) - liability
             benefSiPierde = stakeContra * (1 - com) - s + valorReb
         } else if (modo === 'rollover') {
-            stakeContra = (s * cbm) / (ce - com)
+            stakeContra = (s * cbm) / denominator
             liability = stakeContra * (ce - 1)
             benefSiGana = s * (cbm - 1) - liability
             benefSiPierde = stakeContra * (1 - com) - s
@@ -123,6 +129,12 @@ export default function OddsMatcherPage() {
                     )}
 
                     {/* Hint según modo */}
+                    {validationMessage && (
+                        <p className="rounded-xl border border-amber-200 bg-amber-50 px-3 py-2 text-xs text-amber-800">
+                            {validationMessage}
+                        </p>
+                    )}
+
                     <div className="bg-gray-50 rounded-xl p-3 text-xs text-gray-500">
                         {modo === 'dinero-real' && '💡 Apuesta calificante. Minimiza la pérdida cubriendo en Betfair.'}
                         {modo === 'apuesta-gratis' && '💡 Freebet SNR: stake no devuelto. Cuotas altas (3.00+) = más retención.'}
@@ -138,7 +150,7 @@ export default function OddsMatcherPage() {
                     <div className={`${modoActual.color} rounded-2xl p-5 text-white`}>
                         <div className="flex items-center justify-between">
                             <div>
-                                <p className="text-sm opacity-80">GANARÁS</p>
+                                <p className="text-sm opacity-80">RESULTADO</p>
                                 <p className="text-4xl font-bold mt-1">
                                     {beneficio >= 0 ? '+' : ''}{beneficio.toFixed(2)} €
                                 </p>
@@ -233,7 +245,7 @@ function InputField({ label, value, onChange, prefix, suffix, hint }: {
             <label className="block text-xs font-semibold text-gray-500 mb-1">{label}</label>
             <div className="flex">
                 {prefix && <span className="bg-gray-100 border border-r-0 border-gray-200 px-2.5 py-2 text-xs text-gray-500 rounded-l-lg">{prefix}</span>}
-                <input type="number" value={value} onChange={e => onChange(e.target.value)} step="0.01" min="0"
+                <input type="text" inputMode="decimal" value={value} onChange={e => onChange(e.target.value)} step="0.01" min="0"
                     className={`flex-1 border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-teal-300 transition-all
             ${prefix ? 'rounded-r-lg' : suffix ? 'rounded-l-lg' : 'rounded-lg'}`} />
                 {suffix && <span className="bg-gray-100 border border-l-0 border-gray-200 px-2.5 py-2 text-xs text-gray-500 rounded-r-lg">{suffix}</span>}
