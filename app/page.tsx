@@ -566,19 +566,24 @@ export default function LandingPage() {
 
             <div className="mx-auto mt-10 grid max-w-5xl grid-cols-1 items-start gap-6 text-left sm:mt-12 md:grid-cols-2 md:gap-8">
               <div className="rounded-2xl border border-white/10 bg-white/[0.06] p-8 text-left shadow-2xl backdrop-blur-xl">
-                <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                <div className="flex flex-col items-start gap-5 sm:flex-row sm:justify-between">
                   <div className="min-w-0">
                     <p className="text-xs font-semibold uppercase tracking-[0.22em] text-emerald-400">Paso 1 de 4</p>
                     <h2 className="mt-3 text-xl font-semibold tracking-tight text-white">
-                      Primer bono recomendado · Versus
+                      Primer bono recomendado
                     </h2>
+                    <Link
+                      href="/bienvenida"
+                      className="mt-4 inline-flex min-h-12 w-full items-center justify-center rounded-full border border-emerald-200/70 bg-emerald-300 px-5 py-3 text-center text-sm font-bold text-slate-950 shadow-[0_0_30px_rgba(52,211,153,0.30)] ring-1 ring-inset ring-white/35 transition-all duration-200 ease-out hover:border-emerald-100 hover:bg-emerald-200 hover:shadow-[0_0_38px_rgba(52,211,153,0.42)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-100/80 sm:w-auto"
+                    >
+                      Ir a guía
+                    </Link>
                   </div>
-                  <Link
-                    href="/bienvenida"
-                    className="inline-flex min-h-12 w-full items-center justify-center rounded-full border border-emerald-200/70 bg-emerald-300 px-5 py-3 text-center text-sm font-bold text-slate-950 shadow-[0_0_30px_rgba(52,211,153,0.30)] ring-1 ring-inset ring-white/35 transition-all duration-200 ease-out hover:border-emerald-100 hover:bg-emerald-200 hover:shadow-[0_0_38px_rgba(52,211,153,0.42)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-100/80 sm:w-auto sm:shrink-0"
-                  >
-                    Ir a guía
-                  </Link>
+                  <img
+                    src="/logos/casas%20versus.svg"
+                    alt="Versus"
+                    className="h-auto w-20 shrink-0 self-start sm:w-28"
+                  />
                 </div>
 
                 <div className="mt-7 rounded-2xl border border-white/10 bg-white/[0.04] p-5">
@@ -635,94 +640,17 @@ export default function LandingPage() {
                   className="h-auto max-h-[520px] w-full rounded-xl object-contain object-top opacity-90 md:max-h-[560px]"
                 />
               </div>
-            </div>
-        </div>
-      </section>
-
-      <section className="bg-[#F5F3EE] py-16 sm:py-24">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-12 text-center">
-            <p className="text-xs font-semibold text-emerald-600 uppercase tracking-widest mb-3">Empieza por aquí</p>
-            <h2 className="font-playfair text-2xl sm:text-3xl lg:text-4xl font-bold text-stone-900">
-              La casa recomendada para empezar
-            </h2>
-            <p className="text-stone-500 mt-4 max-w-xl mx-auto text-sm sm:text-base">
-              Una sola casa y una guía clara. La forma más simple de entender el método y aprovechar tu primer bono.
-            </p>
-          </div>
-
-          <div className="max-w-3xl mx-auto">
-            <div className="relative rounded-2xl border border-stone-200 bg-white p-6 shadow-sm transition-all duration-200 hover:shadow-md sm:p-8">
-              <span className="absolute top-4 right-4 rounded-full bg-emerald-500 px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-white shadow-sm sm:top-6 sm:right-6">
-                Hasta 200€ en freebets
-              </span>
-
-              <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
-                <div className="shrink-0">
-                  <img src="/logos/casas/versus.svg" alt="Versus" className="h-12 w-auto" />
-                </div>
-                <div>
-                  <h3 className="font-playfair text-2xl font-bold text-stone-900">Versus</h3>
-                  <p className="mt-1 text-sm text-stone-500">Apuesta & Recibe · Dificultad 1/5</p>
-                </div>
-              </div>
-
-              <div className="mb-6 space-y-3">
-                <div className="flex items-start gap-2">
-                  <span className="font-semibold text-emerald-500">✓</span>
-                  <p className="text-sm text-stone-700">Primera casa recomendada para seguir el bono guiado</p>
-                </div>
-                <div className="flex items-start gap-2">
-                  <span className="font-semibold text-emerald-500">✓</span>
-                  <p className="text-sm text-stone-700">Bono sencillo de entender, con registro y depósito en Versus</p>
-                </div>
-                <div className="flex items-start gap-2">
-                  <span className="font-semibold text-emerald-500">✓</span>
-                  <p className="text-sm text-stone-700">Dificultad baja: 1/5, pensado para empezar con orden</p>
-                </div>
-              </div>
-
-              <div className="flex flex-col gap-3 sm:flex-row">
-                <TrackedLink
-                  href="https://app.afiliago.com/go/19148/JqXVcHDWdu/2"
-                  eventName="home_casa_recomendada_primary_clicked"
-                  eventProps={{ location: 'casa_recomendada', casa: 'versus', target_path: 'afiliado_versus' }}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex-1 rounded-lg bg-emerald-500 px-6 py-3 text-center text-sm font-bold text-white shadow-sm transition-all duration-200 hover:bg-emerald-400 hover:shadow-md sm:flex-initial sm:text-base"
-                >
-                  <span className="inline-flex items-center justify-center gap-2">
-                    <span>Registrarme en Versus</span>
-                    <span
-                      className="text-lg leading-none transition-transform duration-200 group-hover:translate-x-1"
-                      aria-hidden="true"
-                    >
-                      →
-                    </span>
-                  </span>
-                </TrackedLink>
-                <TrackedLink
-                  href="/casas/versus"
-                  eventName="home_casa_recomendada_secondary_clicked"
-                  eventProps={{ location: 'casa_recomendada', casa: 'versus', target_path: '/casas/versus' }}
-                  className="flex-1 rounded-lg border border-stone-300 px-6 py-3 text-center text-sm font-semibold text-stone-700 transition-colors duration-200 hover:bg-stone-50 sm:flex-initial sm:text-base"
-                >
-                  Ver guía →
-                </TrackedLink>
-              </div>
-            </div>
-
-            <div className="mt-8 flex justify-center">
               <TrackedLink
-                href="/casas"
-                eventName="home_casa_recomendada_otras_casas_clicked"
-                eventProps={{ location: 'casa_recomendada', target_path: '/casas' }}
-                className="mx-auto inline-flex items-center gap-1 text-sm text-stone-500 transition-colors duration-200 hover:text-emerald-600"
+                href="https://t.me/matchedbetiapredict"
+                eventName="home_telegram_mobile_cta_clicked"
+                eventProps={{ location: 'telegram_capture', target_path: 'telegram_channel' }}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 inline-flex w-full items-center justify-center rounded-2xl bg-sky-500 px-5 py-3 text-sm font-bold text-white shadow-[0_0_24px_rgba(14,165,233,0.20)] transition-colors duration-200 hover:bg-sky-400 md:hidden"
               >
-                ¿Ya tienes cuenta en Versus? Ver otras casas →
+                Ir a Telegram →
               </TrackedLink>
             </div>
-          </div>
         </div>
       </section>
 
