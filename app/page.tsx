@@ -444,12 +444,10 @@ export default function LandingPage() {
 
             <div className="min-w-0 flex flex-col gap-5">
             <div className="flex flex-wrap justify-center gap-2 text-sm md:justify-start">
-              <div className="inline-flex items-center gap-2 rounded-full border border-emerald-300/25 bg-emerald-300/10 px-3 py-1.5 font-semibold text-emerald-100 shadow-[0_10px_26px_rgba(16,185,129,0.12)]">
-                <span className="text-emerald-300">✓</span>
+              <div className="inline-flex items-center rounded-full border border-emerald-200/25 bg-[linear-gradient(135deg,rgba(255,255,255,0.13),rgba(52,211,153,0.12)_48%,rgba(167,139,250,0.10))] px-3 py-1.5 font-semibold text-emerald-50 shadow-[inset_0_1px_0_rgba(255,255,255,0.12),0_10px_24px_rgba(2,6,23,0.16)] ring-1 ring-white/[0.04]">
                 <span>Gratis</span>
               </div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-emerald-300/25 bg-emerald-300/10 px-3 py-1.5 font-semibold text-emerald-100 shadow-[0_10px_26px_rgba(16,185,129,0.12)]">
-                <span className="text-emerald-300">✓</span>
+              <div className="inline-flex items-center rounded-full border border-emerald-200/25 bg-[linear-gradient(135deg,rgba(255,255,255,0.13),rgba(52,211,153,0.12)_48%,rgba(167,139,250,0.10))] px-3 py-1.5 font-semibold text-emerald-50 shadow-[inset_0_1px_0_rgba(255,255,255,0.12),0_10px_24px_rgba(2,6,23,0.16)] ring-1 ring-white/[0.04]">
                 <span>Sin registro</span>
               </div>
               <TrackedLink
@@ -459,10 +457,9 @@ export default function LandingPage() {
                   location: 'hero_trust_signal',
                   target_path: '/guias/primeros-pasos/cuanto-se-puede-ganar',
                 }}
-                className="inline-flex items-center gap-2 rounded-full border border-emerald-300/30 bg-white/[0.06] px-3 py-1.5 font-semibold text-emerald-100 shadow-[0_10px_26px_rgba(16,185,129,0.12)] transition-colors duration-200 hover:border-emerald-300/50 hover:bg-emerald-300/12 hover:text-white"
+                className="inline-flex max-w-full items-center gap-2 rounded-full border border-emerald-300/30 bg-white/[0.06] px-3 py-1.5 font-semibold text-emerald-100 shadow-[0_10px_26px_rgba(16,185,129,0.12)] transition-colors duration-200 hover:border-emerald-300/50 hover:bg-emerald-300/12 hover:text-white"
               >
-                <span className="text-emerald-300">✓</span>
-                <span>Cuánto se puede ganar en España</span>
+                <span className="min-w-0">Cuánto se puede ganar en España →</span>
               </TrackedLink>
               <TrackedLink
                 href="/guias/primeros-pasos/cuanto-se-puede-ganar-latam"
@@ -471,10 +468,9 @@ export default function LandingPage() {
                   location: 'hero_trust_signal',
                   target_path: '/guias/primeros-pasos/cuanto-se-puede-ganar-latam',
                 }}
-                className="inline-flex items-center gap-2 rounded-full border border-emerald-300/30 bg-white/[0.06] px-3 py-1.5 font-semibold text-emerald-100 shadow-[0_10px_26px_rgba(16,185,129,0.12)] transition-colors duration-200 hover:border-emerald-300/50 hover:bg-emerald-300/12 hover:text-white"
+                className="inline-flex max-w-full items-center gap-2 rounded-full border border-emerald-300/30 bg-white/[0.06] px-3 py-1.5 font-semibold text-emerald-100 shadow-[0_10px_26px_rgba(16,185,129,0.12)] transition-colors duration-200 hover:border-emerald-300/50 hover:bg-emerald-300/12 hover:text-white"
               >
-                <span className="text-emerald-300">✓</span>
-                <span>Cuánto se puede ganar en LATAM</span>
+                <span className="min-w-0">Cuánto se puede ganar en LATAM →</span>
               </TrackedLink>
             </div>
 
@@ -551,7 +547,7 @@ export default function LandingPage() {
                     Comunidad y alertas en Telegram
                   </p>
                   <p className="mt-1 text-xs leading-relaxed text-slate-300">
-                    Más de 650 usuarios de IAPredictHub con beneficios. Más de 540 reciben gratis alertas de ofertas recurrentes.
+                    Más de 650 usuarios siguen el método IAPredictHub. Más de 540 reciben gratis alertas de ofertas recurrentes.
                   </p>
                 </div>
               </div>
