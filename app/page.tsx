@@ -377,7 +377,7 @@ export default function LandingPage() {
           <div className="mx-auto grid max-w-5xl items-center gap-12 text-center lg:grid-cols-[minmax(0,1fr)_420px] lg:text-left">
             <div>
             <h1 className="mx-auto max-w-4xl font-playfair text-4xl font-bold leading-tight text-white sm:text-5xl lg:mx-0 lg:text-[3.55rem]">
-              Empieza con tu primer bono guiado <span className="text-emerald-400">paso a paso</span>
+              Convierte bonos de bienvenida en dinero real con matched betting
             </h1>
 
             <div className="relative mx-auto mt-5 max-w-xl overflow-hidden rounded-xl border border-emerald-300/25 bg-[radial-gradient(circle_at_12%_0%,rgba(52,211,153,0.14),transparent_34%),radial-gradient(circle_at_92%_8%,rgba(167,139,250,0.12),transparent_32%),linear-gradient(135deg,rgba(15,23,42,0.92),rgba(6,10,24,0.78))] p-4 text-left shadow-[0_18px_46px_rgba(0,0,0,0.24),0_0_30px_rgba(16,185,129,0.08)] ring-1 ring-white/[0.06] backdrop-blur-sm lg:mx-0">
