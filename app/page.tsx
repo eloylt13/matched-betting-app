@@ -439,33 +439,39 @@ export default function LandingPage() {
               </TrackedLink>
             </div>
 
-            <div className="mt-6 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-gray-400 lg:justify-start">
-              <div className="inline-flex items-center gap-2">
-                <span className="text-emerald-400">✓</span>
-                <span>IAPredictHub es gratis</span>
+            <div className="mt-6 flex flex-wrap justify-center gap-2 text-sm lg:justify-start">
+              <div className="inline-flex items-center gap-2 rounded-full border border-emerald-300/25 bg-emerald-300/10 px-3 py-1.5 font-semibold text-emerald-100 shadow-[0_10px_26px_rgba(16,185,129,0.12)]">
+                <span className="text-emerald-300">✓</span>
+                <span>Gratis</span>
               </div>
-              <div className="inline-flex items-center gap-2">
-                <span className="text-emerald-400">✓</span>
-                <span>Sin cuenta en IAPredictHub</span>
+              <div className="inline-flex items-center gap-2 rounded-full border border-emerald-300/25 bg-emerald-300/10 px-3 py-1.5 font-semibold text-emerald-100 shadow-[0_10px_26px_rgba(16,185,129,0.12)]">
+                <span className="text-emerald-300">✓</span>
+                <span>Sin registro</span>
               </div>
-              <div className="inline-flex items-center gap-2">
-                <span className="text-emerald-400">✓</span>
-                <TrackedLink
-                  href="/blog/mejores-bonos-bienvenida-apuestas-espana"
-                  eventName="home_hero_bonos_disponibles_clicked"
-                  eventProps={{
-                    location: 'hero_trust_signal',
-                    target_path: '/blog/mejores-bonos-bienvenida-apuestas-espana',
-                  }}
-                  className="text-emerald-400 underline decoration-emerald-400/40 underline-offset-4 transition-colors duration-200 hover:decoration-emerald-400"
-                >
-                  Bonos disponibles con condiciones →
-                </TrackedLink>
-              </div>
-              <div className="inline-flex items-center gap-2">
-                <span className="text-emerald-400">✓</span>
-                <span>Registro y depósito en la casa</span>
-              </div>
+              <TrackedLink
+                href="/guias/primeros-pasos/cuanto-se-puede-ganar"
+                eventName="home_hero_ganancia_espana_clicked"
+                eventProps={{
+                  location: 'hero_trust_signal',
+                  target_path: '/guias/primeros-pasos/cuanto-se-puede-ganar',
+                }}
+                className="inline-flex items-center gap-2 rounded-full border border-emerald-300/30 bg-white/[0.06] px-3 py-1.5 font-semibold text-emerald-100 shadow-[0_10px_26px_rgba(16,185,129,0.12)] transition-colors duration-200 hover:border-emerald-300/50 hover:bg-emerald-300/12 hover:text-white"
+              >
+                <span className="text-emerald-300">✓</span>
+                <span>Cuánto se puede ganar en España</span>
+              </TrackedLink>
+              <TrackedLink
+                href="/guias/primeros-pasos/cuanto-se-puede-ganar-latam"
+                eventName="home_hero_ganancia_latam_clicked"
+                eventProps={{
+                  location: 'hero_trust_signal',
+                  target_path: '/guias/primeros-pasos/cuanto-se-puede-ganar-latam',
+                }}
+                className="inline-flex items-center gap-2 rounded-full border border-emerald-300/30 bg-white/[0.06] px-3 py-1.5 font-semibold text-emerald-100 shadow-[0_10px_26px_rgba(16,185,129,0.12)] transition-colors duration-200 hover:border-emerald-300/50 hover:bg-emerald-300/12 hover:text-white"
+              >
+                <span className="text-emerald-300">✓</span>
+                <span>Cuánto se puede ganar en LATAM</span>
+              </TrackedLink>
             </div>
 
             <div className="relative mx-auto mt-5 max-w-2xl overflow-hidden rounded-xl border border-emerald-300/22 bg-[radial-gradient(circle_at_12%_0%,rgba(52,211,153,0.16),transparent_34%),radial-gradient(circle_at_92%_10%,rgba(167,139,250,0.12),transparent_32%),linear-gradient(135deg,rgba(15,23,42,0.88),rgba(2,6,23,0.64))] px-4 py-3.5 text-left shadow-[0_18px_46px_rgba(0,0,0,0.26),0_0_34px_rgba(16,185,129,0.08)] ring-1 ring-white/[0.06] backdrop-blur-sm sm:flex sm:items-center sm:justify-between sm:gap-4 lg:mx-0">
