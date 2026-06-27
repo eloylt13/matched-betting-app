@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import TrackedLink from '@/components/analytics/TrackedLink'
 import EmailCapture from '@/components/landing/EmailCapture'
@@ -554,6 +555,17 @@ export default function LandingPage() {
                   Ver beneficios recurrentes
                 </Link>
               </div>
+            </div>
+
+            <div className="relative w-full min-w-0 overflow-hidden rounded-xl border border-white/10 bg-white/[0.035] shadow-[0_18px_46px_rgba(0,0,0,0.28),0_0_34px_rgba(56,189,248,0.08)] ring-1 ring-white/[0.05]">
+              <Image
+                src="/icons/telegram-alertas-recurrentes.png"
+                alt="Captura del canal de alertas recurrentes de IAPredictHub en Telegram"
+                width={580}
+                height={740}
+                sizes="(min-width: 1024px) 448px, (min-width: 768px) 50vw, 100vw"
+                className="h-auto max-h-[420px] w-full rounded-xl object-contain object-top opacity-90 md:max-h-[360px] lg:max-h-[420px]"
+              />
             </div>
             </div>
           </div>
