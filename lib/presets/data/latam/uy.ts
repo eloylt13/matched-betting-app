@@ -6,7 +6,6 @@ export const casasUy: Casa[] = [
     nombre: 'Betway',
     market: 'latam',
     pais: 'uy',
-    url: 'https://bdeal.io/betway/144468/1',
     descripcionBreve: 'Depósito mínimo $10 USD → freebet hasta $30 USD tras rollover ×1 a cuota ≥ 1.75.',
     resumen: 'Rollover ×1 sobre el primer depósito a cuota ≥ 1.75 para desbloquear freebet hasta $30 USD. Plazo pendiente.',
     tipologia: 'rollover',

@@ -19,7 +19,7 @@ const CASA_LINKS = {
   paf: 'https://bdeal.io/PAF/100477/1',
   'casino-gran-madrid': 'https://bdeal.io/CGranMadrid/139749/1',
   juegging:
-    'https://www.juegging.es/promo/bono-de-bienvenida-10e-primer-deposito-hasta-150e-para-apuestas-deportivas-online/?gad_source=1&gad_campaignid=21384301916&gbraid=0AAAAADf_xqsJfkKNVJvYbKlhjbhoam9Gd&gclid=Cj0KCQiA7rDMBhCjARIsAGDBuEB1YELWvbUe10N_UX9ji9LU4O5iOIkUiIklFuOyxBRP06EelVRwxrQaAnJoEALw_wcB',
+    'https://www.juegging.es/promo/freebet-multiplicamos-x2-tu-siguiente-deposito-hasta-100e/',
   'marca-apuestas': 'https://bdeal.io/marcaapuestas/136724/1',
   bwin:
     'https://www.bwin.es/es/engage/lan/pm/sports/generic?wm=5238465&wm=5238465&tdpeh=29235_23463837299_189439309177_792853968132_kwd-37715403167_e_c&utm_source=search_google&utm_campaign=23463837299&utm_content=792853968132&utm_medium=e&utm_term=bwin%20bono%20bienvenida&sb=1&gad_source=1&gad_campaignid=23463837299&gbraid=0AAAAADxF3Xt0_9DF5rDeEetPiGU61dmcj&gclid=CjwKCAiAqKbMBhBmEiwAZ3UboP3lPzZ6n7Uv7g3bLjonVIXvqDCZ5xeYl-G1qmV3s0JwuyuZeve-lRoCMUAQAvD_BwE',
@@ -39,7 +39,7 @@ const CASA_LINKS = {
   goldenpark:
     'https://app.afiliago.com/go/popup18/19149?url=https%3A%2F%2Fapp.afiliago.com%2Fgo%2F19149%2FWs1nYCo4gw',
   betsson: 'https://bdeal.io/Betsson/136727/1',
-  paston: 'https://www.paston.es/promociones/bono-bienvenida-casa-de-apuestas',
+  paston: 'https://www.paston.es/promociones/bono-bienvenida-apuestas',
   efbet: 'https://efbet.com.es/bonos/',
   solcasino: 'https://www.solcasino.es/promociones/bets/bono-bienvenida-aadd',
   leovegas: 'https://leovegas.es/auth?intent=SIGNUP&provider=USERNAME_PASSWORD',

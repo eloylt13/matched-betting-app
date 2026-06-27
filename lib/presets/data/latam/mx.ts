@@ -6,7 +6,6 @@ export const casasMx: Casa[] = [
     nombre: 'Betano',
     market: 'latam',
     pais: 'mx',
-    url: 'https://bdeal.io/betano/144459/1',
     descripcionBreve: 'Bono de primer depósito hasta MXN 3.000 con rollover. Condiciones exactas pendientes.',
     resumen: 'Rollover sobre depósito+bono. Bono máximo MXN 3.000. Mínimo, multiplicador y cuota mínima pendientes de confirmar oficialmente.',
     tipologia: 'rollover',
@@ -100,7 +99,7 @@ export const casasMx: Casa[] = [
     notas: [
       'No hay una sola bienvenida fija: revisar qué promo aparece en el registro antes de operar.',
       'Referencia oficial a cuota 4.00 en dos promos: significado exacto PENDIENTE.',
-      'Link de afiliado MX pendiente de corregir: el facilitado corresponde a Betsson.',
+      'Link de afiliado MX actualizado.',
       'Para matched betting priorizar la promo de reembolso 1ª apuesta.',
     ],
     promos: [

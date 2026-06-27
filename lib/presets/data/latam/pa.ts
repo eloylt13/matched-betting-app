@@ -6,7 +6,6 @@ export const casasPa: Casa[] = [
     nombre: 'Betway',
     market: 'latam',
     pais: 'pa',
-    url: 'https://bdeal.io/betway/144468/1',
     descripcionBreve: 'Reembolso hasta $100 USD en freebets si pierde la primera apuesta triple.',
     resumen: 'Primera apuesta triple o superior a cuota ≥ 1.25 por selección. Si pierde → freebets hasta $100 USD. Solo vía app y pre-partido.',
     tipologia: 'reembolso',

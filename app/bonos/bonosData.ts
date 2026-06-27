@@ -17,7 +17,7 @@ export type BonoLatamUsCurado = {
   usdAprox: number | null
   confianza: BonoConfianzaLatamUs
   decision: BonoDecisionLatamUs
-  url: string
+  url?: string
 }
 
 export const ordenBonosEspana = [
@@ -310,7 +310,6 @@ export const bonosLatamUsCurados: BonoLatamUsCurado[] = [
     usdAprox: 446,
     confianza: 'alta',
     decision: 'ok',
-    url: 'https://bdeal.io/Betsson/144464/1',
   },
   {
     nombre: 'Betway CL',
@@ -320,7 +319,6 @@ export const bonosLatamUsCurados: BonoLatamUsCurado[] = [
     usdAprox: 171,
     confianza: 'baja',
     decision: 'ok',
-    url: 'https://bdeal.io/betway/144468/1',
   },
   {
     nombre: 'Novibet CL',
@@ -375,12 +373,12 @@ export const bonosLatamUsCurados: BonoLatamUsCurado[] = [
   {
     nombre: 'Betsson PE',
     mercado: 'PE',
-    red: 'Bdeal',
+    red: 'Oficial',
     ofertaTexto: 'Freebet de ~US$30 + 30 giros gratis',
     usdAprox: 30,
     confianza: 'alta',
     decision: 'ok',
-    url: 'https://bdeal.io/Betsson/144464/1',
+    url: 'https://www.betsson.pe/',
   },
   {
     nombre: 'Betcris PE',
@@ -470,7 +468,6 @@ export const bonosLatamUsCurados: BonoLatamUsCurado[] = [
     usdAprox: 173,
     confianza: 'media',
     decision: 'prudente',
-    url: 'https://bdeal.io/betano/144459/1',
   },
   {
     nombre: 'Codere MX',
@@ -630,7 +627,6 @@ export const bonosLatamUsCurados: BonoLatamUsCurado[] = [
     usdAprox: 75,
     confianza: 'baja',
     decision: 'ok',
-    url: 'https://bdeal.io/betway/144468/1',
   },
   {
     nombre: 'Sportium PA',
@@ -650,7 +646,6 @@ export const bonosLatamUsCurados: BonoLatamUsCurado[] = [
     usdAprox: 75,
     confianza: 'baja',
     decision: 'ok',
-    url: 'https://bdeal.io/betway/144468/1',
   },
   {
     nombre: 'BetUS',

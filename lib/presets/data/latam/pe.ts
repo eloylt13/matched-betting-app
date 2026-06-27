@@ -6,7 +6,7 @@ export const casasPe: Casa[] = [
     nombre: 'Betsson',
     market: 'latam',
     pais: 'pe',
-    url: 'https://bdeal.io/Betsson/144464/1',
+    url: 'https://www.betsson.pe/',
     descripcionBreve: 'Freebet S/40 tras primer depósito. Conflicto entre landing deportiva y homepage general.',
     resumen: 'Ruta sports-only: depósito S/40 → apuesta gratuita S/40. Homepage general anuncia S/100. Usar con cautela.',
     tipologia: 'apuesta-recibe',
