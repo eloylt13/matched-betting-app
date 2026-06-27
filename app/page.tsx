@@ -474,7 +474,7 @@ export default function LandingPage() {
               </TrackedLink>
             </div>
 
-            <div className="relative w-full overflow-hidden rounded-xl border border-emerald-300/22 bg-[radial-gradient(circle_at_12%_0%,rgba(52,211,153,0.16),transparent_34%),radial-gradient(circle_at_92%_10%,rgba(167,139,250,0.12),transparent_32%),linear-gradient(135deg,rgba(15,23,42,0.88),rgba(2,6,23,0.64))] px-4 py-3.5 text-left shadow-[0_18px_46px_rgba(0,0,0,0.26),0_0_34px_rgba(16,185,129,0.08)] ring-1 ring-white/[0.06] backdrop-blur-sm">
+            <div className="relative w-full space-y-4 overflow-hidden rounded-xl border border-emerald-300/22 bg-[radial-gradient(circle_at_12%_0%,rgba(52,211,153,0.16),transparent_34%),radial-gradient(circle_at_92%_10%,rgba(167,139,250,0.12),transparent_32%),linear-gradient(135deg,rgba(15,23,42,0.88),rgba(2,6,23,0.64))] px-5 py-6 text-left shadow-[0_18px_46px_rgba(0,0,0,0.26),0_0_34px_rgba(16,185,129,0.08)] ring-1 ring-white/[0.06] backdrop-blur-sm">
               <div className="pointer-events-none absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-emerald-200/55 to-transparent" />
               <div className="relative flex min-w-0 gap-3">
                 <span className="mt-0.5 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-emerald-300/35 bg-emerald-300/10 text-emerald-200 shadow-[0_0_24px_rgba(52,211,153,0.22)] ring-1 ring-inset ring-white/10">
@@ -493,19 +493,21 @@ export default function LandingPage() {
                     <path d="M10 20a2 2 0 0 0 4 0" />
                   </svg>
                 </span>
-                <div className="min-w-0">
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-emerald-200/90">
-                    BENEFICIOS RECURRENTES
-                  </p>
-                  <p className="mt-1 text-lg font-bold leading-snug text-white md:text-xl">
-                    Alertas gratis de ofertas recurrentes
-                  </p>
-                  <p className="mt-1.5 text-sm leading-relaxed text-slate-300">
+                <div className="min-w-0 space-y-4">
+                  <div>
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-emerald-200/90">
+                      BENEFICIOS RECURRENTES
+                    </p>
+                    <p className="mt-1 text-lg font-bold leading-snug text-white md:text-xl">
+                      Alertas gratis de ofertas recurrentes
+                    </p>
+                  </div>
+                  <p className="text-sm leading-relaxed text-slate-300">
                     Recibe avisos cuando aparezcan nuevas promociones aprovechables, con enlace a la casa y guía explicativa.
                   </p>
                 </div>
               </div>
-              <div className="relative mt-4 flex w-full min-w-0 flex-col gap-2 xl:flex-row">
+              <div className="relative flex w-full min-w-0 flex-col gap-3 xl:flex-row">
                 <a
                   href="https://t.me/beneficiosrecurrentes"
                   target="_blank"
@@ -523,7 +525,7 @@ export default function LandingPage() {
               </div>
             </div>
 
-            <div className="relative w-full overflow-hidden rounded-xl border border-sky-300/18 bg-[linear-gradient(135deg,rgba(15,23,42,0.76),rgba(2,6,23,0.56))] px-4 py-3 text-left shadow-[0_14px_34px_rgba(0,0,0,0.18)] ring-1 ring-white/[0.05] backdrop-blur-sm">
+            <div className="relative w-full overflow-hidden rounded-xl border border-sky-300/18 bg-[linear-gradient(135deg,rgba(15,23,42,0.76),rgba(2,6,23,0.56))] px-5 py-5 text-left shadow-[0_14px_34px_rgba(0,0,0,0.18)] ring-1 ring-white/[0.05] backdrop-blur-sm">
               <div className="pointer-events-none absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-sky-200/35 to-transparent" />
               <div className="relative flex min-w-0 gap-3">
                 <span className="mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-sky-300/25 bg-sky-300/10 text-sky-100 ring-1 ring-inset ring-white/10">
@@ -542,11 +544,11 @@ export default function LandingPage() {
                     <path d="M8 9h8M8 13h5" />
                   </svg>
                 </span>
-                <div className="min-w-0">
+                <div className="min-w-0 space-y-3">
                   <p className="text-sm font-bold leading-snug text-white">
                     Comunidad y alertas en Telegram
                   </p>
-                  <p className="mt-1 text-xs leading-relaxed text-slate-300">
+                  <p className="text-xs leading-relaxed text-slate-300">
                     Más de 650 usuarios siguen el método IAPredictHub. Más de 540 reciben gratis alertas de ofertas recurrentes.
                   </p>
                 </div>
