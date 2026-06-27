@@ -425,7 +425,7 @@ export default function LandingPage() {
                 className="group w-full rounded-lg bg-emerald-500 px-7 py-3.5 text-center text-base font-bold text-white shadow-[0_20px_56px_rgba(16,185,129,0.32)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-emerald-400 hover:shadow-[0_24px_66px_rgba(52,211,153,0.42)] sm:w-auto"
               >
                 <span className="inline-flex items-center gap-2">
-                  <span>Empezar mi primer bono guiado</span>
+                  <span>Soy nuevo: empezar paso a paso</span>
                   <span className="text-lg leading-none transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">→</span>
                 </span>
               </TrackedLink>
