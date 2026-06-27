@@ -378,10 +378,10 @@ export default function LandingPage() {
             <div className="min-w-0 flex flex-col gap-5">
             <div className="space-y-3">
               <div className="flex flex-wrap justify-center gap-2 md:justify-start">
-                <div className="inline-flex items-center rounded-full border border-emerald-300/30 bg-gradient-to-r from-emerald-400/15 via-teal-300/10 to-green-400/15 px-5 py-2.5 text-sm font-bold text-emerald-50 shadow-[0_0_24px_rgba(16,185,129,0.12)] ring-1 ring-white/[0.05]">
+                <div className="inline-flex items-center rounded-2xl border-2 border-emerald-300/40 bg-gradient-to-r from-emerald-400/25 via-teal-300/15 to-green-400/25 px-6 py-3 text-base font-bold text-emerald-50 shadow-[0_0_32px_rgba(16,185,129,0.20)] ring-1 ring-white/[0.05]">
                   <span>Gratis</span>
                 </div>
-                <div className="inline-flex items-center rounded-full border border-emerald-300/30 bg-gradient-to-r from-emerald-400/15 via-teal-300/10 to-green-400/15 px-5 py-2.5 text-sm font-bold text-emerald-50 shadow-[0_0_24px_rgba(16,185,129,0.12)] ring-1 ring-white/[0.05]">
+                <div className="inline-flex items-center rounded-2xl border-2 border-emerald-300/40 bg-gradient-to-r from-emerald-400/25 via-teal-300/15 to-green-400/25 px-6 py-3 text-base font-bold text-emerald-50 shadow-[0_0_32px_rgba(16,185,129,0.20)] ring-1 ring-white/[0.05]">
                   <span>Sin registro</span>
                 </div>
               </div>
@@ -465,7 +465,7 @@ export default function LandingPage() {
         <div className="relative mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
           <div className="mx-auto grid max-w-5xl grid-cols-1 items-start gap-8 text-left md:grid-cols-2 md:gap-10 lg:gap-12">
             <div className="min-w-0 flex flex-col gap-5">
-              <div className="flex flex-wrap justify-center gap-2 text-xs sm:text-sm md:justify-start">
+              <div className="flex w-full flex-col gap-3">
                 <TrackedLink
                   href="/guias/primeros-pasos/cuanto-se-puede-ganar"
                   eventName="home_hero_ganancia_espana_clicked"
@@ -473,9 +473,10 @@ export default function LandingPage() {
                     location: 'hero_trust_signal',
                     target_path: '/guias/primeros-pasos/cuanto-se-puede-ganar',
                   }}
-                  className="inline-flex max-w-full items-center gap-2 rounded-full border border-white/12 bg-white/[0.04] px-3 py-1.5 font-semibold text-emerald-100/85 shadow-[0_8px_20px_rgba(2,6,23,0.14)] transition-colors duration-200 hover:border-emerald-300/35 hover:bg-white/[0.07] hover:text-white"
+                  className="flex w-full items-center justify-between gap-4 rounded-2xl border border-emerald-300/25 bg-white/[0.05] px-5 py-4 text-base font-semibold text-emerald-100/90 shadow-[0_8px_20px_rgba(2,6,23,0.12)] transition-colors duration-200 hover:border-emerald-300/35 hover:bg-white/[0.10] hover:text-white"
                 >
-                  <span className="min-w-0">Cuánto se puede ganar en España →</span>
+                  <span className="min-w-0">Cuánto se puede ganar en España</span>
+                  <span className="shrink-0 text-lg leading-none" aria-hidden="true">→</span>
                 </TrackedLink>
                 <TrackedLink
                   href="/guias/primeros-pasos/cuanto-se-puede-ganar-latam"
@@ -484,9 +485,10 @@ export default function LandingPage() {
                     location: 'hero_trust_signal',
                     target_path: '/guias/primeros-pasos/cuanto-se-puede-ganar-latam',
                   }}
-                  className="inline-flex max-w-full items-center gap-2 rounded-full border border-white/12 bg-white/[0.04] px-3 py-1.5 font-semibold text-emerald-100/85 shadow-[0_8px_20px_rgba(2,6,23,0.14)] transition-colors duration-200 hover:border-emerald-300/35 hover:bg-white/[0.07] hover:text-white"
+                  className="flex w-full items-center justify-between gap-4 rounded-2xl border border-emerald-300/25 bg-white/[0.05] px-5 py-4 text-base font-semibold text-emerald-100/90 shadow-[0_8px_20px_rgba(2,6,23,0.12)] transition-colors duration-200 hover:border-emerald-300/35 hover:bg-white/[0.10] hover:text-white"
                 >
-                  <span className="min-w-0">Cuánto se puede ganar en LATAM →</span>
+                  <span className="min-w-0">Cuánto se puede ganar en LATAM</span>
+                  <span className="shrink-0 text-lg leading-none" aria-hidden="true">→</span>
                 </TrackedLink>
               </div>
 
