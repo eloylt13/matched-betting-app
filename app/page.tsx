@@ -378,7 +378,7 @@ export default function LandingPage() {
           <div className="mx-auto grid max-w-5xl grid-cols-1 items-start gap-8 text-center md:grid-cols-2 md:gap-8 md:text-left lg:gap-12">
             <div className="min-w-0">
             <h1 className="mx-auto max-w-4xl font-playfair text-4xl font-bold leading-tight text-white sm:text-5xl lg:mx-0 lg:text-[3.55rem]">
-              Convierte bonos de bienvenida en dinero real con matched betting
+              Convierte bonos de bienvenida en <span className="bg-gradient-to-r from-emerald-300 via-teal-300 to-green-400 bg-clip-text text-transparent">dinero real con matched betting</span>
             </h1>
 
             <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center md:justify-start">
@@ -442,7 +442,7 @@ export default function LandingPage() {
 
             </div>
 
-            <div className="min-w-0 space-y-5">
+            <div className="min-w-0 flex flex-col gap-5">
             <div className="flex flex-wrap justify-center gap-2 text-sm md:justify-start">
               <div className="inline-flex items-center gap-2 rounded-full border border-emerald-300/25 bg-emerald-300/10 px-3 py-1.5 font-semibold text-emerald-100 shadow-[0_10px_26px_rgba(16,185,129,0.12)]">
                 <span className="text-emerald-300">✓</span>
@@ -476,36 +476,6 @@ export default function LandingPage() {
                 <span className="text-emerald-300">✓</span>
                 <span>Cuánto se puede ganar en LATAM</span>
               </TrackedLink>
-            </div>
-
-            <div className="relative w-full overflow-hidden rounded-xl border border-sky-300/18 bg-[linear-gradient(135deg,rgba(15,23,42,0.76),rgba(2,6,23,0.56))] px-4 py-3 text-left shadow-[0_14px_34px_rgba(0,0,0,0.18)] ring-1 ring-white/[0.05] backdrop-blur-sm">
-              <div className="pointer-events-none absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-sky-200/35 to-transparent" />
-              <div className="relative flex min-w-0 gap-3">
-                <span className="mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-sky-300/25 bg-sky-300/10 text-sky-100 ring-1 ring-inset ring-white/10">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.8"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="h-4 w-4"
-                    aria-hidden="true"
-                  >
-                    <path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z" />
-                    <path d="M8 9h8M8 13h5" />
-                  </svg>
-                </span>
-                <div className="min-w-0">
-                  <p className="text-sm font-bold leading-snug text-white">
-                    Comunidad y alertas en Telegram
-                  </p>
-                  <p className="mt-1 text-xs leading-relaxed text-slate-300">
-                    Más de 650 usuarios de IAPredictHub con beneficios. Más de 540 reciben gratis alertas de ofertas recurrentes.
-                  </p>
-                </div>
-              </div>
             </div>
 
             <div className="relative w-full overflow-hidden rounded-xl border border-emerald-300/22 bg-[radial-gradient(circle_at_12%_0%,rgba(52,211,153,0.16),transparent_34%),radial-gradient(circle_at_92%_10%,rgba(167,139,250,0.12),transparent_32%),linear-gradient(135deg,rgba(15,23,42,0.88),rgba(2,6,23,0.64))] px-4 py-3.5 text-left shadow-[0_18px_46px_rgba(0,0,0,0.26),0_0_34px_rgba(16,185,129,0.08)] ring-1 ring-white/[0.06] backdrop-blur-sm">
@@ -557,22 +527,42 @@ export default function LandingPage() {
               </div>
             </div>
 
-            <div className="relative w-full min-w-0 overflow-hidden rounded-xl border border-white/10 bg-white/[0.035] shadow-[0_18px_46px_rgba(0,0,0,0.28),0_0_34px_rgba(56,189,248,0.08)] ring-1 ring-white/[0.05]">
-              <Image
-                src="/icons/telegram-alertas-recurrentes.png"
-                alt="Captura del canal de alertas recurrentes de IAPredictHub en Telegram"
-                width={580}
-                height={740}
-                sizes="(min-width: 1024px) 448px, (min-width: 768px) 50vw, 100vw"
-                className="h-auto max-h-[420px] w-full rounded-xl object-contain object-top opacity-90 md:max-h-[360px] lg:max-h-[420px]"
-              />
+            <div className="relative w-full overflow-hidden rounded-xl border border-sky-300/18 bg-[linear-gradient(135deg,rgba(15,23,42,0.76),rgba(2,6,23,0.56))] px-4 py-3 text-left shadow-[0_14px_34px_rgba(0,0,0,0.18)] ring-1 ring-white/[0.05] backdrop-blur-sm">
+              <div className="pointer-events-none absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-sky-200/35 to-transparent" />
+              <div className="relative flex min-w-0 gap-3">
+                <span className="mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-sky-300/25 bg-sky-300/10 text-sky-100 ring-1 ring-inset ring-white/10">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="h-4 w-4"
+                    aria-hidden="true"
+                  >
+                    <path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z" />
+                    <path d="M8 9h8M8 13h5" />
+                  </svg>
+                </span>
+                <div className="min-w-0">
+                  <p className="text-sm font-bold leading-snug text-white">
+                    Comunidad y alertas en Telegram
+                  </p>
+                  <p className="mt-1 text-xs leading-relaxed text-slate-300">
+                    Más de 650 usuarios de IAPredictHub con beneficios. Más de 540 reciben gratis alertas de ofertas recurrentes.
+                  </p>
+                </div>
+              </div>
             </div>
+
             </div>
           </div>
 
             <div id="home-hero-sentinel" aria-hidden="true" className="h-px w-full" />
 
-            <div className="mx-auto mt-10 max-w-5xl text-left sm:mt-12">
+            <div className="mx-auto mt-10 grid max-w-5xl grid-cols-1 items-start gap-6 text-left sm:mt-12 md:grid-cols-2 md:gap-8">
               <div className="rounded-2xl border border-white/10 bg-white/[0.06] p-8 text-left shadow-2xl backdrop-blur-xl">
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-[0.22em] text-emerald-400">Paso 1 de 4</p>
@@ -629,6 +619,17 @@ export default function LandingPage() {
                 >
                   Ir a guía
                 </Link>
+              </div>
+
+              <div className="relative w-full min-w-0 overflow-hidden rounded-xl border border-white/10 bg-white/[0.035] shadow-[0_18px_46px_rgba(0,0,0,0.28),0_0_34px_rgba(56,189,248,0.08)] ring-1 ring-white/[0.05]">
+                <Image
+                  src="/icons/telegram-alertas-recurrentes.png"
+                  alt="Captura del canal de alertas recurrentes de IAPredictHub en Telegram"
+                  width={580}
+                  height={740}
+                  sizes="(min-width: 768px) 50vw, 100vw"
+                  className="h-auto max-h-[520px] w-full rounded-xl object-contain object-top opacity-90 md:max-h-[560px]"
+                />
               </div>
             </div>
         </div>
