@@ -374,11 +374,34 @@ export default function LandingPage() {
         <HeroAtmosphere />
 
         <div className="relative mx-auto max-w-5xl px-4 pt-12 pb-16 sm:px-6 sm:pt-16 sm:pb-24 lg:px-8 lg:pt-20 lg:pb-32">
-          <div className="mx-auto grid max-w-5xl items-center gap-12 text-center lg:grid-cols-[minmax(0,1fr)_420px] lg:text-left">
-            <div>
+          <div className="mx-auto grid max-w-5xl grid-cols-1 items-start gap-8 text-center md:grid-cols-2 md:gap-8 md:text-left lg:gap-12">
+            <div className="min-w-0">
             <h1 className="mx-auto max-w-4xl font-playfair text-4xl font-bold leading-tight text-white sm:text-5xl lg:mx-0 lg:text-[3.55rem]">
               Convierte bonos de bienvenida en dinero real con matched betting
             </h1>
+
+            <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center md:justify-start">
+              <TrackedLink
+                id="home-primary-cta"
+                href="/bienvenida"
+                eventName="home_cta_primary_clicked"
+                eventProps={{ location: 'hero', target_path: '/bienvenida' }}
+                className="group w-full rounded-lg bg-emerald-500 px-7 py-3.5 text-center text-base font-bold text-white shadow-[0_20px_56px_rgba(16,185,129,0.32)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-emerald-400 hover:shadow-[0_24px_66px_rgba(52,211,153,0.42)] sm:w-auto"
+              >
+                <span className="inline-flex items-center gap-2">
+                  <span>Soy nuevo: empezar paso a paso</span>
+                  <span className="text-lg leading-none transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">→</span>
+                </span>
+              </TrackedLink>
+              <TrackedLink
+                href="/guias/primeros-pasos/introduccion-matched-betting"
+                eventName="home_cta_secondary_clicked"
+                eventProps={{ location: 'hero', target_path: '/guias/primeros-pasos/introduccion-matched-betting' }}
+                className="w-full rounded-lg border border-white/20 bg-transparent px-7 py-3.5 text-center text-base font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/10 sm:w-auto"
+              >
+                Ver guía completa
+              </TrackedLink>
+            </div>
 
             <div className="relative mx-auto mt-5 max-w-xl overflow-hidden rounded-xl border border-emerald-300/25 bg-[radial-gradient(circle_at_12%_0%,rgba(52,211,153,0.14),transparent_34%),radial-gradient(circle_at_92%_8%,rgba(167,139,250,0.12),transparent_32%),linear-gradient(135deg,rgba(15,23,42,0.92),rgba(6,10,24,0.78))] p-4 text-left shadow-[0_18px_46px_rgba(0,0,0,0.24),0_0_30px_rgba(16,185,129,0.08)] ring-1 ring-white/[0.06] backdrop-blur-sm lg:mx-0">
               <div className="pointer-events-none absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-emerald-200/55 to-transparent" />
@@ -416,30 +439,10 @@ export default function LandingPage() {
               </div>
             </div>
 
-            <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center lg:justify-start">
-              <TrackedLink
-                id="home-primary-cta"
-                href="/bienvenida"
-                eventName="home_cta_primary_clicked"
-                eventProps={{ location: 'hero', target_path: '/bienvenida' }}
-                className="group w-full rounded-lg bg-emerald-500 px-7 py-3.5 text-center text-base font-bold text-white shadow-[0_20px_56px_rgba(16,185,129,0.32)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-emerald-400 hover:shadow-[0_24px_66px_rgba(52,211,153,0.42)] sm:w-auto"
-              >
-                <span className="inline-flex items-center gap-2">
-                  <span>Soy nuevo: empezar paso a paso</span>
-                  <span className="text-lg leading-none transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">→</span>
-                </span>
-              </TrackedLink>
-              <TrackedLink
-                href="/guias/primeros-pasos/introduccion-matched-betting"
-                eventName="home_cta_secondary_clicked"
-                eventProps={{ location: 'hero', target_path: '/guias/primeros-pasos/introduccion-matched-betting' }}
-                className="w-full rounded-lg border border-white/20 bg-transparent px-7 py-3.5 text-center text-base font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/10 sm:w-auto"
-              >
-                Ver guía completa
-              </TrackedLink>
             </div>
 
-            <div className="mt-6 flex flex-wrap justify-center gap-2 text-sm lg:justify-start">
+            <div className="min-w-0 space-y-5">
+            <div className="flex flex-wrap justify-center gap-2 text-sm md:justify-start">
               <div className="inline-flex items-center gap-2 rounded-full border border-emerald-300/25 bg-emerald-300/10 px-3 py-1.5 font-semibold text-emerald-100 shadow-[0_10px_26px_rgba(16,185,129,0.12)]">
                 <span className="text-emerald-300">✓</span>
                 <span>Gratis</span>
@@ -474,7 +477,7 @@ export default function LandingPage() {
               </TrackedLink>
             </div>
 
-            <div className="relative mx-auto mt-5 max-w-2xl overflow-hidden rounded-xl border border-emerald-300/22 bg-[radial-gradient(circle_at_12%_0%,rgba(52,211,153,0.16),transparent_34%),radial-gradient(circle_at_92%_10%,rgba(167,139,250,0.12),transparent_32%),linear-gradient(135deg,rgba(15,23,42,0.88),rgba(2,6,23,0.64))] px-4 py-3.5 text-left shadow-[0_18px_46px_rgba(0,0,0,0.26),0_0_34px_rgba(16,185,129,0.08)] ring-1 ring-white/[0.06] backdrop-blur-sm sm:flex sm:items-center sm:justify-between sm:gap-4 lg:mx-0">
+            <div className="relative w-full overflow-hidden rounded-xl border border-emerald-300/22 bg-[radial-gradient(circle_at_12%_0%,rgba(52,211,153,0.16),transparent_34%),radial-gradient(circle_at_92%_10%,rgba(167,139,250,0.12),transparent_32%),linear-gradient(135deg,rgba(15,23,42,0.88),rgba(2,6,23,0.64))] px-4 py-3.5 text-left shadow-[0_18px_46px_rgba(0,0,0,0.26),0_0_34px_rgba(16,185,129,0.08)] ring-1 ring-white/[0.06] backdrop-blur-sm">
               <div className="pointer-events-none absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-emerald-200/55 to-transparent" />
               <div className="relative flex min-w-0 gap-3">
                 <span className="mt-0.5 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-emerald-300/35 bg-emerald-300/10 text-emerald-200 shadow-[0_0_24px_rgba(52,211,153,0.22)] ring-1 ring-inset ring-white/10">
@@ -505,10 +508,10 @@ export default function LandingPage() {
                   </p>
                 </div>
               </div>
-              <div className="relative mt-3 flex w-full shrink-0 flex-col gap-2 sm:mt-0 sm:w-auto">
+              <div className="relative mt-4 flex w-full min-w-0 flex-col gap-2 sm:flex-row md:flex-col xl:flex-row">
                 <Link
                   href="/beneficios-recurrentes"
-                  className="inline-flex min-h-11 w-full items-center justify-center rounded-full border border-emerald-300/45 bg-slate-950/60 px-4 py-2.5 text-xs font-bold text-emerald-100 shadow-[0_0_24px_rgba(52,211,153,0.18)] ring-1 ring-inset ring-emerald-100/10 backdrop-blur transition-all duration-200 ease-out hover:border-emerald-200/70 hover:bg-emerald-400/12 hover:text-white hover:shadow-[0_0_28px_rgba(52,211,153,0.26)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300/60 sm:min-h-10 sm:w-auto"
+                  className="inline-flex min-h-11 w-full min-w-0 items-center justify-center rounded-full border border-emerald-300/45 bg-slate-950/60 px-4 py-2.5 text-center text-xs font-bold text-emerald-100 shadow-[0_0_24px_rgba(52,211,153,0.18)] ring-1 ring-inset ring-emerald-100/10 backdrop-blur transition-all duration-200 ease-out hover:border-emerald-200/70 hover:bg-emerald-400/12 hover:text-white hover:shadow-[0_0_28px_rgba(52,211,153,0.26)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300/60 sm:min-h-10"
                 >
                   Ver beneficios recurrentes
                 </Link>
@@ -516,17 +519,18 @@ export default function LandingPage() {
                   href="https://t.me/beneficiosrecurrentes"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex min-h-10 w-full items-center justify-center rounded-full border border-white/12 bg-white/[0.03] px-4 py-2 text-center text-xs font-semibold text-slate-200/90 ring-1 ring-inset ring-white/[0.04] transition-all duration-200 ease-out hover:border-emerald-200/35 hover:bg-white/[0.06] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300/45 sm:w-auto"
+                  className="inline-flex min-h-10 w-full min-w-0 items-center justify-center rounded-full border border-white/12 bg-white/[0.03] px-4 py-2 text-center text-xs font-semibold text-slate-200/90 ring-1 ring-inset ring-white/[0.04] transition-all duration-200 ease-out hover:border-emerald-200/35 hover:bg-white/[0.06] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300/45"
                 >
                   Ver canal de alertas ↗
                 </a>
               </div>
             </div>
             </div>
+          </div>
 
             <div id="home-hero-sentinel" aria-hidden="true" className="h-px w-full" />
 
-            <div className="hidden lg:block">
+            <div className="mx-auto mt-10 max-w-5xl text-left sm:mt-12">
               <div className="rounded-2xl border border-white/10 bg-white/[0.06] p-8 text-left shadow-2xl backdrop-blur-xl">
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-[0.22em] text-emerald-400">Paso 1 de 4</p>
@@ -537,7 +541,7 @@ export default function LandingPage() {
 
                 <div className="mt-7 rounded-2xl border border-white/10 bg-white/[0.04] p-5">
                   <p className="text-sm font-semibold text-white">Resumen</p>
-                  <div className="mt-4 grid grid-cols-3 gap-3">
+                  <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-3">
                     <div>
                       <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-gray-500">Dificultad</p>
                       <p className="mt-1 text-sm font-semibold text-gray-100">Baja</p>
@@ -578,7 +582,6 @@ export default function LandingPage() {
                 </div>
               </div>
             </div>
-          </div>
         </div>
       </section>
 
