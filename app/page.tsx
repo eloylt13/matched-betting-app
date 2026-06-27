@@ -297,7 +297,7 @@ export default function LandingPage() {
                 eventProps={{ location: 'header', target_path: '/bienvenida' }}
                 className="inline-flex items-center rounded-full border border-violet-200/35 bg-violet-500 px-3 sm:px-5 py-1.5 sm:py-2 text-xs sm:text-sm font-bold text-white shadow-[0_10px_28px_rgba(124,58,237,0.28)] transition-colors hover:bg-violet-400"
               >
-                Primer bono guiado →
+                Primer bono recomendado →
               </TrackedLink>
             </nav>
           </div>
