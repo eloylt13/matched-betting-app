@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import TrackedLink from '@/components/analytics/TrackedLink'
-import EmailCapture from '@/components/landing/EmailCapture'
 import HeroAtmosphere from '@/components/landing/HeroAtmosphere'
 import HeroMockup from '@/components/landing/HeroMockup'
 import StickyMobileCTA from '@/components/StickyMobileCTA'
@@ -179,73 +178,6 @@ export const metadata: Metadata = {
     },
   },
 }
-
-const BENEFICIOS = [
-  {
-    icon: 'calculator',
-    titulo: 'Calculadora de cobertura precisa',
-    desc: 'Calcula stakes, lay bets y escenarios sin fórmulas manuales ni errores evitables.',
-  },
-  {
-    icon: 'route',
-    titulo: 'Ruta guiada para empezar',
-    desc: 'Entras por una secuencia clara para no perderte entre guías, exchange, casas y calculadora.',
-  },
-  {
-    icon: 'bonus',
-    titulo: 'Seguimiento de bonos y freebets',
-    desc: 'Todo queda ordenado para saber qué has activado, qué falta y qué toca hacer después.',
-  },
-  {
-    icon: 'houses',
-    titulo: 'Organizado por casa',
-    desc: 'Cada casa tiene fases, checklist y contexto para que sepas siempre por dónde vas.',
-  },
-  {
-    icon: 'history',
-    titulo: 'Historial claro de operaciones',
-    desc: 'Registra lo que haces y revisa tu progreso con más contexto y menos improvisación.',
-  },
-  {
-    icon: 'compass',
-    titulo: 'Pensado para principiantes',
-    desc: 'No necesitas dominar todo al entrar. La app te orienta por el orden más lógico.',
-  },
-]
-
-const BETA_FEATURES = [
-  {
-    icon: 'dashboard',
-    titulo: 'Dashboard de progreso',
-    desc: 'Primero te dice qué hacer y después te enseña métricas, progreso y bonos pendientes.',
-  },
-  {
-    icon: 'calculator',
-    titulo: 'Calculadora de cobertura',
-    desc: 'Oddsmatcher y Dutcher con varios modos para elegir la herramienta adecuada en cada caso.',
-  },
-  {
-    icon: 'houses',
-    titulo: 'Casas y fases',
-    desc: 'Listado de casas con fases, checklist y ayudas para ejecutar con más orden.',
-  },
-  {
-    icon: 'bonus',
-    titulo: 'Bonos y freebets',
-    desc: 'Panel de seguimiento para no dejar pasos a medias ni perder contexto al avanzar.',
-  },
-  {
-    icon: 'guide',
-    titulo: 'Guías integradas',
-    desc: 'Guías y módulos accesibles desde la propia app para acompañar el primer recorrido.',
-  },
-  {
-    icon: 'history',
-    titulo: 'Historial de operaciones',
-    desc: 'Registro sencillo para revisar qué has hecho y mantener una ejecución más limpia.',
-  },
-]
-
 
 const GUIAS_DESTACADAS = [
   {
@@ -654,105 +586,12 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section className="landing-reveal bg-[linear-gradient(180deg,#F1ECFF_0%,#F8FAFC_48%,#F4F0FF_100%)]">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
-          <div className="text-center mb-12">
-            <p className="text-xs font-semibold text-violet-600 uppercase tracking-widest mb-3">Por qué usar esta herramienta</p>
-            <h2 className="font-playfair text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-950">
-              Claridad, orden y ejecución desde el primer uso
-            </h2>
-            <p className="text-slate-500 mt-4 max-w-xl mx-auto text-sm sm:text-base">
-              Menos dispersión, menos dudas al empezar y una forma más práctica de seguir cada paso.
-            </p>
-          </div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {BENEFICIOS.map((b) => (
-              <div key={b.titulo} className="relative overflow-hidden rounded-lg border border-violet-200/65 bg-white/80 p-5 shadow-[0_18px_48px_rgba(46,16,101,0.09)] ring-1 ring-white/90 backdrop-blur-sm transition-all duration-200 before:absolute before:inset-x-4 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-violet-300/70 before:to-transparent hover:-translate-y-0.5 hover:border-violet-300/70 hover:bg-white/90 hover:shadow-[0_22px_58px_rgba(46,16,101,0.14)]">
-                <span className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg border border-violet-200/80 bg-gradient-to-br from-violet-50 to-white text-violet-700 shadow-[0_10px_24px_rgba(109,40,217,0.08)]">
-                  <LandingIcon name={b.icon as LandingIconName} />
-                </span>
-                <h3 className="font-semibold text-slate-800 text-sm mb-2">{b.titulo}</h3>
-                <p className="text-xs text-slate-500 leading-relaxed">{b.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-
-      <section className="landing-reveal bg-[linear-gradient(180deg,#F1EDFF_0%,#FFFFFF_42%,#F8FAFC_100%)]">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            <div>
-              <p className="text-xs font-semibold text-purple-600 uppercase tracking-widest mb-3">Acceso completo · Sin límites</p>
-              <h2 className="font-playfair text-2xl sm:text-3xl font-bold text-slate-950 mb-4">Qué incluye la app gratuita</h2>
-              <p className="text-slate-500 text-sm sm:text-base mb-8 leading-relaxed">
-                La beta incluye las herramientas principales para aprender el flujo, calcular mejor y seguir cada casa con más orden.
-              </p>
-              <TrackedLink
-                href="/bienvenida"
-                eventName="home_cta_mid_clicked"
-                eventProps={{ location: 'features', target_path: '/bienvenida' }}
-                className="inline-flex items-center gap-2 rounded-lg border border-violet-300/35 bg-gradient-to-r from-[#171330] via-[#31205F] to-[#6D28D9] px-6 py-3 font-semibold text-white shadow-[0_18px_46px_rgba(76,29,149,0.28)] transition-all hover:-translate-y-0.5 hover:shadow-[0_22px_58px_rgba(76,29,149,0.34)]"
-              >
-                Entrar ahora y empezar con más orden →
-              </TrackedLink>
-            </div>
-            <div className="flex flex-col gap-3">
-              {BETA_FEATURES.map((f) => (
-                <div key={f.titulo} className="relative flex items-start gap-3 overflow-hidden rounded-lg border border-violet-200/65 bg-white/80 p-4 shadow-[0_14px_36px_rgba(46,16,101,0.08)] ring-1 ring-white/90 backdrop-blur-sm transition-all duration-200 before:absolute before:inset-y-3 before:left-0 before:w-px before:bg-gradient-to-b before:from-transparent before:via-violet-300/70 before:to-transparent hover:border-violet-300/70 hover:bg-white/95 hover:shadow-[0_18px_46px_rgba(46,16,101,0.12)]">
-                  <span className="mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-violet-200/75 bg-violet-50/85 text-violet-700 shadow-sm shadow-violet-950/5">
-                    <LandingIcon name={f.icon as LandingIconName} className="h-4 w-4" />
-                  </span>
-                  <div>
-                    <div className="flex items-center gap-2 mb-0.5">
-                      <p className="font-semibold text-slate-800 text-sm">{f.titulo}</p>
-                      <span className="shrink-0 rounded-full border border-violet-200/70 bg-violet-50/90 px-2 py-0.5 text-xs font-medium text-violet-700">Disponible</span>
-                    </div>
-                    <p className="text-xs text-slate-500 leading-relaxed">{f.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="landing-reveal bg-[linear-gradient(180deg,#F8FAFC_0%,#F0EBFF_52%,#EEF2FF_100%)]">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
-          <div className="text-center mb-12">
-            <p className="text-xs font-semibold text-violet-500 uppercase tracking-widest mb-3">La app, en detalle</p>
-            <h2 className="font-playfair text-2xl sm:text-3xl font-bold text-slate-950">Una herramienta real para empezar con más contexto</h2>
-            <p className="text-slate-500 mt-3 max-w-xl mx-auto text-sm">
-              Ya existe y ya funciona. Estas son algunas de las piezas que conectan la experiencia real de entrada.
-            </p>
-          </div>
-          <div className="grid gap-4 rounded-[1.5rem] border border-violet-200/55 bg-white/60 p-4 shadow-[0_24px_72px_rgba(46,16,101,0.12)] ring-1 ring-white/85 backdrop-blur-md sm:grid-cols-3 sm:p-5">
-            {[
-              ['Dashboard', 'Empieza aquí, progreso y siguientes acciones.'],
-              ['Calculadora', 'Selector guiado para elegir el modo más lógico.'],
-              ['Guías', 'Módulos y material para entender el orden recomendado.'],
-            ].map(([title, desc]) => (
-              <div
-                key={title}
-                className="group relative overflow-hidden rounded-lg border border-white/10 bg-[#0f1022] p-5 shadow-[0_20px_50px_rgba(8,15,31,0.34)] ring-1 ring-white/[0.04] transition-all duration-200 before:absolute before:inset-x-4 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-violet-300/50 before:to-transparent hover:-translate-y-0.5 hover:border-violet-300/35 hover:shadow-[0_24px_60px_rgba(8,15,31,0.42)]"
-              >
-                <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-violet-200/80">{title}</p>
-                <p className="mb-2 text-sm font-semibold text-white">{title}</p>
-                <p className="text-xs leading-relaxed text-slate-300">{desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section
         style={{ background: 'linear-gradient(135deg, #0b1020 0%, #171330 45%, #2A1F4A 100%)' }}
         className="landing-reveal relative overflow-hidden"
       >
         <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-violet-200/35 to-transparent" />
-        <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+        <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
           <div className="text-center mb-12">
             <p className="text-xs font-semibold text-violet-300 uppercase tracking-widest mb-3">Formación incluida</p>
             <h2 className="font-playfair text-2xl sm:text-3xl font-bold text-white mb-3">Guías gratuitas para empezar</h2>
@@ -776,68 +615,6 @@ export default function LandingPage() {
             <Link href="/guias" className="inline-flex items-center gap-2 rounded-lg border border-violet-200/25 bg-white/[0.04] px-6 py-3 text-sm font-semibold text-white transition-all hover:border-violet-200/40 hover:bg-white/10">
               Ver todas las guías →
             </Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="landing-reveal bg-[linear-gradient(180deg,#FFFFFF_0%,#F5F1FF_56%,#F8FAFC_100%)]">
-        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 text-center">
-          <p className="text-xs font-semibold text-violet-500 uppercase tracking-widest mb-3">Mantente al día</p>
-          <h2 className="font-playfair text-2xl sm:text-3xl font-bold text-slate-950 mb-3">Recibe novedades y nuevas guías</h2>
-          <p className="text-slate-500 text-sm mb-8 max-w-md mx-auto leading-relaxed">
-            Avisamos cuando añadamos nuevas casas, módulos o mejoras útiles en la herramienta.
-          </p>
-          <EmailCapture />
-        </div>
-      </section>
-
-      <section
-        style={{ background: 'linear-gradient(135deg, #0b1020 0%, #10162a 48%, #1b2140 100%)' }}
-        className="relative overflow-hidden border-t border-white/5 pb-20 md:pb-0"
-      >
-        <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 text-center">
-          <div className="relative overflow-hidden rounded-[1.75rem] border border-violet-200/15 bg-white/[0.045] px-6 py-10 shadow-[0_24px_80px_rgba(0,0,0,0.28)] ring-1 ring-white/[0.04] backdrop-blur-md sm:px-10 sm:py-14">
-            <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-violet-200/45 to-transparent" />
-          <p className="text-xs font-semibold text-violet-300 uppercase tracking-widest mb-4">Empieza hoy</p>
-          <h2 className="font-playfair text-3xl sm:text-4xl font-bold text-white mb-6">Todo listo para empezar.<br />Gratis en IAPredictHub.</h2>
-          <p className="text-gray-400 text-base sm:text-lg mb-10 max-w-lg mx-auto leading-relaxed">
-            No necesitas crear cuenta en IAPredictHub. Para completar el bono guiado tendrás que registrarte
-            en la casa de apuestas y puede hacer falta capital inicial.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <TrackedLink
-              href="/bienvenida"
-              eventName="home_cta_final_clicked"
-              eventProps={{ location: 'final_cta', target_path: '/bienvenida' }}
-              className="w-full sm:w-auto rounded-lg border border-violet-200/35 bg-violet-500 px-10 py-4 text-lg font-bold text-white shadow-[0_18px_46px_rgba(124,58,237,0.34)] transition-all hover:-translate-y-0.5 hover:bg-violet-400 hover:shadow-[0_22px_56px_rgba(139,92,246,0.42)]"
-            >
-              Empezar mi primer bono guiado →
-            </TrackedLink>
-            <TrackedLink
-              href="/guias/primeros-pasos/introduccion-matched-betting"
-              eventName="home_cta_final_secondary_clicked"
-              eventProps={{ location: 'final_cta', target_path: '/guias/primeros-pasos/introduccion-matched-betting' }}
-              className="w-full sm:w-auto rounded-lg border border-white/14 bg-white/[0.04] px-8 py-4 text-base font-semibold text-white transition-all hover:border-violet-200/30 hover:bg-white/[0.08]"
-            >
-              Ver guía completa
-            </TrackedLink>
-          </div>
-          <div className="mt-8 flex items-center justify-center">
-            <TrackedLink
-              href="/preguntas-frecuentes"
-              eventName="home_cta_final_faq_clicked"
-              eventProps={{ location: 'final_cta', target_path: '/preguntas-frecuentes' }}
-              className="group inline-flex items-center gap-1.5 text-sm text-gray-400 transition-colors duration-200 hover:text-violet-300"
-            >
-              <span>¿Tienes dudas antes de empezar? Ver preguntas frecuentes</span>
-              <span
-                className="transition-transform duration-200 group-hover:translate-x-1"
-                aria-hidden="true"
-              >
-                →
-              </span>
-            </TrackedLink>
-          </div>
           </div>
         </div>
       </section>
