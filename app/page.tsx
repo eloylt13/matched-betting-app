@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import TrackedLink from '@/components/analytics/TrackedLink'
+import HomeFaq from '@/components/home/HomeFaq'
 import HeroAtmosphere from '@/components/landing/HeroAtmosphere'
 import HeroMockup from '@/components/landing/HeroMockup'
 import StickyMobileCTA from '@/components/StickyMobileCTA'
@@ -306,7 +307,7 @@ export default function LandingPage() {
       <section className="relative overflow-hidden bg-[#080B16]">
         <HeroAtmosphere />
 
-        <div className="relative mx-auto max-w-5xl px-4 pt-12 pb-16 sm:px-6 sm:pt-16 sm:pb-24 lg:px-8 lg:pt-20 lg:pb-32">
+        <div className="relative mx-auto max-w-5xl px-4 pt-12 pb-16 sm:px-6 sm:pt-16 sm:pb-20 lg:px-8 lg:pt-20 lg:pb-24">
           <div className="mx-auto grid max-w-5xl grid-cols-1 items-start gap-8 text-center md:grid-cols-2 md:gap-8 md:text-left lg:gap-12">
             <div className="min-w-0">
             <h1 className="mx-auto max-w-4xl font-playfair text-4xl font-bold leading-tight text-white sm:text-5xl lg:mx-0 lg:text-[3.55rem]">
@@ -384,6 +385,86 @@ export default function LandingPage() {
                   <span>Sin registro</span>
                 </div>
               </div>
+            </div>
+
+              <div className="rounded-2xl border border-white/10 bg-white/[0.06] p-8 text-left shadow-2xl backdrop-blur-xl">
+                <div className="flex flex-col items-start gap-5 sm:flex-row sm:justify-between">
+                  <div className="min-w-0">
+                    <p className="text-xs font-semibold uppercase tracking-[0.22em] text-emerald-400">Paso 1 de 4</p>
+                    <h2 className="mt-3 text-xl font-semibold tracking-tight text-white">
+                      Primer bono recomendado
+                    </h2>
+                    <Link
+                      href="/bienvenida"
+                      className="mt-4 inline-flex min-h-12 w-full items-center justify-center rounded-full border border-emerald-200/70 bg-emerald-300 px-5 py-3 text-center text-sm font-bold text-slate-950 shadow-[0_0_30px_rgba(52,211,153,0.30)] ring-1 ring-inset ring-white/35 transition-all duration-200 ease-out hover:border-emerald-100 hover:bg-emerald-200 hover:shadow-[0_0_38px_rgba(52,211,153,0.42)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-100/80 sm:w-auto"
+                    >
+                      Ir a guía
+                    </Link>
+                  </div>
+                  <img
+                    src="/logos/casas%20versus.svg"
+                    alt="Versus"
+                    className="h-auto w-20 shrink-0 self-start sm:w-28"
+                  />
+                </div>
+
+                <div className="mt-7 rounded-2xl border border-white/10 bg-white/[0.04] p-5">
+                  <p className="text-sm font-semibold text-white">Resumen</p>
+                  <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-3">
+                    <div>
+                      <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-gray-500">Dificultad</p>
+                      <p className="mt-1 text-sm font-semibold text-gray-100">Baja</p>
+                    </div>
+                    <div>
+                      <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-gray-500">Tiempo</p>
+                      <p className="mt-1 text-sm font-semibold text-gray-100">~30 min</p>
+                    </div>
+                    <div>
+                      <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-gray-500">
+                        Beneficio estimado
+                      </p>
+                      <p className="mt-1 text-sm font-semibold text-gray-100">Hasta ~125€</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-7 space-y-4">
+                  {[
+                    { marker: '✓', label: 'Seguir la guía de Versus', completed: true },
+                    { marker: '2', label: 'Registrarte y activar el bono', completed: false },
+                    { marker: '3', label: 'Calcular cobertura', completed: false },
+                    { marker: '4', label: 'Ejecutar y verificar', completed: false },
+                  ].map((step) => (
+                    <div key={step.label} className="flex items-center gap-3">
+                      <span
+                        className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full border text-xs font-semibold ${
+                          step.completed
+                            ? 'border-emerald-400/40 bg-emerald-400/10 text-emerald-400'
+                            : 'border-white/15 bg-white/[0.03] text-gray-500'
+                        }`}
+                      >
+                        {step.marker}
+                      </span>
+                      <span className="text-sm font-medium text-gray-200">{step.label}</span>
+                    </div>
+                  ))}
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+
+            <div id="home-hero-sentinel" aria-hidden="true" className="h-px w-full" />
+        </div>
+      </section>
+
+      <section className="landing-reveal relative overflow-hidden bg-[#080B16]">
+        <HeroAtmosphere />
+
+        <div className="relative mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+          <div className="mx-auto grid max-w-5xl grid-cols-1 items-start gap-8 text-left md:grid-cols-2 md:gap-10 lg:gap-12">
+            <div className="min-w-0 flex flex-col gap-5">
               <div className="flex flex-wrap justify-center gap-2 text-xs sm:text-sm md:justify-start">
                 <TrackedLink
                   href="/guias/primeros-pasos/cuanto-se-puede-ganar"
@@ -408,7 +489,6 @@ export default function LandingPage() {
                   <span className="min-w-0">Cuánto se puede ganar en LATAM →</span>
                 </TrackedLink>
               </div>
-            </div>
 
             <div className="relative w-full space-y-5 overflow-hidden rounded-xl border border-emerald-300/22 bg-[radial-gradient(circle_at_12%_0%,rgba(52,211,153,0.16),transparent_34%),radial-gradient(circle_at_92%_10%,rgba(167,139,250,0.12),transparent_32%),linear-gradient(135deg,rgba(15,23,42,0.88),rgba(2,6,23,0.64))] px-5 py-7 text-left shadow-[0_18px_46px_rgba(0,0,0,0.26),0_0_34px_rgba(16,185,129,0.08)] ring-1 ring-white/[0.06] backdrop-blur-sm sm:px-6 md:px-7 md:py-8">
               <div className="pointer-events-none absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-emerald-200/55 to-transparent" />
@@ -490,77 +570,7 @@ export default function LandingPage() {
                 </div>
               </div>
             </div>
-
             </div>
-          </div>
-
-            <div id="home-hero-sentinel" aria-hidden="true" className="h-px w-full" />
-
-            <div className="mx-auto mt-10 grid max-w-5xl grid-cols-1 items-start gap-6 text-left sm:mt-12 md:grid-cols-2 md:gap-8">
-              <div className="rounded-2xl border border-white/10 bg-white/[0.06] p-8 text-left shadow-2xl backdrop-blur-xl">
-                <div className="flex flex-col items-start gap-5 sm:flex-row sm:justify-between">
-                  <div className="min-w-0">
-                    <p className="text-xs font-semibold uppercase tracking-[0.22em] text-emerald-400">Paso 1 de 4</p>
-                    <h2 className="mt-3 text-xl font-semibold tracking-tight text-white">
-                      Primer bono recomendado
-                    </h2>
-                    <Link
-                      href="/bienvenida"
-                      className="mt-4 inline-flex min-h-12 w-full items-center justify-center rounded-full border border-emerald-200/70 bg-emerald-300 px-5 py-3 text-center text-sm font-bold text-slate-950 shadow-[0_0_30px_rgba(52,211,153,0.30)] ring-1 ring-inset ring-white/35 transition-all duration-200 ease-out hover:border-emerald-100 hover:bg-emerald-200 hover:shadow-[0_0_38px_rgba(52,211,153,0.42)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-100/80 sm:w-auto"
-                    >
-                      Ir a guía
-                    </Link>
-                  </div>
-                  <img
-                    src="/logos/casas%20versus.svg"
-                    alt="Versus"
-                    className="h-auto w-20 shrink-0 self-start sm:w-28"
-                  />
-                </div>
-
-                <div className="mt-7 rounded-2xl border border-white/10 bg-white/[0.04] p-5">
-                  <p className="text-sm font-semibold text-white">Resumen</p>
-                  <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-3">
-                    <div>
-                      <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-gray-500">Dificultad</p>
-                      <p className="mt-1 text-sm font-semibold text-gray-100">Baja</p>
-                    </div>
-                    <div>
-                      <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-gray-500">Tiempo</p>
-                      <p className="mt-1 text-sm font-semibold text-gray-100">~30 min</p>
-                    </div>
-                    <div>
-                      <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-gray-500">
-                        Beneficio estimado
-                      </p>
-                      <p className="mt-1 text-sm font-semibold text-gray-100">Hasta ~125€</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="mt-7 space-y-4">
-                  {[
-                    { marker: '✓', label: 'Seguir la guía de Versus', completed: true },
-                    { marker: '2', label: 'Registrarte y activar el bono', completed: false },
-                    { marker: '3', label: 'Calcular cobertura', completed: false },
-                    { marker: '4', label: 'Ejecutar y verificar', completed: false },
-                  ].map((step) => (
-                    <div key={step.label} className="flex items-center gap-3">
-                      <span
-                        className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full border text-xs font-semibold ${
-                          step.completed
-                            ? 'border-emerald-400/40 bg-emerald-400/10 text-emerald-400'
-                            : 'border-white/15 bg-white/[0.03] text-gray-500'
-                        }`}
-                      >
-                        {step.marker}
-                      </span>
-                      <span className="text-sm font-medium text-gray-200">{step.label}</span>
-                    </div>
-                  ))}
-                </div>
-
-              </div>
 
               <div className="relative w-full min-w-0 overflow-hidden rounded-xl border border-white/10 bg-white/[0.035] shadow-[0_18px_46px_rgba(0,0,0,0.28),0_0_34px_rgba(56,189,248,0.08)] ring-1 ring-white/[0.05]">
                 <Image
@@ -583,7 +593,7 @@ export default function LandingPage() {
                 Ir a Telegram →
               </TrackedLink>
             </div>
-        </div>
+          </div>
       </section>
 
       <section
@@ -618,6 +628,8 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
+
+      <HomeFaq />
 
       <StickyMobileCTA
         href="/bienvenida"
