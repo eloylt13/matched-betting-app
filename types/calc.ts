@@ -28,9 +28,19 @@ export interface InputsReembolso {
 }
 
 export interface InputsDutcher {
-    stakeCasa1: number
-    cuotaCasa1: number
-    cuotaCasa2: number
+    stakeCasa1: number | string
+    stakeTotal?: number | string
+    cuotaCasa1: number | string
+    cuotaCasa2: number | string
+    cuotaCasa3?: number | string
+    numeroResultados?: 2 | 3
+}
+
+export interface ResultadoDutcherItem {
+    label: string
+    cuota: number
+    stake: number
+    retorno: number
 }
 
 export interface ResultadoEscenario {
@@ -63,6 +73,9 @@ export interface ResultadoReembolso {
 
 export interface ResultadoDutcher {
     stakeCasa2: number
+    retornoIgualado: number
+    resultados: ResultadoDutcherItem[]
     escenarios: ResultadoEscenario[]
     beneficioNeto: number
+    esValido: boolean
 }

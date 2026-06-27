@@ -3,13 +3,16 @@
 import { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
+import { calcDutcher } from '@/lib/calc'
 import { getCasaById } from '@/lib/presets'
 import { nonNegativeNumber, parseNumber } from '@/lib/calc/safe'
+import type { ResultadoDutcherItem } from '@/types/calc'
 
 type Tab = 'oddsmatcher' | 'dutcher'
 type ModoClasica = 'dinero-real' | 'apuesta-gratis' | 'bonos' | 'rollover' | 'reembolso'
 type ReembolsoTipo = 'cash' | 'freebet'
 type ModoDutcher = 'dinero-real' | 'apuesta-gratis'
+type NumeroResultadosDutcher = 2 | 3
 type QuickChoice = 'betfair' | 'freebet' | 'dutcher'
 type Moneda = '€' | 'USD' | 'MXN' | 'COP' | 'CLP' | 'PEN'
 
@@ -488,6 +491,57 @@ function TablaResultado({
                 {benefSiPierde >= 0 ? '+' : ''}{benefSiPierde.toFixed(2)}
               </td>
             </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  )
+}
+
+function TablaDutcherResultados({
+  resultados,
+  bankTotal,
+  beneficio,
+  moneda,
+}: {
+  resultados: ResultadoDutcherItem[]
+  bankTotal: number
+  beneficio: number
+  moneda: Moneda
+}) {
+  return (
+    <div className="overflow-hidden rounded-[1.5rem] border border-violet-200/60 bg-white/90 shadow-[0_18px_48px_rgba(46,16,101,0.06)] ring-1 ring-white/80">
+      <div className="border-b border-violet-100/80 bg-[linear-gradient(180deg,rgba(248,244,255,0.95)_0%,rgba(255,255,255,0.96)_100%)] px-4 py-3">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-violet-700">Resultado por escenario</p>
+        <p className="mt-1 text-xs text-slate-500">Cada fila muestra el retorno y el resultado neto si gana ese resultado.</p>
+      </div>
+
+      <div className="overflow-x-auto">
+        <table className="min-w-full text-sm">
+          <thead className="bg-[linear-gradient(180deg,rgba(248,244,255,0.85)_0%,rgba(255,255,255,0.96)_100%)]">
+            <tr>
+              <th className="px-4 py-3 text-left text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Escenario</th>
+              <th className="px-4 py-3 text-right text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Stake</th>
+              <th className="px-4 py-3 text-right text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Retorno</th>
+              <th className="px-4 py-3 text-right text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            {resultados.map((resultado, index) => (
+              <tr
+                key={resultado.label}
+                className={`border-t border-violet-100/80 ${index % 2 === 0 ? 'bg-white/80' : 'bg-[linear-gradient(180deg,rgba(248,244,255,0.48)_0%,rgba(255,255,255,0.84)_100%)]'}`}
+              >
+                <td className="px-4 py-3 text-xs font-semibold text-violet-700">
+                  <span className="inline-flex rounded-full border border-violet-200/70 bg-violet-50/90 px-2.5 py-1">{resultado.label} gana</span>
+                </td>
+                <td className="px-4 py-3 text-right font-mono text-xs font-medium text-slate-700">{resultado.stake.toFixed(2)} {moneda}</td>
+                <td className="px-4 py-3 text-right font-mono text-xs font-medium text-slate-700">{resultado.retorno.toFixed(2)} {moneda}</td>
+                <td className={`px-4 py-3 text-right font-mono text-xs font-bold ${beneficio >= 0 ? 'text-emerald-700' : 'text-rose-600'}`}>
+                  {beneficio >= 0 ? '+' : ''}{(resultado.retorno - bankTotal).toFixed(2)} {moneda}
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
@@ -1113,29 +1167,27 @@ function DutcherCalc({
   const [stake, setStake] = useState('100')
   const [c1, setC1] = useState('1.90')
   const [c2, setC2] = useState('1.83')
+  const [c3, setC3] = useState('3.20')
+  const [numeroResultados, setNumeroResultados] = useState<NumeroResultadosDutcher>(2)
   const [copiado, setCopiado] = useState(false)
 
   const s = n(stake)
-  const cc1 = n(c1)
-  const cc2 = n(c2)
+  const dutcherResult = calcDutcher({
+    stakeCasa1: stake,
+    stakeTotal: stake,
+    cuotaCasa1: c1,
+    cuotaCasa2: c2,
+    cuotaCasa3: c3,
+    numeroResultados,
+  })
+  const resultados = dutcherResult.resultados
+  const beneficio = dutcherResult.beneficioNeto
+  const retornoIgualado = dutcherResult.retornoIgualado
 
-  let stakeA = 0
-  let stakeB = 0
-  let bGana = 0
-  let bPierde = 0
-
-  const dutcherValidationMessage = s > 0 && (cc1 <= 1 || cc2 <= 1)
-    ? 'Revisa las cuotas: con esos valores no se puede calcular una cobertura válida.'
+  const dutcherValidationMessage = s > 0 && !dutcherResult.esValido
+    ? 'Introduce cuotas válidas mayores que 1.'
     : ''
 
-  if (s > 0 && cc1 > 1 && cc2 > 1) {
-    stakeA = (s * cc2) / (cc1 + cc2)
-    stakeB = s - stakeA
-    bGana = stakeA * cc1 - s
-    bPierde = stakeB * cc2 - s
-  }
-
-  const beneficio = Math.min(bGana, bPierde)
   const rating = s > 0 ? ((beneficio + s) / s) * 100 : 0
   const resultadoLabel = beneficio >= 0 ? 'Beneficio estimado' : 'Pérdida calificante'
 
@@ -1144,7 +1196,10 @@ function DutcherCalc({
       return
     }
 
-    const texto = `Stake total: ${s.toFixed(2)} ${moneda} | BM1: ${stakeA.toFixed(2)} ${moneda} @ ${cc1} | BM2: ${stakeB.toFixed(2)} ${moneda} @ ${cc2} | Resultado: ${beneficio >= 0 ? '+' : ''}${beneficio.toFixed(2)} ${moneda}`
+    const detalle = resultados
+      .map((resultado) => `${resultado.label}: ${resultado.stake.toFixed(2)} ${moneda} @ ${resultado.cuota.toFixed(2)}`)
+      .join(' | ')
+    const texto = `Stake total: ${s.toFixed(2)} ${moneda} | ${detalle} | Retorno: ${retornoIgualado.toFixed(2)} ${moneda} | Resultado: ${beneficio >= 0 ? '+' : ''}${beneficio.toFixed(2)} ${moneda}`
     navigator.clipboard.writeText(texto).then(() => {
       setCopiado(true)
       setTimeout(() => setCopiado(false), 2000)
@@ -1156,7 +1211,7 @@ function DutcherCalc({
       <div className="rounded-[1.5rem] border border-violet-200/60 bg-[linear-gradient(135deg,rgba(109,40,217,0.08)_0%,rgba(255,255,255,0.9)_100%)] p-4 shadow-[0_16px_38px_rgba(46,16,101,0.05)] ring-1 ring-white/80">
         <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-violet-700">Cuándo usarlo</p>
         <p className="mt-2 text-sm leading-6 text-slate-600">
-          Cuando tienes freebets o apuestas en dos casas distintas y quieres cubrirte en resultados opuestos sin necesitar el exchange.
+          Cuando tienes freebets o apuestas en varias casas y quieres repartir el bank entre resultados sin necesitar el exchange.
         </p>
       </div>
 
@@ -1165,28 +1220,62 @@ function DutcherCalc({
           <div className={PANEL}>
             <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-violet-300/70 to-transparent" />
             <div className="space-y-4 p-5 sm:p-6">
-              <InputField label="Stake total" value={stake} onChange={setStake} prefix={moneda} microcopy="Importe total que quieres repartir entre las dos apuestas." />
+              <InputField label="Stake total" value={stake} onChange={setStake} prefix={moneda} microcopy="Importe total que quieres repartir entre los resultados." />
+
+              <div>
+                <p className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Resultados</p>
+                <div className="grid grid-cols-2 gap-2 rounded-[1.25rem] border border-violet-200/70 bg-violet-50/80 p-1">
+                  {([2, 3] as NumeroResultadosDutcher[]).map((value) => {
+                    const active = numeroResultados === value
+                    return (
+                      <button
+                        key={value}
+                        type="button"
+                        onClick={() => setNumeroResultados(value)}
+                        className={`rounded-2xl px-3 py-2 text-sm font-semibold transition-all ${
+                          active
+                            ? 'bg-white text-violet-700 shadow-sm shadow-violet-950/10 ring-1 ring-violet-200/80'
+                            : 'text-slate-500 hover:bg-white/70 hover:text-violet-700'
+                        }`}
+                      >
+                        {value} resultados
+                      </button>
+                    )
+                  })}
+                </div>
+              </div>
 
               <div className="rounded-[1.25rem] border border-violet-200/60 bg-[linear-gradient(180deg,rgba(248,244,255,0.92)_0%,rgba(255,255,255,0.98)_100%)] p-4">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-violet-700">Paso 1 · Bookmaker 1</p>
-                <p className="mt-1 text-xs text-slate-500">Apuesta a favor en el primer resultado.</p>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-violet-700">Paso 1 · {numeroResultados === 3 ? 'Resultado 1' : 'Bookmaker 1'}</p>
+                <p className="mt-1 text-xs text-slate-500">Cuota del primer resultado.</p>
                 <div className="mt-4">
-                  <InputField label="Cuota BM1" value={c1} onChange={setC1} microcopy="Cuota del resultado 1 en el primer bookmaker." />
+                  <InputField label={numeroResultados === 3 ? 'Cuota 1' : 'Cuota BM1'} value={c1} onChange={setC1} microcopy="Acepta decimales con coma o punto." />
                 </div>
               </div>
 
               <div className="rounded-[1.25rem] border border-violet-200/60 bg-[linear-gradient(180deg,rgba(242,240,255,0.92)_0%,rgba(255,255,255,0.98)_100%)] p-4">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-violet-700">Paso 2 · Bookmaker 2</p>
-                <p className="mt-1 text-xs text-slate-500">Resultado contrario para cerrar la cobertura.</p>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-violet-700">Paso 2 · {numeroResultados === 3 ? 'Resultado X' : 'Bookmaker 2'}</p>
+                <p className="mt-1 text-xs text-slate-500">Cuota del segundo resultado.</p>
                 <div className="mt-4">
-                  <InputField label="Cuota BM2" value={c2} onChange={setC2} microcopy="Cuota del resultado contrario en el segundo bookmaker." />
+                  <InputField label={numeroResultados === 3 ? 'Cuota X' : 'Cuota BM2'} value={c2} onChange={setC2} microcopy="Acepta decimales con coma o punto." />
                 </div>
-                {dutcherValidationMessage && (
-                  <p className="mt-4 rounded-[1.25rem] border border-amber-200/80 bg-amber-50/80 px-4 py-3 text-xs leading-5 text-amber-800">
-                    {dutcherValidationMessage}
-                  </p>
-                )}
               </div>
+
+              {numeroResultados === 3 && (
+                <div className="rounded-[1.25rem] border border-violet-200/60 bg-[linear-gradient(180deg,rgba(238,242,255,0.92)_0%,rgba(255,255,255,0.98)_100%)] p-4">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-violet-700">Paso 3 · Resultado 2</p>
+                  <p className="mt-1 text-xs text-slate-500">Cuota del tercer resultado.</p>
+                  <div className="mt-4">
+                    <InputField label="Cuota 2" value={c3} onChange={setC3} microcopy="Acepta decimales con coma o punto." />
+                  </div>
+                </div>
+              )}
+
+              {dutcherValidationMessage && (
+                <p className="rounded-[1.25rem] border border-amber-200/80 bg-amber-50/80 px-4 py-3 text-xs leading-5 text-amber-800">
+                  {dutcherValidationMessage}
+                </p>
+              )}
             </div>
           </div>
 
@@ -1225,31 +1314,45 @@ function DutcherCalc({
 
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="rounded-[1.5rem] border border-violet-200/60 bg-[linear-gradient(180deg,rgba(248,244,255,0.98)_0%,rgba(255,255,255,0.98)_100%)] p-4 shadow-[0_16px_38px_rgba(46,16,101,0.06)]">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-violet-700">Paso 1 · Bookmaker 1</p>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-violet-700">Paso 1 · {resultados[0]?.label ?? 'Resultado 1'}</p>
               <p className="mt-2 text-3xl font-semibold tracking-tight text-slate-900">
-                {stakeA.toFixed(2)} {moneda}
+                {(resultados[0]?.stake ?? 0).toFixed(2)} {moneda}
               </p>
-              <p className="mt-2 text-xs leading-5 text-slate-500">A cuota {cc1.toFixed(2)}</p>
+              <p className="mt-2 text-xs leading-5 text-slate-500">A cuota {(resultados[0]?.cuota ?? 0).toFixed(2)}</p>
             </div>
 
             <div className="rounded-[1.5rem] border border-violet-200/60 bg-[linear-gradient(180deg,rgba(242,240,255,0.98)_0%,rgba(255,255,255,0.98)_100%)] p-4 shadow-[0_16px_38px_rgba(46,16,101,0.06)]">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-violet-700">Paso 2 · Bookmaker 2</p>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-violet-700">Paso 2 · {resultados[1]?.label ?? 'Resultado 2'}</p>
               <p className="mt-2 text-3xl font-semibold tracking-tight text-slate-900">
-                {stakeB.toFixed(2)} {moneda}
+                {(resultados[1]?.stake ?? 0).toFixed(2)} {moneda}
               </p>
-              <p className="mt-2 text-xs leading-5 text-slate-500">A cuota {cc2.toFixed(2)}</p>
+              <p className="mt-2 text-xs leading-5 text-slate-500">A cuota {(resultados[1]?.cuota ?? 0).toFixed(2)}</p>
+            </div>
+
+            {numeroResultados === 3 && (
+              <div className="rounded-[1.5rem] border border-violet-200/60 bg-[linear-gradient(180deg,rgba(238,242,255,0.98)_0%,rgba(255,255,255,0.98)_100%)] p-4 shadow-[0_16px_38px_rgba(46,16,101,0.06)]">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-violet-700">Paso 3 · {resultados[2]?.label ?? 'Resultado 2'}</p>
+                <p className="mt-2 text-3xl font-semibold tracking-tight text-slate-900">
+                  {(resultados[2]?.stake ?? 0).toFixed(2)} {moneda}
+                </p>
+                <p className="mt-2 text-xs leading-5 text-slate-500">A cuota {(resultados[2]?.cuota ?? 0).toFixed(2)}</p>
+              </div>
+            )}
+
+            <div className="rounded-[1.5rem] border border-violet-200/60 bg-white/90 p-4 shadow-[0_16px_38px_rgba(46,16,101,0.06)]">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-violet-700">Retorno</p>
+              <p className="mt-2 text-3xl font-semibold tracking-tight text-slate-900">
+                {retornoIgualado.toFixed(2)} {moneda}
+              </p>
+              <p className="mt-2 text-xs leading-5 text-slate-500">Mismo retorno estimado por resultado.</p>
             </div>
           </div>
 
-          <TablaResultado
-            label1="Bookmaker 1 gana"
-            label2="Bookmaker 2 gana"
-            bm1={stakeA * cc1}
-            bm2={stakeB}
-            total1={s}
-            total2={stakeB * cc2}
-            benefSiGana={bGana}
-            benefSiPierde={bPierde}
+          <TablaDutcherResultados
+            resultados={resultados}
+            bankTotal={s}
+            beneficio={beneficio}
+            moneda={moneda}
           />
 
           <div className="flex flex-wrap gap-2">
