@@ -14,6 +14,7 @@ type ReembolsoTipo = 'cash' | 'freebet'
 type ModoDutcher = 'dinero-real' | 'apuesta-gratis'
 type NumeroResultadosDutcher = 2 | 3
 type QuickChoice = 'betfair' | 'freebet' | 'dutcher'
+type RolloverBase = 'solo-bono' | 'deposito-bono'
 type Moneda = '€' | 'USD' | 'MXN' | 'COP' | 'CLP' | 'PEN'
 
 const MONEDAS: Moneda[] = ['€', 'USD', 'MXN', 'COP', 'CLP', 'PEN']
@@ -45,6 +46,10 @@ export type CalculadoraPrefill = {
 
 function n(v: string | number) {
   return nonNegativeNumber(v)
+}
+
+function formatAmount(value: number) {
+  return Number.isFinite(value) ? value.toFixed(2) : '0.00'
 }
 
 function isModoClasica(value: string | null): value is ModoClasica {
@@ -86,7 +91,11 @@ function getModoLabel(modo: ModoClasica) {
 }
 
 function getResultadoLabel(valor: number, modo: ModoClasica): { titulo: string; subtitulo: string } {
-  if (modo === 'dinero-real' || modo === 'rollover') {
+  if (modo === 'rollover') {
+    return { titulo: 'Total estimado a apostar', subtitulo: 'Depende de las condiciones de la casa' }
+  }
+
+  if (modo === 'dinero-real') {
     if (valor >= 0) return { titulo: 'Beneficio estimado', subtitulo: 'Resultado neto equilibrado' }
     return { titulo: 'Pérdida calificante', subtitulo: 'Coste de desbloquear la oferta' }
   }
@@ -576,11 +585,11 @@ function ChecklistEjecucion({ modo }: { modo: ModoClasica }) {
       'Confirma ambas apuestas',
     ],
     'rollover': [
-      'Verifica el volumen pendiente en la sección de bonos',
-      'Busca cuotas altas con rating >90% en Oddspedia',
-      'Apuesta el stake calculado a favor en la casa',
-      'Cubre en contra en Betfair Exchange',
-      'Anota el volumen apostado y repite hasta completar',
+      'Comprueba siempre las condiciones oficiales del bono',
+      'Confirma si la base es solo bono o depósito + bono',
+      'Revisa el porcentaje de contribución de cada mercado',
+      'Calcula el total estimado a apostar antes de empezar',
+      'Anota el volumen que la casa contabiliza hasta completar el requisito',
     ],
     'reembolso': [
       'Verifica que el reembolso está activo',
@@ -639,7 +648,11 @@ function OddsMatcherCalc({
   const [comision, setComision] = useState(prefill?.commission ?? '2')
   const [reembolso, setReembolso] = useState(prefill?.refundAmount ?? '100')
   const [tasaExtraccion, setTasaExtraccion] = useState('75')
-  const [rolloverX, setRolloverX] = useState('10')
+  const [rolloverDeposito, setRolloverDeposito] = useState('100')
+  const [rolloverBono, setRolloverBono] = useState('100')
+  const [rolloverX, setRolloverX] = useState('5')
+  const [rolloverBase, setRolloverBase] = useState<RolloverBase>('deposito-bono')
+  const [rolloverContribucion, setRolloverContribucion] = useState('100')
   const [copiado, setCopiado] = useState(false)
   const casaGuiada = prefill?.casaId ? getCasaById(prefill.casaId) : null
   const casaGuiadaExternalUrl = casaGuiada?.beneficioPotencial && casaGuiada.beneficioPotencial > 0
@@ -678,7 +691,17 @@ function OddsMatcherCalc({
   const com = comisionPct / 100
   const reb = n(reembolso)
   const extraccion = n(tasaExtraccion) / 100
+  const depositoRollover = n(rolloverDeposito)
+  const bonoRollover = n(rolloverBono)
   const rollover = n(rolloverX)
+  const contribucionPct = parseNumber(rolloverContribucion)
+  const contribucionDecimal = contribucionPct > 0 ? contribucionPct / 100 : 0
+  const importeBaseRollover = rolloverBase === 'solo-bono' ? bonoRollover : depositoRollover + bonoRollover
+  const rolloverBruto = rollover > 0 ? importeBaseRollover * rollover : 0
+  const totalRealRollover = rollover > 0 && contribucionDecimal > 0 ? rolloverBruto / contribucionDecimal : 0
+  const rolloverValidationMessage = modo === 'rollover' && (rollover <= 0 || contribucionPct <= 0)
+    ? 'Revisa el rollover y la contribución: deben ser mayores que 0 para estimar el volumen real. Comprueba siempre las condiciones oficiales del bono.'
+    : ''
   const denominator = ce - com
   const invalidOdds = s > 0 && (cbm <= 1 || ce <= 1)
   const invalidCommission = s > 0 && (comisionPct < 0 || comisionPct >= 100)
@@ -692,8 +715,6 @@ function OddsMatcherCalc({
   let bPierde = 0
   let liability = 0
   let valorRealReembolso = 0
-  let costePorVuelta = 0
-  let costeTotalRollover = 0
 
   if (s > 0 && cbm > 1 && ce > 1 && !invalidCommission && denominator > 0) {
     if (modo === 'dinero-real') {
@@ -717,19 +738,20 @@ function OddsMatcherCalc({
       liability = sc * (ce - 1)
       bGana = s * (cbm - 1) - liability
       bPierde = sc * (1 - com) - s + valorRealReembolso
-    } else if (modo === 'rollover') {
-      sc = (s * cbm) / denominator
-      liability = sc * (ce - 1)
-      bGana = s * (cbm - 1) - liability
-      bPierde = sc * (1 - com) - s
-      costePorVuelta = Math.min(bGana, bPierde)
-      costeTotalRollover = costePorVuelta * rollover
     }
   }
 
-  const beneficio = modo === 'rollover' ? costeTotalRollover : Math.min(bGana, bPierde)
+  const beneficio = modo === 'rollover' ? totalRealRollover : Math.min(bGana, bPierde)
   const rating = s > 0 ? ((beneficio + s) / s) * 100 : 0
   const retencion = modo === 'apuesta-gratis' && s > 0 ? (bPierde / s) * 100 : null
+  const hasRetencion = typeof retencion === 'number'
+  const sideMetricLabel = modo === 'rollover' ? 'Contribución' : hasRetencion ? 'Retención' : 'Eficiencia'
+  const sideMetricValue = modo === 'rollover'
+    ? `${formatAmount(contribucionPct)}%`
+    : hasRetencion
+      ? `${retencion.toFixed(1)}%`
+      : `${rating.toFixed(1)}%`
+  const sideMetricHelp = modo === 'rollover' ? 'del volumen computable' : hasRetencion ? 'del valor de la freebet' : 'de cobertura'
   const { titulo, subtitulo } = getResultadoLabel(beneficio, modo)
 
   const MODOS: { id: ModoClasica; label: string; sub: string; accent: string }[] = [
@@ -745,7 +767,9 @@ function OddsMatcherCalc({
       return
     }
 
-    const texto = `Apuesta a favor: ${s.toFixed(2)} ${moneda} @ ${cbm} | Apuesta lay Betfair: ${sc.toFixed(2)} ${moneda} @ ${ce} | Resultado estimado: ${beneficio >= 0 ? '+' : ''}${beneficio.toFixed(2)} ${moneda}`
+    const texto = modo === 'rollover'
+      ? `Depósito: ${formatAmount(depositoRollover)} ${moneda} | Bono: ${formatAmount(bonoRollover)} ${moneda} | Base: ${rolloverBase === 'solo-bono' ? 'solo bono' : 'depósito + bono'} | Rollover: x${formatAmount(rollover)} | Contribución: ${formatAmount(contribucionPct)}% | Importe base: ${formatAmount(importeBaseRollover)} ${moneda} | Rollover bruto: ${formatAmount(rolloverBruto)} ${moneda} | Total estimado a apostar: ${formatAmount(totalRealRollover)} ${moneda}`
+      : `Apuesta a favor: ${s.toFixed(2)} ${moneda} @ ${cbm} | Apuesta lay Betfair: ${sc.toFixed(2)} ${moneda} @ ${ce} | Resultado estimado: ${beneficio >= 0 ? '+' : ''}${beneficio.toFixed(2)} ${moneda}`
     navigator.clipboard.writeText(texto).then(() => {
       setCopiado(true)
       setTimeout(() => setCopiado(false), 2000)
@@ -866,15 +890,61 @@ function OddsMatcherCalc({
                 </div>
               )}
 
-              <div className="grid gap-4 md:grid-cols-2">
-                <InputField label="Importe apuesta" value={stake} onChange={setStake} prefix={moneda} microcopy="Stake que vas a apostar en la casa." />
-                <InputField label="Cuota bookmaker" value={cuotaBM} onChange={setCuotaBM} microcopy="Cuota a favor en la casa de apuestas." />
-              </div>
+              {modo !== 'rollover' && (
+                <>
+                  <div className="grid gap-4 md:grid-cols-2">
+                    <InputField label="Importe apuesta" value={stake} onChange={setStake} prefix={moneda} microcopy="Stake que vas a apostar en la casa." />
+                    <InputField label="Cuota bookmaker" value={cuotaBM} onChange={setCuotaBM} microcopy="Cuota a favor en la casa de apuestas." />
+                  </div>
 
-              <div className="grid gap-4 md:grid-cols-2">
-                <InputField label="Cuota lay (Exchange)" value={cuotaExch} onChange={setCuotaExch} microcopy="Cuota en contra en Betfair." />
-                <InputField label="Comisión Betfair" value={comision} onChange={setComision} suffix="%" microcopy="Ajusta la comisión según tu cuenta o exchange." />
-              </div>
+                  <div className="grid gap-4 md:grid-cols-2">
+                    <InputField label="Cuota lay (Exchange)" value={cuotaExch} onChange={setCuotaExch} microcopy="Cuota en contra en Betfair." />
+                    <InputField label="Comisión Betfair" value={comision} onChange={setComision} suffix="%" microcopy="Ajusta la comisión según tu cuenta o exchange." />
+                  </div>
+                </>
+              )}
+
+              {modo === 'rollover' && (
+                <div className="space-y-4 rounded-[1.25rem] border border-violet-200/60 bg-[linear-gradient(180deg,rgba(248,244,255,0.9)_0%,rgba(255,255,255,0.95)_100%)] p-4">
+                  <div className="grid gap-4 md:grid-cols-2">
+                    <InputField label="Depósito" value={rolloverDeposito} onChange={setRolloverDeposito} prefix={moneda} microcopy="Importe depositado que puede formar parte de la base." />
+                    <InputField label="Bono" value={rolloverBono} onChange={setRolloverBono} prefix={moneda} microcopy="Importe del bono sujeto a condiciones." />
+                  </div>
+
+                  <div className="grid gap-4 md:grid-cols-2">
+                    <InputField label="Rollover" value={rolloverX} onChange={setRolloverX} suffix="x" microcopy="Multiplicador de volumen indicado por la casa." />
+                    <InputField label="Contribución" value={rolloverContribucion} onChange={setRolloverContribucion} suffix="%" microcopy="Porcentaje que computa para el requisito, por ejemplo 100, 50 o 25." />
+                  </div>
+
+                  <div>
+                    <p className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Base del rollover</p>
+                    <div className="grid gap-3 sm:grid-cols-2">
+                      <button
+                        type="button"
+                        onClick={() => setRolloverBase('solo-bono')}
+                        className={`rounded-2xl border px-4 py-3 text-left text-sm font-semibold transition-all ${
+                          rolloverBase === 'solo-bono'
+                            ? 'border-violet-200/70 bg-violet-500/10 text-violet-700 shadow-[0_14px_34px_rgba(124,58,237,0.14)]'
+                            : 'border-violet-100/80 bg-white/85 text-slate-600 hover:border-violet-200/70 hover:bg-white'
+                        }`}
+                      >
+                        Solo bono
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setRolloverBase('deposito-bono')}
+                        className={`rounded-2xl border px-4 py-3 text-left text-sm font-semibold transition-all ${
+                          rolloverBase === 'deposito-bono'
+                            ? 'border-violet-200/70 bg-violet-500/10 text-violet-700 shadow-[0_14px_34px_rgba(124,58,237,0.14)]'
+                            : 'border-violet-100/80 bg-white/85 text-slate-600 hover:border-violet-200/70 hover:bg-white'
+                        }`}
+                      >
+                        Depósito + bono
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
 
               {hasPrefilledOdds && (
                 <p className="rounded-[1.25rem] border border-amber-200/80 bg-amber-50/80 px-4 py-3 text-xs leading-5 text-amber-800">
@@ -885,6 +955,12 @@ function OddsMatcherCalc({
               {validationMessage && (
                 <p className="rounded-[1.25rem] border border-amber-200/80 bg-amber-50/80 px-4 py-3 text-xs leading-5 text-amber-800">
                   {validationMessage}
+                </p>
+              )}
+
+              {rolloverValidationMessage && (
+                <p className="rounded-[1.25rem] border border-amber-200/80 bg-amber-50/80 px-4 py-3 text-xs leading-5 text-amber-800">
+                  {rolloverValidationMessage}
                 </p>
               )}
 
@@ -942,10 +1018,6 @@ function OddsMatcherCalc({
                 </div>
               )}
 
-              {modo === 'rollover' && (
-                <InputField label="Rollover requerido" value={rolloverX} onChange={setRolloverX} suffix="x" microcopy="Multiplicador de volumen exigido por la casa." />
-              )}
-
               <div className="rounded-[1.25rem] border border-violet-200/60 bg-[linear-gradient(180deg,rgba(248,244,255,0.9)_0%,rgba(255,255,255,0.98)_100%)] px-4 py-4 text-sm leading-6 text-slate-600">
                 {modo === 'dinero-real' && 'Apuesta calificante. El objetivo es minimizar la pérdida mientras desbloqueas el bono.'}
                 {modo === 'apuesta-gratis' && 'Freebet SNR (stake no devuelto). Busca cuotas altas para maximizar retención.'}
@@ -954,7 +1026,7 @@ function OddsMatcherCalc({
                   ? 'Si pierdes, el reembolso entra en saldo y se valora al 100% del importe prometido.'
                   : 'Si pierdes, el reembolso llega como free bet y se convierte usando la tasa de extracción que indiques.'
                 )}
-                {modo === 'rollover' && 'Calcula la pérdida esperada al completar el volumen de rollover requerido.'}
+                {modo === 'rollover' && 'Estima el volumen real necesario para liberar un bono. Depende de las condiciones de la casa; comprueba siempre las condiciones oficiales del bono.'}
               </div>
 
               <div className="flex flex-wrap gap-2">
@@ -991,7 +1063,7 @@ function OddsMatcherCalc({
               <div className="min-w-0">
                 <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-violet-200/80">{titulo}</p>
                 <p className="text-4xl font-semibold tracking-tight sm:text-5xl">
-                  {beneficio >= 0 ? '+' : ''}{beneficio.toFixed(2)} {moneda}
+                  {modo === 'rollover' ? formatAmount(totalRealRollover) : `${beneficio >= 0 ? '+' : ''}${formatAmount(beneficio)}`} {moneda}
                 </p>
                 <p className="mt-2 max-w-xl text-sm leading-6 text-slate-300">{subtitulo}</p>
                 {modo === 'reembolso' && (
@@ -1002,10 +1074,10 @@ function OddsMatcherCalc({
                 {modo === 'rollover' && (
                   <div className="mt-3 space-y-1 text-xs leading-5 text-violet-100/85">
                     <p>
-                      Coste por vuelta: {costePorVuelta >= 0 ? '+' : ''}{costePorVuelta.toFixed(2)} {moneda}
+                      Importe base: {formatAmount(importeBaseRollover)} {moneda}
                     </p>
                     <p>
-                      Coste estimado total ({rollover.toFixed(2)}x): {costeTotalRollover >= 0 ? '+' : ''}{costeTotalRollover.toFixed(2)} {moneda}
+                      Rollover bruto: {formatAmount(rolloverBruto)} {moneda}
                     </p>
                   </div>
                 )}
@@ -1013,13 +1085,13 @@ function OddsMatcherCalc({
 
               <div className="shrink-0 text-right">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-violet-200/80">
-                  {retencion !== null ? 'Retención' : 'Eficiencia'}
+                  {sideMetricLabel}
                 </p>
                 <p className="mt-1 text-3xl font-bold tracking-tight">
-                  {retencion !== null ? `${retencion.toFixed(1)}%` : `${rating.toFixed(1)}%`}
+                  {sideMetricValue}
                 </p>
                 <p className="mt-1 text-xs text-violet-100/60">
-                  {retencion !== null ? 'del valor de la freebet' : 'de cobertura'}
+                  {sideMetricHelp}
                 </p>
               </div>
             </div>
@@ -1055,25 +1127,39 @@ function OddsMatcherCalc({
           {modo === 'rollover' && (
             <div className={PANEL_INNER}>
               <div className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-violet-300/70 to-transparent" />
-              <div className="grid gap-4 p-4 sm:grid-cols-2">
+              <div className="grid gap-4 p-4 lg:grid-cols-3">
                 <div className="rounded-2xl border border-violet-100/90 bg-[linear-gradient(180deg,rgba(255,255,255,0.94)_0%,rgba(248,244,255,0.9)_100%)] p-4">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-violet-700">Coste por vuelta</p>
-                  <p className={`mt-2 text-3xl font-semibold tracking-tight ${costePorVuelta >= 0 ? 'text-emerald-700' : 'text-rose-600'}`}>
-                    {costePorVuelta >= 0 ? '+' : ''}{costePorVuelta.toFixed(2)} {moneda}
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-violet-700">Importe base</p>
+                  <p className="mt-2 text-3xl font-semibold tracking-tight text-slate-900">
+                    {formatAmount(importeBaseRollover)} {moneda}
                   </p>
-                  <p className="mt-2 text-xs leading-5 text-slate-500">Usa la misma lógica de dinero real para una sola vuelta.</p>
+                  <p className="mt-2 text-xs leading-5 text-slate-500">
+                    {rolloverBase === 'solo-bono' ? 'Calculado sobre solo bono.' : 'Calculado sobre depósito + bono.'}
+                  </p>
                 </div>
                 <div className="rounded-2xl border border-violet-100/90 bg-[linear-gradient(180deg,rgba(255,255,255,0.94)_0%,rgba(248,244,255,0.9)_100%)] p-4">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-violet-700">Coste estimado total</p>
-                  <p className={`mt-2 text-3xl font-semibold tracking-tight ${costeTotalRollover >= 0 ? 'text-emerald-700' : 'text-rose-600'}`}>
-                    {costeTotalRollover >= 0 ? '+' : ''}{costeTotalRollover.toFixed(2)} {moneda}
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-violet-700">Rollover bruto</p>
+                  <p className="mt-2 text-3xl font-semibold tracking-tight text-slate-900">
+                    {formatAmount(rolloverBruto)} {moneda}
                   </p>
-                  <p className="mt-2 text-xs leading-5 text-slate-500">{rollover.toFixed(2)} vueltas estimadas</p>
+                  <p className="mt-2 text-xs leading-5 text-slate-500">Importe base × {formatAmount(rollover)}.</p>
+                </div>
+                <div className="rounded-2xl border border-violet-100/90 bg-[linear-gradient(180deg,rgba(255,255,255,0.94)_0%,rgba(248,244,255,0.9)_100%)] p-4">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-violet-700">Total real a apostar</p>
+                  <p className="mt-2 text-3xl font-semibold tracking-tight text-slate-900">
+                    {formatAmount(totalRealRollover)} {moneda}
+                  </p>
+                  <p className="mt-2 text-xs leading-5 text-slate-500">Total estimado a apostar según la contribución indicada.</p>
                 </div>
               </div>
+              <p className="px-4 pb-4 text-xs leading-5 text-slate-500">
+                Depende de las condiciones de la casa. Comprueba siempre las condiciones oficiales del bono antes de apostar.
+              </p>
             </div>
           )}
 
+          {modo !== 'rollover' && (
+            <>
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="rounded-[1.5rem] border border-violet-200/60 bg-[linear-gradient(180deg,rgba(248,244,255,0.98)_0%,rgba(255,255,255,0.98)_100%)] p-4 shadow-[0_16px_38px_rgba(46,16,101,0.06)]">
               <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-violet-700">Paso 1 · Apuesta a favor</p>
@@ -1106,7 +1192,6 @@ function OddsMatcherCalc({
             </div>
           </div>
 
-          {modo !== 'rollover' && (
             <div className="rounded-[1.25rem] border border-violet-200/60 bg-white/85 px-4 py-3 text-xs font-medium text-slate-600 shadow-[0_12px_30px_rgba(46,16,101,0.05)]">
               <span className="font-semibold text-slate-700">CONTRA:</span> {sc.toFixed(2)} {moneda}
               <span className="mx-2 text-slate-300">|</span>
@@ -1114,7 +1199,6 @@ function OddsMatcherCalc({
               <span className="mx-2 text-slate-300">|</span>
               <span className="font-semibold text-slate-700">RESULTADO:</span> {beneficio >= 0 ? '+' : ''}{beneficio.toFixed(2)} {moneda}
             </div>
-          )}
 
           <TablaResultado
             label1="Apuesta a favor gana"
@@ -1126,6 +1210,8 @@ function OddsMatcherCalc({
             benefSiGana={bGana}
             benefSiPierde={bPierde}
           />
+            </>
+          )}
 
           <div className="flex flex-wrap gap-2">
             <button
