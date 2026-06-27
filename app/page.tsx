@@ -582,9 +582,9 @@ export default function LandingPage() {
                     </div>
                     <div>
                       <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-gray-500">
-                        Capital inicial
+                        Beneficio estimado
                       </p>
-                      <p className="mt-1 text-sm font-semibold text-gray-100">Puede hacer falta</p>
+                      <p className="mt-1 text-sm font-semibold text-gray-100">Hasta ~125€</p>
                     </div>
                   </div>
                 </div>
@@ -610,6 +610,13 @@ export default function LandingPage() {
                     </div>
                   ))}
                 </div>
+
+                <Link
+                  href="/bienvenida"
+                  className="mt-7 inline-flex min-h-12 w-full items-center justify-center rounded-full border border-emerald-200/70 bg-emerald-300 px-5 py-3 text-center text-sm font-bold text-slate-950 shadow-[0_0_30px_rgba(52,211,153,0.30)] ring-1 ring-inset ring-white/35 transition-all duration-200 ease-out hover:border-emerald-100 hover:bg-emerald-200 hover:shadow-[0_0_38px_rgba(52,211,153,0.42)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-100/80 sm:w-auto"
+                >
+                  Ir a guía
+                </Link>
               </div>
             </div>
         </div>
