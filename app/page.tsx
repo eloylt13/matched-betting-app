@@ -531,28 +531,28 @@ export default function LandingPage() {
                     BENEFICIOS RECURRENTES
                   </p>
                   <p className="mt-1 text-lg font-bold leading-snug text-white md:text-xl">
-                    Alertas de ofertas recurrentes
+                    Alertas gratis de ofertas recurrentes
                   </p>
-                  <p className="mt-1.5 text-[11px] leading-relaxed text-slate-400">
-                    +18 &middot; Juego responsable &middot; Revisa siempre las condiciones oficiales de cada casa.
+                  <p className="mt-1.5 text-sm leading-relaxed text-slate-300">
+                    Recibe avisos cuando aparezcan nuevas promociones aprovechables, con enlace a la casa y guía explicativa.
                   </p>
                 </div>
               </div>
-              <div className="relative mt-4 flex w-full min-w-0 flex-col gap-2 sm:flex-row md:flex-col xl:flex-row">
-                <Link
-                  href="/beneficios-recurrentes"
-                  className="inline-flex min-h-11 w-full min-w-0 items-center justify-center rounded-full border border-emerald-300/45 bg-slate-950/60 px-4 py-2.5 text-center text-xs font-bold text-emerald-100 shadow-[0_0_24px_rgba(52,211,153,0.18)] ring-1 ring-inset ring-emerald-100/10 backdrop-blur transition-all duration-200 ease-out hover:border-emerald-200/70 hover:bg-emerald-400/12 hover:text-white hover:shadow-[0_0_28px_rgba(52,211,153,0.26)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300/60 sm:min-h-10"
-                >
-                  Ver beneficios recurrentes
-                </Link>
+              <div className="relative mt-4 flex w-full min-w-0 flex-col gap-2 xl:flex-row">
                 <a
                   href="https://t.me/beneficiosrecurrentes"
                   target="_blank"
                   rel="noopener noreferrer"
+                  className="inline-flex min-h-11 w-full min-w-0 items-center justify-center rounded-full border border-emerald-200/70 bg-emerald-300 px-4 py-2.5 text-center text-xs font-bold text-slate-950 shadow-[0_0_28px_rgba(52,211,153,0.28)] ring-1 ring-inset ring-white/35 transition-all duration-200 ease-out hover:border-emerald-100 hover:bg-emerald-200 hover:text-slate-950 hover:shadow-[0_0_34px_rgba(52,211,153,0.34)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-100/80"
+                >
+                  Ver canal de alertas
+                </a>
+                <Link
+                  href="/beneficios-recurrentes"
                   className="inline-flex min-h-10 w-full min-w-0 items-center justify-center rounded-full border border-white/12 bg-white/[0.03] px-4 py-2 text-center text-xs font-semibold text-slate-200/90 ring-1 ring-inset ring-white/[0.04] transition-all duration-200 ease-out hover:border-emerald-200/35 hover:bg-white/[0.06] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300/45"
                 >
-                  Ver canal de alertas ↗
-                </a>
+                  Ver beneficios recurrentes
+                </Link>
               </div>
             </div>
             </div>
