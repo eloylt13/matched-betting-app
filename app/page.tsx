@@ -560,11 +560,19 @@ export default function LandingPage() {
 
             <div className="mx-auto mt-10 grid max-w-5xl grid-cols-1 items-start gap-6 text-left sm:mt-12 md:grid-cols-2 md:gap-8">
               <div className="rounded-2xl border border-white/10 bg-white/[0.06] p-8 text-left shadow-2xl backdrop-blur-xl">
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-emerald-400">Paso 1 de 4</p>
-                  <h2 className="mt-3 text-xl font-semibold tracking-tight text-white">
-                    Primer bono guiado · Versus
-                  </h2>
+                <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                  <div className="min-w-0">
+                    <p className="text-xs font-semibold uppercase tracking-[0.22em] text-emerald-400">Paso 1 de 4</p>
+                    <h2 className="mt-3 text-xl font-semibold tracking-tight text-white">
+                      Primer bono recomendado · Versus
+                    </h2>
+                  </div>
+                  <Link
+                    href="/bienvenida"
+                    className="inline-flex min-h-12 w-full items-center justify-center rounded-full border border-emerald-200/70 bg-emerald-300 px-5 py-3 text-center text-sm font-bold text-slate-950 shadow-[0_0_30px_rgba(52,211,153,0.30)] ring-1 ring-inset ring-white/35 transition-all duration-200 ease-out hover:border-emerald-100 hover:bg-emerald-200 hover:shadow-[0_0_38px_rgba(52,211,153,0.42)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-100/80 sm:w-auto sm:shrink-0"
+                  >
+                    Ir a guía
+                  </Link>
                 </div>
 
                 <div className="mt-7 rounded-2xl border border-white/10 bg-white/[0.04] p-5">
@@ -609,12 +617,6 @@ export default function LandingPage() {
                   ))}
                 </div>
 
-                <Link
-                  href="/bienvenida"
-                  className="mt-7 inline-flex min-h-12 w-full items-center justify-center rounded-full border border-emerald-200/70 bg-emerald-300 px-5 py-3 text-center text-sm font-bold text-slate-950 shadow-[0_0_30px_rgba(52,211,153,0.30)] ring-1 ring-inset ring-white/35 transition-all duration-200 ease-out hover:border-emerald-100 hover:bg-emerald-200 hover:shadow-[0_0_38px_rgba(52,211,153,0.42)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-100/80 sm:w-auto"
-                >
-                  Ir a guía
-                </Link>
               </div>
 
               <div className="relative w-full min-w-0 overflow-hidden rounded-xl border border-white/10 bg-white/[0.035] shadow-[0_18px_46px_rgba(0,0,0,0.28),0_0_34px_rgba(56,189,248,0.08)] ring-1 ring-white/[0.05]">
