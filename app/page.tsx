@@ -252,25 +252,25 @@ const GUIAS_DESTACADAS = [
     icono: 'guide',
     titulo: 'Introducción al Matched Betting',
     desc: 'Qué es, cómo funciona y por qué conviene entender el método antes de ejecutar.',
-    archivo: 'inicio/introduccion-matched-betting.pdf',
+    href: '/guias/primeros-pasos/introduccion-matched-betting',
   },
   {
     icono: 'trend',
     titulo: 'Cuánto se puede ganar',
     desc: 'Contexto realista del mercado español y LATAM, con foco en método, orden y ejecución.',
-    archivo: 'inicio/cuanto-se-puede-ganar-espana.pdf',
+    href: '/guias/primeros-pasos/cuanto-se-puede-ganar',
   },
   {
     icono: 'exchange',
     titulo: 'Módulo 1 — Betfair Exchange',
     desc: 'Base práctica para cubrir apuestas correctamente y entender el exchange.',
-    archivo: 'modulos/modulo-1-betfair.pdf',
+    href: '/guias/modulos/modulo-1-betfair',
   },
   {
     icono: 'check',
     titulo: 'Módulo 2 — Apuesta y Recibe',
     desc: 'Cómo empezar por ofertas sencillas con una ejecución paso a paso.',
-    archivo: 'modulos/modulo-2-apuesta-y-recibe.pdf',
+    href: '/guias/modulos/modulo-2-apuesta-y-recibe',
   },
 ]
 
@@ -760,7 +760,7 @@ export default function LandingPage() {
           </div>
           <div className="grid sm:grid-cols-2 gap-4 mb-8">
             {GUIAS_DESTACADAS.map((g) => (
-              <a key={g.archivo} href={`/guias/${g.archivo}`} target="_blank" rel="noopener noreferrer" className="group relative flex items-start gap-4 overflow-hidden rounded-lg border border-violet-200/12 bg-white/[0.055] p-5 shadow-[0_20px_52px_rgba(0,0,0,0.22)] ring-1 ring-white/[0.035] backdrop-blur-sm transition-all duration-200 before:absolute before:inset-x-4 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-violet-300/50 before:to-transparent hover:-translate-y-0.5 hover:border-violet-300/35 hover:bg-white/[0.08] hover:shadow-[0_24px_62px_rgba(0,0,0,0.28)]">
+              <Link key={g.href} href={g.href} className="group relative flex items-start gap-4 overflow-hidden rounded-lg border border-violet-200/12 bg-white/[0.055] p-5 shadow-[0_20px_52px_rgba(0,0,0,0.22)] ring-1 ring-white/[0.035] backdrop-blur-sm transition-all duration-200 before:absolute before:inset-x-4 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-violet-300/50 before:to-transparent hover:-translate-y-0.5 hover:border-violet-300/35 hover:bg-white/[0.08] hover:shadow-[0_24px_62px_rgba(0,0,0,0.28)]">
                 <span className="mt-0.5 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-white/12 bg-violet-300/10 text-violet-200 shadow-sm shadow-black/10 transition-colors group-hover:border-violet-300/35 group-hover:bg-violet-300/15">
                   <LandingIcon name={g.icono as LandingIconName} />
                 </span>
@@ -768,8 +768,8 @@ export default function LandingPage() {
                   <h3 className="font-semibold text-white text-sm group-hover:text-violet-200 transition-colors mb-1">{g.titulo}</h3>
                   <p className="text-xs text-gray-400 leading-relaxed">{g.desc}</p>
                 </div>
-                <span className="text-xs text-violet-300 font-semibold shrink-0 mt-0.5">PDF →</span>
-              </a>
+                <span className="text-xs text-violet-300 font-semibold shrink-0 mt-0.5">Ver guía →</span>
+              </Link>
             ))}
           </div>
           <div className="text-center">
